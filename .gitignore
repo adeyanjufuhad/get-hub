@@ -10,6 +10,9 @@ frontend/build/
 frontend/next-env.d.ts
 frontend/tsconfig.tsbuildinfo
 
+# Local copyrighted textbooks (never commit PDFs to public repo)
+frontend/public/textbooks/*.pdf
+
 # Go binaries & build artifacts
 backend/bin/
 backend/tmp/
@@ -36,3 +39,4 @@ Thumbs.db
 !.vscode/settings.json
 !.vscode/extensions.json
 .idea/
+.claude/

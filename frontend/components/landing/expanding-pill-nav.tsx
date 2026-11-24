@@ -59,7 +59,7 @@ export function ExpandingPillNav() {
           }
         }}
         className={cn(
-          "pointer-events-auto flex items-center rounded-full border px-2 py-1.5 backdrop-blur-xl backdrop-saturate-150 transition-[box-shadow,background-color,border-color] duration-200 ease-[var(--ease-out)]",
+          "pointer-events-auto flex max-w-[calc(100vw-2rem)] items-center rounded-full border px-2 py-1.5 backdrop-blur-xl backdrop-saturate-150 transition-[box-shadow,background-color,border-color] duration-200 ease-[var(--ease-out)]",
           "border-black/[0.08] bg-white/70 shadow-[0_8px_28px_rgba(20,20,19,0.08),inset_0_1px_0_rgba(255,255,255,0.85)]",
           "dark:border-white/[0.12] dark:bg-[#181A1E]/72 dark:shadow-[0_10px_32px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.08)]"
         )}

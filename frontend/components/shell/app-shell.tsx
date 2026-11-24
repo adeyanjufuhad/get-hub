@@ -4,6 +4,7 @@ import {
   BarChart3,
   BookOpen,
   Home,
+  Library,
   LogOut,
   Shield,
 } from "lucide-react";
@@ -28,6 +29,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { href: "/dashboard", label: "Home", icon: Home, matchPrefix: "/dashboard" },
   { href: "/courses", label: "Courses", icon: BookOpen, matchPrefix: "/courses" },
+  { href: "/library", label: "Library", icon: Library, matchPrefix: "/library" },
   { href: "/progress", label: "Progress", icon: BarChart3, matchPrefix: "/progress" },
   { href: "/admin", label: "Admin", icon: Shield, matchPrefix: "/admin", adminOnly: true },
 ];
@@ -117,7 +119,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         {/* Mobile & Tablet Top Bar */}
         <header className="safe-top sticky top-0 z-20 border-b border-[var(--border-hairline)]/80 bg-[var(--bg-canvas)]/90 backdrop-blur-md">
           <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
-            <Link href={user ? "/dashboard" : "/"} className="flex items-center gap-2 md:hidden">
+            <Link href={user ? "/dashboard" : "/"} className="flex min-h-[44px] items-center gap-2 md:hidden">
               <BrandLogo size="sm" />
               <span className="text-sm font-extrabold tracking-tight">{APP_NAME}</span>
             </Link>
@@ -178,13 +180,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
+                aria-label={item.label}
                 className={cn(
-                  "pressable flex min-h-[44px] items-center gap-1.5 rounded-full px-4 text-xs font-semibold",
-                  active ? "bg-[#EA580C] text-white" : "text-neutral-300"
+                  "pressable flex min-h-[44px] min-w-[44px] items-center justify-center gap-1.5 rounded-full text-xs font-semibold transition-[background-color,padding] duration-200",
+                  active ? "bg-[#EA580C] px-4 text-white" : "px-3 text-neutral-300 hover:text-white"
                 )}
               >
-                <Icon className="h-4 w-4 shrink-0" />
-                <span>{item.label}</span>
+                <Icon className="h-[18px] w-[18px] shrink-0" />
+                {/* Only the active tab shows its label, so 5–6 tabs still fit a 320px phone */}
+                <span className={cn(!active && "sr-only")}>{item.label}</span>
               </Link>
             );
           })}

@@ -12,6 +12,24 @@
       "ccmasRef": "Limits; continuity",
       "status": "draft",
       "isFree": true
+    },
+    {
+      "slug": "first-order-linear-odes",
+      "topicId": "22222222-2222-4222-8222-222222290002",
+      "title": "First-Order Linear Differential Equations",
+      "order": 2,
+      "ccmasRef": "Linear first-order differential equations",
+      "status": "draft",
+      "isFree": true
+    },
+    {
+      "slug": "partial-derivatives-and-matrices",
+      "topicId": "22222222-2222-4222-8222-222222290003",
+      "title": "Partial Derivatives, Gradients & Matrices",
+      "order": 3,
+      "ccmasRef": "Partial & total derivatives; directional derivatives & gradients; matrices & determinants",
+      "status": "draft",
+      "isFree": true
     }
   ]
 }

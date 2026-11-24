@@ -26,6 +26,13 @@ type Config struct {
 	IncludeDraftContent bool
 	EnforcePaidGating   bool
 	UploadDir           string
+
+	// Neon Object Storage (S3-compatible) for the downloadable notes library.
+	LibraryS3Endpoint        string
+	LibraryS3Region          string
+	LibraryS3Bucket          string
+	LibraryS3AccessKeyID     string
+	LibraryS3SecretAccessKey string
 }
 
 // Load parses and validates environment configuration.
@@ -68,6 +75,12 @@ func Load() (Config, error) {
 		IncludeDraftContent: getEnvBool("INCLUDE_DRAFT_CONTENT", appEnv != "production"),
 		EnforcePaidGating:   getEnvBool("ENFORCE_PAID_GATING", false),
 		UploadDir:           getEnv("UPLOAD_DIR", "./uploads"),
+
+		LibraryS3Endpoint:        strings.TrimRight(strings.TrimSpace(os.Getenv("LIBRARY_S3_ENDPOINT")), "/"),
+		LibraryS3Region:          getEnv("LIBRARY_S3_REGION", "eu-central-1"),
+		LibraryS3Bucket:          getEnv("LIBRARY_S3_BUCKET", "library"),
+		LibraryS3AccessKeyID:     strings.TrimSpace(os.Getenv("LIBRARY_S3_ACCESS_KEY_ID")),
+		LibraryS3SecretAccessKey: strings.TrimSpace(os.Getenv("LIBRARY_S3_SECRET_ACCESS_KEY")),
 	}
 
 	return cfg, nil

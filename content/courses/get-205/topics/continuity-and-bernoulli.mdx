@@ -1,0 +1,96 @@
+---
+title: "Continuity, Bernoulli's Equation & Flow Measurement"
+order: 3
+topicId: "22222222-2222-4222-8222-222222250003"
+courseCode: "GET 205"
+courseSlug: "get-205"
+ccmasRef: "Control-volume continuity; Bernoulli's equation, Venturi meters & Pitot tubes"
+outcomes:
+  - "Apply conservation of mass (continuity) to converging/diverging pipes and junctions"
+  - "Write and apply Bernoulli's equation in both pressure form and head form with valid assumptions"
+  - "Calculate flow rate through a horizontal or inclined Venturi meter and local speed from a Pitot-static tube"
+status: "draft"
+isFree: true
+---
+
+## 1. Overview
+
+Once a fluid starts moving through pipes, nozzles, or over an aircraft wing, **conservation of mass** (continuity) and **conservation of mechanical energy** (Bernoulli's equation) become your two primary workhorses. Together they explain why squeezing a garden hose speeds up the jet, how a Venturi meter measures campus water flow, and how a Pitot tube measures airspeed.
+
+---
+
+## 2. Key Concepts
+
+### Conservation of Mass (Continuity Equation)
+
+For steady, incompressible flow ($\rho = \text{constant}$) along a streamtube or pipe with no leaks, the volumetric flow rate $Q$ ($\text{m}^3\text{/s}$) stays constant at every cross-section:
+
+$$Q = A_1 V_1 = A_2 V_2$$
+
+For circular pipes of diameters $D_1$ and $D_2$:
+
+$$\frac{V_2}{V_1} = \frac{A_1}{A_2} = \left(\frac{D_1}{D_2}\right)^2$$
+
+Halving the pipe diameter increases the average fluid velocity by a factor of **$4\times$**!
+
+### Bernoulli's Equation
+
+Along a streamline for **steady, incompressible, inviscid (frictionless)** flow with no shaft work or heat transfer:
+
+$$P_1 + \frac{1}{2}\rho V_1^2 + \rho g z_1 = P_2 + \frac{1}{2}\rho V_2^2 + \rho g z_2$$
+
+Dividing every term by specific weight $\rho g$ gives the **head form** (every term in **metres**):
+
+$$\frac{P_1}{\rho g} + \frac{V_1^2}{2g} + z_1 = \frac{P_2}{\rho g} + \frac{V_2^2}{2g} + z_2$$
+
+- $\frac{P}{\rho g}$ = **pressure head**
+- $\frac{V^2}{2g}$ = **velocity head**
+- $z$ = **elevation (potential) head**
+
+### Flow Measurement Devices
+
+1. **Pitot-Static Tube (Stagnation Velocity):** Fluid stops ($V_2 = 0$) at the stagnation nose while static pressure $P_1$ is tapped along the side wall:
+   $$V_1 = \sqrt{\frac{2(P_{\text{stag}} - P_{\text{static}})}{\rho}} = \sqrt{2 g \Delta h}$$
+
+2. **Horizontal Venturi Meter:** Combining continuity $V_1 = (A_2/A_1)V_2$ with Bernoulli between inlet (1) and throat (2) yields the ideal discharge:
+   $$Q_{\text{ideal}} = A_2 \sqrt{\frac{2(P_1 - P_2)}{\rho \left[1 - (A_2/A_1)^2\right]}}$$
+   Actual discharge multiplies $Q_{\text{ideal}}$ by the discharge coefficient $C_d$ (typically $0.95\text{–}0.99$).
+
+<Callout variant="tip" title="Always state Bernoulli's 4 assumptions in theory questions">
+OAU examiners award 2–4 marks just for listing them cleanly: **(1) Steady flow, (2) Incompressible fluid ($\rho = \text{const}$), (3) Inviscid / frictionless flow, (4) Applied along a single streamline.**
+</Callout>
+
+---
+
+## 3. Worked Examples
+
+<StepRevealExample
+  title="Example 1: Converging Pipe Pressure Drop"
+  problem="Water ($\rho = 1000\,\text{kg/m}^3$) flows steadily through a horizontal pipe that tapers from diameter $D_1 = 0.20\,\text{m}$ to $D_2 = 0.10\,\text{m}$. At section 1, $V_1 = 2.0\,\text{m/s}$ and $P_1 = 150\,\text{kPa}$. Neglecting friction, find (a) $V_2$ and (b) $P_2$ in $\text{kPa}$."
+  steps={[
+    "Step 1 — Continuity for circular pipe: $V_2 = V_1 \\left(\\frac{D_1}{D_2}\\right)^2 = 2.0 \\times \\left(\\frac{0.20}{0.10}\\right)^2 = 2.0 \\times 4 = 8.0\\,\\text{m/s}$.",
+    "Step 2 — Apply horizontal Bernoulli ($z_1 = z_2$): $P_2 = P_1 + \\frac{1}{2}\\rho(V_1^2 - V_2^2)$.",
+    "Step 3 — Substitute SI values ($P_1 = 150\\,000\\,\\text{Pa}$): $P_2 = 150\\,000 + 0.5(1000)(2^2 - 8^2) = 150\\,000 + 500(4 - 64) = 150\\,000 - 30\\,000 = 120\\,000\\,\\text{Pa} = 120\\,\\text{kPa}$."
+  ]}
+/>
+
+<StepRevealExample
+  title="Example 2: Torricelli's Efflux Speed from a Large Tank"
+  problem="A large open storage tank holds water to a depth of $5.0\,\text{m}$ above a small sharp-edged nozzle in its side wall. Using $g = 9.81\,\text{m/s}^2$, find the ideal exit jet velocity $V_2$."
+  steps={[
+    "Step 1 — Pick point 1 at the free surface ($P_1 = P_{\\text{atm}}$, $V_1 \\approx 0$, $z_1 = 5.0\\,\\text{m}$) and point 2 at the free jet just outside the nozzle ($P_2 = P_{\\text{atm}}$, $z_2 = 0$).",
+    "Step 2 — Simplify Bernoulli: $g z_1 = \\frac{1}{2} V_2^2 \\implies V_2 = \\sqrt{2 g h}$.",
+    "Step 3 — Evaluate: $V_2 = \\sqrt{2 \\times 9.81 \\times 5.0} = \\sqrt{98.1} \\approx 9.90\\,\\text{m/s}$."
+  ]}
+/>
+
+---
+
+## 4. Common Exam Pitfalls
+
+<Callout variant="warning" title="Don't lose easy marks here">
+- **Mixing $\text{kPa}$ and $\text{Pa}$:** The dynamic term $\frac{1}{2}\rho V^2$ produces **Pascals**, never kilopascals. Always convert $P_1$ to $\text{Pa}$ first, then divide by $1000$ at the end.
+- **Forgetting to square the diameter ratio:** $V_2/V_1 = (D_1/D_2)^2$, NOT $D_1/D_2$.
+</Callout>
+
+*Recommended textbook chapters: Çengel & Cimbala Ch. 5 · Munson et al. Ch. 3 & Ch. 5 · R. K. Bansal Ch. 6.*

@@ -1,20 +1,13 @@
 "use client";
 
-import {
-  AlertCircle,
-  ArrowRight,
-  BookOpen,
-  Flame,
-  Play,
-  Timer,
-} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { PrescribedTextbooks } from "@/components/dashboard/prescribed-textbooks";
 import { useAuth } from "@/components/providers";
 import { Badge } from "@/components/ui/badge";
-import { ProgressArc } from "@/components/ui/progress-arc";
 import { ApiError, api } from "@/lib/api";
+import { COURSE_BANNER_IMAGES } from "@/lib/config";
 import type { DashboardPayload } from "@/lib/types";
 
 export default function DashboardPage() {
@@ -53,9 +46,9 @@ export default function DashboardPage() {
       <div className="space-y-4">
         <div className="h-24 animate-pulse rounded-[22px] bg-[var(--bg-surface)]" />
         <div className="grid gap-4 sm:grid-cols-3">
-          <div className="h-40 animate-pulse rounded-[22px] bg-[var(--bg-surface)]" />
-          <div className="h-40 animate-pulse rounded-[22px] bg-[var(--bg-surface)]" />
-          <div className="h-40 animate-pulse rounded-[22px] bg-[var(--bg-surface)]" />
+          <div className="h-56 animate-pulse rounded-[22px] bg-[var(--bg-surface)]" />
+          <div className="h-56 animate-pulse rounded-[22px] bg-[var(--bg-surface)]" />
+          <div className="h-56 animate-pulse rounded-[22px] bg-[var(--bg-surface)]" />
         </div>
       </div>
     );
@@ -64,6 +57,9 @@ export default function DashboardPage() {
   if (!data) return null;
 
   const firstName = data.user.full_name.split(" ")[0] || "Engineer";
+  const heroSlug = data.continue_topic?.course_slug ?? "get-205";
+  const heroBanner = COURSE_BANNER_IMAGES[heroSlug] ?? "/images/courses/get-205.webp";
+  const accuracyPct = Math.max(0, Math.min(100, data.summary.overall_accuracy));
 
   return (
     <div className="space-y-6">
@@ -79,7 +75,10 @@ export default function DashboardPage() {
         </div>
 
         <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-border)] bg-[var(--accent-soft)] px-4 py-2">
-          <Flame className="h-5 w-5 text-[var(--accent)]" />
+          <span
+            aria-hidden="true"
+            className="inline-block h-2.5 w-2.5 rounded-full bg-[var(--accent)]"
+          />
           <span className="tabular text-sm font-extrabold text-[var(--accent)]">
             {data.streak_days} {data.streak_days === 1 ? "day" : "days"} streak
           </span>
@@ -88,11 +87,22 @@ export default function DashboardPage() {
 
       {/* Continue Where You Stopped + Quick Stats */}
       <section className="grid gap-4 lg:grid-cols-12">
-        <div className="flex flex-col justify-between rounded-[24px] bg-[#141413] p-5 text-white sm:p-6 lg:col-span-7">
-          <div>
+        <div className="relative flex flex-col justify-between overflow-hidden rounded-[24px] bg-[#141413] p-5 text-white sm:p-6 lg:col-span-7">
+          {/* Subtle real photo backdrop on right edge */}
+          <img
+            src={heroBanner}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-luminosity"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#141413] via-[#141413]/90 to-[#141413]/65"
+          />
+
+          <div className="relative z-10">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] font-semibold text-orange-300">
-              <Play className="h-3 w-3" />
-              {data.continue_topic ? "Continue where you stopped" : "Jump into your first topic"}
+              ▸ {data.continue_topic ? "Continue where you stopped" : "Jump into your first topic"}
             </span>
             {data.continue_topic ? (
               <>
@@ -107,13 +117,13 @@ export default function DashboardPage() {
                   GET 205: Fluid Properties, Hydrostatic Pressure &amp; Manometry
                 </h2>
                 <p className="mt-1 text-sm text-neutral-300">
-                  Start with crisp manometry diagrams and 5 instant-feedback practice drills.
+                  Start with clear worked notes and instant-feedback textbook-style practice drills.
                 </p>
               </>
             )}
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-2.5">
+          <div className="relative z-10 mt-6 flex flex-wrap gap-2.5">
             <Link
               href={
                 data.continue_topic
@@ -122,8 +132,7 @@ export default function DashboardPage() {
               }
               className="pressable inline-flex min-h-[44px] items-center gap-2 rounded-full bg-[#EA580C] px-5 text-sm font-semibold text-white"
             >
-              Open topic
-              <ArrowRight className="h-4 w-4" />
+              Open topic →
             </Link>
             <Link
               href={
@@ -138,10 +147,10 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* 3 Compact Metric Tiles */}
-        <div className="grid grid-cols-3 gap-3 lg:col-span-5 lg:grid-cols-1">
-          <div className="flex items-center justify-between rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
-            <div>
+        {/* 3 Compact Metric Tiles (responsive 2+1 on phones, 3-up on sm, stacked on lg; zero SVG) */}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
+          <div className="flex items-center justify-between gap-2 rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
+            <div className="min-w-0">
               <p className="text-xs font-medium text-[var(--text-muted)]">Topics done</p>
               <p className="tabular mt-1 text-xl font-extrabold text-[var(--text-primary)]">
                 {data.summary.completed_topics}
@@ -150,43 +159,80 @@ export default function DashboardPage() {
                 </span>
               </p>
             </div>
-            <BookOpen className="hidden h-5 w-5 text-[var(--accent)] sm:block" />
+            <Badge variant="accent" className="hidden shrink-0 font-mono sm:inline-flex">
+              CCMAS
+            </Badge>
           </div>
 
-          <div className="flex items-center justify-between rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
-            <div>
+          <div className="flex items-center justify-between gap-2 rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
+            <div className="min-w-0">
               <p className="text-xs font-medium text-[var(--text-muted)]">Attempted</p>
               <p className="tabular mt-1 text-xl font-extrabold text-[var(--text-primary)]">
                 {data.summary.total_attempts}
               </p>
             </div>
-            <Badge variant="neutral" className="hidden sm:inline-flex">
+            <Badge variant="neutral" className="hidden shrink-0 sm:inline-flex">
               Questions
             </Badge>
           </div>
 
-          <div className="flex items-center justify-between rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
-            <div>
+          <div className="col-span-2 flex flex-col justify-center rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:col-span-1">
+            <div className="flex items-baseline justify-between gap-2">
               <p className="text-xs font-medium text-[var(--text-muted)]">Accuracy</p>
-              <p className="tabular mt-1 text-xl font-extrabold text-[var(--text-primary)]">
-                {data.summary.overall_accuracy}%
+              <p className="tabular text-xl font-extrabold text-[var(--text-primary)]">
+                {accuracyPct}%
               </p>
             </div>
-            <div className="hidden sm:block">
-              <ProgressArc percentage={data.summary.overall_accuracy} size={44} strokeWidth={5} />
+            <div
+              role="progressbar"
+              aria-valuenow={accuracyPct}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              className="mt-2 h-2 w-full overflow-hidden rounded-full bg-[var(--bg-canvas)]"
+            >
+              <div
+                className="h-full rounded-full bg-[var(--accent)] transition-[width] duration-300"
+                style={{ width: `${accuracyPct}%` }}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* My Courses */}
+      {/* Downloadable Part 2 Notes & Past Questions Library Banner (zero SVG) */}
+      <section className="flex flex-col justify-between gap-4 rounded-[22px] border border-[var(--accent-border)] bg-[var(--accent-soft)]/70 p-4 sm:flex-row sm:items-center sm:p-5">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge variant="accent" className="font-mono">
+              OAU PART 2 LIBRARY
+            </Badge>
+            <span className="font-mono text-[11px] font-semibold text-[var(--text-muted)]">
+              14 Courses · PDFs &amp; Slides
+            </span>
+          </div>
+          <h2 className="mt-1.5 text-base font-extrabold tracking-tight text-[var(--text-primary)]">
+            Download lecture notes, tutorials, lab manuals &amp; past questions
+          </h2>
+          <p className="mt-0.5 text-xs leading-relaxed text-[var(--text-secondary)]">
+            Browse curated OAU Second Year materials (MTH 201/202, MEE 203/205/206, CHE 201, CSC 201, EEE 251–282 &amp; more) with file sizes shown upfront for campus data.
+          </p>
+        </div>
+        <Link
+          href="/library"
+          className="pressable inline-flex min-h-[44px] w-full shrink-0 items-center justify-center rounded-full bg-[var(--ink-cta)] px-5 text-xs font-semibold text-[var(--ink-cta-text)] sm:w-auto"
+        >
+          Open Notes Library →
+        </Link>
+      </section>
+
+      {/* My Courses with real engineering photography */}
       <section>
         <div className="mb-3 flex items-center justify-between">
           <h2 className="text-lg font-extrabold tracking-tight text-[var(--text-primary)]">
             Your 200L First-Semester Courses
           </h2>
-          <Link href="/courses" className="text-xs font-semibold text-[var(--accent)]">
-            View all
+          <Link href="/courses" className="inline-flex min-h-[44px] items-center text-xs font-semibold text-[var(--accent)]">
+            View all →
           </Link>
         </div>
 
@@ -195,46 +241,85 @@ export default function DashboardPage() {
             const total = course.total_topics ?? 0;
             const done = course.completed_topics ?? 0;
             const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+            const bannerSrc =
+              COURSE_BANNER_IMAGES[course.slug] ?? "/images/courses/get-205.webp";
 
             return (
-              <div
+              <article
                 key={course.id}
-                className="hover-lift flex flex-col justify-between rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5"
+                className="hover-lift flex flex-col justify-between overflow-hidden rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
               >
                 <div>
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <Badge variant="accent" className="font-mono">
+                  {/* Real engineering photo banner */}
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#141413]">
+                    <img
+                      src={bannerSrc}
+                      alt={`${course.code} ${course.title}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent"
+                    />
+                    <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between gap-2">
+                      <span className="rounded-full bg-[#EA580C] px-2.5 py-0.5 font-mono text-[11px] font-bold text-white shadow-sm">
                         {course.code}
-                      </Badge>
-                      <h3 className="mt-2.5 text-base font-bold leading-snug text-[var(--text-primary)]">
-                        {course.title}
-                      </h3>
+                      </span>
+                      <span className="tabular rounded-full bg-black/65 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-white backdrop-blur-xs">
+                        {pct}% done
+                      </span>
                     </div>
-                    <ProgressArc percentage={pct} size={52} strokeWidth={5} />
                   </div>
-                  <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-[var(--text-secondary)]">
-                    {course.description}
-                  </p>
+
+                  <div className="p-4 pb-3">
+                    <h3 className="text-base font-bold leading-snug text-[var(--text-primary)]">
+                      {course.title}
+                    </h3>
+                    <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-[var(--text-secondary)]">
+                      {course.description}
+                    </p>
+
+                    {/* Pure CSS progress track */}
+                    <div className="mt-3">
+                      <div className="flex items-center justify-between text-[11px] text-[var(--text-muted)]">
+                        <span>Syllabus progress</span>
+                        <span className="tabular font-mono font-semibold text-[var(--text-secondary)]">
+                          {done}/{total} topics
+                        </span>
+                      </div>
+                      <div
+                        role="progressbar"
+                        aria-valuenow={pct}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                        className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-[var(--bg-canvas)]"
+                      >
+                        <div
+                          className="h-full rounded-full bg-[var(--accent)] transition-[width] duration-300"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between gap-2 border-t border-[var(--border-hairline)] pt-3.5">
+                <div className="flex items-center justify-between gap-2 border-t border-[var(--border-hairline)] px-4 py-3">
                   <Link
                     href={`/courses/${course.slug}`}
                     className="pressable inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)]"
                   >
-                    Open topics
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    Open topics →
                   </Link>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[40px] items-center gap-1 rounded-full border border-[var(--border-hairline)] px-3 text-xs font-semibold text-[var(--text-secondary)]"
+                    className="pressable inline-flex min-h-[40px] items-center gap-1 rounded-full border border-[var(--border-hairline)] px-3.5 text-xs font-semibold text-[var(--text-secondary)]"
                   >
-                    <Timer className="h-3.5 w-3.5" />
-                    Mock
+                    Timed mock
                   </Link>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
@@ -245,8 +330,8 @@ export default function DashboardPage() {
         <div className="rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-bold text-[var(--text-primary)]">Weak topics to revisit</h2>
-            <Link href="/progress" className="text-xs font-semibold text-[var(--accent)]">
-              Full progress
+            <Link href="/progress" className="inline-flex min-h-[44px] items-center text-xs font-semibold text-[var(--accent)]">
+              Full progress →
             </Link>
           </div>
           {data.weak_topics.length === 0 ? (
@@ -262,7 +347,10 @@ export default function DashboardPage() {
                 >
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5">
-                      <AlertCircle className="h-3.5 w-3.5 shrink-0 text-[var(--danger)]" />
+                      <span
+                        aria-hidden="true"
+                        className="inline-block h-2 w-2 shrink-0 rounded-full bg-[var(--danger)]"
+                      />
                       <span className="font-mono text-[11px] font-semibold text-[var(--text-muted)]">
                         {wt.course_code}
                       </span>
@@ -287,7 +375,7 @@ export default function DashboardPage() {
           <h2 className="text-base font-bold text-[var(--text-primary)]">Recent mock exams</h2>
           {data.recent_exams.length === 0 ? (
             <p className="mt-3 text-sm text-[var(--text-secondary)]">
-              No mock exams taken yet. Pick any course above and tap <strong>Mock</strong> to test yourself under exam timing.
+              No mock exams taken yet. Pick any course above and tap <strong>Timed mock</strong> to test yourself under exam timing.
             </p>
           ) : (
             <ul className="mt-3 space-y-2.5">
@@ -321,6 +409,11 @@ export default function DashboardPage() {
           )}
         </div>
       </section>
+
+      {/* Prescribed Textbooks & Textbook-Style Practice Drills */}
+      <div id="textbooks" className="scroll-mt-20">
+        <PrescribedTextbooks />
+      </div>
     </div>
   );
 }

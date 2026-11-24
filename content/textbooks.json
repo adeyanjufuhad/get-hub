@@ -1,0 +1,242 @@
+{
+  "textbooks": [
+    {
+      "id": "get-205-cengel",
+      "courseCode": "GET 205",
+      "courseSlug": "get-205",
+      "title": "Fluid Mechanics: Fundamentals and Applications",
+      "authors": "Yunus A. Çengel & John M. Cimbala",
+      "edition": "4th Edition (SI Units)",
+      "role": "Primary Pick",
+      "coverImage": "/images/textbooks/get-205-cengel.webp",
+      "bestFor": "Clearest physical intuition for fluid properties, hydrostatics, manometry, Bernoulli's equation, and pipe head losses.",
+      "chapters": [
+        "Ch. 2: Properties of Fluids",
+        "Ch. 3: Pressure & Fluid Statics",
+        "Ch. 5: Bernoulli & Energy Equations",
+        "Ch. 8: Internal Flow & Pipe Losses"
+      ],
+      "readUrl": ""
+    },
+    {
+      "id": "get-205-munson",
+      "courseCode": "GET 205",
+      "courseSlug": "get-205",
+      "title": "Fundamentals of Fluid Mechanics",
+      "authors": "Bruce R. Munson, Donald F. Young & Theodore H. Okiishi",
+      "edition": "7th / 8th Edition",
+      "role": "Deep Reference",
+      "coverImage": "/images/textbooks/get-205-munson.webp",
+      "bestFor": "Rigorous submerged surface force derivations, control-volume momentum problems, and Buckingham Pi dimensional analysis.",
+      "chapters": [
+        "Ch. 2: Fluid Statics & Buoyancy",
+        "Ch. 5: Finite Control Volume Analysis",
+        "Ch. 7: Similitude & Dimensional Analysis"
+      ],
+      "readUrl": ""
+    },
+    {
+      "id": "get-205-bansal",
+      "courseCode": "GET 205",
+      "courseSlug": "get-205",
+      "title": "A Textbook of Fluid Mechanics and Hydraulic Machines",
+      "authors": "R. K. Bansal",
+      "edition": "9th / 10th Edition",
+      "role": "Worked Problems",
+      "coverImage": "/images/textbooks/get-205-bansal.webp",
+      "bestFor": "High volume of step-by-step SI-unit exam calculations very close to Nigerian engineering test style.",
+      "chapters": [
+        "Ch. 1–3: Fluid Properties & Hydrostatic Forces",
+        "Ch. 4: Buoyancy & Floatation",
+        "Ch. 6: Venturimeter, Orifice & Pitot Tube"
+      ],
+      "readUrl": ""
+    },
+    {
+      "id": "get-207-beer",
+      "courseCode": "GET 207",
+      "courseSlug": "get-207",
+      "title": "Vector Mechanics for Engineers: Statics and Dynamics",
+      "authors": "F. P. Beer, E. R. Johnston, D. F. Mazurek & P. J. Cornwell",
+      "edition": "10th Edition",
+      "role": "Primary Pick",
+      "coverImage": "/images/textbooks/get-207-beer.webp",
+      "bestFor": "Complete OAU Applied Mechanics bible — covers both Statics (forces, equilibrium, friction, centroids) and Dynamics (kinematics, energy, momentum) in one text.",
+      "chapters": [
+        "Ch. 2–4: Forces, Moments, Couples & Equilibrium",
+        "Ch. 5 & 9: Centroids & Moments of Inertia",
+        "Ch. 8: Dry Friction",
+        "Ch. 11–14: Kinematics, Kinetics, Energy & Momentum"
+      ],
+      "readUrl": ""
+    },
+    {
+      "id": "get-207-hibbeler",
+      "courseCode": "GET 207",
+      "courseSlug": "get-207",
+      "title": "Engineering Mechanics: Statics & Dynamics",
+      "authors": "Russell C. Hibbeler",
+      "edition": "14th Edition",
+      "role": "Worked Problems",
+      "coverImage": "/images/textbooks/get-207-hibbeler.webp",
+      "bestFor": "Crispest Free-Body Diagrams and structured 'Procedure for Analysis' boxes — best companion when Beer & Johnston feels dense.",
+      "chapters": [
+        "Ch. 3–5: Equilibrium of Particles & Rigid Bodies",
+        "Ch. 8: Friction on Wedges & Inclines",
+        "Ch. 12–15: Particle Kinematics, Work-Energy & Impulse"
+      ],
+      "readUrl": ""
+    },
+    {
+      "id": "get-207-meriam",
+      "courseCode": "GET 207",
+      "courseSlug": "get-207",
+      "title": "Engineering Mechanics: Dynamics",
+      "authors": "J. L. Meriam & L. G. Kraige",
+      "edition": "7th Edition",
+      "role": "Deep Reference",
+      "coverImage": "/images/textbooks/get-207-meriam.webp",
+      "bestFor": "Sharp plane kinematics and rigid-body motion problems with concise, no-fluff engineering derivations.",
+      "chapters": [
+        "Ch. 2: Kinematics of Particles",
+        "Ch. 3: Kinetics — Force, Work-Energy & Momentum",
+        "Ch. 5: Plane Kinematics of Rigid Bodies"
+      ],
+      "readUrl": ""
+    },
+    {
+      "id": "get-209-stewart",
+      "courseCode": "GET 209",
+      "courseSlug": "get-209",
+      "title": "Calculus: Early Transcendentals",
+      "authors": "James Stewart",
+      "edition": "7th Edition",
+      "role": "Primary Pick",
+      "coverImage": "/images/textbooks/get-209-stewart.webp",
+      "bestFor": "Gold standard for limits, continuity, differentiation, partial & total derivatives, directional derivatives, and first-order ODEs.",
+      "chapters": [
+        "Ch. 2: Limits & Continuity",
+        "Ch. 3: Differentiation & Chain Rule",
+        "Ch. 9: First-Order Linear Differential Equations",
+        "Ch. 14: Partial Derivatives & Gradients"
+      ],
+      "readUrl": ""
+    },
+    {
+      "id": "get-209-schaum-linalg",
+      "courseCode": "GET 209",
+      "courseSlug": "get-209",
+      "title": "Schaum's Outline of Linear Algebra",
+      "authors": "Seymour Lipschutz & Marc Lipson",
+      "edition": "4th Edition",
+      "role": "Worked Problems",
+      "coverImage": "/images/textbooks/get-209-schaum-linalg.webp",
+      "bestFor": "Fast, no-nonsense drill book for matrices, determinants, inverses, and systems of linear equations (super light PDF).",
+      "chapters": [
+        "Ch. 2: Algebra of Matrices",
+        "Ch. 3: Systems of Linear Equations",
+        "Ch. 8: Determinants & Cramer's Rule"
+      ],
+      "readUrl": ""
+    },
+    {
+      "id": "get-209-schaum-vector",
+      "courseCode": "GET 209",
+      "courseSlug": "get-209",
+      "title": "Schaum's Outline of Vector Analysis",
+      "authors": "Murray R. Spiegel",
+      "edition": "2nd Edition",
+      "role": "Worked Problems",
+      "coverImage": "/images/textbooks/get-209-schaum-vector.webp",
+      "bestFor": "Classic OAU favorite for vector algebra, dot/cross products, gradient, divergence, curl, and directional derivatives.",
+      "chapters": [
+        "Ch. 1–2: Vector Algebra, Dot & Cross Products",
+        "Ch. 3: Vector Differentiation",
+        "Ch. 4: Gradient, Divergence & Curl"
+      ],
+      "readUrl": ""
+    }
+  ],
+  "drills": [
+    {
+      "id": "drill-205-cengel-gate",
+      "courseCode": "GET 205",
+      "courseSlug": "get-205",
+      "topicId": "22222222-2222-4222-8222-222222220205",
+      "textbookRef": "Çengel & Cimbala · Ch. 3",
+      "difficulty": "Medium",
+      "title": "Hydrostatic Force on a Vertical Rectangular Sluice Gate",
+      "preview": "A vertical 2.0 m × 3.0 m gate holds fresh water up to its top edge. Find the resultant hydrostatic force FR in kN."
+    },
+    {
+      "id": "drill-205-munson-manometer",
+      "courseCode": "GET 205",
+      "courseSlug": "get-205",
+      "topicId": "22222222-2222-4222-8222-222222220205",
+      "textbookRef": "Munson et al. · Ch. 2",
+      "difficulty": "Medium",
+      "title": "Mercury U-Tube Manometer Pipe Gauge Pressure",
+      "preview": "Water pipe connected to a mercury (SG = 13.6) U-tube manometer with h₁ = 0.25 m and h₂ = 0.40 m. Find gauge pressure PA."
+    },
+    {
+      "id": "drill-207-beer-cables",
+      "courseCode": "GET 207",
+      "courseSlug": "get-207",
+      "topicId": "22222222-2222-4222-8222-222222220207",
+      "textbookRef": "Beer & Johnston 10e · Ch. 2",
+      "difficulty": "Easy",
+      "title": "Symmetric Two-Cable Suspension Equilibrium",
+      "preview": "A 150 N workshop fixture hangs from two symmetric cables inclined at 30° above the horizontal. Compute each cable tension."
+    },
+    {
+      "id": "drill-207-hibbeler-moment",
+      "courseCode": "GET 207",
+      "courseSlug": "get-207",
+      "topicId": "22222222-2222-4222-8222-222222220207",
+      "textbookRef": "Hibbeler 14e · Ch. 4",
+      "difficulty": "Medium",
+      "title": "2D Vector Cross-Product Moment About a Pivot",
+      "preview": "Force F = (40i + 30j) N acts at r = (0.5i + 0.2j) m from pivot O. Compute the scalar moment Mz = (r × F)z."
+    },
+    {
+      "id": "drill-207-beer-beam",
+      "courseCode": "GET 207",
+      "courseSlug": "get-207",
+      "topicId": "22222222-2222-4222-8222-222222220207",
+      "textbookRef": "Beer & Johnston 10e · Ch. 4",
+      "difficulty": "Hard",
+      "title": "Overhanging Beam Support Reaction Analysis",
+      "preview": "A 5.0 m beam pinned at A with a roller at C (4.0 m from A) carries 200 N at the free overhang end B. Find reaction RC."
+    },
+    {
+      "id": "drill-209-stewart-limit",
+      "courseCode": "GET 209",
+      "courseSlug": "get-209",
+      "topicId": "22222222-2222-4222-8222-222222220209",
+      "textbookRef": "James Stewart 7e · Ch. 2",
+      "difficulty": "Medium",
+      "title": "Conjugate Rationalization Limit Evaluation",
+      "preview": "Evaluate lim(x → 4) (√x − 2) / (x − 4) by multiplying numerator and denominator by the radical conjugate."
+    },
+    {
+      "id": "drill-209-schaum-det",
+      "courseCode": "GET 209",
+      "courseSlug": "get-209",
+      "topicId": "22222222-2222-4222-8222-222222220209",
+      "textbookRef": "Schaum's Linear Algebra · Ch. 8",
+      "difficulty": "Easy",
+      "title": "2×2 Matrix Determinant Computation",
+      "preview": "Evaluate det(A) for the 2×2 matrix [[7, 4], [3, 5]] using ad − bc."
+    },
+    {
+      "id": "drill-209-schaum-dot",
+      "courseCode": "GET 209",
+      "courseSlug": "get-209",
+      "topicId": "22222222-2222-4222-8222-222222220209",
+      "textbookRef": "Schaum's Vector Analysis · Ch. 1",
+      "difficulty": "Easy",
+      "title": "3D Vector Dot Product Evaluation",
+      "preview": "Given u = 3i − 2j + 4k and v = 2i + 5j − k, compute the scalar dot product u · v."
+    }
+  ]
+}

@@ -203,3 +203,37 @@ export interface AdminTopicMeta {
   status: ContentStatus;
   is_free: boolean;
 }
+
+export type LibraryMaterialKind =
+  | "lecture_notes"
+  | "past_questions"
+  | "tutorial"
+  | "handout"
+  | "student_notes"
+  | "lab_manual";
+
+export interface LibraryCourse {
+  code: string;
+  title: string;
+  semester: 1 | 2;
+  material_count: number;
+}
+
+export interface LibraryMaterial {
+  id: string;
+  course_code: string;
+  title: string;
+  kind: LibraryMaterialKind;
+  credit: string;
+  file_name: string;
+  content_type: string;
+  size_bytes: number;
+  download_count: number;
+  created_at: string;
+}
+
+export interface LibraryPayload {
+  courses: LibraryCourse[];
+  materials: LibraryMaterial[];
+  downloads_enabled: boolean;
+}

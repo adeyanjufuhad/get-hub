@@ -1,6 +1,7 @@
 package server
 
 import (
+	"errors"
 	"log/slog"
 	"net/http"
 	"strings"
@@ -17,6 +18,7 @@ import (
 	"github.com/adeyanjufuhad/get-hub/backend/internal/config"
 	"github.com/adeyanjufuhad/get-hub/backend/internal/db/sqlc"
 	"github.com/adeyanjufuhad/get-hub/backend/internal/http/handlers"
+	"github.com/adeyanjufuhad/get-hub/backend/internal/library"
 )
 
 // NewRouter constructs the chi HTTP router with CORS, logging, rate limiting, auth, and access middleware.
@@ -36,6 +38,19 @@ func NewRouter(cfg config.Config, pool *pgxpool.Pool, logger *slog.Logger) http.
 	examsH := handlers.NewExamsHandler(queries, cfg, policy)
 	dashboardH := handlers.NewDashboardHandler(queries, cfg)
 	adminH := handlers.NewAdminHandler(queries, cfg)
+
+	// Notes library: the catalogue always loads; downloads need object storage configured.
+	var libraryStorage library.Storage
+	if s, err := library.NewStorage(cfg.LibraryStorage()); err == nil {
+		libraryStorage = s
+	} else if !errors.Is(err, library.ErrNotConfigured) {
+		logger.Error("library storage disabled", "error", err)
+	} else {
+		logger.Info("library downloads disabled: LIBRARY_S3_* not set")
+	}
+	libraryH := handlers.NewLibraryHandler(library.NewRepo(pool), libraryStorage, logger)
+	// ~30 download links per minute per IP, burst 15
+	downloadLimiter := auth.NewIPRateLimiter(rate.Every(2*time.Second), 15)
 
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)
@@ -89,6 +104,10 @@ func NewRouter(cfg config.Config, pool *pgxpool.Pool, logger *slog.Logger) http.
 			r.Use(auth.RequireAuth(tokenMgr))
 
 			r.Get("/dashboard", dashboardH.Get)
+
+			// Notes library (login required: files are for registered students)
+			r.Get("/library", libraryH.List)
+			r.With(downloadLimiter.Middleware).Get("/library/{materialId}/download", libraryH.DownloadLink)
 
 			// Topic progress & practice (gated through single access.CanAccess middleware)
 			r.With(access.RequireItemAccess(policy, coursesH.TopicAccessLoader)).

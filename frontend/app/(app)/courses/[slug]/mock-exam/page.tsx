@@ -44,7 +44,7 @@ export default function MockExamLauncherPage() {
     <div className="mx-auto max-w-xl space-y-5">
       <Link
         href={`/courses/${slug}`}
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)]"
+        className="-ml-1 inline-flex min-h-[44px] items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
         Back to {course?.code || "course"}

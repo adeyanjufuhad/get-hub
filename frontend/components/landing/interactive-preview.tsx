@@ -238,7 +238,7 @@ export function CourseCurriculumExplorer() {
                 setSelectedTopicIdx(0);
               }}
               className={cn(
-                "pressable min-h-[40px] rounded-full border px-3.5 text-xs font-semibold sm:text-sm cursor-pointer",
+                "pressable min-h-[44px] rounded-full border px-4 text-xs font-semibold sm:text-sm cursor-pointer",
                 active
                   ? "border-[var(--ink-cta)] bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                   : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)]"
@@ -252,8 +252,8 @@ export function CourseCurriculumExplorer() {
       </div>
 
       {/* Sleek compact course explorer card (no hover expansion) */}
-      <div className="mt-4 grid gap-4 rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5 lg:grid-cols-12">
-        <div className="lg:col-span-7">
+      <div className="mt-4 grid grid-cols-1 gap-4 rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5 lg:grid-cols-12">
+        <div className="min-w-0 lg:col-span-7">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="accent" className="font-mono">
               {activeCourse.code}
@@ -280,21 +280,21 @@ export function CourseCurriculumExplorer() {
           <div className="mt-4 flex flex-wrap gap-2">
             <Link
               href={`/courses/${activeCourse.slug}/${sampleSlug}`}
-              className="pressable inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-4 text-xs font-semibold text-white sm:text-sm"
+              className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-4 text-xs font-semibold text-white sm:text-sm"
             >
               Read sample topic
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <Link
               href="/signup"
-              className="pressable inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-xs font-semibold text-[var(--text-primary)] sm:text-sm"
+              className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-xs font-semibold text-[var(--text-primary)] sm:text-sm"
             >
               Practice 5 sample questions
             </Link>
           </div>
         </div>
 
-        <div className="flex flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 lg:col-span-5">
+        <div className="flex min-w-0 flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 lg:col-span-5">
           <div>
             <div className="flex items-center justify-between gap-2">
               <span className="font-mono text-[11px] font-semibold text-[var(--text-muted)]">

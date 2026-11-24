@@ -12,6 +12,24 @@
       "ccmasRef": "Forces, moments, couples; equilibrium of simple structures and machine parts",
       "status": "draft",
       "isFree": true
+    },
+    {
+      "slug": "dry-friction-and-inclines",
+      "topicId": "22222222-2222-4222-8222-222222270002",
+      "title": "Dry Friction on Inclined Planes, Ladders & Wedges",
+      "order": 2,
+      "ccmasRef": "Friction on inclined planes, ladders & wedges",
+      "status": "draft",
+      "isFree": true
+    },
+    {
+      "slug": "centroids-and-second-moments",
+      "topicId": "22222222-2222-4222-8222-222222270003",
+      "title": "Centroids, First & Second Moments of Area",
+      "order": 3,
+      "ccmasRef": "Centroids, first & second moments of area",
+      "status": "draft",
+      "isFree": true
     }
   ]
 }

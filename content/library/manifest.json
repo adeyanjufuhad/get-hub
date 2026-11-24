@@ -1,0 +1,980 @@
+{
+  "note": "Curated from a local 'Second Year' folder. Only lecture notes, handouts, tutorials, lab sheets, past questions and freely shared student notes are listed. Published textbooks, solution manuals, commercial tutorial-centre books and third-party courseware are deliberately excluded.",
+  "courses": [
+    {
+      "code": "AEE 202",
+      "title": "Agricultural & Environmental Engineering",
+      "semester": 2
+    },
+    {
+      "code": "CHE 201",
+      "title": "Engineering Thermodynamics",
+      "semester": 1
+    },
+    {
+      "code": "CSC 201",
+      "title": "Computer Programming I (Python)",
+      "semester": 1
+    },
+    {
+      "code": "EEE 251",
+      "title": "Electric Circuits",
+      "semester": 1
+    },
+    {
+      "code": "EEE 252",
+      "title": "Analogue Electronic Circuits",
+      "semester": 2
+    },
+    {
+      "code": "EEE 253",
+      "title": "Electronic Materials & Crystal Structure",
+      "semester": 1
+    },
+    {
+      "code": "EEE 254",
+      "title": "Computer Packages for Engineers",
+      "semester": 2
+    },
+    {
+      "code": "EEE 281",
+      "title": "Electrical Laboratory I",
+      "semester": 1
+    },
+    {
+      "code": "EEE 282",
+      "title": "Electrical Laboratory II",
+      "semester": 2
+    },
+    {
+      "code": "MEE 203",
+      "title": "Engineering Drawing",
+      "semester": 1
+    },
+    {
+      "code": "MEE 205",
+      "title": "Engineering Mechanics: Statics",
+      "semester": 1
+    },
+    {
+      "code": "MEE 206",
+      "title": "Engineering Mechanics: Dynamics",
+      "semester": 2
+    },
+    {
+      "code": "MTH 201",
+      "title": "Mathematical Methods I",
+      "semester": 1
+    },
+    {
+      "code": "MTH 202",
+      "title": "Mathematical Methods II",
+      "semester": 2
+    }
+  ],
+  "items": [
+    {
+      "course": "AEE 202",
+      "path": "AEE 202/AEE 202 HANDOUT.pdf",
+      "title": "AEE 202 course handout",
+      "kind": "handout",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE201 - engineering thermodynamics-1.pdf",
+      "title": "Engineering Thermodynamics — full course notes",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE201 Note_2.pdf",
+      "title": "Lecture notes, part 2",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE201 Note_3 - Thermodynamics property relations.pdf",
+      "title": "Thermodynamic property relations",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE201 note_Module 2_Lecture_1.pdf",
+      "title": "Module 2, lecture 1",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/MODULE 4.0-Control Volume Analysis.pdf",
+      "title": "Module 4: Control volume analysis",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/MODULE 4.0-Control Volume Analysis-1.pdf",
+      "title": "Module 4: Control volume analysis (revised)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/MODULE 4.0-Control Volume Analysis_Continuation.pdf",
+      "title": "Module 4: Control volume analysis (continued)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/MODULE 4.0-Control Volume Analysis_Addendum.pdf",
+      "title": "Module 4: Control volume analysis — addendum",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE 201 2018 NOTE.pdf",
+      "title": "Handwritten class notes (2018)",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE compiled ✅.pdf",
+      "title": "Compiled class notes",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE 201(1 lecture) from Tomiwa.pdf",
+      "title": "Lecture write-up",
+      "kind": "student_notes",
+      "credit": "Tomiwa"
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE201 TUTORIAL LIST_2024.pdf",
+      "title": "Tutorial question list (2024)",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE201 tutorial_1.pdf",
+      "title": "Tutorial 1",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/Problem Set 4.pdf",
+      "title": "Problem set 4",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/Problem Set 5.pdf",
+      "title": "Problem set 5",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE 201 Practice Questions.pdf",
+      "title": "Practice questions",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CHE 201 Test (Harmattan Semester, 2021-2022 Session).pdf",
+      "title": "Test — Harmattan semester 2021/2022",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/che201 test.pdf",
+      "title": "Test questions",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "CHE 201",
+      "path": "CHE 201/CamScanner 12-22-2024 16.18.pdf",
+      "title": "Objective test questions (Dec 2024)",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC201-LECTURENOTE2023-24-ONE.pdf",
+      "title": "Lecture note one (2023/2024)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC201-2023-Lecture-ONE_074349.pdf",
+      "title": "Lecture one (2023)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC201 FIRST-Lecture.pdf",
+      "title": "First lecture",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC introduction to computer and it’s history .pdf",
+      "title": "Introduction to computers and their history",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC201 - introduction to Python programming Lang.pptx",
+      "title": "Introduction to Python (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC201- Python Basics.pptx",
+      "title": "Python basics (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC201 -PYTHON DATA TYPES.pptx",
+      "title": "Python data types (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC201 -Flow Control.pptx",
+      "title": "Flow control (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC201-Python Programming Examples_070319.pptx",
+      "title": "Python programming examples (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/File Processing in Python.ppt",
+      "title": "File processing in Python (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC 201 Compiled by Papy T.pdf",
+      "title": "Compiled notes",
+      "kind": "student_notes",
+      "credit": "Papy T"
+    },
+    {
+      "course": "CSC 201",
+      "path": "CSC 201/CSC 201(1 lecture) from Tomiwa.pdf",
+      "title": "Lecture write-up",
+      "kind": "student_notes",
+      "credit": "Tomiwa"
+    },
+    {
+      "course": "CSC 201",
+      "path": "Compiled by Jibola.pdf",
+      "title": "Course summary",
+      "kind": "student_notes",
+      "credit": "Jibola"
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/EEE 201 203 2015 2016 Lecture 1 Circuit Abstractions.pdf",
+      "title": "Lecture 1: Circuit abstractions",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/EEE 201 203 2015 2016 Lecture 2 Resistive Circuits.pdf",
+      "title": "Lecture 2: Resistive circuits",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/EEE 201 203 2015 2016 Lecture 3 Network Theorems .pdf",
+      "title": "Lecture 3: Network theorems",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/EEE 251 1st set of 10 questions.pdf",
+      "title": "First set of 10 questions",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/20 questions on EEE 251.pdf",
+      "title": "20 practice questions (set 1)",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/20 questions on EEE 251 cont.pdf",
+      "title": "20 practice questions (set 2)",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/20 questions on EEE 251 cont 2.pdf",
+      "title": "20 practice questions (set 3)",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/EEE251 past question .pdf",
+      "title": "Past questions",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/EEE 251 2022_2023.pdf",
+      "title": "Exam — 2022/2023",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/EEE 251 TEST QUESTIONS 2022.2023.pdf",
+      "title": "Test questions — 2022/2023",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/EXAM QUESTION_modified2.pdf",
+      "title": "Exam questions",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 251",
+      "path": "EEE 251/TST.pdf",
+      "title": "Test",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 252",
+      "path": "EEE 252/EEE252 NOTES. 07-04-2025.pdf",
+      "title": "Lecture notes (7 Apr 2025)",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 252",
+      "path": "EEE 252/EEE252 note. 09-04-2025.pdf",
+      "title": "Lecture notes (9 Apr 2025)",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 252",
+      "path": "EEE 252/Updated EEE252 note. .pdf",
+      "title": "Updated notes, part 1",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 252",
+      "path": "EEE 252/Updated EEE252 note. -1.pdf",
+      "title": "Updated notes, part 2",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 252",
+      "path": "EEE 252/Updated EEE252 note2.pdf",
+      "title": "Updated notes, part 3",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 252",
+      "path": "EEE 252/EEE252 TEST QUESTION.pdf",
+      "title": "Test questions",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 252",
+      "path": "EEE 252/Adekola's 252 Test.pdf",
+      "title": "Test (Dr Adekola)",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 252",
+      "path": "EEE 252/Adekola's 252 Exam.pdf",
+      "title": "Exam (Dr Adekola)",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 253",
+      "path": "EEE 253/EEE 253 2023 2024 Lecture 1 18112024 version 2.pdf",
+      "title": "Lecture 1 (2023/2024)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 253",
+      "path": "EEE 253/EEE253 Lecture 2 9112023.pdf",
+      "title": "Lecture 2",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 253",
+      "path": "EEE 253/EEE 253 Additional Slides Lecture 2.pdf",
+      "title": "Lecture 2 — additional slides",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 253",
+      "path": "EEE 253/Crystal Geometry.pdf",
+      "title": "Crystal geometry",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 253",
+      "path": "EEE 253/EEE 253 1st set of questions.pdf",
+      "title": "First set of questions",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "EEE 253",
+      "path": "EEE 253/EEE 253 2nd set of Questions.pdf",
+      "title": "Second set of questions",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "EEE 253",
+      "path": "EEE 253/EEE253 Open Ended Assigned Questions -1.pdf",
+      "title": "Open-ended assigned questions",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "EEE 253",
+      "path": "EEE 253/EEE253 past question .pdf",
+      "title": "Past questions",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 253",
+      "path": "EEE 253/EEE 253 2022_2023.pdf",
+      "title": "Exam — 2022/2023",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/EEE254 NOTE. 07-04-2025.pdf",
+      "title": "Lecture notes (7 Apr 2025)",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/done/EEE254 notes. 08-04-2025..pdf",
+      "title": "Lecture notes (8 Apr 2025)",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/done/EEE254 notes. 10-04-2025.pdf",
+      "title": "Lecture notes (10 Apr 2025)",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/Updated EEE254 notes. .pdf",
+      "title": "Updated notes, part 1",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/done/Updated EEE254 notes. .pdf",
+      "title": "Updated notes, part 1 (earlier copy)",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/done/Updated EEE254 notes. -1.pdf",
+      "title": "Updated notes, part 2",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/done/INTRODUCTION TO COMPUTER PACKAGES.pptx",
+      "title": "Introduction to computer packages (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/done/KNOWING HOW THE COMPUTER PROCESSES INFO.pptx",
+      "title": "How the computer processes information (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/done/INTRODUCTION TO ALGORITHMIC COMPLEXITY.pdf",
+      "title": "Introduction to algorithmic complexity",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/done/SOME SIMPLE ALGORITHMS AND DATA STRUCTURES.pdf",
+      "title": "Simple algorithms and data structures",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/done/STRUCTURED TYPES AND MUTABILITY.pdf",
+      "title": "Structured types and mutability",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/FUNCTIONS.pdf",
+      "title": "Functions",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/INTRODUCTION TO SPICE.pptx",
+      "title": "Introduction to SPICE (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 254",
+      "path": "EEE 254/LabVIEW intro.pptx",
+      "title": "LabVIEW introduction (slides)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "EEE 281",
+      "path": "EEE 281/CamScanner 02-04-2025 12.45.pdf",
+      "title": "Applied electricity lab — general information & experiments",
+      "kind": "lab_manual",
+      "credit": ""
+    },
+    {
+      "course": "EEE 282",
+      "path": "EEE 282/Experiment 1B.pdf",
+      "title": "Experiment 1B",
+      "kind": "lab_manual",
+      "credit": ""
+    },
+    {
+      "course": "EEE 282",
+      "path": "EEE 282/CamScanner 04-15-2025 12.38.56.pdf",
+      "title": "Experiment 4: Transistor biasing",
+      "kind": "lab_manual",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/Course Contents.pdf",
+      "title": "Course contents",
+      "kind": "handout",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/Drawing instruments, paper sizes, scale and drawing layout.pdf",
+      "title": "Drawing instruments, paper sizes, scale & layout",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/Line and lettering.pdf",
+      "title": "Lines and lettering",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/Tittle Block.pdf",
+      "title": "Title block",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/Drawing presentation.pdf",
+      "title": "Drawing presentation",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/Geometrical Constructions.pdf",
+      "title": "Geometrical constructions",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/Conic Sections and Cycloid.pdf",
+      "title": "Conic sections and cycloids",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/Section_Views3.pdf",
+      "title": "Section views",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/dimensioning_and_tolerancing1.pdf",
+      "title": "Dimensioning and tolerancing",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/Electric Circuit Diagrams note.pdf",
+      "title": "Electric circuit diagrams",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 203",
+      "path": "MEE 203/MEE203 PQ.pdf",
+      "title": "Past questions",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "MEE 205",
+      "path": "MEE 205/MEE 205 Work Plan.pdf",
+      "title": "Course work plan",
+      "kind": "handout",
+      "credit": ""
+    },
+    {
+      "course": "MEE 205",
+      "path": "MEE 205/Lecture 1 - Introduction.pdf",
+      "title": "Lecture 1: Introduction",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 205",
+      "path": "MEE 205/A Review of Previous Lectures.pdf",
+      "title": "Review of previous lectures",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 205",
+      "path": "MEE 205/Practice Problems on Coordinates.pdf",
+      "title": "Practice problems on coordinates",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "MEE 205",
+      "path": "MEE 205/Class Practice Problem 2.pdf",
+      "title": "Class practice problem 2",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "MEE 205",
+      "path": "MEE 205/MEE 205 2018_19 SESSION.pdf",
+      "title": "Compiled notes (2018/2019 session)",
+      "kind": "student_notes",
+      "credit": "Victor"
+    },
+    {
+      "course": "MEE 205",
+      "path": "MEE 205/MEE 205 past question .pdf",
+      "title": "Past questions",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "MEE 206",
+      "path": "MEE 206/Lecture 1 - MEE 206 Introduction.pdf",
+      "title": "Lecture 1: Introduction",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 206",
+      "path": "MEE 206/Lecture 2 - MEE 206 Rectilinear Motion.pdf",
+      "title": "Lecture 2: Rectilinear motion",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 206",
+      "path": "MEE 206/1746182110532_Lecture 3 - MEE 206 Curvilinear Motion Part 2.pdf",
+      "title": "Lecture 3: Curvilinear motion, part 2",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 206",
+      "path": "MEE 206/Lecture 5 - MEE 206 Work-Energy-Power.pdf",
+      "title": "Lecture 5: Work, energy & power",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 206",
+      "path": "MEE 206/Lecture 6 - MEE 206 Momentum and Impulse.pdf",
+      "title": "Lecture 6: Momentum & impulse",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MEE 206",
+      "path": "MEE 206/Kinetics Of Particles Assignment I.pdf",
+      "title": "Kinetics of particles — assignment 1",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "MEE 206",
+      "path": "MEE 206/Kinetics Of Particles Assignment -2.pdf",
+      "title": "Kinetics of particles — assignment 2",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "MEE 206",
+      "path": "MEE 206/Kinematics of Rigid Bodies Problem Set.pdf",
+      "title": "Kinematics of rigid bodies — problem set 1",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "MEE 206",
+      "path": "MEE 206/Kinematics of Rigid Bodies Problem Set 2.pdf",
+      "title": "Kinematics of rigid bodies — problem set 2",
+      "kind": "tutorial",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/Mth201 materials.pdf",
+      "title": "Limits of real-valued functions (Dr Fabelurin)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/MTH 201 Lecture Notes (Original).pdf",
+      "title": "Lecture notes",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/MTH 201 Lecture Notes (Original)-1.pdf",
+      "title": "Lecture notes (copy)",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/Chapter 1 MTH 201.pdf",
+      "title": "Chapter 1",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/Limit 1.pdf",
+      "title": "Limits, part 1",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/limit 2.pdf",
+      "title": "Limits, part 2",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/Limits and Continuity.pdf",
+      "title": "Limits and continuity",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/continuity.pdf",
+      "title": "Continuity",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/partial derivatives note1_021842.pdf",
+      "title": "Partial derivatives, note 1",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/partial derivatives note2_021947.pdf",
+      "title": "Partial derivatives, note 2",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/partial derivatives note3_022034.pdf",
+      "title": "Partial derivatives, note 3",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/MTH 201(2lecture) from Tomiwa.pdf",
+      "title": "Two lectures, written up",
+      "kind": "student_notes",
+      "credit": "Tomiwa"
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/MTH 201(5 lectures) from Tomiwa.pdf",
+      "title": "Five lectures, written up",
+      "kind": "student_notes",
+      "credit": "Tomiwa"
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/Series.from Tomiwa.pdf",
+      "title": "Series",
+      "kind": "student_notes",
+      "credit": "Tomiwa"
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/MTH solution.pdf",
+      "title": "Worked solution (handwritten)",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/MTH201 Past Question .pdf",
+      "title": "Past questions",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "MTH 201",
+      "path": "MTH 201/MTH201 Test .pdf",
+      "title": "Test",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "MTH 202",
+      "path": "MTH 202/Updated MTH202 notes. .pdf",
+      "title": "Updated notes, part 1",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 202",
+      "path": "MTH 202/Updated MTH202 notes. -1.pdf",
+      "title": "Updated notes, part 2",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 202",
+      "path": "MTH 202/done/MTH202 notes. 08-04-2025.pdf",
+      "title": "Lecture notes (8 Apr 2025)",
+      "kind": "student_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 202",
+      "path": "MTH 202/done/Complex Numbers.pdf",
+      "title": "Complex numbers",
+      "kind": "lecture_notes",
+      "credit": ""
+    },
+    {
+      "course": "MTH 202",
+      "path": "MTH 202/20222023 MTH 202 PQ.pdf",
+      "title": "Past questions — 2022/2023",
+      "kind": "past_questions",
+      "credit": ""
+    },
+    {
+      "course": "MTH 202",
+      "path": "MTH 202/Mth202 test questions.pdf",
+      "title": "Test questions",
+      "kind": "past_questions",
+      "credit": ""
+    }
+  ]
+}

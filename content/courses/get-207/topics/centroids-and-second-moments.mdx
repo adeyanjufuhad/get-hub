@@ -1,0 +1,91 @@
+---
+title: "Centroids, First & Second Moments of Area"
+order: 3
+topicId: "22222222-2222-4222-8222-222222270003"
+courseCode: "GET 207"
+courseSlug: "get-207"
+ccmasRef: "Centroids, first & second moments of area"
+outcomes:
+  - "Locate the centroid (x̄, ȳ) of composite T-sections, L-sections, and plates with cutouts using tabular summation"
+  - "Calculate second moment of area (moment of inertia I_x, I_y) for standard rectangles, triangles, and circles"
+  - "Apply the Parallel-Axis Theorem I = I_c + A d^2 to composite structural cross-sections"
+status: "draft"
+isFree: true
+---
+
+## 1. Overview
+
+Why are structural steel beams shaped like an **"I"** or **"T"** instead of a solid square bar? Because resistance to bending depends directly on the **second moment of area ($I$)** about the cross-section's **centroidal axis**—pushing material farther away from the neutral axis increases stiffness dramatically without adding weight.
+
+Mastering the centroid table and the **Parallel-Axis Theorem** here pays off immediately in both GET 207 exams and 300L Strength of Materials.
+
+---
+
+## 2. Key Concepts
+
+### Centroid of Composite Areas
+
+Break any complex shape into simple sub-shapes $i = 1, 2, \dots, n$ (treating holes/cutouts as **negative** areas $A_i < 0$):
+
+$$\bar{x} = \frac{\sum A_i x_i}{\sum A_i}, \qquad \bar{y} = \frac{\sum A_i y_i}{\sum A_i}$$
+
+### Standard Centroidal Second Moments of Area
+
+| Shape | Area $A$ | Centroidal $I_{xc}$ |
+|---|---|---|
+| Rectangle (width $b$, height $h$) | $bh$ | $\dfrac{bh^3}{12}$ |
+| Right triangle (base $b$, height $h$) | $\dfrac{1}{2}bh$ | $\dfrac{bh^3}{36}$ |
+| Circle (radius $r$) | $\pi r^2$ | $\dfrac{\pi r^4}{4}$ |
+
+### The Parallel-Axis Theorem (Steiner's Theorem)
+
+To transfer a sub-shape's second moment of area from its own centroidal axis $c$ to any parallel axis (such as the composite centroidal axis) separated by perpendicular distance $d$:
+
+$$I = I_c + A d^2$$
+
+where $d = |y_i - \bar{y}|$ for $I_x$ (or $d = |x_i - \bar{x}|$ for $I_y$).
+
+The **radius of gyration** $k_x$ summarizes how spread out the area is from the $x$-axis:
+
+$$k_x = \sqrt{\frac{I_x}{A}}$$
+
+<Callout variant="tip" title="Always draw a 5-column table">
+In exams, make a clean table with columns **Part | $A_i$ | $y_i$ | $A_i y_i$ | $I_{ci} + A_i d_i^2$**. Even if you slip on arithmetic at the end, the organized table secures almost full method marks.
+</Callout>
+
+---
+
+## 3. Worked Examples
+
+<StepRevealExample
+  title="Example 1: Centroid & Moment of Inertia of a Symmetric T-Section"
+  problem="A symmetric T-beam cross-section consists of a vertical web ($20\,\text{mm}$ wide $\times 80\,\text{mm}$ tall) topped by a horizontal flange ($100\,\text{mm}$ wide $\times 20\,\text{mm}$ tall). Measure $y$ upward from the bottom edge. Find (a) $\bar{y}$, and (b) $I_x$ about the horizontal centroidal axis."
+  steps={[
+    "Step 1 — Sub-areas and local centroids from the bottom: Web (1): $A_1 = 20 \\times 80 = 1600\\,\\text{mm}^2$, $y_1 = 40\\,\\text{mm}$. Flange (2): $A_2 = 100 \\times 20 = 2000\\,\\text{mm}^2$, $y_2 = 80 + 10 = 90\\,\\text{mm}$.",
+    "Step 2 — Composite centroid $\\bar{y}$: $\\sum A = 3600\\,\\text{mm}^2$; $\\sum A y = 1600(40) + 2000(90) = 64\\,000 + 180\\,000 = 244\\,000\\,\\text{mm}^3$. Thus $\\bar{y} = \\frac{244\\,000}{3600} \\approx 67.78\\,\\text{mm}$.",
+    "Step 3 — Parallel-axis shift distances: $d_1 = |40 - 67.78| = 27.78\\,\\text{mm}$; $d_2 = |90 - 67.78| = 22.22\\,\\text{mm}$.",
+    "Step 4 — Web contribution: $I_{x1} = \\frac{20(80)^3}{12} + 1600(27.78)^2 = 853\\,333 + 1\\,234\\,765 = 2.088 \\times 10^6\\,\\text{mm}^4$.",
+    "Step 5 — Flange contribution & total: $I_{x2} = \\frac{100(20)^3}{12} + 2000(22.22)^2 = 66\\,667 + 987\\,457 = 1.054 \\times 10^6\\,\\text{mm}^4$. Total $I_x = 2.088 \\times 10^6 + 1.054 \\times 10^6 = 3.142 \\times 10^6\\,\\text{mm}^4$."
+  ]}
+/>
+
+<StepRevealExample
+  title="Example 2: Parallel-Axis Transfer to the Base of a Rectangle"
+  problem="A solid rectangle has width $b = 60\,\text{mm}$ and height $h = 120\,\text{mm}$. Find its second moment of area $I_{\text{base}}$ about its bottom edge."
+  steps={[
+    "Step 1 — Centroidal moment of inertia: $I_{xc} = \\frac{bh^3}{12} = \\frac{60 \\times 120^3}{12} = 8.64 \\times 10^6\\,\\text{mm}^4$.",
+    "Step 2 — Transfer by $d = h/2 = 60\\,\\text{mm}$: $A d^2 = (60 \\times 120)(60)^2 = 7200 \\times 3600 = 25.92 \\times 10^6\\,\\text{mm}^4$.",
+    "Step 3 — Sum: $I_{\\text{base}} = 8.64 \\times 10^6 + 25.92 \\times 10^6 = 34.56 \\times 10^6\\,\\text{mm}^4$ (which matches the shortcut $\\frac{bh^3}{3}$!)."
+  ]}
+/>
+
+---
+
+## 4. Common Exam Pitfalls
+
+<Callout variant="warning" title="Parallel-Axis Theorem traps">
+1. **Transferring between two non-centroidal axes directly:** $I = I_c + Ad^2$ ONLY works when $I_c$ is the **centroidal** axis! Never jump from one edge directly to another edge without passing through the centroid first.
+2. **Swapping $b$ and $h$:** The dimension **perpendicular** to the reference axis is ALWAYS the one that gets cubed!
+</Callout>
+
+*Recommended textbook chapters: Beer & Johnston 10e Ch. 5 & Ch. 9 · Hibbeler 14e Ch. 9 & Ch. 10.*

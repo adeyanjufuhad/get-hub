@@ -1,0 +1,92 @@
+---
+title: "Partial Derivatives, Gradients & Matrices"
+order: 3
+topicId: "22222222-2222-4222-8222-222222290003"
+courseCode: "GET 209"
+courseSlug: "get-209"
+ccmasRef: "Partial & total derivatives; directional derivatives & gradients; matrices & determinants"
+outcomes:
+  - "Compute first-order partial derivatives and total differentials dz for multivariable engineering functions"
+  - "Evaluate the gradient vector ∇f and directional derivative D_u f along any specified direction"
+  - "Compute 2×2 and 3×3 determinants, matrix inverses, and solve linear systems using Cramer's rule"
+status: "draft"
+isFree: true
+---
+
+## 1. Overview
+
+Real physical quantities rarely depend on just one variable—temperature varies with $(x, y, z)$, and truss or circuit nodal equations involve 3+ coupled unknowns simultaneously. This guide pulls together **partial derivatives, gradients**, and **matrix determinants**—three high-yield sections of GET 209 exams.
+
+---
+
+## 2. Key Concepts
+
+### Partial Derivatives & Total Differential
+
+For $z = f(x, y)$:
+- $\dfrac{\partial f}{\partial x}$ differentiates with respect to $x$ while holding **$y$ constant**.
+- $\dfrac{\partial f}{\partial y}$ differentiates with respect to $y$ while holding **$x$ constant**.
+
+The **total differential** approximates small simultaneous changes $\Delta x, \Delta y$:
+
+$$dz = \frac{\partial f}{\partial x}\,dx + \frac{\partial f}{\partial y}\,dy$$
+
+### Gradient Vector & Directional Derivative
+
+The **gradient** of a scalar field $f(x, y, z)$ points in the direction of **steepest increase**:
+
+$$\nabla f = \frac{\partial f}{\partial x}\hat{i} + \frac{\partial f}{\partial y}\hat{j} + \frac{\partial f}{\partial z}\hat{k}$$
+
+The rate of change of $f$ in the direction of a vector $\vec{v}$ is the **directional derivative**—always normalize $\vec{v}$ into a **unit vector** $\hat{u} = \frac{\vec{v}}{|\vec{v}|}$ first:
+
+$$D_{\hat{u}} f = \nabla f \cdot \hat{u}$$
+
+The maximum possible rate of change at any point is simply $|\nabla f|$.
+
+### Matrices, Determinants & Cramer's Rule
+
+For a $2 \times 2$ matrix $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$:
+
+$$\det(A) = ad - bc, \qquad A^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix} \quad (\det A \neq 0)$$
+
+A square matrix is **singular** (no inverse) if and only if $\det(A) = 0$. For a $3 \times 3$ matrix, expand along the row or column with the most zeros using the checkerboard sign pattern $(+, -, +)$.
+
+<Callout variant="tip" title="Unit vector check for directional derivatives">
+If an exam asks for the directional derivative in the direction of $\vec{v} = 3\hat{i} + 4\hat{j}$, DO NOT dot $\nabla f$ with $(3, 4)$ directly! Divide by $|\vec{v}| = \sqrt{3^2 + 4^2} = 5$ first so $\hat{u} = \frac{3}{5}\hat{i} + \frac{4}{5}\hat{j}$.
+</Callout>
+
+---
+
+## 3. Worked Examples
+
+<StepRevealExample
+  title="Example 1: Gradient & Directional Derivative of a Temperature Field"
+  problem="A heated metal plate has temperature $T(x, y) = x^2 y + 3y^2$. Find (a) $\nabla T$ at $(2, 1)$, and (b) the directional derivative $D_{\hat{u}} T$ at $(2, 1)$ in the direction of $\vec{v} = 3\hat{i} + 4\hat{j}$."
+  steps={[
+    "Step 1 — Compute partial derivatives: $\\frac{\\partial T}{\\partial x} = 2xy$ and $\\frac{\\partial T}{\\partial y} = x^2 + 6y$.",
+    "Step 2 — Evaluate $\\nabla T$ at $(2, 1)$: $\\nabla T(2, 1) = 2(2)(1)\\hat{i} + (2^2 + 6(1))\\hat{j} = 4\\hat{i} + 10\\hat{j}$.",
+    "Step 3 — Normalize $\\vec{v}$: $|\\vec{v}| = \\sqrt{3^2 + 4^2} = 5 \\implies \\hat{u} = \\frac{3}{5}\\hat{i} + \\frac{4}{5}\\hat{j}$.",
+    "Step 4 — Take dot product: $D_{\\hat{u}} T = 4\\left(\\frac{3}{5}\\right) + 10\\left(\\frac{4}{5}\\right) = \\frac{12 + 40}{5} = \\frac{52}{5} = 10.4$."
+  ]}
+/>
+
+<StepRevealExample
+  title="Example 2: Determinant & Singularity Condition"
+  problem="Find the value of $k$ for which the matrix $M = \begin{pmatrix} k & 3 \\ 4 & 6 \end{pmatrix}$ is singular (non-invertible)."
+  steps={[
+    "Step 1 — A matrix is singular when $\\det(M) = 0$.",
+    "Step 2 — Expand: $6k - (3)(4) = 0 \\implies 6k - 12 = 0$.",
+    "Step 3 — Solve: $k = 2$."
+  ]}
+/>
+
+---
+
+## 4. Common Exam Pitfalls
+
+<Callout variant="warning" title="Quick checks before submitting">
+- **Directional derivative ≠ vector:** $D_{\hat{u}} f = \nabla f \cdot \hat{u}$ is always a **scalar**, whereas $\nabla f$ is a **vector**.
+- **Forgetting the minus sign in cofactor expansion:** For $3 \times 3$ determinants, the middle term in row 1 is **subtracted**: $a_{11}C_{11} - a_{12}M_{12} + a_{13}C_{13}$.
+</Callout>
+
+*Recommended textbook chapters: James Stewart 7e Ch. 14 · Schaum's Linear Algebra Ch. 2 & 8 · Schaum's Vector Analysis Ch. 4.*

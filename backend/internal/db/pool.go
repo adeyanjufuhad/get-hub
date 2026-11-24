@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -25,6 +27,10 @@ func NewPool(ctx context.Context, databaseURL string) (*pgxpool.Pool, error) {
 	cfg.MaxConnIdleTime = 5 * time.Minute
 	cfg.HealthCheckPeriod = 1 * time.Minute
 	cfg.ConnConfig.DefaultQueryExecMode = pgx.QueryExecModeSimpleProtocol
+	cfg.AfterConnect = func(_ context.Context, conn *pgx.Conn) error {
+		registerUUIDTypes(conn.TypeMap())
+		return nil
+	}
 
 	pool, err := pgxpool.NewWithConfig(ctx, cfg)
 	if err != nil {
@@ -39,4 +45,13 @@ func NewPool(ctx context.Context, databaseURL string) (*pgxpool.Pool, error) {
 	}
 
 	return pool, nil
+}
+
+// registerUUIDTypes maps github.com/google/uuid to Postgres uuid / uuid[].
+// In simple-protocol mode pgx gets no parameter type info from the server, so
+// without this a []uuid.UUID argument (e.g. `= ANY($1::uuid[])`) fails with
+// "unable to encode ... for unknown type (OID 0)".
+func registerUUIDTypes(m *pgtype.Map) {
+	m.RegisterDefaultPgType(uuid.UUID{}, "uuid")
+	m.RegisterDefaultPgType([]uuid.UUID{}, "_uuid")
 }

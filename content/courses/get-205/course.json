@@ -12,6 +12,24 @@
       "ccmasRef": "Fluid properties; hydrostatics, pressure measurement & forces on submerged surfaces",
       "status": "draft",
       "isFree": true
+    },
+    {
+      "slug": "buoyancy-and-stability",
+      "topicId": "22222222-2222-4222-8222-222222250002",
+      "title": "Buoyancy, Archimedes' Principle & Stability of Floating Bodies",
+      "order": 2,
+      "ccmasRef": "Buoyancy, Archimedes' principle & stability of floating and submerged bodies",
+      "status": "draft",
+      "isFree": true
+    },
+    {
+      "slug": "continuity-and-bernoulli",
+      "topicId": "22222222-2222-4222-8222-222222250003",
+      "title": "Continuity, Bernoulli's Equation & Flow Measurement",
+      "order": 3,
+      "ccmasRef": "Control-volume continuity; Bernoulli's equation, Venturi meters & Pitot tubes",
+      "status": "draft",
+      "isFree": true
     }
   ]
 }

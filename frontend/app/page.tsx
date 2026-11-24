@@ -28,7 +28,7 @@ import { ShinyText } from "@/components/reactbits/shiny-text";
 import { SpotlightCard } from "@/components/reactbits/spotlight-card";
 import { Badge } from "@/components/ui/badge";
 import { BrandLogo } from "@/components/ui/brand-logo";
-import { APP_INSTITUTION, APP_NAME, COURSES } from "@/lib/config";
+import { APP_INSTITUTION, APP_NAME } from "@/lib/config";
 
 const OAU_DEPT_LOOP = [
   { code: "CSC", name: "Computer" },
@@ -74,9 +74,9 @@ const FEATURES = [
   },
   {
     icon: Users,
-    title: "Built to Grow with Your Class",
-    body: "Phase 2 brings live Pomodoro Study Rooms per course and Phase 4 adds Weekly Quiz Battles & the OAU Department League.",
-    tag: "Coming soon",
+    title: "Part 2 Notes & Past Questions Library",
+    body: "Download curated OAU Second Year lecture notes, tutorials, lab manuals, and past questions across 14 courses — with file sizes shown upfront for campus data.",
+    tag: "14 courses",
   },
 ];
 
@@ -166,34 +166,32 @@ export default function LandingPage() {
             <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-4">
               <GlareHover className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 text-center">
                 <Counter
-                  value={COURSES.length}
+                  value={9}
                   className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl"
                 />
                 <div className="mt-0.5 text-xs font-medium text-[var(--text-secondary)]">
-                  Core 200L GET Courses
+                  Step-by-Step Study Guides
                 </div>
               </GlareHover>
 
               <GlareHover className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 text-center">
                 <Counter
-                  value={100}
-                  suffix="%"
+                  value={54}
+                  suffix="+"
                   className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl"
                 />
                 <div className="mt-0.5 text-xs font-medium text-[var(--text-secondary)]">
-                  Original Step-by-Step Notes
+                  Original Exam Practice Drills
                 </div>
               </GlareHover>
 
               <GlareHover className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 text-center">
                 <Counter
-                  value={3}
-                  prefix="< "
-                  suffix=" KB"
+                  value={14}
                   className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl"
                 />
                 <div className="mt-0.5 text-xs font-medium text-[var(--text-secondary)]">
-                  Average SVG Diagram Size
+                  Part 2 Library Courses
                 </div>
               </GlareHover>
 
@@ -312,7 +310,7 @@ export default function LandingPage() {
                 Stop cramming GET alone at 2 AM.
               </h2>
               <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-neutral-300 sm:text-sm">
-                Pick your OAU engineering department, open your first topic, and try 15 original practice questions across GET 205, 207, and 209 today.
+                Pick your OAU engineering department, open any of 9 step-by-step study guides, practice 54 original exam drills, and download Part 2 notes from the Library.
               </p>
               <div className="mt-5 flex flex-col justify-center gap-2.5 sm:flex-row">
                 <Magnet strength={0.22}>

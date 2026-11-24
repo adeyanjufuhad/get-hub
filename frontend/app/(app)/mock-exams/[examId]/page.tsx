@@ -401,7 +401,7 @@ export default function MockExamRunnerPage() {
               type="button"
               onClick={() => setFlagged((f) => ({ ...f, [current.id]: !f[current.id] }))}
               className={cn(
-                "pressable inline-flex min-h-[38px] items-center gap-1.5 rounded-full px-3 text-xs font-semibold cursor-pointer",
+                "pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full px-3.5 text-xs font-semibold cursor-pointer",
                 flagged[current.id]
                   ? "bg-[var(--warning-soft)] text-[var(--warning)]"
                   : "bg-[var(--bg-subtle)] text-[var(--text-secondary)]"

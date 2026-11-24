@@ -126,7 +126,7 @@ export default function ProgressPage() {
           {data.topic_stats.map((st) => (
             <div
               key={st.topic_id}
-              className="flex items-center justify-between gap-4 rounded-2xl bg-[var(--bg-canvas)] p-4"
+              className="flex flex-col justify-between gap-3 rounded-2xl bg-[var(--bg-canvas)] p-4 sm:flex-row sm:items-center sm:gap-4"
             >
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
@@ -139,20 +139,23 @@ export default function ProgressPage() {
                     </span>
                   )}
                 </div>
-                <p className="mt-1 truncate text-sm font-bold text-[var(--text-primary)]">
+                <p className="mt-1 text-sm font-bold leading-snug text-[var(--text-primary)]">
                   {st.topic_title}
                 </p>
                 <p className="tabular mt-0.5 text-xs text-[var(--text-muted)]">
                   {st.attempts_count} attempts · {st.correct_count} correct
                 </p>
               </div>
-              <div className="flex items-center gap-3">
-                <div className={cn(st.attempts_count === 0 && "opacity-40")}>
-                  <ProgressArc percentage={st.accuracy_pct} size={50} strokeWidth={5} />
+              <div className="flex items-center justify-between gap-3 border-t border-[var(--border-hairline)] pt-3 sm:border-t-0 sm:pt-0">
+                <div className={cn("flex items-center gap-2", st.attempts_count === 0 && "opacity-40")}>
+                  <ProgressArc percentage={st.accuracy_pct} size={46} strokeWidth={5} />
+                  <span className="text-xs font-semibold text-[var(--text-muted)] sm:hidden">
+                    Accuracy
+                  </span>
                 </div>
                 <Link
                   href={`/practice/${st.topic_id}`}
-                  className="pressable inline-flex min-h-[40px] items-center rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+                  className="pressable inline-flex min-h-[44px] items-center rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)]"
                 >
                   Practice
                 </Link>

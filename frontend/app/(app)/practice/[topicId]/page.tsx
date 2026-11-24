@@ -198,13 +198,15 @@ export default function PracticeTopicPage() {
       <div className="flex items-center justify-between gap-3">
         <Link
           href={course && topic ? `/courses/${course.slug}/${topic.slug}` : "/courses"}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)]"
+          className="-ml-1 inline-flex min-h-[44px] min-w-0 items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          {course?.code} · {topic?.title}
+          <ArrowLeft className="h-3.5 w-3.5 shrink-0" />
+          <span className="truncate">
+            {course?.code} · {topic?.title}
+          </span>
         </Link>
-        <span className="tabular font-mono text-xs font-semibold text-[var(--text-secondary)]">
-          Question {index + 1} / {questions.length}
+        <span className="tabular shrink-0 font-mono text-xs font-semibold text-[var(--text-secondary)]">
+          Q {index + 1} / {questions.length}
         </span>
       </div>
 

@@ -1,0 +1,91 @@
+---
+title: "First-Order Linear Differential Equations"
+order: 2
+topicId: "22222222-2222-4222-8222-222222290002"
+courseCode: "GET 209"
+courseSlug: "get-209"
+ccmasRef: "Linear first-order differential equations"
+outcomes:
+  - "Rewrite any first-order linear ODE into standard form dy/dx + P(x)y = Q(x)"
+  - "Compute the integrating factor μ(x) = exp(∫ P(x) dx) and obtain the general solution"
+  - "Apply initial conditions to solve engineering RC-circuit, mixing-tank, and Newton cooling problems"
+status: "draft"
+isFree: true
+---
+
+## 1. Overview
+
+Engineering systems change over time—capacitors charge through resistors, hot billets cool in air, and chemical concentrations shift inside mixing tanks. Every one of those models leads directly to a **first-order linear ordinary differential equation (ODE)**.
+
+Once you master the **Integrating Factor** recipe below, almost every GET 209 first-order ODE question turns into a predictable 4-step mechanical routine.
+
+---
+
+## 2. Key Concepts
+
+### Standard Form
+
+Always normalize the coefficient of $\frac{dy}{dx}$ to **$1$** first:
+
+$$\frac{dy}{dx} + P(x)\,y = Q(x)$$
+
+### The Integrating Factor Method
+
+Multiply both sides by the **integrating factor**:
+
+$$\mu(x) = e^{\int P(x)\,dx}$$
+
+Why does this work? Because by the product rule, the entire left-hand side collapses cleanly into a single derivative:
+
+$$\frac{d}{dx}\bigl[\mu(x)\,y\bigr] = \mu(x)\,Q(x)$$
+
+Now integrate both sides with respect to $x$ (never forget the arbitrary constant $+C$ before dividing by $\mu(x)$!):
+
+$$y(x) = \frac{1}{\mu(x)}\left[\int \mu(x)\,Q(x)\,dx + C\right]$$
+
+### Quick Check: Separable vs. Linear
+
+- If you can factor the equation as $g(y)\,dy = f(x)\,dx$, **separate variables** directly—it is even faster.
+- If $y$ and $dy/dx$ appear only to the first power (no $y^2$, $\sin y$, or $y\cdot y'$), use the **integrating factor**.
+
+<Callout variant="tip" title="Never skip Step 1 (Normalizing to dy/dx)">
+If the equation starts as $x\frac{dy}{dx} + 2y = 4x^2$, do **NOT** set $P(x) = 2$! Divide through by $x$ first to get $\frac{dy}{dx} + \frac{2}{x}y = 4x$, so $P(x) = \frac{2}{x}$ and $\mu(x) = e^{2\ln x} = x^2$.
+</Callout>
+
+---
+
+## 3. Worked Examples
+
+<StepRevealExample
+  title="Example 1: Standard Integrating Factor IVP"
+  problem="Solve the initial value problem $\frac{dy}{dx} + 2y = 6e^x$ subject to $y(0) = 5$, and evaluate $y(0)$ check plus the coefficient of $e^{-2x}$."
+  steps={[
+    "Step 1 — Standard form check: Already standard with $P(x) = 2$ and $Q(x) = 6e^x$.",
+    "Step 2 — Integrating factor: $\\mu(x) = e^{\\int 2\\,dx} = e^{2x}$.",
+    "Step 3 — Multiply & collapse left side: $\\frac{d}{dx}(e^{2x} y) = 6e^{3x}$.",
+    "Step 4 — Integrate both sides: $e^{2x} y = \\int 6e^{3x}\\,dx = 2e^{3x} + C \\implies y(x) = 2e^x + Ce^{-2x}$.",
+    "Step 5 — Apply $y(0) = 5$: $5 = 2(1) + C(1) \\implies C = 3$. Final solution: $y(x) = 2e^x + 3e^{-2x}$."
+  ]}
+/>
+
+<StepRevealExample
+  title="Example 2: Variable-Coefficient ODE"
+  problem="Find the general solution of $x\frac{dy}{dx} + 3y = 5x^2$ for $x > 0$."
+  steps={[
+    "Step 1 — Divide by $x$: $\\frac{dy}{dx} + \\frac{3}{x}y = 5x$, so $P(x) = \\frac{3}{x}$ and $Q(x) = 5x$.",
+    "Step 2 — Integrating factor: $\\mu(x) = e^{\\int \\frac{3}{x}\\,dx} = e^{3\\ln x} = x^3$.",
+    "Step 3 — Collapse & integrate: $\\frac{d}{dx}(x^3 y) = 5x^4 \\implies x^3 y = x^5 + C$.",
+    "Step 4 — Divide by $x^3$: $y(x) = x^2 + C x^{-3}$."
+  ]}
+/>
+
+---
+
+## 4. Common Exam Pitfalls
+
+<Callout variant="warning" title="Where most marks get lost">
+1. **Adding $+C$ *after* dividing by $\mu(x)$:** Wrong! $C$ MUST be divided by $\mu(x)$ too (e.g., $Ce^{-2x}$, NOT $+C$).
+2. **Forgetting the sign of $P(x)$:** In $\frac{dy}{dx} - 3y = 4$, $P(x) = -3$, so $\mu(x) = e^{-3x}$, not $e^{3x}$.
+</Callout>
+
+*Recommended textbook chapters: James Stewart 7e Ch. 9.5 · MTH 201 Differential Equations notes in your Library.*

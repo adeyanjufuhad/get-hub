@@ -6,6 +6,7 @@ import type {
   ContentStatus,
   Course,
   DashboardPayload,
+  LibraryPayload,
   Difficulty,
   GradedQuestionReview,
   MockExam,
@@ -75,7 +76,9 @@ async function request<T>(path: string, init: RequestInit = {}, allowRefresh = t
     },
   });
 
-  if (response.status === 401 && allowRefresh && !path.startsWith("/api/v1/auth/")) {
+  // Retry once after a silent refresh. /auth/me is included so an expired 15-minute access
+  // token doesn't look like a logout; login/register/logout pass allowRefresh=false themselves.
+  if (response.status === 401 && allowRefresh && path !== "/api/v1/auth/refresh") {
     const refreshed = await tryRefreshSession();
     if (refreshed) {
       return request<T>(path, init, false);
@@ -112,6 +115,16 @@ async function request<T>(path: string, init: RequestInit = {}, allowRefresh = t
 export const api = {
   googleAuthStartUrl(): string {
     return `${API_BASE}/api/v1/auth/google/start`;
+  },
+
+  library() {
+    return request<LibraryPayload>("/api/v1/library");
+  },
+
+  libraryDownloadLink(materialId: string) {
+    return request<{ url: string; file_name: string; expires_at: string }>(
+      `/api/v1/library/${encodeURIComponent(materialId)}/download`
+    );
   },
 
   authProviders() {

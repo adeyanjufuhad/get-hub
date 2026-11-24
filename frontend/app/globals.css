@@ -208,10 +208,36 @@ button,
 .prose-study .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 0.75rem 0.5rem;
+  max-width: 100%;
+  padding: 0.75rem 0.75rem;
   margin: 1rem 0;
   background: var(--bg-subtle);
   border-radius: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose-study table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.875rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose-study th,
+.prose-study td {
+  border: 1px solid var(--border-hairline);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.prose-study th {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 /* Safe area helpers for mobile notches & home indicators */

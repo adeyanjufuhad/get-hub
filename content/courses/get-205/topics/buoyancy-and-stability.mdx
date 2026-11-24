@@ -1,0 +1,103 @@
+---
+title: "Buoyancy, Archimedes' Principle & Stability of Floating Bodies"
+order: 2
+topicId: "22222222-2222-4222-8222-222222250002"
+courseCode: "GET 205"
+courseSlug: "get-205"
+ccmasRef: "Buoyancy, Archimedes' principle & stability of floating and submerged bodies"
+outcomes:
+  - "Calculate buoyant force and submerged volume fraction for floating and fully submerged engineering bodies"
+  - "Locate the centre of buoyancy (B), centre of gravity (G), and metacentre (M) of rectangular pontoons and cylindrical buoys"
+  - "Evaluate rotational stability using metacentric height GM = BM - BG"
+status: "draft"
+isFree: true
+---
+
+## 1. Overview
+
+Why does a solid steel bolt sink instantly while a 10,000-tonne steel cargo ship floats upright across the Atlantic? The answer lies in **buoyancy** (how much fluid weight is displaced) and **rotational stability** (whether a small tilt generates a restoring couple or an overturning couple).
+
+In GET 205 exams, buoyancy questions almost always combine **vertical force equilibrium** ($F_B = W$) with **metacentric height** ($GM$) stability checks on barges, pontoons, or wooden cylinders.
+
+---
+
+## 2. Key Concepts
+
+### Archimedes' Principle
+
+Any body wholly or partly submerged in a static fluid experiences an upward **buoyant force** $F_B$ equal to the weight of the fluid it displaces:
+
+$$F_B = \rho_f \, g \, V_{\text{sub}}$$
+
+- $\rho_f$ is the density of the **surrounding fluid** ($\text{kg/m}^3$), *not* the solid body.
+- $V_{\text{sub}}$ is the **submerged volume** ($\text{m}^3$).
+- $F_B$ acts vertically upward through the **centre of buoyancy ($B$)**, which is the centroid of the displaced fluid volume.
+
+For a **freely floating homogeneous body** of density $\rho_b$ and total volume $V$, vertical equilibrium ($F_B = W$) yields the classic submerged fraction ratio:
+
+$$\frac{V_{\text{sub}}}{V} = \frac{\rho_b}{\rho_f} = \frac{SG_b}{SG_f}$$
+
+### Stability of Submerged vs. Floating Bodies
+
+- **Fully submerged body** (e.g., submarine, underwater sensor pod):
+  - **Stable** if the centre of gravity $G$ lies **below** the centre of buoyancy $B$.
+  - **Unstable** if $G$ lies above $B$.
+- **Floating body** (e.g., pontoon, ship hull):
+  - Even if $G$ is above $B$, the body can still be **stable** because tilting shifts the submerged wedge and moves $B$ laterally toward the dipped side!
+  - The intersection of the new buoyant line of action with the body's original vertical centreline is the **metacentre ($M$)**.
+
+The **metacentric radius** $BM$ depends on the second moment of area $I_{\min}$ of the **waterplane** (the horizontal cross-section sliced at the waterline) about its least-resistant tilting axis:
+
+$$BM = \frac{I_{\min}}{V_{\text{sub}}}$$
+
+And the **metacentric height** $GM$ is:
+
+$$GM = BM - BG$$
+
+where $BG = y_G - y_B$ is the vertical distance from $B$ up to $G$:
+- **$GM > 0$** ($M$ above $G$): **Stable** — small tilts produce a restoring moment $M_R = W \cdot GM \sin\theta$.
+- **$GM = 0$**: **Neutral** equilibrium.
+- **$GM < 0$** ($M$ below $G$): **Unstable** — the body capsizes.
+
+<Callout variant="tip" title="Which axis gives I_min for a rectangular barge?">
+A rectangular pontoon of length $L$ and beam width $b$ ($b < L$) rolls most easily about its **longitudinal axis**, so always use $I_{\min} = \frac{L b^3}{12}$ (cube the *narrower* dimension!).
+</Callout>
+
+---
+
+## 3. Worked Examples
+
+<StepRevealExample
+  title="Example 1: Draft & Metacentric Stability of a Rectangular Pontoon"
+  problem="A flat-bottomed rectangular steel pontoon is $6.0\,\text{m}$ long, $3.0\,\text{m}$ wide, and $1.6\,\text{m}$ high, with a total mass of $14\,400\,\text{kg}$. Its centre of gravity $G$ lies $0.90\,\text{m}$ above the bottom. Floating in fresh water ($\rho_w = 1000\,\text{kg/m}^3$), find (a) the draft $d$, and (b) the metacentric height $GM$ to check stability."
+  steps={[
+    "Step 1 — Find submerged volume from $F_B = W$: $\\rho_w g V_{\\text{sub}} = m g \\implies V_{\\text{sub}} = \\frac{14\\,400}{1000} = 14.4\\,\\text{m}^3$.",
+    "Step 2 — Compute the draft $d$: $V_{\\text{sub}} = L \\cdot b \\cdot d \\implies d = \\frac{14.4}{6.0 \\times 3.0} = 0.80\\,\\text{m}$.",
+    "Step 3 — Locate $B$ and compute $BG$: For a rectangular prism, $y_B = \\frac{d}{2} = \\frac{0.80}{2} = 0.40\\,\\text{m}$ above the keel. Given $y_G = 0.90\\,\\text{m}$, we get $BG = y_G - y_B = 0.90 - 0.40 = 0.50\\,\\text{m}$.",
+    "Step 4 — Compute $I_{\\min}$ and $BM$: Rolling occurs about the longer axis, so $I_{\\min} = \\frac{L b^3}{12} = \\frac{6.0 \\times 3.0^3}{12} = 13.5\\,\\text{m}^4$. Thus $BM = \\frac{I_{\\min}}{V_{\\text{sub}}} = \\frac{13.5}{14.4} = 0.9375\\,\\text{m}$.",
+    "Step 5 — Evaluate $GM$: $GM = BM - BG = 0.9375 - 0.50 = +0.4375\\,\\text{m} > 0$. Since $GM$ is positive, the pontoon floats stably."
+  ]}
+/>
+
+<StepRevealExample
+  title="Example 2: Apparent Weight of a Submerged Casting"
+  problem="A solid cast-iron block of mass $36\,\text{kg}$ and density $\rho_b = 7200\,\text{kg/m}^3$ is suspended completely underwater ($\rho_w = 1000\,\text{kg/m}^3$, $g = 9.81\,\text{m/s}^2$) by a crane cable. Find the tension $T$ in the cable."
+  steps={[
+    "Step 1 — Compute the block's volume: $V = \\frac{m}{\\rho_b} = \\frac{36}{7200} = 0.0050\\,\\text{m}^3$.",
+    "Step 2 — Compute the upward buoyant force: $F_B = \\rho_w g V = 1000 \\times 9.81 \\times 0.0050 = 49.05\\,\\text{N}$.",
+    "Step 3 — Compute actual weight: $W = mg = 36 \\times 9.81 = 353.16\\,\\text{N}$.",
+    "Step 4 — Vertical equilibrium gives cable tension: $T = W - F_B = 353.16 - 49.05 = 304.11\\,\\text{N}$."
+  ]}
+/>
+
+---
+
+## 4. Common Exam Pitfalls
+
+<Callout variant="warning" title="Watch out for these 3 traps">
+1. **Using body density instead of fluid density in $F_B$:** Buoyancy always equals the weight of *displaced fluid*, $\rho_f g V_{\text{sub}}$.
+2. **Cubing the wrong dimension in $I_{\min}$:** For a barge of width $b$ and length $L$, rolling stability uses $Lb^3/12$, never $bL^3/12$.
+3. **Forgetting to halve the draft for $y_B$:** For a vertical-sided pontoon floating at draft $d$, the centre of buoyancy is at $y_B = d/2$ from the bottom—not $H/2$.
+</Callout>
+
+*Recommended textbook chapters: Çengel & Cimbala Ch. 3.6–3.7 · Munson et al. Ch. 2.11 · R. K. Bansal Ch. 4.*

@@ -1,4 +1,4 @@
-import { ArrowLeft, CheckCircle2, FileWarning } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, FileWarning } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -11,7 +11,7 @@ import {
   TopicActionBar,
 } from "@/components/mdx/topic-components";
 import { Badge } from "@/components/ui/badge";
-import { getTopicDocument } from "@/lib/content";
+import { getCourseManifest, getTopicDocument } from "@/lib/content";
 
 export default async function TopicReaderPage({
   params,
@@ -26,12 +26,18 @@ export default async function TopicReaderPage({
   }
 
   const { frontmatter, content } = doc;
+  const manifest = getCourseManifest(slug);
+  const topicList = manifest?.topics ?? [];
+  const currentIdx = topicList.findIndex((t) => t.slug === topicSlug);
+  const prevTopic = currentIdx > 0 ? topicList[currentIdx - 1] : null;
+  const nextTopic =
+    currentIdx >= 0 && currentIdx + 1 < topicList.length ? topicList[currentIdx + 1] : null;
 
   return (
     <article className="mx-auto max-w-3xl">
       <Link
         href={`/courses/${slug}`}
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)]"
+        className="-ml-1 inline-flex min-h-[44px] items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
         Back to {frontmatter.courseCode}
@@ -105,6 +111,44 @@ export default async function TopicReaderPage({
 
       {/* Mark complete + Practice CTA */}
       <TopicActionBar topicId={frontmatter.topicId} courseSlug={slug} />
+
+      {/* Previous / Next Topic Navigation */}
+      {(prevTopic || nextTopic) && (
+        <nav
+          aria-label="Topic pagination"
+          className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2"
+        >
+          {prevTopic ? (
+            <Link
+              href={`/courses/${slug}/${prevTopic.slug}`}
+              className="hover-lift flex min-h-[56px] flex-col justify-center rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3"
+            >
+              <span className="inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-[var(--text-muted)]">
+                <ArrowLeft className="h-3 w-3" /> Previous topic
+              </span>
+              <span className="mt-0.5 truncate text-sm font-bold text-[var(--text-primary)]">
+                {prevTopic.title}
+              </span>
+            </Link>
+          ) : (
+            <div className="hidden sm:block" />
+          )}
+
+          {nextTopic && (
+            <Link
+              href={`/courses/${slug}/${nextTopic.slug}`}
+              className="hover-lift flex min-h-[56px] flex-col justify-center rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 sm:items-end sm:text-right"
+            >
+              <span className="inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-[var(--accent)]">
+                Next topic <ArrowRight className="h-3 w-3" />
+              </span>
+              <span className="mt-0.5 truncate text-sm font-bold text-[var(--text-primary)]">
+                {nextTopic.title}
+              </span>
+            </Link>
+          )}
+        </nav>
+      )}
     </article>
   );
 }

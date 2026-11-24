@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers";
 import { ThemeToggle } from "@/components/shell/theme-toggle";
@@ -38,6 +39,31 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const { user, setUser } = useAuth();
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  useEffect(() => clearCloseTimer, []);
+
+  const handleSidebarPointerEnter = (e: React.PointerEvent<HTMLElement>) => {
+    if (e.pointerType !== "mouse") return;
+    clearCloseTimer();
+    setSidebarExpanded(true);
+  };
+
+  const handleSidebarPointerLeave = (e: React.PointerEvent<HTMLElement>) => {
+    if (e.pointerType !== "mouse") return;
+    clearCloseTimer();
+    closeTimerRef.current = setTimeout(() => {
+      setSidebarExpanded(false);
+    }, 140);
+  };
 
   const visibleItems = NAV_ITEMS.filter((item) => !item.adminOnly || user?.role === "admin");
 
@@ -63,18 +89,52 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-dvh bg-[var(--bg-canvas)] text-[var(--text-primary)]">
-      {/* Desktop slim left icon rail (md+) */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-[76px] flex-col items-center justify-between border-r border-[var(--border-hairline)] bg-[var(--bg-surface)] py-5 md:flex">
-        <div className="flex flex-col items-center gap-6">
+      {/* Desktop slim left icon rail (md+, expands smoothly on hover/focus) */}
+      <aside
+        onPointerEnter={handleSidebarPointerEnter}
+        onPointerLeave={handleSidebarPointerLeave}
+        onFocus={() => {
+          clearCloseTimer();
+          setSidebarExpanded(true);
+        }}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+            setSidebarExpanded(false);
+          }
+        }}
+        data-expanded={sidebarExpanded ? "true" : "false"}
+        className={cn(
+          "fixed inset-y-0 left-0 z-40 hidden flex-col justify-between overflow-hidden border-r border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-5 transition-[width,box-shadow] duration-[240ms] ease-[var(--ease-out)] md:flex",
+          sidebarExpanded
+            ? "w-[228px] shadow-[12px_0_32px_rgba(20,20,19,0.08)] dark:shadow-[12px_0_36px_rgba(0,0,0,0.42)]"
+            : "w-[76px]"
+        )}
+      >
+        <div className="flex w-full flex-col gap-6">
           <Link
             href="/dashboard"
             aria-label={APP_NAME}
-            className="pressable inline-flex items-center justify-center"
+            className="pressable flex w-full items-center overflow-hidden rounded-2xl"
           >
             <BrandLogo size="lg" />
+            <div
+              className={cn(
+                "ml-3 flex min-w-0 flex-col transition-[opacity,transform] duration-200 ease-[var(--ease-out)]",
+                sidebarExpanded
+                  ? "translate-x-0 opacity-100"
+                  : "pointer-events-none -translate-x-1 opacity-0"
+              )}
+            >
+              <span className="truncate text-sm font-extrabold tracking-tight text-[var(--text-primary)]">
+                {APP_NAME}
+              </span>
+              <span className="truncate font-mono text-[10px] font-medium text-[var(--text-muted)]">
+                OAU 200L
+              </span>
+            </div>
           </Link>
 
-          <nav className="flex flex-col items-center gap-2" aria-label="Main navigation">
+          <nav className="flex w-full flex-col gap-2" aria-label="Main navigation">
             {visibleItems.map((item) => {
               const Icon = item.icon;
               const active = pathname === item.href || (item.matchPrefix && pathname.startsWith(item.matchPrefix));
@@ -82,33 +142,57 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  title={item.label}
+                  aria-current={active ? "page" : undefined}
+                  title={sidebarExpanded ? undefined : item.label}
                   className={cn(
-                    "pressable flex h-11 w-11 items-center justify-center rounded-2xl",
+                    "pressable flex h-11 w-full items-center overflow-hidden rounded-2xl",
                     active
                       ? "bg-[var(--accent-soft)] text-[var(--accent)]"
                       : "text-[var(--text-muted)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                   )}
                 >
-                  <Icon className="h-5 w-5" />
-                  <span className="sr-only">{item.label}</span>
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span
+                    className={cn(
+                      "whitespace-nowrap pr-3.5 text-sm font-semibold transition-[opacity,transform] duration-200 ease-[var(--ease-out)]",
+                      sidebarExpanded
+                        ? "translate-x-0 opacity-100"
+                        : "pointer-events-none -translate-x-1 opacity-0"
+                    )}
+                  >
+                    {item.label}
+                  </span>
                 </Link>
               );
             })}
           </nav>
         </div>
 
-        <div className="flex flex-col items-center gap-3">
-          <ThemeToggle />
+        <div className="flex w-full flex-col gap-3">
+          <ThemeToggle variant="rail" expanded={sidebarExpanded} />
           {user && (
             <button
               type="button"
               onClick={handleLogout}
-              title="Sign out"
+              title={sidebarExpanded ? undefined : "Sign out"}
               aria-label="Sign out"
-              className="pressable flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-hairline)] text-[var(--text-muted)] cursor-pointer"
+              className="pressable flex h-11 w-full items-center overflow-hidden rounded-full border border-[var(--border-hairline)] text-[var(--text-muted)] hover:border-[var(--danger)]/30 hover:bg-[var(--danger-soft)] hover:text-[var(--danger)] cursor-pointer"
             >
-              <LogOut className="h-4 w-4" />
+              <span className="flex h-[42px] w-[42px] shrink-0 items-center justify-center">
+                <LogOut className="h-4 w-4" />
+              </span>
+              <span
+                className={cn(
+                  "whitespace-nowrap pr-3.5 text-sm font-semibold transition-[opacity,transform] duration-200 ease-[var(--ease-out)]",
+                  sidebarExpanded
+                    ? "translate-x-0 opacity-100"
+                    : "pointer-events-none -translate-x-1 opacity-0"
+                )}
+              >
+                Sign out
+              </span>
             </button>
           )}
         </div>

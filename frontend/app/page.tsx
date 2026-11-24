@@ -16,6 +16,7 @@ import {
   StudentFaqAccordion,
   StudyLoopStepper,
 } from "@/components/landing/interactive-preview";
+import { HeroGrainientBackground } from "@/components/landing/hero-grainient";
 import { Counter } from "@/components/reactbits/counter";
 import { SpotlightCard } from "@/components/reactbits/spotlight-card";
 import { ThemeToggle } from "@/components/shell/theme-toggle";
@@ -34,7 +35,7 @@ const FEATURES = [
   {
     icon: Layers,
     title: "Crisp SVG Engineering Diagrams",
-    body: "GET 203 orthographic projections, GET 207 free-body diagrams, and GET 209 limit graphs drawn as 2 KB SVGs that stay razor-sharp on any phone.",
+    body: "GET 205 fluid mechanics diagrams, GET 207 free-body diagrams, and GET 209 limit graphs drawn as 2 KB SVGs that stay razor-sharp on any phone.",
     tag: "3G-friendly",
   },
   {
@@ -114,25 +115,18 @@ export default function LandingPage() {
       </header>
 
       <main>
-        {/* HERO SECTION (100svh stable on mobile, light alabaster + soft warm halo) */}
-        <section className="relative overflow-hidden bg-draft-grid px-4 pb-16 pt-10 sm:px-6 sm:pt-16">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 h-80 opacity-60"
-            style={{
-              background:
-                "radial-gradient(60% 100% at 50% 0%, rgba(234,88,12,0.12) 0%, rgba(248,248,246,0) 100%)",
-            }}
-          />
+        {/* HERO SECTION (100svh stable on mobile, React Bits Grainient hero background) */}
+        <section className="relative overflow-hidden px-4 pb-16 pt-10 sm:px-6 sm:pt-16">
+          <HeroGrainientBackground />
 
-          <div className="relative mx-auto max-w-5xl text-center">
+          <div className="relative z-10 mx-auto max-w-5xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)]">
               <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
               <span>{APP_SEMESTER} · OAU Faculty of Technology</span>
             </div>
 
             <h1 className="mx-auto mt-5 max-w-3xl text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--text-primary)] sm:text-5xl md:text-6xl">
-              Finally understand GET 203, 207 &amp; 209{" "}
+              Finally understand GET 205, 207 &amp; 209{" "}
               <span className="relative inline-block px-2 py-0.5 text-[var(--accent)]">
                 {/* Playful 2D CAD drafting selection box with corner handles */}
                 <span
@@ -331,7 +325,7 @@ export default function LandingPage() {
               Stop cramming GET alone at 2 AM.
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-neutral-300 sm:text-base">
-              Pick your OAU engineering department, open your first topic, and try 15 original practice questions across GET 203, 207, and 209 today.
+              Pick your OAU engineering department, open your first topic, and try 15 original practice questions across GET 205, 207, and 209 today.
             </p>
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
               <Link
@@ -363,7 +357,7 @@ export default function LandingPage() {
             <p className="mt-1.5 text-xs text-[var(--text-muted)]">{APP_INSTITUTION}</p>
           </div>
           <div className="flex flex-wrap gap-5 text-xs font-medium text-[var(--text-secondary)]">
-            <Link href="/courses/get-203/projection-of-lines">GET 203 Sample</Link>
+            <Link href="/courses/get-205/fluid-properties-and-hydrostatics">GET 205 Sample</Link>
             <Link href="/courses/get-207/forces-moments-and-equilibrium">GET 207 Sample</Link>
             <Link href="/courses/get-209/limits-and-continuity">GET 209 Sample</Link>
             <Link href="/login">Sign in</Link>

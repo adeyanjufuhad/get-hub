@@ -11,7 +11,7 @@ import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { PasswordInput } from "@/components/ui/password-input";
 import { ApiError, api } from "@/lib/api";
-import { APP_NAME, OAU_DEPARTMENTS, STUDY_LEVELS } from "@/lib/config";
+import { APP_NAME, DEFAULT_STUDY_LEVEL, OAU_DEPARTMENTS } from "@/lib/config";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -21,7 +21,6 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [department, setDepartment] = useState<string>(OAU_DEPARTMENTS[0]);
-  const [level, setLevel] = useState<string>("200L");
   const [submitting, setSubmitting] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
@@ -35,7 +34,7 @@ export default function SignupPage() {
         email,
         password,
         department,
-        level,
+        level: DEFAULT_STUDY_LEVEL,
       });
       setUser(user);
       toast.success(`Welcome to ${APP_NAME}, ${user.full_name.split(" ")[0]}!`);
@@ -110,45 +109,25 @@ export default function SignupPage() {
               )}
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3">
-              <div className="sm:col-span-2">
-                <label htmlFor="department" className="block text-xs font-semibold text-[var(--text-primary)]">
-                  OAU Department
-                </label>
-                <select
-                  id="department"
-                  value={department}
-                  onChange={(e) => setDepartment(e.target.value)}
-                  className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
-                >
-                  {OAU_DEPARTMENTS.map((d) => (
-                    <option key={d} value={d}>
-                      {d}
-                    </option>
-                  ))}
-                </select>
-                {fieldErrors.department && (
-                  <p className="mt-1 text-xs text-[var(--danger)]">{fieldErrors.department}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="level" className="block text-xs font-semibold text-[var(--text-primary)]">
-                  Level
-                </label>
-                <select
-                  id="level"
-                  value={level}
-                  onChange={(e) => setLevel(e.target.value)}
-                  className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
-                >
-                  {STUDY_LEVELS.map((lv) => (
-                    <option key={lv} value={lv}>
-                      {lv}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            <div>
+              <label htmlFor="department" className="block text-xs font-semibold text-[var(--text-primary)]">
+                OAU Department (200L)
+              </label>
+              <select
+                id="department"
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+                className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
+              >
+                {OAU_DEPARTMENTS.map((d) => (
+                  <option key={d} value={d}>
+                    {d}
+                  </option>
+                ))}
+              </select>
+              {fieldErrors.department && (
+                <p className="mt-1 text-xs text-[var(--danger)]">{fieldErrors.department}</p>
+              )}
             </div>
 
             <div>

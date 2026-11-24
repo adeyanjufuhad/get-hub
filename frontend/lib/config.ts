@@ -22,7 +22,7 @@ export interface CourseConfig {
 export const COURSES: readonly CourseConfig[] = coursesManifest.courses;
 
 export const OAU_DEPARTMENTS = [
-  "Computer Science and Engineering",
+  "Computer Engineering",
   "Electronic and Electrical Engineering",
   "Mechanical Engineering",
   "Civil Engineering",
@@ -32,7 +32,7 @@ export const OAU_DEPARTMENTS = [
   "Food Science and Technology",
 ] as const;
 
-export const STUDY_LEVELS = ["100L", "200L", "300L", "400L", "500L"] as const;
+export const DEFAULT_STUDY_LEVEL = "200L" as const;
 
 export const CCMAS_OUTLINE: Record<string, readonly string[]> = {
   "get-205": [

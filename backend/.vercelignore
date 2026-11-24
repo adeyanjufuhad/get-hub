@@ -1,0 +1,9 @@
+.env
+.env.*
+.vercel
+bin/
+tmp/
+uploads/
+*.exe
+*.test
+*.out

@@ -13,6 +13,7 @@ frontend/tsconfig.tsbuildinfo
 # Vercel
 .vercel/
 frontend/.vercel/
+backend/.vercel/
 
 # Local copyrighted textbooks (never commit PDFs to public repo)
 frontend/public/textbooks/*.pdf

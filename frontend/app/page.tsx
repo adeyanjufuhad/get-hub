@@ -3,8 +3,6 @@ import {
   BookOpenCheck,
   CheckCircle2,
   Compass,
-  Flame,
-  Gauge,
   Layers,
   ShieldCheck,
   Target,
@@ -16,7 +14,10 @@ import {
   CourseCurriculumExplorer,
   HeroProductPreview,
   StudentFaqAccordion,
+  StudyLoopStepper,
 } from "@/components/landing/interactive-preview";
+import { Counter } from "@/components/reactbits/counter";
+import { SpotlightCard } from "@/components/reactbits/spotlight-card";
 import { ThemeToggle } from "@/components/shell/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { APP_INSTITUTION, APP_NAME, APP_SEMESTER, COURSES } from "@/lib/config";
@@ -187,31 +188,56 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* METRICS STRIP */}
+        {/* METRICS STRIP — powered by React Bits Counter */}
         <section className="border-y border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-8 sm:px-6">
           <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 sm:grid-cols-4">
-            {[
-              { value: `${COURSES.length}`, label: "Core 200L GET Courses" },
-              { value: "100%", label: "Original Step-by-Step Notes" },
-              { value: "< 3 KB", label: "Average SVG Diagram Size" },
-              { value: "₦0", label: "Open Access in Phase 1" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 text-center"
-              >
-                <div className="tabular text-2xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-3xl">
-                  {stat.value}
-                </div>
-                <div className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                  {stat.label}
-                </div>
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 text-center">
+              <Counter
+                value={COURSES.length}
+                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-3xl"
+              />
+              <div className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                Core 200L GET Courses
               </div>
-            ))}
+            </div>
+
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 text-center">
+              <Counter
+                value={100}
+                suffix="%"
+                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-3xl"
+              />
+              <div className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                Original Step-by-Step Notes
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 text-center">
+              <Counter
+                value={3}
+                prefix="< "
+                suffix=" KB"
+                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-3xl"
+              />
+              <div className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                Average SVG Diagram Size
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 text-center">
+              <Counter
+                value={0}
+                prefix="₦"
+                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-3xl"
+              />
+              <div className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                Open Access in Phase 1
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* INTERACTIVE COURSE CURRICULUM EXPLORER */}
+        {/* INTERACTIVE COURSE CURRICULUM EXPLORER — powered by React Bits AnimatedList */}
         <section id="courses" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
           <div className="max-w-2xl">
             <Badge variant="accent">NUC CCMAS 2023 Aligned</Badge>
@@ -226,7 +252,7 @@ export default function LandingPage() {
           <CourseCurriculumExplorer />
         </section>
 
-        {/* BENTO FEATURES GRID */}
+        {/* BENTO FEATURES GRID — powered by React Bits SpotlightCard */}
         <section
           id="features"
           className="border-y border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-16 sm:px-6 sm:py-20"
@@ -243,13 +269,16 @@ export default function LandingPage() {
               {FEATURES.map((feat) => {
                 const Icon = feat.icon;
                 return (
-                  <article
+                  <SpotlightCard
                     key={feat.title}
-                    className="hover-lift flex flex-col justify-between rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-5 sm:p-6"
+                    spotlightColor="#EA580C"
+                    intensity={0.12}
+                    borderGlow={0.55}
+                    className="hover-lift flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between">
-                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-hairline)] text-[var(--accent)]">
+                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--accent)]">
                           <Icon className="h-5 w-5" />
                         </span>
                         <Badge variant="neutral">{feat.tag}</Badge>
@@ -261,65 +290,23 @@ export default function LandingPage() {
                         {feat.body}
                       </p>
                     </div>
-                  </article>
+                  </SpotlightCard>
                 );
               })}
             </div>
           </div>
         </section>
 
-        {/* HOW IT WORKS (3-STEP STUDY LOOP) */}
-        <section id="how-it-works" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-          <div className="max-w-2xl">
+        {/* HOW IT WORKS — powered by React Bits Stepper */}
+        <section id="how-it-works" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
+          <div className="mb-8 max-w-2xl">
             <Badge variant="accent">Your 15-Minute Study Loop</Badge>
             <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] sm:text-4xl">
               From confused in lecture to confident in the exam hall.
             </h2>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {[
-              {
-                step: "01",
-                icon: BookOpenCheck,
-                title: "Read the plain-English breakdown",
-                desc: "Open a topic, inspect crisp SVG diagrams and KaTeX formulas, and uncover worked examples one step at a time.",
-              },
-              {
-                step: "02",
-                icon: Gauge,
-                title: "Practice with instant server feedback",
-                desc: "Tackle image MCQs and numeric problems (±1% tolerance) with full solutions revealed right after you answer.",
-              },
-              {
-                step: "03",
-                icon: Flame,
-                title: "Run timed mocks & fix weak topics",
-                desc: "Take randomized course mock exams, keep your daily streak alive, and drill any topic scoring under 70%.",
-              },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.step}
-                  className="rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-bold text-[var(--accent)]">
-                      STEP {item.step}
-                    </span>
-                    <Icon className="h-5 w-5 text-[var(--text-muted)]" />
-                  </div>
-                  <h3 className="mt-3 text-lg font-bold text-[var(--text-primary)]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">
-                    {item.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+          <StudyLoopStepper />
         </section>
 
         {/* FAQ SECTION */}
@@ -333,7 +320,7 @@ export default function LandingPage() {
           <StudentFaqAccordion />
         </section>
 
-        {/* HIGH-CONTRAST DEEP INK CTA BANNER (Inspired by VoltFlow Pinterest pin) */}
+        {/* HIGH-CONTRAST DEEP INK CTA BANNER */}
         <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
           <div className="rounded-[28px] bg-[#141413] px-6 py-12 text-center text-white sm:px-12 sm:py-16">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 font-mono text-xs font-semibold text-orange-300">

@@ -1,8 +1,10 @@
 "use client";
 
-import { ArrowRight, CheckCircle2, ChevronDown, Eye, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown, Clock, Eye, Flame, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { AnimatedList, type AnimatedListEntry } from "@/components/reactbits/animated-list";
+import { Stepper, type StepItem } from "@/components/reactbits/stepper";
 import { Badge } from "@/components/ui/badge";
 import { MathText } from "@/components/ui/math-text";
 import { CCMAS_OUTLINE, COURSES } from "@/lib/config";
@@ -20,7 +22,6 @@ export function HeroProductPreview() {
 
   return (
     <div className="mx-auto mt-10 w-full max-w-4xl rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 shadow-[0_12px_36px_rgba(20,20,19,0.06)] sm:p-5">
-      {/* Window bar + mode switcher */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-hairline)] pb-3">
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" />
@@ -54,7 +55,6 @@ export function HeroProductPreview() {
         </div>
       </div>
 
-      {/* Preview Body */}
       <div className="mt-4">
         {activeTab === "example" && (
           <div className="grid gap-4 md:grid-cols-5">
@@ -144,11 +144,11 @@ export function HeroProductPreview() {
               <ul className="mt-3 space-y-1.5 text-xs text-[var(--text-secondary)]">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" />
-                  Visual front-view & top-view image MCQs
+                  Visual front-view &amp; top-view image MCQs
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" />
-                  True-length & inclination numeric drills
+                  True-length &amp; inclination numeric drills
                 </li>
               </ul>
             </div>
@@ -208,6 +208,7 @@ const SAMPLE_DIAGRAM: Record<string, string> = {
 
 export function CourseCurriculumExplorer() {
   const [selectedSlug, setSelectedSlug] = useState(COURSES[0]?.slug ?? "get-203");
+  const [selectedTopicIdx, setSelectedTopicIdx] = useState(0);
   const activeCourse = COURSES.find((c) => c.slug === selectedSlug) ?? COURSES[0];
   if (!activeCourse) return null;
 
@@ -215,9 +216,15 @@ export function CourseCurriculumExplorer() {
   const sampleSlug = SAMPLE_TOPIC_SLUG[activeCourse.slug] ?? "";
   const sampleImg = SAMPLE_DIAGRAM[activeCourse.slug] ?? "";
 
+  const listItems: AnimatedListEntry[] = outline.map((title, idx) => ({
+    id: `${activeCourse.slug}-${idx}`,
+    title,
+    meta: `CCMAS Module 0${idx + 1} · ${activeCourse.code}`,
+    badge: idx === 0 ? "Draft live" : "Syllabus",
+  }));
+
   return (
     <div className="mt-8">
-      {/* Course Pill Switcher */}
       <div className="flex flex-wrap gap-2">
         {COURSES.map((course) => {
           const active = course.slug === activeCourse.slug;
@@ -225,7 +232,10 @@ export function CourseCurriculumExplorer() {
             <button
               key={course.slug}
               type="button"
-              onClick={() => setSelectedSlug(course.slug)}
+              onClick={() => {
+                setSelectedSlug(course.slug);
+                setSelectedTopicIdx(0);
+              }}
               className={cn(
                 "pressable min-h-[44px] rounded-full border px-4 text-sm font-semibold cursor-pointer",
                 active
@@ -234,13 +244,12 @@ export function CourseCurriculumExplorer() {
               )}
             >
               <span className="font-mono">{course.code}</span>
-              <span className="ml-2 hidden sm:inline font-normal opacity-80">{course.shortTitle}</span>
+              <span className="ml-2 hidden font-normal opacity-80 sm:inline">{course.shortTitle}</span>
             </button>
           );
         })}
       </div>
 
-      {/* Course Detail Card */}
       <div className="mt-5 grid gap-5 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-7 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <div className="flex flex-wrap items-center gap-2">
@@ -256,20 +265,14 @@ export function CourseCurriculumExplorer() {
             {activeCourse.description}
           </p>
 
-          <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-            Core Curriculum Coverage
+          <p className="mt-5 mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+            Interactive CCMAS Syllabus (scroll or tap)
           </p>
-          <ul className="mt-2.5 grid gap-2 sm:grid-cols-2">
-            {outline.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-2 rounded-xl bg-[var(--bg-canvas)] px-3 py-2 text-xs font-medium text-[var(--text-primary)]"
-              >
-                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+          <AnimatedList
+            items={listItems}
+            selectedIndex={selectedTopicIdx}
+            onSelect={(_, idx) => setSelectedTopicIdx(idx)}
+          />
 
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
@@ -307,11 +310,126 @@ export function CourseCurriculumExplorer() {
           </div>
           <p className="mt-3 flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
             <Sparkles className="h-3.5 w-3.5 text-[var(--accent)]" />
-            Original diagrams & explanations — zero textbook copy-paste.
+            Original diagrams &amp; explanations — zero textbook copy-paste.
           </p>
         </div>
       </div>
     </div>
+  );
+}
+
+export function StudyLoopStepper() {
+  const steps: StepItem[] = [
+    {
+      id: "read",
+      label: "Read notes",
+      title: "Read plain-English notes with SVG diagrams",
+      description:
+        "Every topic starts with why it matters in engineering, breaks down key formulas in KaTeX, and lets you reveal worked examples one step at a time.",
+      content: (
+        <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
+          <div className="flex items-center justify-between">
+            <Badge variant="accent" className="font-mono">GET 203 · Topic 1</Badge>
+            <Badge variant="draft">Draft – under review</Badge>
+          </div>
+          <p className="mt-2.5 text-sm font-bold text-[var(--text-primary)]">
+            Projection of Straight Lines
+          </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/diagrams/get-203/q1-front-view-prompt.svg"
+            alt="Sample rod projection diagram"
+            className="mt-3 w-full rounded-xl border border-[var(--border-hairline)] bg-white"
+          />
+        </div>
+      ),
+    },
+    {
+      id: "practice",
+      label: "Practice",
+      title: "Practice with instant server-side grading",
+      description:
+        "Solve visual image MCQs for GET 203 and numeric engineering calculations with ±1% tolerance. Full worked solutions unlock right after you submit.",
+      content: (
+        <div className="space-y-2.5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-mono font-bold text-[var(--accent)]">NUMERIC · ±1% TOLERANCE</span>
+            <span className="inline-flex items-center gap-1 font-semibold text-[var(--success)]">
+              <ShieldCheck className="h-3.5 w-3.5" /> Server-verified
+            </span>
+          </div>
+          <p className="text-sm font-medium text-[var(--text-primary)]">
+            Find plan length of an <MathText text="$80\,\text{mm}$" /> line inclined at{" "}
+            <MathText text="$35^\circ$" /> to HP:
+          </p>
+          <div className="flex items-center gap-2">
+            <div className="tabular flex-1 rounded-xl border-2 border-[var(--success)] bg-[var(--success-soft)] px-3 py-2 font-mono text-sm font-bold text-[var(--success)]">
+              65.53 mm ✓
+            </div>
+          </div>
+          <p className="text-xs text-[var(--text-secondary)]">
+            <MathText text="$L_{\text{plan}} = 80\cos 35^\circ \approx 65.53\,\text{mm}$" />
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: "mock",
+      label: "Mock & streak",
+      title: "Run timed mocks & eliminate weak topics",
+      description:
+        "Simulate test pressure with randomized questions, a mobile bottom-sheet question map, daily study streaks, and automatic weak-topic alerts under 70%.",
+      content: (
+        <div className="space-y-3 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
+          <div className="flex items-center justify-between">
+            <span className="tabular inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-subtle)] px-3 py-1 font-mono text-xs font-bold text-[var(--text-primary)]">
+              <Clock className="h-3.5 w-3.5 text-[var(--accent)]" /> 14:28 left
+            </span>
+            <span className="tabular inline-flex items-center gap-1 rounded-full bg-[var(--accent-soft)] px-3 py-1 text-xs font-bold text-[var(--accent)]">
+              <Flame className="h-3.5 w-3.5" /> 5-day streak
+            </span>
+          </div>
+          <div className="space-y-2">
+            {[
+              { label: "GET 203 · Projection of Lines", pct: 86 },
+              { label: "GET 207 · Equilibrium & Moments", pct: 60 },
+              { label: "GET 209 · Limits & Continuity", pct: 92 },
+            ].map((row) => (
+              <div key={row.label} className="rounded-xl bg-[var(--bg-canvas)] p-2.5">
+                <div className="flex justify-between text-xs font-semibold">
+                  <span>{row.label}</span>
+                  <span className="tabular font-mono">{row.pct}%</span>
+                </div>
+                <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-[var(--border-hairline)]">
+                  <div
+                    className={cn(
+                      "h-full rounded-full",
+                      row.pct < 70 ? "bg-[var(--danger)]" : "bg-[var(--accent)]"
+                    )}
+                    style={{ width: `${row.pct}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <Stepper
+      steps={steps}
+      completeCta={
+        <Link
+          href="/signup"
+          className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-5 text-sm font-semibold text-white"
+        >
+          Start studying free
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      }
+    />
   );
 }
 

@@ -86,6 +86,16 @@ async function request<T>(path: string, init: RequestInit = {}, allowRefresh = t
   const isJson = contentType.includes("application/json");
   const body = isJson ? ((await response.json()) as unknown) : null;
 
+  // The Go API always answers with JSON. A non-JSON 5xx means the Next.js
+  // /api/v1 proxy could not reach it (API not running or wrong API_INTERNAL_URL).
+  if (!response.ok && !isJson && response.status >= 500) {
+    throw new ApiError(
+      response.status,
+      "API_UNREACHABLE",
+      "Can't reach the GET Hub server right now. Please try again in a moment."
+    );
+  }
+
   if (!response.ok) {
     const errObj = (body as ErrorBody | null)?.error;
     throw new ApiError(

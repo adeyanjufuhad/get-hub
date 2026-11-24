@@ -9,6 +9,7 @@ import { useAuth } from "@/components/providers";
 import { GoogleAuthButton, oauthErrorMessage } from "@/components/auth/google-auth-button";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
+import { PasswordInput } from "@/components/ui/password-input";
 import { ApiError, api } from "@/lib/api";
 import { APP_NAME } from "@/lib/config";
 
@@ -80,15 +81,15 @@ function LoginForm() {
           <label htmlFor="password" className="block text-xs font-semibold text-[var(--text-primary)]">
             Password
           </label>
-          <input
+          <PasswordInput
             id="password"
-            type="password"
+            wrapperClassName="mt-1.5"
             required
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
-            className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
+            className="min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
           />
         </div>
 

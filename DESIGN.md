@@ -16,7 +16,7 @@ Built for **OAU 200L Faculty of Technology** students primarily on **mid-range A
 
 ## 2. Typography & Readability
 - **UI & Headings:** `Plus Jakarta Sans` — large display headings tightened to `-0.025em` tracking.
-- **Code, Course Codes & Refs:** `JetBrains Mono` (`GET 203`, `CCMAS`, formulas metadata).
+- **Code, Course Codes & Refs:** `JetBrains Mono` (`GET 205`, `CCMAS`, formulas metadata).
 - **Numbers:** `font-variant-numeric: tabular-nums` on every timer, streak, accuracy percentage, and question counter so numbers never jitter.
 - **Measure:** Topic reading prose capped at `max-width: 65ch`.
 

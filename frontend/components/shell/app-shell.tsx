@@ -3,7 +3,6 @@
 import {
   BarChart3,
   BookOpen,
-  Compass,
   Home,
   LogOut,
   Shield,
@@ -13,6 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers";
 import { ThemeToggle } from "@/components/shell/theme-toggle";
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { api } from "@/lib/api";
 import { cn } from "@/lib/cn";
 import { APP_NAME } from "@/lib/config";
@@ -67,9 +67,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <Link
             href="/dashboard"
             aria-label={APP_NAME}
-            className="pressable flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
+            className="pressable inline-flex items-center justify-center"
           >
-            <Compass className="h-5 w-5" />
+            <BrandLogo size="lg" />
           </Link>
 
           <nav className="flex flex-col items-center gap-2" aria-label="Main navigation">
@@ -118,9 +118,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <header className="safe-top sticky top-0 z-20 border-b border-[var(--border-hairline)]/80 bg-[var(--bg-canvas)]/90 backdrop-blur-md">
           <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
             <Link href={user ? "/dashboard" : "/"} className="flex items-center gap-2 md:hidden">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--ink-cta)] text-[var(--ink-cta-text)]">
-                <Compass className="h-4 w-4" />
-              </span>
+              <BrandLogo size="sm" />
               <span className="text-sm font-extrabold tracking-tight">{APP_NAME}</span>
             </Link>
 

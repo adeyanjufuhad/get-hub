@@ -83,7 +83,7 @@ export default function ProgressPage() {
 
         {data.weak_topics.length === 0 ? (
           <p className="mt-3 text-sm text-[var(--text-secondary)]">
-            You have no weak topics right now. Keep practicing across GET 203, 207, and 209!
+            You have no weak topics right now. Keep practicing across GET 205, 207, and 209!
           </p>
         ) : (
           <div className="mt-4 space-y-2.5">

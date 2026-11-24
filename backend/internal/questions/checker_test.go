@@ -57,7 +57,7 @@ func TestCheckNumericTolerance(t *testing.T) {
 		{"lower boundary -1%", 100.0, 1.0, ptr(99.0), true, false},
 		{"slightly above +1%", 100.0, 1.0, ptr(101.01), false, false},
 		{"slightly below -1%", 100.0, 1.0, ptr(98.99), false, false},
-		{"GET 203 plan length rounding", 65.53, 1.0, ptr(65.5), true, false},
+		{"GET 205 hydrostatic pressure rounding", 33.354, 1.0, ptr(33.35), true, false},
 		{"negative answer inside tolerance", -25.0, 2.0, ptr(-25.49), true, false},
 		{"negative answer outside tolerance", -25.0, 2.0, ptr(-25.6), false, false},
 		{"zero expected exact", 0.0, 1.0, ptr(0.0), true, false},

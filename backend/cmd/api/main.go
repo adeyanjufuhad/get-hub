@@ -18,6 +18,11 @@ import (
 func main() {
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo}))
 
+	if err := config.LoadDefaultDotEnv(); err != nil {
+		logger.Error("failed to load .env", "error", err)
+		os.Exit(1)
+	}
+
 	cfg, err := config.Load()
 	if err != nil {
 		logger.Error("configuration error", "error", err)

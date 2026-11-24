@@ -1,0 +1,114 @@
+---
+title: "Fluid Properties, Hydrostatic Pressure & Manometry"
+order: 1
+topicId: "22222222-2222-4222-8222-222222220205"
+courseCode: "GET 205"
+courseSlug: "get-205"
+ccmasRef: "Fluid properties; hydrostatics, pressure measurement & forces on submerged surfaces"
+outcomes:
+  - "Calculate fluid density, specific weight, specific gravity, and shear stress from Newton's law of viscosity"
+  - "Apply the hydrostatic pressure law and U-tube manometry to solve for unknown gauge pressures"
+  - "Determine the magnitude and centre of pressure of hydrostatic forces on vertical submerged surfaces"
+status: "draft"
+isFree: true
+---
+
+## 1. Overview
+
+From sizing water supply mains on OAU campus to designing hydraulic jacks in Mechanical Engineering or chemical reactors in CHE, fluids behave very differently from rigid solids. A **fluid** cannot resist a shear force at rest—no matter how tiny the shear stress, it continuously deforms (flows).
+
+GET 205 (Fundamentals of Fluid Mechanics) begins with **fluid properties** (especially density and viscosity) and **hydrostatics** (fluids at rest). Get comfortable with units, specific gravity, and datum pressure balances here, because Bernoulli's equation and pipe-loss problems later in the course build directly on them.
+
+---
+
+## 2. Key Concepts
+
+### Fundamental Fluid Properties
+
+- **Density ($\rho$):** Mass per unit volume ($\text{kg/m}^3$). For water at $4^\circ\text{C}$, $\rho_w \approx 1000\,\text{kg/m}^3$.
+- **Specific Weight ($\gamma$):** Weight per unit volume ($\text{N/m}^3$):
+  $$\gamma = \rho g$$
+- **Specific Gravity ($SG$):** Ratio of a fluid's density to the density of water at $4^\circ\text{C}$ (dimensionless):
+  $$SG = \frac{\rho}{\rho_{\text{water}}} = \frac{\gamma}{\gamma_{\text{water}}}$$
+- **Dynamic Viscosity ($\mu$):** Measures a fluid's internal resistance to shear deformation ($\text{Pa}\cdot\text{s}$ or $\text{N}\cdot\text{s/m}^2$). For a Newtonian fluid with linear velocity gradient $\frac{du}{dy}$:
+  $$\tau = \mu \frac{du}{dy}$$
+  while **kinematic viscosity** is $\nu = \frac{\mu}{\rho}$ ($\text{m}^2\text{/s}$).
+
+### Hydrostatic Pressure & U-Tube Manometry
+
+In a static, incompressible fluid of constant density $\rho$, pressure increases linearly with vertical depth $h$ below a reference level:
+
+$$P = P_0 + \rho g h$$
+
+Points at the **same horizontal elevation** inside the **same continuous static fluid** share the exact same pressure (Pascal's Law). When solving any U-tube manometer:
+1. Pick a horizontal **datum line $Z\text{–}Z$** passing through the lower meniscus where the continuous manometer fluid connects both legs.
+2. Equate pressures at $Z\text{–}Z$ on the left and right sides.
+3. Move upward (subtract $\rho g h$) or downward (add $\rho g h$) column by column.
+
+<DiagramFigure
+  src="/diagrams/get-205/u-tube-manometer.svg"
+  caption="Balance pressures at the horizontal datum Z–Z inside the continuous manometer fluid: P_A + ρ₁gh₁ = ρ₂gh₂ (in gauge pressure)."
+/>
+
+### Hydrostatic Force on Vertical Submerged Plane Surfaces
+
+Because gauge pressure grows linearly from $0$ at the free surface to $\rho g H$ at depth $H$, the pressure distribution forms a triangle (pressure prism):
+
+$$F_R = \rho g \bar{h} A$$
+
+where $\bar{h}$ is the vertical depth to the **centroid** of the submerged area $A$. For a vertical rectangular gate of width $b$ and depth $H$ whose top edge sits at the free surface ($\bar{h} = \frac{H}{2}$, $A = bH$), the resultant force acts at the **centre of pressure** $h_p = \frac{2}{3}H$ below the surface.
+
+<DiagramFigure
+  src="/diagrams/get-205/hydrostatic-pressure-prism.svg"
+  caption="Triangular hydrostatic pressure prism on a vertical gate: resultant force F_R = ρg h̄ A acts through the centroid of the pressure triangle at depth ⅔H."
+/>
+
+---
+
+## 3. Worked Examples
+
+<StepRevealExample
+  title="Worked Example 1 — U-Tube Manometer Gauge Pressure"
+  problem="A U-tube manometer containing mercury ($SG_{\text{Hg}} = 13.6$) is connected to a pipe carrying water ($\rho_w = 1000\,\text{kg/m}^3$). The mercury meniscus on the pipe side sits $h_1 = 0.25\,\text{m}$ below the pipe centreline, while the open atmospheric leg stands $h_2 = 0.40\,\text{m}$ above the datum line $Z\text{–}Z$. Find the gauge pressure $P_A$ in the pipe (take $g = 9.81\,\text{m/s}^2$)."
+  steps={[
+    "Compute the density of mercury: $\\rho_{\\text{Hg}} = 13.6 \\times 1000 = 13\\,600\\,\\text{kg/m}^3$.",
+    "Write the pressure on the left side at datum $Z\\text{–}Z$: $P_{Z,\\text{left}} = P_A + \\rho_w g h_1$.",
+    "Write the gauge pressure on the right (open to atmosphere, $P_{\\text{atm,gauge}} = 0$) at datum $Z\\text{–}Z$: $P_{Z,\\text{right}} = \\rho_{\\text{Hg}} g h_2$.",
+    "Equate and solve for $P_A$: $P_A = \\rho_{\\text{Hg}} g h_2 - \\rho_w g h_1 = (13\\,600)(9.81)(0.40) - (1000)(9.81)(0.25)$.",
+    "Evaluate numerically: $P_A = 53\\,366.4 - 2\\,452.5 = 50\\,913.9\\,\\text{Pa} \\approx 50.91\\,\\text{kPa}$."
+  ]}
+/>
+
+<StepRevealExample
+  title="Worked Example 2 — Viscous Shear Stress Between Parallel Plates"
+  problem="A thin oil film ($\mu = 0.24\,\text{Pa}\cdot\text{s}$) of thickness $y = 1.5\,\text{mm}$ separates a stationary lower plate from an upper plate moving at $U = 1.2\,\text{m/s}$. Assuming a linear velocity profile, find the shear stress $\tau$ on the upper plate."
+  steps={[
+    "Convert the gap thickness to metres: $y = 1.5\\,\\text{mm} = 1.5 \\times 10^{-3}\\,\\text{m}$.",
+    "Compute the velocity gradient for a linear profile: $\\frac{du}{dy} = \\frac{U - 0}{y} = \\frac{1.2}{1.5 \\times 10^{-3}} = 800\\,\\text{s}^{-1}$.",
+    "Apply Newton's law of viscosity: $\\tau = \\mu \\frac{du}{dy} = 0.24 \\times 800 = 192\\,\\text{Pa}$."
+  ]}
+/>
+
+---
+
+## 4. Common Mistakes
+
+<Callout variant="warning" title="Watch out for these exam traps">
+- **Forgetting to convert millimetres or centimetres to metres:** Always convert `mm` ($10^{-3}\,\text{m}$) and `cm` ($10^{-2}\,\text{m}$) before multiplying by $\rho g$, otherwise your pressure will be off by a factor of $100$ or $1000$.
+- **Mixing gauge and absolute pressure:** When a manometer leg is open to the air and the question asks for **gauge pressure**, set $P_{\text{atm}} = 0$. Only add $101.3\,\text{kPa}$ if **absolute pressure** is requested.
+- **Putting $F_R$ at the centroid $\bar{h}$ instead of the centre of pressure $h_p$:** Magnitude uses the centroid depth $\bar{h}$, but the line of action on a vertical wall always sits *deeper* at $h_p = \bar{h} + \frac{I_{xx}}{\bar{h}A}$ (which equals $\frac{2}{3}H$ for a rectangle starting at the surface).
+</Callout>
+
+---
+
+## 5. Practice
+
+Lock in these fundamentals with **5 original GET 205 problems** covering specific gravity, Newton's law of viscosity, U-tube manometry, and hydrostatic forces on submerged gates.
+
+---
+
+## 6. Recommended Reading
+
+- **B. R. Munson, T. H. Okiishi et al.**, *Fundamentals of Fluid Mechanics*, Chapters 1 & 2 (Fluid Properties and Fluid Statics).
+- **Y. A. Çengel & J. M. Cimbala**, *Fluid Mechanics: Fundamentals and Applications*, Chapters 1–3.
+- **R. K. Bansal**, *A Textbook of Fluid Mechanics and Hydraulic Machines*, Chapters 1–3.

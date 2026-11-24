@@ -3,12 +3,15 @@ package handlers
 import (
 	"context"
 	"crypto/rand"
+	"crypto/subtle"
 	"encoding/base64"
 	"errors"
 	"net/http"
 	"strings"
 	"time"
+	"unicode/utf8"
 
+	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgtype"
@@ -21,15 +24,37 @@ import (
 
 var avatarPalette = []string{"#EA580C", "#0F766E", "#2563EB", "#7C3AED", "#D97706", "#059669"}
 
+type authStore interface {
+	CreateUser(ctx context.Context, arg sqlc.CreateUserParams) (sqlc.User, error)
+	GetUserByID(ctx context.Context, id uuid.UUID) (sqlc.User, error)
+	GetUserByEmail(ctx context.Context, email string) (sqlc.User, error)
+	GetUserByGoogleID(ctx context.Context, googleID pgtype.Text) (sqlc.User, error)
+	LinkGoogleID(ctx context.Context, id uuid.UUID, googleID pgtype.Text) (sqlc.User, error)
+	CreateSession(ctx context.Context, arg sqlc.CreateSessionParams) (sqlc.Session, error)
+	GetActiveSessionByTokenHash(ctx context.Context, refreshTokenHash string) (sqlc.Session, error)
+	RevokeSession(ctx context.Context, id uuid.UUID) error
+	RevokeSessionByTokenHash(ctx context.Context, refreshTokenHash string) error
+}
+
+type googleOAuthProvider interface {
+	Enabled() bool
+	AuthCodeURL(state string) (string, error)
+	ExchangeAndFetchUser(ctx context.Context, code string) (*auth.GoogleUserInfo, error)
+}
+
 type AuthHandler struct {
-	queries   *sqlc.Queries
+	queries   authStore
 	tokens    *auth.TokenManager
-	google    *auth.GoogleOAuth
+	google    googleOAuthProvider
 	cookieCfg auth.CookieConfig
 	cfg       config.Config
 }
 
 func NewAuthHandler(queries *sqlc.Queries, tokens *auth.TokenManager, google *auth.GoogleOAuth, cfg config.Config) *AuthHandler {
+	return newAuthHandlerWithDeps(queries, tokens, google, cfg)
+}
+
+func newAuthHandlerWithDeps(queries authStore, tokens *auth.TokenManager, google googleOAuthProvider, cfg config.Config) *AuthHandler {
 	return &AuthHandler{
 		queries:   queries,
 		tokens:    tokens,
@@ -63,7 +88,7 @@ func (h *AuthHandler) Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fields := make(map[string]string)
-	if len(req.FullName) < 2 || len(req.FullName) > 100 {
+	if nameLen := utf8.RuneCountInString(req.FullName); nameLen < 2 || nameLen > 100 {
 		fields["full_name"] = "Enter your full name (2–100 characters)."
 	}
 	if !httpapi.IsValidEmail(req.Email) {
@@ -180,7 +205,10 @@ func (h *AuthHandler) Refresh(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Rotate refresh token: revoke old session and issue a fresh pair
-	_ = h.queries.RevokeSession(r.Context(), session.ID)
+	if err := h.queries.RevokeSession(r.Context(), session.ID); err != nil {
+		httpapi.WriteError(w, http.StatusInternalServerError, "SESSION_ERROR", "Could not rotate session.")
+		return
+	}
 
 	user, err := h.queries.GetUserByID(r.Context(), session.UserID)
 	if err != nil {
@@ -205,6 +233,12 @@ func (h *AuthHandler) Logout(w http.ResponseWriter, r *http.Request) {
 	httpapi.WriteJSON(w, http.StatusOK, map[string]any{"ok": true})
 }
 
+func (h *AuthHandler) Providers(w http.ResponseWriter, r *http.Request) {
+	httpapi.WriteJSON(w, http.StatusOK, map[string]any{
+		"google_enabled": h.googleEnabled(),
+	})
+}
+
 func (h *AuthHandler) Me(w http.ResponseWriter, r *http.Request) {
 	id, ok := auth.FromContext(r.Context())
 	if !ok {
@@ -220,12 +254,12 @@ func (h *AuthHandler) Me(w http.ResponseWriter, r *http.Request) {
 
 	httpapi.WriteJSON(w, http.StatusOK, map[string]any{
 		"user":                 user,
-		"google_oauth_enabled": h.google.Enabled(),
+		"google_oauth_enabled": h.googleEnabled(),
 	})
 }
 
 func (h *AuthHandler) GoogleStart(w http.ResponseWriter, r *http.Request) {
-	if !h.google.Enabled() {
+	if !h.googleEnabled() {
 		httpapi.WriteError(w, http.StatusNotImplemented, "OAUTH_DISABLED", "Google sign-in is not configured on this server.")
 		return
 	}
@@ -247,15 +281,22 @@ func (h *AuthHandler) GoogleStart(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *AuthHandler) GoogleCallback(w http.ResponseWriter, r *http.Request) {
-	if !h.google.Enabled() {
+	if !h.googleEnabled() {
 		http.Redirect(w, r, h.cfg.FrontendURL+"/login?error=oauth_disabled", http.StatusFound)
 		return
 	}
 
 	stateCookie, err := r.Cookie(auth.OAuthStateCookieName)
 	auth.ClearOAuthStateCookie(w, h.cookieCfg)
-	if err != nil || stateCookie.Value == "" || stateCookie.Value != r.URL.Query().Get("state") {
+	queryState := r.URL.Query().Get("state")
+	if err != nil || stateCookie.Value == "" || queryState == "" ||
+		subtle.ConstantTimeCompare([]byte(stateCookie.Value), []byte(queryState)) != 1 {
 		http.Redirect(w, r, h.cfg.FrontendURL+"/login?error=oauth_state", http.StatusFound)
+		return
+	}
+
+	if r.URL.Query().Get("error") != "" {
+		http.Redirect(w, r, h.cfg.FrontendURL+"/login?error=oauth_cancelled", http.StatusFound)
 		return
 	}
 
@@ -270,25 +311,30 @@ func (h *AuthHandler) GoogleCallback(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, h.cfg.FrontendURL+"/login?error=oauth_exchange", http.StatusFound)
 		return
 	}
+	if !info.VerifiedEmail {
+		http.Redirect(w, r, h.cfg.FrontendURL+"/login?error=oauth_unverified", http.StatusFound)
+		return
+	}
 
+	normalizedEmail := strings.TrimSpace(strings.ToLower(info.Email))
 	user, err := h.queries.GetUserByGoogleID(r.Context(), pgtype.Text{String: info.ID, Valid: true})
 	if errors.Is(err, pgx.ErrNoRows) {
-		existing, emailErr := h.queries.GetUserByEmail(r.Context(), strings.ToLower(info.Email))
+		existing, emailErr := h.queries.GetUserByEmail(r.Context(), normalizedEmail)
 		if emailErr == nil {
 			user, err = h.queries.LinkGoogleID(r.Context(), existing.ID, pgtype.Text{String: info.ID, Valid: true})
 		} else if errors.Is(emailErr, pgx.ErrNoRows) {
 			name := strings.TrimSpace(info.Name)
 			if name == "" {
-				name = strings.Split(info.Email, "@")[0]
+				name = strings.Split(normalizedEmail, "@")[0]
 			}
 			user, err = h.queries.CreateUser(r.Context(), sqlc.CreateUserParams{
-				Email:       strings.ToLower(info.Email),
+				Email:       normalizedEmail,
 				GoogleID:    pgtype.Text{String: info.ID, Valid: true},
 				FullName:    name,
 				Department:  "Computer Science and Engineering",
 				Level:       "200L",
 				Role:        "student",
-				AvatarColor: avatarPalette[len(info.Email)%len(avatarPalette)],
+				AvatarColor: avatarPalette[len(normalizedEmail)%len(avatarPalette)],
 			})
 		} else {
 			err = emailErr
@@ -305,6 +351,10 @@ func (h *AuthHandler) GoogleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.Redirect(w, r, h.cfg.FrontendURL+"/dashboard", http.StatusFound)
+}
+
+func (h *AuthHandler) googleEnabled() bool {
+	return h.google != nil && h.google.Enabled()
 }
 
 func (h *AuthHandler) issueSessionAndCookies(ctx context.Context, w http.ResponseWriter, r *http.Request, user sqlc.User) error {

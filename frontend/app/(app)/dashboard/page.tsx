@@ -104,10 +104,10 @@ export default function DashboardPage() {
             ) : (
               <>
                 <h2 className="mt-3 text-xl font-bold tracking-tight sm:text-2xl">
-                  GET 203: Projection of Straight Lines
+                  GET 205: Fluid Properties, Hydrostatic Pressure &amp; Manometry
                 </h2>
                 <p className="mt-1 text-sm text-neutral-300">
-                  Start with crisp orthographic diagrams and 5 instant-feedback practice drills.
+                  Start with crisp manometry diagrams and 5 instant-feedback practice drills.
                 </p>
               </>
             )}
@@ -118,7 +118,7 @@ export default function DashboardPage() {
               href={
                 data.continue_topic
                   ? `/courses/${data.continue_topic.course_slug}/${data.continue_topic.topic_slug}`
-                  : "/courses/get-203/projection-of-lines"
+                  : "/courses/get-205/fluid-properties-and-hydrostatics"
               }
               className="pressable inline-flex min-h-[44px] items-center gap-2 rounded-full bg-[#EA580C] px-5 text-sm font-semibold text-white"
             >

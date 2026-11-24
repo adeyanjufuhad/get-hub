@@ -82,7 +82,7 @@ func SetOAuthStateCookie(w http.ResponseWriter, cfg CookieConfig, state string) 
 		MaxAge:   600, // 10 minutes
 		HttpOnly: true,
 		Secure:   cfg.Secure,
-		SameSite: http.SameSiteLaxMode,
+		SameSite: sameSiteOrLax(cfg.SameSite),
 	})
 }
 
@@ -95,6 +95,13 @@ func ClearOAuthStateCookie(w http.ResponseWriter, cfg CookieConfig) {
 		MaxAge:   -1,
 		HttpOnly: true,
 		Secure:   cfg.Secure,
-		SameSite: http.SameSiteLaxMode,
+		SameSite: sameSiteOrLax(cfg.SameSite),
 	})
+}
+
+func sameSiteOrLax(s http.SameSite) http.SameSite {
+	if s == 0 {
+		return http.SameSiteLaxMode
+	}
+	return s
 }

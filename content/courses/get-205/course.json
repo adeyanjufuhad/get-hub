@@ -1,0 +1,17 @@
+{
+  "code": "GET 205",
+  "slug": "get-205",
+  "title": "Fundamentals of Fluid Mechanics",
+  "description": "Master fluid properties, hydrostatics, manometry, forces on submerged surfaces, buoyancy, Bernoulli's equation, pipe flow measurement, and dimensional analysis.",
+  "topics": [
+    {
+      "slug": "fluid-properties-and-hydrostatics",
+      "topicId": "22222222-2222-4222-8222-222222220205",
+      "title": "Fluid Properties, Hydrostatic Pressure & Manometry",
+      "order": 1,
+      "ccmasRef": "Fluid properties; hydrostatics, pressure measurement & forces on submerged surfaces",
+      "status": "draft",
+      "isFree": true
+    }
+  ]
+}

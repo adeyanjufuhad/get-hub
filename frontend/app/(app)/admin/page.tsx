@@ -365,7 +365,7 @@ export default function AdminQuestionsPage() {
               type="text"
               value={promptImageUrl}
               onChange={(e) => setPromptImageUrl(e.target.value)}
-              placeholder="Optional prompt SVG/image URL (e.g. /diagrams/get-203/...)"
+              placeholder="Optional prompt SVG/image URL (e.g. /diagrams/get-205/...)"
               className="min-h-[44px] flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3"
             />
             <label className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-xs font-semibold cursor-pointer">

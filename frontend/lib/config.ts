@@ -34,14 +34,14 @@ export const OAU_DEPARTMENTS = [
 export const STUDY_LEVELS = ["100L", "200L", "300L", "400L", "500L"] as const;
 
 export const CCMAS_OUTLINE: Record<string, readonly string[]> = {
-  "get-203": [
-    "Projection of lines & auxiliary views",
-    "Working (production) & semi-detailed drawings",
-    "Solid, surface & shell modelling",
-    "Surface intersections & component-based design",
-    "Assembly & motion constraints",
-    "Electronics PCB layout & schematics",
-    "Parametric design, DFM, 3D printing & CNC",
+  "get-205": [
+    "Fluid properties: density, viscosity & surface tension",
+    "Hydrostatic pressure, Pascal's law & manometry",
+    "Hydrostatic forces on submerged plane & curved surfaces",
+    "Buoyancy, Archimedes' principle & stability of floating bodies",
+    "Control-volume continuity & momentum equations",
+    "Bernoulli's equation, Venturi meters & Pitot tubes",
+    "Pipe head losses & Buckingham Pi dimensional analysis",
   ],
   "get-207": [
     "Forces, moments, couples & 2D equilibrium",

@@ -4,12 +4,12 @@
   "institution": "Obafemi Awolowo University (OAU), Ile-Ife — Faculty of Technology",
   "courses": [
     {
-      "code": "GET 203",
-      "slug": "get-203",
-      "title": "Engineering Graphics and Solid Modelling I",
-      "shortTitle": "Engineering Graphics",
-      "description": "Orthographic projection, auxiliary views, production drawings, solid & surface modelling, parametric design, and manufacturing drawings.",
-      "units": 2,
+      "code": "GET 205",
+      "slug": "get-205",
+      "title": "Fundamentals of Fluid Mechanics",
+      "shortTitle": "Fluid Mechanics",
+      "description": "Fluid properties, hydrostatics, manometry, forces on submerged surfaces, buoyancy & stability, continuity, Bernoulli's equation, pipe flow measurements, and dimensional analysis.",
+      "units": 3,
       "order": 1,
       "badgeColor": "orange",
       "hasDiagrams": true

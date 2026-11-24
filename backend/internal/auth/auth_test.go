@@ -145,3 +145,46 @@ func TestIPRateLimiter(t *testing.T) {
 		t.Fatalf("3rd request expected 429, got %d", rec.Code)
 	}
 }
+
+func TestAuthCookiePathsAndSecurity(t *testing.T) {
+	cfg := DefaultCookieConfig(false, "")
+
+	rec := httptest.NewRecorder()
+	SetAuthCookies(rec, cfg, "access-val", 15*time.Minute, "refresh-val", 24*time.Hour)
+	cookies := rec.Result().Cookies()
+	if len(cookies) != 2 {
+		t.Fatalf("expected 2 auth cookies, got %d", len(cookies))
+	}
+
+	byName := make(map[string]*http.Cookie)
+	for _, c := range cookies {
+		byName[c.Name] = c
+	}
+
+	if c := byName[AccessCookieName]; c == nil || c.Path != "/" || !c.HttpOnly || c.SameSite != http.SameSiteLaxMode {
+		t.Fatalf("unexpected access cookie attributes: %+v", c)
+	}
+	if c := byName[RefreshCookieName]; c == nil || c.Path != "/api/v1/auth" || !c.HttpOnly || c.SameSite != http.SameSiteLaxMode {
+		t.Fatalf("unexpected refresh cookie attributes: %+v", c)
+	}
+
+	stateRec := httptest.NewRecorder()
+	SetOAuthStateCookie(stateRec, cfg, "csrf-state")
+	stateCookies := stateRec.Result().Cookies()
+	if len(stateCookies) != 1 {
+		t.Fatalf("expected 1 state cookie, got %d", len(stateCookies))
+	}
+	sc := stateCookies[0]
+	if sc.Name != OAuthStateCookieName || sc.Path != "/api/v1/auth/google" || !sc.HttpOnly || sc.SameSite != http.SameSiteLaxMode {
+		t.Fatalf("unexpected oauth state cookie attributes: %+v", sc)
+	}
+
+	clearRec := httptest.NewRecorder()
+	ClearAuthCookies(clearRec, cfg)
+	ClearOAuthStateCookie(clearRec, cfg)
+	for _, c := range clearRec.Result().Cookies() {
+		if c.MaxAge >= 0 {
+			t.Fatalf("expected MaxAge < 0 when clearing cookie %s, got %d", c.Name, c.MaxAge)
+		}
+	}
+}

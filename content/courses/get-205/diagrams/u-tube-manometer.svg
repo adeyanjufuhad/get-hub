@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260" role="img" aria-label="U-tube manometer connected to pipe A showing datum line Z-Z and fluid column heights h1 and h2">
+  <rect width="600" height="260" rx="14" fill="#FFFFFF"/>
+  <text x="24" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413">U-Tube Manometer: Pressure Balance at Datum Z–Z</text>
+
+  <!-- Manometer fluid (orange-tinted mercury) in U-bend: from left meniscus y=175 down around bend to right meniscus y=85 -->
+  <path d="M 210 175 L 210 212 Q 210 232 230 232 L 320 232 Q 340 232 340 212 L 340 85 L 368 85 L 368 216 Q 368 248 336 248 L 214 248 Q 182 248 182 216 L 182 175 Z" fill="#FED7AA"/>
+  <!-- Fluid 1 (water/oil) in pipe A and left leg down to y=175 -->
+  <circle cx="110" cy="112" r="28" fill="#CCFBF1" stroke="#0F766E" stroke-width="2.2"/>
+  <path d="M 136 100 L 196 100 Q 210 100 210 114 L 210 175 L 182 175 L 182 124 L 136 124 Z" fill="#CCFBF1"/>
+
+  <!-- Glass U-tube outline -->
+  <path d="M 136 100 L 196 100 Q 210 100 210 114 L 210 212 Q 210 230 228 230 L 322 230 Q 340 230 340 212 L 340 58" fill="none" stroke="#141413" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M 136 124 L 182 124 L 182 214 Q 182 246 214 246 L 336 246 Q 368 246 368 214 L 368 58" fill="none" stroke="#141413" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- Pipe A label -->
+  <text x="103" y="117" font-family="system-ui,sans-serif" font-size="14" font-weight="800" fill="#0F766E">A</text>
+  <text x="72" y="156" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#0F766E">Fluid 1 (ρ₁)</text>
+
+  <!-- Open atmospheric end -->
+  <text x="334" y="50" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#4B5563">Open (P_atm)</text>
+
+  <!-- Meniscus lines -->
+  <line x1="182" y1="175" x2="210" y2="175" stroke="#EA580C" stroke-width="2.5"/>
+  <line x1="340" y1="85" x2="368" y2="85" stroke="#EA580C" stroke-width="2.5"/>
+
+  <!-- Datum line Z-Z -->
+  <line x1="158" y1="175" x2="405" y2="175" stroke="#141413" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <text x="142" y="179" font-family="system-ui,sans-serif" font-size="12" font-weight="800" fill="#141413">Z</text>
+  <text x="410" y="179" font-family="system-ui,sans-serif" font-size="12" font-weight="800" fill="#141413">Z</text>
+
+  <!-- Dimension h1 (pipe center y=112 to datum y=175) -->
+  <line x1="236" y1="112" x2="236" y2="175" stroke="#0F766E" stroke-width="1.6"/>
+  <line x1="230" y1="112" x2="242" y2="112" stroke="#0F766E" stroke-width="1.4"/>
+  <line x1="230" y1="175" x2="242" y2="175" stroke="#0F766E" stroke-width="1.4"/>
+  <text x="246" y="148" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#0F766E">h₁</text>
+
+  <!-- Dimension h2 (right meniscus y=85 to datum y=175) -->
+  <line x1="392" y1="85" x2="392" y2="175" stroke="#EA580C" stroke-width="1.6"/>
+  <line x1="386" y1="85" x2="398" y2="85" stroke="#EA580C" stroke-width="1.4"/>
+  <line x1="386" y1="175" x2="398" y2="175" stroke="#EA580C" stroke-width="1.4"/>
+  <text x="402" y="134" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#EA580C">h₂</text>
+
+  <!-- Balance equation callout -->
+  <rect x="435" y="102" width="145" height="92" rx="10" fill="#F8F8F6" stroke="#E6E4DD"/>
+  <text x="448" y="124" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#4B5563">Manometer Fluid (ρ₂)</text>
+  <text x="448" y="148" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#141413">P_Z(left) = P_Z(right)</text>
+  <text x="448" y="170" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#EA580C">P_A + ρ₁gh₁ = ρ₂gh₂</text>
+  <text x="448" y="185" font-family="system-ui,sans-serif" font-size="10" fill="#6B7280">(gauge pressure)</text>
+</svg>

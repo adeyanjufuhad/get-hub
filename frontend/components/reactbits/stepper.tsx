@@ -33,7 +33,7 @@ export function Stepper({ steps, completeCta, className }: StepperProps) {
   return (
     <div
       className={cn(
-        "rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 shadow-[0_8px_28px_rgba(20,20,19,0.04)] sm:p-7",
+        "rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 shadow-[0_6px_22px_rgba(20,20,19,0.04)] sm:p-5",
         className
       )}
     >
@@ -90,16 +90,16 @@ export function Stepper({ steps, completeCta, className }: StepperProps) {
       <div
         key={current.id}
         role="tabpanel"
-        className="mt-6 grid gap-5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 sm:p-6 md:grid-cols-12"
+        className="mt-4 grid gap-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 sm:p-5 md:grid-cols-12"
       >
         <div className="flex flex-col justify-center md:col-span-5">
-          <span className="font-mono text-xs font-bold text-[var(--accent)]">
+          <span className="font-mono text-[11px] font-bold text-[var(--accent)]">
             STEP 0{currentIndex + 1} OF 0{steps.length}
           </span>
-          <h3 className="mt-2 text-xl font-extrabold tracking-tight text-[var(--text-primary)]">
+          <h3 className="mt-1.5 text-lg font-extrabold tracking-tight text-[var(--text-primary)]">
             {current.title}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">
+          <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-secondary)] sm:text-sm">
             {current.description}
           </p>
         </div>
@@ -108,7 +108,7 @@ export function Stepper({ steps, completeCta, className }: StepperProps) {
       </div>
 
       {/* Footer Navigation */}
-      <div className="mt-5 flex items-center justify-between gap-3">
+      <div className="mt-4 flex items-center justify-between gap-3">
         <button
           type="button"
           disabled={isFirst}

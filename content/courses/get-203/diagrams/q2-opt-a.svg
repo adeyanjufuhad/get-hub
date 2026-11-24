@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 120" role="img" aria-label="Option A: single point below XY">
-  <rect width="220" height="120" rx="10" fill="#FFFFFF"/>
-  <line x1="18" y1="36" x2="202" y2="36" stroke="#141413" stroke-width="1.6"/>
-  <text x="18" y="28" font-family="monospace" font-size="10" fill="#6B7280">X</text>
-  <text x="194" y="28" font-family="monospace" font-size="10" fill="#6B7280">Y</text>
-  <line x1="110" y1="36" x2="110" y2="76" stroke="#CBD5E1" stroke-dasharray="3 3"/>
-  <circle cx="110" cy="76" r="5" fill="#EA580C"/>
-  <text x="120" y="80" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#141413">a(b)</text>
-</svg>

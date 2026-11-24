@@ -104,6 +104,10 @@ export const api = {
     return `${API_BASE}/api/v1/auth/google/start`;
   },
 
+  authProviders() {
+    return request<{ google_enabled: boolean }>("/api/v1/auth/providers", {}, false);
+  },
+
   register(input: {
     full_name: string;
     email: string;

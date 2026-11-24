@@ -70,6 +70,7 @@ func NewRouter(cfg config.Config, pool *pgxpool.Pool, logger *slog.Logger) http.
 	r.Route("/api/v1", func(r chi.Router) {
 		// Auth endpoints (rate-limited)
 		r.Route("/auth", func(r chi.Router) {
+			r.Get("/providers", authH.Providers)
 			r.With(authLimiter.Middleware).Post("/register", authH.Register)
 			r.With(authLimiter.Middleware).Post("/login", authH.Login)
 			r.With(authLimiter.Middleware).Post("/refresh", authH.Refresh)

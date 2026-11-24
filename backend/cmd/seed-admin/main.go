@@ -13,6 +13,7 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 
 	"github.com/adeyanjufuhad/get-hub/backend/internal/auth"
+	"github.com/adeyanjufuhad/get-hub/backend/internal/config"
 	"github.com/adeyanjufuhad/get-hub/backend/internal/db"
 	"github.com/adeyanjufuhad/get-hub/backend/internal/db/sqlc"
 )
@@ -22,6 +23,10 @@ import (
 //   DATABASE_URL=... go run ./cmd/seed-admin -email you@oauife.edu.ng
 //   DATABASE_URL=... go run ./cmd/seed-admin -email you@oauife.edu.ng -name "Fuhad Adeyanju" -password "your-strong-pass"
 func main() {
+	if err := config.LoadDefaultDotEnv(); err != nil {
+		log.Fatalf("load .env: %v", err)
+	}
+
 	emailFlag := flag.String("email", "", "Email address to promote or create as admin")
 	nameFlag := flag.String("name", "GET Hub Admin", "Full name (used only if creating a new account)")
 	passFlag := flag.String("password", "", "Password (required only if the account does not exist yet)")

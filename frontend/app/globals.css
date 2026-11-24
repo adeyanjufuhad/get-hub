@@ -223,6 +223,74 @@ button,
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
+/* React Bits micro-interaction keyframes (GPU-only transform & background-position) */
+@keyframes rb-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.rb-logo-loop-track {
+  animation: rb-marquee 26s linear infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rb-logo-loop:hover .rb-logo-loop-track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes rb-shine {
+  0% {
+    background-position: 120% 0;
+  }
+  100% {
+    background-position: -120% 0;
+  }
+}
+
+.rb-shiny-text {
+  background-image: linear-gradient(
+    110deg,
+    currentColor 35%,
+    color-mix(in srgb, currentColor 40%, #ffffff) 50%,
+    currentColor 65%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: rb-shine 3.6s linear infinite;
+}
+
+.glare-hover-sheen {
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 70%
+  );
+  transform: translate3d(-120%, 0, 0);
+  transition: transform 480ms var(--ease-out);
+}
+
+.dark .glare-hover-sheen {
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 70%
+  );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .glare-hover:hover .glare-hover-sheen {
+    transform: translate3d(120%, 0, 0);
+  }
+}
+
 /* Reduced motion: keep gentle opacity transitions, strip spatial movement */
 @media (prefers-reduced-motion: reduce) {
   html {

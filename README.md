@@ -1,6 +1,6 @@
 # GET Hub — OAU 200L Engineering Study Platform
 
-A mobile-first, 3G-friendly study platform built for **200-level engineering students in the Faculty of Technology, Obafemi Awolowo University (OAU), Ile-Ife**, focused on first-semester **GET 203**, **GET 207**, and **GET 209** (aligned to NUC CCMAS 2023).
+A mobile-first, 3G-friendly study platform built for **200-level engineering students in the Faculty of Technology, Obafemi Awolowo University (OAU), Ile-Ife**, focused on first-semester **GET 205**, **GET 207**, and **GET 209** (aligned to NUC CCMAS 2023).
 
 > **Renaming the platform:** Edit `"appName"` in [`content/courses.json`](content/courses.json) (re-exported as `APP_NAME` in [`frontend/lib/config.ts`](frontend/lib/config.ts)).
 
@@ -13,7 +13,7 @@ A mobile-first, 3G-friendly study platform built for **200-level engineering stu
 ├── content/                  # Courses manifest, MDX topics, and crisp 2D SVG diagrams
 │   ├── courses.json          # Add, remove, or rename courses here
 │   └── courses/
-│       ├── get-203/          # Engineering Graphics & Solid Modelling I
+│       ├── get-205/          # Fundamentals of Fluid Mechanics
 │       ├── get-207/          # Applied Mechanics
 │       └── get-209/          # Engineering Mathematics I
 ├── backend/                  # Go 1.22+ REST API (chi, pgx/v5, sqlc, goose, argon2id, JWT)
@@ -56,7 +56,7 @@ Copy `backend/.env.example` to `backend/.env`:
 | `COOKIE_SECURE` | No (`false` in dev) | Set `true` in production (HTTPS) |
 | `GOOGLE_CLIENT_ID` | Optional | Google OAuth 2.0 Web Client ID |
 | `GOOGLE_CLIENT_SECRET` | Optional | Google OAuth 2.0 Web Client Secret |
-| `GOOGLE_REDIRECT_URL` | Optional | Must match Google Cloud Console (e.g. `http://localhost:8080/api/v1/auth/google/callback`) |
+| `GOOGLE_REDIRECT_URL` | Optional (defaults to `$FRONTEND_URL/api/v1/auth/google/callback`) | Must go through the **frontend** origin and match Google Cloud Console exactly (e.g. `http://localhost:3000/api/v1/auth/google/callback`) |
 | `INCLUDE_DRAFT_CONTENT` | No (`true` in dev) | Keeps draft seed topics & questions playable until you publish them in `/admin` |
 | `ENFORCE_PAID_GATING` | No (`false`) | Phase 1: `false`. Phase 3: flip to `true` to enforce Paystack subscriptions via `access.CanAccess` |
 | `UPLOAD_DIR` | No (`./uploads`) | Directory for admin-uploaded SVG/PNG/WebP question assets |
@@ -73,17 +73,27 @@ Copy `frontend/.env.example` to `frontend/.env.local`:
 
 ## Running Database Migrations (Neon)
 
-Always run migrations against your Neon branch using `goose` (you can use either the direct or pooled Neon URL for migrations):
+The Neon project is **`get-hub`** (id `young-fog-11740367`, region `aws-eu-west-2`, branch `main`, database `gethub`). Its pooled connection string lives in `backend/.env` (gitignored).
+
+The built-in runner reads `backend/.env` automatically and needs no extra tools:
+
+```bash
+cd backend
+go run ./cmd/migrate -verify   # apply pending migrations, then print course/topic/question counts
+go run ./cmd/migrate -status   # list applied/pending migrations without changing anything
+```
+
+`goose` also works (the runner recognises migrations goose already applied):
 
 ```bash
 cd backend
 goose -dir migrations postgres "$DATABASE_URL" up
 ```
 
-This creates all Phase 1 tables (`users`, `sessions`, `courses`, `topics`, `questions`, `question_options`, `attempts`, `topic_progress`, `mock_exams`, `mock_exam_answers`) and seeds:
-- `GET 203`, `GET 207`, `GET 209`
+This creates all Phase 1 tables (`users`, `sessions`, `courses`, `topics`, `questions`, `question_options`, `attempts`, `topic_progress`, `mock_exams`, `mock_exam_answers`) and applies migrations (`0003` removes unconfirmed `GET 203` and sets the active courses to):
+- `GET 205`, `GET 207`, `GET 209`
 - 1 original draft sample topic per course
-- 15 original draft practice questions (5 per topic, including 2 SVG image-based MCQs for `GET 203`)
+- 15 original draft practice questions (5 per topic, including SVG diagram-backed questions for `GET 205` and `GET 207`)
 
 To roll back the latest migration:
 ```bash
@@ -114,6 +124,19 @@ npm run sync:diagrams
 npm run dev
 ```
 Open `http://localhost:3000`.
+
+---
+
+## Enabling Google Sign-In
+
+The Google button on `/login` and `/signup` only appears once the API has credentials (`GET /api/v1/auth/providers` reports `google_enabled`).
+
+1. In [Google Cloud Console → APIs & Services → Credentials](https://console.cloud.google.com/apis/credentials), create an **OAuth client ID** of type **Web application** (configure the OAuth consent screen first if prompted; scopes needed: `openid`, `email`, `profile`).
+2. **Authorized JavaScript origins:** `http://localhost:3000` (plus your production site, e.g. `https://gethub.example.com`).
+3. **Authorized redirect URIs:** `http://localhost:3000/api/v1/auth/google/callback` (plus `https://<your-site>/api/v1/auth/google/callback`). Use the *frontend* origin: Next.js proxies `/api/v1/*` to the Go API, so the OAuth state cookie and the auth cookies stay first-party on the site domain.
+4. Put the client ID and secret in `backend/.env` as `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, then restart the API.
+
+Flow: `/api/v1/auth/google/start` sets a 10-minute CSRF state cookie and redirects to Google → Google returns to `/api/v1/auth/google/callback` → the API checks the state, requires a verified Google email, signs in the existing Google user, links Google to an existing email/password account with the same email, or creates a new student account, then redirects to `/dashboard`. Failures redirect to `/login?error=<code>`, which shows a readable message.
 
 ---
 
@@ -161,14 +184,14 @@ npm run build
 1. Create `/content/courses/<course-slug>/topics/<topic-slug>.mdx` with frontmatter:
    ```yaml
    ---
-   title: "Auxiliary Views"
+   title: "Buoyancy and Stability"
    order: 2
    topicId: "<uuid-matching-topics-table>"
-   courseCode: "GET 203"
-   courseSlug: "get-203"
-   ccmasRef: "Auxiliary views and mixed projection"
+   courseCode: "GET 205"
+   courseSlug: "get-205"
+   ccmasRef: "Buoyancy and stability of floating bodies"
    outcomes:
-     - "Construct primary auxiliary elevations and plans"
+     - "Determine buoyant force and metacentric height for floating bodies"
    status: "draft"
    isFree: true
    ---

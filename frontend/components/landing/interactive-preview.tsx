@@ -35,7 +35,7 @@ export function HeroProductPreview() {
         <div className="inline-flex rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] p-1">
           {[
             { id: "example", label: "GET 207 Steps" },
-            { id: "diagram", label: "GET 203 SVG" },
+            { id: "diagram", label: "GET 205 SVG" },
             { id: "quiz", label: "GET 209 Math" },
           ].map((tab) => (
             <button
@@ -133,30 +133,30 @@ export function HeroProductPreview() {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
               <Badge variant="accent" className="mb-2 font-mono">
-                GET 203 · Crisp 2 KB SVG
+                GET 205 · Crisp 2 KB SVG
               </Badge>
               <h3 className="text-base font-bold text-[var(--text-primary)]">
-                First-Angle Orthographic Projection
+                U-Tube Manometry &amp; Hydrostatics
               </h3>
               <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-secondary)]">
-                Every engineering drawing diagram is a tiny vector SVG — razor sharp when you pinch-zoom on Android, and 40× smaller than textbook scans on mobile data.
+                Every fluid mechanics schematic is a tiny vector SVG — razor sharp when you pinch-zoom on Android, and 40× smaller than textbook scans on mobile data.
               </p>
               <ul className="mt-3 space-y-1.5 text-xs text-[var(--text-secondary)]">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" />
-                  Visual front-view &amp; top-view image MCQs
+                  Clear datum Z–Z manometer pressure balances
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" />
-                  True-length &amp; inclination numeric drills
+                  Hydrostatic pressure &amp; viscosity numeric drills
                 </li>
               </ul>
             </div>
             <div className="overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/diagrams/get-203/line-inclined-hp-vp.svg"
-                alt="Projection of line inclined at 30 degrees to HP"
+                src="/diagrams/get-205/u-tube-manometer.svg"
+                alt="U-tube manometer showing pressure balance at datum Z-Z"
                 className="w-full"
               />
             </div>
@@ -195,20 +195,21 @@ export function HeroProductPreview() {
 }
 
 const SAMPLE_TOPIC_SLUG: Record<string, string> = {
-  "get-203": "projection-of-lines",
+  "get-205": "fluid-properties-and-hydrostatics",
   "get-207": "forces-moments-and-equilibrium",
   "get-209": "limits-and-continuity",
 };
 
 const SAMPLE_DIAGRAM: Record<string, string> = {
-  "get-203": "/diagrams/get-203/orthographic-planes.svg",
+  "get-205": "/diagrams/get-205/u-tube-manometer.svg",
   "get-207": "/diagrams/get-207/couple-moment.svg",
   "get-209": "/diagrams/get-209/one-sided-limits.svg",
 };
 
 export function CourseCurriculumExplorer() {
-  const [selectedSlug, setSelectedSlug] = useState(COURSES[0]?.slug ?? "get-203");
+  const [selectedSlug, setSelectedSlug] = useState(COURSES[0]?.slug ?? "get-205");
   const [selectedTopicIdx, setSelectedTopicIdx] = useState(0);
+
   const activeCourse = COURSES.find((c) => c.slug === selectedSlug) ?? COURSES[0];
   if (!activeCourse) return null;
 
@@ -224,7 +225,7 @@ export function CourseCurriculumExplorer() {
   }));
 
   return (
-    <div className="mt-8">
+    <div className="mt-5">
       <div className="flex flex-wrap gap-2">
         {COURSES.map((course) => {
           const active = course.slug === activeCourse.slug;
@@ -237,20 +238,21 @@ export function CourseCurriculumExplorer() {
                 setSelectedTopicIdx(0);
               }}
               className={cn(
-                "pressable min-h-[44px] rounded-full border px-4 text-sm font-semibold cursor-pointer",
+                "pressable min-h-[40px] rounded-full border px-3.5 text-xs font-semibold sm:text-sm cursor-pointer",
                 active
                   ? "border-[var(--ink-cta)] bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                   : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)]"
               )}
             >
               <span className="font-mono">{course.code}</span>
-              <span className="ml-2 hidden font-normal opacity-80 sm:inline">{course.shortTitle}</span>
+              <span className="ml-1.5 hidden font-normal opacity-80 sm:inline">{course.shortTitle}</span>
             </button>
           );
         })}
       </div>
 
-      <div className="mt-5 grid gap-5 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-7 lg:grid-cols-12">
+      {/* Sleek compact course explorer card (no hover expansion) */}
+      <div className="mt-4 grid gap-4 rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="accent" className="font-mono">
@@ -258,43 +260,44 @@ export function CourseCurriculumExplorer() {
             </Badge>
             <Badge variant="neutral">{activeCourse.units} Units · NUC CCMAS 2023</Badge>
           </div>
-          <h3 className="mt-3 text-xl font-bold tracking-tight text-[var(--text-primary)] sm:text-2xl">
+          <h3 className="mt-2 text-lg font-bold tracking-tight text-[var(--text-primary)]">
             {activeCourse.title}
           </h3>
-          <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-[var(--text-secondary)]">
+          <p className="mt-1 line-clamp-2 max-w-[60ch] text-xs leading-relaxed text-[var(--text-secondary)] sm:text-sm">
             {activeCourse.description}
           </p>
 
-          <p className="mt-5 mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-            Interactive CCMAS Syllabus (scroll or tap)
+          <p className="mt-3 mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+            CCMAS Syllabus ({outline.length} modules)
           </p>
           <AnimatedList
             items={listItems}
             selectedIndex={selectedTopicIdx}
             onSelect={(_, idx) => setSelectedTopicIdx(idx)}
+            maxHeightClass="max-h-[164px]"
           />
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-4 flex flex-wrap gap-2">
             <Link
               href={`/courses/${activeCourse.slug}/${sampleSlug}`}
-              className="pressable inline-flex min-h-[44px] items-center gap-2 rounded-full bg-[var(--accent)] px-5 text-sm font-semibold text-white"
+              className="pressable inline-flex min-h-[40px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-4 text-xs font-semibold text-white sm:text-sm"
             >
               Read sample topic
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <Link
               href="/signup"
-              className="pressable inline-flex min-h-[44px] items-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 text-sm font-semibold text-[var(--text-primary)]"
+              className="pressable inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-xs font-semibold text-[var(--text-primary)] sm:text-sm"
             >
               Practice 5 sample questions
             </Link>
           </div>
         </div>
 
-        <div className="flex flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 lg:col-span-5">
+        <div className="flex flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 lg:col-span-5">
           <div>
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-xs font-semibold text-[var(--text-muted)]">
+            <div className="flex items-center justify-between gap-2">
+              <span className="font-mono text-[11px] font-semibold text-[var(--text-muted)]">
                 Sample Vector Diagram
               </span>
               <Badge variant="draft">Draft – under review</Badge>
@@ -304,12 +307,12 @@ export function CourseCurriculumExplorer() {
               <img
                 src={sampleImg}
                 alt={`${activeCourse.code} sample engineering diagram`}
-                className="mt-3 w-full rounded-xl border border-[var(--border-hairline)] bg-white"
+                className="mt-2.5 max-h-[175px] w-full rounded-xl border border-[var(--border-hairline)] bg-white object-contain"
               />
             )}
           </div>
-          <p className="mt-3 flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-            <Sparkles className="h-3.5 w-3.5 text-[var(--accent)]" />
+          <p className="mt-2 flex items-center gap-1.5 text-[11px] text-[var(--text-muted)]">
+            <Sparkles className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
             Original diagrams &amp; explanations — zero textbook copy-paste.
           </p>
         </div>
@@ -329,16 +332,16 @@ export function StudyLoopStepper() {
       content: (
         <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
           <div className="flex items-center justify-between">
-            <Badge variant="accent" className="font-mono">GET 203 · Topic 1</Badge>
+            <Badge variant="accent" className="font-mono">GET 205 · Topic 1</Badge>
             <Badge variant="draft">Draft – under review</Badge>
           </div>
           <p className="mt-2.5 text-sm font-bold text-[var(--text-primary)]">
-            Projection of Straight Lines
+            Fluid Properties, Hydrostatic Pressure &amp; Manometry
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/diagrams/get-203/q1-front-view-prompt.svg"
-            alt="Sample rod projection diagram"
+            src="/diagrams/get-205/hydrostatic-pressure-prism.svg"
+            alt="Hydrostatic pressure prism on a vertical submerged wall"
             className="mt-3 w-full rounded-xl border border-[var(--border-hairline)] bg-white"
           />
         </div>
@@ -349,7 +352,7 @@ export function StudyLoopStepper() {
       label: "Practice",
       title: "Practice with instant server-side grading",
       description:
-        "Solve visual image MCQs for GET 203 and numeric engineering calculations with ±1% tolerance. Full worked solutions unlock right after you submit.",
+        "Solve diagram-backed MCQs and numeric engineering calculations with ±1% tolerance. Full worked solutions unlock right after you submit.",
       content: (
         <div className="space-y-2.5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
           <div className="flex items-center justify-between text-xs">
@@ -359,16 +362,16 @@ export function StudyLoopStepper() {
             </span>
           </div>
           <p className="text-sm font-medium text-[var(--text-primary)]">
-            Find plan length of an <MathText text="$80\,\text{mm}$" /> line inclined at{" "}
-            <MathText text="$35^\circ$" /> to HP:
+            Find gauge pressure at <MathText text="$4.0\,\text{m}$" /> depth in water (
+            <MathText text="$\rho = 1000\,\text{kg/m}^3$" />):
           </p>
           <div className="flex items-center gap-2">
             <div className="tabular flex-1 rounded-xl border-2 border-[var(--success)] bg-[var(--success-soft)] px-3 py-2 font-mono text-sm font-bold text-[var(--success)]">
-              65.53 mm ✓
+              39.24 kPa ✓
             </div>
           </div>
           <p className="text-xs text-[var(--text-secondary)]">
-            <MathText text="$L_{\text{plan}} = 80\cos 35^\circ \approx 65.53\,\text{mm}$" />
+            <MathText text="$P = \rho g h = 1000 \times 9.81 \times 4.0 = 39.24\,\text{kPa}$" />
           </p>
         </div>
       ),
@@ -391,7 +394,7 @@ export function StudyLoopStepper() {
           </div>
           <div className="space-y-2">
             {[
-              { label: "GET 203 · Projection of Lines", pct: 86 },
+              { label: "GET 205 · Fluid Properties & Statics", pct: 86 },
               { label: "GET 207 · Equilibrium & Moments", pct: 60 },
               { label: "GET 209 · Limits & Continuity", pct: 92 },
             ].map((row) => (
@@ -440,7 +443,7 @@ const FAQS = [
   },
   {
     q: "Which OAU departments is GET Hub built for?",
-    a: "Every 200L department in the Faculty of Technology taking GET 203, GET 207, and GET 209 — Computer, Electronic & Electrical, Mechanical, Civil, Chemical, Agricultural & Environmental, Materials Science, and Food Science & Technology.",
+    a: "Every 200L department in the Faculty of Technology taking GET 205, GET 207, and GET 209 — Computer, Electronic & Electrical, Mechanical, Civil, Chemical, Agricultural & Environmental, Materials Science, and Food Science & Technology.",
   },
   {
     q: "Is it free right now?",

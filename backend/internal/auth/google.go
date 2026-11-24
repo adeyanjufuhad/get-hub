@@ -49,7 +49,7 @@ func (g *GoogleOAuth) AuthCodeURL(state string) (string, error) {
 	if !g.Enabled() {
 		return "", ErrGoogleOAuthDisabled
 	}
-	return g.oauthCfg.AuthCodeURL(state, oauth2.AccessTypeOnline), nil
+	return g.oauthCfg.AuthCodeURL(state, oauth2.AccessTypeOnline, oauth2.SetAuthURLParam("prompt", "select_account")), nil
 }
 
 func (g *GoogleOAuth) ExchangeAndFetchUser(ctx context.Context, code string) (*GoogleUserInfo, error) {

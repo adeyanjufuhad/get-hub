@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 250" role="img" aria-label="Triangular hydrostatic pressure distribution on a vertical submerged wall of depth H showing resultant force at 2H/3">
+  <rect width="580" height="250" rx="14" fill="#FFFFFF"/>
+  <text x="24" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413">Hydrostatic Pressure Prism on a Vertical Wall</text>
+
+  <!-- Water body -->
+  <rect x="65" y="64" width="235" height="150" fill="#EFF6FF"/>
+  <!-- Free surface line + triangle marker -->
+  <line x1="65" y1="64" x2="360" y2="64" stroke="#0F766E" stroke-width="2"/>
+  <polygon points="105,64 98,53 112,53" fill="none" stroke="#0F766E" stroke-width="1.6"/>
+  <line x1="96" y1="69" x2="114" y2="69" stroke="#0F766E" stroke-width="1.4"/>
+  <text x="122" y="57" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#0F766E">Free Surface (p_gauge = 0)</text>
+
+  <!-- Vertical submerged gate / wall -->
+  <rect x="300" y="64" width="14" height="150" fill="#141413" rx="2"/>
+  <line x1="290" y1="214" x2="340" y2="214" stroke="#141413" stroke-width="2"/>
+
+  <!-- Triangular pressure prism on left of wall -->
+  <polygon points="300,64 300,214 145,214" fill="#FED7AA" fill-opacity="0.7" stroke="#EA580C" stroke-width="2"/>
+
+  <!-- Pressure arrows inside prism -->
+  <line x1="268" y1="95" x2="292" y2="95" stroke="#EA580C" stroke-width="2"/>
+  <polygon points="298,95 289,91 289,99" fill="#EA580C"/>
+
+  <line x1="230" y1="130" x2="292" y2="130" stroke="#EA580C" stroke-width="2"/>
+  <polygon points="298,130 289,126 289,134" fill="#EA580C"/>
+
+  <line x1="154" y1="205" x2="292" y2="205" stroke="#EA580C" stroke-width="2.2"/>
+  <polygon points="298,205 289,201 289,209" fill="#EA580C"/>
+
+  <!-- Resultant Force FR at 2H/3 = 64 + 100 = 164 -->
+  <line x1="168" y1="164" x2="290" y2="164" stroke="#141413" stroke-width="3.2"/>
+  <polygon points="300,164 287,157 287,171" fill="#141413"/>
+  <circle cx="300" cy="164" r="4" fill="#EA580C"/>
+  <text x="82" y="168" font-family="system-ui,sans-serif" font-size="13" font-weight="800" fill="#141413">F_R = ρg h̄ A</text>
+
+  <!-- Depth dimensions on right -->
+  <line x1="342" y1="64" x2="342" y2="214" stroke="#4B5563" stroke-width="1.4"/>
+  <line x1="336" y1="64" x2="348" y2="64" stroke="#4B5563" stroke-width="1.4"/>
+  <line x1="336" y1="214" x2="348" y2="214" stroke="#4B5563" stroke-width="1.4"/>
+  <text x="352" y="142" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#141413">H</text>
+
+  <!-- Centre of pressure depth hp = 2H/3 -->
+  <line x1="392" y1="64" x2="392" y2="164" stroke="#EA580C" stroke-width="1.6"/>
+  <line x1="386" y1="64" x2="398" y2="64" stroke="#EA580C" stroke-width="1.4"/>
+  <line x1="304" y1="164" x2="398" y2="164" stroke="#EA580C" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <text x="404" y="118" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#EA580C">h_p = ⅔ H</text>
+  <text x="404" y="135" font-family="system-ui,sans-serif" font-size="11" fill="#4B5563">(Centre of pressure)</text>
+
+  <!-- Bottom max pressure label -->
+  <text x="140" y="234" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#EA580C">p_max = ρ g H</text>
+</svg>

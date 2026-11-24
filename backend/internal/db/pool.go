@@ -10,6 +10,7 @@ import (
 )
 
 // NewPool initializes a pgxpool tuned for Neon serverless pooled connections.
+// The ping timeout allows for a Neon compute waking from scale-to-zero.
 // Uses SimpleProtocol by default so PgBouncer transaction-mode pooling never
 // conflicts with prepared statement caches.
 func NewPool(ctx context.Context, databaseURL string) (*pgxpool.Pool, error) {
@@ -30,7 +31,7 @@ func NewPool(ctx context.Context, databaseURL string) (*pgxpool.Pool, error) {
 		return nil, fmt.Errorf("create pgx pool: %w", err)
 	}
 
-	pingCtx, cancel := context.WithTimeout(ctx, 8*time.Second)
+	pingCtx, cancel := context.WithTimeout(ctx, 20*time.Second)
 	defer cancel()
 	if err := pool.Ping(pingCtx); err != nil {
 		pool.Close()

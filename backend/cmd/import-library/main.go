@@ -21,6 +21,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/adeyanjufuhad/get-hub/backend/internal/config"
 	"github.com/adeyanjufuhad/get-hub/backend/internal/db"
@@ -55,6 +56,7 @@ func main() {
 	}
 	rootFlag := flag.String("root", "", "Folder the manifest paths are relative to (required)")
 	manifestFlag := flag.String("manifest", defaultManifestPath(), "Path to content/library/manifest.json")
+	courseFlag := flag.String("course", "", "Optional course code filter (e.g. \"MTH 202\")")
 	dryRun := flag.Bool("dry-run", false, "Validate the manifest and files without uploading or writing to the database")
 	flag.Parse()
 
@@ -113,7 +115,11 @@ func main() {
 
 	var uploaded, added, refreshed int
 	var uploadedBytes int64
+	filterCourse := strings.TrimSpace(*courseFlag)
 	for i, it := range m.Items {
+		if filterCourse != "" && !strings.EqualFold(it.Course, filterCourse) {
+			continue
+		}
 		full := filepath.Join(*rootFlag, filepath.FromSlash(it.Path))
 		sum, size, err := hashFile(full)
 		if err != nil {
@@ -131,7 +137,9 @@ func main() {
 
 		var exists bool
 		for attempt := 1; attempt <= 3; attempt++ {
-			exists, err = storage.Exists(ctx, key)
+			exCtx, exCancel := context.WithTimeout(ctx, 25*time.Second)
+			exists, err = storage.Exists(exCtx, key)
+			exCancel()
 			if err == nil {
 				break
 			}
@@ -145,7 +153,9 @@ func main() {
 				if openErr != nil {
 					log.Fatalf("open %s: %v", it.Path, openErr)
 				}
-				err = storage.Put(ctx, key, f, size, contentType)
+				putCtx, putCancel := context.WithTimeout(ctx, 90*time.Second)
+				err = storage.Put(putCtx, key, f, size, contentType)
+				putCancel()
 				f.Close()
 				if err == nil {
 					break

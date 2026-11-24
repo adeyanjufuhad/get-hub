@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 220" role="img" aria-label="Force couple showing two equal and opposite forces F separated by distance d">
+  <rect width="560" height="220" rx="14" fill="#FFFFFF"/>
+  <text x="24" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413">A Force Couple Produces Pure Rotation (M = F · d)</text>
+  <!-- Rigid bar -->
+  <rect x="130" y="98" width="300" height="20" rx="10" fill="#F2F1EC" stroke="#141413" stroke-width="2"/>
+  <!-- Center rotation arrow -->
+  <path d="M 262 84 A 26 26 0 1 1 255 128" fill="none" stroke="#EA580C" stroke-width="2.2"/>
+  <polygon points="262,84 252,82 257,92" fill="#EA580C"/>
+  <text x="252" y="156" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#EA580C">M = F · d</text>
+  <!-- Left upward force +F -->
+  <line x1="165" y1="108" x2="165" y2="46" stroke="#EA580C" stroke-width="3"/>
+  <polygon points="165,38 158,50 172,50" fill="#EA580C"/>
+  <text x="122" y="64" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#EA580C">+F</text>
+  <!-- Right downward force -F -->
+  <line x1="395" y1="108" x2="395" y2="170" stroke="#EA580C" stroke-width="3"/>
+  <polygon points="395,178 388,166 402,166" fill="#EA580C"/>
+  <text x="410" y="164" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#EA580C">-F</text>
+  <!-- Perpendicular distance d -->
+  <line x1="165" y1="194" x2="395" y2="194" stroke="#4B5563" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="275" y="210" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#141413">d</text>
+</svg>

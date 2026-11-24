@@ -1,0 +1,17 @@
+{
+  "code": "GET 203",
+  "slug": "get-203",
+  "title": "Engineering Graphics and Solid Modelling I",
+  "description": "Master orthographic projections, auxiliary views, working production drawings, solid and surface modelling, and CAD design for manufacturing.",
+  "topics": [
+    {
+      "slug": "projection-of-lines",
+      "topicId": "22222222-2222-4222-8222-222222220203",
+      "title": "Projection of Straight Lines",
+      "order": 1,
+      "ccmasRef": "Projection of lines",
+      "status": "draft",
+      "isFree": true
+    }
+  ]
+}

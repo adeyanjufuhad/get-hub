@@ -1,0 +1,107 @@
+---
+title: "Limits and Continuity of Functions"
+order: 1
+topicId: "22222222-2222-4222-8222-222222220209"
+courseCode: "GET 209"
+courseSlug: "get-209"
+ccmasRef: "Limits; continuity"
+outcomes:
+  - "Evaluate finite limits including 0/0 indeterminate forms using factoring and trig identities"
+  - "Find limits at infinity for rational engineering expressions"
+  - "Verify the three continuity conditions and solve for unknown constants in piecewise functions"
+status: "draft"
+isFree: true
+---
+
+## 1. Overview
+
+In engineering, things rarely happen only at clean static snapshots—voltages spike as switches close, beam stresses concentrate near holes, and control systems settle as time $t \to \infty$. **Limits** let us describe where a function is *heading* even when plugging in the exact number breaks down (like dividing by zero).
+
+Limits are also the exact foundation of differentiation ($\frac{dy}{dx}$), differential equations, and partial derivatives coming later in GET 209.
+
+---
+
+## 2. Key Concepts
+
+### What a Limit Really Means
+
+Writing $\lim_{x \to c} f(x) = L$ means: as $x$ gets arbitrarily close to $c$ from **both** the left ($x \to c^-$) and the right ($x \to c^+$), $f(x)$ gets arbitrarily close to $L$. Importantly, **the limit does not care what happens *at* $x = c$ itself**—there could even be a missing hole there!
+
+<DiagramFigure
+  src="/diagrams/get-209/removable-discontinuity.svg"
+  caption="Even though f(3) is undefined (0/0), the curve approaches y = 6 smoothly from both sides, so the limit equals 6."
+/>
+
+### Three Go-To Techniques for Evaluating Limits
+
+1. **Direct Substitution First:** Always try plugging $x = c$ in directly. If you get a real number (not $\frac{0}{0}$), you are done!
+2. **Factor & Cancel (for $\frac{0}{0}$):** When substitution gives $\frac{0}{0}$, factor numerator and denominator to cancel the offending $(x - c)$ factor, then substitute again.
+3. **Standard Trigonometric Limit:**
+   $$\lim_{u \to 0} \frac{\sin u}{u} = 1$$
+4. **Limits at Infinity ($x \to \infty$):** For a rational function $\frac{P(x)}{Q(x)}$, divide every term by the highest power of $x$ in the denominator. Every $\frac{k}{x^n}$ term vanishes to $0$.
+
+### One-Sided Limits & Continuity
+
+For a two-sided limit $\lim_{x \to c} f(x)$ to exist, the left-hand and right-hand limits must agree:
+
+$$\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x)$$
+
+<DiagramFigure
+  src="/diagrams/get-209/one-sided-limits.svg"
+  caption="When the left and right branches head toward different heights L₁ ≠ L₂, the two-sided limit at c does not exist."
+/>
+
+A function $f$ is **continuous at $x = c$** if and only if **all three** checks pass:
+1. $f(c)$ is defined.
+2. $\lim_{x \to c} f(x)$ exists.
+3. $\lim_{x \to c} f(x) = f(c)$.
+
+---
+
+## 3. Worked Examples
+
+<StepRevealExample
+  title="Worked Example 1 — Resolving a 0/0 Indeterminate Form"
+  problem="Evaluate $\displaystyle \lim_{x \to 4} \frac{x^2 - 7x + 12}{x - 4}$."
+  steps={[
+    "Test direct substitution at $x = 4$: numerator is $16 - 28 + 12 = 0$, denominator is $4 - 4 = 0$. We have $\\frac{0}{0}$, so algebraic simplification is needed.",
+    "Factor the quadratic numerator: $x^2 - 7x + 12 = (x - 4)(x - 3)$.",
+    "Cancel the common factor $(x - 4)$ (allowed because $x$ approaches $4$ without equalling $4$): $\\frac{(x - 4)(x - 3)}{x - 4} = x - 3$.",
+    "Substitute $x = 4$ into the simplified expression: $\\lim_{x \\to 4} (x - 3) = 4 - 3 = 1$."
+  ]}
+/>
+
+<StepRevealExample
+  title="Worked Example 2 — Finding a Constant for Continuity"
+  problem="Determine the value of $a$ so that $g(x)$ is continuous everywhere:\n$$g(x) = \begin{cases} a x - 1, & x \le 3 \\ 2x^2 - 7, & x > 3 \end{cases}$$"
+  steps={[
+    "Each branch is a polynomial, so $g(x)$ is automatically continuous for $x < 3$ and $x > 3$. The only point to check is the boundary $x = 3$.",
+    "Compute the left-hand limit and function value at $x = 3$: $g(3) = \\lim_{x \\to 3^-} (ax - 1) = 3a - 1$.",
+    "Compute the right-hand limit at $x = 3$: $\\lim_{x \\to 3^+} (2x^2 - 7) = 2(9) - 7 = 11$.",
+    "Set left limit equal to right limit: $3a - 1 = 11 \\implies 3a = 12 \\implies a = 4$."
+  ]}
+/>
+
+---
+
+## 4. Common Mistakes
+
+<Callout variant="warning" title="Watch out for these exam traps">
+- **Stopping at $\frac{0}{0}$ and writing "0" or "undefined":** $\frac{0}{0}$ is an *indeterminate form*, not a final answer. Factor, rationalize conjugates, or rewrite using $\frac{\sin u}{u}$.
+- **Confusing degrees and radians:** The rule $\lim_{x \to 0} \frac{\sin x}{x} = 1$ ONLY holds when $x$ is measured in **radians**.
+- **Forgetting to match the argument of $\sin$:** For $\lim_{x \to 0} \frac{\sin(5x)}{2x}$, you cannot just drop $\sin$—scale so the denominator matches $5x$: $\frac{5}{2} \cdot \frac{\sin(5x)}{5x} \to \frac{5}{2}$.
+</Callout>
+
+---
+
+## 5. Practice
+
+Lock in these techniques with **5 original GET 209 questions** covering factoring limits, trigonometric limits, limits at infinity, and piecewise continuity.
+
+---
+
+## 6. Recommended Reading
+
+- **K. A. Stroud & D. J. Booth**, *Engineering Mathematics*, Foundation Topics & Differentiation introduction.
+- **Erwin Kreyszig**, *Advanced Engineering Mathematics*, Review of Calculus Limits & Continuity.
+- **James Stewart**, *Calculus: Early Transcendentals*, Chapter 2: Limits and Derivatives.

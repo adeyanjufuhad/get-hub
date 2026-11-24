@@ -1,0 +1,17 @@
+{
+  "code": "GET 209",
+  "slug": "get-209",
+  "title": "Engineering Mathematics I",
+  "description": "Step-by-step mastery of limits, continuity, differentiation, first-order linear ODEs, partial derivatives, matrices, and vector calculus.",
+  "topics": [
+    {
+      "slug": "limits-and-continuity",
+      "topicId": "22222222-2222-4222-8222-222222220209",
+      "title": "Limits and Continuity of Functions",
+      "order": 1,
+      "ccmasRef": "Limits; continuity",
+      "status": "draft",
+      "isFree": true
+    }
+  ]
+}

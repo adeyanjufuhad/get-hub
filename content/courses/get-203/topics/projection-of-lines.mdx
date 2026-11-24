@@ -1,0 +1,109 @@
+---
+title: "Projection of Straight Lines"
+order: 1
+topicId: "22222222-2222-4222-8222-222222220203"
+courseCode: "GET 203"
+courseSlug: "get-203"
+ccmasRef: "Projection of lines"
+outcomes:
+  - "Explain how first-angle orthographic projection maps 3D objects onto the VP and HP"
+  - "Draw and calculate front view and top view lengths for lines parallel or inclined to one plane"
+  - "Find the true length of an oblique line using the right-triangle (rotation) method"
+status: "draft"
+isFree: true
+---
+
+## 1. Overview
+
+Every mechanical shaft, roof truss member, and PCB mounting bracket is built from edges that sit at angles in 3D space. On a flat A3 drawing board—or inside a CAD production sheet—engineers communicate those 3D edges unambiguously using **orthographic projection**.
+
+If you have ever stared at a GET 203 drawing sheet wondering *"why did my top view shrink when the rod tilted?"*, this topic fixes that confusion for good. Once you understand straight lines, auxiliary views, sections, and solid modelling become dramatically easier.
+
+---
+
+## 2. Key Concepts
+
+### First-Angle Projection (Standard at OAU)
+
+Imagine placing an object in the **first quadrant**—in front of a vertical wall (**Vertical Plane, VP**) and above a flat table (**Horizontal Plane, HP**). The crease where both planes meet is the **$XY$ reference line**.
+
+- Looking straight from the front projects the **Front View (Elevation)** onto the **VP**. We label endpoints with primes, e.g., $p'$ and $q'$.
+- Looking straight down from above projects the **Top View (Plan)** onto the **HP**. We label endpoints without primes, e.g., $p$ and $q$.
+- To flatten the drawing onto paper, the HP swings **$90^\circ$ clockwise downward**. That is why, in first-angle projection:
+  - **Front view ($p'q'$) always sits ABOVE $XY$** (height above HP).
+  - **Top view ($pq$) always sits BELOW $XY$** (distance in front of VP).
+  - Matching endpoints ($p'$ and $p$) always lie on the same vertical projector line perpendicular to $XY$.
+
+<DiagramFigure
+  src="/diagrams/get-203/orthographic-planes.svg"
+  caption="First-angle projection unfolds the HP 90° downward so the Front View sits above XY and the Top View sits below XY."
+/>
+
+### Three Core Line Orientations
+
+1. **Parallel to both HP and VP:** Neither view is foreshortened. Both $p'q'$ and $pq$ are parallel to $XY$ and equal to the **true length $L$**.
+2. **Perpendicular to one plane:** The view on the plane it is perpendicular to collapses into a **single point** (e.g., $a(b)$). The other view shows the true length perpendicular to $XY$.
+3. **Parallel to VP, inclined at $\theta$ to HP:**
+   - The **Front View** shows the **true length** $L$ and the **true angle** $\theta$ with $XY$.
+   - The **Top View** lies parallel to $XY$ but is **foreshortened**:
+     $$L_{\text{plan}} = L \cos \theta$$
+
+<DiagramFigure
+  src="/diagrams/get-203/line-inclined-hp-vp.svg"
+  caption="A line parallel to VP and inclined at θ = 30° to HP shows true length in the front view and foreshortened length L cos θ in the top view."
+/>
+
+### Oblique Lines (Inclined to Both Planes)
+
+When a line is tilted to *both* HP and VP, neither the front view nor the top view directly shows its true length. Using the **rotation method**, we mentally rotate the top view until it becomes parallel to $XY$ while keeping endpoint heights fixed. The resulting right triangle relates true length $L$, plan length $L_{\text{plan}}$, and vertical height difference $\Delta z$:
+
+$$L = \sqrt{L_{\text{plan}}^2 + (\Delta z)^2}$$
+
+---
+
+## 3. Worked Examples
+
+<StepRevealExample
+  title="Worked Example 1 — Line Parallel to VP, Inclined to HP"
+  problem="A straight conduit rod $AB$ is $75\,\text{mm}$ long. It is parallel to the VP and inclined at $40^\circ$ to the HP. End $A$ is $20\,\text{mm}$ above HP and $25\,\text{mm}$ in front of VP. Find the lengths of its front view and top view, and state where each view is drawn."
+  steps={[
+    "Locate the starting projectors for end $A$: draw reference line $XY$. Mark $a'$ at $20\\,\\text{mm}$ **above** $XY$ (height above HP), and directly below it mark $a$ at $25\\,\\text{mm}$ **below** $XY$ (distance in front of VP).",
+    "Draw the front view $a'b'$: because $AB$ is **parallel to the VP**, the front view shows the **true length** ($75\\,\\text{mm}$) and the **true inclination** ($40^\\circ$) to the HP. Draw a line of length $75\\,\\text{mm}$ upward at $40^\\circ$ from $a'$ to locate $b'$.",
+    "Compute the foreshortened top view length: drop a vertical projector from $b'$ across $XY$ to meet a horizontal line drawn from $a$. Numerically, $L_{\\text{plan}} = L \\cos 40^\\circ = 75 \\times 0.7660 \\approx 57.45\\,\\text{mm}$.",
+    "Verify heights and finish: end $B$ is higher than $A$ by $\\Delta z = 75 \\sin 40^\\circ \\approx 48.21\\,\\text{mm}$, so $b'$ sits $20 + 48.21 = 68.21\\,\\text{mm}$ above $XY$, while $ab$ stays parallel to $XY$ at $25\\,\\text{mm}$ below it."
+  ]}
+/>
+
+<StepRevealExample
+  title="Worked Example 2 — True Length of an Oblique Line"
+  problem="The top view of an inclined brace $MN$ measures $48\,\text{mm}$, and its front view shows that end $N$ is $36\,\text{mm}$ higher above the HP than end $M$. Find the true length of $MN$ and its true inclination $\theta$ to the HP."
+  steps={[
+    "Identify what you know: plan length $L_{\\text{plan}} = 48\\,\\text{mm}$ and vertical height rise $\\Delta z = 36\\,\\text{mm}$.",
+    "Apply the right-triangle (rotation) formula for true length: $L = \\sqrt{L_{\\text{plan}}^2 + (\\Delta z)^2} = \\sqrt{48^2 + 36^2} = \\sqrt{2304 + 1296} = \\sqrt{3600} = 60\\,\\text{mm}$.",
+    "Compute the true inclination $\\theta$ to the HP from the same right triangle: $\\sin\\theta = \\frac{\\Delta z}{L} = \\frac{36}{60} = 0.6$, so $\\theta = \\arcsin(0.6) \\approx 36.87^\\circ$."
+  ]}
+/>
+
+---
+
+## 4. Common Mistakes
+
+<Callout variant="warning" title="Watch out for these exam traps">
+- **Swapping Front and Top Views:** In first-angle projection (used in Nigerian/ISO engineering courses), the Front View is **above** $XY$ and the Top View is **below** $XY$—never the other way round.
+- **Using the apparent angle as the true angle:** If a line is inclined to *both* planes, the angle measured on the front view ($\alpha$) is steeper than the true inclination ($\theta$). Always rotate first before measuring $\theta$.
+- **Forgetting projector alignment:** Endpoint $q'$ and endpoint $q$ must lie on the exact same vertical line perpendicular to $XY$.
+</Callout>
+
+---
+
+## 5. Practice
+
+Ready to test your eye on real orthographic diagrams and true-length calculations? Jump straight into the **5-question practice set** (including visual front/top view recognition MCQs).
+
+---
+
+## 6. Recommended Reading
+
+- **N. D. Bhatt**, *Engineering Drawing*, Chapter 10: Projections of Straight Lines.
+- **K. Venkata Reddy**, *Textbook of Engineering Drawing*, Unit II: Orthographic Projections of Points and Straight Lines.
+- **M. A. Parker & F. Pickup**, *Engineering Drawing with Worked Examples 1*, Orthographic Projection fundamentals.

@@ -1,0 +1,110 @@
+---
+title: "Forces, Moments, Couples & 2D Equilibrium"
+order: 1
+topicId: "22222222-2222-4222-8222-222222220207"
+courseCode: "GET 207"
+courseSlug: "get-207"
+ccmasRef: "Forces, moments, couples; equilibrium of simple structures and machine parts"
+outcomes:
+  - "Resolve 2D coplanar forces into orthogonal x and y components and compute their resultant"
+  - "Calculate turning moments of forces and recognize the free-vector property of a force couple"
+  - "Draw clean Free-Body Diagrams (FBDs) and solve for beam/frame support reactions"
+status: "draft"
+isFree: true
+---
+
+## 1. Overview
+
+Whether you are designing a bridge girder in Civil, a motor shaft in Mechanical, or a heavy server rack in Computer/Electrical Engineering, your first question is always the same: **will this thing stay put without breaking or tipping over?**
+
+Applied Mechanics (GET 207) begins with **Statics**—balancing forces and turning effects (moments) so a structure remains in equilibrium. Nearly every later topic (trusses, friction, shear-force diagrams, and even dynamics via Newton's laws) depends on mastering Free-Body Diagrams here.
+
+---
+
+## 2. Key Concepts
+
+### Resolving Coplanar Forces
+
+Any 2D force of magnitude $F$ acting at angle $\theta$ measured from the positive $x$-axis splits cleanly into rectangular components:
+
+$$F_x = F \cos\theta, \qquad F_y = F \sin\theta$$
+
+When several forces act at a point, sum their components independently to obtain the resultant $\vec{R}$:
+
+$$R_x = \sum F_x, \qquad R_y = \sum F_y, \qquad R = \sqrt{R_x^2 + R_y^2}, \qquad \tan\alpha = \frac{R_y}{R_x}$$
+
+### Moments and Couples
+
+A **moment** measures a force's tendency to rotate a body about a pivot point $O$:
+
+$$M_O = F \cdot d_\perp$$
+
+where $d_\perp$ is the **perpendicular distance** from $O$ to the force's line of action. By convention, **anticlockwise (CCW)** moments are positive ($+$) and **clockwise (CW)** moments are negative ($-$).
+
+A **force couple** is a special pair of equal, parallel, opposite forces separated by perpendicular distance $d$. Its net force is zero, yet it produces a pure turning moment $M = F \cdot d$ that has the **exact same value about every point in the plane**.
+
+<DiagramFigure
+  src="/diagrams/get-207/couple-moment.svg"
+  caption="Two equal and opposite forces separated by perpendicular distance d form a pure couple with zero net force and moment M = F·d."
+/>
+
+### 2D Static Equilibrium & Free-Body Diagrams
+
+To keep a rigid body completely still in a 2D plane—no sliding horizontally, no sliding vertically, and no rotating—three scalar equations must hold simultaneously:
+
+$$\sum F_x = 0, \qquad \sum F_y = 0, \qquad \sum M_O = 0$$
+
+<DiagramFigure
+  src="/diagrams/get-207/beam-fbd.svg"
+  caption="Always isolate the beam in a Free-Body Diagram showing all external loads and unknown support reactions before writing equilibrium equations."
+/>
+
+---
+
+## 3. Worked Examples
+
+<StepRevealExample
+  title="Worked Example 1 — Simply Supported Beam Reactions"
+  problem="A light horizontal beam $AB$ of span $8.0\,\text{m}$ rests on a pin at $A$ and a roller at $B$. Two downward point loads act on the beam: $60\,\text{N}$ at $2.0\,\text{m}$ from $A$, and $100\,\text{N}$ at $5.0\,\text{m}$ from $A$. Find the support reactions $R_A$ and $R_B$."
+  steps={[
+    "Draw the Free-Body Diagram: replace the pin at $A$ with vertical reaction $R_A$ (horizontal reaction $A_x = 0$ since no horizontal loads exist) and replace the roller at $B$ with upward vertical reaction $R_B$.",
+    "Take moments about pin $A$ ($+$ anticlockwise) so unknown $R_A$ has zero lever arm and drops out: $\\sum M_A = 0 \\implies R_B(8.0) - 60(2.0) - 100(5.0) = 0$.",
+    "Simplify and solve for $R_B$: $8.0 R_B = 120 + 500 = 620 \\implies R_B = \\frac{620}{8.0} = 77.5\\,\\text{N}$.",
+    "Apply vertical force equilibrium $\\sum F_y = 0$ to find $R_A$: $R_A + R_B - 60 - 100 = 0 \\implies R_A = 160 - 77.5 = 82.5\\,\\text{N}$.",
+    "Quick sanity check (moments about $B$): $60(6.0) + 100(3.0) - 82.5(8.0) = 360 + 300 - 660 = 0$. Exact balance!"
+  ]}
+/>
+
+<StepRevealExample
+  title="Worked Example 2 — Resultant of Two Inclined Forces"
+  problem="A bracket pin experiences two pulls: $F_1 = 50\,\text{N}$ along the $+x$-axis and $F_2 = 40\,\text{N}$ at $60^\circ$ above the $+x$-axis. Find the magnitude of the resultant force."
+  steps={[
+    "Resolve each force into $x$ and $y$ components: $F_{1x} = 50\\,\\text{N},\\; F_{1y} = 0\\,\\text{N}$; $F_{2x} = 40\\cos 60^\\circ = 20\\,\\text{N},\\; F_{2y} = 40\\sin 60^\\circ \\approx 34.64\\,\\text{N}$.",
+    "Sum the components: $R_x = 50 + 20 = 70\\,\\text{N}$ and $R_y = 0 + 34.64 = 34.64\\,\\text{N}$.",
+    "Compute the resultant magnitude: $R = \\sqrt{70^2 + 34.64^2} = \\sqrt{4900 + 1200} = \\sqrt{6100} \\approx 78.10\\,\\text{N}$."
+  ]}
+/>
+
+---
+
+## 4. Common Mistakes
+
+<Callout variant="warning" title="Watch out for these exam traps">
+- **Mixing up clockwise and anticlockwise signs:** Write a tiny `(+ CCW)` symbol next to every $\sum M = 0$ line before plugging in numbers.
+- **Using slanted distance instead of perpendicular distance:** A moment is $F \cdot d_\perp$, not $F$ times any random beam length. If a force is angled, resolve it into components first!
+- **Forgetting to check $\sum M_B = 0$:** Spending 15 seconds checking moments about the other support catches 95% of arithmetic slips in tests.
+</Callout>
+
+---
+
+## 5. Practice
+
+Apply your Free-Body Diagram skills on **5 original GET 207 problems** (including beam reactions, moments, and couples with numeric tolerance checking).
+
+---
+
+## 6. Recommended Reading
+
+- **R. C. Hibbeler**, *Engineering Mechanics: Statics*, Chapters 2–5 (Force Vectors, Moments, and Equilibrium of a Rigid Body).
+- **J. L. Meriam & L. G. Kraige**, *Engineering Mechanics: Statics*, Chapters 2 & 3.
+- **F. P. Beer, E. R. Johnston et al.**, *Vector Mechanics for Engineers: Statics*, Chapters 2–4.

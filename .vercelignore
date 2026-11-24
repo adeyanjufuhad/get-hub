@@ -1,0 +1,35 @@
+# Git & editor metadata
+.git/
+.github/
+.claude/
+.vscode/
+.idea/
+.vercel/
+frontend/.vercel/
+
+# Backend is deployed separately (never upload Go code, uploads, or backend/.env to Vercel)
+backend/
+
+# Local copyrighted textbooks (never upload PDFs)
+frontend/public/textbooks/*.pdf
+
+# Dependencies & local Next.js build output
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/tsconfig.tsbuildinfo
+
+# Environment & secrets
+.env
+.env.*
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# OS / misc
+.DS_Store
+Thumbs.db
+*.exe
+*.log

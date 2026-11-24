@@ -105,6 +105,8 @@ export default async function TopicReaderPage({
             Callout,
           }}
           options={{
+            blockJS: false,
+            blockDangerousJS: true,
             mdxOptions: {
               remarkPlugins: [remarkMath],
               rehypePlugins: [rehypeKatex],

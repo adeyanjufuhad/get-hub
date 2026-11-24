@@ -129,19 +129,30 @@ func main() {
 		}
 		key := fmt.Sprintf("materials/%s/%s%s", strings.ToLower(strings.ReplaceAll(it.Course, " ", "-")), sum[:16], ext)
 
-		exists, err := storage.Exists(ctx, key)
-		if err != nil {
-			log.Fatalf("check %s: %v", key, err)
+		var exists bool
+		for attempt := 1; attempt <= 3; attempt++ {
+			exists, err = storage.Exists(ctx, key)
+			if err == nil {
+				break
+			}
+			if attempt == 3 {
+				log.Fatalf("check %s: %v", key, err)
+			}
 		}
 		if !exists {
-			f, err := os.Open(full)
-			if err != nil {
-				log.Fatalf("open %s: %v", it.Path, err)
-			}
-			err = storage.Put(ctx, key, f, size, contentType)
-			f.Close()
-			if err != nil {
-				log.Fatalf("upload %s: %v", it.Path, err)
+			for attempt := 1; attempt <= 3; attempt++ {
+				f, openErr := os.Open(full)
+				if openErr != nil {
+					log.Fatalf("open %s: %v", it.Path, openErr)
+				}
+				err = storage.Put(ctx, key, f, size, contentType)
+				f.Close()
+				if err == nil {
+					break
+				}
+				if attempt == 3 {
+					log.Fatalf("upload %s: %v", it.Path, err)
+				}
 			}
 			uploaded++
 			uploadedBytes += size

@@ -9,6 +9,8 @@ import (
 	"fmt"
 	"io"
 	"mime"
+	"net"
+	"net/http"
 	"net/url"
 	"strings"
 	"time"
@@ -54,11 +56,53 @@ func NewStorage(cfg StorageConfig) (Storage, error) {
 	if err != nil || u.Host == "" {
 		return nil, fmt.Errorf("invalid LIBRARY_S3_ENDPOINT %q", cfg.Endpoint)
 	}
+	dialer := &net.Dialer{Timeout: 12 * time.Second, KeepAlive: 30 * time.Second}
+	resolveIPv4 := func(ctx context.Context, host string) (string, bool) {
+		osCtx, osCancel := context.WithTimeout(ctx, 2*time.Second)
+		ips, err := net.DefaultResolver.LookupIP(osCtx, "ip4", host)
+		osCancel()
+		if err == nil && len(ips) > 0 {
+			return ips[0].String(), true
+		}
+		for _, dnsServer := range []string{"1.1.1.1:53", "8.8.8.8:53"} {
+			r := &net.Resolver{
+				PreferGo: true,
+				Dial: func(ctx context.Context, _, _ string) (net.Conn, error) {
+					d := net.Dialer{Timeout: 3 * time.Second}
+					return d.DialContext(ctx, "udp4", dnsServer)
+				},
+			}
+			fbCtx, fbCancel := context.WithTimeout(ctx, 4*time.Second)
+			fbIPs, fbErr := r.LookupIP(fbCtx, "ip4", host)
+			fbCancel()
+			if fbErr == nil && len(fbIPs) > 0 {
+				return fbIPs[0].String(), true
+			}
+		}
+		return "", false
+	}
+	transport := &http.Transport{
+		Proxy: http.ProxyFromEnvironment,
+		DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
+			if host, port, err := net.SplitHostPort(addr); err == nil {
+				if ip, ok := resolveIPv4(ctx, host); ok {
+					return dialer.DialContext(ctx, "tcp4", net.JoinHostPort(ip, port))
+				}
+			}
+			return dialer.DialContext(ctx, network, addr)
+		},
+		ForceAttemptHTTP2:     true,
+		MaxIdleConns:          10,
+		IdleConnTimeout:       60 * time.Second,
+		TLSHandshakeTimeout:   15 * time.Second,
+		ExpectContinueTimeout: 2 * time.Second,
+	}
 	client, err := minio.New(u.Host, &minio.Options{
 		Creds:        credentials.NewStaticV4(cfg.AccessKeyID, cfg.SecretAccessKey, ""),
 		Secure:       u.Scheme != "http",
 		Region:       cfg.Region,
 		BucketLookup: minio.BucketLookupPath,
+		Transport:    transport,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("create s3 client: %w", err)

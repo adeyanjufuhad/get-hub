@@ -286,13 +286,18 @@ func verifySchemaAndSeed(ctx context.Context, pool *pgxpool.Pool) error {
 		return err
 	}
 
+	var libraryCoursesCount, libraryMaterialsCount int
+	_ = pool.QueryRow(ctx, `SELECT COUNT(*) FROM library_courses`).Scan(&libraryCoursesCount)
+	_ = pool.QueryRow(ctx, `SELECT COUNT(*) FROM library_materials`).Scan(&libraryMaterialsCount)
+
 	rows, err := pool.Query(ctx, `SELECT code, slug, title FROM courses ORDER BY display_order ASC`)
 	if err != nil {
 		return err
 	}
 	defer rows.Close()
 
-	fmt.Printf("verified: courses=%d topics=%d questions=%d\n", coursesCount, topicsCount, questionsCount)
+	fmt.Printf("verified: courses=%d topics=%d questions=%d library_courses=%d library_materials=%d\n",
+		coursesCount, topicsCount, questionsCount, libraryCoursesCount, libraryMaterialsCount)
 	for rows.Next() {
 		var code, slug, title string
 		if err := rows.Scan(&code, &slug, &title); err != nil {

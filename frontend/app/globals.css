@@ -1,0 +1,242 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   GET Hub Design Tokens (Light-First Warm Alabaster + Engineering Tangerine)
+   Crafted with emilkowalski/skills (emil-design-eng + mobile-native)
+   ========================================================================== */
+:root {
+  --bg-canvas: #F8F8F6;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F2F1EC;
+  --border-hairline: #E6E4DD;
+  --border-strong: #D4D1C7;
+
+  --text-primary: #141413;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+
+  --accent: #EA580C;
+  --accent-hover: #C2410C;
+  --accent-soft: #FFF1EB;
+  --accent-border: #FDBA74;
+
+  --ink-cta: #141413;
+  --ink-cta-text: #FFFFFF;
+
+  --success: #15803D;
+  --success-soft: #ECFDF3;
+  --danger: #DC2626;
+  --danger-soft: #FEF2F2;
+  --warning: #B45309;
+  --warning-soft: #FFFBEB;
+
+  /* Emil Kowalski custom motion curves */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.dark {
+  --bg-canvas: #0F1012;
+  --bg-surface: #181A1E;
+  --bg-subtle: #22252B;
+  --border-hairline: #2C3038;
+  --border-strong: #3B404C;
+
+  --text-primary: #F5F5F4;
+  --text-secondary: #A1A7B3;
+  --text-muted: #7C8290;
+
+  --accent: #FB923C;
+  --accent-hover: #F97316;
+  --accent-soft: #2B1B12;
+  --accent-border: #7C2D12;
+
+  --ink-cta: #F5F5F4;
+  --ink-cta-text: #141413;
+
+  --success: #4ADE80;
+  --success-soft: #102A1C;
+  --danger: #F87171;
+  --danger-soft: #2C1517;
+  --warning: #FBBF24;
+  --warning-soft: #2A200D;
+}
+
+@theme inline {
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Mobile-native baseline (emilkowalski/skills/mobile-native) */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Prevent iOS Safari input focus zoom without disabling user zoom */
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+/* Eliminate 300ms tap delay on mobile touch screens */
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+/* Controls should not trigger text selection on long-press (body prose stays selectable) */
+button,
+[role="button"],
+.control-no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Tactile press feedback (100-150ms ease-out, GPU-only transform) */
+.pressable {
+  transition: transform 130ms var(--ease-out), background-color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+
+.pressable:active {
+  transform: scale(0.97);
+}
+
+/* Touch-safe hover gate: never stick hover states after mobile taps */
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift {
+    transition: transform 180ms var(--ease-out), border-color 150ms ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+  }
+  .hover-accent-border:hover {
+    border-color: var(--accent);
+  }
+}
+
+/* Subtle engineering grid background for hero / diagram cards */
+.bg-draft-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--border-hairline) 60%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--border-hairline) 60%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Tabular numbers so timers, streaks, and scores never jitter */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Optimal reading line length (ui-cheatsheet: cap at ~65ch) */
+.prose-study {
+  max-width: 65ch;
+  color: var(--text-secondary);
+  line-height: 1.72;
+}
+
+.prose-study h2 {
+  color: var(--text-primary);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-study h3 {
+  color: var(--text-primary);
+  font-size: 1.075rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-study p {
+  margin-bottom: 1rem;
+}
+
+.prose-study ul,
+.prose-study ol {
+  margin-bottom: 1.15rem;
+  padding-left: 1.35rem;
+}
+
+.prose-study ul {
+  list-style-type: disc;
+}
+
+.prose-study ol {
+  list-style-type: decimal;
+}
+
+.prose-study li {
+  margin-bottom: 0.45rem;
+}
+
+.prose-study strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.prose-study hr {
+  border-color: var(--border-hairline);
+  margin: 2rem 0;
+}
+
+.prose-study .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.75rem 0.5rem;
+  margin: 1rem 0;
+  background: var(--bg-subtle);
+  border-radius: 12px;
+}
+
+/* Safe area helpers for mobile notches & home indicators */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Reduced motion: keep gentle opacity transitions, strip spatial movement */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .pressable:active,
+  .hover-lift:hover {
+    transform: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 120ms !important;
+  }
+}

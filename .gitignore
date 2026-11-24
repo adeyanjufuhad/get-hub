@@ -8,6 +8,7 @@ frontend/.next/
 frontend/out/
 frontend/build/
 frontend/next-env.d.ts
+frontend/tsconfig.tsbuildinfo
 
 # Go binaries & build artifacts
 backend/bin/

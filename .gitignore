@@ -10,6 +10,10 @@ frontend/build/
 frontend/next-env.d.ts
 frontend/tsconfig.tsbuildinfo
 
+# Vercel
+.vercel/
+frontend/.vercel/
+
 # Local copyrighted textbooks (never commit PDFs to public repo)
 frontend/public/textbooks/*.pdf
 

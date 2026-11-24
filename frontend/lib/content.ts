@@ -55,6 +55,22 @@ export function getCourseManifest(courseSlug: string): CourseContentManifest | n
   return JSON.parse(raw) as CourseContentManifest;
 }
 
+export function listAllTopicParams(): Array<{ slug: string; topicSlug: string }> {
+  const coursesDir = path.join(resolveContentRoot(), "courses");
+  if (!fs.existsSync(coursesDir)) return [];
+
+  const params: Array<{ slug: string; topicSlug: string }> = [];
+  for (const entry of fs.readdirSync(coursesDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const manifest = getCourseManifest(entry.name);
+    if (!manifest) continue;
+    for (const topic of manifest.topics) {
+      params.push({ slug: manifest.slug, topicSlug: topic.slug });
+    }
+  }
+  return params;
+}
+
 export function getTopicDocument(courseSlug: string, topicSlug: string): TopicDocument | null {
   const filePath = path.join(resolveContentRoot(), "courses", courseSlug, "topics", `${topicSlug}.mdx`);
   if (!fs.existsSync(filePath)) return null;

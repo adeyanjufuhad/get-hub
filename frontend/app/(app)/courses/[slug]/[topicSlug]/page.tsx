@@ -11,7 +11,11 @@ import {
   TopicActionBar,
 } from "@/components/mdx/topic-components";
 import { Badge } from "@/components/ui/badge";
-import { getCourseManifest, getTopicDocument } from "@/lib/content";
+import { getCourseManifest, getTopicDocument, listAllTopicParams } from "@/lib/content";
+
+export function generateStaticParams() {
+  return listAllTopicParams();
+}
 
 export default async function TopicReaderPage({
   params,

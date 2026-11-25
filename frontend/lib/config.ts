@@ -87,6 +87,7 @@ export interface TextbookDrillConfig {
   readonly difficulty: string;
   readonly title: string;
   readonly preview: string;
+  readonly figureImage?: string;
 }
 
 export const COURSE_BANNER_IMAGES: Record<string, string> = {
@@ -101,6 +102,7 @@ export interface FallbackTopicMeta {
   readonly title: string;
   readonly display_order: number;
   readonly ccmas_ref: string;
+  readonly textbook_ref: string;
   readonly question_count: number;
 }
 
@@ -112,7 +114,8 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       title: "Fluid Properties, Hydrostatic Pressure & Manometry",
       display_order: 1,
       ccmas_ref: "Fluid properties; hydrostatics, pressure measurement & forces on submerged surfaces",
-      question_count: 8,
+      textbook_ref: "Çengel · Ch. 2 (§2–9), Ch. 10 & Ch. 11 (§11–2)",
+      question_count: 10,
     },
     {
       id: "22222222-2222-4222-8222-222222250002",
@@ -120,7 +123,8 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       title: "Buoyancy, Archimedes' Principle & Stability of Floating Bodies",
       display_order: 2,
       ccmas_ref: "Buoyancy, Archimedes' principle & stability of floating and submerged bodies",
-      question_count: 5,
+      textbook_ref: "Çengel · Ch. 11 (§11–4 Buoyancy & Stability)",
+      question_count: 7,
     },
     {
       id: "22222222-2222-4222-8222-222222250003",
@@ -128,7 +132,8 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       title: "Continuity, Bernoulli's Equation & Flow Measurement",
       display_order: 3,
       ccmas_ref: "Control-volume continuity; Bernoulli's equation, Venturi meters & Pitot tubes",
-      question_count: 5,
+      textbook_ref: "Çengel · Ch. 12 (§12–1 to §12–3) & Ch. 14",
+      question_count: 7,
     },
   ],
   "get-207": [
@@ -138,7 +143,8 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       title: "Forces, Moments, Couples & 2D Equilibrium",
       display_order: 1,
       ccmas_ref: "Forces, moments, couples; equilibrium of simple structures and machine parts",
-      question_count: 8,
+      textbook_ref: "Hibbeler 14e · Ch. 2, Ch. 4 & Ch. 5",
+      question_count: 10,
     },
     {
       id: "22222222-2222-4222-8222-222222270002",
@@ -146,7 +152,8 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       title: "Dry Friction on Inclined Planes, Ladders & Wedges",
       display_order: 2,
       ccmas_ref: "Friction on inclined planes, ladders & wedges",
-      question_count: 5,
+      textbook_ref: "Hibbeler 14e · Ch. 8 (§8.1–8.3)",
+      question_count: 7,
     },
     {
       id: "22222222-2222-4222-8222-222222270003",
@@ -154,7 +161,8 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       title: "Centroids, First & Second Moments of Area",
       display_order: 3,
       ccmas_ref: "Centroids, first & second moments of area",
-      question_count: 5,
+      textbook_ref: "Hibbeler 14e · Ch. 9 (§9.2) & Ch. 10 (§10.1–10.4)",
+      question_count: 7,
     },
   ],
   "get-209": [
@@ -164,7 +172,8 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       title: "Limits and Continuity of Functions",
       display_order: 1,
       ccmas_ref: "Limits; continuity",
-      question_count: 8,
+      textbook_ref: "James Stewart 7e · Ch. 2 (§2.2–2.6)",
+      question_count: 10,
     },
     {
       id: "22222222-2222-4222-8222-222222290002",
@@ -172,7 +181,8 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       title: "First-Order Linear Differential Equations",
       display_order: 2,
       ccmas_ref: "Linear first-order differential equations",
-      question_count: 5,
+      textbook_ref: "James Stewart 7e · Ch. 9 (§9.5 Linear Equations)",
+      question_count: 7,
     },
     {
       id: "22222222-2222-4222-8222-222222290003",
@@ -180,7 +190,8 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       title: "Partial Derivatives, Gradients & Matrices",
       display_order: 3,
       ccmas_ref: "Partial & total derivatives; directional derivatives & gradients; matrices & determinants",
-      question_count: 5,
+      textbook_ref: "Stewart 7e · Ch. 14 (§14.3–14.6) & Bird · Ch. 60",
+      question_count: 7,
     },
   ],
 };

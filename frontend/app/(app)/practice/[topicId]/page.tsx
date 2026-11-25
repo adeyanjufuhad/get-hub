@@ -3,6 +3,7 @@
 import {
   ArrowLeft,
   ArrowRight,
+  BookOpen,
   CheckCircle2,
   RotateCcw,
   XCircle,
@@ -20,6 +21,12 @@ import { ApiError, api } from "@/lib/api";
 import { cn } from "@/lib/cn";
 import type { AttemptFeedback, Course, PublicQuestion, Topic } from "@/lib/types";
 
+interface QuestionAttemptState {
+  selectedOptionId: string;
+  numericText: string;
+  feedback: AttemptFeedback | null;
+}
+
 export default function PracticeTopicPage() {
   const params = useParams<{ topicId: string }>();
   const topicId = params.topicId;
@@ -32,11 +39,8 @@ export default function PracticeTopicPage() {
   const [loading, setLoading] = useState(true);
 
   const [index, setIndex] = useState(0);
-  const [selectedOptionId, setSelectedOptionId] = useState<string>("");
-  const [numericText, setNumericText] = useState<string>("");
+  const [history, setHistory] = useState<Record<string, QuestionAttemptState>>({});
   const [submitting, setSubmitting] = useState(false);
-  const [feedback, setFeedback] = useState<AttemptFeedback | null>(null);
-  const [correctCount, setCorrectCount] = useState(0);
   const [finished, setFinished] = useState(false);
   const startedAtRef = useRef<number>(Date.now());
 
@@ -51,9 +55,15 @@ export default function PracticeTopicPage() {
     api
       .listTopicQuestions(topicId)
       .then((res) => {
+        // Put strict textbook / figure-backed questions right at the front so students see real textbook problems immediately!
+        const sorted = [...res.questions].sort((a, b) => {
+          const aStrict = Number(Boolean(a.prompt_image_url || a.tags?.includes("textbook-strict")));
+          const bStrict = Number(Boolean(b.prompt_image_url || b.tags?.includes("textbook-strict")));
+          return bStrict - aStrict;
+        });
         setCourse(res.course);
         setTopic(res.topic);
-        setQuestions(res.questions);
+        setQuestions(sorted);
         startedAtRef.current = Date.now();
       })
       .catch((err) => {
@@ -67,6 +77,28 @@ export default function PracticeTopicPage() {
   }, [authLoading, user, topicId, router]);
 
   const current = questions[index];
+  const curState: QuestionAttemptState = (current && history[current.id]) || {
+    selectedOptionId: "",
+    numericText: "",
+    feedback: null,
+  };
+  const feedback = curState.feedback;
+
+  const answeredEntries = Object.values(history).filter((h) => h.feedback !== null);
+  const correctCount = answeredEntries.filter((h) => h.feedback?.is_correct).length;
+
+  function updateCurrentState(patch: Partial<QuestionAttemptState>) {
+    if (!current) return;
+    setHistory((prev) => ({
+      ...prev,
+      [current.id]: {
+        selectedOptionId: prev[current.id]?.selectedOptionId ?? "",
+        numericText: prev[current.id]?.numericText ?? "",
+        feedback: prev[current.id]?.feedback ?? null,
+        ...patch,
+      },
+    }));
+  }
 
   async function handleCheckAnswer(e: React.FormEvent) {
     e.preventDefault();
@@ -81,13 +113,13 @@ export default function PracticeTopicPage() {
     };
 
     if (current.question_type === "mcq") {
-      if (!selectedOptionId) {
+      if (!curState.selectedOptionId) {
         toast.info("Pick an option first.");
         return;
       }
-      payload.selected_option_id = selectedOptionId;
+      payload.selected_option_id = curState.selectedOptionId;
     } else {
-      const parsed = Number.parseFloat(numericText.trim());
+      const parsed = Number.parseFloat(curState.numericText.trim());
       if (Number.isNaN(parsed)) {
         toast.info("Enter a valid number.");
         return;
@@ -98,10 +130,7 @@ export default function PracticeTopicPage() {
     setSubmitting(true);
     try {
       const res = await api.submitAttempt(current.id, payload);
-      setFeedback(res);
-      if (res.is_correct) {
-        setCorrectCount((c) => c + 1);
-      }
+      updateCurrentState({ feedback: res });
     } catch (err) {
       toast.error(err instanceof ApiError ? err.message : "Could not submit answer.");
     } finally {
@@ -109,24 +138,22 @@ export default function PracticeTopicPage() {
     }
   }
 
+  function jumpTo(nextIdx: number) {
+    setIndex(nextIdx);
+    startedAtRef.current = Date.now();
+  }
+
   function handleNext() {
     if (index + 1 >= questions.length) {
       setFinished(true);
       return;
     }
-    setIndex((i) => i + 1);
-    setSelectedOptionId("");
-    setNumericText("");
-    setFeedback(null);
-    startedAtRef.current = Date.now();
+    jumpTo(index + 1);
   }
 
   function handleRestart() {
     setIndex(0);
-    setSelectedOptionId("");
-    setNumericText("");
-    setFeedback(null);
-    setCorrectCount(0);
+    setHistory({});
     setFinished(false);
     startedAtRef.current = Date.now();
   }
@@ -142,46 +169,47 @@ export default function PracticeTopicPage() {
         <p className="mt-1 text-sm text-[var(--text-secondary)]">
           Questions for this topic haven&apos;t been added yet.
         </p>
-        <Link href="/courses" className="mt-4 inline-block text-sm font-semibold text-[var(--accent)]">
-          Back to courses
+        <Link href="/tests" className="mt-4 inline-block text-sm font-semibold text-[var(--accent)]">
+          Back to Test Center
         </Link>
       </div>
     );
   }
 
   if (finished) {
-    const pct = Math.round((correctCount / questions.length) * 100);
+    const totalDone = Math.max(1, answeredEntries.length);
+    const pct = Math.round((correctCount / totalDone) * 100);
     return (
       <div className="mx-auto max-w-xl rounded-[26px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6 text-center sm:p-8">
         <div className="mx-auto flex justify-center">
           <ProgressArc percentage={pct} size={96} strokeWidth={8} />
         </div>
-        <h1 className="mt-5 text-2xl font-extrabold tracking-tight">Practice complete!</h1>
+        <h1 className="mt-5 text-2xl font-extrabold tracking-tight">Topic Drill Complete!</h1>
         <p className="tabular mt-2 text-sm text-[var(--text-secondary)]">
-          You got <strong className="text-[var(--text-primary)]">{correctCount}</strong> out of{" "}
-          <strong className="text-[var(--text-primary)]">{questions.length}</strong> right on{" "}
-          {topic?.title}.
+          You solved <strong className="text-[var(--text-primary)]">{correctCount}</strong> of{" "}
+          <strong className="text-[var(--text-primary)]">{questions.length}</strong> correctly on{" "}
+          <strong>{topic?.title}</strong>.
         </p>
 
-        <div className="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row">
+        <div className="mt-6 flex flex-col justify-center gap-2.5 sm:flex-row sm:flex-wrap">
           <Button type="button" variant="ink" onClick={handleRestart}>
             <RotateCcw className="h-4 w-4" />
-            Practice again
+            Drill again
           </Button>
           {course && (
             <Link
               href={`/courses/${course.slug}/mock-exam`}
               className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 text-sm font-semibold text-white"
             >
-              Try a timed mock exam
+              Take timed {course.code} test
               <ArrowRight className="h-4 w-4" />
             </Link>
           )}
           <Link
-            href="/dashboard"
+            href="/tests"
             className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full border border-[var(--border-hairline)] px-5 text-sm font-semibold text-[var(--text-primary)]"
           >
-            Dashboard
+            Test Center
           </Link>
         </div>
       </div>
@@ -191,46 +219,92 @@ export default function PracticeTopicPage() {
   if (!current) return null;
 
   const hasOptionImages = Boolean(current.options?.some((o) => o.image_url));
-  const progressPct = Math.round(((index + (feedback ? 1 : 0)) / questions.length) * 100);
+  const isStrictTextbook = Boolean(
+    current.prompt_image_url || current.tags?.includes("textbook-strict")
+  );
 
   return (
-    <div className="mx-auto max-w-2xl space-y-5">
-      <div className="flex items-center justify-between gap-3">
-        <Link
-          href={course && topic ? `/courses/${course.slug}/${topic.slug}` : "/courses"}
-          className="-ml-1 inline-flex min-h-[44px] min-w-0 items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
-        >
-          <ArrowLeft className="h-3.5 w-3.5 shrink-0" />
-          <span className="truncate">
-            {course?.code} · {topic?.title}
-          </span>
-        </Link>
-        <span className="tabular shrink-0 font-mono text-xs font-semibold text-[var(--text-secondary)]">
-          Q {index + 1} / {questions.length}
+    <div className="mx-auto max-w-3xl space-y-4">
+      {/* Top Bar: Back to Folio Notes + Test Center + Score Counter */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-2">
+          <Link
+            href="/tests"
+            className="-ml-1 inline-flex min-h-[40px] shrink-0 items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            Test Center
+          </Link>
+          {course && topic && (
+            <>
+              <span className="text-[var(--border-strong)]">/</span>
+              <Link
+                href={`/courses/${course.slug}/${topic.slug}`}
+                className="inline-flex min-h-[40px] min-w-0 items-center gap-1 text-xs font-semibold text-[var(--accent)] hover:underline"
+              >
+                <BookOpen className="h-3.5 w-3.5 shrink-0" />
+                <span className="truncate">Read {course.code} Folio</span>
+              </Link>
+            </>
+          )}
+        </div>
+
+        <span className="tabular shrink-0 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1 font-mono text-xs font-semibold text-[var(--text-primary)]">
+          Score: {correctCount}/{answeredEntries.length} · Q {index + 1}/{questions.length}
         </span>
       </div>
 
-      {/* Linear Progress Bar */}
-      <div className="h-2 w-full overflow-hidden rounded-full bg-[var(--bg-subtle)]">
-        <div
-          className="h-full rounded-full bg-[var(--accent)] transition-[width] duration-200"
-          style={{ width: `${progressPct}%` }}
-        />
+      {/* Interactive Question Navigator Strip */}
+      <div className="flex items-center gap-1.5 overflow-x-auto rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {questions.map((q, i) => {
+          const st = history[q.id]?.feedback;
+          const isCurrent = i === index;
+          return (
+            <button
+              key={q.id}
+              type="button"
+              onClick={() => jumpTo(i)}
+              className={cn(
+                "tabular pressable flex h-9 min-w-[36px] shrink-0 items-center justify-center rounded-xl border px-2 font-mono text-xs font-bold cursor-pointer",
+                isCurrent
+                  ? "border-2 border-[var(--ink-cta)] bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
+                  : st?.is_correct
+                    ? "border-[var(--success)] bg-[var(--success-soft)] text-[var(--success)]"
+                    : st && !st.is_correct
+                      ? "border-[var(--danger)] bg-[var(--danger-soft)] text-[var(--danger)]"
+                      : "border-[var(--border-hairline)] bg-[var(--bg-canvas)] text-[var(--text-secondary)]"
+              )}
+            >
+              {i + 1}
+            </button>
+          );
+        })}
       </div>
 
       {/* Question Card */}
       <form
         onSubmit={handleCheckAnswer}
-        className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6"
+        className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-7"
       >
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="neutral" className="capitalize">
-            {current.difficulty}
-          </Badge>
-          <Badge variant="accent" className="font-mono uppercase">
-            {current.question_type}
-          </Badge>
-          {current.status === "draft" && <Badge variant="draft">Draft</Badge>}
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            {isStrictTextbook && (
+              <Badge variant="accent" className="font-mono">
+                Prescribed Textbook Problem
+              </Badge>
+            )}
+            <Badge variant="neutral" className="capitalize">
+              {current.difficulty}
+            </Badge>
+            <Badge variant="neutral" className="font-mono uppercase">
+              {current.question_type}
+            </Badge>
+          </div>
+          {topic && (
+            <span className="truncate font-mono text-[11px] text-[var(--text-muted)]">
+              {topic.title}
+            </span>
+          )}
         </div>
 
         <div className="mt-4 text-base font-medium leading-relaxed text-[var(--text-primary)] sm:text-[17px]">
@@ -238,17 +312,20 @@ export default function PracticeTopicPage() {
         </div>
 
         {current.prompt_image_url && (
-          <div className="mt-4 overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-2.5">
+          <figure className="mt-5 overflow-hidden rounded-2xl border border-[var(--border-strong)] bg-white p-3.5 shadow-xs">
+            <span className="mb-2 block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
+              ▸ Textbook Schematic
+            </span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={current.prompt_image_url}
-              alt="Question diagram"
-              className="mx-auto max-h-60 w-full object-contain"
+              alt="Textbook problem schematic"
+              className="mx-auto max-h-72 w-auto max-w-full object-contain"
             />
-          </div>
+          </figure>
         )}
 
-        {/* MCQ Options (text/KaTeX or 2x2 SVG grid) */}
+        {/* MCQ Options */}
         {current.question_type === "mcq" && current.options && (
           <div
             className={cn(
@@ -257,7 +334,7 @@ export default function PracticeTopicPage() {
             )}
           >
             {current.options.map((opt) => {
-              const selected = selectedOptionId === opt.id;
+              const selected = curState.selectedOptionId === opt.id;
               const isCorrectOption = feedback?.correct_option_id === opt.id;
               const isWrongSelected = Boolean(feedback && selected && !feedback.is_correct);
 
@@ -266,10 +343,10 @@ export default function PracticeTopicPage() {
                   key={opt.id}
                   type="button"
                   disabled={Boolean(feedback)}
-                  onClick={() => setSelectedOptionId(opt.id)}
+                  onClick={() => updateCurrentState({ selectedOptionId: opt.id })}
                   className={cn(
                     "flex min-h-[54px] flex-col items-start gap-2 rounded-2xl border p-3.5 text-left cursor-pointer",
-                    !feedback && !selected && "border-[var(--border-hairline)] bg-[var(--bg-canvas)]",
+                    !feedback && !selected && "border-[var(--border-hairline)] bg-[var(--bg-canvas)] hover:border-[var(--border-strong)]",
                     !feedback && selected && "border-2 border-[var(--accent)] bg-[var(--accent-soft)]",
                     isCorrectOption && "border-2 border-[var(--success)] bg-[var(--success-soft)]",
                     isWrongSelected && "border-2 border-[var(--danger)] bg-[var(--danger-soft)]"
@@ -314,7 +391,7 @@ export default function PracticeTopicPage() {
         {current.question_type === "numeric" && (
           <div className="mt-5">
             <label htmlFor="numeric-answer" className="block text-xs font-semibold text-[var(--text-secondary)]">
-              Enter your numeric answer
+              Enter your calculated numeric value
               {current.numeric_tolerance_pct ? ` (±${current.numeric_tolerance_pct}% tolerance)` : ""}
             </label>
             <div className="mt-2 flex items-center gap-2">
@@ -323,9 +400,9 @@ export default function PracticeTopicPage() {
                 type="text"
                 inputMode="decimal"
                 disabled={Boolean(feedback)}
-                value={numericText}
-                onChange={(e) => setNumericText(e.target.value)}
-                placeholder="e.g. 65.5"
+                value={curState.numericText}
+                onChange={(e) => updateCurrentState({ numericText: e.target.value })}
+                placeholder="e.g. 101.24"
                 className="tabular min-h-[48px] flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-4 font-mono text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
               />
               {current.numeric_unit && (
@@ -337,17 +414,27 @@ export default function PracticeTopicPage() {
           </div>
         )}
 
-        {/* Action Button */}
+        {/* Action Footer */}
         {!feedback && (
-          <div className="mt-6 flex justify-end">
-            <Button type="submit" variant="ink" size="lg" disabled={submitting} className="w-full sm:w-auto">
-              {submitting ? "Checking on server…" : "Check answer"}
+          <div className="mt-6 flex items-center justify-between gap-2">
+            <Button
+              type="button"
+              variant="secondary"
+              size="md"
+              disabled={index === 0}
+              onClick={() => jumpTo(Math.max(0, index - 1))}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Prev
+            </Button>
+            <Button type="submit" variant="ink" size="lg" disabled={submitting}>
+              {submitting ? "Checking…" : "Check answer"}
             </Button>
           </div>
         )}
       </form>
 
-      {/* Instant Server Feedback + Full Step-by-Step Solution */}
+      {/* Instant Server Feedback + Step-by-Step Textbook Solution */}
       {feedback && (
         <section
           className={cn(
@@ -364,13 +451,13 @@ export default function PracticeTopicPage() {
               <XCircle className="h-5 w-5 text-[var(--danger)]" />
             )}
             <h2 className="text-base font-extrabold text-[var(--text-primary)]">
-              {feedback.is_correct ? "Spot on!" : "Not quite — check the solution below"}
+              {feedback.is_correct ? "Correct — exact match!" : "Review the worked textbook solution below"}
             </h2>
           </div>
 
           {feedback.numeric_answer != null && (
             <p className="tabular mt-2 text-xs font-semibold text-[var(--text-secondary)]">
-              Expected answer:{" "}
+              Verified answer:{" "}
               <span className="font-mono text-[var(--text-primary)]">
                 {feedback.numeric_answer} {feedback.numeric_unit}
               </span>{" "}
@@ -379,15 +466,25 @@ export default function PracticeTopicPage() {
           )}
 
           <div className="mt-4 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 text-sm leading-relaxed text-[var(--text-secondary)]">
-            <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
-              Step-by-step solution
+            <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
+              Step-by-step worked solution
             </p>
             <MathText text={feedback.solution_md} />
           </div>
 
-          <div className="mt-5 flex justify-end">
-            <Button type="button" variant="ink" size="lg" onClick={handleNext} className="w-full sm:w-auto">
-              {index + 1 >= questions.length ? "Finish practice" : "Next question"}
+          <div className="mt-5 flex items-center justify-between gap-2">
+            <Button
+              type="button"
+              variant="secondary"
+              size="md"
+              disabled={index === 0}
+              onClick={() => jumpTo(Math.max(0, index - 1))}
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Prev
+            </Button>
+            <Button type="button" variant="ink" size="lg" onClick={handleNext}>
+              {index + 1 >= questions.length ? "Finish topic drill" : "Next question"}
               <ArrowRight className="h-4 w-4" />
             </Button>
           </div>

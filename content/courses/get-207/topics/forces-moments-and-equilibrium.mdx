@@ -5,106 +5,95 @@ topicId: "22222222-2222-4222-8222-222222220207"
 courseCode: "GET 207"
 courseSlug: "get-207"
 ccmasRef: "Forces, moments, couples; equilibrium of simple structures and machine parts"
+textbookRef: "Hibbeler 14e · Ch. 2, Ch. 4 & Ch. 5"
 outcomes:
-  - "Resolve 2D coplanar forces into orthogonal x and y components and compute their resultant"
-  - "Calculate turning moments of forces and recognize the free-vector property of a force couple"
-  - "Draw clean Free-Body Diagrams (FBDs) and solve for beam/frame support reactions"
-status: "draft"
+  - "Resolve inclined 2D forces using slope triangles (3–4–5, 5–12–13) and trigonometric angles"
+  - "Calculate turning moments about a pivot using Varignon's Principle of Moments and evaluate couple moments"
+  - "Construct Free-Body Diagrams (FBDs), identify two-force members, and solve 2D rigid-body equilibrium"
+status: "published"
 isFree: true
 ---
 
 ## 1. Overview
 
-Whether you are designing a bridge girder in Civil, a motor shaft in Mechanical, or a heavy server rack in Computer/Electrical Engineering, your first question is always the same: **will this thing stay put without breaking or tipping over?**
-
-Applied Mechanics (GET 207) begins with **Statics**—balancing forces and turning effects (moments) so a structure remains in equilibrium. Nearly every later topic (trusses, friction, shear-force diagrams, and even dynamics via Newton's laws) depends on mastering Free-Body Diagrams here.
+In **R. C. Hibbeler's *Engineering Mechanics: Statics & Dynamics* (14th Edition)**, every structural analysis begins with isolating the body in a **Free-Body Diagram (FBD)** and replacing pins, rollers, fixed bolts, and two-force struts with their exact reaction components before writing a single equation.
 
 ---
 
 ## 2. Key Concepts
 
-### Resolving Coplanar Forces
+### Varignon's Principle of Moments & Couple Moments (Hibbeler Ch. 4)
 
-Any 2D force of magnitude $F$ acting at angle $\theta$ measured from the positive $x$-axis splits cleanly into rectangular components:
+Rather than finding the slant perpendicular arm $d$ to an inclined force, **Varignon's Theorem (§4.4)** lets us resolve $\mathbf{F}$ into rectangular components $F_x, F_y$ and sum their moments algebraically ($+$ anticlockwise):
 
-$$F_x = F \cos\theta, \qquad F_y = F \sin\theta$$
+$$\left(M_R\right)_O = \sum F_y x - \sum F_x y$$
 
-When several forces act at a point, sum their components independently to obtain the resultant $\vec{R}$:
-
-$$R_x = \sum F_x, \qquad R_y = \sum F_y, \qquad R = \sqrt{R_x^2 + R_y^2}, \qquad \tan\alpha = \frac{R_y}{R_x}$$
-
-### Moments and Couples
-
-A **moment** measures a force's tendency to rotate a body about a pivot point $O$:
-
-$$M_O = F \cdot d_\perp$$
-
-where $d_\perp$ is the **perpendicular distance** from $O$ to the force's line of action. By convention, **anticlockwise (CCW)** moments are positive ($+$) and **clockwise (CW)** moments are negative ($-$).
-
-A **force couple** is a special pair of equal, parallel, opposite forces separated by perpendicular distance $d$. Its net force is zero, yet it produces a pure turning moment $M = F \cdot d$ that has the **exact same value about every point in the plane**.
+A **couple** consists of two parallel forces of equal magnitude $F$ and opposite sense separated by perpendicular arm $d$. Its net force is zero, and its **couple moment** $M = F d$ is a **free vector**—it exerts the exact same turning moment about every point on the structure!
 
 <DiagramFigure
-  src="/diagrams/get-207/couple-moment.svg"
-  caption="Two equal and opposite forces separated by perpendicular distance d form a pure couple with zero net force and moment M = F·d."
+  src="/images/textbook-figures/get-207/hibbeler-f4-22-couple.webp"
+  caption="Hibbeler Ch. 4, Prob. F4–22 — Two equal and opposite 10 kN forces on a 3–4–5 slope act on brackets of beam AB to create a pure couple moment."
 />
 
-### 2D Static Equilibrium & Free-Body Diagrams
+### 2D Rigid-Body Equilibrium & Two-Force Members (Hibbeler Ch. 5)
 
-To keep a rigid body completely still in a 2D plane—no sliding horizontally, no sliding vertically, and no rotating—three scalar equations must hold simultaneously:
+A coplanar rigid body stays at rest when all external loads and support reactions satisfy:
 
 $$\sum F_x = 0, \qquad \sum F_y = 0, \qquad \sum M_O = 0$$
 
+- **Fixed support (bolt/weld):** Exerts **three** unknowns ($A_x$, $A_y$, and couple moment $M_A$).
+- **Pin support:** Exerts **two** force unknowns ($A_x, A_y$).
+- **Roller / smooth rocker / two-force link:** Exerts **one** force unknown along a known line of action!
+
 <DiagramFigure
-  src="/diagrams/get-207/beam-fbd.svg"
-  caption="Always isolate the beam in a Free-Body Diagram showing all external loads and unknown support reactions before writing equilibrium equations."
+  src="/images/textbook-figures/get-207/hibbeler-fig-5-15-wrench.webp"
+  caption="Hibbeler Fig. 5–15 (Example 5.8) — (a) Box wrench loaded by two hand pulls; (b) Free-Body Diagram showing fixed-bolt reactions Ax, Ay, and resisting couple moment MA at A."
 />
 
 ---
 
-## 3. Worked Examples
+## 3. Textbook Worked Examples
 
 <StepRevealExample
-  title="Worked Example 1 — Simply Supported Beam Reactions"
-  problem="A light horizontal beam $AB$ of span $8.0\,\text{m}$ rests on a pin at $A$ and a roller at $B$. Two downward point loads act on the beam: $60\,\text{N}$ at $2.0\,\text{m}$ from $A$, and $100\,\text{N}$ at $5.0\,\text{m}$ from $A$. Find the support reactions $R_A$ and $R_B$."
+  title="Hibbeler Example 5.8 — Box Wrench Tightening a Bolt (Fig. 5–15)"
+  problem="The box wrench in Fig. 5–15a is used to tighten the bolt at $A$. A pull of $52\,\text{N}$ (on a $5\text{–}12\text{–}13$ slope) acts at $B$ ($0.3\,\text{m}$ from $A$), and a pull of $30\,\text{N}$ at $60^\circ$ below $+x$ acts at $C$ ($0.7\,\text{m}$ from $A$). If the wrench does not turn, determine the torque $M_A$ and resultant force $F_A$ on the bolt."
   steps={[
-    "Draw the Free-Body Diagram: replace the pin at $A$ with vertical reaction $R_A$ (horizontal reaction $A_x = 0$ since no horizontal loads exist) and replace the roller at $B$ with upward vertical reaction $R_B$.",
-    "Take moments about pin $A$ ($+$ anticlockwise) so unknown $R_A$ has zero lever arm and drops out: $\\sum M_A = 0 \\implies R_B(8.0) - 60(2.0) - 100(5.0) = 0$.",
-    "Simplify and solve for $R_B$: $8.0 R_B = 120 + 500 = 620 \\implies R_B = \\frac{620}{8.0} = 77.5\\,\\text{N}$.",
-    "Apply vertical force equilibrium $\\sum F_y = 0$ to find $R_A$: $R_A + R_B - 60 - 100 = 0 \\implies R_A = 160 - 77.5 = 82.5\\,\\text{N}$.",
-    "Quick sanity check (moments about $B$): $60(6.0) + 100(3.0) - 82.5(8.0) = 360 + 300 - 660 = 0$. Exact balance!"
+    "Draw the FBD (Fig. 5–15b): the fixed bolt at $A$ exerts force components $A_x, A_y$ and resisting couple moment $M_A$.",
+    "Horizontal equilibrium ($\\stackrel{+}{\\rightarrow} \\sum F_x = 0$): $A_x - 52\\left(\\frac{5}{13}\\right) + 30\\cos 60^\\circ = 0 \\implies A_x - 20 + 15 = 0 \\implies A_x = 5.00\\,\\text{N}$.",
+    "Vertical equilibrium ($+\\!\\uparrow \\sum F_y = 0$): $A_y - 52\\left(\\frac{12}{13}\\right) - 30\\sin 60^\\circ = 0 \\implies A_y - 48 - 25.98 = 0 \\implies A_y = 74.0\\,\\text{N}$.",
+    "Moment equilibrium about $A$ ($\\curvearrowleft + \\sum M_A = 0$): $M_A - \\left[52\\left(\\frac{12}{13}\\right)\\right](0.3\\,\\text{m}) - (30\\sin 60^\\circ)(0.7\\,\\text{m}) = 0 \\implies M_A = 14.4 + 18.19 = 32.6\\,\\text{N}\\cdot\\text{m}$.",
+    "Resultant bolt force magnitude: $F_A = \\sqrt{5.00^2 + 74.0^2} = 74.1\\,\\text{N}$ (verified by checking $\\sum M_C = 0$!)."
   ]}
 />
 
+<DiagramFigure
+  src="/images/textbook-figures/get-207/hibbeler-f5-2-beam.webp"
+  caption="Hibbeler Ch. 5, Prob. F5–2 — Beam AB pin-supported at A and braced at C by inclined two-force strut CD (45° geometry, 1.5 m × 1.5 m)."
+/>
+
 <StepRevealExample
-  title="Worked Example 2 — Resultant of Two Inclined Forces"
-  problem="A bracket pin experiences two pulls: $F_1 = 50\,\text{N}$ along the $+x$-axis and $F_2 = 40\,\text{N}$ at $60^\circ$ above the $+x$-axis. Find the magnitude of the resultant force."
+  title="Hibbeler Fundamental Problem F5–2 — Pin-and-Strut Beam Reactions"
+  problem="Beam $AB$ in Prob. F5–2 carries a downward $4\,\text{kN}$ load at $B$ ($3.0\,\text{m}$ from pin $A$) and is braced at midpoint $C$ ($1.5\,\text{m}$ from $A$) by pin-ended strut $CD$ ($D$ lies $1.5\,\text{m}$ below $A$). Neglecting beam thickness, find the force $F_{CD}$ in strut $CD$ and pin reaction components $A_x, A_y$."
   steps={[
-    "Resolve each force into $x$ and $y$ components: $F_{1x} = 50\\,\\text{N},\\; F_{1y} = 0\\,\\text{N}$; $F_{2x} = 40\\cos 60^\\circ = 20\\,\\text{N},\\; F_{2y} = 40\\sin 60^\\circ \\approx 34.64\\,\\text{N}$.",
-    "Sum the components: $R_x = 50 + 20 = 70\\,\\text{N}$ and $R_y = 0 + 34.64 = 34.64\\,\\text{N}$.",
-    "Compute the resultant magnitude: $R = \\sqrt{70^2 + 34.64^2} = \\sqrt{4900 + 1200} = \\sqrt{6100} \\approx 78.10\\,\\text{N}$."
+    "Recognize member $CD$ as a **two-force member**: since $AC = 1.5\\,\\text{m}$ and $AD = 1.5\\,\\text{m}$, strut $CD$ is inclined at $45^\\circ$ and pushes on beam $AB$ at $C$ along line $DC$.",
+    "Sum moments about pin $A$ ($\\curvearrowleft + \\sum M_A = 0$) so $A_x$ and $A_y$ drop out: $(F_{CD}\\sin 45^\\circ)(1.5\\,\\text{m}) - (4\\,\\text{kN})(3.0\\,\\text{m}) = 0$.",
+    "Solve for $F_{CD}$: $F_{CD}(0.7071)(1.5) = 12 \\implies F_{CD} = \\frac{8}{\\sin 45^\\circ} = 11.31\\,\\text{kN} \\approx 11.3\\,\\text{kN}$.",
+    "Apply force equilibrium on beam $AB$: $A_x + F_{CD}\\cos 45^\\circ = 0 \\implies A_x = -8.00\\,\\text{kN}$ ($8.00\\,\\text{kN} \\leftarrow$); $A_y + F_{CD}\\sin 45^\\circ - 4 = 0 \\implies A_y = -4.00\\,\\text{kN}$ ($4.00\\,\\text{kN} \\downarrow$)."
   ]}
 />
 
 ---
 
-## 4. Common Mistakes
+## 4. Common Exam Pitfalls
 
-<Callout variant="warning" title="Watch out for these exam traps">
-- **Mixing up clockwise and anticlockwise signs:** Write a tiny `(+ CCW)` symbol next to every $\sum M = 0$ line before plugging in numbers.
-- **Using slanted distance instead of perpendicular distance:** A moment is $F \cdot d_\perp$, not $F$ times any random beam length. If a force is angled, resolve it into components first!
-- **Forgetting to check $\sum M_B = 0$:** Spending 15 seconds checking moments about the other support catches 95% of arithmetic slips in tests.
+<Callout variant="warning" title="Hibbeler's three equilibrium golden rules">
+- **Spot two-force members first:** In Prob. F5–2, treating $C$ as two unknowns ($C_x, C_y$) makes the beam look statically indeterminate—recognizing strut $CD$ acts at $45^\circ$ reduces $C$ to a single unknown $F_{CD}$!
+- **Include fixed-support couple moments $M_A$ in $\sum M$, NEVER in $\sum F$:** Couple moments have units of $\text{N}\cdot\text{m}$, not Newtons.
+- **Check with a fourth moment equation:** Hibbeler always verifies answers by summing moments about a second point (like $\sum M_C = 0$).
 </Callout>
 
 ---
 
-## 5. Practice
+## 5. Textbook Reference
 
-Apply your Free-Body Diagram skills on **5 original GET 207 problems** (including beam reactions, moments, and couples with numeric tolerance checking).
-
----
-
-## 6. Recommended Reading
-
-- **R. C. Hibbeler**, *Engineering Mechanics: Statics*, Chapters 2–5 (Force Vectors, Moments, and Equilibrium of a Rigid Body).
-- **J. L. Meriam & L. G. Kraige**, *Engineering Mechanics: Statics*, Chapters 2 & 3.
-- **F. P. Beer, E. R. Johnston et al.**, *Vector Mechanics for Engineers: Statics*, Chapters 2–4.
+- **Prescribed Textbook:** R. C. Hibbeler, *Engineering Mechanics: Statics & Dynamics* (14th Ed.), Chapters 2, 4 (§4.1–4.6), and 5 (§5.1–5.4).

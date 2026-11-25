@@ -10,7 +10,7 @@
       "title": "Limits and Continuity of Functions",
       "order": 1,
       "ccmasRef": "Limits; continuity",
-      "status": "draft",
+      "status": "published",
       "isFree": true
     },
     {
@@ -19,7 +19,7 @@
       "title": "First-Order Linear Differential Equations",
       "order": 2,
       "ccmasRef": "Linear first-order differential equations",
-      "status": "draft",
+      "status": "published",
       "isFree": true
     },
     {
@@ -28,7 +28,7 @@
       "title": "Partial Derivatives, Gradients & Matrices",
       "order": 3,
       "ccmasRef": "Partial & total derivatives; directional derivatives & gradients; matrices & determinants",
-      "status": "draft",
+      "status": "published",
       "isFree": true
     }
   ]

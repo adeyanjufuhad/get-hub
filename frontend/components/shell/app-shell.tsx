@@ -3,6 +3,7 @@
 import {
   BarChart3,
   BookOpen,
+  ClipboardCheck,
   Home,
   Library,
   LogOut,
@@ -29,7 +30,8 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { href: "/dashboard", label: "Home", icon: Home, matchPrefix: "/dashboard" },
-  { href: "/courses", label: "Courses", icon: BookOpen, matchPrefix: "/courses" },
+  { href: "/courses", label: "Notes", icon: BookOpen, matchPrefix: "/courses" },
+  { href: "/tests", label: "Tests", icon: ClipboardCheck, matchPrefix: "/tests" },
   { href: "/library", label: "Library", icon: Library, matchPrefix: "/library" },
   { href: "/progress", label: "Progress", icon: BarChart3, matchPrefix: "/progress" },
   { href: "/admin", label: "Admin", icon: Shield, matchPrefix: "/admin", adminOnly: true },

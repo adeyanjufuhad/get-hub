@@ -10,7 +10,7 @@
       "title": "Forces, Moments, Couples & 2D Equilibrium",
       "order": 1,
       "ccmasRef": "Forces, moments, couples; equilibrium of simple structures and machine parts",
-      "status": "draft",
+      "status": "published",
       "isFree": true
     },
     {
@@ -19,7 +19,7 @@
       "title": "Dry Friction on Inclined Planes, Ladders & Wedges",
       "order": 2,
       "ccmasRef": "Friction on inclined planes, ladders & wedges",
-      "status": "draft",
+      "status": "published",
       "isFree": true
     },
     {
@@ -28,7 +28,7 @@
       "title": "Centroids, First & Second Moments of Area",
       "order": 3,
       "ccmasRef": "Centroids, first & second moments of area",
-      "status": "draft",
+      "status": "published",
       "isFree": true
     }
   ]

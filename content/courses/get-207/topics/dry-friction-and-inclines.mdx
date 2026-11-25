@@ -5,80 +5,72 @@ topicId: "22222222-2222-4222-8222-222222270002"
 courseCode: "GET 207"
 courseSlug: "get-207"
 ccmasRef: "Friction on inclined planes, ladders & wedges"
+textbookRef: "Hibbeler 14e · Ch. 8 (§8.1–8.3 Dry Friction & Wedges)"
 outcomes:
-  - "Distinguish between static friction (F <= mu_s N), impending motion (F = mu_s N), and kinetic friction (F = mu_k N)"
-  - "Solve equilibrium problems for blocks on rough inclined planes under horizontal or parallel forces"
-  - "Analyze slip vs. tip conditions and ladder equilibrium against rough/smooth walls"
-status: "draft"
+  - "Test equilibrium vs. impending slip (F <= mu_s N) vs. kinetic sliding (F_k = mu_k N) on rough surfaces"
+  - "Check both slipping and tipping conditions by solving for the normal reaction shift x"
+  - "Solve leaning rod/ladder and multi-contact friction equilibrium problems"
+status: "published"
 isFree: true
 ---
 
 ## 1. Overview
 
-In real engineering machines—brakes, clutches, bolted joints, jackscrews, and wedges—surfaces are never perfectly smooth. **Dry (Coulomb) friction** is a self-adjusting tangential force that opposes *impending* or *actual* relative sliding between two dry surfaces in contact.
-
-The #1 mistake students make in GET 207 friction problems is immediately writing $F = \mu_s N$ before checking whether the body is actually on the verge of slipping!
+In **Hibbeler Chapter 8**, dry (Coulomb) friction problems fall into two distinct classes: problems where impending motion is *known* to occur ($F = \mu_s N$ applies immediately), and problems where you **do not know** whether the crate stays at rest, slips, or tips over first!
 
 ---
 
 ## 2. Key Concepts
 
-### Coulomb's Laws of Dry Friction
+### Characteristics of Dry Friction (Hibbeler §8.1–8.2)
 
-1. **No slipping (static equilibrium):** Friction $F$ takes whatever magnitude equilibrium demands, up to a strict ceiling:
-   $$0 \le F \le F_{\max} = \mu_s N$$
-2. **Impending motion (verge of slipping):** At the exact threshold of motion:
-   $$F = \mu_s N$$
-3. **Sliding in progress (kinetic friction):** Once sliding begins, friction drops slightly to:
-   $$F_k = \mu_k N \qquad (\mu_k < \mu_s)$$
+1. **Static Equilibrium (No Slipping):** Friction $F$ is found strictly from equilibrium equations ($\sum F_x = 0$) and must satisfy:
+   $$F \le F_{\max} = \mu_s N$$
+2. **Impending Motion (Verge of Slipping):** At the threshold of motion, $F$ acts opposite to impending slip with magnitude:
+   $$F_s = \mu_s N$$
+3. **Sliding Motion:** Once the body moves, friction drops to kinetic friction:
+   $$F_k = \mu_k N$$
+4. **Tipping Check:** On a flat base of width $2a$, the normal reaction $N_C$ shifts laterally by distance $x$ from the centerline to balance moments ($\sum M_O = 0$). If $|x| \le a$, the block does **not** tip; if $|x| > a$, tipping occurs about the corner!
 
-### Angle of Static Friction & Angle of Repose
+<DiagramFigure
+  src="/images/textbook-figures/get-207/hibbeler-fig-8-7a-crate.webp"
+  caption="Hibbeler Fig. 8–7a (Example 8.1) — A 20-kg crate pushed by an inclined force P = 80 N at 30°: will it stay put, slip along the floor, or tip over?"
+/>
 
-Combine the normal reaction $N$ and limiting friction $F_{\max} = \mu_s N$ into a single resultant contact force $R$ inclined at angle $\phi_s$ from the normal:
+### Leaning Rods, Ladders & Multi-Surface Contact
 
-$$\tan\phi_s = \frac{F_{\max}}{N} = \mu_s$$
+When a ladder or rod $AB$ leans against a rough wall ($A$) and floor ($B$), draw normal and friction forces at each rough contact opposing the direction that end would slide, then take moments about $B$ ($\sum M_B = 0$) to eliminate two unknowns in one step!
 
-If a block rests freely on an incline tilted gradually upward, it begins to slide downward when the incline angle $\theta$ reaches the **angle of repose** $\theta_s$:
-
-$$\tan\theta_s = \mu_s \implies \theta_s = \phi_s$$
-
-### Inclined Plane Force Resolution
-
-Align your $x$-axis **parallel** to the incline and $y$-axis **perpendicular** to it:
-- Weight component down the plane: $W\sin\theta$
-- Weight component into the plane: $W\cos\theta$
-- **To push a block UP the plane** with a force $P$ parallel to the slope, friction acts **down** the slope:
-  $$P_{\text{up}} = W\sin\theta + \mu_s W\cos\theta$$
-- **Minimum force to hold a block from sliding DOWN**, friction helps you by acting **up** the slope:
-  $$P_{\text{hold}} = W\sin\theta - \mu_s W\cos\theta$$
-
-<Callout variant="tip" title="Friction direction rule">
-Ask: *"If all friction vanished right now, which way would this surface slide?"* Draw the friction arrow in the **exact opposite** direction.
-</Callout>
+<DiagramFigure
+  src="/images/textbook-figures/get-207/hibbeler-f8-2-ladder.webp"
+  caption="Hibbeler Ch. 8, Prob. F8–2 — A 30-kg uniform rod AB on a 3 m × 4 m geometry held against a rough wall at A (μs = 0.2) and smooth floor at B by force P."
+/>
 
 ---
 
-## 3. Worked Examples
+## 3. Textbook Worked Examples
 
 <StepRevealExample
-  title="Example 1: Minimum Force to Push a Crate Up a Rough Ramp"
-  problem="A $50\,\text{kg}$ machinery crate rests on a ramp inclined at $\theta = 30^\circ$ to the horizontal. If $\mu_s = 0.25$ and $g = 9.81\,\text{m/s}^2$, find the minimum force $P$ parallel to the ramp required to start pushing the crate **up** the incline."
+  title="Hibbeler Example 8.1 — Crate Equilibrium, Slip & Tip Check (Fig. 8–7)"
+  problem="The uniform crate shown in Fig. 8–7a has a mass of $20\,\text{kg}$ (width $0.8\,\text{m}$). A force $P = 80\,\text{N}$ at $30^\circ$ below the horizontal is applied $0.2\,\text{m}$ above the floor. If the coefficient of static friction is $\mu_s = 0.3$, determine whether the crate remains in equilibrium."
   steps={[
-    "Step 1 — Weight of crate: $W = mg = 50 \\times 9.81 = 490.5\\,\\text{N}$.",
-    "Step 2 — Perpendicular equilibrium ($\\sum F_y = 0$): $N = W\\cos 30^\\circ = 490.5(0.8660) = 424.79\\,\\text{N}$.",
-    "Step 3 — Limiting friction acting DOWN the ramp (opposing upward impending motion): $F_{\\max} = \\mu_s N = 0.25 \\times 424.79 = 106.20\\,\\text{N}$.",
-    "Step 4 — Parallel equilibrium ($\\sum F_x = 0$): $P = W\\sin 30^\\circ + F_{\\max} = 490.5(0.5) + 106.20 = 245.25 + 106.20 = 351.45\\,\\text{N}$."
+    "Crate weight is $W = 20(9.81) = 196.2\\,\\text{N}$. Do NOT assume $F = \\mu_s N_C$; solve the three equilibrium equations for $F$, $N_C$, and normal-force offset $x$ from the centerline $O$.",
+    "Horizontal equilibrium ($\\stackrel{+}{\\rightarrow} \\sum F_x = 0$): $80\\cos 30^\\circ - F = 0 \\implies F = 69.3\\,\\text{N}$.",
+    "Vertical equilibrium ($+\\!\\uparrow \\sum F_y = 0$): $-80\\sin 30^\\circ + N_C - 196.2 = 0 \\implies N_C = 236.2\\,\\text{N}$.",
+    "Moment equilibrium about base midpoint $O$ ($\\curvearrowleft + \\sum M_O = 0$): $(80\\sin 30^\\circ)(0.4\\,\\text{m}) - (80\\cos 30^\\circ)(0.2\\,\\text{m}) + N_C(x) = 0 \\implies x = -0.00908\\,\\text{m} = -9.08\\,\\text{mm}$. Since $|x| < 0.4\\,\\text{m}$, **no tipping** occurs.",
+    "Check slipping ceiling: $F_{\\max} = \\mu_s N_C = 0.3(236.2) = 70.9\\,\\text{N}$. Since required $F = 69.3\\,\\text{N} < 70.9\\,\\text{N}$, the crate **will not slip** and remains in equilibrium!"
   ]}
 />
 
 <StepRevealExample
-  title="Example 2: Check Whether a Block Slides or Stays Put"
-  problem="A $200\,\text{N}$ block sits on a horizontal floor ($\mu_s = 0.40$, $\mu_k = 0.30$). A horizontal pull $P = 65\,\text{N}$ is applied. Find the actual friction force acting on the block."
+  title="Hibbeler Fundamental Problem F8–2 — Leaning 30-kg Rod (Prob. F8–2)"
+  problem="Determine the minimum horizontal force $P$ required to prevent the $30\,\text{kg}$ uniform rod $AB$ (spanning $4\,\text{m}$ horizontally and $3\,\text{m}$ vertically) from sliding downward. Contact at $B$ is smooth, while the wall at $A$ has $\mu_s = 0.2$."
   steps={[
-    "Step 1 — Normal reaction: $N = W = 200\\,\\text{N}$.",
-    "Step 2 — Maximum available static friction: $F_{\\max} = \\mu_s N = 0.40 \\times 200 = 80\\,\\text{N}$.",
-    "Step 3 — Compare required friction with $F_{\\max}$: Only $65\\,\\text{N}$ is needed to balance $P$, and $65\\,\\text{N} < 80\\,\\text{N}$.",
-    "Step 4 — Therefore the block stays at rest and the actual friction force is **$F = 65\\,\\text{N}$** (NOT $80\\,\\text{N}$!)."
+    "At minimum $P$, end $A$ is on the verge of sliding **down** the wall, so upward wall friction reaches its maximum $F_A = \\mu_s N_A = 0.2 N_A$, while $N_A$ pushes to the left on $A$.",
+    "Uniform rod weight $W = 30(9.81) = 294.3\\,\\text{N}$ acts downward at the midpoint ($2\\,\\text{m}$ horizontally from $B$).",
+    "Take moments about $B$ ($\\curvearrowleft + \\sum M_B = 0$) so both $P$ and normal reaction $N_B$ pass through $B$ or act along the floor line: $N_A(3\\,\\text{m}) + (0.2 N_A)(4\\,\\text{m}) - 30(9.81)(2\\,\\text{m}) = 0$.",
+    "Solve for $N_A$: $3.8 N_A = 588.6 \\implies N_A = 154.89\\,\\text{N}$.",
+    "Apply horizontal equilibrium ($\\stackrel{+}{\\rightarrow} \\sum F_x = 0$): $P - N_A = 0 \\implies P = 154.89\\,\\text{N} \\approx 155\\,\\text{N}$."
   ]}
 />
 
@@ -86,8 +78,12 @@ Ask: *"If all friction vanished right now, which way would this surface slide?"*
 
 ## 4. Common Exam Pitfalls
 
-<Callout variant="warning" title="Avoid the #1 friction trap">
-Never assume $N = W$ when an external force $P$ is applied **at an angle** to the surface or horizontally against a ramp! Always resolve perpendicular forces ($\sum F_y = 0$) first to get the true normal force $N$.
+<Callout variant="warning" title="Don't fall for the P = 200 N vs. P = 400 N trap (Prob. F8–1)">
+In Hibbeler **Prob. F8–1**, a downward-sloping force $P$ increases the normal force $N = mg + \frac{3}{5}P$. Always compute $F_{\max} = \mu_s N$ first: if $\frac{4}{5}P \le F_{\max}$, friction equals $\frac{4}{5}P$; if $\frac{4}{5}P > F_{\max}$, the crate slides and friction switches to **kinetic** $F_k = \mu_k N$!
 </Callout>
 
-*Recommended textbook chapters: Beer & Johnston 10e Ch. 8 · Hibbeler 14e Ch. 8.*
+---
+
+## 5. Textbook Reference
+
+- **Prescribed Textbook:** R. C. Hibbeler, *Engineering Mechanics: Statics & Dynamics* (14th Ed.), Chapter 8 (§8.1–8.3, pp. 401–431).

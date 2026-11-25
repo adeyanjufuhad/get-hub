@@ -5,77 +5,73 @@ topicId: "22222222-2222-4222-8222-222222270003"
 courseCode: "GET 207"
 courseSlug: "get-207"
 ccmasRef: "Centroids, first & second moments of area"
+textbookRef: "Hibbeler 14e · Ch. 9 (§9.2) & Ch. 10 (§10.1–10.4)"
 outcomes:
-  - "Locate the centroid (x̄, ȳ) of composite T-sections, L-sections, and plates with cutouts using tabular summation"
-  - "Calculate second moment of area (moment of inertia I_x, I_y) for standard rectangles, triangles, and circles"
-  - "Apply the Parallel-Axis Theorem I = I_c + A d^2 to composite structural cross-sections"
-status: "draft"
+  - "Locate the centroid (x̄, ȳ) of composite T-beams, channels, and cutout plates by algebraic summation"
+  - "Apply the Parallel-Axis Theorem I = Ī + Ad² to rectangles, circles, and structural sections"
+  - "Subtract void/hole contributions cleanly when computing composite moments of inertia"
+status: "published"
 isFree: true
 ---
 
 ## 1. Overview
 
-Why are structural steel beams shaped like an **"I"** or **"T"** instead of a solid square bar? Because resistance to bending depends directly on the **second moment of area ($I$)** about the cross-section's **centroidal axis**—pushing material farther away from the neutral axis increases stiffness dramatically without adding weight.
-
-Mastering the centroid table and the **Parallel-Axis Theorem** here pays off immediately in both GET 207 exams and 300L Strength of Materials.
+In structural mechanics, the **centroid** $(\bar{x}, \bar{y})$ locates the geometric center where distributed forces concentrate, while the **area moment of inertia** ($I_x, I_y$) governs resistance to beam bending and column buckling. **Hibbeler Chapters 9 and 10** reduce every flanged steel beam or perforated plate to simple rectangles and circles combined via the **Parallel-Axis Theorem**.
 
 ---
 
 ## 2. Key Concepts
 
-### Centroid of Composite Areas
+### Composite Area Centroids (Hibbeler §9.2)
 
-Break any complex shape into simple sub-shapes $i = 1, 2, \dots, n$ (treating holes/cutouts as **negative** areas $A_i < 0$):
+Subdivide a cross-section into standard parts (using negative area $A_i < 0$ for holes/cutouts):
 
-$$\bar{x} = \frac{\sum A_i x_i}{\sum A_i}, \qquad \bar{y} = \frac{\sum A_i y_i}{\sum A_i}$$
+$$\bar{x} = \frac{\sum \tilde{x}_i A_i}{\sum A_i}, \qquad \bar{y} = \frac{\sum \tilde{y}_i A_i}{\sum A_i}$$
 
-### Standard Centroidal Second Moments of Area
+### Parallel-Axis Theorem & Composite Inertia (Hibbeler §10.2 & §10.4)
 
-| Shape | Area $A$ | Centroidal $I_{xc}$ |
-|---|---|---|
-| Rectangle (width $b$, height $h$) | $bh$ | $\dfrac{bh^3}{12}$ |
-| Right triangle (base $b$, height $h$) | $\dfrac{1}{2}bh$ | $\dfrac{bh^3}{36}$ |
-| Circle (radius $r$) | $\pi r^2$ | $\dfrac{\pi r^4}{4}$ |
+If $\bar{I}_{x'}$ is the moment of inertia of sub-area $A$ about its **own centroidal axis** $x'$, its moment of inertia about any parallel axis $x$ at perpendicular distance $d_y$ is:
 
-### The Parallel-Axis Theorem (Steiner's Theorem)
+$$I_x = \bar{I}_{x'} + A d_y^2, \qquad k_x = \sqrt{\frac{I_x}{A}}$$
 
-To transfer a sub-shape's second moment of area from its own centroidal axis $c$ to any parallel axis (such as the composite centroidal axis) separated by perpendicular distance $d$:
+- **Rectangle ($b \times h$):** $\bar{I}_{x'} = \dfrac{1}{12} b h^3$
+- **Circle (radius $r$):** $\bar{I}_{x'} = \dfrac{1}{4}\pi r^4$
+- **Right Triangle ($b \times h$):** $\bar{I}_{x'} = \dfrac{1}{36} b h^3$
 
-$$I = I_c + A d^2$$
+<DiagramFigure
+  src="/images/textbook-figures/get-207/hibbeler-fig-10-8-cutout.webp"
+  caption="Hibbeler Fig. 10–8 (Example 10.4) — Computing Ix about the base axis by subtracting a circular cutout (r = 25 mm) from a 100 mm × 150 mm rectangle."
+/>
 
-where $d = |y_i - \bar{y}|$ for $I_x$ (or $d = |x_i - \bar{x}|$ for $I_y$).
-
-The **radius of gyration** $k_x$ summarizes how spread out the area is from the $x$-axis:
-
-$$k_x = \sqrt{\frac{I_x}{A}}$$
-
-<Callout variant="tip" title="Always draw a 5-column table">
-In exams, make a clean table with columns **Part | $A_i$ | $y_i$ | $A_i y_i$ | $I_{ci} + A_i d_i^2$**. Even if you slip on arithmetic at the end, the organized table secures almost full method marks.
-</Callout>
+<DiagramFigure
+  src="/images/textbook-figures/get-207/hibbeler-f10-8-tbeam-moi.webp"
+  caption="Hibbeler Ch. 10, Prob. F10–8 — Inverted wooden T-beam cross-section requiring centroid ȳ first before applying the Parallel-Axis Theorem about centroidal axis x'."
+/>
 
 ---
 
-## 3. Worked Examples
+## 3. Textbook Worked Examples
 
 <StepRevealExample
-  title="Example 1: Centroid & Moment of Inertia of a Symmetric T-Section"
-  problem="A symmetric T-beam cross-section consists of a vertical web ($20\,\text{mm}$ wide $\times 80\,\text{mm}$ tall) topped by a horizontal flange ($100\,\text{mm}$ wide $\times 20\,\text{mm}$ tall). Measure $y$ upward from the bottom edge. Find (a) $\bar{y}$, and (b) $I_x$ about the horizontal centroidal axis."
+  title="Hibbeler Example 10.4 — Perforated Plate Moment of Inertia (Fig. 10–8)"
+  problem="Determine the moment of inertia of the shaded plate shown in Fig. 10–8a ($100\,\text{mm}$ wide $\times 150\,\text{mm}$ tall with a central circular hole of radius $r = 25\,\text{mm}$ located $75\,\text{mm}$ above the bottom $x$-axis) about the base $x$-axis."
   steps={[
-    "Step 1 — Sub-areas and local centroids from the bottom: Web (1): $A_1 = 20 \\times 80 = 1600\\,\\text{mm}^2$, $y_1 = 40\\,\\text{mm}$. Flange (2): $A_2 = 100 \\times 20 = 2000\\,\\text{mm}^2$, $y_2 = 80 + 10 = 90\\,\\text{mm}$.",
-    "Step 2 — Composite centroid $\\bar{y}$: $\\sum A = 3600\\,\\text{mm}^2$; $\\sum A y = 1600(40) + 2000(90) = 64\\,000 + 180\\,000 = 244\\,000\\,\\text{mm}^3$. Thus $\\bar{y} = \\frac{244\\,000}{3600} \\approx 67.78\\,\\text{mm}$.",
-    "Step 3 — Parallel-axis shift distances: $d_1 = |40 - 67.78| = 27.78\\,\\text{mm}$; $d_2 = |90 - 67.78| = 22.22\\,\\text{mm}$.",
-    "Step 4 — Web contribution: $I_{x1} = \\frac{20(80)^3}{12} + 1600(27.78)^2 = 853\\,333 + 1\\,234\\,765 = 2.088 \\times 10^6\\,\\text{mm}^4$.",
-    "Step 5 — Flange contribution & total: $I_{x2} = \\frac{100(20)^3}{12} + 2000(22.22)^2 = 66\\,667 + 987\\,457 = 1.054 \\times 10^6\\,\\text{mm}^4$. Total $I_x = 2.088 \\times 10^6 + 1.054 \\times 10^6 = 3.142 \\times 10^6\\,\\text{mm}^4$."
+    "Decompose into **Rectangle minus Circle** (Fig. 10–8b). Both shapes have their centroids at distance $d_y = 75\\,\\text{mm}$ above the $x$-axis.",
+    "Solid rectangle ($b = 100\\,\\text{mm}, h = 150\\,\\text{mm}$): $(I_x)_{\\text{rect}} = \\frac{1}{12}(100)(150)^3 + (100)(150)(75)^2 = 28.125 \\times 10^6 + 84.375 \\times 10^6 = 112.5 \\times 10^6\\,\\text{mm}^4$.",
+    "Circular cutout ($r = 25\\,\\text{mm}$): $(I_x)_{\\text{circle}} = \\frac{1}{4}\\pi(25)^4 + \\pi(25)^2(75)^2 = 0.3068 \\times 10^6 + 11.0447 \\times 10^6 = 11.4 \\times 10^6\\,\\text{mm}^4$.",
+    "Subtract the hole from the solid plate: $I_x = 112.5 \\times 10^6 - 11.4 \\times 10^6 = 101 \\times 10^6\\,\\text{mm}^4$."
   ]}
 />
 
 <StepRevealExample
-  title="Example 2: Parallel-Axis Transfer to the Base of a Rectangle"
-  problem="A solid rectangle has width $b = 60\,\text{mm}$ and height $h = 120\,\text{mm}$. Find its second moment of area $I_{\text{base}}$ about its bottom edge."
+  title="Hibbeler Fundamental Problem F10–8 — Inverted T-Beam Centroidal Ix'"
+  problem="For the T-beam cross-section in Prob. F10–8 (bottom flange $150\,\text{mm} \times 30\,\text{mm}$, vertical web $30\,\text{mm} \times 150\,\text{mm}$), locate the centroid height $\bar{y}$ from the bottom and compute the moment of inertia $I_{x'}$ about the centroidal $x'$-axis."
   steps={[
-    "Step 1 — Centroidal moment of inertia: $I_{xc} = \\frac{bh^3}{12} = \\frac{60 \\times 120^3}{12} = 8.64 \\times 10^6\\,\\text{mm}^4$.",
-    "Step 2 — Transfer by $d = h/2 = 60\\,\\text{mm}$: $A d^2 = (60 \\times 120)(60)^2 = 7200 \\times 3600 = 25.92 \\times 10^6\\,\\text{mm}^4$.",
-    "Step 3 — Sum: $I_{\\text{base}} = 8.64 \\times 10^6 + 25.92 \\times 10^6 = 34.56 \\times 10^6\\,\\text{mm}^4$ (which matches the shortcut $\\frac{bh^3}{3}$!)."
+    "Sub-areas & local centroids from the bottom edge: Flange (1) has $A_1 = 150(30) = 4500\\,\\text{mm}^2, \\tilde{y}_1 = 15\\,\\text{mm}$; Web (2) has $A_2 = 30(150) = 4500\\,\\text{mm}^2, \\tilde{y}_2 = 30 + 75 = 105\\,\\text{mm}$.",
+    "Compute composite centroid $\\bar{y}$: $\\bar{y} = \\frac{15(4500) + 105(4500)}{4500 + 4500} = \\frac{15 + 105}{2} = 60\\,\\text{mm}$.",
+    "Flange parallel-axis contribution ($d_1 = 60 - 15 = 45\\,\\text{mm}$): $I_{x'1} = \\frac{1}{12}(150)(30)^3 + 4500(45)^2 = 0.3375 \\times 10^6 + 9.1125 \\times 10^6 = 9.45 \\times 10^6\\,\\text{mm}^4$.",
+    "Web parallel-axis contribution ($d_2 = 105 - 60 = 45\\,\\text{mm}$): $I_{x'2} = \\frac{1}{12}(30)(150)^3 + 4500(45)^2 = 8.4375 \\times 10^6 + 9.1125 \\times 10^6 = 17.55 \\times 10^6\\,\\text{mm}^4$.",
+    "Sum both parts: $I_{x'} = (9.45 + 17.55) \\times 10^6 = 27.0 \\times 10^6\\,\\text{mm}^4$."
   ]}
 />
 
@@ -83,9 +79,12 @@ In exams, make a clean table with columns **Part | $A_i$ | $y_i$ | $A_i y_i$ | $
 
 ## 4. Common Exam Pitfalls
 
-<Callout variant="warning" title="Parallel-Axis Theorem traps">
-1. **Transferring between two non-centroidal axes directly:** $I = I_c + Ad^2$ ONLY works when $I_c$ is the **centroidal** axis! Never jump from one edge directly to another edge without passing through the centroid first.
-2. **Swapping $b$ and $h$:** The dimension **perpendicular** to the reference axis is ALWAYS the one that gets cubed!
+<Callout variant="warning" title="Subtract BOTH terms for cutouts!">
+When subtracting a hole in Parallel-Axis problems (like Example 10.4), you must subtract the **entire** shifted quantity $\bigl(\bar{I}_{\text{hole}} + A_{\text{hole}} d^2\bigr)$—students frequently subtract $\bar{I}_{\text{hole}}$ and accidentally *add* $A_{\text{hole}} d^2$!
 </Callout>
 
-*Recommended textbook chapters: Beer & Johnston 10e Ch. 5 & Ch. 9 · Hibbeler 14e Ch. 9 & Ch. 10.*
+---
+
+## 5. Textbook Reference
+
+- **Prescribed Textbook:** R. C. Hibbeler, *Engineering Mechanics: Statics & Dynamics* (14th Ed.), Chapter 9 (§9.2, pp. 488–493) & Chapter 10 (§10.1–10.4, pp. 529–543).

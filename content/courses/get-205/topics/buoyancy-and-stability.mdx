@@ -5,88 +5,75 @@ topicId: "22222222-2222-4222-8222-222222250002"
 courseCode: "GET 205"
 courseSlug: "get-205"
 ccmasRef: "Buoyancy, Archimedes' principle & stability of floating and submerged bodies"
+textbookRef: "Çengel · Ch. 11 (§11–4 Buoyancy & Stability)"
 outcomes:
-  - "Calculate buoyant force and submerged volume fraction for floating and fully submerged engineering bodies"
-  - "Locate the centre of buoyancy (B), centre of gravity (G), and metacentre (M) of rectangular pontoons and cylindrical buoys"
-  - "Evaluate rotational stability using metacentric height GM = BM - BG"
-status: "draft"
+  - "Compute upward buoyant force FB and rope tension loss for submerged concrete/metal structures"
+  - "Determine floating draft depth and specific gravity from displaced fluid volume ratios"
+  - "Assess rotational stability of ships and pontoons using metacenter M and metacentric height GM = BM - BG"
+status: "published"
 isFree: true
 ---
 
 ## 1. Overview
 
-Why does a solid steel bolt sink instantly while a 10,000-tonne steel cargo ship floats upright across the Atlantic? The answer lies in **buoyancy** (how much fluid weight is displaced) and **rotational stability** (whether a small tilt generates a restoring couple or an overturning couple).
-
-In GET 205 exams, buoyancy questions almost always combine **vertical force equilibrium** ($F_B = W$) with **metacentric height** ($GM$) stability checks on barges, pontoons, or wooden cylinders.
+Objects feel lighter in water because fluid pressure increases with depth, pushing upward harder on the bottom of a submerged body than downward on its top. In **Çengel Chapter 11 (§11–4)**, this net upward **buoyant force** governs underwater crane loads, hydrometer calibration, and whether a floating pontoon or ship rights itself or capsizes when tilted by waves.
 
 ---
 
 ## 2. Key Concepts
 
-### Archimedes' Principle
+### Archimedes' Principle (Çengel §11–4)
 
-Any body wholly or partly submerged in a static fluid experiences an upward **buoyant force** $F_B$ equal to the weight of the fluid it displaces:
+The buoyant force $F_B$ acting on a body immersed in a fluid of density $\rho_f$ equals the weight of the fluid displaced by the body, acting upward through the **center of buoyancy $B$** (the centroid of the displaced volume $V_{\text{sub}}$):
 
 $$F_B = \rho_f \, g \, V_{\text{sub}}$$
 
-- $\rho_f$ is the density of the **surrounding fluid** ($\text{kg/m}^3$), *not* the solid body.
-- $V_{\text{sub}}$ is the **submerged volume** ($\text{m}^3$).
-- $F_B$ acts vertically upward through the **centre of buoyancy ($B$)**, which is the centroid of the displaced fluid volume.
+For a **floating body** of average density $\rho_{\text{body}}$ and total volume $V$, static equilibrium ($F_B = W$) dictates that the submerged volume fraction equals the density ratio:
 
-For a **freely floating homogeneous body** of density $\rho_b$ and total volume $V$, vertical equilibrium ($F_B = W$) yields the classic submerged fraction ratio:
+$$\frac{V_{\text{sub}}}{V} = \frac{\rho_{\text{body}}}{\rho_f}$$
 
-$$\frac{V_{\text{sub}}}{V} = \frac{\rho_b}{\rho_f} = \frac{SG_b}{SG_f}$$
+<DiagramFigure
+  src="/images/textbook-figures/get-205/cengel-fig-11-19-seawater-block.webp"
+  caption="Çengel Fig. 11–19 (Schematic for Example 11–4) — Free-body comparison of a rectangular concrete block suspended in air versus completely immersed in seawater."
+/>
 
-### Stability of Submerged vs. Floating Bodies
+### Rotational Stability & Metacentric Height $GM$
 
-- **Fully submerged body** (e.g., submarine, underwater sensor pod):
-  - **Stable** if the centre of gravity $G$ lies **below** the centre of buoyancy $B$.
-  - **Unstable** if $G$ lies above $B$.
-- **Floating body** (e.g., pontoon, ship hull):
-  - Even if $G$ is above $B$, the body can still be **stable** because tilting shifts the submerged wedge and moves $B$ laterally toward the dipped side!
-  - The intersection of the new buoyant line of action with the body's original vertical centreline is the **metacentre ($M$)**.
+- **Completely immersed body (submarine, balloon):** Stable only when bottom-heavy so the center of gravity $G$ lies **directly below** the center of buoyancy $B$.
+- **Floating body (ship hull, pontoon):** Even when $G$ sits above $B$, rolling through a small angle shifts the displaced wedge sideways so the center of buoyancy moves to $B'$. Let **metacenter $M$** be the intersection of the new buoyant line of action with the hull's symmetry axis:
 
-The **metacentric radius** $BM$ depends on the second moment of area $I_{\min}$ of the **waterplane** (the horizontal cross-section sliced at the waterline) about its least-resistant tilting axis:
+$$BM = \frac{I_{\min}}{V_{\text{sub}}}, \qquad GM = BM - BG$$
 
-$$BM = \frac{I_{\min}}{V_{\text{sub}}}$$
+- **$GM > 0$ ($M$ above $G$):** **Stable** — $W$ and $F_B$ form a **restoring moment** that rights the vessel.
+- **$GM < 0$ ($M$ below $G$):** **Unstable** — $W$ and $F_B$ form an **overturning moment** that capsizes the vessel.
 
-And the **metacentric height** $GM$ is:
-
-$$GM = BM - BG$$
-
-where $BG = y_G - y_B$ is the vertical distance from $B$ up to $G$:
-- **$GM > 0$** ($M$ above $G$): **Stable** — small tilts produce a restoring moment $M_R = W \cdot GM \sin\theta$.
-- **$GM = 0$**: **Neutral** equilibrium.
-- **$GM < 0$** ($M$ below $G$): **Unstable** — the body capsizes.
-
-<Callout variant="tip" title="Which axis gives I_min for a rectangular barge?">
-A rectangular pontoon of length $L$ and beam width $b$ ($b < L$) rolls most easily about its **longitudinal axis**, so always use $I_{\min} = \frac{L b^3}{12}$ (cube the *narrower* dimension!).
-</Callout>
+<DiagramFigure
+  src="/images/textbook-figures/get-205/cengel-fig-11-24-floating-stability.webp"
+  caption="Çengel Fig. 11–24 — A floating vessel remains stable even with G above B provided the shifted buoyant force through B' intersects the centerline at metacenter M above G (GM > 0)."
+/>
 
 ---
 
-## 3. Worked Examples
+## 3. Textbook Worked Examples
 
 <StepRevealExample
-  title="Example 1: Draft & Metacentric Stability of a Rectangular Pontoon"
-  problem="A flat-bottomed rectangular steel pontoon is $6.0\,\text{m}$ long, $3.0\,\text{m}$ wide, and $1.6\,\text{m}$ high, with a total mass of $14\,400\,\text{kg}$. Its centre of gravity $G$ lies $0.90\,\text{m}$ above the bottom. Floating in fresh water ($\rho_w = 1000\,\text{kg/m}^3$), find (a) the draft $d$, and (b) the metacentric height $GM$ to check stability."
+  title="Çengel Example 11–4 — Weight Loss of an Object in Seawater (Fig. 11–19)"
+  problem="A crane is used to lower weights into the sea ($\rho_f = 1025\,\text{kg/m}^3$) for an underwater construction project (Fig. 11–19). Determine the tension in the rope of the crane due to a rectangular $0.4\,\text{m} \times 0.4\,\text{m} \times 3\,\text{m}$ concrete block ($\rho_{\text{concrete}} = 2300\,\text{kg/m}^3$) when it is (a) suspended in the air and (b) completely immersed in seawater."
   steps={[
-    "Step 1 — Find submerged volume from $F_B = W$: $\\rho_w g V_{\\text{sub}} = m g \\implies V_{\\text{sub}} = \\frac{14\\,400}{1000} = 14.4\\,\\text{m}^3$.",
-    "Step 2 — Compute the draft $d$: $V_{\\text{sub}} = L \\cdot b \\cdot d \\implies d = \\frac{14.4}{6.0 \\times 3.0} = 0.80\\,\\text{m}$.",
-    "Step 3 — Locate $B$ and compute $BG$: For a rectangular prism, $y_B = \\frac{d}{2} = \\frac{0.80}{2} = 0.40\\,\\text{m}$ above the keel. Given $y_G = 0.90\\,\\text{m}$, we get $BG = y_G - y_B = 0.90 - 0.40 = 0.50\\,\\text{m}$.",
-    "Step 4 — Compute $I_{\\min}$ and $BM$: Rolling occurs about the longer axis, so $I_{\\min} = \\frac{L b^3}{12} = \\frac{6.0 \\times 3.0^3}{12} = 13.5\\,\\text{m}^4$. Thus $BM = \\frac{I_{\\min}}{V_{\\text{sub}}} = \\frac{13.5}{14.4} = 0.9375\\,\\text{m}$.",
-    "Step 5 — Evaluate $GM$: $GM = BM - BG = 0.9375 - 0.50 = +0.4375\\,\\text{m} > 0$. Since $GM$ is positive, the pontoon floats stably."
+    "Compute the volume of the rectangular concrete block: $V = (0.4\\,\\text{m})(0.4\\,\\text{m})(3\\,\\text{m}) = 0.48\\,\\text{m}^3$.",
+    "(a) Suspended in air (neglecting air buoyancy), rope tension equals true weight $W$: $F_{T,\\text{air}} = W = \\rho_{\\text{concrete}} g V = (2300)(9.81)(0.48) = 10\\,830\\,\\text{N} \\approx 10.8\\,\\text{kN}$.",
+    "(b) Completely immersed in seawater, upward buoyant force is $F_B = \\rho_f g V = (1025)(9.81)(0.48) = 4827\\,\\text{N} \\approx 4.8\\,\\text{kN}$.",
+    "Vertical force balance gives underwater cable tension: $F_{T,\\text{water}} = W - F_B = 10.8 - 4.8 = 6.0\\,\\text{kN}$ (a $55\\%$ reduction in crane load!)."
   ]}
 />
 
 <StepRevealExample
-  title="Example 2: Apparent Weight of a Submerged Casting"
-  problem="A solid cast-iron block of mass $36\,\text{kg}$ and density $\rho_b = 7200\,\text{kg/m}^3$ is suspended completely underwater ($\rho_w = 1000\,\text{kg/m}^3$, $g = 9.81\,\text{m/s}^2$) by a crane cable. Find the tension $T$ in the cable."
+  title="Çengel Example 11–3(b) — Lead Ballast Mass in a Floating Hydrometer"
+  problem="A cylindrical glass hydrometer of outer diameter $D = 1\,\text{cm}$ ($R = 0.005\,\text{m}$) and length $20\,\text{cm}$ is weighted with lead at its bottom. Disregarding the mass of the thin glass tube, determine the mass of lead (in grams) needed so the hydrometer floats halfway submerged ($h_{\text{sub}} = 10\,\text{cm} = 0.10\,\text{m}$) in pure water ($\rho_w = 1000\,\text{kg/m}^3$)."
   steps={[
-    "Step 1 — Compute the block's volume: $V = \\frac{m}{\\rho_b} = \\frac{36}{7200} = 0.0050\\,\\text{m}^3$.",
-    "Step 2 — Compute the upward buoyant force: $F_B = \\rho_w g V = 1000 \\times 9.81 \\times 0.0050 = 49.05\\,\\text{N}$.",
-    "Step 3 — Compute actual weight: $W = mg = 36 \\times 9.81 = 353.16\\,\\text{N}$.",
-    "Step 4 — Vertical equilibrium gives cable tension: $T = W - F_B = 353.16 - 49.05 = 304.11\\,\\text{N}$."
+    "For static floating equilibrium, weight $W = mg$ equals the buoyant force $F_B = \\rho_w g V_{\\text{sub}}$, so $m = \\rho_w V_{\\text{sub}}$.",
+    "Compute submerged cylindrical volume at the $10\\,\\text{cm}$ mark: $V_{\\text{sub}} = \\pi R^2 h_{\\text{sub}} = \\pi (0.005\\,\\text{m})^2 (0.10\\,\\text{m}) = 7.854 \\times 10^{-6}\\,\\text{m}^3$.",
+    "Multiply by $\\rho_w = 1000\\,\\text{kg/m}^3$: $m = 1000 \\times 7.854 \\times 10^{-6} = 0.00785\\,\\text{kg} = 7.85\\,\\text{g}$."
   ]}
 />
 
@@ -94,10 +81,13 @@ A rectangular pontoon of length $L$ and beam width $b$ ($b < L$) rolls most easi
 
 ## 4. Common Exam Pitfalls
 
-<Callout variant="warning" title="Watch out for these 3 traps">
-1. **Using body density instead of fluid density in $F_B$:** Buoyancy always equals the weight of *displaced fluid*, $\rho_f g V_{\text{sub}}$.
-2. **Cubing the wrong dimension in $I_{\min}$:** For a barge of width $b$ and length $L$, rolling stability uses $Lb^3/12$, never $bL^3/12$.
-3. **Forgetting to halve the draft for $y_B$:** For a vertical-sided pontoon floating at draft $d$, the centre of buoyancy is at $y_B = d/2$ from the bottom—not $H/2$.
+<Callout variant="warning" title="Don't trip on these buoyancy checks">
+- **Always use $\rho_{\text{fluid}}$ in $F_B = \rho_f g V_{\text{sub}}$:** The concrete density ($2300\,\text{kg/m}^3$) determines $W$, while seawater density ($1025\,\text{kg/m}^3$) determines $F_B$.
+- **Rolling axis of a rectangular pontoon:** Always cube the **smaller** waterplane width $b$ in $I_{\min} = \frac{L b^3}{12}$, because a barge rolls sideways much more easily than it pitches end-over-end.
 </Callout>
 
-*Recommended textbook chapters: Çengel & Cimbala Ch. 3.6–3.7 · Munson et al. Ch. 2.11 · R. K. Bansal Ch. 4.*
+---
+
+## 5. Textbook Reference
+
+- **Prescribed Textbook:** Y. A. Çengel, R. H. Turner & J. M. Cimbala, *Fundamentals of Thermal-Fluid Sciences*, Chapter 11 (§11–4 Buoyancy and Stability, pp. 496–502).

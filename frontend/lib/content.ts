@@ -10,6 +10,7 @@ export interface TopicFrontmatter {
   courseCode: string;
   courseSlug: string;
   ccmasRef: string;
+  textbookRef?: string;
   outcomes: string[];
   status: ContentStatus;
   isFree: boolean;
@@ -87,6 +88,7 @@ export function getTopicDocument(courseSlug: string, topicSlug: string): TopicDo
       courseCode: data.courseCode ?? courseSlug.toUpperCase(),
       courseSlug: data.courseSlug ?? courseSlug,
       ccmasRef: data.ccmasRef ?? "",
+      textbookRef: data.textbookRef,
       outcomes: Array.isArray(data.outcomes) ? data.outcomes : [],
       status: data.status === "published" ? "published" : "draft",
       isFree: data.isFree ?? true,

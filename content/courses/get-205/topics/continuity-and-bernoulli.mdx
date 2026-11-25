@@ -5,82 +5,78 @@ topicId: "22222222-2222-4222-8222-222222250003"
 courseCode: "GET 205"
 courseSlug: "get-205"
 ccmasRef: "Control-volume continuity; Bernoulli's equation, Venturi meters & Pitot tubes"
+textbookRef: "Çengel · Ch. 12 (§12–1 to §12–3) & Ch. 14"
 outcomes:
-  - "Apply conservation of mass (continuity) to converging/diverging pipes and junctions"
-  - "Write and apply Bernoulli's equation in both pressure form and head form with valid assumptions"
-  - "Calculate flow rate through a horizontal or inclined Venturi meter and local speed from a Pitot-static tube"
-status: "draft"
+  - "Apply steady conservation of mass (Q = A₁V₁ = A₂V₂) across nozzles, reducers, and pipe branches"
+  - "Apply Bernoulli's mechanical energy equation in pressure, energy-per-mass, and head forms"
+  - "Calculate jet height, Torricelli tank efflux speed, Pitot-tube velocity, and Venturi discharge"
+status: "published"
 isFree: true
 ---
 
 ## 1. Overview
 
-Once a fluid starts moving through pipes, nozzles, or over an aircraft wing, **conservation of mass** (continuity) and **conservation of mechanical energy** (Bernoulli's equation) become your two primary workhorses. Together they explain why squeezing a garden hose speeds up the jet, how a Venturi meter measures campus water flow, and how a Pitot tube measures airspeed.
+In moving fluids, velocity and pressure trade places whenever flow area or elevation changes. **Çengel Chapter 12** pairs **conservation of mass** with the **Bernoulli equation**—giving us direct analytical formulas for high-speed hose jets, tank drainage (Torricelli's equation), siphons, Pitot-static velocity probes, and Venturi flow meters.
 
 ---
 
 ## 2. Key Concepts
 
-### Conservation of Mass (Continuity Equation)
+### Continuity for Steady Incompressible Flow
 
-For steady, incompressible flow ($\rho = \text{constant}$) along a streamtube or pipe with no leaks, the volumetric flow rate $Q$ ($\text{m}^3\text{/s}$) stays constant at every cross-section:
+When density $\rho$ is constant, volumetric flow rate $\dot{V} = Q$ ($\text{m}^3\text{/s}$) is conserved between inlet (1) and outlet (2):
 
-$$Q = A_1 V_1 = A_2 V_2$$
+$$Q = A_1 V_1 = A_2 V_2 \implies V_2 = V_1 \left(\frac{D_1}{D_2}\right)^2$$
 
-For circular pipes of diameters $D_1$ and $D_2$:
+### Bernoulli's Equation & Mechanical Energy Forms (Çengel §12–2)
 
-$$\frac{V_2}{V_1} = \frac{A_1}{A_2} = \left(\frac{D_1}{D_2}\right)^2$$
+Along a streamline in **steady, incompressible, frictionless (inviscid)** flow with zero shaft work:
 
-Halving the pipe diameter increases the average fluid velocity by a factor of **$4\times$**!
+$$\frac{P_1}{\rho} + \frac{V_1^2}{2} + g z_1 = \frac{P_2}{\rho} + \frac{V_2^2}{2} + g z_2 \qquad (\text{J/kg})$$
 
-### Bernoulli's Equation
+Dividing through by $g$ converts every term into **head** (metres of fluid):
 
-Along a streamline for **steady, incompressible, inviscid (frictionless)** flow with no shaft work or heat transfer:
+$$\frac{P_1}{\rho g} + \frac{V_1^2}{2g} + z_1 = \frac{P_2}{\rho g} + \frac{V_2^2}{2g} + z_2 \qquad (\text{m})$$
 
-$$P_1 + \frac{1}{2}\rho V_1^2 + \rho g z_1 = P_2 + \frac{1}{2}\rho V_2^2 + \rho g z_2$$
+<DiagramFigure
+  src="/images/textbook-figures/get-205/cengel-fig-12-12-bernoulli.webp"
+  caption="Çengel Fig. 12–12 — Bernoulli's equation expresses conservation of flow energy (P/ρ), kinetic energy (V²/2), and potential energy (gz) per unit mass along a streamline."
+/>
 
-Dividing every term by specific weight $\rho g$ gives the **head form** (every term in **metres**):
+### Static, Stagnation & Pitot-Tube Measurement (Çengel §12–2 & §12–3)
 
-$$\frac{P_1}{\rho g} + \frac{V_1^2}{2g} + z_1 = \frac{P_2}{\rho g} + \frac{V_2^2}{2g} + z_2$$
+Bringing a moving stream isentropically to rest ($V_2 = 0$) converts dynamic pressure $\frac{1}{2}\rho V_1^2$ into **stagnation pressure** $P_{\text{stag}} = P + \frac{1}{2}\rho V^2$:
 
-- $\frac{P}{\rho g}$ = **pressure head**
-- $\frac{V^2}{2g}$ = **velocity head**
-- $z$ = **elevation (potential) head**
+$$V = \sqrt{\frac{2(P_{\text{stag}} - P)}{\rho}} = \sqrt{2 g h_3}$$
 
-### Flow Measurement Devices
+where $h_3$ is the excess liquid column rise in the Pitot tube above the wall piezometer tube!
 
-1. **Pitot-Static Tube (Stagnation Velocity):** Fluid stops ($V_2 = 0$) at the stagnation nose while static pressure $P_1$ is tapped along the side wall:
-   $$V_1 = \sqrt{\frac{2(P_{\text{stag}} - P_{\text{static}})}{\rho}} = \sqrt{2 g \Delta h}$$
-
-2. **Horizontal Venturi Meter:** Combining continuity $V_1 = (A_2/A_1)V_2$ with Bernoulli between inlet (1) and throat (2) yields the ideal discharge:
-   $$Q_{\text{ideal}} = A_2 \sqrt{\frac{2(P_1 - P_2)}{\rho \left[1 - (A_2/A_1)^2\right]}}$$
-   Actual discharge multiplies $Q_{\text{ideal}}$ by the discharge coefficient $C_d$ (typically $0.95\text{–}0.99$).
-
-<Callout variant="tip" title="Always state Bernoulli's 4 assumptions in theory questions">
-OAU examiners award 2–4 marks just for listing them cleanly: **(1) Steady flow, (2) Incompressible fluid ($\rho = \text{const}$), (3) Inviscid / frictionless flow, (4) Applied along a single streamline.**
-</Callout>
+<DiagramFigure
+  src="/images/textbook-figures/get-205/cengel-fig-12-27-pitot-tube.webp"
+  caption="Çengel Fig. 12–27 (Schematic for Example 12–6) — Piezometer (static tap 1) and Pitot tube (stagnation tip 2) measuring centerline pipe velocity from excess column rise h₃ = 12 cm."
+/>
 
 ---
 
-## 3. Worked Examples
+## 3. Textbook Worked Examples
 
 <StepRevealExample
-  title="Example 1: Converging Pipe Pressure Drop"
-  problem="Water ($\rho = 1000\,\text{kg/m}^3$) flows steadily through a horizontal pipe that tapers from diameter $D_1 = 0.20\,\text{m}$ to $D_2 = 0.10\,\text{m}$. At section 1, $V_1 = 2.0\,\text{m/s}$ and $P_1 = 150\,\text{kPa}$. Neglecting friction, find (a) $V_2$ and (b) $P_2$ in $\text{kPa}$."
+  title="Çengel Example 12–3 — Spraying Water into the Air (Fig. 12–24)"
+  problem="Water ($\rho = 1000\,\text{kg/m}^3$) flows from a hose attached to a water main at $P_{1,\text{gage}} = 400\,\text{kPa}$. A child covers most of the hose outlet with his thumb so a thin vertical jet emerges into atmospheric air. Neglecting air drag and outlet losses, find the maximum height $z_2$ to which the water jet can rise."
   steps={[
-    "Step 1 — Continuity for circular pipe: $V_2 = V_1 \\left(\\frac{D_1}{D_2}\\right)^2 = 2.0 \\times \\left(\\frac{0.20}{0.10}\\right)^2 = 2.0 \\times 4 = 8.0\\,\\text{m/s}$.",
-    "Step 2 — Apply horizontal Bernoulli ($z_1 = z_2$): $P_2 = P_1 + \\frac{1}{2}\\rho(V_1^2 - V_2^2)$.",
-    "Step 3 — Substitute SI values ($P_1 = 150\\,000\\,\\text{Pa}$): $P_2 = 150\\,000 + 0.5(1000)(2^2 - 8^2) = 150\\,000 + 500(4 - 64) = 150\\,000 - 30\\,000 = 120\\,000\\,\\text{Pa} = 120\\,\\text{kPa}$."
+    "Choose point 1 inside the hose just upstream of the thumb ($P_{1,\\text{gage}} = 400\\,\\text{kPa}$, $V_1 \\approx 0$, $z_1 = 0$) and point 2 at the very top of the trajectory ($P_{2,\\text{gage}} = 0$, $V_2 = 0$).",
+    "Write Bernoulli's head equation between 1 and 2: $\\frac{P_{1,\\text{gage}}}{\\rho g} + 0 + 0 = 0 + 0 + z_2$.",
+    "Substitute SI values ($400\\,\\text{kPa} = 400\\,000\\,\\text{N/m}^2$): $z_2 = \\frac{400\\,000}{(1000)(9.81)} = 40.77\\,\\text{m} \\approx 40.8\\,\\text{m}$."
   ]}
 />
 
 <StepRevealExample
-  title="Example 2: Torricelli's Efflux Speed from a Large Tank"
-  problem="A large open storage tank holds water to a depth of $5.0\,\text{m}$ above a small sharp-edged nozzle in its side wall. Using $g = 9.81\,\text{m/s}^2$, find the ideal exit jet velocity $V_2$."
+  title="Çengel Example 12–6 — Velocity Measurement by a Pitot Tube (Fig. 12–27)"
+  problem="A piezometer and a Pitot tube are tapped into a horizontal water pipe as shown in Fig. 12–27. The centerline lies $h_1 = 3\,\text{cm}$ below the upper pipe wall, the piezometer rises $h_2 = 7\,\text{cm}$ above the pipe wall, and the Pitot tube rises an additional $h_3 = 12\,\text{cm}$ above the piezometer meniscus. Determine the centerline water velocity $V_1$."
   steps={[
-    "Step 1 — Pick point 1 at the free surface ($P_1 = P_{\\text{atm}}$, $V_1 \\approx 0$, $z_1 = 5.0\\,\\text{m}$) and point 2 at the free jet just outside the nozzle ($P_2 = P_{\\text{atm}}$, $z_2 = 0$).",
-    "Step 2 — Simplify Bernoulli: $g z_1 = \\frac{1}{2} V_2^2 \\implies V_2 = \\sqrt{2 g h}$.",
-    "Step 3 — Evaluate: $V_2 = \\sqrt{2 \\times 9.81 \\times 5.0} = \\sqrt{98.1} \\approx 9.90\\,\\text{m/s}$."
+    "Express static gauge pressure at point 1 and stagnation pressure at point 2 from hydrostatic columns: $P_1 = \\rho g(h_1 + h_2)$ and $P_2 = \\rho g(h_1 + h_2 + h_3)$.",
+    "Apply horizontal Bernoulli ($z_1 = z_2$, $V_2 = 0$ at stagnation point 2): $\\frac{V_1^2}{2g} = \\frac{P_2 - P_1}{\\rho g} = h_3$ (notice $h_1$ and $h_2$ cancel out completely!).",
+    "Substitute $h_3 = 12\\,\\text{cm} = 0.12\\,\\text{m}$ and $g = 9.81\\,\\text{m/s}^2$: $V_1 = \\sqrt{2 g h_3} = \\sqrt{2(9.81)(0.12)} = \\sqrt{2.3544} = 1.53\\,\\text{m/s}$."
   ]}
 />
 
@@ -88,9 +84,13 @@ OAU examiners award 2–4 marks just for listing them cleanly: **(1) Steady flow
 
 ## 4. Common Exam Pitfalls
 
-<Callout variant="warning" title="Don't lose easy marks here">
-- **Mixing $\text{kPa}$ and $\text{Pa}$:** The dynamic term $\frac{1}{2}\rho V^2$ produces **Pascals**, never kilopascals. Always convert $P_1$ to $\text{Pa}$ first, then divide by $1000$ at the end.
-- **Forgetting to square the diameter ratio:** $V_2/V_1 = (D_1/D_2)^2$, NOT $D_1/D_2$.
+<Callout variant="warning" title="Key Bernoulli checks in GET 205">
+- **Adding $h_1 + h_2 + h_3$ in a Pitot-piezometer problem:** Only the **differential height $h_3$** between the stagnation column and the static piezometer column represents the velocity head $\frac{V_1^2}{2g}$!
+- **Free jet pressure is atmospheric ($P_{\text{gage}} = 0$):** The instant water exits a nozzle or tank tap into open air, its pressure equals $P_{\text{atm}}$—never carry the internal tank gauge pressure outside the orifice.
 </Callout>
 
-*Recommended textbook chapters: Çengel & Cimbala Ch. 5 · Munson et al. Ch. 3 & Ch. 5 · R. K. Bansal Ch. 6.*
+---
+
+## 5. Textbook Reference
+
+- **Prescribed Textbook:** Y. A. Çengel, R. H. Turner & J. M. Cimbala, *Fundamentals of Thermal-Fluid Sciences*, Chapter 12 (§12–1 to §12–3, pp. 523–539) & Chapter 14 (§14–8 Flow Rate and Velocity Measurement).

@@ -5,78 +5,74 @@ topicId: "22222222-2222-4222-8222-222222290003"
 courseCode: "GET 209"
 courseSlug: "get-209"
 ccmasRef: "Partial & total derivatives; directional derivatives & gradients; matrices & determinants"
+textbookRef: "Stewart 7e · Ch. 14 (§14.3–14.6) & Bird · Ch. 60"
 outcomes:
-  - "Compute first-order partial derivatives and total differentials dz for multivariable engineering functions"
-  - "Evaluate the gradient vector ∇f and directional derivative D_u f along any specified direction"
-  - "Compute 2×2 and 3×3 determinants, matrix inverses, and solve linear systems using Cramer's rule"
-status: "draft"
+  - "Evaluate first-order partial derivatives fx, fy and total differentials dz on multivariable surfaces"
+  - "Compute the gradient vector ∇f and directional derivative Du f = ∇f · u along any vector v"
+  - "Evaluate non-commutative matrix products AB ≠ BA, 2×2/3×3 determinants, and singular matrices"
+status: "published"
 isFree: true
 ---
 
 ## 1. Overview
 
-Real physical quantities rarely depend on just one variable—temperature varies with $(x, y, z)$, and truss or circuit nodal equations involve 3+ coupled unknowns simultaneously. This guide pulls together **partial derivatives, gradients**, and **matrix determinants**—three high-yield sections of GET 209 exams.
+Multivariable calculus and matrix algebra power nearly every upper-level engineering model—from heat-conduction gradients in CHE/MEE to nodal circuit matrices in EEE/CPE. This guide combines **Stewart Chapter 14 (§14.3–14.6)** for partial derivatives, total differentials, and gradients with **Bird Chapter 60** for matrices and determinants.
 
 ---
 
 ## 2. Key Concepts
 
-### Partial Derivatives & Total Differential
+### Partial Derivatives & Geometric Surface Traces (Stewart §14.3–14.4)
 
 For $z = f(x, y)$:
-- $\dfrac{\partial f}{\partial x}$ differentiates with respect to $x$ while holding **$y$ constant**.
-- $\dfrac{\partial f}{\partial y}$ differentiates with respect to $y$ while holding **$x$ constant**.
+- Hold $y$ fixed and differentiate with respect to $x$ to get $f_x(a, b)$ — the tangent slope along trace $C_1$ (plane $y = b$).
+- Hold $x$ fixed and differentiate with respect to $y$ to get $f_y(a, b)$ — the tangent slope along trace $C_2$ (plane $x = a$).
+- **Total Differential:** $dz = f_x(x, y)\,dx + f_y(x, y)\,dy$.
 
-The **total differential** approximates small simultaneous changes $\Delta x, \Delta y$:
+<DiagramFigure
+  src="/images/textbook-figures/get-209/stewart-fig-14-3-1-partial-traces.webp"
+  caption="Stewart §14.3, Fig. 1 — Geometric interpretation: fx(a, b) and fy(a, b) are the slopes of tangent lines T₁ and T₂ to surface traces C₁ and C₂ through P(a, b, c)."
+/>
 
-$$dz = \frac{\partial f}{\partial x}\,dx + \frac{\partial f}{\partial y}\,dy$$
+### Gradient Vector & Directional Derivative (Stewart §14.6)
 
-### Gradient Vector & Directional Derivative
+The **gradient vector** $\nabla f(x, y) = \langle f_x, f_y \rangle = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j}$ points perpendicular to level curves in the direction of **maximum rate of increase** (with maximum slope $|\nabla f|$). Along any unit vector $\mathbf{u} = \frac{\mathbf{v}}{|\mathbf{v}|}$:
 
-The **gradient** of a scalar field $f(x, y, z)$ points in the direction of **steepest increase**:
+$$D_{\mathbf{u}} f(x, y) = \nabla f(x, y) \cdot \mathbf{u}$$
 
-$$\nabla f = \frac{\partial f}{\partial x}\hat{i} + \frac{\partial f}{\partial y}\hat{j} + \frac{\partial f}{\partial z}\hat{k}$$
+<DiagramFigure
+  src="/images/textbook-figures/get-209/stewart-fig-14-6-6-gradient-contour.webp"
+  caption="Stewart §14.6, Fig. 6 (Example 4) — Gradient vector ∇f(2, −1) = −4i + 8j orthogonal to the level curve at (2, −1), alongside direction vector v = 2i + 5j."
+/>
 
-The rate of change of $f$ in the direction of a vector $\vec{v}$ is the **directional derivative**—always normalize $\vec{v}$ into a **unit vector** $\hat{u} = \frac{\vec{v}}{|\vec{v}|}$ first:
+### Matrices & Determinants (Bird Ch. 60)
 
-$$D_{\hat{u}} f = \nabla f \cdot \hat{u}$$
-
-The maximum possible rate of change at any point is simply $|\nabla f|$.
-
-### Matrices, Determinants & Cramer's Rule
-
-For a $2 \times 2$ matrix $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$:
-
-$$\det(A) = ad - bc, \qquad A^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix} \quad (\det A \neq 0)$$
-
-A square matrix is **singular** (no inverse) if and only if $\det(A) = 0$. For a $3 \times 3$ matrix, expand along the row or column with the most zeros using the checkerboard sign pattern $(+, -, +)$.
-
-<Callout variant="tip" title="Unit vector check for directional derivatives">
-If an exam asks for the directional derivative in the direction of $\vec{v} = 3\hat{i} + 4\hat{j}$, DO NOT dot $\nabla f$ with $(3, 4)$ directly! Divide by $|\vec{v}| = \sqrt{3^2 + 4^2} = 5$ first so $\hat{u} = \frac{3}{5}\hat{i} + \frac{4}{5}\hat{j}$.
-</Callout>
+- Matrix multiplication is **non-commutative** ($AB \neq BA$ in general).
+- For $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$, $\det(A) = ad - bc$ and $A^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$ provided $\det(A) \neq 0$.
 
 ---
 
-## 3. Worked Examples
+## 3. Textbook Worked Examples
 
 <StepRevealExample
-  title="Example 1: Gradient & Directional Derivative of a Temperature Field"
-  problem="A heated metal plate has temperature $T(x, y) = x^2 y + 3y^2$. Find (a) $\nabla T$ at $(2, 1)$, and (b) the directional derivative $D_{\hat{u}} T$ at $(2, 1)$ in the direction of $\vec{v} = 3\hat{i} + 4\hat{j}$."
+  title="Stewart §14.3 Example 1 — Evaluating fx(2, 1) and fy(2, 1)"
+  problem="If $f(x, y) = x^3 + x^2 y^3 - 2y^2$, find $f_x(2, 1)$ and $f_y(2, 1)$."
   steps={[
-    "Step 1 — Compute partial derivatives: $\\frac{\\partial T}{\\partial x} = 2xy$ and $\\frac{\\partial T}{\\partial y} = x^2 + 6y$.",
-    "Step 2 — Evaluate $\\nabla T$ at $(2, 1)$: $\\nabla T(2, 1) = 2(2)(1)\\hat{i} + (2^2 + 6(1))\\hat{j} = 4\\hat{i} + 10\\hat{j}$.",
-    "Step 3 — Normalize $\\vec{v}$: $|\\vec{v}| = \\sqrt{3^2 + 4^2} = 5 \\implies \\hat{u} = \\frac{3}{5}\\hat{i} + \\frac{4}{5}\\hat{j}$.",
-    "Step 4 — Take dot product: $D_{\\hat{u}} T = 4\\left(\\frac{3}{5}\\right) + 10\\left(\\frac{4}{5}\\right) = \\frac{12 + 40}{5} = \\frac{52}{5} = 10.4$."
+    "Hold $y$ constant and differentiate with respect to $x$: $f_x(x, y) = 3x^2 + 2x y^3$.",
+    "Substitute $(2, 1)$: $f_x(2, 1) = 3(2)^2 + 2(2)(1)^3 = 12 + 4 = 16$.",
+    "Hold $x$ constant and differentiate with respect to $y$: $f_y(x, y) = 3x^2 y^2 - 4y$.",
+    "Substitute $(2, 1)$: $f_y(2, 1) = 3(2)^2(1)^2 - 4(1) = 12 - 4 = 8$."
   ]}
 />
 
 <StepRevealExample
-  title="Example 2: Determinant & Singularity Condition"
-  problem="Find the value of $k$ for which the matrix $M = \begin{pmatrix} k & 3 \\ 4 & 6 \end{pmatrix}$ is singular (non-invertible)."
+  title="Stewart §14.6 Example 4 — Directional Derivative Along v = 2i + 5j (Fig. 6)"
+  problem="Find the directional derivative of $f(x, y) = x^2 y^3 - 4y$ at the point $(2, -1)$ in the direction of the vector $\mathbf{v} = 2\mathbf{i} + 5\mathbf{j}$."
   steps={[
-    "Step 1 — A matrix is singular when $\\det(M) = 0$.",
-    "Step 2 — Expand: $6k - (3)(4) = 0 \\implies 6k - 12 = 0$.",
-    "Step 3 — Solve: $k = 2$."
+    "Compute the gradient vector $\\nabla f(x, y) = 2x y^3\\,\\mathbf{i} + (3x^2 y^2 - 4)\\,\\mathbf{j}$.",
+    "Evaluate at $(2, -1)$: $\\nabla f(2, -1) = 2(2)(-1)^3\\,\\mathbf{i} + \\bigl(3(4)(1) - 4\\bigr)\\,\\mathbf{j} = -4\\mathbf{i} + 8\\mathbf{j}$.",
+    "Normalize $\\mathbf{v}$ into a unit vector: $|\\mathbf{v}| = \\sqrt{2^2 + 5^2} = \\sqrt{29} \\implies \\mathbf{u} = \\frac{2}{\\sqrt{29}}\\mathbf{i} + \\frac{5}{\\sqrt{29}}\\mathbf{j}$.",
+    "Take the dot product: $D_{\\mathbf{u}} f(2, -1) = (-4)\\!\\left(\\frac{2}{\\sqrt{29}}\\right) + 8\\!\\left(\\frac{5}{\\sqrt{29}}\\right) = \\frac{-8 + 40}{\\sqrt{29}} = \\frac{32}{\\sqrt{29}} \\approx 5.94$."
   ]}
 />
 
@@ -84,9 +80,12 @@ If an exam asks for the directional derivative in the direction of $\vec{v} = 3\
 
 ## 4. Common Exam Pitfalls
 
-<Callout variant="warning" title="Quick checks before submitting">
-- **Directional derivative ≠ vector:** $D_{\hat{u}} f = \nabla f \cdot \hat{u}$ is always a **scalar**, whereas $\nabla f$ is a **vector**.
-- **Forgetting the minus sign in cofactor expansion:** For $3 \times 3$ determinants, the middle term in row 1 is **subtracted**: $a_{11}C_{11} - a_{12}M_{12} + a_{13}C_{13}$.
+<Callout variant="warning" title="Always normalize v before taking the dot product!">
+In Stewart §14.6 Example 4, dotting $\nabla f(2, -1) = \langle -4, 8 \rangle$ directly with $\mathbf{v} = \langle 2, 5 \rangle$ gives $32$, which is off by a factor of $\sqrt{29}$! Always divide by $|\mathbf{v}|$ first.
 </Callout>
 
-*Recommended textbook chapters: James Stewart 7e Ch. 14 · Schaum's Linear Algebra Ch. 2 & 8 · Schaum's Vector Analysis Ch. 4.*
+---
+
+## 5. Textbook Reference
+
+- **Prescribed Textbook:** James Stewart, *Calculus: Early Transcendentals* (7th Ed.), Chapter 14 (§14.3–14.6, pp. 902–943); John Bird, *Engineering Mathematics*, Chapter 60 (Matrices and Determinants).

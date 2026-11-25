@@ -56,6 +56,14 @@ export default function LibraryPage() {
   const [downloadingId, setDownloadingId] = useState<string | null>(null);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const initialCourse = params.get("course");
+    if (initialCourse) {
+      setCourse(initialCourse);
+    }
+  }, []);
+
+  useEffect(() => {
     if (authLoading) return;
     if (!user) {
       router.replace("/login");

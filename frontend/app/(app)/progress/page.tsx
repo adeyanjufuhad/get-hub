@@ -39,13 +39,15 @@ export default function ProgressPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Your Study Progress</h1>
-          <p className="mt-1 text-sm text-[var(--text-secondary)]">
+          <h1 className="text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
+            Your Study Progress
+          </h1>
+          <p className="mt-1 text-sm text-[var(--text-secondary)] text-pretty">
             Accuracy per topic and weak areas ranked from lowest to highest.
           </p>
         </div>
         <Badge variant="accent" className="tabular px-3.5 py-2 text-xs">
-          <Flame className="h-4 w-4" />
+          <Flame className="h-4 w-4" aria-hidden="true" />
           {data.streak_days}-day streak
         </Badge>
       </div>

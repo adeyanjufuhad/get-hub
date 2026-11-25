@@ -94,10 +94,10 @@ export default function DashboardPage() {
               {data.streak_days} {data.streak_days === 1 ? "day" : "days"} streak
             </span>
           </div>
-          <h1 className="mt-2.5 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] sm:text-3xl">
+          <h1 className="mt-2.5 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] text-balance sm:text-3xl">
             Welcome back, {firstName}.
           </h1>
-          <p className="mt-0.5 text-xs text-[var(--text-secondary)] sm:text-sm">
+          <p className="mt-0.5 text-xs text-[var(--text-secondary)] text-pretty sm:text-sm">
             Pick up your lined coursebook folio, drill textbook schematics, or run a timed CBT mock.
           </p>
         </div>
@@ -142,6 +142,9 @@ export default function DashboardPage() {
             src={heroBanner}
             alt=""
             aria-hidden="true"
+            width={800}
+            height={450}
+            decoding="async"
             className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-22 mix-blend-luminosity"
           />
           <div
@@ -154,7 +157,10 @@ export default function DashboardPage() {
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#EA580C] px-3 py-1 font-mono text-[11px] font-bold text-white">
                 {data.continue_topic ? "RESUME LINED FOLIO" : "START FIRST FOLIO"}
               </span>
-              <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 font-mono text-[11px] font-medium text-neutral-200">
+              <span
+                translate="no"
+                className="rounded-full border border-white/15 bg-white/10 px-3 py-1 font-mono text-[11px] font-medium text-neutral-200"
+              >
                 {data.continue_topic ? data.continue_topic.course_code : "GET 205 · Çengel Ch. 2 & 11"}
               </span>
             </div>
@@ -312,6 +318,8 @@ export default function DashboardPage() {
                     <img
                       src={bannerSrc}
                       alt={`${course.code} ${course.title}`}
+                      width={640}
+                      height={360}
                       loading="lazy"
                       decoding="async"
                       className="h-full w-full object-cover"
@@ -321,7 +329,10 @@ export default function DashboardPage() {
                       className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
                     />
                     <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between gap-2">
-                      <span className="rounded-full bg-[#EA580C] px-2.5 py-0.5 font-mono text-[11px] font-bold text-white shadow-sm">
+                      <span
+                        translate="no"
+                        className="rounded-full bg-[#EA580C] px-2.5 py-0.5 font-mono text-[11px] font-bold text-white shadow-sm"
+                      >
                         {course.code}
                       </span>
                       <span className="tabular rounded-full bg-black/65 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-white backdrop-blur-xs">

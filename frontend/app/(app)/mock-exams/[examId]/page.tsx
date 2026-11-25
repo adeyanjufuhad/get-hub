@@ -122,6 +122,23 @@ export default function MockExamRunnerPage() {
     }
   }, [exam, submitting, reviews, questions, answers]);
 
+  const handleManualSubmit = useCallback(() => {
+    const answeredSoFar = questions.filter((q) => {
+      const a = answers[q.id];
+      return Boolean(a?.selectedOptionId || (a?.numericText && a.numericText.trim() !== ""));
+    }).length;
+    const unanswered = questions.length - answeredSoFar;
+    if (
+      unanswered > 0 &&
+      !window.confirm(
+        `You still have ${unanswered} unanswered ${unanswered === 1 ? "question" : "questions"}. Submit and grade your exam now?`
+      )
+    ) {
+      return;
+    }
+    void handleSubmit();
+  }, [questions, answers, handleSubmit]);
+
   // Countdown timer
   useEffect(() => {
     if (loading || reviews || !exam) return;
@@ -381,7 +398,7 @@ export default function MockExamRunnerPage() {
               </Drawer.Trigger>
               <Drawer.Portal>
                 <Drawer.Overlay className="fixed inset-0 z-40 bg-black/40" />
-                <Drawer.Content className="safe-bottom fixed inset-x-0 bottom-0 z-50 max-h-[82dvh] overflow-y-auto rounded-t-[24px] border-t border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5">
+                <Drawer.Content className="safe-bottom fixed inset-x-0 bottom-0 z-50 max-h-[82dvh] overflow-y-auto overscroll-contain rounded-t-[24px] border-t border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5">
                   <div className="mx-auto mb-4 h-1.5 w-10 rounded-full bg-[var(--border-strong)]" />
                   <Drawer.Title className="text-sm font-bold text-[var(--text-primary)]">
                     Question Navigator ({answeredCount}/{questions.length} answered)
@@ -393,11 +410,11 @@ export default function MockExamRunnerPage() {
                     disabled={submitting}
                     onClick={() => {
                       setDrawerOpen(false);
-                      void handleSubmit();
+                      handleManualSubmit();
                     }}
                     className="mt-5 w-full"
                   >
-                    <Send className="h-4 w-4" />
+                    <Send className="h-4 w-4" aria-hidden="true" />
                     {submitting ? "Grading…" : "Submit & grade exam"}
                   </Button>
                 </Drawer.Content>
@@ -437,7 +454,10 @@ export default function MockExamRunnerPage() {
               <img
                 src={current.prompt_image_url}
                 alt="Question diagram"
-                className="mx-auto max-h-56 w-full object-contain"
+                width={560}
+                height={340}
+                decoding="async"
+                className="mx-auto max-h-56 w-auto max-w-full object-contain"
               />
             </div>
           )}
@@ -490,7 +510,10 @@ export default function MockExamRunnerPage() {
                       <img
                         src={opt.image_url}
                         alt={`Option ${opt.label}`}
-                        className="w-full rounded-xl border border-[var(--border-hairline)] bg-white p-1"
+                        width={360}
+                        height={220}
+                        decoding="async"
+                        className="h-auto w-full rounded-xl border border-[var(--border-hairline)] bg-white p-1"
                       />
                     )}
                   </button>
@@ -500,25 +523,34 @@ export default function MockExamRunnerPage() {
           )}
 
           {current.question_type === "numeric" && (
-            <div className="mt-5 flex items-center gap-2">
-              <input
-                type="text"
-                inputMode="decimal"
-                value={curAnswer.numericText ?? ""}
-                onChange={(e) =>
-                  setAnswers((prev) => ({
-                    ...prev,
-                    [current.id]: { numericText: e.target.value },
-                  }))
-                }
-                placeholder="Enter numeric value"
-                className="tabular min-h-[48px] min-w-0 flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 font-mono text-base text-[var(--text-primary)] outline-none focus:border-[var(--accent)] sm:px-4"
-              />
-              {current.numeric_unit && (
-                <span className="shrink-0 rounded-xl bg-[var(--bg-subtle)] px-3 py-3 font-mono text-xs font-semibold text-[var(--text-secondary)] sm:px-3.5 sm:text-sm">
-                  {current.numeric_unit}
-                </span>
-              )}
+            <div className="mt-5">
+              <label htmlFor="exam-numeric-answer" className="block text-xs font-semibold text-[var(--text-secondary)]">
+                Enter your calculated numeric value
+              </label>
+              <div className="mt-2 flex items-center gap-2">
+                <input
+                  id="exam-numeric-answer"
+                  name="numeric_answer"
+                  type="text"
+                  inputMode="decimal"
+                  autoComplete="off"
+                  spellCheck={false}
+                  value={curAnswer.numericText ?? ""}
+                  onChange={(e) =>
+                    setAnswers((prev) => ({
+                      ...prev,
+                      [current.id]: { numericText: e.target.value },
+                    }))
+                  }
+                  placeholder="e.g. 42.5…"
+                  className="tabular min-h-[48px] min-w-0 flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 font-mono text-base text-[var(--text-primary)] sm:px-4"
+                />
+                {current.numeric_unit && (
+                  <span className="shrink-0 rounded-xl bg-[var(--bg-subtle)] px-3 py-3 font-mono text-xs font-semibold text-[var(--text-secondary)] sm:px-3.5 sm:text-sm">
+                    {current.numeric_unit}
+                  </span>
+                )}
+              </div>
             </div>
           )}
 
@@ -530,7 +562,7 @@ export default function MockExamRunnerPage() {
               disabled={index === 0}
               onClick={() => setIndex((i) => Math.max(0, i - 1))}
             >
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               Prev
             </Button>
 
@@ -542,17 +574,17 @@ export default function MockExamRunnerPage() {
                 className="flex-1 sm:flex-initial"
               >
                 Next
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
             ) : (
               <Button
                 type="button"
                 variant="accent"
                 disabled={submitting}
-                onClick={handleSubmit}
+                onClick={handleManualSubmit}
                 className="flex-1 sm:flex-initial"
               >
-                <Send className="h-4 w-4" />
+                <Send className="h-4 w-4" aria-hidden="true" />
                 {submitting ? "Grading…" : "Submit exam"}
               </Button>
             )}
@@ -572,10 +604,10 @@ export default function MockExamRunnerPage() {
             type="button"
             variant="accent"
             disabled={submitting}
-            onClick={handleSubmit}
+            onClick={handleManualSubmit}
             className="mt-5 w-full"
           >
-            <Send className="h-4 w-4" />
+            <Send className="h-4 w-4" aria-hidden="true" />
             {submitting ? "Grading…" : "Submit & grade exam"}
           </Button>
         </div>

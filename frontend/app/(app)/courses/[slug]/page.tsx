@@ -110,6 +110,9 @@ export default function CourseDetailPage() {
           src={banner}
           alt=""
           aria-hidden="true"
+          width={640}
+          height={360}
+          decoding="async"
           className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-1/2 object-cover opacity-15 sm:block"
         />
         <div
@@ -120,14 +123,16 @@ export default function CourseDetailPage() {
         <div className="relative z-10">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="accent" className="font-mono">
-              {course.code}
+              <span translate="no">{course.code}</span>
             </Badge>
             <Badge variant="neutral" className="tabular">
               {completedCount}/{topics.length} study folios completed
             </Badge>
           </div>
-          <h1 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">{course.title}</h1>
-          <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-[var(--text-secondary)]">
+          <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
+            {course.title}
+          </h1>
+          <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
             {course.description}
           </p>
 
@@ -135,17 +140,17 @@ export default function CourseDetailPage() {
             {topics[0] && (
               <Link
                 href={`/courses/${course.slug}/${topics[0].slug}`}
-                className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-[#EA580C] px-5 text-sm font-semibold text-white"
+                className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-[#EA580C] px-5 text-sm font-semibold text-white hover:bg-[#C2410C]"
               >
-                <BookOpen className="h-4 w-4" />
+                <BookOpen className="h-4 w-4" aria-hidden="true" />
                 Open Folio 01
               </Link>
             )}
             <Link
               href={`/courses/${course.slug}/mock-exam`}
-              className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-5 text-sm font-semibold text-[var(--ink-cta-text)]"
+              className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-5 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
             >
-              <Timer className="h-4 w-4" />
+              <Timer className="h-4 w-4" aria-hidden="true" />
               Start timed mock exam
             </Link>
           </div>
@@ -247,7 +252,11 @@ export default function CourseDetailPage() {
                 <img
                   src={matchedBook.coverImage}
                   alt={matchedBook.title}
-                  className="aspect-[3/4] w-16 shrink-0 rounded-lg border border-[var(--border-hairline)] object-cover shadow-sm"
+                  width={128}
+                  height={170}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[3/4] w-16 shrink-0 rounded-lg border border-[var(--border-hairline)] object-cover"
                 />
                 <div className="min-w-0">
                   <h3 className="text-sm font-extrabold leading-snug text-[var(--text-primary)]">

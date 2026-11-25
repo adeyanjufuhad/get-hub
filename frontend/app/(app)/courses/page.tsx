@@ -46,10 +46,10 @@ export default function CoursesIndexPage() {
           <Badge variant="accent" className="font-mono">
             OAU 200L First Semester · 9 Lined Study Folios
           </Badge>
-          <h1 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
             Course Notes &amp; Study Folios
           </h1>
-          <p className="mt-1 max-w-2xl text-sm text-[var(--text-secondary)]">
+          <p className="mt-1 max-w-2xl text-sm text-[var(--text-secondary)] text-pretty">
             Every course is paired with the exact textbook matching its CCMAS syllabus, lined notebook study pages, real cropped textbook figures, and 72 step-by-step practice questions.
           </p>
         </div>
@@ -99,6 +99,8 @@ export default function CoursesIndexPage() {
                     <img
                       src={banner}
                       alt={`${course.code} ${course.title}`}
+                      width={640}
+                      height={360}
                       loading="lazy"
                       decoding="async"
                       className="h-full w-full object-cover"
@@ -108,7 +110,10 @@ export default function CoursesIndexPage() {
                       className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"
                     />
                     <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between gap-2">
-                      <span className="rounded-full bg-[#EA580C] px-2.5 py-0.5 font-mono text-[11px] font-bold text-white shadow-sm">
+                      <span
+                        translate="no"
+                        className="rounded-full bg-[#EA580C] px-2.5 py-0.5 font-mono text-[11px] font-bold text-white shadow-sm"
+                      >
                         {course.code}
                       </span>
                       <span className="tabular rounded-full bg-black/65 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-white backdrop-blur-xs">
@@ -131,7 +136,11 @@ export default function CoursesIndexPage() {
                         <img
                           src={matchedBook.coverImage}
                           alt={matchedBook.title}
-                          className="h-11 w-8 shrink-0 rounded object-cover shadow-xs"
+                          width={64}
+                          height={88}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-11 w-8 shrink-0 rounded object-cover"
                         />
                         <div className="min-w-0">
                           <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">

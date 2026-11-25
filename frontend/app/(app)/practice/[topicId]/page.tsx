@@ -312,7 +312,7 @@ export default function PracticeTopicPage() {
         </div>
 
         {current.prompt_image_url && (
-          <figure className="mt-5 overflow-hidden rounded-2xl border border-[var(--border-strong)] bg-white p-3.5 shadow-xs">
+          <figure className="mt-5 overflow-hidden rounded-2xl border border-[var(--border-strong)] bg-white p-3.5">
             <span className="mb-2 block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
               ▸ Textbook Schematic
             </span>
@@ -320,6 +320,9 @@ export default function PracticeTopicPage() {
             <img
               src={current.prompt_image_url}
               alt="Textbook problem schematic"
+              width={560}
+              height={340}
+              decoding="async"
               className="mx-auto max-h-72 w-auto max-w-full object-contain"
             />
           </figure>
@@ -378,7 +381,10 @@ export default function PracticeTopicPage() {
                     <img
                       src={opt.image_url}
                       alt={`Option ${opt.label} diagram`}
-                      className="w-full rounded-xl border border-[var(--border-hairline)] bg-white p-1"
+                      width={360}
+                      height={220}
+                      decoding="async"
+                      className="h-auto w-full rounded-xl border border-[var(--border-hairline)] bg-white p-1"
                     />
                   )}
                 </button>
@@ -397,13 +403,16 @@ export default function PracticeTopicPage() {
             <div className="mt-2 flex items-center gap-2">
               <input
                 id="numeric-answer"
+                name="numeric_answer"
                 type="text"
                 inputMode="decimal"
+                autoComplete="off"
+                spellCheck={false}
                 disabled={Boolean(feedback)}
                 value={curState.numericText}
                 onChange={(e) => updateCurrentState({ numericText: e.target.value })}
-                placeholder="e.g. 101.24"
-                className="tabular min-h-[48px] min-w-0 flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 font-mono text-base text-[var(--text-primary)] outline-none focus:border-[var(--accent)] sm:px-4"
+                placeholder="e.g. 101.24…"
+                className="tabular min-h-[48px] min-w-0 flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 font-mono text-base text-[var(--text-primary)] sm:px-4"
               />
               {current.numeric_unit && (
                 <span className="shrink-0 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-3 py-3 font-mono text-xs font-semibold text-[var(--text-secondary)] sm:px-3.5 sm:text-sm">
@@ -424,7 +433,7 @@ export default function PracticeTopicPage() {
               disabled={index === 0}
               onClick={() => jumpTo(Math.max(0, index - 1))}
             >
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               Prev
             </Button>
             <Button type="submit" variant="ink" size="lg" disabled={submitting} className="flex-1 sm:flex-initial">
@@ -437,6 +446,7 @@ export default function PracticeTopicPage() {
       {/* Instant Server Feedback + Step-by-Step Textbook Solution */}
       {feedback && (
         <section
+          aria-live="polite"
           className={cn(
             "rounded-[22px] border p-4 sm:rounded-[24px] sm:p-6",
             feedback.is_correct

@@ -96,11 +96,11 @@ export default function TestsHubPage() {
           <Badge variant="accent" className="font-mono">
             72 Verified Questions · Çengel · Hibbeler 14e · Stewart 7e
           </Badge>
-          <h1 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+          <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
             Tests, Textbook Drills &amp; Mock Exams
           </h1>
-          <p className="mt-1 max-w-2xl text-sm text-[var(--text-secondary)]">
-            Organized into two clear study modes: <strong>untimed step-by-step topic drills</strong> (instant solution reveal) and <strong>timed CBT mock exams</strong> (strictly graded on the server).
+          <p className="mt-1 max-w-2xl text-sm text-[var(--text-secondary)] text-pretty">
+            Organized into two clear study modes: <strong>untimed step-by-step topic drills</strong> (instant solution reveal) and <strong>timed CBT mock exams</strong> (graded on the Go server).
           </p>
         </div>
 
@@ -385,15 +385,17 @@ export default function TestsHubPage() {
                       <img
                         src={drill.figureImage}
                         alt={drill.title}
+                        width={400}
+                        height={240}
                         loading="lazy"
                         decoding="async"
-                        className="max-h-full max-w-full object-contain"
+                        className="max-h-full w-auto max-w-full object-contain"
                       />
                     </div>
                   )}
                   <div className="flex items-center justify-between gap-1.5">
                     <Badge variant="accent" className="font-mono">
-                      {drill.courseCode}
+                      <span translate="no">{drill.courseCode}</span>
                     </Badge>
                     <span className="truncate font-mono text-[10px] font-semibold text-[var(--text-muted)]">
                       {drill.textbookRef}

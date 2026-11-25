@@ -4,19 +4,21 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ==========================================================================
-   GET Hub Design Tokens (Light-First Warm Alabaster + Engineering Tangerine)
-   Crafted with emilkowalski/skills (emil-design-eng + mobile-native)
+   GET Hub Design Tokens (DESIGN.md v2.0 — Warm Cream + Obsidian Ink + Tangerine)
+   VoltAgent/awesome-design-md + tasteskill 2.5 + Vercel Web Interface Guidelines
    ========================================================================== */
 :root {
-  --bg-canvas: #F8F8F6;
+  color-scheme: light;
+
+  --bg-canvas: #FAF9F5;
   --bg-surface: #FFFFFF;
-  --bg-subtle: #F2F1EC;
-  --border-hairline: #E6E4DD;
-  --border-strong: #D4D1C7;
+  --bg-subtle: #F3F1EA;
+  --border-hairline: #E6E2D8;
+  --border-strong: #D4CFC3;
 
   --text-primary: #141413;
-  --text-secondary: #4B5563;
-  --text-muted: #6B7280;
+  --text-secondary: #3D3D3A;
+  --text-muted: #686660;
 
   --accent: #EA580C;
   --accent-hover: #C2410C;
@@ -24,7 +26,7 @@
   --accent-border: #FDBA74;
 
   --ink-cta: #141413;
-  --ink-cta-text: #FFFFFF;
+  --ink-cta-text: #FAF9F5;
 
   --success: #15803D;
   --success-soft: #ECFDF3;
@@ -33,13 +35,15 @@
   --warning: #B45309;
   --warning-soft: #FFFBEB;
 
-  /* Emil Kowalski custom motion curves */
+  /* Custom motion curves */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .dark {
+  color-scheme: dark;
+
   --bg-canvas: #0F1012;
   --bg-surface: #181A1E;
   --bg-subtle: #22252B;
@@ -47,8 +51,8 @@
   --border-strong: #3B404C;
 
   --text-primary: #F5F5F4;
-  --text-secondary: #A1A7B3;
-  --text-muted: #7C8290;
+  --text-secondary: #A9AFBC;
+  --text-muted: #858B99;
 
   --accent: #FB923C;
   --accent-hover: #F97316;
@@ -71,13 +75,20 @@
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Mobile-native baseline (emilkowalski/skills/mobile-native) */
+/* Mobile-native & Vercel Web Interface Guidelines baseline */
 html {
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
   background-color: var(--bg-canvas);
   color: var(--text-primary);
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+@media (pointer: fine) {
+  html {
+    overscroll-behavior-y: none;
+  }
 }
 
 body {
@@ -89,11 +100,57 @@ body {
   overflow-x: hidden;
 }
 
-/* Prevent iOS Safari input focus zoom without disabling user zoom */
+/* Keyboard Skip-to-Content Link (Vercel Guidelines + tasteskill system.md [skip-link]) */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.625rem 1rem;
+  border-radius: 9999px;
+  background-color: var(--ink-cta);
+  color: var(--ink-cta-text);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-220%);
+  transition: transform 150ms var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Prevent iOS Safari input focus zoom & ensure Windows dark-mode <select> legibility */
 input,
 textarea,
 select {
   font-size: 16px;
+}
+
+select,
+option {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+}
+
+/* Strict :focus-visible rings (Vercel Guidelines: never outline-none without visible replacement) */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 /* Eliminate 300ms tap delay on mobile touch screens */
@@ -544,7 +601,7 @@ button,
   }
 }
 
-/* Reduced motion: keep gentle opacity transitions, strip spatial movement */
+/* Reduced motion: halt decorative loops and strip spatial movement */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -552,6 +609,10 @@ button,
   .pressable:active,
   .hover-lift:hover {
     transform: none !important;
+  }
+  .rb-logo-loop-track,
+  .rb-shiny-text {
+    animation: none !important;
   }
   *,
   *::before,

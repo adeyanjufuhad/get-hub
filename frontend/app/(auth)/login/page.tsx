@@ -52,8 +52,12 @@ function LoginForm() {
       </p>
 
       {oauthError && (
-        <div className="mt-4 rounded-xl bg-[var(--danger-soft)] px-3.5 py-2.5 text-xs font-medium text-[var(--danger)]">
-          {oauthError} You can also use email &amp; password.
+        <div
+          role="alert"
+          aria-live="polite"
+          className="mt-4 rounded-xl bg-[var(--danger-soft)] px-3.5 py-2.5 text-xs font-medium text-[var(--danger)]"
+        >
+          {oauthError} Sign in with your email and password below instead.
         </div>
       )}
 
@@ -66,14 +70,16 @@ function LoginForm() {
           </label>
           <input
             id="email"
+            name="email"
             type="email"
             required
             autoComplete="email"
             autoCapitalize="none"
+            spellCheck={false}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
+            placeholder="tunde@student.oauife.edu.ng…"
+            className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
           />
         </div>
 
@@ -83,26 +89,27 @@ function LoginForm() {
           </label>
           <PasswordInput
             id="password"
+            name="password"
             wrapperClassName="mt-1.5"
             required
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-            className="min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
+            placeholder="Enter your password…"
+            className="min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
           />
         </div>
 
         <Button type="submit" variant="ink" size="lg" disabled={submitting} className="w-full">
           {submitting ? "Signing in…" : "Log in"}
-          {!submitting && <ArrowRight className="h-4 w-4" />}
+          {!submitting && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
         </Button>
       </form>
 
       <p className="mt-5 text-center text-sm text-[var(--text-secondary)]">
-        New to {APP_NAME}?{" "}
-        <Link href="/signup" className="font-semibold text-[var(--accent)]">
-          Create a free account
+        New to <span translate="no">{APP_NAME}</span>?{" "}
+        <Link href="/signup" className="font-semibold text-[var(--accent)] hover:underline">
+          Create a student account
         </Link>
       </p>
     </div>
@@ -112,15 +119,20 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <div className="flex min-h-dvh flex-col justify-center bg-[var(--bg-canvas)] px-4 py-6 sm:px-6 sm:py-10">
-      <div className="mx-auto w-full max-w-md">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-md outline-none">
         <Link href="/" className="mb-5 inline-flex items-center gap-2.5 sm:mb-6">
           <BrandLogo size="md" />
-          <span className="text-base font-extrabold tracking-tight">{APP_NAME}</span>
+          <span translate="no" className="text-base font-extrabold tracking-tight">
+            {APP_NAME}
+          </span>
         </Link>
         <Suspense fallback={<div className="h-96 rounded-[24px] bg-[var(--bg-surface)]" />}>
           <LoginForm />
         </Suspense>
-      </div>
+      </main>
     </div>
   );
 }

@@ -107,6 +107,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-dvh overflow-x-clip bg-[var(--bg-canvas)] text-[var(--text-primary)]">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
       {/* Desktop slim left icon rail (md+, expands smoothly on hover/focus) */}
       <aside
         onPointerEnter={handleSidebarPointerEnter}
@@ -143,10 +147,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   : "pointer-events-none -translate-x-1 opacity-0"
               )}
             >
-              <span className="truncate text-sm font-extrabold tracking-tight text-[var(--text-primary)]">
+              <span
+                translate="no"
+                className="truncate text-sm font-extrabold tracking-tight text-[var(--text-primary)]"
+              >
                 {APP_NAME}
               </span>
-              <span className="truncate font-mono text-[10px] font-medium text-[var(--text-muted)]">
+              <span
+                translate="no"
+                className="truncate font-mono text-[10px] font-medium text-[var(--text-muted)]"
+              >
                 OAU 200L
               </span>
             </div>
@@ -170,7 +180,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   )}
                 >
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center">
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <span
                     className={cn(
@@ -199,7 +209,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               className="pressable flex h-11 w-full items-center overflow-hidden rounded-full border border-[var(--border-hairline)] text-[var(--text-muted)] hover:border-[var(--danger)]/30 hover:bg-[var(--danger-soft)] hover:text-[var(--danger)] cursor-pointer"
             >
               <span className="flex h-[42px] w-[42px] shrink-0 items-center justify-center">
-                <LogOut className="h-4 w-4" />
+                <LogOut className="h-4 w-4" aria-hidden="true" />
               </span>
               <span
                 className={cn(
@@ -226,11 +236,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               className="flex min-h-[44px] min-w-0 items-center gap-2 md:hidden"
             >
               <BrandLogo size="sm" />
-              <span className="truncate text-sm font-extrabold tracking-tight">{APP_NAME}</span>
+              <span translate="no" className="truncate text-sm font-extrabold tracking-tight">
+                {APP_NAME}
+              </span>
             </Link>
 
             <div className="hidden text-xs font-medium text-[var(--text-muted)] md:block">
-              {user ? `${user.department} · ${user.level}` : `${APP_NAME} · OAU 200L Engineering`}
+              {user ? (
+                `${user.department} · ${user.level}`
+              ) : (
+                <>
+                  <span translate="no">{APP_NAME}</span> · OAU 200L Engineering
+                </>
+              )}
             </div>
 
             <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
@@ -240,6 +258,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               {user ? (
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <span
+                    translate="no"
                     className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
                     style={{ backgroundColor: user.avatar_color || "#EA580C" }}
                     title={user.full_name}
@@ -250,15 +269,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     type="button"
                     onClick={handleLogout}
                     aria-label="Sign out"
-                    className="pressable flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] md:hidden cursor-pointer"
+                    className="pressable flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)] md:hidden cursor-pointer"
                   >
-                    <LogOut className="h-4 w-4" />
+                    <LogOut className="h-4 w-4" aria-hidden="true" />
                   </button>
                 </div>
               ) : (
                 <Link
                   href="/login"
-                  className="pressable inline-flex min-h-[40px] items-center rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)]"
+                  className="pressable inline-flex min-h-[40px] items-center rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
                 >
                   Log in
                 </Link>
@@ -267,7 +286,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </header>
 
-        <main className="mx-auto min-w-0 max-w-5xl px-3.5 pb-28 pt-4 sm:px-6 md:pb-12 md:pt-7">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="mx-auto min-w-0 max-w-5xl px-3.5 pb-28 pt-4 outline-none sm:px-6 md:pb-12 md:pt-7"
+        >
           {children}
         </main>
       </div>
@@ -294,7 +317,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     : "min-w-[42px] flex-1 px-2 text-neutral-300 hover:text-white"
                 )}
               >
-                <Icon className="h-[18px] w-[18px] shrink-0" />
+                <Icon className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
                 <span className={cn(active ? "hidden min-[355px]:inline" : "sr-only")}>
                   {item.label}
                 </span>

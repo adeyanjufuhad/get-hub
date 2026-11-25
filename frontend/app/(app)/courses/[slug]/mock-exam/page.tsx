@@ -78,11 +78,11 @@ export default function MockExamLauncherPage() {
           )}
         </div>
 
-        <h1 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">
+        <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
           {course?.title || "Timed Mock Exam"}
         </h1>
-        <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">
-          Randomized questions pulled across all {course?.code} study folios (including diagram-backed textbook problems), graded strictly on the Go server with per-topic breakdown.
+        <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
+          Randomized questions pulled across all <span translate="no">{course?.code}</span> study folios (including diagram-backed textbook problems), graded on the Go server with per-topic breakdown.
         </p>
 
         {/* Tactile Preset Cards */}
@@ -131,6 +131,7 @@ export default function MockExamLauncherPage() {
             </label>
             <select
               id="q-count"
+              name="question_count"
               value={questionCount}
               onChange={(e) => setQuestionCount(Number(e.target.value))}
               className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
@@ -148,6 +149,7 @@ export default function MockExamLauncherPage() {
             </label>
             <select
               id="duration"
+              name="duration_minutes"
               value={minutes}
               onChange={(e) => setMinutes(Number(e.target.value))}
               className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"

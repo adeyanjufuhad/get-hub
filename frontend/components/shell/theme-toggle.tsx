@@ -32,7 +32,7 @@ export function ThemeToggle({ variant = "icon", expanded = false }: ThemeToggleP
         className="pressable flex h-11 w-full items-center overflow-hidden rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)] cursor-pointer"
       >
         <span className="flex h-[42px] w-[42px] shrink-0 items-center justify-center text-[var(--text-primary)]">
-          {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          {isDark ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
         </span>
         <span
           className={cn(
@@ -53,9 +53,9 @@ export function ThemeToggle({ variant = "icon", expanded = false }: ThemeToggleP
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={ariaLabel}
-      className="pressable inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] cursor-pointer"
+      className="pressable inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] cursor-pointer"
     >
-      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      {isDark ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
     </button>
   );
 }

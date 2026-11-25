@@ -20,10 +20,20 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${APP_NAME} — OAU 200L Engineering Study Platform`,
+    default: `${APP_NAME}: OAU 200L Engineering Folios, Drills & Mock Exams`,
     template: `%s | ${APP_NAME}`,
   },
   description: APP_TAGLINE,
+  openGraph: {
+    title: `${APP_NAME}: OAU 200L Engineering Folios, Drills & Mock Exams`,
+    description: APP_TAGLINE,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${APP_NAME}: OAU 200L Engineering Folios, Drills & Mock Exams`,
+    description: APP_TAGLINE,
+  },
 };
 
 export const viewport: Viewport = {
@@ -32,7 +42,7 @@ export const viewport: Viewport = {
   viewportFit: "cover",
   interactiveWidget: "resizes-content",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F8F8F6" },
+    { media: "(prefers-color-scheme: light)", color: "#FAF9F5" },
     { media: "(prefers-color-scheme: dark)", color: "#0F1012" },
   ],
 };

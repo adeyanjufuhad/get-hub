@@ -29,18 +29,18 @@ export function PrescribedTextbooks() {
       {/* Strictly Matched 3 Prescribed Textbooks (1 per GET course, zero clutter, zero SVG) */}
       <section
         id="textbooks"
-        className="scroll-mt-20 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-6"
+        className="scroll-mt-24 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-6"
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div className="min-w-0">
             <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
               1-to-1 Course Outline Match
             </p>
-            <h2 className="mt-0.5 text-lg font-extrabold tracking-tight text-[var(--text-primary)]">
+            <h2 className="mt-0.5 text-lg font-extrabold tracking-tight text-[var(--text-primary)] text-balance">
               Your 3 Prescribed Course Textbooks
             </h2>
-            <p className="mt-0.5 max-w-2xl text-xs leading-relaxed text-[var(--text-secondary)]">
-              Inspected directly against the OAU 200L CCMAS syllabus — one definitive textbook per course powering every lined note folio, diagram plate, and drill question.
+            <p className="mt-0.5 max-w-2xl text-xs leading-relaxed text-[var(--text-secondary)] text-pretty">
+              Inspected directly against the OAU 200L CCMAS syllabus: one definitive textbook per course powering every lined note folio, diagram plate, and drill question.
             </p>
           </div>
 
@@ -89,11 +89,13 @@ export function PrescribedTextbooks() {
                 <div>
                   <div className="flex items-start gap-3">
                     {/* Authentic raster PDF cover */}
-                    <div className="relative aspect-[3/4] w-16 shrink-0 overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] shadow-sm sm:w-20">
+                    <div className="relative aspect-[3/4] w-16 shrink-0 overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] sm:w-20">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={book.coverImage}
                         alt={`${book.title} cover`}
+                        width={160}
+                        height={214}
                         loading="lazy"
                         decoding="async"
                         className="h-full w-full object-cover"
@@ -103,7 +105,7 @@ export function PrescribedTextbooks() {
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-1.5">
                         <Badge variant="accent" className="font-mono">
-                          {book.courseCode}
+                          <span translate="no">{book.courseCode}</span>
                         </Badge>
                         <Badge variant="success">{book.role}</Badge>
                       </div>
@@ -200,21 +202,23 @@ export function PrescribedTextbooks() {
             >
               <div>
                 {drill.figureImage && (
-                  <div className="mb-3.5 flex h-40 items-center justify-center overflow-hidden rounded-xl border border-[var(--border-hairline)] bg-white p-2.5 shadow-2xs">
+                  <div className="mb-3.5 flex h-40 items-center justify-center overflow-hidden rounded-xl border border-[var(--border-hairline)] bg-white p-2.5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={drill.figureImage}
                       alt={drill.title}
+                      width={420}
+                      height={260}
                       loading="lazy"
                       decoding="async"
-                      className="max-h-full max-w-full object-contain"
+                      className="max-h-full w-auto max-w-full object-contain"
                     />
                   </div>
                 )}
 
                 <div className="flex flex-wrap items-center justify-between gap-1.5">
                   <Badge variant="accent" className="font-mono">
-                    {drill.courseCode}
+                    <span translate="no">{drill.courseCode}</span>
                   </Badge>
                   <Badge
                     variant={

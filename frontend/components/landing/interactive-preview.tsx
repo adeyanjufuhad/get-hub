@@ -1,14 +1,14 @@
 "use client";
 
-import { ArrowRight, CheckCircle2, ChevronDown, Clock, Eye, Flame, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown, Clock, Eye, Flame, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatedList, type AnimatedListEntry } from "@/components/reactbits/animated-list";
 import { Stepper, type StepItem } from "@/components/reactbits/stepper";
 import { Badge } from "@/components/ui/badge";
 import { MathText } from "@/components/ui/math-text";
-import { CCMAS_OUTLINE, COURSES } from "@/lib/config";
 import { cn } from "@/lib/cn";
+import { CCMAS_OUTLINE, COURSES, TEXTBOOKS } from "@/lib/config";
 
 const DEMO_STEPS = [
   "Take moments about pin $A$ (+ anticlockwise) so $R_A$ drops out: $\\sum M_A = 0 \\implies R_B(6.0) - 120(2.0) = 0$.",
@@ -16,85 +16,107 @@ const DEMO_STEPS = [
   "Apply vertical equilibrium $\\sum F_y = 0$: $R_A + 40 - 120 = 0 \\implies R_A = 80\\,\\text{N}$.",
 ];
 
+/**
+ * Clean 2-level app-frame showcase (tasteskill cards.md: "Two levels, never three",
+ * zero blurred shadow at rest, live product UI + authentic textbook schematics).
+ */
 export function HeroProductPreview() {
   const [activeTab, setActiveTab] = useState<"example" | "diagram" | "quiz">("example");
   const [revealed, setRevealed] = useState(1);
 
   return (
-    <div className="mx-auto mt-8 w-full max-w-4xl rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 shadow-[0_12px_36px_rgba(20,20,19,0.06)] sm:mt-10 sm:rounded-[24px] sm:p-5">
-      <div className="flex flex-col gap-2.5 border-b border-[var(--border-hairline)] pb-3 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mx-auto mt-8 w-full max-w-4xl overflow-hidden rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] sm:mt-10 sm:rounded-[24px]">
+      {/* App-Frame Window Chrome */}
+      <div className="flex flex-col gap-2.5 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/65 px-3.5 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
         <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" />
-          <span className="ml-1 font-mono text-xs text-[var(--text-muted)]">
-            Interactive Preview · Try tapping
+          <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" aria-hidden="true" />
+          <span className="ml-1 font-mono text-xs font-medium text-[var(--text-muted)]">
+            Live study workspace · Tap a course tab
           </span>
         </div>
 
-        <div className="grid w-full grid-cols-3 gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] p-1 sm:inline-flex sm:w-auto">
+        <div
+          role="tablist"
+          aria-label="Course workspace preview"
+          className="grid w-full grid-cols-3 gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-1 sm:inline-flex sm:w-auto"
+        >
           {[
-            { id: "example", shortLabel: "GET 207", label: "GET 207 Steps" },
-            { id: "diagram", shortLabel: "GET 205", label: "GET 205 Plate" },
-            { id: "quiz", shortLabel: "GET 209", label: "GET 209 Math" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              onClick={() => setActiveTab(tab.id as "example" | "diagram" | "quiz")}
-              className={cn(
-                "pressable min-h-[38px] rounded-full px-2.5 text-xs font-semibold cursor-pointer sm:px-3",
-                activeTab === tab.id
-                  ? "bg-[var(--bg-surface)] text-[var(--text-primary)] shadow-xs"
-                  : "text-[var(--text-secondary)]"
-              )}
-            >
-              <span className="sm:hidden">{tab.shortLabel}</span>
-              <span className="hidden sm:inline">{tab.label}</span>
-            </button>
-          ))}
+            { id: "example", shortLabel: "GET 207", label: "GET 207 · Folio" },
+            { id: "diagram", shortLabel: "GET 205", label: "GET 205 · Plate" },
+            { id: "quiz", shortLabel: "GET 209", label: "GET 209 · CBT" },
+          ].map((tab) => {
+            const selected = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setActiveTab(tab.id as "example" | "diagram" | "quiz")}
+                className={cn(
+                  "pressable min-h-[38px] rounded-full px-2.5 text-xs font-semibold transition-colors cursor-pointer sm:px-3.5",
+                  selected
+                    ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
+                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                )}
+              >
+                <span translate="no" className="sm:hidden">
+                  {tab.shortLabel}
+                </span>
+                <span translate="no" className="hidden sm:inline">
+                  {tab.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      <div className="mt-4">
+      {/* App-Frame Body (Maximum 2 levels of nesting: frame > direct panel) */}
+      <div className="p-3.5 text-left sm:p-5">
         {activeTab === "example" && (
           <div className="grid gap-4 md:grid-cols-5">
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 md:col-span-2">
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-4 md:col-span-2">
               <Badge variant="accent" className="mb-2 font-mono">
-                GET 207 · Statics
+                <span translate="no">GET 207</span> · Hibbeler 14e
               </Badge>
-              <p className="text-sm font-semibold text-[var(--text-primary)]">
-                Simply Supported Beam AB
+              <p className="text-sm font-bold text-[var(--text-primary)]">
+                Simply Supported Beam Equilibrium
               </p>
               <p className="mt-1 text-xs leading-relaxed text-[var(--text-secondary)]">
-                Span <span className="tabular font-semibold">6.0 m</span>, downward load{" "}
-                <span className="tabular font-semibold">120 N</span> at{" "}
-                <span className="tabular font-semibold">2.0 m</span> from pin A. Find reactions{" "}
+                Span <span className="tabular font-semibold">6.0&nbsp;m</span>, downward load{" "}
+                <span className="tabular font-semibold">120&nbsp;N</span> at{" "}
+                <span className="tabular font-semibold">2.0&nbsp;m</span> from pin A. Find{" "}
                 <MathText text="$R_A$ and $R_B$" />.
               </p>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/diagrams/get-207/beam-fbd.svg"
-                alt="Simply supported beam free body diagram"
-                className="mt-3 w-full rounded-xl border border-[var(--border-hairline)] bg-white"
+                alt="Free-body diagram of simply supported beam AB with 120 N load"
+                width={420}
+                height={220}
+                decoding="async"
+                className="mt-3 h-auto w-full rounded-xl border border-[var(--border-hairline)] bg-white"
               />
             </div>
 
-            <div className="flex flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 md:col-span-3">
+            <div className="notebook-ruled-surface flex flex-col justify-between rounded-2xl border border-[var(--border-hairline)] p-4 md:col-span-3">
               <div>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
-                    Step-by-step worked example
+                <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-2">
+                  <span className="font-mono text-xs font-semibold text-[var(--text-muted)]">
+                    Lined Folio · Worked Steps
                   </span>
-                  <span className="tabular font-mono text-xs text-[var(--accent)]">
+                  <span className="tabular font-mono text-xs font-bold text-[var(--accent)]">
                     {revealed}/{DEMO_STEPS.length} shown
                   </span>
                 </div>
-                <ol className="mt-3 space-y-2.5">
+                <ol className="mt-3 divide-y divide-[var(--border-hairline)]">
                   {DEMO_STEPS.slice(0, revealed).map((step, idx) => (
                     <li
                       key={idx}
-                      className="rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3 text-sm leading-relaxed text-[var(--text-secondary)]"
+                      className="math-scroll-x py-2.5 text-sm leading-relaxed text-[var(--text-secondary)] first:pt-0"
                     >
                       <span className="mr-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[var(--accent-soft)] font-mono text-xs font-bold text-[var(--accent)]">
                         {idx + 1}
@@ -105,26 +127,28 @@ export function HeroProductPreview() {
                 </ol>
               </div>
 
-              <div className="mt-4 flex flex-col items-stretch justify-between gap-2 pt-2 sm:flex-row sm:items-center">
+              <div className="mt-4 flex flex-col items-stretch justify-between gap-2 border-t border-[var(--border-hairline)] pt-3 sm:flex-row sm:items-center">
                 {revealed < DEMO_STEPS.length ? (
                   <button
                     type="button"
                     onClick={() => setRevealed((r) => Math.min(DEMO_STEPS.length, r + 1))}
-                    className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-4 text-sm font-semibold text-[var(--ink-cta-text)] sm:w-auto cursor-pointer"
+                    className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-4 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90 sm:w-auto cursor-pointer"
                   >
-                    <Eye className="h-4 w-4" />
+                    <Eye className="h-4 w-4" aria-hidden="true" />
                     Reveal Step {revealed + 1}
                   </button>
                 ) : (
                   <button
                     type="button"
                     onClick={() => setRevealed(1)}
-                    className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-sm font-semibold text-[var(--text-primary)] sm:w-auto cursor-pointer"
+                    className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-sm font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] sm:w-auto cursor-pointer"
                   >
-                    Reset steps
+                    Fold steps
                   </button>
                 )}
-                <span className="text-center text-xs text-[var(--text-muted)] sm:text-right">Zero skipped steps</span>
+                <span className="text-center font-mono text-xs text-[var(--text-muted)] sm:text-right">
+                  Every algebraic step written out
+                </span>
               </div>
             </div>
           </div>
@@ -134,31 +158,35 @@ export function HeroProductPreview() {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
               <Badge variant="accent" className="mb-2 font-mono">
-                GET 205 · Crisp 2 KB SVG
+                <span translate="no">GET 205</span> · Çengel Ch. 2
               </Badge>
               <h3 className="text-base font-bold text-[var(--text-primary)]">
-                U-Tube Manometry &amp; Hydrostatics
+                Differential U-Tube Manometry
               </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-secondary)]">
-                Every fluid mechanics schematic is a tiny vector SVG — razor sharp when you pinch-zoom on Android, and 40× smaller than textbook scans on mobile data.
+              <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
+                Study folios pair lightweight vector schematics (2&nbsp;KB) with high-resolution plates cropped directly from Çengel’s Fluid Mechanics.
               </p>
               <ul className="mt-3 space-y-1.5 text-xs text-[var(--text-secondary)]">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" />
-                  Clear datum Z–Z manometer pressure balances
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden="true" />
+                  Equal-pressure datum Z–Z balance derivations
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" />
-                  Hydrostatic pressure &amp; viscosity numeric drills
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden="true" />
+                  Submerged plane gate &amp; buoyancy center drills
                 </li>
               </ul>
             </div>
-            <div className="overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-2">
+            <div className="flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/diagrams/get-205/u-tube-manometer.svg"
-                alt="U-tube manometer showing pressure balance at datum Z-Z"
-                className="w-full"
+                src="/images/textbooks/figures/get205-utube-manometer.webp"
+                alt="Çengel U-tube manometer schematic showing fluid column heights"
+                width={520}
+                height={320}
+                loading="lazy"
+                decoding="async"
+                className="max-h-[210px] w-auto max-w-full object-contain"
               />
             </div>
           </div>
@@ -168,24 +196,28 @@ export function HeroProductPreview() {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
               <Badge variant="accent" className="mb-2 font-mono">
-                GET 209 · KaTeX + Server Grading
+                <span translate="no">GET 209</span> · Stewart 7e + Go API
               </Badge>
               <p className="text-sm font-medium text-[var(--text-primary)]">
                 Evaluate the limit:
               </p>
-              <div className="mt-2 text-base">
+              <div className="math-scroll-x mt-2 text-base">
                 <MathText text="$$\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$$" />
               </div>
-              <p className="mt-2 text-xs text-[var(--text-muted)]">
-                Answers are verified on the Go API with ±1% numeric tolerance — correct answers are never shipped to your browser before you submit.
+              <p className="mt-2 text-xs leading-relaxed text-[var(--text-muted)] text-pretty">
+                Numeric and MCQ answers are verified on the Go server with ±1% engineering tolerance; worked solutions unlock only after submission.
               </p>
             </div>
-            <div className="overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-2">
+            <div className="flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/diagrams/get-209/removable-discontinuity.svg"
-                alt="Graph of removable discontinuity at (3,6)"
-                className="w-full"
+                alt="Graph of removable discontinuity at point (3, 6)"
+                width={440}
+                height={250}
+                loading="lazy"
+                decoding="async"
+                className="h-auto w-full"
               />
             </div>
           </div>
@@ -201,10 +233,10 @@ const SAMPLE_TOPIC_SLUG: Record<string, string> = {
   "get-209": "limits-and-continuity",
 };
 
-const SAMPLE_DIAGRAM: Record<string, string> = {
-  "get-205": "/diagrams/get-205/u-tube-manometer.svg",
-  "get-207": "/diagrams/get-207/couple-moment.svg",
-  "get-209": "/diagrams/get-209/one-sided-limits.svg",
+const COURSE_PLATE: Record<string, string> = {
+  "get-205": "/images/textbooks/figures/get205-utube-manometer.webp",
+  "get-207": "/images/textbooks/figures/get207-beam-loading.webp",
+  "get-209": "/images/textbooks/figures/get209-secant-tangent.webp",
 };
 
 export function CourseCurriculumExplorer() {
@@ -215,60 +247,67 @@ export function CourseCurriculumExplorer() {
   if (!activeCourse) return null;
 
   const outline = CCMAS_OUTLINE[activeCourse.slug] ?? [];
-  const sampleSlug = SAMPLE_TOPIC_SLUG[activeCourse.slug] ?? "";
-  const sampleImg = SAMPLE_DIAGRAM[activeCourse.slug] ?? "";
+  const firstFolioSlug = SAMPLE_TOPIC_SLUG[activeCourse.slug] ?? "";
+  const plateImg = COURSE_PLATE[activeCourse.slug] ?? "";
+  const matchedBook = TEXTBOOKS.find((b) => b.courseSlug === activeCourse.slug);
 
   const listItems: AnimatedListEntry[] = outline.map((title, idx) => ({
     id: `${activeCourse.slug}-${idx}`,
     title,
     meta: `CCMAS Module 0${idx + 1} · ${activeCourse.code}`,
-    badge: idx === 0 ? "Draft live" : "Syllabus",
+    badge: idx < 3 ? `Folio 0${idx + 1}` : "Syllabus",
   }));
 
   return (
-    <div className="mt-5">
-      <div className="flex flex-wrap gap-2">
+    <div className="mt-6">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Select GET course">
         {COURSES.map((course) => {
           const active = course.slug === activeCourse.slug;
           return (
             <button
               key={course.slug}
               type="button"
+              role="tab"
+              aria-selected={active}
               onClick={() => {
                 setSelectedSlug(course.slug);
                 setSelectedTopicIdx(0);
               }}
               className={cn(
-                "pressable min-h-[44px] rounded-full border px-4 text-xs font-semibold sm:text-sm cursor-pointer",
+                "pressable min-h-[44px] rounded-full border px-4 text-xs font-semibold transition-colors sm:text-sm cursor-pointer",
                 active
                   ? "border-[var(--ink-cta)] bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
-                  : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)]"
+                  : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]"
               )}
             >
-              <span className="font-mono">{course.code}</span>
-              <span className="ml-1.5 hidden font-normal opacity-80 sm:inline">{course.shortTitle}</span>
+              <span translate="no" className="font-mono">
+                {course.code}
+              </span>
+              <span className="ml-1.5 hidden font-normal opacity-80 sm:inline">
+                {course.shortTitle}
+              </span>
             </button>
           );
         })}
       </div>
 
-      {/* Sleek compact course explorer card (no hover expansion) */}
-      <div className="mt-4 grid grid-cols-1 gap-4 rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5 lg:grid-cols-12">
+      {/* 2-level course explorer card */}
+      <div className="mt-4 grid grid-cols-1 gap-4 rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-6 lg:grid-cols-12">
         <div className="min-w-0 lg:col-span-7">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="accent" className="font-mono">
-              {activeCourse.code}
+              <span translate="no">{activeCourse.code}</span>
             </Badge>
-            <Badge variant="neutral">{activeCourse.units} Units · NUC CCMAS 2023</Badge>
+            <Badge variant="neutral">{activeCourse.units}&nbsp;Units · NUC CCMAS 2023</Badge>
           </div>
-          <h3 className="mt-2 text-lg font-bold tracking-tight text-[var(--text-primary)]">
+          <h3 className="mt-2.5 text-lg font-bold tracking-tight text-[var(--text-primary)] sm:text-xl">
             {activeCourse.title}
           </h3>
-          <p className="mt-1 line-clamp-2 max-w-[60ch] text-xs leading-relaxed text-[var(--text-secondary)] sm:text-sm">
+          <p className="mt-1 max-w-[60ch] text-xs leading-relaxed text-[var(--text-secondary)] sm:text-sm text-pretty">
             {activeCourse.description}
           </p>
 
-          <p className="mt-3 mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+          <p className="mt-4 mb-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
             CCMAS Syllabus ({outline.length} modules)
           </p>
           <AnimatedList
@@ -280,42 +319,53 @@ export function CourseCurriculumExplorer() {
 
           <div className="mt-4 flex flex-col gap-2 min-[420px]:flex-row min-[420px]:flex-wrap">
             <Link
-              href={`/courses/${activeCourse.slug}/${sampleSlug}`}
-              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full bg-[var(--accent)] px-4 text-xs font-semibold text-white min-[420px]:w-auto sm:text-sm"
+              href={`/courses/${activeCourse.slug}/${firstFolioSlug}`}
+              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90 min-[420px]:w-auto sm:text-sm"
             >
-              Read sample folio
-              <ArrowRight className="h-3.5 w-3.5" />
+              Read Folio 01
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
             </Link>
             <Link
               href="/signup"
-              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-xs font-semibold text-[var(--text-primary)] min-[420px]:w-auto sm:text-sm"
+              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] min-[420px]:w-auto sm:text-sm"
             >
-              Solve textbook drills
+              Solve 24 course drills
             </Link>
           </div>
         </div>
 
-        <div className="flex min-w-0 flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 lg:col-span-5">
+        <div className="flex min-w-0 flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 lg:col-span-5">
           <div>
-            <div className="flex items-center justify-between gap-2">
-              <span className="font-mono text-[11px] font-semibold text-[var(--text-muted)]">
-                Sample Vector Diagram
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
+                Matched Textbook Plate
               </span>
-              <Badge variant="draft">Draft – under review</Badge>
+              {matchedBook && (
+                <span className="truncate font-mono text-[11px] font-medium text-[var(--text-muted)]">
+                  {matchedBook.authors.split("&")[0]?.split(",")[0]?.trim()} · {matchedBook.edition}
+                </span>
+              )}
             </div>
-            {sampleImg && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={sampleImg}
-                alt={`${activeCourse.code} sample engineering diagram`}
-                className="mt-2.5 max-h-[175px] w-full rounded-xl border border-[var(--border-hairline)] bg-white object-contain"
-              />
+            {plateImg && (
+              <div className="mt-3 flex h-[180px] items-center justify-center overflow-hidden rounded-xl border border-[var(--border-hairline)] bg-white p-2.5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={plateImg}
+                  alt={`${activeCourse.code} prescribed textbook diagram`}
+                  width={460}
+                  height={260}
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full w-auto max-w-full object-contain"
+                />
+              </div>
             )}
           </div>
-          <p className="mt-2 flex items-center gap-1.5 text-[11px] text-[var(--text-muted)]">
-            <Sparkles className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
-            Original diagrams &amp; explanations — zero textbook copy-paste.
-          </p>
+          {matchedBook && (
+            <p className="mt-3 text-xs leading-relaxed text-[var(--text-secondary)]">
+              <strong className="text-[var(--text-primary)]">{matchedBook.title}</strong> — chapters mapped 1-to-1 to your OAU 200L course outline.
+            </p>
+          )}
         </div>
       </div>
     </div>
@@ -326,15 +376,17 @@ export function StudyLoopStepper() {
   const steps: StepItem[] = [
     {
       id: "read",
-      label: "Read notes",
-      title: "Read plain-English notes with SVG diagrams",
+      label: "Read folio",
+      title: "Study on lined notebook folios with textbook figures",
       description:
-        "Every topic starts with why it matters in engineering, breaks down key formulas in KaTeX, and lets you reveal worked examples one step at a time.",
+        "Each chapter opens on ruled ivory paper with learning outcomes, KaTeX derivations, high-DPI textbook plates, and tap-to-reveal worked examples.",
       content: (
-        <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
-          <div className="flex items-center justify-between">
-            <Badge variant="accent" className="font-mono">GET 205 · Topic 1</Badge>
-            <Badge variant="draft">Draft – under review</Badge>
+        <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-4">
+          <div className="flex items-center justify-between gap-2">
+            <Badge variant="accent" className="font-mono">
+              <span translate="no">GET 205</span> · Folio 01/03
+            </Badge>
+            <span className="font-mono text-[11px] text-[var(--text-muted)]">Çengel Ch. 2 &amp; 11</span>
           </div>
           <p className="mt-2.5 text-sm font-bold text-[var(--text-primary)]">
             Fluid Properties, Hydrostatic Pressure &amp; Manometry
@@ -342,36 +394,38 @@ export function StudyLoopStepper() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/diagrams/get-205/hydrostatic-pressure-prism.svg"
-            alt="Hydrostatic pressure prism on a vertical submerged wall"
-            className="mt-3 w-full rounded-xl border border-[var(--border-hairline)] bg-white"
+            alt="Hydrostatic pressure prism acting on a submerged vertical wall"
+            width={480}
+            height={220}
+            loading="lazy"
+            decoding="async"
+            className="mt-3 h-auto w-full rounded-xl border border-[var(--border-hairline)] bg-white"
           />
         </div>
       ),
     },
     {
       id: "practice",
-      label: "Practice",
-      title: "Practice with instant server-side grading",
+      label: "Drill chapter",
+      title: "Check calculations against the Go grading server",
       description:
-        "Solve diagram-backed MCQs and numeric engineering calculations with ±1% tolerance. Full worked solutions unlock right after you submit.",
+        "Practice diagram-backed MCQs and numeric engineering problems with ±1% tolerance. Full worked solutions unlock right after you check your answer.",
       content: (
         <div className="space-y-2.5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
           <div className="flex items-center justify-between text-xs">
             <span className="font-mono font-bold text-[var(--accent)]">NUMERIC · ±1% TOLERANCE</span>
             <span className="inline-flex items-center gap-1 font-semibold text-[var(--success)]">
-              <ShieldCheck className="h-3.5 w-3.5" /> Server-verified
+              <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" /> Server-verified
             </span>
           </div>
           <p className="text-sm font-medium text-[var(--text-primary)]">
             Find gauge pressure at <MathText text="$4.0\,\text{m}$" /> depth in water (
             <MathText text="$\rho = 1000\,\text{kg/m}^3$" />):
           </p>
-          <div className="flex items-center gap-2">
-            <div className="tabular flex-1 rounded-xl border-2 border-[var(--success)] bg-[var(--success-soft)] px-3 py-2 font-mono text-sm font-bold text-[var(--success)]">
-              39.24 kPa ✓
-            </div>
+          <div className="tabular rounded-xl border-2 border-[var(--success)] bg-[var(--success-soft)] px-3 py-2 font-mono text-sm font-bold text-[var(--success)]">
+            39.24 kPa ✓
           </div>
-          <p className="text-xs text-[var(--text-secondary)]">
+          <p className="math-scroll-x text-xs text-[var(--text-secondary)]">
             <MathText text="$P = \rho g h = 1000 \times 9.81 \times 4.0 = 39.24\,\text{kPa}$" />
           </p>
         </div>
@@ -379,18 +433,18 @@ export function StudyLoopStepper() {
     },
     {
       id: "mock",
-      label: "Mock & streak",
-      title: "Run timed mocks & eliminate weak topics",
+      label: "Timed CBT",
+      title: "Simulate exam pressure & clear weak topics",
       description:
-        "Simulate test pressure with randomized questions, a mobile bottom-sheet question map, daily study streaks, and automatic weak-topic alerts under 70%.",
+        "Run 5, 10, or 15-question timed CBT papers with question flagging, per-topic accuracy breakdowns, and automatic revision alerts under 70%.",
       content: (
         <div className="space-y-3 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
           <div className="flex items-center justify-between">
             <span className="tabular inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-subtle)] px-3 py-1 font-mono text-xs font-bold text-[var(--text-primary)]">
-              <Clock className="h-3.5 w-3.5 text-[var(--accent)]" /> 14:28 left
+              <Clock className="h-3.5 w-3.5 text-[var(--accent)]" aria-hidden="true" /> 14:28 left
             </span>
             <span className="tabular inline-flex items-center gap-1 rounded-full bg-[var(--accent-soft)] px-3 py-1 text-xs font-bold text-[var(--accent)]">
-              <Flame className="h-3.5 w-3.5" /> 5-day streak
+              <Flame className="h-3.5 w-3.5" aria-hidden="true" /> 5-day streak
             </span>
           </div>
           <div className="space-y-2">
@@ -400,9 +454,9 @@ export function StudyLoopStepper() {
               { label: "GET 209 · Limits & Continuity", pct: 92 },
             ].map((row) => (
               <div key={row.label} className="rounded-xl bg-[var(--bg-canvas)] p-2.5">
-                <div className="flex justify-between text-xs font-semibold">
-                  <span>{row.label}</span>
-                  <span className="tabular font-mono">{row.pct}%</span>
+                <div className="flex justify-between gap-2 text-xs font-semibold">
+                  <span className="truncate">{row.label}</span>
+                  <span className="tabular shrink-0 font-mono">{row.pct}%</span>
                 </div>
                 <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-[var(--border-hairline)]">
                   <div
@@ -427,10 +481,10 @@ export function StudyLoopStepper() {
       completeCta={
         <Link
           href="/signup"
-          className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-5 text-sm font-semibold text-white"
+          className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)]"
         >
-          Start studying free
-          <ArrowRight className="h-4 w-4" />
+          Create free account
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       }
     />
@@ -439,20 +493,20 @@ export function StudyLoopStepper() {
 
 const FAQS = [
   {
-    q: "Will this eat my mobile data or lag on an Android phone?",
-    a: "No. Every diagram is a tiny vector SVG (usually 1–3 KB), equations render natively with KaTeX CSS, and there is zero 3D or autoplay video anywhere on the site. Pages stay fast even on slow 3G around campus.",
+    q: "Will GET Hub drain campus mobile data or lag on mid-range Android phones?",
+    a: "No. Vector schematics weigh 1–3 KB, cropped textbook plates are compressed WebP, and equations render via CSS KaTeX with zero heavy video downloads.",
   },
   {
-    q: "Which OAU departments is GET Hub built for?",
-    a: "Every 200L department in the Faculty of Technology taking GET 205, GET 207, and GET 209 — Computer, Electronic & Electrical, Mechanical, Civil, Chemical, Agricultural & Environmental, Materials Science, and Food Science & Technology.",
+    q: "Which textbooks back the notes and 72 practice questions?",
+    a: "Each course uses the single textbook matching the OAU 200L NUC CCMAS outline: Çengel & Cimbala for GET 205, Hibbeler 14th Edition for GET 207, and James Stewart 7th Edition for GET 209.",
   },
   {
-    q: "Is it free right now?",
-    a: "Yes! Everything in Phase 1 — topic notes, worked examples, practice questions, and timed mock exams — is completely open while we refine the content together with OAU 200L students.",
+    q: "Which OAU departments use this platform?",
+    a: "All eight 200L departments in the Faculty of Technology taking GET 205, GET 207, and GET 209: Computer, Electrical & Electronic, Mechanical, Civil, Chemical, Agricultural & Environmental, Materials Science, and Food Science & Technology.",
   },
   {
-    q: "Why do some topics show a 'Draft – under review' badge?",
-    a: "All notes, diagrams, and questions are written originally for Nigerian 200L engineering students aligned to the NUC CCMAS 2023 syllabus. Draft badges let you know a topic is still being reviewed against lecture notes.",
+    q: "What is inside the Part 2 PDF Library?",
+    a: "123 student-shared lecture notes, tutorial sheets, lab manuals, and past question papers across 14 Second Year courses (including MEE 203/205/206, MTH 201/202, CHE 201, CSC 201, and EEE 251–282) with exact MB sizes listed before you download.",
   },
 ];
 
@@ -464,15 +518,16 @@ export function StudentFaqAccordion() {
       {FAQS.map((item, idx) => {
         const open = openIdx === idx;
         return (
-          <div key={item.q} className="px-5 py-1">
+          <div key={item.q} className="px-4 py-1 sm:px-5">
             <button
               type="button"
               onClick={() => setOpenIdx(open ? null : idx)}
               aria-expanded={open}
-              className="flex min-h-[56px] w-full items-center justify-between gap-4 py-3 text-left text-sm font-semibold text-[var(--text-primary)] sm:text-base cursor-pointer"
+              className="flex min-h-[54px] w-full items-center justify-between gap-4 py-3 text-left text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent)] sm:text-base cursor-pointer"
             >
               <span>{item.q}</span>
               <ChevronDown
+                aria-hidden="true"
                 className={cn(
                   "h-4 w-4 shrink-0 text-[var(--text-muted)] transition-transform duration-200",
                   open && "rotate-180 text-[var(--accent)]"
@@ -480,7 +535,7 @@ export function StudentFaqAccordion() {
               />
             </button>
             {open && (
-              <p className="pb-4 pr-6 text-sm leading-relaxed text-[var(--text-secondary)]">
+              <p className="pb-4 pr-4 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
                 {item.a}
               </p>
             )}

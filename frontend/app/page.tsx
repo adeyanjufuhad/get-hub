@@ -17,15 +17,10 @@ import {
   StudentFaqAccordion,
   StudyLoopStepper,
 } from "@/components/landing/interactive-preview";
-import { BlurText } from "@/components/reactbits/blur-text";
-import { ClickSpark } from "@/components/reactbits/click-spark";
 import { Counter } from "@/components/reactbits/counter";
-import { GlareHover } from "@/components/reactbits/glare-hover";
 import { LogoLoop } from "@/components/reactbits/logo-loop";
 import { Magnet } from "@/components/reactbits/magnet";
 import ParticleText from "@/components/reactbits/ParticleText";
-import { ShinyText } from "@/components/reactbits/shiny-text";
-import { SpotlightCard } from "@/components/reactbits/spotlight-card";
 import { Badge } from "@/components/ui/badge";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { APP_INSTITUTION, APP_NAME } from "@/lib/config";
@@ -36,321 +31,416 @@ const OAU_DEPT_LOOP = [
   { code: "MEE", name: "Mechanical" },
   { code: "CVE", name: "Civil" },
   { code: "CHE", name: "Chemical" },
-  { code: "AGE", name: "Agric" },
+  { code: "AGE", name: "Agric & Env" },
   { code: "MSE", name: "Materials" },
-  { code: "FST", name: "Food Science" },
+  { code: "FST", name: "Food Tech" },
 ] as const;
 
 const FEATURES = [
   {
     icon: BookOpenCheck,
-    title: "Tap-to-Reveal Worked Examples",
-    body: "Never stare at a giant wall of algebra again. Try each step yourself, then tap Next Step to uncover the exact reasoning.",
-    tag: "Active recall",
+    title: "Lined Coursebook Folios",
+    body: "Read chapters on warm 32px ruled engineering paper with pinned CCMAS learning outcomes and step-by-step worked derivations.",
+    tag: "9 folios",
   },
   {
     icon: Layers,
-    title: "Crisp SVG Engineering Diagrams",
-    body: "GET 205 fluid mechanics diagrams, GET 207 free-body diagrams, and GET 209 limit graphs drawn as 2 KB SVGs that stay razor-sharp on any phone.",
-    tag: "3G-friendly",
+    title: "Prescribed Textbook Plates",
+    body: "Inspect high-resolution schematics cropped directly from Çengel, Hibbeler 14e, and Stewart 7e alongside 2 KB vector free-body diagrams.",
+    tag: "3 textbooks",
   },
   {
     icon: ShieldCheck,
-    title: "Real Server-Checked Practice",
-    body: "Supports text, KaTeX, image-based MCQs, and numeric answers with ±1% engineering tolerance. Answers stay on the Go API until you submit.",
-    tag: "Instant feedback",
+    title: "Go Server Answer Grading",
+    body: "Check KaTeX MCQs and numeric engineering calculations with ±1% tolerance. Answer keys stay on the backend until you submit.",
+    tag: "72 drills",
   },
   {
     icon: Timer,
-    title: "Timed Mock Exams & Topic Breakdown",
-    body: "Simulate 200L test pressure with randomized questions, live countdown timer, mobile question navigator sheet, and per-topic accuracy scoring.",
-    tag: "Exam-ready",
+    title: "Timed CBT Mock Simulator",
+    body: "Generate 5, 10, or 15-question papers with a sticky countdown clock, question flagging, mobile navigator sheet, and topic accuracy breakdown.",
+    tag: "Exam prep",
   },
   {
     icon: Target,
-    title: "Weak-Topic Radar & Study Streaks",
-    body: "Automatically flags topics where your accuracy dips below 70% so you know what to revise first instead of guessing.",
-    tag: "Smart revision",
+    title: "Weak-Topic Priority Queue",
+    body: "Chapters below 70% accuracy automatically surface on your dashboard so you drill weak mechanics or calculus modules before test week.",
+    tag: "< 70% alert",
   },
   {
     icon: Users,
-    title: "Part 2 Notes & Past Questions Library",
-    body: "Download curated OAU Second Year lecture notes, tutorials, lab manuals, and past questions across 14 courses — with file sizes shown upfront for campus data.",
+    title: "Part 2 Handout & PQ Archive",
+    body: "Download 123 OAU Second Year lecture notes, lab manuals, and past questions across 14 courses with exact MB file sizes upfront.",
     tag: "14 courses",
   },
 ];
 
 export default function LandingPage() {
   return (
-    <ClickSpark sparkColor="#EA580C" sparkSize={9} sparkRadius={18} sparkCount={8} duration={360}>
-      <div className="min-h-dvh bg-[var(--bg-canvas)] text-[var(--text-primary)]">
-        {/* Floating Frosted Pill Navbar (mt-20px, expands on hover / mobile tap) */}
-        <ExpandingPillNav />
+    <div className="min-h-dvh bg-[var(--bg-canvas)] text-[var(--text-primary)]">
+      {/* Floating Frosted Pill Navbar (includes Skip-to-content link) */}
+      <ExpandingPillNav />
 
-        <main>
-          {/* HERO SECTION (100svh stable on mobile, React Bits Grainient hero background) */}
-          <section className="relative overflow-hidden px-3.5 pb-12 pt-24 sm:px-6 sm:pb-16 sm:pt-32">
-            <HeroGrainientBackground />
+      <main id="main-content" tabIndex={-1} className="outline-none">
+        {/* ==================== 1. HERO (Cream Canvas + Single Grainient Effect + App-Frame) ==================== */}
+        <section className="relative overflow-hidden px-4 pb-12 pt-24 sm:px-6 sm:pb-16 sm:pt-32">
+          <HeroGrainientBackground />
 
-            <div className="relative z-10 mx-auto max-w-5xl text-center">
-              <h1 className="mx-auto max-w-3xl text-[1.9rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-[var(--text-primary)] min-[380px]:text-[2.25rem] sm:text-5xl md:text-6xl">
-                <span>Finally understand GET 205, 207 &amp; 209</span>
-                {/* React Bits ParticleText for "clearly." */}
-                <span className="mx-auto mt-1 block h-[64px] w-full max-w-[300px] text-[var(--accent)] min-[380px]:h-[78px] min-[380px]:max-w-[380px] sm:h-[96px] sm:max-w-[460px] md:h-[112px] md:max-w-[520px]">
-                  <ParticleText
-                    text="clearly."
-                    particleSize={2}
-                    density={3}
-                    color="currentColor"
-                    highlightColor="#ff5a36"
-                    highlightMode="motion"
-                    shape="circle"
-                    intro="gather"
-                    scatter={150}
-                    gatherDuration={1400}
-                    stagger={380}
-                    clickBurst
-                    burstStrength={1}
-                    pointerRepel={40}
-                    repelRadius={110}
-                    idleDrift={0.65}
-                    trigger="hover"
-                    fontSize="clamp(2.15rem, 9vw, 4.75rem)"
-                    fontWeight={800}
-                    fontFamily="inherit"
-                    glow
-                  />
-                </span>
-              </h1>
+          <div className="relative z-10 mx-auto max-w-5xl text-center">
+            <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)]/85 px-3.5 py-1 font-mono text-xs font-semibold text-[var(--text-secondary)] backdrop-blur-xs">
+              <span className="h-2 w-2 rounded-full bg-[var(--accent)]" aria-hidden="true" />
+              OAU Faculty of Technology · 200L First Semester
+            </p>
 
-              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-secondary)] min-[380px]:text-base sm:mt-6 sm:text-lg">
-                Lined coursebook study folios, real textbook schematics, and timed CBT exam drills built for OAU 200L students — fast and light on campus mobile data.
-              </p>
-
-              {/* Primary & Secondary CTAs with React Bits Magnet micro-interaction */}
-              <div className="mt-7 flex flex-col items-stretch justify-center gap-2.5 sm:mt-8 sm:flex-row sm:items-center sm:gap-3">
-                <Magnet strength={0.2} className="w-full sm:w-auto">
-                  <Link
-                    href="/signup"
-                    className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-6 text-sm font-semibold text-[var(--ink-cta-text)] sm:min-h-[50px] sm:w-auto sm:px-7 sm:text-base"
-                  >
-                    Create free student account
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Magnet>
-                <Magnet strength={0.16} className="w-full sm:w-auto">
-                  <a
-                    href="#courses"
-                    className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)]/90 px-6 text-sm font-semibold text-[var(--text-primary)] backdrop-blur-xs sm:min-h-[50px] sm:w-auto sm:text-base"
-                  >
-                    Explore the 3 GET courses
-                  </a>
-                </Magnet>
-              </div>
-
-              {/* Department Social Proof Strip — React Bits LogoLoop */}
-              <div className="mt-8 space-y-2">
-                <p className="font-mono text-[11px] font-medium uppercase tracking-wider text-[var(--text-muted)]">
-                  Built for every OAU 200L Engineering Department
-                </p>
-                <LogoLoop items={OAU_DEPT_LOOP} />
-              </div>
-
-              {/* Live Interactive 2D Preview */}
-              <HeroProductPreview />
-            </div>
-          </section>
-
-          {/* METRICS STRIP — React Bits Counter + GlareHover */}
-          <section className="border-y border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-6 sm:px-6">
-            <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-4">
-              <GlareHover className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 text-center">
-                <Counter
-                  value={9}
-                  className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl"
+            <h1 className="mx-auto mt-4 max-w-3xl text-[1.9rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--text-primary)] text-balance min-[380px]:text-[2.25rem] sm:text-5xl md:text-6xl">
+              <span>Master </span>
+              <span translate="no">GET 205, 207 &amp; 209</span>
+              <span className="mx-auto mt-1 block h-[64px] w-full max-w-[300px] text-[var(--accent)] min-[380px]:h-[78px] min-[380px]:max-w-[380px] sm:h-[96px] sm:max-w-[460px] md:h-[112px] md:max-w-[520px]">
+                <ParticleText
+                  text="from the book."
+                  particleSize={2}
+                  density={3}
+                  color="currentColor"
+                  highlightColor="#ff5a36"
+                  highlightMode="motion"
+                  shape="circle"
+                  intro="gather"
+                  scatter={150}
+                  gatherDuration={1400}
+                  stagger={380}
+                  clickBurst
+                  burstStrength={1}
+                  pointerRepel={40}
+                  repelRadius={110}
+                  idleDrift={0.65}
+                  trigger="hover"
+                  fontSize="clamp(1.85rem, 7.2vw, 4.1rem)"
+                  fontWeight={800}
+                  fontFamily="inherit"
+                  glow
                 />
-                <div className="mt-0.5 text-xs font-medium text-[var(--text-secondary)]">
-                  Step-by-Step Study Guides
-                </div>
-              </GlareHover>
-
-              <GlareHover className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 text-center">
-                <Counter
-                  value={72}
-                  className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl"
-                />
-                <div className="mt-0.5 text-xs font-medium text-[var(--text-secondary)]">
-                  Verified Textbook &amp; Exam Drills
-                </div>
-              </GlareHover>
-
-              <GlareHover className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 text-center">
-                <Counter
-                  value={14}
-                  className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl"
-                />
-                <div className="mt-0.5 text-xs font-medium text-[var(--text-secondary)]">
-                  Part 2 Library Courses
-                </div>
-              </GlareHover>
-
-              <GlareHover className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 text-center">
-                <Counter
-                  value={0}
-                  prefix="₦"
-                  className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl"
-                />
-                <div className="mt-0.5 text-xs font-medium text-[var(--text-secondary)]">
-                  Open Access in Phase 1
-                </div>
-              </GlareHover>
-            </div>
-          </section>
-
-          {/* INTERACTIVE COURSE CURRICULUM EXPLORER — React Bits AnimatedList + BlurText */}
-          <section id="courses" className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-12">
-            <div className="max-w-xl">
-              <Badge variant="accent">
-                <ShinyText text="NUC CCMAS 2023 Aligned" />
-              </Badge>
-              <BlurText
-                text="One hub for the three courses that trip up 200L."
-                className="mt-2.5 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] sm:text-3xl"
-              />
-              <p className="mt-2 text-sm text-[var(--text-secondary)]">
-                Every topic maps directly to its CCMAS curriculum line and learning outcomes — no hunting through scattered WhatsApp PDFs the night before a test.
-              </p>
-            </div>
-
-            <CourseCurriculumExplorer />
-          </section>
-
-          {/* BENTO FEATURES GRID — React Bits SpotlightCard + BlurText */}
-          <section
-            id="features"
-            className="border-y border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-10 sm:px-6 sm:py-12"
-          >
-            <div className="mx-auto max-w-5xl">
-              <div className="max-w-xl">
-                <Badge variant="neutral">Designed for Android &amp; Slow 3G</Badge>
-                <BlurText
-                  text="Fast, focused tools that actually help concepts click."
-                  className="mt-2.5 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] sm:text-3xl"
-                />
-              </div>
-
-              <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
-                {FEATURES.map((feat) => {
-                  const Icon = feat.icon;
-                  return (
-                    <SpotlightCard
-                      key={feat.title}
-                      spotlightColor="#EA580C"
-                      intensity={0.12}
-                      borderGlow={0.55}
-                      className="hover-lift flex flex-col justify-between !p-4 sm:!p-5"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between">
-                          <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--accent)]">
-                            <Icon className="h-4 w-4" />
-                          </span>
-                          <Badge variant="neutral">{feat.tag}</Badge>
-                        </div>
-                        <h3 className="mt-3 text-base font-bold tracking-tight text-[var(--text-primary)]">
-                          {feat.title}
-                        </h3>
-                        <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-secondary)] sm:text-sm">
-                          {feat.body}
-                        </p>
-                      </div>
-                    </SpotlightCard>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-
-          {/* HOW IT WORKS — React Bits Stepper + BlurText */}
-          <section id="how-it-works" className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-12">
-            <div className="mb-5 max-w-xl">
-              <Badge variant="accent">
-                <ShinyText text="Your 15-Minute Study Loop" />
-              </Badge>
-              <BlurText
-                text="From confused in lecture to confident in the exam hall."
-                className="mt-2.5 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] sm:text-3xl"
-              />
-            </div>
-
-            <StudyLoopStepper />
-          </section>
-
-          {/* FAQ SECTION */}
-          <section id="faq" className="mx-auto max-w-3xl px-4 pb-10 sm:px-6 sm:pb-12">
-            <div className="mb-4 text-center">
-              <Badge variant="neutral">Questions</Badge>
-              <BlurText
-                text="Quick answers before you jump in"
-                className="mt-2 text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl"
-              />
-            </div>
-            <StudentFaqAccordion />
-          </section>
-
-          {/* HIGH-CONTRAST DEEP INK CTA BANNER */}
-          <section className="mx-auto max-w-5xl px-4 pb-10 sm:px-6 sm:pb-12">
-            <div className="rounded-[24px] bg-[#141413] px-5 py-9 text-center text-white sm:px-10 sm:py-11">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 font-mono text-xs font-semibold text-orange-300">
-                <CheckCircle2 className="h-3.5 w-3.5" />
-                <ShinyText text="No card required · Takes 30 seconds" />
               </span>
-              <h2 className="mx-auto mt-3 max-w-xl text-2xl font-extrabold tracking-[-0.025em] sm:text-3xl">
-                Stop cramming GET alone at 2 AM.
-              </h2>
-              <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-neutral-300 sm:text-sm">
-                Pick your OAU engineering department, open any of 9 step-by-step study guides, practice 54 original exam drills, and download Part 2 notes from the Library.
-              </p>
-              <div className="mt-5 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:items-center">
-                <Magnet strength={0.22} className="w-full sm:w-auto">
-                  <Link
-                    href="/signup"
-                    className="pressable inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-[#EA580C] px-6 text-sm font-semibold text-white sm:w-auto"
-                  >
-                    Get started free
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Magnet>
-                <Link
-                  href="/login"
-                  className="pressable inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-white/20 bg-white/5 px-5 text-sm font-semibold text-white sm:w-auto"
-                >
-                  I already have an account
-                </Link>
-              </div>
-            </div>
-          </section>
-        </main>
+            </h1>
 
-        {/* CLEAN LIGHT FOOTER */}
-        <footer className="border-t border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-7 sm:px-6">
-          <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <div>
-              <div className="flex items-center gap-2.5">
-                <BrandLogo size="sm" />
-                <span className="font-extrabold tracking-tight">{APP_NAME}</span>
-              </div>
-              <p className="mt-1.5 text-xs text-[var(--text-muted)]">{APP_INSTITUTION}</p>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-secondary)] text-pretty min-[380px]:text-base sm:mt-5 sm:text-lg">
+              9 lined coursebook folios, 26 cropped schematics from Çengel, Hibbeler 14e &amp; Stewart 7e, and 72 server-graded exam drills built for campus mobile data.
+            </p>
+
+            {/* Two disciplined CTAs (Primary Ink + Secondary Surface) */}
+            <div className="mt-7 flex flex-col items-stretch justify-center gap-2.5 sm:mt-8 sm:flex-row sm:items-center sm:gap-3">
+              <Magnet strength={0.18} className="w-full sm:w-auto">
+                <Link
+                  href="/signup"
+                  className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-6 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90 sm:min-h-[50px] sm:w-auto sm:px-7 sm:text-base"
+                >
+                  Create student account
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Magnet>
+              <Magnet strength={0.14} className="w-full sm:w-auto">
+                <a
+                  href="#courses"
+                  className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)]/92 px-6 text-sm font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] sm:min-h-[50px] sm:w-auto sm:text-base"
+                >
+                  Inspect the 3 GET courses
+                </a>
+              </Magnet>
             </div>
-            <div className="flex flex-wrap gap-5 text-xs font-medium text-[var(--text-secondary)]">
-              <Link href="/courses/get-205/fluid-properties-and-hydrostatics">GET 205 Sample</Link>
-              <Link href="/courses/get-207/forces-moments-and-equilibrium">GET 207 Sample</Link>
-              <Link href="/courses/get-209/limits-and-continuity">GET 209 Sample</Link>
-              <Link href="/login">Sign in</Link>
+
+            {/* Department Ticker with Pause Control */}
+            <div className="mt-8 space-y-2">
+              <p className="font-mono text-[11px] font-medium uppercase tracking-wider text-[var(--text-muted)]">
+                8 OAU Engineering Departments · One Shared Curriculum
+              </p>
+              <LogoLoop items={OAU_DEPT_LOOP} />
+            </div>
+
+            {/* Live 2-Level App-Frame Workspace Preview */}
+            <HeroProductPreview />
+          </div>
+        </section>
+
+        {/* ==================== 2. FACT STRIP (Equal max-w-5xl edges, tabular figures) ==================== */}
+        <section className="border-y border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-7 sm:px-6">
+          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
+              <Counter
+                value={9}
+                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
+              />
+              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                Lined Study Folios
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
+              <Counter
+                value={72}
+                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
+              />
+              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                Server-Graded Drills
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
+              <Counter
+                value={123}
+                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
+              />
+              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                Part 2 Library Files
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
+              <Counter
+                value={3}
+                className="text-2xl font-extrabold tracking-tight text-[var(--accent)]"
+              />
+              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                Matched Course Textbooks
+              </p>
             </div>
           </div>
-        </footer>
-      </div>
-    </ClickSpark>
+        </section>
+
+        {/* ==================== 3. COURSE CURRICULUM EXPLORER (Equal max-w-5xl edges) ==================== */}
+        <section id="courses" className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+          <div className="max-w-2xl">
+            <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
+              NUC CCMAS 2023 Syllabus Alignment
+            </p>
+            <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] text-balance sm:text-3xl">
+              Every chapter paired with the exact textbook your lecturers set.
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty sm:text-base">
+              Switch between Fluid Mechanics, Applied Mechanics, and Engineering Mathematics I to inspect the syllabus modules, textbook chapters, and first study folio.
+            </p>
+          </div>
+
+          <CourseCurriculumExplorer />
+        </section>
+
+        {/* ==================== 4. CAPABILITIES GRID (Warm Cream Surface Contrast, Flat 1px Cards) ==================== */}
+        <section
+          id="features"
+          className="border-y border-[var(--border-hairline)] bg-[var(--bg-subtle)]/65 px-4 py-12 sm:px-6 sm:py-16"
+        >
+          <div className="mx-auto max-w-5xl">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] text-balance sm:text-3xl">
+                Built around how 200L tests are written and graded.
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty sm:text-base">
+                Read the derivation on lined paper, inspect the free-body or manometer diagram, check numeric answers to ±1%, and sit timed mocks before exam week.
+              </p>
+            </div>
+
+            <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {FEATURES.map((feat) => {
+                const Icon = feat.icon;
+                return (
+                  <article
+                    key={feat.title}
+                    className="flex flex-col justify-between rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] text-[var(--accent)]">
+                          <Icon className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                        <Badge variant="neutral" className="font-mono">
+                          {feat.tag}
+                        </Badge>
+                      </div>
+                      <h3 className="mt-4 text-base font-bold tracking-tight text-[var(--text-primary)]">
+                        {feat.title}
+                      </h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
+                        {feat.body}
+                      </p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ==================== 5. STUDY WORKFLOW (Equal max-w-5xl 12-Col Editorial Split) ==================== */}
+        <section id="how-it-works" className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-start lg:gap-8">
+            <div className="lg:col-span-4">
+              <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
+                15-Minute Study Loop
+              </p>
+              <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] text-balance sm:text-3xl">
+                Read the folio, solve the drill, time your speed.
+              </h2>
+              <p className="mt-2.5 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
+                Each topic folio links straight into its chapter drill bank and course CBT simulator so you verify understanding immediately after reading.
+              </p>
+            </div>
+
+            <div className="lg:col-span-8">
+              <StudyLoopStepper />
+            </div>
+          </div>
+        </section>
+
+        {/* ==================== 6. FAQ (Equal max-w-5xl 12-Col Editorial Split) ==================== */}
+        <section id="faq" className="mx-auto max-w-5xl border-t border-[var(--border-hairline)] px-4 py-12 sm:px-6 sm:py-16">
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-start lg:gap-8">
+            <div className="lg:col-span-4">
+              <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                Student Questions
+              </p>
+              <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] text-balance">
+                Straight answers on data usage, textbooks, and courses.
+              </h2>
+            </div>
+
+            <div className="lg:col-span-8">
+              <StudentFaqAccordion />
+            </div>
+          </div>
+        </section>
+
+        {/* ==================== 7. OBSIDIAN CALLOUT BAND (Equal max-w-5xl edges) ==================== */}
+        <section className="mx-auto max-w-5xl px-4 pb-14 sm:px-6 sm:pb-16">
+          <div className="rounded-[24px] bg-[#141413] px-5 py-10 text-center text-[#FAF9F5] sm:px-10 sm:py-12">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 font-mono text-xs font-semibold text-orange-300">
+              <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+              Open Phase 1 Access · Zero Subscription Fee
+            </span>
+            <h2 className="mx-auto mt-3.5 max-w-xl text-2xl font-extrabold tracking-[-0.025em] text-balance sm:text-3xl">
+              Open your 200L coursebooks before the next test.
+            </h2>
+            <p className="mx-auto mt-2.5 max-w-lg text-sm leading-relaxed text-neutral-300 text-pretty">
+              Select your OAU engineering department, read all 9 lined study folios, practice 72 textbook-verified questions, and access 123 Part 2 handouts in one place.
+            </p>
+            <div className="mt-6 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:items-center sm:gap-3">
+              <Magnet strength={0.2} className="w-full sm:w-auto">
+                <Link
+                  href="/signup"
+                  className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#EA580C] px-6 text-sm font-semibold text-white hover:bg-[#C2410C] sm:w-auto"
+                >
+                  Create student account
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Magnet>
+              <Link
+                href="/login"
+                className="pressable inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-[#FAF9F5] hover:bg-white/10 sm:w-auto"
+              >
+                Sign in to existing account
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* ==================== 8. EDITORIAL DARK CLOSING FOOTER (VoltAgent claude-DESIGN.md + tasteskill) ==================== */}
+      <footer className="border-t border-white/10 bg-[#141413] px-4 py-12 text-[#A3A098] sm:px-6">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-2.5 text-[#FAF9F5]">
+                <BrandLogo size="sm" />
+                <span translate="no" className="text-base font-extrabold tracking-tight">
+                  {APP_NAME}
+                </span>
+              </div>
+              <p className="mt-2.5 max-w-xs text-xs leading-relaxed">
+                {APP_INSTITUTION} — lined study folios, textbook figure drills, and timed CBT exams for Second Year engineering students.
+              </p>
+            </div>
+
+            <div className="lg:col-span-3">
+              <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#FAF9F5]">
+                Study Folios
+              </h3>
+              <ul className="mt-3 space-y-2 text-xs">
+                <li>
+                  <Link
+                    href="/courses/get-205/fluid-properties-and-hydrostatics"
+                    className="hover:text-[#FAF9F5]"
+                  >
+                    <span translate="no">GET 205</span> · Fluid Mechanics
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/courses/get-207/forces-moments-and-equilibrium"
+                    className="hover:text-[#FAF9F5]"
+                  >
+                    <span translate="no">GET 207</span> · Applied Mechanics
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/courses/get-209/limits-and-continuity"
+                    className="hover:text-[#FAF9F5]"
+                  >
+                    <span translate="no">GET 209</span> · Engineering Maths I
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="lg:col-span-2">
+              <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#FAF9F5]">
+                Platform
+              </h3>
+              <ul className="mt-3 space-y-2 text-xs">
+                <li>
+                  <Link href="/tests" className="hover:text-[#FAF9F5]">
+                    Test Center
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/library" className="hover:text-[#FAF9F5]">
+                    Part 2 Library
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/progress" className="hover:text-[#FAF9F5]">
+                    Study Progress
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="lg:col-span-2">
+              <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#FAF9F5]">
+                Student Access
+              </h3>
+              <ul className="mt-3 space-y-2 text-xs">
+                <li>
+                  <Link href="/signup" className="hover:text-[#FAF9F5]">
+                    Create account
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/login" className="hover:text-[#FAF9F5]">
+                    Log in
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col justify-between gap-2 border-t border-white/10 pt-6 text-xs sm:flex-row sm:items-center">
+            <p>
+              © {new Date().getFullYear()} <span translate="no">{APP_NAME}</span> · Built for OAU 200L Engineering.
+            </p>
+            <p className="font-mono text-[11px]">
+              Aligned with NUC CCMAS 2023 · Çengel · Hibbeler 14e · Stewart 7e
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }

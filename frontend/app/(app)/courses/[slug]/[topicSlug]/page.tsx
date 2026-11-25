@@ -59,23 +59,23 @@ export default async function TopicReaderPage({
           href={`/courses/${slug}`}
           className="-ml-1 inline-flex min-h-[40px] min-w-0 items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
         >
-          <ArrowLeft className="h-3.5 w-3.5 shrink-0" />
+          <ArrowLeft className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
           <span className="truncate">
-            {frontmatter.courseCode} · {manifest?.title ?? "Course"}
+            <span translate="no">{frontmatter.courseCode}</span> · {manifest?.title ?? "Course"}
           </span>
         </Link>
 
         <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center">
           <Link
             href={`/practice/${frontmatter.topicId}`}
-            className="pressable inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-primary)]"
+            className="pressable inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
           >
-            <ClipboardCheck className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
+            <ClipboardCheck className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" aria-hidden="true" />
             Topic Drill
           </Link>
           <Link
             href={`/courses/${slug}/mock-exam`}
-            className="pressable inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+            className="pressable inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
           >
             Timed Test
           </Link>
@@ -141,7 +141,7 @@ export default async function TopicReaderPage({
             </div>
           </div>
 
-          <h1 className="mt-3.5 text-xl font-extrabold leading-snug tracking-[-0.025em] text-[var(--text-primary)] sm:mt-4 sm:text-[30px] sm:leading-[1.2]">
+          <h1 className="mt-3.5 text-xl font-extrabold leading-snug tracking-[-0.025em] text-[var(--text-primary)] text-balance sm:mt-4 sm:text-[30px] sm:leading-[1.2]">
             {frontmatter.title}
           </h1>
 

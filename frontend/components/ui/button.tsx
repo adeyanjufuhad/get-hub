@@ -9,16 +9,16 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        ink: "bg-[var(--ink-cta)] text-[var(--ink-cta-text)] rounded-full",
-        accent: "bg-[var(--accent)] text-white rounded-full",
+        ink: "bg-[var(--ink-cta)] text-[var(--ink-cta-text)] rounded-full hover:opacity-90",
+        accent: "bg-[var(--accent)] text-white rounded-full hover:bg-[var(--accent-hover)]",
         secondary:
-          "bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-hairline)] rounded-full",
+          "bg-[var(--bg-surface)] text-[var(--text-primary)] border border-[var(--border-hairline)] rounded-full hover:border-[var(--border-strong)] hover:bg-[var(--bg-subtle)]",
         subtle:
-          "bg-[var(--bg-subtle)] text-[var(--text-primary)] rounded-xl",
+          "bg-[var(--bg-subtle)] text-[var(--text-primary)] rounded-xl hover:border-[var(--border-strong)]",
         ghost:
-          "bg-transparent text-[var(--text-secondary)] rounded-xl",
+          "bg-transparent text-[var(--text-secondary)] rounded-xl hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]",
         danger:
-          "bg-[var(--danger)] text-white rounded-full",
+          "bg-[var(--danger)] text-white rounded-full hover:opacity-90",
       },
       size: {
         sm: "min-h-[40px] px-3.5 text-sm",

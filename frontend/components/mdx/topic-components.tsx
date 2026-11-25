@@ -23,9 +23,18 @@ import { cn } from "@/lib/cn";
 export function DiagramFigure({ src, caption }: { src: string; caption?: string }) {
   const [zoomed, setZoomed] = useState(false);
 
+  useEffect(() => {
+    if (!zoomed) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setZoomed(false);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [zoomed]);
+
   return (
     <>
-      <figure className="my-6 overflow-hidden rounded-2xl border border-[var(--border-strong)] bg-[var(--paper-plate-bg)] p-3 shadow-[0_6px_20px_rgba(20,20,19,0.06)] sm:my-7 sm:p-3.5">
+      <figure className="my-6 overflow-hidden rounded-2xl border border-[var(--border-strong)] bg-[var(--paper-plate-bg)] p-3 sm:my-7 sm:p-3.5">
         <div className="mb-2.5 flex items-center justify-between gap-2 border-b border-[var(--border-hairline)] pb-2">
           <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
             ▸ Textbook Figure Plate
@@ -35,7 +44,7 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
             onClick={() => setZoomed(true)}
             className="pressable inline-flex min-h-[34px] items-center gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 py-1 font-mono text-[10px] font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer"
           >
-            <Maximize2 className="h-3 w-3" />
+            <Maximize2 className="h-3 w-3" aria-hidden="true" />
             Enlarge
           </button>
         </div>
@@ -50,6 +59,8 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
           <img
             src={src}
             alt={caption || "Engineering textbook figure"}
+            width={640}
+            height={400}
             loading="lazy"
             decoding="async"
             className="mx-auto max-h-[260px] w-auto max-w-full object-contain sm:max-h-[340px]"
@@ -57,7 +68,7 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
         </button>
 
         {caption && (
-          <figcaption className="mt-2.5 border-t border-dashed border-[var(--border-hairline)] pt-2 text-center text-xs leading-relaxed text-[var(--text-secondary)]">
+          <figcaption className="mt-2.5 border-t border-dashed border-[var(--border-hairline)] pt-2 text-center font-mono text-[11px] leading-relaxed text-[var(--text-muted)]">
             {caption}
           </figcaption>
         )}
@@ -67,12 +78,13 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
         <div
           role="dialog"
           aria-modal="true"
+          aria-label={caption || "Enlarged textbook figure"}
           onClick={() => setZoomed(false)}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-2.5 backdrop-blur-xs sm:p-4"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="max-h-[90dvh] w-full max-w-3xl overflow-auto rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 shadow-2xl sm:rounded-[24px] sm:p-6"
+            className="max-h-[90dvh] w-full max-w-3xl overflow-auto overscroll-contain rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 shadow-2xl sm:rounded-[24px] sm:p-6"
           >
             <div className="mb-3 flex items-center justify-between gap-3">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
@@ -82,9 +94,9 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
                 type="button"
                 onClick={() => setZoomed(false)}
                 aria-label="Close enlarged figure"
-                className="pressable inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] text-[var(--text-primary)] cursor-pointer"
+                className="pressable inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] cursor-pointer"
               >
-                <X className="h-4 w-4" />
+                <X className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
             <div className="rounded-2xl bg-white p-2 sm:p-3">
@@ -92,6 +104,9 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
               <img
                 src={src}
                 alt={caption || "Engineering textbook figure"}
+                width={960}
+                height={600}
+                decoding="async"
                 className="mx-auto max-h-[68dvh] w-auto max-w-full object-contain"
               />
             </div>
@@ -119,7 +134,7 @@ export function StepRevealExample({
   const [shown, setShown] = useState(0);
 
   return (
-    <div className="my-7 overflow-hidden rounded-[20px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)] shadow-[0_6px_20px_rgba(20,20,19,0.05)]">
+    <div className="my-7 overflow-hidden rounded-[20px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)]">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/75 px-4 py-3 sm:px-5">
         <div className="min-w-0">
           <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">

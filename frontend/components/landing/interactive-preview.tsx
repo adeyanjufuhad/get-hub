@@ -180,8 +180,8 @@ export function HeroProductPreview() {
             <div className="flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/textbooks/figures/get205-utube-manometer.webp"
-                alt="Çengel U-tube manometer schematic showing fluid column heights"
+                src="/images/textbook-figures/get-205/cengel-fig-2-49-diff-manometer.webp"
+                alt="Çengel Fig. 2-49 differential manometer schematic showing fluid column heights"
                 width={520}
                 height={320}
                 loading="lazy"
@@ -234,9 +234,9 @@ const SAMPLE_TOPIC_SLUG: Record<string, string> = {
 };
 
 const COURSE_PLATE: Record<string, string> = {
-  "get-205": "/images/textbooks/figures/get205-utube-manometer.webp",
-  "get-207": "/images/textbooks/figures/get207-beam-loading.webp",
-  "get-209": "/images/textbooks/figures/get209-secant-tangent.webp",
+  "get-205": "/images/textbook-figures/get-205/cengel-fig-2-47-manometer.webp",
+  "get-207": "/images/textbook-figures/get-207/hibbeler-f5-2-beam.webp",
+  "get-209": "/images/textbook-figures/get-209/stewart-fig-2-3-2-removable-hole.webp",
 };
 
 export function CourseCurriculumExplorer() {

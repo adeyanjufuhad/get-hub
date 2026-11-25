@@ -29,7 +29,7 @@ export function PrescribedTextbooks() {
       {/* Strictly Matched 3 Prescribed Textbooks (1 per GET course, zero clutter, zero SVG) */}
       <section
         id="textbooks"
-        className="scroll-mt-20 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6"
+        className="scroll-mt-20 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-6"
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div className="min-w-0">
@@ -45,13 +45,13 @@ export function PrescribedTextbooks() {
           </div>
 
           {/* Course filter pills */}
-          <div className="-mx-5 overflow-x-auto px-5 pb-0.5 [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
+          <div className="-mx-4 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
             <div className="flex w-max gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-1">
               <button
                 type="button"
                 onClick={() => setSelectedCourse("all")}
                 className={cn(
-                  "pressable min-h-[38px] shrink-0 whitespace-nowrap rounded-full px-3.5 text-xs font-semibold cursor-pointer",
+                  "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-full px-3.5 text-xs font-semibold cursor-pointer",
                   selectedCourse === "all"
                     ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                     : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
@@ -65,7 +65,7 @@ export function PrescribedTextbooks() {
                   type="button"
                   onClick={() => setSelectedCourse(c.slug)}
                   className={cn(
-                    "pressable min-h-[38px] shrink-0 whitespace-nowrap rounded-full px-3.5 font-mono text-xs font-semibold cursor-pointer",
+                    "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-full px-3.5 font-mono text-xs font-semibold cursor-pointer",
                     selectedCourse === c.slug
                       ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                       : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
@@ -87,9 +87,9 @@ export function PrescribedTextbooks() {
                 className="flex min-w-0 flex-col justify-between rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4"
               >
                 <div>
-                  <div className="flex items-start gap-3.5">
+                  <div className="flex items-start gap-3">
                     {/* Authentic raster PDF cover */}
-                    <div className="relative aspect-[3/4] w-20 shrink-0 overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] shadow-sm">
+                    <div className="relative aspect-[3/4] w-16 shrink-0 overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] shadow-sm sm:w-20">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={book.coverImage}
@@ -150,16 +150,16 @@ export function PrescribedTextbooks() {
                   )}
                 </div>
 
-                <div className="mt-4 grid grid-cols-2 gap-2 border-t border-[var(--border-hairline)] pt-3.5">
+                <div className="mt-4 grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] pt-3.5 min-[340px]:grid-cols-2">
                   <Link
                     href={`/courses/${book.courseSlug}`}
-                    className="pressable inline-flex min-h-[40px] items-center justify-center rounded-full bg-[var(--ink-cta)] px-3 text-xs font-semibold text-[var(--ink-cta-text)]"
+                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-full bg-[var(--ink-cta)] px-3 text-xs font-semibold text-[var(--ink-cta-text)]"
                   >
                     Study Folios →
                   </Link>
                   <Link
                     href={book.readUrl || "/library"}
-                    className="pressable inline-flex min-h-[40px] items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 text-xs font-semibold text-[var(--text-primary)]"
+                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 text-xs font-semibold text-[var(--text-primary)]"
                   >
                     Course PDFs
                   </Link>
@@ -171,7 +171,7 @@ export function PrescribedTextbooks() {
       </section>
 
       {/* Strict Textbook Figures & Questions Showcase (Zero SVG — real cropped schematics) */}
-      <section className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6">
+      <section className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-6">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">

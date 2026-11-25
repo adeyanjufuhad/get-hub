@@ -106,12 +106,12 @@ export default function TestsHubPage() {
 
         {/* Course Scope Pills */}
         <div className="-mx-4 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
-          <div className="inline-flex gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1">
+          <div className="inline-flex w-max gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1">
             <button
               type="button"
               onClick={() => setSelectedCourse("all")}
               className={cn(
-                "pressable min-h-[38px] rounded-full px-3.5 text-xs font-semibold cursor-pointer",
+                "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-full px-3.5 text-xs font-semibold cursor-pointer",
                 selectedCourse === "all"
                   ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                   : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
@@ -125,7 +125,7 @@ export default function TestsHubPage() {
                 type="button"
                 onClick={() => setSelectedCourse(c.slug)}
                 className={cn(
-                  "pressable min-h-[38px] whitespace-nowrap rounded-full px-3.5 font-mono text-xs font-semibold cursor-pointer",
+                  "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-full px-3.5 font-mono text-xs font-semibold cursor-pointer",
                   selectedCourse === c.slug
                     ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                     : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
@@ -139,7 +139,7 @@ export default function TestsHubPage() {
       </section>
 
       {/* ==================== 1. TIMED CBT MOCK EXAM STUDIO ==================== */}
-      <section className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6">
+      <section className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
@@ -201,7 +201,7 @@ export default function TestsHubPage() {
                             }))
                           }
                           className={cn(
-                            "pressable flex flex-col items-center rounded-xl border px-2 py-2 text-center cursor-pointer",
+                            "pressable flex min-h-[48px] flex-col items-center justify-center rounded-xl border px-1.5 py-2 text-center cursor-pointer sm:px-2",
                             selected
                               ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
                               : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)]"
@@ -219,21 +219,21 @@ export default function TestsHubPage() {
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-center gap-2 border-t border-[var(--border-hairline)] pt-3.5">
+                <div className="mt-4 flex flex-col gap-2 border-t border-[var(--border-hairline)] pt-3.5 min-[360px]:flex-row min-[360px]:items-center">
                   <button
                     type="button"
                     disabled={Boolean(launchingSlug)}
                     onClick={() => handleQuickStartExam(course.slug)}
-                    className="pressable inline-flex min-h-[42px] flex-1 items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] cursor-pointer disabled:opacity-60"
+                    className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] cursor-pointer disabled:opacity-60"
                   >
-                    <Timer className="h-3.5 w-3.5" />
+                    <Timer className="h-3.5 w-3.5 shrink-0" />
                     {isLaunching
                       ? "Starting…"
                       : `Start ${activePreset.questions}Q (${activePreset.minutes}m)`}
                   </button>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 text-xs font-semibold text-[var(--text-secondary)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-secondary)]"
                   >
                     Custom
                   </Link>
@@ -332,17 +332,17 @@ export default function TestsHubPage() {
                         <div className="mt-4 flex items-center gap-2 border-t border-[var(--border-hairline)] pt-3">
                           <Link
                             href={`/practice/${topic.id}`}
-                            className="pressable inline-flex min-h-[40px] flex-1 items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+                            className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
                           >
-                            <PenTool className="h-3.5 w-3.5" />
+                            <PenTool className="h-3.5 w-3.5 shrink-0" />
                             Drill ({topic.question_count})
                           </Link>
                           <Link
                             href={`/courses/${course.slug}/${topic.slug}`}
-                            className="pressable inline-flex min-h-[40px] items-center justify-center gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                            className="pressable inline-flex min-h-[44px] items-center justify-center gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                             title="Read lined folio notes"
                           >
-                            <BookOpen className="h-3.5 w-3.5" />
+                            <BookOpen className="h-3.5 w-3.5 shrink-0" />
                             Notes
                           </Link>
                         </div>

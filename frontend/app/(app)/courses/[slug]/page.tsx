@@ -211,19 +211,19 @@ export default function CourseDetailPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 sm:flex sm:shrink-0 sm:items-center">
+                    <div className="grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:flex sm:shrink-0 sm:items-center">
                       <Link
                         href={`/courses/${course.slug}/${topic.slug}`}
                         className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)]"
                       >
-                        <BookOpen className="h-3.5 w-3.5" />
+                        <BookOpen className="h-3.5 w-3.5 shrink-0" />
                         Read folio
                       </Link>
                       <Link
                         href={`/practice/${topic.id}`}
                         className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-strong)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-primary)]"
                       >
-                        <PenTool className="h-3.5 w-3.5 text-[var(--accent)]" />
+                        <PenTool className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
                         Drill ({topic.question_count ?? fb?.question_count ?? 7})
                         <ArrowRight className="hidden h-3.5 w-3.5 sm:inline" />
                       </Link>

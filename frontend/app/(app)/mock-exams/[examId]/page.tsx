@@ -158,9 +158,9 @@ export default function MockExamRunnerPage() {
 
     return (
       <div className="mx-auto max-w-3xl space-y-6">
-        <div className="rounded-[26px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6 sm:p-8">
-          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-            <div>
+        <div className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:rounded-[26px] sm:p-8">
+          <div className="flex flex-col-reverse items-start justify-between gap-5 sm:flex-row sm:items-center sm:gap-6">
+            <div className="w-full sm:w-auto">
               <Badge variant="accent" className="font-mono">
                 {course?.code} · Mock Exam Graded
               </Badge>
@@ -172,24 +172,26 @@ export default function MockExamRunnerPage() {
                   ? "Solid performance! Keep sharpening your speed."
                   : "Good run — review the missed steps below and drill weak topics."}
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 grid grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:flex sm:flex-wrap">
                 {course && (
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[44px] items-center rounded-full bg-[var(--ink-cta)] px-5 text-sm font-semibold text-[var(--ink-cta-text)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full bg-[var(--ink-cta)] px-5 text-sm font-semibold text-[var(--ink-cta-text)]"
                   >
                     Retake new mock
                   </Link>
                 )}
                 <Link
                   href="/progress"
-                  className="pressable inline-flex min-h-[44px] items-center rounded-full border border-[var(--border-hairline)] px-5 text-sm font-semibold text-[var(--text-primary)]"
+                  className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full border border-[var(--border-hairline)] px-5 text-sm font-semibold text-[var(--text-primary)]"
                 >
                   View progress
                 </Link>
               </div>
             </div>
-            <ProgressArc percentage={pct} size={104} strokeWidth={9} />
+            <div className="self-center sm:self-auto">
+              <ProgressArc percentage={pct} size={100} strokeWidth={9} />
+            </div>
           </div>
 
           {/* Score Breakdown By Topic */}
@@ -227,7 +229,7 @@ export default function MockExamRunnerPage() {
           {reviews.map((rev, idx) => (
             <article
               key={rev.question.id}
-              className="rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5"
+              className="rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5"
             >
               <div className="flex items-center justify-between gap-2">
                 <span className="font-mono text-xs font-bold text-[var(--text-muted)]">
@@ -245,7 +247,7 @@ export default function MockExamRunnerPage() {
                   )}
                 </Badge>
               </div>
-              <div className="mt-3 text-sm font-medium leading-relaxed text-[var(--text-primary)]">
+              <div className="math-scroll-x mt-3 text-sm font-medium leading-relaxed text-[var(--text-primary)]">
                 <MathText text={rev.question.prompt_md} />
               </div>
 
@@ -259,7 +261,7 @@ export default function MockExamRunnerPage() {
               )}
 
               {rev.question.question_type === "mcq" && rev.question.options && (
-                <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {rev.question.options.map((opt) => {
                     const isRight = rev.correct_option_id === opt.id;
                     const isMine = rev.selected_option_id === opt.id;
@@ -267,7 +269,7 @@ export default function MockExamRunnerPage() {
                       <div
                         key={opt.id}
                         className={cn(
-                          "rounded-xl border px-3 py-2 text-xs",
+                          "math-scroll-x min-w-0 rounded-xl border px-3 py-2 text-xs",
                           isRight
                             ? "border-[var(--success)] bg-[var(--success-soft)] font-semibold"
                             : isMine
@@ -283,7 +285,7 @@ export default function MockExamRunnerPage() {
                 </div>
               )}
 
-              <div className="mt-4 rounded-xl bg-[var(--bg-canvas)] p-3.5 text-xs leading-relaxed text-[var(--text-secondary)]">
+              <div className="math-scroll-x mt-4 rounded-xl bg-[var(--bg-canvas)] p-3.5 text-xs leading-relaxed text-[var(--text-secondary)]">
                 <p className="mb-1 font-mono text-[10px] font-bold uppercase text-[var(--text-muted)]">
                   Solution
                 </p>
@@ -345,24 +347,24 @@ export default function MockExamRunnerPage() {
       {/* Main Question Area */}
       <div className="space-y-4 lg:col-span-8">
         {/* Sticky Exam Top Strip */}
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3">
-          <div>
+        <div className="sticky top-[57px] z-20 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)]/95 px-3.5 py-2.5 shadow-2xs backdrop-blur-md sm:px-4 sm:py-3 md:top-4">
+          <div className="min-w-0">
             <span className="font-mono text-xs font-bold text-[var(--accent)]">{course?.code}</span>
-            <span className="tabular ml-2 text-xs text-[var(--text-muted)]">
-              Q{index + 1} of {questions.length} · {answeredCount} answered
+            <span className="tabular ml-1.5 text-xs text-[var(--text-muted)] sm:ml-2">
+              Q{index + 1}/{questions.length} · {answeredCount} done
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <span
               className={cn(
-                "tabular inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-xs font-bold",
+                "tabular inline-flex min-h-[36px] items-center gap-1.5 rounded-full px-3 py-1 font-mono text-xs font-bold",
                 remaining <= 60
                   ? "bg-[var(--danger-soft)] text-[var(--danger)]"
                   : "bg-[var(--bg-subtle)] text-[var(--text-primary)]"
               )}
             >
-              <Clock className="h-3.5 w-3.5" />
+              <Clock className="h-3.5 w-3.5 shrink-0" />
               {formatClock(remaining)}
             </span>
 
@@ -371,7 +373,7 @@ export default function MockExamRunnerPage() {
               <Drawer.Trigger asChild>
                 <button
                   type="button"
-                  className="pressable inline-flex h-10 items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-xs font-semibold lg:hidden cursor-pointer"
+                  className="pressable inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-xs font-semibold lg:hidden cursor-pointer"
                 >
                   <Grid2x2 className="h-3.5 w-3.5" />
                   Map
@@ -379,12 +381,25 @@ export default function MockExamRunnerPage() {
               </Drawer.Trigger>
               <Drawer.Portal>
                 <Drawer.Overlay className="fixed inset-0 z-40 bg-black/40" />
-                <Drawer.Content className="safe-bottom fixed inset-x-0 bottom-0 z-50 rounded-t-[24px] border-t border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5">
+                <Drawer.Content className="safe-bottom fixed inset-x-0 bottom-0 z-50 max-h-[82dvh] overflow-y-auto rounded-t-[24px] border-t border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5">
                   <div className="mx-auto mb-4 h-1.5 w-10 rounded-full bg-[var(--border-strong)]" />
                   <Drawer.Title className="text-sm font-bold text-[var(--text-primary)]">
                     Question Navigator ({answeredCount}/{questions.length} answered)
                   </Drawer.Title>
                   <div className="mt-4">{navigatorGrid}</div>
+                  <Button
+                    type="button"
+                    variant="accent"
+                    disabled={submitting}
+                    onClick={() => {
+                      setDrawerOpen(false);
+                      void handleSubmit();
+                    }}
+                    className="mt-5 w-full"
+                  >
+                    <Send className="h-4 w-4" />
+                    {submitting ? "Grading…" : "Submit & grade exam"}
+                  </Button>
                 </Drawer.Content>
               </Drawer.Portal>
             </Drawer.Root>
@@ -392,7 +407,7 @@ export default function MockExamRunnerPage() {
         </div>
 
         {/* Question Card */}
-        <div className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6">
+        <div className="rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[24px] sm:p-6">
           <div className="flex items-center justify-between gap-2">
             <Badge variant="neutral" className="capitalize">
               {current.difficulty} · {current.question_type}
@@ -401,7 +416,7 @@ export default function MockExamRunnerPage() {
               type="button"
               onClick={() => setFlagged((f) => ({ ...f, [current.id]: !f[current.id] }))}
               className={cn(
-                "pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full px-3.5 text-xs font-semibold cursor-pointer",
+                "pressable inline-flex min-h-[42px] items-center gap-1.5 rounded-full px-3.5 text-xs font-semibold cursor-pointer",
                 flagged[current.id]
                   ? "bg-[var(--warning-soft)] text-[var(--warning)]"
                   : "bg-[var(--bg-subtle)] text-[var(--text-secondary)]"
@@ -412,7 +427,7 @@ export default function MockExamRunnerPage() {
             </button>
           </div>
 
-          <div className="mt-4 text-base font-medium leading-relaxed text-[var(--text-primary)]">
+          <div className="math-scroll-x mt-4 text-base font-medium leading-relaxed text-[var(--text-primary)]">
             <MathText text={current.prompt_md} />
           </div>
 
@@ -453,7 +468,7 @@ export default function MockExamRunnerPage() {
                         : "border-[var(--border-hairline)] bg-[var(--bg-canvas)]"
                     )}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex w-full min-w-0 items-center gap-3">
                       <span
                         className={cn(
                           "flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-mono text-xs font-bold",
@@ -465,7 +480,7 @@ export default function MockExamRunnerPage() {
                         {opt.label}
                       </span>
                       {opt.content_md && (
-                        <span className="text-sm font-medium text-[var(--text-primary)]">
+                        <span className="math-scroll-x min-w-0 flex-1 text-sm font-medium text-[var(--text-primary)]">
                           <MathText text={opt.content_md} />
                         </span>
                       )}
@@ -497,10 +512,10 @@ export default function MockExamRunnerPage() {
                   }))
                 }
                 placeholder="Enter numeric value"
-                className="tabular min-h-[48px] flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-4 font-mono text-[var(--text-primary)] outline-none focus:border-[var(--accent)]"
+                className="tabular min-h-[48px] min-w-0 flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 font-mono text-base text-[var(--text-primary)] outline-none focus:border-[var(--accent)] sm:px-4"
               />
               {current.numeric_unit && (
-                <span className="rounded-xl bg-[var(--bg-subtle)] px-3.5 py-3 font-mono text-sm font-semibold text-[var(--text-secondary)]">
+                <span className="shrink-0 rounded-xl bg-[var(--bg-subtle)] px-3 py-3 font-mono text-xs font-semibold text-[var(--text-secondary)] sm:px-3.5 sm:text-sm">
                   {current.numeric_unit}
                 </span>
               )}
@@ -520,12 +535,23 @@ export default function MockExamRunnerPage() {
             </Button>
 
             {index + 1 < questions.length ? (
-              <Button type="button" variant="ink" onClick={() => setIndex((i) => i + 1)}>
+              <Button
+                type="button"
+                variant="ink"
+                onClick={() => setIndex((i) => i + 1)}
+                className="flex-1 sm:flex-initial"
+              >
                 Next
                 <ArrowRight className="h-4 w-4" />
               </Button>
             ) : (
-              <Button type="button" variant="accent" disabled={submitting} onClick={handleSubmit}>
+              <Button
+                type="button"
+                variant="accent"
+                disabled={submitting}
+                onClick={handleSubmit}
+                className="flex-1 sm:flex-initial"
+              >
                 <Send className="h-4 w-4" />
                 {submitting ? "Grading…" : "Submit exam"}
               </Button>

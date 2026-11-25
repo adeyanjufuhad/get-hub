@@ -89,14 +89,14 @@ export default function LandingPage() {
 
         <main>
           {/* HERO SECTION (100svh stable on mobile, React Bits Grainient hero background) */}
-          <section className="relative overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pt-32">
+          <section className="relative overflow-hidden px-3.5 pb-12 pt-24 sm:px-6 sm:pb-16 sm:pt-32">
             <HeroGrainientBackground />
 
             <div className="relative z-10 mx-auto max-w-5xl text-center">
-              <h1 className="mx-auto max-w-3xl text-[2.25rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--text-primary)] sm:text-5xl md:text-6xl">
+              <h1 className="mx-auto max-w-3xl text-[1.9rem] font-extrabold leading-[1.1] tracking-[-0.03em] text-[var(--text-primary)] min-[380px]:text-[2.25rem] sm:text-5xl md:text-6xl">
                 <span>Finally understand GET 205, 207 &amp; 209</span>
                 {/* React Bits ParticleText for "clearly." */}
-                <span className="mx-auto mt-1 block h-[78px] w-full max-w-[380px] text-[var(--accent)] sm:h-[96px] sm:max-w-[460px] md:h-[112px] md:max-w-[520px]">
+                <span className="mx-auto mt-1 block h-[64px] w-full max-w-[300px] text-[var(--accent)] min-[380px]:h-[78px] min-[380px]:max-w-[380px] sm:h-[96px] sm:max-w-[460px] md:h-[112px] md:max-w-[520px]">
                   <ParticleText
                     text="clearly."
                     particleSize={2}
@@ -115,7 +115,7 @@ export default function LandingPage() {
                     repelRadius={110}
                     idleDrift={0.65}
                     trigger="hover"
-                    fontSize="clamp(2.65rem, 9vw, 4.75rem)"
+                    fontSize="clamp(2.15rem, 9vw, 4.75rem)"
                     fontWeight={800}
                     fontFamily="inherit"
                     glow
@@ -123,25 +123,25 @@ export default function LandingPage() {
                 </span>
               </h1>
 
-              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
-                Friendly step-by-step explanations, crisp SVG engineering diagrams, and timed exam drills built by an OAU 200L student — light enough for slow campus data.
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-secondary)] min-[380px]:text-base sm:mt-6 sm:text-lg">
+                Lined coursebook study folios, real textbook schematics, and timed CBT exam drills built for OAU 200L students — fast and light on campus mobile data.
               </p>
 
               {/* Primary & Secondary CTAs with React Bits Magnet micro-interaction */}
-              <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-                <Magnet strength={0.2}>
+              <div className="mt-7 flex flex-col items-stretch justify-center gap-2.5 sm:mt-8 sm:flex-row sm:items-center sm:gap-3">
+                <Magnet strength={0.2} className="w-full sm:w-auto">
                   <Link
                     href="/signup"
-                    className="pressable inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-7 text-base font-semibold text-[var(--ink-cta-text)] sm:w-auto"
+                    className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-6 text-sm font-semibold text-[var(--ink-cta-text)] sm:min-h-[50px] sm:w-auto sm:px-7 sm:text-base"
                   >
                     Create free student account
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Magnet>
-                <Magnet strength={0.16}>
+                <Magnet strength={0.16} className="w-full sm:w-auto">
                   <a
                     href="#courses"
-                    className="pressable inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)]/90 px-6 text-base font-semibold text-[var(--text-primary)] backdrop-blur-xs sm:w-auto"
+                    className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)]/90 px-6 text-sm font-semibold text-[var(--text-primary)] backdrop-blur-xs sm:min-h-[50px] sm:w-auto sm:text-base"
                   >
                     Explore the 3 GET courses
                   </a>
@@ -176,12 +176,11 @@ export default function LandingPage() {
 
               <GlareHover className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 text-center">
                 <Counter
-                  value={54}
-                  suffix="+"
+                  value={72}
                   className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl"
                 />
                 <div className="mt-0.5 text-xs font-medium text-[var(--text-secondary)]">
-                  Original Exam Practice Drills
+                  Verified Textbook &amp; Exam Drills
                 </div>
               </GlareHover>
 
@@ -312,8 +311,8 @@ export default function LandingPage() {
               <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-neutral-300 sm:text-sm">
                 Pick your OAU engineering department, open any of 9 step-by-step study guides, practice 54 original exam drills, and download Part 2 notes from the Library.
               </p>
-              <div className="mt-5 flex flex-col justify-center gap-2.5 sm:flex-row">
-                <Magnet strength={0.22}>
+              <div className="mt-5 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:items-center">
+                <Magnet strength={0.22} className="w-full sm:w-auto">
                   <Link
                     href="/signup"
                     className="pressable inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-full bg-[#EA580C] px-6 text-sm font-semibold text-white sm:w-auto"
@@ -324,7 +323,7 @@ export default function LandingPage() {
                 </Magnet>
                 <Link
                   href="/login"
-                  className="pressable inline-flex min-h-[46px] items-center justify-center rounded-full border border-white/20 bg-white/5 px-5 text-sm font-semibold text-white"
+                  className="pressable inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-white/20 bg-white/5 px-5 text-sm font-semibold text-white sm:w-auto"
                 >
                   I already have an account
                 </Link>

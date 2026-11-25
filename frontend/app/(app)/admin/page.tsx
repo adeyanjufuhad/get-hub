@@ -253,7 +253,7 @@ export default function AdminQuestionsPage() {
             setFilterCourse(e.target.value);
             void reloadQuestions(e.target.value, filterStatus);
           }}
-          className="min-h-[42px] rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-sm"
+          className="min-h-[44px] min-w-0 flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-base sm:flex-initial sm:text-sm"
         >
           <option value="">All courses</option>
           {courses.map((c) => (
@@ -269,7 +269,7 @@ export default function AdminQuestionsPage() {
             setFilterStatus(e.target.value);
             void reloadQuestions(filterCourse, e.target.value);
           }}
-          className="min-h-[42px] rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-sm"
+          className="min-h-[44px] min-w-0 flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-base sm:flex-initial sm:text-sm"
         >
           <option value="">All statuses</option>
           <option value="draft">Draft</option>
@@ -360,15 +360,15 @@ export default function AdminQuestionsPage() {
             )}
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
             <input
               type="text"
               value={promptImageUrl}
               onChange={(e) => setPromptImageUrl(e.target.value)}
               placeholder="Optional prompt SVG/image URL (e.g. /diagrams/get-205/...)"
-              className="min-h-[44px] flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3"
+              className="min-h-[44px] w-full min-w-0 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 sm:flex-1"
             />
-            <label className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-xs font-semibold cursor-pointer">
+            <label className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-xs font-semibold cursor-pointer">
               <Upload className="h-3.5 w-3.5" />
               Upload SVG/PNG
               <input
@@ -571,7 +571,7 @@ export default function AdminQuestionsPage() {
                 </Badge>
               </div>
 
-              <div className="flex items-center gap-1.5">
+              <div className="flex flex-wrap items-center gap-1.5">
                 <Button type="button" variant="secondary" size="sm" onClick={() => togglePublish(q)}>
                   <CheckCircle2 className="h-3.5 w-3.5" />
                   {q.status === "published" ? "Unpublish" : "Publish"}
@@ -592,7 +592,7 @@ export default function AdminQuestionsPage() {
               </div>
             </div>
 
-            <div className="mt-3 text-sm text-[var(--text-primary)]">
+            <div className="math-scroll-x mt-3 text-sm text-[var(--text-primary)]">
               <MathText text={q.prompt_md} />
             </div>
           </article>

@@ -21,8 +21,8 @@ export function HeroProductPreview() {
   const [revealed, setRevealed] = useState(1);
 
   return (
-    <div className="mx-auto mt-10 w-full max-w-4xl rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 shadow-[0_12px_36px_rgba(20,20,19,0.06)] sm:p-5">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-hairline)] pb-3">
+    <div className="mx-auto mt-8 w-full max-w-4xl rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 shadow-[0_12px_36px_rgba(20,20,19,0.06)] sm:mt-10 sm:rounded-[24px] sm:p-5">
+      <div className="flex flex-col gap-2.5 border-b border-[var(--border-hairline)] pb-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" />
           <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" />
@@ -32,24 +32,25 @@ export function HeroProductPreview() {
           </span>
         </div>
 
-        <div className="inline-flex rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] p-1">
+        <div className="grid w-full grid-cols-3 gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] p-1 sm:inline-flex sm:w-auto">
           {[
-            { id: "example", label: "GET 207 Steps" },
-            { id: "diagram", label: "GET 205 SVG" },
-            { id: "quiz", label: "GET 209 Math" },
+            { id: "example", shortLabel: "GET 207", label: "GET 207 Steps" },
+            { id: "diagram", shortLabel: "GET 205", label: "GET 205 Plate" },
+            { id: "quiz", shortLabel: "GET 209", label: "GET 209 Math" },
           ].map((tab) => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id as "example" | "diagram" | "quiz")}
               className={cn(
-                "pressable min-h-[34px] rounded-full px-3 text-xs font-semibold cursor-pointer",
+                "pressable min-h-[38px] rounded-full px-2.5 text-xs font-semibold cursor-pointer sm:px-3",
                 activeTab === tab.id
                   ? "bg-[var(--bg-surface)] text-[var(--text-primary)] shadow-xs"
                   : "text-[var(--text-secondary)]"
               )}
             >
-              {tab.label}
+              <span className="sm:hidden">{tab.shortLabel}</span>
+              <span className="hidden sm:inline">{tab.label}</span>
             </button>
           ))}
         </div>
@@ -104,12 +105,12 @@ export function HeroProductPreview() {
                 </ol>
               </div>
 
-              <div className="mt-4 flex items-center justify-between gap-2 pt-2">
+              <div className="mt-4 flex flex-col items-stretch justify-between gap-2 pt-2 sm:flex-row sm:items-center">
                 {revealed < DEMO_STEPS.length ? (
                   <button
                     type="button"
                     onClick={() => setRevealed((r) => Math.min(DEMO_STEPS.length, r + 1))}
-                    className="pressable inline-flex min-h-[44px] items-center gap-2 rounded-full bg-[var(--ink-cta)] px-4 text-sm font-semibold text-[var(--ink-cta-text)] cursor-pointer"
+                    className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-4 text-sm font-semibold text-[var(--ink-cta-text)] sm:w-auto cursor-pointer"
                   >
                     <Eye className="h-4 w-4" />
                     Reveal Step {revealed + 1}
@@ -118,12 +119,12 @@ export function HeroProductPreview() {
                   <button
                     type="button"
                     onClick={() => setRevealed(1)}
-                    className="pressable inline-flex min-h-[44px] items-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-sm font-semibold text-[var(--text-primary)] cursor-pointer"
+                    className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-sm font-semibold text-[var(--text-primary)] sm:w-auto cursor-pointer"
                   >
                     Reset steps
                   </button>
                 )}
-                <span className="text-xs text-[var(--text-muted)]">Zero skipped steps</span>
+                <span className="text-center text-xs text-[var(--text-muted)] sm:text-right">Zero skipped steps</span>
               </div>
             </div>
           </div>
@@ -277,19 +278,19 @@ export function CourseCurriculumExplorer() {
             maxHeightClass="max-h-[164px]"
           />
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-col gap-2 min-[420px]:flex-row min-[420px]:flex-wrap">
             <Link
               href={`/courses/${activeCourse.slug}/${sampleSlug}`}
-              className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-4 text-xs font-semibold text-white sm:text-sm"
+              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full bg-[var(--accent)] px-4 text-xs font-semibold text-white min-[420px]:w-auto sm:text-sm"
             >
-              Read sample topic
+              Read sample folio
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
             <Link
               href="/signup"
-              className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-xs font-semibold text-[var(--text-primary)] sm:text-sm"
+              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-xs font-semibold text-[var(--text-primary)] min-[420px]:w-auto sm:text-sm"
             >
-              Practice 5 sample questions
+              Solve textbook drills
             </Link>
           </div>
         </div>

@@ -54,26 +54,28 @@ export default async function TopicReaderPage({
   return (
     <article className="mx-auto max-w-4xl">
       {/* Top Breadcrumb + Chapter Tab Switcher (Book-style physical folio tabs) */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
         <Link
           href={`/courses/${slug}`}
-          className="-ml-1 inline-flex min-h-[44px] items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+          className="-ml-1 inline-flex min-h-[40px] min-w-0 items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          {frontmatter.courseCode} · {manifest?.title ?? "Course"}
+          <ArrowLeft className="h-3.5 w-3.5 shrink-0" />
+          <span className="truncate">
+            {frontmatter.courseCode} · {manifest?.title ?? "Course"}
+          </span>
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center">
           <Link
             href={`/practice/${frontmatter.topicId}`}
-            className="pressable inline-flex min-h-[38px] items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-primary)]"
+            className="pressable inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-primary)]"
           >
-            <ClipboardCheck className="h-3.5 w-3.5 text-[var(--accent)]" />
+            <ClipboardCheck className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
             Topic Drill
           </Link>
           <Link
             href={`/courses/${slug}/mock-exam`}
-            className="pressable inline-flex min-h-[38px] items-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+            className="pressable inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
           >
             Timed Test
           </Link>
@@ -84,7 +86,7 @@ export default async function TopicReaderPage({
       {topicList.length > 1 && (
         <nav
           aria-label="Course study folios"
-          className="mt-3 -mx-4 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden"
+          className="mt-3 -mx-4 overflow-x-auto px-4 pb-1.5 [scrollbar-width:none] sm:mx-0 sm:px-0 sm:pb-1 [&::-webkit-scrollbar]:hidden"
         >
           <div className="inline-flex min-w-full gap-1.5 sm:min-w-0">
             {topicList.map((t, i) => {
@@ -94,7 +96,7 @@ export default async function TopicReaderPage({
                   key={t.slug}
                   href={`/courses/${slug}/${t.slug}`}
                   className={cn(
-                    "pressable inline-flex min-h-[40px] shrink-0 items-center gap-2 rounded-t-2xl border border-b-0 px-3.5 py-2 text-xs font-semibold",
+                    "pressable inline-flex min-h-[42px] shrink-0 items-center gap-2 rounded-xl border px-3 py-2 text-xs font-semibold sm:min-h-[40px] sm:rounded-b-none sm:rounded-t-2xl sm:border-b-0 sm:px-3.5",
                     isCurrent
                       ? "border-[var(--border-strong)] bg-[var(--paper-bg)] text-[var(--text-primary)] shadow-xs"
                       : "border-transparent bg-[var(--bg-subtle)]/75 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
@@ -108,7 +110,7 @@ export default async function TopicReaderPage({
                   >
                     0{i + 1}
                   </span>
-                  <span className="max-w-[180px] truncate">{t.title}</span>
+                  <span className="max-w-[155px] truncate sm:max-w-[185px]">{t.title}</span>
                 </Link>
               );
             })}
@@ -117,10 +119,10 @@ export default async function TopicReaderPage({
       )}
 
       {/* ==================== PHYSICAL LINED BOOK / NOTEBOOK SHEET ==================== */}
-      <div className="notebook-sheet overflow-hidden rounded-[24px] rounded-tl-none">
+      <div className="notebook-sheet overflow-hidden rounded-[20px] sm:rounded-[24px] sm:rounded-tl-none">
         {/* Unlined Top Folio Header Band (mirrors real engineering notebook header + stamp box) */}
-        <header className="border-b-2 border-[var(--border-hairline)] bg-[var(--paper-bg)] px-5 pb-6 pt-5 sm:px-10 sm:pt-7">
-          <div className="flex flex-col justify-between gap-3 border-b border-dashed border-[var(--border-hairline)] pb-4 sm:flex-row sm:items-center">
+        <header className="border-b-2 border-[var(--border-hairline)] bg-[var(--paper-bg)] px-4 pb-5 pt-4 sm:px-10 sm:pb-6 sm:pt-7">
+          <div className="flex flex-col justify-between gap-2.5 border-b border-dashed border-[var(--border-hairline)] pb-3.5 sm:flex-row sm:items-center sm:gap-3 sm:pb-4">
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant="accent" className="font-mono">
                 {frontmatter.courseCode} · FOLIO {folioNumber}/{totalFolios}
@@ -131,15 +133,15 @@ export default async function TopicReaderPage({
             </div>
 
             {/* Classic Notebook Top-Right Source Stamp Box */}
-            <div className="inline-flex items-center gap-2 self-start rounded-xl border border-[var(--border-strong)] bg-[var(--bg-canvas)]/70 px-3 py-1.5 sm:self-auto">
+            <div className="inline-flex max-w-full items-center gap-2 self-start rounded-xl border border-[var(--border-strong)] bg-[var(--bg-canvas)]/70 px-3 py-1.5 sm:self-auto">
               <BookOpen className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
-              <span className="font-mono text-[11px] font-semibold text-[var(--text-primary)]">
+              <span className="min-w-0 break-words font-mono text-[11px] font-semibold text-[var(--text-primary)]">
                 {frontmatter.textbookRef ?? matchedBook?.title ?? "Prescribed Textbook"}
               </span>
             </div>
           </div>
 
-          <h1 className="mt-4 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] sm:text-[30px] sm:leading-[1.2]">
+          <h1 className="mt-3.5 text-xl font-extrabold leading-snug tracking-[-0.025em] text-[var(--text-primary)] sm:mt-4 sm:text-[30px] sm:leading-[1.2]">
             {frontmatter.title}
           </h1>
 
@@ -186,7 +188,7 @@ export default async function TopicReaderPage({
           </div>
 
           {/* Main Ruled Reading Column to the right of the vertical margin rule */}
-          <div className="notebook-margin-line min-w-0 flex-1 px-5 py-7 sm:px-9 sm:py-9">
+          <div className="notebook-margin-line min-w-0 flex-1 px-4 py-5 sm:px-9 sm:py-9">
             <div className="prose-study notebook-prose">
               <MDXRemote
                 source={content}
@@ -209,7 +211,7 @@ export default async function TopicReaderPage({
         </div>
 
         {/* Bottom Book Folio Footer */}
-        <footer className="flex flex-wrap items-center justify-between gap-2 border-t border-[var(--border-hairline)] bg-[var(--paper-bg)] px-5 py-3 font-mono text-[11px] text-[var(--text-muted)] sm:px-10">
+        <footer className="flex flex-wrap items-center justify-between gap-2 border-t border-[var(--border-hairline)] bg-[var(--paper-bg)] px-4 py-3 font-mono text-[10px] text-[var(--text-muted)] sm:px-10 sm:text-[11px]">
           <span>
             {frontmatter.courseCode} · Study Folio {folioNumber} of {totalFolios}
           </span>

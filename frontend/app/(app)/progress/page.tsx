@@ -51,24 +51,24 @@ export default function ProgressPage() {
       </div>
 
       {/* Top KPI Cards */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
+        <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4">
           <p className="text-xs text-[var(--text-muted)]">Topics completed</p>
-          <p className="tabular mt-1 text-2xl font-extrabold">
+          <p className="tabular mt-1 text-xl font-extrabold sm:text-2xl">
             {data.summary.completed_topics}/{data.summary.total_topics}
           </p>
         </div>
-        <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
+        <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4">
           <p className="text-xs text-[var(--text-muted)]">Questions attempted</p>
-          <p className="tabular mt-1 text-2xl font-extrabold">{data.summary.total_attempts}</p>
+          <p className="tabular mt-1 text-xl font-extrabold sm:text-2xl">{data.summary.total_attempts}</p>
         </div>
-        <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
+        <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4">
           <p className="text-xs text-[var(--text-muted)]">Overall accuracy</p>
-          <p className="tabular mt-1 text-2xl font-extrabold">{data.summary.overall_accuracy}%</p>
+          <p className="tabular mt-1 text-xl font-extrabold sm:text-2xl">{data.summary.overall_accuracy}%</p>
         </div>
-        <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
+        <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4">
           <p className="text-xs text-[var(--text-muted)]">Weak topics</p>
-          <p className="tabular mt-1 text-2xl font-extrabold text-[var(--danger)]">
+          <p className="tabular mt-1 text-xl font-extrabold text-[var(--danger)] sm:text-2xl">
             {data.weak_topics.length}
           </p>
         </div>
@@ -98,19 +98,19 @@ export default function ProgressPage() {
                   </span>
                   <h3 className="text-sm font-bold text-[var(--text-primary)]">{wt.topic_title}</h3>
                 </div>
-                <div className="flex gap-2">
+                <div className="grid grid-cols-2 gap-2 sm:flex">
                   <Link
                     href={`/courses/${wt.course_slug}/${wt.topic_slug}`}
-                    className="pressable inline-flex min-h-[40px] items-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold"
+                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold"
                   >
                     Revise notes
                   </Link>
                   <Link
                     href={`/practice/${wt.topic_id}`}
-                    className="pressable inline-flex min-h-[40px] items-center gap-1 rounded-full bg-[var(--danger)] px-4 text-xs font-semibold text-white"
+                    className="pressable inline-flex min-h-[42px] items-center justify-center gap-1 rounded-full bg-[var(--danger)] px-4 text-xs font-semibold text-white"
                   >
                     Drill now
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-3.5 w-3.5 shrink-0" />
                   </Link>
                 </div>
               </div>

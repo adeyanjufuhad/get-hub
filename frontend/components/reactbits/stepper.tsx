@@ -108,18 +108,18 @@ export function Stepper({ steps, completeCta, className }: StepperProps) {
       </div>
 
       {/* Footer Navigation */}
-      <div className="mt-4 flex items-center justify-between gap-3">
+      <div className="mt-4 flex items-center justify-between gap-2">
         <button
           type="button"
           disabled={isFirst}
           onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
-          className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-sm font-semibold text-[var(--text-primary)] disabled:opacity-40 cursor-pointer"
+          className="pressable inline-flex min-h-[44px] shrink-0 items-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-primary)] disabled:opacity-40 sm:px-4 sm:text-sm cursor-pointer"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
         </button>
 
-        <div className="flex items-center gap-1.5" aria-hidden="true">
+        <div className="hidden items-center gap-1.5 min-[390px]:flex" aria-hidden="true">
           {steps.map((s, idx) => (
             <span
               key={s.id}
@@ -135,7 +135,7 @@ export function Stepper({ steps, completeCta, className }: StepperProps) {
           <button
             type="button"
             onClick={() => setCurrentIndex((i) => Math.min(steps.length - 1, i + 1))}
-            className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-5 text-sm font-semibold text-[var(--ink-cta-text)] cursor-pointer"
+            className="pressable inline-flex min-h-[44px] shrink-0 items-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] sm:px-5 sm:text-sm cursor-pointer"
           >
             Next step
             <ArrowRight className="h-4 w-4" />
@@ -145,7 +145,7 @@ export function Stepper({ steps, completeCta, className }: StepperProps) {
             <button
               type="button"
               onClick={() => setCurrentIndex(0)}
-              className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-5 text-sm font-semibold text-white cursor-pointer"
+              className="pressable inline-flex min-h-[44px] shrink-0 items-center gap-1.5 rounded-full bg-[var(--accent)] px-4 text-xs font-semibold text-white sm:px-5 sm:text-sm cursor-pointer"
             >
               Replay steps
             </button>

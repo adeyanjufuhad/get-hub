@@ -24,18 +24,34 @@ interface NavItem {
   href: string;
   label: string;
   icon: typeof Home;
-  matchPrefix?: string;
   adminOnly?: boolean;
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { href: "/dashboard", label: "Home", icon: Home, matchPrefix: "/dashboard" },
-  { href: "/courses", label: "Notes", icon: BookOpen, matchPrefix: "/courses" },
-  { href: "/tests", label: "Tests", icon: ClipboardCheck, matchPrefix: "/tests" },
-  { href: "/library", label: "Library", icon: Library, matchPrefix: "/library" },
-  { href: "/progress", label: "Progress", icon: BarChart3, matchPrefix: "/progress" },
-  { href: "/admin", label: "Admin", icon: Shield, matchPrefix: "/admin", adminOnly: true },
+  { href: "/dashboard", label: "Home", icon: Home },
+  { href: "/courses", label: "Notes", icon: BookOpen },
+  { href: "/tests", label: "Tests", icon: ClipboardCheck },
+  { href: "/library", label: "Library", icon: Library },
+  { href: "/progress", label: "Progress", icon: BarChart3 },
+  { href: "/admin", label: "Admin", icon: Shield, adminOnly: true },
 ];
+
+function isNavItemActive(href: string, pathname: string): boolean {
+  const isAssessmentRoute =
+    pathname === "/tests" ||
+    pathname.startsWith("/tests/") ||
+    pathname.startsWith("/practice/") ||
+    pathname.startsWith("/mock-exams/") ||
+    pathname.endsWith("/mock-exam");
+
+  if (href === "/tests") {
+    return isAssessmentRoute;
+  }
+  if (href === "/courses") {
+    return !isAssessmentRoute && (pathname === "/courses" || pathname.startsWith("/courses/"));
+  }
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -90,7 +106,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     : "GH";
 
   return (
-    <div className="min-h-dvh bg-[var(--bg-canvas)] text-[var(--text-primary)]">
+    <div className="min-h-dvh overflow-x-clip bg-[var(--bg-canvas)] text-[var(--text-primary)]">
       {/* Desktop slim left icon rail (md+, expands smoothly on hover/focus) */}
       <aside
         onPointerEnter={handleSidebarPointerEnter}
@@ -139,7 +155,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <nav className="flex w-full flex-col gap-2" aria-label="Main navigation">
             {visibleItems.map((item) => {
               const Icon = item.icon;
-              const active = pathname === item.href || (item.matchPrefix && pathname.startsWith(item.matchPrefix));
+              const active = isNavItemActive(item.href, pathname);
               return (
                 <Link
                   key={item.href}
@@ -201,25 +217,28 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Main Content Area */}
-      <div className="md:pl-[76px]">
+      <div className="min-w-0 md:pl-[76px]">
         {/* Mobile & Tablet Top Bar */}
-        <header className="safe-top sticky top-0 z-20 border-b border-[var(--border-hairline)]/80 bg-[var(--bg-canvas)]/90 backdrop-blur-md">
-          <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
-            <Link href={user ? "/dashboard" : "/"} className="flex min-h-[44px] items-center gap-2 md:hidden">
+        <header className="safe-top sticky top-0 z-20 border-b border-[var(--border-hairline)]/80 bg-[var(--bg-canvas)]/92 backdrop-blur-md">
+          <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-2 px-3.5 sm:px-6">
+            <Link
+              href={user ? "/dashboard" : "/"}
+              className="flex min-h-[44px] min-w-0 items-center gap-2 md:hidden"
+            >
               <BrandLogo size="sm" />
-              <span className="text-sm font-extrabold tracking-tight">{APP_NAME}</span>
+              <span className="truncate text-sm font-extrabold tracking-tight">{APP_NAME}</span>
             </Link>
 
             <div className="hidden text-xs font-medium text-[var(--text-muted)] md:block">
               {user ? `${user.department} · ${user.level}` : `${APP_NAME} · OAU 200L Engineering`}
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
               <div className="md:hidden">
                 <ThemeToggle />
               </div>
               {user ? (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <span
                     className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
                     style={{ backgroundColor: user.avatar_color || "#EA580C" }}
@@ -231,7 +250,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     type="button"
                     onClick={handleLogout}
                     aria-label="Sign out"
-                    className="pressable flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] md:hidden cursor-pointer"
+                    className="pressable flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] md:hidden cursor-pointer"
                   >
                     <LogOut className="h-4 w-4" />
                   </button>
@@ -248,20 +267,20 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </header>
 
-        <main className="mx-auto max-w-5xl px-4 pb-28 pt-5 sm:px-6 md:pb-12 md:pt-7">
+        <main className="mx-auto min-w-0 max-w-5xl px-3.5 pb-28 pt-4 sm:px-6 md:pb-12 md:pt-7">
           {children}
         </main>
       </div>
 
-      {/* Floating Ink-Black Mobile Bottom Pill Dock (Pinterest Studia/Nixtio + safe-area) */}
+      {/* Floating Ink-Black Mobile Bottom Pill Dock (fits 320px–430px cleanly even with 5–6 tabs) */}
       <nav
         aria-label="Mobile navigation"
-        className="safe-bottom fixed inset-x-0 bottom-0 z-30 flex justify-center px-4 pb-3 pt-1 md:hidden pointer-events-none"
+        className="safe-bottom pointer-events-none fixed inset-x-0 bottom-0 z-30 flex justify-center px-2.5 pb-2.5 pt-1 sm:px-4 md:hidden"
       >
-        <div className="pointer-events-auto flex items-center gap-1 rounded-full bg-[#141413] p-1.5 shadow-[0_10px_28px_rgba(0,0,0,0.22)] dark:border dark:border-white/15">
+        <div className="pointer-events-auto flex w-full max-w-[400px] items-center justify-between gap-0.5 rounded-full bg-[#141413] p-1.5 shadow-[0_10px_28px_rgba(0,0,0,0.25)] dark:border dark:border-white/15">
           {visibleItems.map((item) => {
             const Icon = item.icon;
-            const active = pathname === item.href || (item.matchPrefix && pathname.startsWith(item.matchPrefix));
+            const active = isNavItemActive(item.href, pathname);
             return (
               <Link
                 key={item.href}
@@ -269,13 +288,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 aria-current={active ? "page" : undefined}
                 aria-label={item.label}
                 className={cn(
-                  "pressable flex min-h-[44px] min-w-[44px] items-center justify-center gap-1.5 rounded-full text-xs font-semibold transition-[background-color,padding] duration-200",
-                  active ? "bg-[#EA580C] px-4 text-white" : "px-3 text-neutral-300 hover:text-white"
+                  "pressable flex min-h-[44px] items-center justify-center gap-1.5 rounded-full text-xs font-semibold transition-[background-color,padding] duration-200",
+                  active
+                    ? "bg-[#EA580C] px-3 text-white min-[375px]:px-3.5"
+                    : "min-w-[42px] flex-1 px-2 text-neutral-300 hover:text-white"
                 )}
               >
                 <Icon className="h-[18px] w-[18px] shrink-0" />
-                {/* Only the active tab shows its label, so 5–6 tabs still fit a 320px phone */}
-                <span className={cn(!active && "sr-only")}>{item.label}</span>
+                <span className={cn(active ? "hidden min-[355px]:inline" : "sr-only")}>
+                  {item.label}
+                </span>
               </Link>
             );
           })}

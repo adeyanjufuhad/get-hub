@@ -66,7 +66,7 @@ export default function MockExamLauncherPage() {
         </Link>
       </div>
 
-      <div className="rounded-[26px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6 sm:p-8">
+      <div className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:rounded-[26px] sm:p-8">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="accent" className="font-mono">
             {course?.code || slug.toUpperCase()} · Timed CBT Simulation
@@ -177,10 +177,10 @@ export default function MockExamLauncherPage() {
           size="lg"
           disabled={starting}
           onClick={handleStart}
-          className="mt-6 w-full"
+          className="mt-6 w-full text-xs min-[380px]:text-sm"
         >
           {starting ? "Generating CBT paper…" : `Start ${questionCount}-question exam (${minutes} min)`}
-          {!starting && <ArrowRight className="h-4 w-4" />}
+          {!starting && <ArrowRight className="h-4 w-4 shrink-0" />}
         </Button>
       </div>
     </div>

@@ -53,12 +53,12 @@ export default function CoursesIndexPage() {
             Every course is paired with the exact textbook matching its CCMAS syllabus, lined notebook study pages, real cropped textbook figures, and 72 step-by-step practice questions.
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:flex sm:flex-wrap">
           <Link
             href="/tests"
             className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)]"
           >
-            <ClipboardCheck className="h-3.5 w-3.5" />
+            <ClipboardCheck className="h-3.5 w-3.5 shrink-0" />
             Open Test Center
           </Link>
           <Link
@@ -66,7 +66,7 @@ export default function CoursesIndexPage() {
             className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-xs font-semibold text-[var(--text-primary)]"
           >
             Part 2 PDF Library
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowRight className="h-3.5 w-3.5 shrink-0" />
           </Link>
         </div>
       </div>
@@ -182,19 +182,19 @@ export default function CoursesIndexPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 border-t border-[var(--border-hairline)] p-4">
+                <div className="grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] p-4 min-[340px]:grid-cols-2">
                   <Link
                     href={`/courses/${course.slug}`}
                     className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
                   >
-                    <BookOpen className="h-3.5 w-3.5" />
+                    <BookOpen className="h-3.5 w-3.5 shrink-0" />
                     Open folios
                   </Link>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
                     className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   >
-                    <Timer className="h-3.5 w-3.5 text-[var(--accent)]" />
+                    <Timer className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
                     Timed test
                   </Link>
                 </div>

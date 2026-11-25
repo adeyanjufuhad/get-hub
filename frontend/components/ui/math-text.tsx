@@ -2,6 +2,7 @@
 
 import katex from "katex";
 import { Fragment, useMemo } from "react";
+import { cn } from "@/lib/cn";
 
 interface Segment {
   kind: "text" | "bold" | "inline-math" | "display-math" | "newline";
@@ -42,7 +43,7 @@ export function MathText({ text, className }: { text: string; className?: string
   const segments = useMemo(() => tokenizeMathAndText(text), [text]);
 
   return (
-    <span className={className}>
+    <span className={cn("[overflow-wrap:anywhere]", className)}>
       {segments.map((seg, i) => {
         if (seg.kind === "newline") {
           return <br key={i} />;
@@ -71,7 +72,7 @@ export function MathText({ text, className }: { text: string; className?: string
           return (
             <span
               key={i}
-              className="my-2 block overflow-x-auto rounded-xl bg-[var(--bg-subtle)] px-3 py-2"
+              className="my-2 block max-w-full overflow-x-auto rounded-xl bg-[var(--bg-subtle)] px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               dangerouslySetInnerHTML={{ __html: html }}
             />
           );

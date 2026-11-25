@@ -107,25 +107,25 @@ export default function DashboardPage() {
           <div className="inline-flex items-center gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1">
             <Link
               href="/courses"
-              className="pressable inline-flex min-h-[38px] items-center whitespace-nowrap rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
             >
               Study Folios
             </Link>
             <Link
               href="/tests"
-              className="pressable inline-flex min-h-[38px] items-center whitespace-nowrap rounded-full px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-full px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
             >
               Test Center
             </Link>
             <a
               href="#textbooks"
-              className="pressable inline-flex min-h-[38px] items-center whitespace-nowrap rounded-full px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-full px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
             >
               3 Textbooks
             </a>
             <Link
               href="/library"
-              className="pressable inline-flex min-h-[38px] items-center whitespace-nowrap rounded-full px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-full px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
             >
               PDF Library
             </Link>
@@ -180,7 +180,7 @@ export default function DashboardPage() {
             )}
           </div>
 
-          <div className="relative z-10 mt-6 flex flex-wrap items-center gap-2.5">
+          <div className="relative z-10 mt-6 grid grid-cols-1 gap-2.5 min-[420px]:flex min-[420px]:flex-wrap min-[420px]:items-center">
             <Link
               href={
                 data.continue_topic
@@ -218,7 +218,7 @@ export default function DashboardPage() {
               </div>
               <Link
                 href="/tests"
-                className="pressable inline-flex min-h-[36px] items-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 font-mono text-xs font-semibold text-[var(--text-primary)]"
+                className="pressable inline-flex min-h-[40px] shrink-0 items-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 font-mono text-xs font-semibold text-[var(--text-primary)]"
               >
                 Take a test →
               </Link>
@@ -239,22 +239,22 @@ export default function DashboardPage() {
             </div>
 
             {/* 3 Crisp Status Mini-Tiles */}
-            <div className="mt-4 grid grid-cols-3 gap-2.5">
-              <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3">
-                <p className="text-[11px] font-medium text-[var(--text-muted)]">Folios</p>
-                <p className="tabular mt-1 font-mono text-base font-extrabold text-[var(--text-primary)]">
+            <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-2.5">
+              <div className="min-w-0 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
+                <p className="truncate text-[11px] font-medium text-[var(--text-muted)]">Folios</p>
+                <p className="tabular mt-1 font-mono text-sm font-extrabold text-[var(--text-primary)] sm:text-base">
                   {data.summary.completed_topics}/{data.summary.total_topics}
                 </p>
               </div>
-              <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3">
-                <p className="text-[11px] font-medium text-[var(--text-muted)]">Solved</p>
-                <p className="tabular mt-1 font-mono text-base font-extrabold text-[var(--text-primary)]">
+              <div className="min-w-0 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
+                <p className="truncate text-[11px] font-medium text-[var(--text-muted)]">Solved</p>
+                <p className="tabular mt-1 font-mono text-sm font-extrabold text-[var(--text-primary)] sm:text-base">
                   {data.summary.total_attempts}
                 </p>
               </div>
-              <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3">
-                <p className="text-[11px] font-medium text-[var(--text-muted)]">Accuracy</p>
-                <p className="tabular mt-1 font-mono text-base font-extrabold text-[var(--accent)]">
+              <div className="min-w-0 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
+                <p className="truncate text-[11px] font-medium text-[var(--text-muted)]">Accuracy</p>
+                <p className="tabular mt-1 font-mono text-sm font-extrabold text-[var(--accent)] sm:text-base">
                   {accuracyPct}%
                 </p>
               </div>
@@ -384,16 +384,16 @@ export default function DashboardPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 border-t border-[var(--border-hairline)] px-4 py-3.5">
+                <div className="grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] px-4 py-3.5 min-[340px]:grid-cols-2">
                   <Link
                     href={`/courses/${course.slug}`}
-                    className="pressable inline-flex min-h-[40px] items-center justify-center rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
                   >
                     Open folios →
                   </Link>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[40px] items-center justify-center rounded-full border border-[var(--border-hairline)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full border border-[var(--border-hairline)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   >
                     Timed CBT
                   </Link>
@@ -437,7 +437,7 @@ export default function DashboardPage() {
               {data.weak_topics.slice(0, 4).map((wt) => (
                 <li
                   key={wt.topic_id}
-                  className="flex items-center justify-between gap-3 rounded-2xl border border-[var(--danger)]/20 bg-[var(--bg-canvas)] p-3.5"
+                  className="flex flex-col items-start justify-between gap-2.5 rounded-2xl border border-[var(--danger)]/20 bg-[var(--bg-canvas)] p-3.5 min-[420px]:flex-row min-[420px]:items-center"
                 >
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5">
@@ -449,13 +449,13 @@ export default function DashboardPage() {
                         {wt.course_code} · High Risk
                       </span>
                     </div>
-                    <p className="mt-0.5 truncate text-sm font-bold text-[var(--text-primary)]">
+                    <p className="mt-0.5 text-sm font-bold leading-snug text-[var(--text-primary)] min-[420px]:truncate">
                       {wt.topic_title}
                     </p>
                   </div>
                   <Link
                     href={`/practice/${wt.topic_id}`}
-                    className="pressable shrink-0 rounded-full bg-[var(--danger-soft)] px-3.5 py-1.5 font-mono text-xs font-bold text-[var(--danger)]"
+                    className="pressable inline-flex min-h-[38px] shrink-0 items-center rounded-full bg-[var(--danger-soft)] px-3.5 font-mono text-xs font-bold text-[var(--danger)]"
                   >
                     {wt.accuracy_pct}% · Drill
                   </Link>
@@ -506,7 +506,7 @@ export default function DashboardPage() {
                   <li key={ex.id}>
                     <Link
                       href={`/mock-exams/${ex.id}`}
-                      className="pressable flex items-center justify-between gap-3 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5"
+                      className="pressable flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5"
                     >
                       <div className="min-w-0">
                         <span className="font-mono text-[11px] font-bold text-[var(--accent)]">
@@ -516,7 +516,7 @@ export default function DashboardPage() {
                           {ex.total_questions} questions · {Math.round(ex.duration_seconds / 60)} min
                         </p>
                       </div>
-                      <Badge variant={pct != null && pct >= 70 ? "success" : "neutral"} className="tabular font-mono">
+                      <Badge variant={pct != null && pct >= 70 ? "success" : "neutral"} className="tabular shrink-0 font-mono">
                         {ex.submitted_at ? `${ex.score}/${ex.total_questions} (${pct}%)` : "In progress"}
                       </Badge>
                     </Link>

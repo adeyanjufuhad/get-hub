@@ -52,15 +52,15 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col justify-center bg-[var(--bg-canvas)] px-4 py-10 sm:px-6">
+    <div className="flex min-h-dvh flex-col justify-center bg-[var(--bg-canvas)] px-4 py-6 sm:px-6 sm:py-10">
       <div className="mx-auto w-full max-w-md">
-        <Link href="/" className="mb-6 inline-flex items-center gap-2.5">
+        <Link href="/" className="mb-5 inline-flex items-center gap-2.5 sm:mb-6">
           <BrandLogo size="md" />
           <span className="text-base font-extrabold tracking-tight">{APP_NAME}</span>
         </Link>
 
-        <div className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6 sm:p-7">
-          <h1 className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]">
+        <div className="rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:rounded-[24px] sm:p-7">
+          <h1 className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl">
             Create your student account
           </h1>
           <p className="mt-1.5 text-sm text-[var(--text-secondary)]">

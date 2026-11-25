@@ -87,12 +87,7 @@ export default function LandingPage() {
           <HeroGrainientBackground />
 
           <div className="relative z-10 mx-auto max-w-5xl text-center">
-            <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)]/85 px-3.5 py-1 font-mono text-xs font-semibold text-[var(--text-secondary)] backdrop-blur-xs">
-              <span className="h-2 w-2 rounded-full bg-[var(--accent)]" aria-hidden="true" />
-              OAU Faculty of Technology · 200L First Semester
-            </p>
-
-            <h1 className="mx-auto mt-4 max-w-3xl text-[1.9rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--text-primary)] text-balance min-[380px]:text-[2.25rem] sm:text-5xl md:text-6xl">
+            <h1 className="mx-auto max-w-3xl text-[1.9rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--text-primary)] text-balance min-[380px]:text-[2.25rem] sm:text-5xl md:text-6xl">
               <span>Master </span>
               <span translate="no">GET 205, 207 &amp; 209</span>
               <span className="mx-auto mt-1 block h-[64px] w-full max-w-[300px] text-[var(--accent)] min-[380px]:h-[78px] min-[380px]:max-w-[380px] sm:h-[96px] sm:max-w-[460px] md:h-[112px] md:max-w-[520px]">

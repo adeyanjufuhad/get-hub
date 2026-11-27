@@ -1,0 +1,224 @@
+{
+  "topicSlug": "dry-friction-and-inclines",
+  "questions": [
+    {
+      "key": "p8-1-block-incline-eq",
+      "type": "mcq",
+      "prompt": "Determine whether the $1.2\\text{-kN}$ block shown is in equilibrium and find the magnitude and direction of the friction force when $\\theta = 25^\\circ$ and $P = 750\\,\\text{N}$ ($\\mu_s = 0.35$, $\\mu_k = 0.25$).",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-1-2.png",
+      "options": [
+        { "label": "A", "text": "Equilibrium; $F = 172.6\\,\\text{N}$ down and to the left", "correct": true },
+        { "label": "B", "text": "Equilibrium; $F = 172.6\\,\\text{N}$ up and to the right", "correct": false },
+        { "label": "C", "text": "Block moves; $F = 351\\,\\text{N}$ down and to the left", "correct": false },
+        { "label": "D", "text": "Block moves; $F = 492\\,\\text{N}$ up and to the right", "correct": false }
+      ],
+      "solution": "Resolve forces parallel ($x$ up-left) and perpendicular ($y$) to the $25^\\circ$ incline:\n\n$$N = 1200\\cos 25^\\circ + 750\\sin 25^\\circ = 1087.6 + 317.0 = 1404.5\\,\\text{N}$$\n\n$$F_{\\text{req}} = P\\cos 25^\\circ - W\\sin 25^\\circ = 750\\cos 25^\\circ - 1200\\sin 25^\\circ = 679.7 - 507.1 = 172.6\\,\\text{N}\\text{ (down-left)}$$\n\nMaximum static friction is $F_m = \\mu_s N = 0.35(1404.5) = 491.6\\,\\text{N}$. Since $F_{\\text{req}} = 172.6\\,\\text{N} \\le 491.6\\,\\text{N}$, the block remains in equilibrium with $F = 172.6\\,\\text{N}$ directed down and to the left.",
+      "difficulty": "easy",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.1",
+      "tags": ["dry-friction", "inclined-plane", "equilibrium-check"]
+    },
+    {
+      "key": "p8-2-block-incline-slides",
+      "type": "mcq",
+      "prompt": "For the $1.2\\text{-kN}$ block shown ($\\mu_s = 0.35$, $\\mu_k = 0.25$), determine whether the block is in equilibrium and find the friction force when $\\theta = 30^\\circ$ and $P = 150\\,\\text{N}$.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-1-2.png",
+      "options": [
+        { "label": "A", "text": "Equilibrium; $F = 470\\,\\text{N}$ up and to the left", "correct": false },
+        { "label": "B", "text": "Block moves; $F = 279\\,\\text{N}$ up and to the left", "correct": true },
+        { "label": "C", "text": "Block moves; $F = 390\\,\\text{N}$ up and to the left", "correct": false },
+        { "label": "D", "text": "Block moves; $F = 279\\,\\text{N}$ down and to the right", "correct": false }
+      ],
+      "solution": "Compute the normal force and required static friction force:\n\n$$N = 1200\\cos 30^\\circ + 150\\sin 30^\\circ = 1039.2 + 75.0 = 1114.2\\,\\text{N}$$\n\n$$F_{\\text{req}} = 1200\\sin 30^\\circ - 150\\cos 30^\\circ = 600.0 - 129.9 = 470.1\\,\\text{N}\\text{ (up-left)}$$\n\nSince $F_m = \\mu_s N = 0.35(1114.2) = 390.0\\,\\text{N} < 470.1\\,\\text{N}$, equilibrium cannot be maintained and the block slides down the incline (to the right). Thus friction is kinetic and directed up and to the left:\n\n$$F_k = \\mu_k N = 0.25(1114.2) = 278.6\\,\\text{N} \\approx 279\\,\\text{N}$$",
+      "difficulty": "easy",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.2",
+      "tags": ["dry-friction", "inclined-plane", "kinetic-friction"]
+    },
+    {
+      "key": "p8-3-block-link-eq",
+      "type": "mcq",
+      "prompt": "Determine whether the $45\\text{-lb}$ block on the $30^\\circ$ incline is in equilibrium and find the magnitude and direction of the friction force when $P = 100\\,\\text{lb}$ ($\\mu_s = 0.40$, $\\mu_k = 0.30$, force $P$ acts at $40^\\circ$ to the incline).",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-3-4-5.png",
+      "options": [
+        { "label": "A", "text": "Equilibrium; $F = 54.1\\,\\text{lb}$ down and to the left", "correct": false },
+        { "label": "B", "text": "Block moves; $F = 41.3\\,\\text{lb}$ down and to the left", "correct": false },
+        { "label": "C", "text": "Block moves; $F = 31.0\\,\\text{lb}$ up and to the right", "correct": true },
+        { "label": "D", "text": "Block moves; $F = 31.0\\,\\text{lb}$ down and to the left", "correct": false }
+      ],
+      "solution": "With $x$ up-left along the $30^\\circ$ incline and $y$ normal to it, force $P = 100\\,\\text{lb}$ acts at $40^\\circ$ to the incline (pushing up-left and into the plane):\n\n$$N = 45\\cos 30^\\circ + 100\\sin 40^\\circ = 38.97 + 64.28 = 103.25\\,\\text{lb}$$\n\n$$F_{\\text{req}} = 100\\cos 40^\\circ - 45\\sin 30^\\circ = 76.60 - 22.50 = 54.10\\,\\text{lb}\\text{ (down-right)}$$\n\nMaximum static friction is $F_m = 0.40(103.25) = 41.30\\,\\text{lb} < 54.10\\,\\text{lb}$, so the block slides up-left along the incline. The actual kinetic friction acts opposite to motion (down and to the right):\n\n$$F_k = 0.30(103.25) = 31.0\\,\\text{lb}$$",
+      "difficulty": "medium",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.3",
+      "tags": ["dry-friction", "inclined-plane", "kinetic-friction"]
+    },
+    {
+      "key": "p8-6a-min-force-up",
+      "type": "numeric",
+      "prompt": "Knowing that the coefficient of static friction between the $25\\text{-kg}$ block and the $30^\\circ$ incline is $\\mu_s = 0.25$, determine the smallest value of $P$ (by optimizing the angle $\\beta$) required to start the block moving up the incline.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-6.png",
+      "answer": 170.5,
+      "tolerancePct": 1,
+      "unit": "N",
+      "solution": "The weight is $W = 25(9.81) = 245.25\\,\\text{N}$ and the static friction angle is $\\phi_s = \\tan^{-1}(0.25) = 14.036^\\circ$.\n\nBy the law of sines on the force triangle ($\\mathbf{W}, \\mathbf{P}, \\mathbf{R}$):\n\n$$\\frac{P}{\\sin(30^\\circ + \\phi_s)} = \\frac{W}{\\sin(90^\\circ - \\beta + \\phi_s)} = \\frac{W}{\\cos(\\beta - \\phi_s)}$$\n\n$P$ is minimized when $\\cos(\\beta - \\phi_s) = 1$, i.e., $\\beta = \\phi_s = 14.04^\\circ$, giving:\n\n$$P_{\\min} = 245.25\\sin(30^\\circ + 14.036^\\circ) = 245.25\\sin 44.036^\\circ = 170.5\\,\\text{N}$$",
+      "difficulty": "medium",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.6(a)",
+      "tags": ["dry-friction", "inclined-plane", "optimization"]
+    },
+    {
+      "key": "p8-8a-rail-block-up",
+      "type": "numeric",
+      "prompt": "The coefficients of friction between the $500\\text{-N}$ block and the $35^\\circ$ rail are $\\mu_s = 0.30$ and $\\mu_k = 0.25$. Knowing that $\\theta = 65^\\circ$ (measured from the horizontal), determine the smallest value of $P$ required to start the block moving up the rail.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-8.png",
+      "answer": 403,
+      "tolerancePct": 1,
+      "unit": "N",
+      "solution": "Resolve forces parallel ($x$ along the $35^\\circ$ rail) and normal ($y$) to the rail. The angle between $P$ and the rail is $65^\\circ - 35^\\circ = 30^\\circ$:\n\n$$N = 500\\cos 35^\\circ - P\\sin 30^\\circ$$\n\nFor impending upward motion, $F_m = 0.30 N$ acts down the rail:\n\n$$P\\cos 30^\\circ - 500\\sin 35^\\circ - 0.30(500\\cos 35^\\circ - P\\sin 30^\\circ) = 0$$\n\n$$P(\\cos 30^\\circ + 0.30\\sin 30^\\circ) = 500(\\sin 35^\\circ + 0.30\\cos 35^\\circ)$$\n\n$$P(1.0160) = 409.66 \\implies P = 403\\,\\text{N}$$",
+      "difficulty": "medium",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.8(a)",
+      "tags": ["dry-friction", "inclined-plane"]
+    },
+    {
+      "key": "p8-11-two-blocks-incline",
+      "type": "numeric",
+      "prompt": "The $20\\text{-lb}$ block $A$ and the $30\\text{-lb}$ block $B$ are connected by a cable passing over a pulley on an incline of angle $\\theta$. Knowing that $\\mu_s = 0.15$ between the two blocks and zero between block $B$ and the incline, determine the angle $\\theta$ for which motion is impending.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-11-12.png",
+      "answer": 31.0,
+      "tolerancePct": 1,
+      "unit": "deg",
+      "solution": "Since $W_B = 30\\,\\text{lb} > W_A = 20\\,\\text{lb}$, impending motion moves $B$ down the incline and $A$ up the incline. Between $A$ and $B$, $N_{AB} = 20\\cos\\theta$, so $F_{AB} = 0.15(20\\cos\\theta) = 3\\cos\\theta$.\n\n- Block $A$ along incline: $T - 20\\sin\\theta - F_{AB} = 0 \\implies T = 20\\sin\\theta + 3\\cos\\theta$.\n- Block $B$ along incline (frictionless base): $30\\sin\\theta - T - F_{AB} = 0 \\implies T = 30\\sin\\theta - 3\\cos\\theta$.\n\nEquating $T$: $10\\sin\\theta = 6\\cos\\theta \\implies \\tan\\theta = 0.60 \\implies \\theta = 31.0^\\circ$.",
+      "difficulty": "medium",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.11",
+      "tags": ["dry-friction", "two-bodies", "inclined-plane"]
+    },
+    {
+      "key": "p8-17b-cabinet-casters",
+      "type": "numeric",
+      "prompt": "A $120\\text{-lb}$ cabinet is mounted on casters ($24\\,\\text{in.}$ apart, $\\mu_s = 0.30$ when locked). If $h = 32\\,\\text{in.}$, determine the force $P$ required to move the cabinet to the right when the casters at $B$ are locked and the casters at $A$ are free to rotate.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-17-18.png",
+      "answer": 30.0,
+      "tolerancePct": 1,
+      "unit": "lb",
+      "solution": "When only casters $B$ are locked, $F_A = 0$ and $F_B = 0.30 N_B$, with $P = F_B$ horizontally.\n\nSumming moments about $A$ ($\\curvearrowleft + \\sum M_A = 0$):\n\n$$N_B(24\\,\\text{in.}) - 120(12\\,\\text{in.}) - P(32\\,\\text{in.}) = 0 \\implies N_B = 60 + \\frac{4}{3}P$$\n\nSubstituting into $P = 0.30 N_B$:\n\n$$P = 0.30\\left(60 + \\frac{4}{3}P\\right) = 18 + 0.4P \\implies 0.6P = 18 \\implies P = 30.0\\,\\text{lb}$$",
+      "difficulty": "medium",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.17(b)",
+      "tags": ["dry-friction", "tipping-vs-slipping", "rigid-body"]
+    },
+    {
+      "key": "p8-29-plate-collars",
+      "type": "mcq",
+      "prompt": "The $50\\text{-lb}$ plate $ABCD$ is attached at $A$ and $D$ to collars that can slide on the vertical rod ($\\mu_s = 0.40$ between both collars and the rod). Determine whether the plate is in equilibrium when the vertical upward force applied at $E$ is (a) $P = 0$, and (b) $P = 20\\,\\text{lb}$.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-29.png",
+      "options": [
+        { "label": "A", "text": "(a) Plate in equilibrium; (b) Plate in equilibrium", "correct": false },
+        { "label": "B", "text": "(a) Plate moves downward; (b) Plate in equilibrium", "correct": false },
+        { "label": "C", "text": "(a) Plate in equilibrium; (b) Plate moves downward", "correct": true },
+        { "label": "D", "text": "(a) Plate moves downward; (b) Plate moves downward", "correct": false }
+      ],
+      "solution": "Let $N_A$ act left and $N_D$ act right on the collars. By $\\sum F_x = 0$, $N_A = N_D = N$. Taking moments about $D$:\n\n$$N(2\\,\\text{ft}) - 50(3\\,\\text{ft}) + P(5\\,\\text{ft}) = 0 \\implies N = 75 - 2.5 P$$\n\nMaximum total vertical friction is $F_m = 2\\mu_s N = 0.80(75 - 2.5 P) = 60 - 2P$, while the net downward force to be balanced is $|50 - P|$.\n\n- **(a) $P = 0$:** $F_m = 60\\,\\text{lb} \\ge 50\\,\\text{lb} \\implies$ **Plate in equilibrium**.\n- **(b) $P = 20\\,\\text{lb}$:** $N = 75 - 50 = 25\\,\\text{lb}$, so $F_m = 0.80(25) = 20\\,\\text{lb} < 50 - 20 = 30\\,\\text{lb} \\implies$ **Plate moves downward**.",
+      "difficulty": "hard",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.29",
+      "tags": ["dry-friction", "collars", "equilibrium-check"]
+    },
+    {
+      "key": "p8-52-double-wedge",
+      "type": "numeric",
+      "prompt": "Two $10^\\circ$ wedges of negligible weight are used to move and position a $400\\text{-lb}$ block. Knowing that $\\mu_s = 0.25$ at all surfaces of contact, determine the smallest horizontal force $P$ that should be applied to the lower wedge as shown.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-52.png",
+      "answer": 313,
+      "tolerancePct": 1,
+      "unit": "lb",
+      "solution": "The static friction angle is $\\phi_s = \\tan^{-1}(0.25) = 14.036^\\circ$.\n\nFor the block and upper wedge (total weight $W = 400\\,\\text{lb}$) moving upward against the right vertical wall, the resultant $R_1$ at the $10^\\circ$ interface is inclined at $10^\\circ + \\phi_s$ to the vertical. Horizontal equilibrium gives $N_w = R_1\\sin(10^\\circ + \\phi_s)$, so downward wall friction is $F_w = \\tan\\phi_s\\,R_1\\sin(10^\\circ + \\phi_s)$. Vertical equilibrium gives:\n\n$$R_1\\cos(10^\\circ + \\phi_s) - \\tan\\phi_s\\,R_1\\sin(10^\\circ + \\phi_s) = W \\implies R_1\\frac{\\cos(10^\\circ + 2\\phi_s)}{\\cos\\phi_s} = W$$\n\nFor the lower wedge (reactions $R_1$ from above and $R_2$ at $\\phi_s$ from the floor):\n\n$$P = R_1\\frac{\\sin(10^\\circ + 2\\phi_s)}{\\cos\\phi_s} = W\\tan(10^\\circ + 2\\phi_s) = 400\\tan(38.07^\\circ) = 313.3\\,\\text{lb} \\approx 313\\,\\text{lb}$$",
+      "difficulty": "hard",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.52",
+      "tags": ["wedges", "dry-friction", "force-triangle"]
+    },
+    {
+      "key": "p8-57a-wedge-plates",
+      "type": "numeric",
+      "prompt": "Wedge $A$ of negligible weight is driven vertically downward between two $100\\text{-lb}$ plates $B$ and $C$. The coefficient of static friction between all surfaces of contact is $0.35$. Determine the force $P$ required to start moving the wedge when plates $B$ and $C$ are equally free to move.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-57.png",
+      "answer": 62.7,
+      "tolerancePct": 1,
+      "unit": "lb",
+      "solution": "The wedge half-angle from the vertical is $90^\\circ - 75^\\circ = 15^\\circ$, and $\\phi_s = \\tan^{-1}(0.35) = 19.29^\\circ$.\n\nOn plate $B$, the resultant $R$ from the wedge is inclined at $15^\\circ + \\phi_s = 34.29^\\circ$ below the horizontal. Floor equilibrium for plate $B$ ($W = 100\\,\\text{lb}$) gives $N_f = 100 + R\\sin 34.29^\\circ$ and $R\\cos 34.29^\\circ = \\mu_s N_f = 0.35(100 + R\\sin 34.29^\\circ)$, whence $R = 55.62\\,\\text{lb}$.\n\nBy symmetry on wedge $A$: $P = 2R\\sin(15^\\circ + \\phi_s) = 2(55.62)\\sin 34.29^\\circ = 62.7\\,\\text{lb}$.",
+      "difficulty": "hard",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.57(a)",
+      "tags": ["wedges", "dry-friction"]
+    },
+    {
+      "key": "p8-71-high-strength-bolt",
+      "type": "numeric",
+      "prompt": "A high-strength structural bolt has a required bolt tension of $210\\,\\text{kN}$, thread mean diameter $22.6\\,\\text{mm}$, and lead $3\\,\\text{mm}$ (square-threaded). Assuming $\\mu_s = 0.40$ on the threads and neglecting washer friction, determine the required tightening couple.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-71.png",
+      "answer": 1068,
+      "tolerancePct": 1,
+      "unit": "N·m",
+      "solution": "Mean radius is $r = 11.3\\,\\text{mm} = 0.0113\\,\\text{m}$. Compute the lead angle $\\theta$ and friction angle $\\phi_s$:\n\n$$\\tan\\theta = \\frac{L}{2\\pi r} = \\frac{3\\,\\text{mm}}{\\pi(22.6\\,\\text{mm})} = 0.04225 \\implies \\theta = 2.419^\\circ$$\n\n$$\\phi_s = \\tan^{-1}(0.40) = 21.801^\\circ$$\n\nTightening couple:\n\n$$M = W r \\tan(\\theta + \\phi_s) = (210\\times 10^3\\,\\text{N})(0.0113\\,\\text{m})\\tan(24.221^\\circ) = 1068\\,\\text{N}\\cdot\\text{m}$$",
+      "difficulty": "medium",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.71",
+      "tags": ["square-threaded-screws", "bolts"]
+    },
+    {
+      "key": "p8-75-turnbuckle-rods",
+      "type": "numeric",
+      "prompt": "The ends of fixed rods $A$ (right-hand thread) and $B$ (left-hand thread) each have a single-threaded screw of mean radius $6\\,\\text{mm}$ and pitch $2\\,\\text{mm}$, with $\\mu_s = 0.12$. Determine the couple that must be applied to the sleeve to draw the rods closer together under $2\\text{-kN}$ tension.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-75.png",
+      "answer": 4.18,
+      "tolerancePct": 1,
+      "unit": "N·m",
+      "solution": "Because both ends advance simultaneously as the sleeve turns, the total torque is the sum of the tightening torques at $A$ and $B$ ($2 \\times Wr\\tan(\\theta + \\phi_s)$):\n\n$$\\tan\\theta = \\frac{2\\,\\text{mm}}{2\\pi(6\\,\\text{mm})} = 0.05305 \\implies \\theta = 3.037^\\circ, \\qquad \\phi_s = \\tan^{-1}(0.12) = 6.843^\\circ$$\n\n$$M = 2(2000\\,\\text{N})(0.006\\,\\text{m})\\tan(3.037^\\circ + 6.843^\\circ) = 24\\tan(9.880^\\circ) = 4.18\\,\\text{N}\\cdot\\text{m}$$",
+      "difficulty": "medium",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.75",
+      "tags": ["square-threaded-screws", "turnbuckle"]
+    },
+    {
+      "key": "p8-79-double-pulley-axle",
+      "type": "numeric",
+      "prompt": "The double pulley shown ($90\\text{-mm}$ outer radius carrying the $20\\text{-kg}$ mass, $45\\text{-mm}$ inner radius carrying downward force $P$) is attached to a $10\\text{-mm}$-radius shaft that fits loosely in a fixed bearing ($\\mu_s = 0.40$). Determine the force $P$ required to start raising the load.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-79.png",
+      "answer": 450,
+      "tolerancePct": 1.5,
+      "unit": "N",
+      "solution": "Load weight is $W = 20(9.81) = 196.2\\,\\text{N}$. Using Beer & Johnston's small-angle approximation for the circle of friction:\n\n$$r_f \\approx r\\mu_s = (10\\,\\text{mm})(0.40) = 4.0\\,\\text{mm}$$\n\nTo start raising the $20\\text{-kg}$ mass (clockwise impending rotation), the bearing contact shifts $4.0\\,\\text{mm}$ to the right of center $O$. Summing moments about the line of action of $\\mathbf{R}$:\n\n$$196.2(90 + 4.0) - P(45 - 4.0) = 0 \\implies P = \\frac{196.2 \\times 94}{41} = 450\\,\\text{N}$$",
+      "difficulty": "medium",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.79",
+      "tags": ["journal-bearings", "circle-of-friction"]
+    },
+    {
+      "key": "p8-93-floor-polisher",
+      "type": "numeric",
+      "prompt": "A $50\\text{-lb}$ electric floor polisher ($18\\text{-in.}$ disk diameter) is operated on a surface for which $\\mu_k = 0.25$. Assuming uniform pressure between the disk and floor, determine the magnitude $Q$ of the horizontal couple forces ($20\\,\\text{in.}$ apart) required to prevent motion of the machine.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-93.png",
+      "answer": 3.75,
+      "tolerancePct": 1,
+      "unit": "lb",
+      "solution": "Using Eq. (8.9) for disk friction over a full circular area of radius $R = 9\\,\\text{in.}$:\n\n$$M = \\frac{2}{3}\\mu_k P R = \\frac{2}{3}(0.25)(50\\,\\text{lb})(9\\,\\text{in.}) = 75.0\\,\\text{lb}\\cdot\\text{in.}$$\n\nThis frictional torque is balanced by the handle couple $Q(20\\,\\text{in.})$:\n\n$$Q = \\frac{75.0\\,\\text{lb}\\cdot\\text{in.}}{20\\,\\text{in.}} = 3.75\\,\\text{lb}$$",
+      "difficulty": "easy",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.93",
+      "tags": ["disk-friction", "thrust-bearings"]
+    },
+    {
+      "key": "p8-98-tire-rolling-resistance",
+      "type": "numeric",
+      "prompt": "Determine the horizontal force required to move a $2500\\text{-lb}$ automobile with $23\\text{-in.}$-diameter tires along a horizontal road at constant speed, neglecting all friction except rolling resistance with $b = 0.05\\,\\text{in.}$",
+      "answer": 10.87,
+      "tolerancePct": 1,
+      "unit": "lb",
+      "solution": "Tire radius is $r = \\frac{23\\,\\text{in.}}{2} = 11.5\\,\\text{in.}$ Applying Eq. (8.10) ($Pr = Wb$):\n\n$$P = \\frac{Wb}{r} = \\frac{(2500\\,\\text{lb})(0.05\\,\\text{in.})}{11.5\\,\\text{in.}} = 10.87\\,\\text{lb}$$",
+      "difficulty": "easy",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.98",
+      "tags": ["rolling-resistance", "wheel-friction"]
+    },
+    {
+      "key": "p8-109-band-brake",
+      "type": "numeric",
+      "prompt": "A band brake controls a $360\\text{-mm}$-radius flywheel rotating counterclockwise at constant speed ($\\mu_s = 0.30, \\mu_k = 0.25$). Determine the magnitude of the couple applied to the flywheel when $P = 45\\,\\text{N}$.",
+      "image": "/diagrams/get-207/dry-friction-and-inclines-p8-109.png",
+      "answer": 44.9,
+      "tolerancePct": 1,
+      "unit": "N·m",
+      "solution": "Sum moments about hinge $C$ on lever $ABC$:\n\n$$T_B(120\\,\\text{mm}) - 45(360 + 120)\\,\\text{mm} = 0 \\implies T_B = 45 \\times 4 = 180\\,\\text{N}$$\n\nAs the drum turns counterclockwise, friction pulls the band from the lower-left fixed anchor ($T_1$) clockwise around $\\beta = 270^\\circ = \\frac{3\\pi}{2}\\,\\text{rad}$ toward $B$ ($T_2 = 180\\,\\text{N}$). Since the drum is slipping, use $\\mu_k = 0.25$:\n\n$$T_1 = \\frac{T_2}{e^{\\mu_k \\beta}} = \\frac{180}{e^{0.25(3\\pi/2)}} = \\frac{180}{3.248} = 55.42\\,\\text{N}$$\n\nResisting couple on the flywheel:\n\n$$M = (T_2 - T_1)r = (180 - 55.42)(0.360\\,\\text{m}) = 44.9\\,\\text{N}\\cdot\\text{m}$$",
+      "difficulty": "hard",
+      "source": "Beer & Johnston 10e, Ch. 8, Prob. 8.109",
+      "tags": ["belt-friction", "band-brake"]
+    }
+  ]
+}

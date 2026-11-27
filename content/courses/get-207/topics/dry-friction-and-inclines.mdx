@@ -1,89 +1,634 @@
 ---
-title: "Dry Friction on Inclined Planes, Ladders & Wedges"
-order: 2
+title: "Friction: Dry Friction, Wedges, Screws & Belt Friction"
+order: 5
 topicId: "22222222-2222-4222-8222-222222270002"
 courseCode: "GET 207"
 courseSlug: "get-207"
-ccmasRef: "Friction on inclined planes, ladders & wedges"
-textbookRef: "Hibbeler 14e · Ch. 8 (§8.1–8.3 Dry Friction & Wedges)"
+ccmasRef: "Friction on inclined planes, ladders, wedges, screws and belts"
+textbookRef: "Beer & Johnston 10e · Ch. 8"
 outcomes:
-  - "Test equilibrium vs. impending slip (F <= mu_s N) vs. kinetic sliding (F_k = mu_k N) on rough surfaces"
-  - "Check both slipping and tipping conditions by solving for the normal reaction shift x"
-  - "Solve leaning rod/ladder and multi-contact friction equilibrium problems"
+  - "Apply the laws of dry (Coulomb) friction and angles of friction to test whether a rigid body remains in equilibrium, slips, or tips"
+  - "Solve dry-friction equilibrium problems on inclined planes, ladders, and multi-body contact systems using component equations or force triangles"
+  - "Analyze simple machines governed by dry friction, including wedges and self-locking or overhauling square-threaded screws"
+  - "Compute frictional resisting couples, rolling resistance, and belt tensions for journal bearings, thrust bearings, rolling wheels, flat belts, and V belts"
 status: "published"
 isFree: true
 ---
 
-## 1. Overview
+## Overview
 
-In **Hibbeler Chapter 8**, dry (Coulomb) friction problems fall into two distinct classes: problems where impending motion is *known* to occur ($F = \mu_s N$ applies immediately), and problems where you **do not know** whether the crate stays at rest, slips, or tips over first!
+In Chapters 2 through 6, contacting surfaces were idealized as either perfectly *frictionless* (transmitting only normal forces) or infinitely *rough* (preventing all relative tangential slip). **Chapter 8** of Beer, Johnston, Mazurek & Cornwell (*Vector Mechanics for Engineers: Statics*, 10th ed.) replaces this idealization with the physical laws of **dry (Coulomb) friction**, where tangential resisting forces develop up to a finite limit proportional to the normal reaction. After establishing the fundamental laws and angles of friction (§8.1–8.4), the chapter applies them to **wedges** (§8.5), **square-threaded screws** (§8.6), **journal and thrust bearings** (§8.7–8.8), **rolling resistance** (§8.9), and **flat and V-belt drives** (§8.10).
 
 ---
 
-## 2. Key Concepts
+### 8.1 Introduction
 
-### Characteristics of Dry Friction (Hibbeler §8.1–8.2)
+Whenever two surfaces are in contact and one tends to move relative to the other, tangential **friction forces** develop along the contact surface to oppose that relative motion. These forces are bounded in magnitude and will fail to prevent motion if sufficiently large external forces are applied.
 
-1. **Static Equilibrium (No Slipping):** Friction $F$ is found strictly from equilibrium equations ($\sum F_x = 0$) and must satisfy:
-   $$F \le F_{\max} = \mu_s N$$
-2. **Impending Motion (Verge of Slipping):** At the threshold of motion, $F$ acts opposite to impending slip with magnitude:
-   $$F_s = \mu_s N$$
-3. **Sliding Motion:** Once the body moves, friction drops to kinetic friction:
-   $$F_k = \mu_k N$$
-4. **Tipping Check:** On a flat base of width $2a$, the normal reaction $N_C$ shifts laterally by distance $x$ from the centerline to balance moments ($\sum M_O = 0$). If $|x| \le a$, the block does **not** tip; if $|x| > a$, tipping occurs about the corner!
+Friction is classified into two broad categories:
+
+- **Dry friction (Coulomb friction):** Develops between the nonlubricated surfaces of rigid bodies in contact. This is the subject of Chapter 8.
+- **Fluid friction:** Develops between layers of fluid moving at different velocities (important in pipe flow, immersed bodies, and fully lubricated mechanisms; studied in fluid mechanics).
+
+---
+
+### 8.2 The Laws of Dry Friction. Coefficients of Friction
+
+Consider a block of weight $W$ resting on a horizontal plane surface under a horizontal force $P$ (Fig. 8.1). As $P$ increases from zero, the static-friction force $\mathbf{F}$ increases equally to maintain equilibrium until it reaches a **maximum static-friction force** $F_m$. Once $P$ exceeds $F_m$, the block breaks away and slides, and the friction force drops abruptly to a lower, nearly constant **kinetic-friction force** $F_k$ because surface irregularities have less interpenetration during motion.
 
 <DiagramFigure
-  src="/images/textbook-figures/get-207/hibbeler-fig-8-7a-crate.webp"
-  caption="Hibbeler Fig. 8–7a (Example 8.1) — A 20-kg crate pushed by an inclined force P = 80 N at 30°: will it stay put, slip along the floor, or tip over?"
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-1.png"
+  caption="Beer & Johnston Fig. 8.1 — Variation of friction force F with applied horizontal load P, showing equilibrium up to Fm and sliding at constant Fk."
 />
 
-### Leaning Rods, Ladders & Multi-Surface Contact
+<RuleBox kind="definition" title="Equations (8.1)–(8.2) — Laws of Dry Friction">
 
-When a ladder or rod $AB$ leans against a rough wall ($A$) and floor ($B$), draw normal and friction forces at each rough contact opposing the direction that end would slide, then take moments about $B$ ($\sum M_B = 0$) to eliminate two unknowns in one step!
+The maximum static-friction force $F_m$ and the kinetic-friction force $F_k$ are proportional to the normal component $N$ of the surface reaction and are independent of the apparent area of contact:
+
+$$F_m = \mu_s N \qquad (8.1)$$
+
+$$F_k = \mu_k N \qquad (8.2)$$
+
+where $\mu_s$ is the dimensionless **coefficient of static friction** and $\mu_k$ is the dimensionless **coefficient of kinetic friction** (typically about $25\%$ smaller than $\mu_s$).
+
+</RuleBox>
+
+Because $\mu_s$ and $\mu_k$ depend strongly on surface material and condition (seldom known to better than $5\%$), Beer & Johnston tabulate representative static values in **Table 8.1**:
+
+| Contacting Surfaces | $\mu_s$ (Approximate) |
+|---|---|
+| Metal on metal | $0.15\text{–}0.60$ |
+| Metal on wood | $0.20\text{–}0.60$ |
+| Metal on stone | $0.30\text{–}0.70$ |
+| Metal on leather | $0.30\text{–}0.60$ |
+| Wood on wood | $0.25\text{–}0.50$ |
+| Wood on leather | $0.25\text{–}0.50$ |
+| Stone on stone | $0.40\text{–}0.70$ |
+| Earth on earth | $0.20\text{–}1.00$ |
+| Rubber on concrete | $0.60\text{–}0.90$ |
+
+Four distinct physical regimes can occur for a rigid body in contact with a surface (Fig. 8.2):
+
+1. **No friction ($P_x = 0$):** No tendency to slide; $F = 0$.
+2. **No motion ($P_x < F_m$):** Equilibrium holds; $F$ is determined strictly from $\sum F_x = 0$. **Do not use $F_m = \mu_s N$**, because $F$ has not reached its ceiling.
+3. **Motion impending ($P_x = F_m$):** The body is on the verge of sliding. Both equilibrium equations and $F_m = \mu_s N$ apply simultaneously, with $F_m$ directed opposite to the impending motion.
+4. **Motion ($P_x > F_m$):** Equilibrium no longer holds; the body slides and friction equals $F_k = \mu_k N$, directed opposite to the actual motion.
 
 <DiagramFigure
-  src="/images/textbook-figures/get-207/hibbeler-f8-2-ladder.webp"
-  caption="Hibbeler Ch. 8, Prob. F8–2 — A 30-kg uniform rod AB on a 3 m × 4 m geometry held against a rough wall at A (μs = 0.2) and smooth floor at B by force P."
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-2.png"
+  caption="Beer & Johnston Fig. 8.2 — Four regimes of dry friction: (a) no friction, (b) static equilibrium with F < μsN, (c) impending motion with Fm = μsN, (d) kinetic sliding with Fk = μkN."
 />
 
----
+<Callout variant="info" title="Sliding vs. Tipping Footnote (Beer & Johnston §8.2)">
 
-## 3. Textbook Worked Examples
+As $F$ increases from $0$ to $F_m$, the point of application $A$ of the resultant normal force $\mathbf{N}$ shifts toward the leading edge $B$ so that the couple formed by $\mathbf{W}$ and $\mathbf{N}$ balances the couple formed by $\mathbf{P}$ and $\mathbf{F}$. If $\mathbf{N}$ reaches the corner $B$ before $F$ reaches $F_m = \mu_s N$, the block will **tip about $B$** before it can start sliding.
 
-<StepRevealExample
-  title="Hibbeler Example 8.1 — Crate Equilibrium, Slip & Tip Check (Fig. 8–7)"
-  problem="The uniform crate shown in Fig. 8–7a has a mass of $20\,\text{kg}$ (width $0.8\,\text{m}$). A force $P = 80\,\text{N}$ at $30^\circ$ below the horizontal is applied $0.2\,\text{m}$ above the floor. If the coefficient of static friction is $\mu_s = 0.3$, determine whether the crate remains in equilibrium."
-  steps={[
-    "Crate weight is $W = 20(9.81) = 196.2\\,\\text{N}$. Do NOT assume $F = \\mu_s N_C$; solve the three equilibrium equations for $F$, $N_C$, and normal-force offset $x$ from the centerline $O$.",
-    "Horizontal equilibrium ($\\stackrel{+}{\\rightarrow} \\sum F_x = 0$): $80\\cos 30^\\circ - F = 0 \\implies F = 69.3\\,\\text{N}$.",
-    "Vertical equilibrium ($+\\!\\uparrow \\sum F_y = 0$): $-80\\sin 30^\\circ + N_C - 196.2 = 0 \\implies N_C = 236.2\\,\\text{N}$.",
-    "Moment equilibrium about base midpoint $O$ ($\\curvearrowleft + \\sum M_O = 0$): $(80\\sin 30^\\circ)(0.4\\,\\text{m}) - (80\\cos 30^\\circ)(0.2\\,\\text{m}) + N_C(x) = 0 \\implies x = -0.00908\\,\\text{m} = -9.08\\,\\text{mm}$. Since $|x| < 0.4\\,\\text{m}$, **no tipping** occurs.",
-    "Check slipping ceiling: $F_{\\max} = \\mu_s N_C = 0.3(236.2) = 70.9\\,\\text{N}$. Since required $F = 69.3\\,\\text{N} < 70.9\\,\\text{N}$, the crate **will not slip** and remains in equilibrium!"
-  ]}
-/>
-
-<StepRevealExample
-  title="Hibbeler Fundamental Problem F8–2 — Leaning 30-kg Rod (Prob. F8–2)"
-  problem="Determine the minimum horizontal force $P$ required to prevent the $30\,\text{kg}$ uniform rod $AB$ (spanning $4\,\text{m}$ horizontally and $3\,\text{m}$ vertically) from sliding downward. Contact at $B$ is smooth, while the wall at $A$ has $\mu_s = 0.2$."
-  steps={[
-    "At minimum $P$, end $A$ is on the verge of sliding **down** the wall, so upward wall friction reaches its maximum $F_A = \\mu_s N_A = 0.2 N_A$, while $N_A$ pushes to the left on $A$.",
-    "Uniform rod weight $W = 30(9.81) = 294.3\\,\\text{N}$ acts downward at the midpoint ($2\\,\\text{m}$ horizontally from $B$).",
-    "Take moments about $B$ ($\\curvearrowleft + \\sum M_B = 0$) so both $P$ and normal reaction $N_B$ pass through $B$ or act along the floor line: $N_A(3\\,\\text{m}) + (0.2 N_A)(4\\,\\text{m}) - 30(9.81)(2\\,\\text{m}) = 0$.",
-    "Solve for $N_A$: $3.8 N_A = 588.6 \\implies N_A = 154.89\\,\\text{N}$.",
-    "Apply horizontal equilibrium ($\\stackrel{+}{\\rightarrow} \\sum F_x = 0$): $P - N_A = 0 \\implies P = 154.89\\,\\text{N} \\approx 155\\,\\text{N}$."
-  ]}
-/>
-
----
-
-## 4. Common Exam Pitfalls
-
-<Callout variant="warning" title="Don't fall for the P = 200 N vs. P = 400 N trap (Prob. F8–1)">
-In Hibbeler **Prob. F8–1**, a downward-sloping force $P$ increases the normal force $N = mg + \frac{3}{5}P$. Always compute $F_{\max} = \mu_s N$ first: if $\frac{4}{5}P \le F_{\max}$, friction equals $\frac{4}{5}P$; if $\frac{4}{5}P > F_{\max}$, the crate slides and friction switches to **kinetic** $F_k = \mu_k N$!
 </Callout>
 
 ---
 
-## 5. Textbook Reference
+### 8.3 Angles of Friction
 
-- **Prescribed Textbook:** R. C. Hibbeler, *Engineering Mechanics: Statics & Dynamics* (14th Ed.), Chapter 8 (§8.1–8.3, pp. 401–431).
+It is often advantageous—especially in three-force problems—to combine the normal force $\mathbf{N}$ and friction force $\mathbf{F}$ into a single **surface reaction** $\mathbf{R}$, inclined at an angle $\phi$ to the normal (Fig. 8.3).
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-3.png"
+  caption="Beer & Johnston Fig. 8.3 — Combining N and F into the resultant reaction R inclined at angle φ to the normal."
+/>
+
+<RuleBox kind="theorem" title="Equations (8.3)–(8.4) — Angles of Static and Kinetic Friction & Angle of Repose">
+
+When motion is impending, $\phi$ reaches its maximum value $\phi_s$, the **angle of static friction**; when sliding occurs, $\phi$ drops to $\phi_k$, the **angle of kinetic friction**:
+
+$$\tan \phi_s = \frac{F_m}{N} = \frac{\mu_s N}{N} \implies \tan \phi_s = \mu_s \qquad (8.3)$$
+
+$$\tan \phi_k = \frac{F_k}{N} = \frac{\mu_k N}{N} \implies \tan \phi_k = \mu_k \qquad (8.4)$$
+
+For a block resting solely under its weight $\mathbf{W}$ and surface reaction $\mathbf{R}$ on a board inclined at angle $\theta$ (Fig. 8.4), motion becomes impending when $\theta = \phi_s$. This limiting inclination is called the **angle of repose**, and is equal to $\phi_s$.
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-4.png"
+  caption="Beer & Johnston Fig. 8.4 — Block on an inclined plane of variable slope θ; impending motion occurs when θ = φs (the angle of repose)."
+/>
+
+---
+
+### 8.4 Problems Involving Dry Friction
+
+Depending on the geometry and number of forces, dry-friction equilibrium problems use either component equations ($\sum F_x = 0, \sum F_y = 0, \sum M = 0$) with $N$ and $F$ shown separately, or a **force triangle** with the single resultant $\mathbf{R}$ when only three forces act on the body.
+
+<RuleBox kind="working-rule" title="Beer & Johnston Three Problem Categories & Relative-Motion Rule">
+
+1. **All applied forces and $\mu_s, \mu_k$ known (equilibrium check):** Do *not* assume $F = \mu_s N$. Solve equilibrium equations for the required $F$ and $N$, then compare $|F|$ with $F_m = \mu_s N$. If $|F| \le F_m$, the body remains at rest; if $|F| > F_m$, motion occurs and $F_{\text{actual}} = F_k = \mu_k N$.
+2. **All applied forces known, motion impending (find $\mu_s$):** Solve equilibrium equations for $F$ and $N$, set $F = F_m = \mu_s N$, and compute $\mu_s = F/N$.
+3. **Motion impending and $\mu_s$ known (find a force, angle, or distance):** Determine the sense of impending motion, draw $F_m = \mu_s N$ opposing it (eliminating one unknown), and solve the equilibrium equations (or force triangle).
+
+**Two Bodies in Contact:** By Newton's third law, the friction forces on bodies $A$ and $B$ are equal and opposite. The friction force acting on $A$ is directed **opposite to the motion (or impending motion) of $A$ as observed from $B$**.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Sample Problem 8.1 — Block on an Inclined Plane (Category 1: Equilibrium Check)"
+  source="Beer & Johnston 10e, Ch. 8, Sample Problem 8.1"
+  figure="/diagrams/get-207/dry-friction-and-inclines-sp-8-1.png"
+  problem="A $100\text{-lb}$ force acts as shown on a $300\text{-lb}$ block placed on an inclined plane of slope $3:4:5$. The coefficients of friction between the block and the plane are $\\mu_s = 0.25$ and $\\mu_k = 0.20$. Determine whether the block is in equilibrium, and find the value of the friction force."
+  steps={[
+    "Assume the block is in equilibrium and draw the FBD with $x$ up along the incline and $y$ perpendicular to it. Assume the required friction force $F$ acts down and to the left.",
+    "Resolve the $300\\text{-lb}$ weight into components along and normal to the $3:4:5$ plane: $W_x = -\\frac{3}{5}(300\\,\\text{lb}) = -180\\,\\text{lb}$ and $W_y = -\\frac{4}{5}(300\\,\\text{lb}) = -240\\,\\text{lb}$.",
+    "Apply equilibrium along $x$ and $y$: $+\\!\\nearrow \\sum F_x = 0: 100 - \\frac{3}{5}(300) - F = 0 \\implies F = -80\\,\\text{lb}$, so $F = 80\\,\\text{lb}\\,\\nearrow$ (up and to the right). $+\\!\\nwarrow \\sum F_y = 0: N - \\frac{4}{5}(300) = 0 \\implies N = 240\\,\\text{lb}\\,\\nwarrow$.",
+    "Compute the maximum static friction force: $F_m = \\mu_s N = 0.25(240\\,\\text{lb}) = 60\\,\\text{lb}$.",
+    "Compare: since the required friction ($80\\,\\text{lb}$) exceeds $F_m$ ($60\\,\\text{lb}$), equilibrium is NOT maintained and the block slides down the plane.",
+    "Compute the actual kinetic friction force opposite to motion (up and to the right): $F_{\\text{actual}} = F_k = \\mu_k N = 0.20(240\\,\\text{lb}) = 48\\,\\text{lb}\\,\\nearrow$."
+  ]}
+  answer="Block is not in equilibrium (slides down the plane); $F_{\\text{actual}} = 48\\,\\text{lb}$ directed up and to the right"
+/>
+
+<StepRevealExample
+  title="Sample Problem 8.2 — Force-Triangle Method on an Incline"
+  source="Beer & Johnston 10e, Ch. 8, Sample Problem 8.2"
+  figure="/diagrams/get-207/dry-friction-and-inclines-sp-8-2.png"
+  problem="A support block is acted upon by two forces as shown ($800\\,\\text{N}$ vertical load and horizontal force $P$ on a $25^\\circ$ incline). Knowing that $\\mu_s = 0.35$ and $\\mu_k = 0.25$, determine the force $P$ required (a) to start the block moving up the incline, (b) to keep it moving up, and (c) to prevent it from sliding down."
+  steps={[
+    "Only three forces act on the block: the $800\\text{-N}$ vertical load, horizontal force $\\mathbf{P}$, and the incline reaction $\\mathbf{R}$. Because $\\mathbf{P}$ is perpendicular to the $800\\text{-N}$ load, each force triangle is a right triangle.",
+    "Compute the static and kinetic friction angles: $\\phi_s = \\tan^{-1}(0.35) = 19.29^\\circ$ and $\\phi_k = \\tan^{-1}(0.25) = 14.04^\\circ$.",
+    "(a) To start moving up, $\\mathbf{R}$ opposes upward motion, tilting $\\phi_s$ clockwise past the normal, making an angle $25^\\circ + 19.29^\\circ = 44.29^\\circ$ with the vertical: $P = (800\\,\\text{N})\\tan 44.29^\\circ = 780\\,\\text{N}\\leftarrow$.",
+    "(b) To keep moving up at constant speed, replace $\\phi_s$ with $\\phi_k = 14.04^\\circ$. The angle of $\\mathbf{R}$ from the vertical is $25^\\circ + 14.04^\\circ = 39.04^\\circ$: $P = (800\\,\\text{N})\\tan 39.04^\\circ = 649\\,\\text{N}\\leftarrow$.",
+    "(c) To prevent sliding down, impending motion is downward, so $\\mathbf{R}$ tilts $\\phi_s$ counterclockwise from the normal, forming $25^\\circ - 19.29^\\circ = 5.71^\\circ$ with the vertical: $P = (800\\,\\text{N})\\tan 5.71^\\circ = 80.0\\,\\text{N}\\leftarrow$."
+  ]}
+  answer="(a) $780\\,\\text{N}\\leftarrow$; (b) $649\\,\\text{N}\\leftarrow$; (c) $80.0\\,\\text{N}\\leftarrow$"
+/>
+
+<StepRevealExample
+  title="Sample Problem 8.3 — Movable Pipe Bracket (Minimum Eccentricity)"
+  source="Beer & Johnston 10e, Ch. 8, Sample Problem 8.3"
+  figure="/diagrams/get-207/dry-friction-and-inclines-sp-8-3.png"
+  problem="The movable bracket shown may be placed at any height on the $3\\text{-in.}$-diameter pipe. If $\\mu_s = 0.25$ between the pipe and bracket, determine the minimum distance $x$ at which the load $W$ can be supported. Neglect the weight of the bracket."
+  steps={[
+    "Draw the FBD of the bracket when $W$ is at minimum $x$ (just about to slip downward). Contact occurs at upper-left corner $A$ (with $N_A$ to the left and $F_A = 0.25 N_A$ upward) and lower-right corner $B$ (with $N_B$ to the right and $F_B = 0.25 N_B$ upward).",
+    "Horizontal equilibrium ($\\stackrel{+}{\\rightarrow} \\sum F_x = 0$): $N_B - N_A = 0 \\implies N_B = N_A$.",
+    "Vertical equilibrium ($+\\!\\uparrow \\sum F_y = 0$): $F_A + F_B - W = 0 \\implies 0.25 N_A + 0.25 N_B = W$. With $N_B = N_A$, $0.50 N_A = W \\implies N_A = 2W$.",
+    "Take moments about $B$ ($\\curvearrowleft + \\sum M_B = 0$): $N_A(6\\,\\text{in.}) - F_A(3\\,\\text{in.}) - W(x - 1.5\\,\\text{in.}) = 0$.",
+    "Substitute $N_A = 2W$ and $F_A = 0.25(2W) = 0.5W$: $6(2W) - 3(0.5W) - Wx + 1.5W = 0 \\implies (12 - 1.5 + 1.5)W - Wx = 0$.",
+    "Divide by $W$: $x = 12\\,\\text{in.}$"
+  ]}
+  answer="$x = 12\\,\\text{in.}$"
+/>
+
+<StepRevealExample
+  title="Worked Problem 8.18 — Sliding vs. Tipping of a Cabinet on Casters"
+  source="Beer & Johnston 10e, Ch. 8, Problem 8.18"
+  figure="/diagrams/get-207/dry-friction-and-inclines-p8-17-18.png"
+  problem="A $120\\text{-lb}$ cabinet is mounted on casters that can be locked to prevent rotation ($24\\,\\text{in.}$ between casters $A$ and $B$). The coefficient of static friction between the floor and each caster is $0.30$. Assuming that the casters at both $A$ and $B$ are locked, determine (a) the force $P$ required to move the cabinet to the right, and (b) the largest allowable height $h$ if the cabinet is not to tip over."
+  steps={[
+    "Draw the FBD with weight $W = 120\\,\\text{lb}$ acting at the centerline ($12\\,\\text{in.}$ from $A$ and $B$), normal forces $N_A, N_B$ upward, friction forces $F_A = \\mu_s N_A, F_B = \\mu_s N_B$ to the left, and $P$ to the right at height $h$.",
+    "(a) Vertical equilibrium ($+\\!\\uparrow \\sum F_y = 0$): $N_A + N_B - 120 = 0 \\implies N_A + N_B = 120\\,\\text{lb}$.",
+    "Horizontal equilibrium at impending slip ($\\stackrel{+}{\\rightarrow} \\sum F_x = 0$): $P = F_A + F_B = \\mu_s(N_A + N_B) = 0.30(120\\,\\text{lb}) = 36.0\\,\\text{lb}\\rightarrow$.",
+    "(b) At the threshold of tipping clockwise about the front caster $B$, the rear caster $A$ lifts off the floor so $N_A = 0$ and $F_A = 0$ (hence $N_B = 120\\,\\text{lb}$).",
+    "Take moments about $B$ ($\\curvearrowleft + \\sum M_B = 0$): $120(12\\,\\text{in.}) - P h = 0$. Substituting $P = 36.0\\,\\text{lb}$: $h = \\frac{120 \\times 12}{36.0} = 40.0\\,\\text{in.}$"
+  ]}
+  answer="(a) $P = 36.0\\,\\text{lb}\\rightarrow$; (b) $h_{\\max} = 40.0\\,\\text{in.}$"
+/>
+
+<StepRevealExample
+  title="Worked Problem 8.25 — Leaning Ladder Against a Smooth Wall"
+  source="Beer & Johnston 10e, Ch. 8, Problem 8.25"
+  figure="/diagrams/get-207/dry-friction-and-inclines-p8-25.png"
+  problem="A $6.5\\text{-m}$ ladder $AB$ leans against a wall ($6\\,\\text{m}$ high at $B$, $2.5\\,\\text{m}$ horizontal base to $A$). Assuming that the coefficient of static friction $\\mu_s$ is zero at $B$, determine the smallest value of $\\mu_s$ at $A$ for which equilibrium is maintained."
+  steps={[
+    "Draw the FBD of ladder $AB$ of weight $W$ acting at its midpoint ($1.25\\,\\text{m}$ horizontally from $A$ and $1.25\\,\\text{m}$ from $B$).",
+    "Because the wall at $B$ is smooth ($\\mu_B = 0$), the wall reaction is purely horizontal: $N_B$ to the left ($F_B = 0$). At floor $A$, there is an upward normal $N_A$ and rightward friction $F_A$ opposing leftward slip.",
+    "Vertical equilibrium ($+\\!\\uparrow \\sum F_y = 0$): $N_A - W = 0 \\implies N_A = W$.",
+    "Take moments about $A$ ($\\curvearrowleft + \\sum M_A = 0$): $N_B(6\\,\\text{m}) - W(1.25\\,\\text{m}) = 0 \\implies N_B = \\frac{1.25}{6}W = 0.2083 W$.",
+    "Horizontal equilibrium ($\\stackrel{+}{\\rightarrow} \\sum F_x = 0$): $F_A - N_B = 0 \\implies F_A = 0.2083 W$.",
+    "At impending slip, $F_A = \\mu_s N_A \\implies \\mu_s = \\frac{F_A}{N_A} = \\frac{0.2083 W}{W} = 0.208$."
+  ]}
+  answer="$\\mu_s = 0.208$"
+/>
+
+<ExerciseSet
+  title="Practice Problems — Laws of Dry Friction, Inclines & Ladders (§8.1–8.4)"
+  source="Beer & Johnston 10e, Ch. 8, Problems 8.1–8.13"
+  items={[
+    {
+      q: "Determine whether the $1.2\\text{-kN}$ block shown is in equilibrium and find the magnitude and direction of the friction force when $\\theta = 25^\\circ$ and $P = 750\\,\\text{N}$ ($\\mu_s = 0.35, \\mu_k = 0.25$).",
+      a: "Equilibrium; $F = 172.6\\,\\text{N}$ down and to the left",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-1-2.png"
+    },
+    {
+      q: "Using the same $1.2\\text{-kN}$ block and incline ($\\mu_s = 0.35, \\mu_k = 0.25$), determine whether the block is in equilibrium and find the friction force when $\\theta = 30^\\circ$ and $P = 150\\,\\text{N}$.",
+      a: "Block moves; $F = 279\\,\\text{N}$ up and to the left",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-1-2.png"
+    },
+    {
+      q: "Knowing that the coefficient of static friction between the $25\\text{-kg}$ block and the $30^\\circ$ incline is $\\mu_s = 0.25$, determine (a) the smallest value of $P$ required to start the block moving up the incline, and (b) the corresponding value of $\\beta$.",
+      a: "(a) $P = 170.5\\,\\text{N}$; (b) $\\beta = 14.04^\\circ$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-6.png"
+    },
+    {
+      q: "Determine the range of values of $P$ for which equilibrium of the $500\\text{-N}$ block on the $30^\\circ$ surface ($\\mu_s = 0.25, \\mu_k = 0.20$) is maintained.",
+      a: "$143.0\\,\\text{N} \\le P \\le 483\\,\\text{N}$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-10.png"
+    },
+    {
+      q: "The coefficients of friction are $\\mu_s = 0.40$ and $\\mu_k = 0.30$ between all surfaces of contact. Determine the smallest force $P$ required to start the $30\\text{-kg}$ block moving if cable $AB$ (a) is attached as shown over the pulley, (b) is removed.",
+      a: "(a) $353\\,\\text{N}\\leftarrow$; (b) $196.2\\,\\text{N}\\leftarrow$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-13.png"
+    }
+  ]}
+/>
+
+---
+
+### 8.5 Wedges
+
+**Wedges** are simple machines used to lift or position heavy loads using a relatively small driving force $P$. Because of dry friction along its faces, a properly angled wedge remains self-locked in position after insertion.
+
+Consider raising block $A$ (weight $W$) against vertical wall $B$ by driving wedge $C$ to the right (Fig. 8.7). Separate free-body diagrams are drawn for block $A$ and wedge $C$, taking care to obey Newton's third law ($-\mathbf{N}_2$ and $-\mathbf{F}_2$ on wedge $C$) and to orient every friction force opposite to the relative impending motion. Because each free body is typically acted on by only three resultant forces ($\mathbf{W}$ or $\mathbf{P}$ plus two surface reactions $\mathbf{R}_i$ tilted by $\phi_s$), the **force-triangle method (law of sines)** is faster and less error-prone than solving four simultaneous component equations.
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-7.png"
+  caption="Beer & Johnston Fig. 8.7 — Block A raised against wall B by driving wedge C; note action-reaction pairs (N2, F2) and (−N2, −F2)."
+/>
+
+<StepRevealExample
+  title="Sample Problem 8.4 — Wedge Analysis by Force Triangles"
+  source="Beer & Johnston 10e, Ch. 8, Sample Problem 8.4"
+  figure="/diagrams/get-207/dry-friction-and-inclines-sp-8-4.png"
+  problem="The position of the $400\\text{-lb}$ machine block $B$ is adjusted by moving the $8^\\circ$ wedge $A$. Knowing that $\\mu_s = 0.35$ between all surfaces of contact, determine the force $P$ required (a) to raise block $B$, and (b) to lower block $B$."
+  steps={[
+    "Compute the angle of static friction for all surfaces: $\\phi_s = \\tan^{-1}(0.35) = 19.3^\\circ$.",
+    "(a) **Raise block $B$:** Block $B$ moves up, so wall reaction $\\mathbf{R}_2$ tilts downward by $\\phi_s = 19.3^\\circ$ from the horizontal ($90^\\circ + 19.3^\\circ = 109.3^\\circ$ from vertical). As wedge $A$ slides left relative to $B$, friction on $B$ acts left-down, tilting $\\mathbf{R}_1$ to $8^\\circ + 19.3^\\circ = 27.3^\\circ$ right of the downward vertical.",
+    "From the force triangle for block $B$ (angles $27.3^\\circ, 109.3^\\circ$, and $180^\\circ - 27.3^\\circ - 109.3^\\circ = 43.4^\\circ$), apply the law of sines: $\\frac{R_1}{\\sin 109.3^\\circ} = \\frac{400\\,\\text{lb}}{\\sin 43.4^\\circ} \\implies R_1 = 549\\,\\text{lb}$.",
+    "For wedge $A$, $\\mathbf{P}$ pushes left; floor reaction $\\mathbf{R}_3$ tilts right by $\\phi_s = 19.3^\\circ$ from vertical. From wedge $A$'s force triangle (angles $90^\\circ - 19.3^\\circ = 70.7^\\circ$ and $27.3^\\circ + 19.3^\\circ = 46.6^\\circ$): $\\frac{P}{\\sin 46.6^\\circ} = \\frac{549\\,\\text{lb}}{\\sin 70.7^\\circ} \\implies P = 423\\,\\text{lb}\\leftarrow$.",
+    "(b) **Lower block $B$:** Wedge $A$ is pulled right, and block $B$ tends downward. $\\mathbf{R}_2$ tilts upward by $19.3^\\circ$ ($90^\\circ - 19.3^\\circ = 70.7^\\circ$ from vertical), and $\\mathbf{R}_1$ tilts $19.3^\\circ - 8^\\circ = 11.3^\\circ$ left of vertical. Law of sines on $B$ (third angle $180^\\circ - 70.7^\\circ - 11.3^\\circ = 98.0^\\circ$): $R_1 = \\frac{400\\sin 70.7^\\circ}{\\sin 98.0^\\circ} = 381\\,\\text{lb}$.",
+    "On wedge $A$, $\\mathbf{R}_3$ tilts left by $19.3^\\circ$. Law of sines on $A$ (angles $70.7^\\circ$ and $19.3^\\circ + 11.3^\\circ = 30.6^\\circ$): $P = \\frac{381\\sin 30.6^\\circ}{\\sin 70.7^\\circ} = 206\\,\\text{lb}\\rightarrow$."
+  ]}
+  answer="(a) $P = 423\\,\\text{lb}\\leftarrow$; (b) $P = 206\\,\\text{lb}\\rightarrow$"
+/>
+
+---
+
+### 8.6 Square-Threaded Screws
+
+Square-threaded screws are widely used in jacks, vises, clamps, and presses (Fig. 8.8). Unwrapping one full turn of the base thread yields an inclined plane of horizontal base $2\pi r$ (where $r$ is the **mean radius** of the thread) and vertical rise equal to the **lead** $L$—the axial distance the screw advances in one revolution (Fig. 8.9).
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-8.png"
+  caption="Beer & Johnston Fig. 8.8 — Square-threaded jack of mean thread radius r carrying load W via force P at lever arm a."
+/>
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-9.png"
+  caption="Beer & Johnston Fig. 8.9 — Equivalent block-and-incline model of a screw: (a) raising load, (b) lowering self-locking screw (φs > θ), (c) holding non-self-locking screw (φs < θ)."
+/>
+
+<RuleBox kind="formula" title="Square-Threaded Screw Formulas & Self-Locking Condition">
+
+1. **Lead vs. Pitch:** The **pitch** $p$ is the axial distance between two consecutive threads. The **lead** $L$ is the advance per revolution: $L = p$ for a single-threaded screw, $L = 2p$ for a double-threaded screw, and $L = np$ for an $n$-threaded screw.
+2. **Lead angle $\theta$ and equivalent horizontal force $Q$:**
+
+$$\tan \theta = \frac{L}{2\pi r}, \qquad Q = \frac{Pa}{r} = \frac{M}{r}$$
+
+3. **Couple $M = Qr$ for impending motion** (with $\tan\phi_s = \mu_s$):
+   - **To raise / tighten load $W$:**
+     $$M = Wr \tan(\phi_s + \theta)$$
+   - **Self-locking condition ($\phi_s > \theta$):** The screw holds the load when torque is removed. Couple required to **lower / loosen** load $W$:
+     $$M = Wr \tan(\phi_s - \theta)$$
+   - **Unwinding / overhauling ($\phi_s < \theta$):** The screw unwinds on its own; couple required to **hold** the load in equilibrium:
+     $$M = Wr \tan(\theta - \phi_s)$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Sample Problem 8.5 — Double Square-Threaded Wood Clamp"
+  source="Beer & Johnston 10e, Ch. 8, Sample Problem 8.5"
+  figure="/diagrams/get-207/dry-friction-and-inclines-sp-8-5.png"
+  problem="A clamp has a double square thread of mean diameter $10\\,\\text{mm}$ with a pitch of $2\\,\\text{mm}$, and $\\mu_s = 0.30$ between threads. If a maximum couple of $40\\,\\text{N}\\cdot\\text{m}$ is applied in tightening the clamp, determine (a) the clamping force $W$ exerted on the wood, and (b) the couple required to loosen the clamp."
+  steps={[
+    "Identify thread parameters: mean radius $r = \\frac{10\\,\\text{mm}}{2} = 5\\,\\text{mm} = 5 \\times 10^{-3}\\,\\text{m}$. Because the screw is **double-threaded**, the lead is $L = 2p = 2(2\\,\\text{mm}) = 4\\,\\text{mm}$.",
+    "Compute the lead angle $\\theta$ and static friction angle $\\phi_s$: $\\tan\\theta = \\frac{L}{2\\pi r} = \\frac{4\\,\\text{mm}}{10\\pi\\,\\text{mm}} = 0.1273 \\implies \\theta = 7.3^\\circ$, and $\\tan\\phi_s = 0.30 \\implies \\phi_s = 16.7^\\circ$.",
+    "(a) Compute the equivalent horizontal force $Q$ from the applied couple $M = Qr$: $Q = \\frac{40\\,\\text{N}\\cdot\\text{m}}{5 \\times 10^{-3}\\,\\text{m}} = 8000\\,\\text{N} = 8\\,\\text{kN}$.",
+    "From the force triangle for impending tightening (Fig. 8.9a, angle $\\theta + \\phi_s = 7.3^\\circ + 16.7^\\circ = 24.0^\\circ$): $W = \\frac{Q}{\\tan(\\theta + \\phi_s)} = \\frac{8\\,\\text{kN}}{\\tan 24.0^\\circ} = 17.97\\,\\text{kN}$.",
+    "(b) Since $\\phi_s = 16.7^\\circ > \\theta = 7.3^\\circ$, the clamp is self-locking. For loosening (Fig. 8.9b), $\\phi_s - \\theta = 16.7^\\circ - 7.3^\\circ = 9.4^\\circ$: $Q_{\\text{loosen}} = W\\tan(\\phi_s - \\theta) = (17.97\\,\\text{kN})\\tan 9.4^\\circ = 2.975\\,\\text{kN}$.",
+    "Multiply by $r = 5\\,\\text{mm}$: $\\text{Couple} = Q_{\\text{loosen}} r = (2.975 \\times 10^3\\,\\text{N})(5 \\times 10^{-3}\\,\\text{m}) = 14.87\\,\\text{N}\\cdot\\text{m}$."
+  ]}
+  answer="(a) $W = 17.97\\,\\text{kN}$; (b) $\\text{Couple} = 14.87\\,\\text{N}\\cdot\\text{m}$"
+/>
+
+<ExerciseSet
+  title="Practice Problems — Wedges & Square-Threaded Screws (§8.5–8.6)"
+  source="Beer & Johnston 10e, Ch. 8, Problems 8.48–8.75"
+  items={[
+    {
+      q: "The machine part $ABC$ is supported by a frictionless hinge at $B$ and a $10^\\circ$ wedge at $C$. Knowing that $\\mu_s = 0.20$ at both surfaces of the wedge, determine (a) the force $P$ required to move the wedge to the left, and (b) the components of the corresponding reaction at $B$.",
+      a: "(a) $P = 620\\,\\text{N}\\leftarrow$; (b) $B_x = 1390\\,\\text{N}\\leftarrow,\\; B_y = 1050\\,\\text{N}\\uparrow$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-48.png"
+    },
+    {
+      q: "Block $A$ ($3\\,\\text{kN}$) supports a pipe column and rests on wedge $B$. Knowing that $\\mu_s = 0.25$ at all surfaces of contact and $\\theta = 45^\\circ$, determine the smallest force $P$ required to raise block $A$.",
+      a: "$P = 9.86\\,\\text{kN}\\leftarrow$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-54.png"
+    },
+    {
+      q: "For a $24\\text{-mm}$-nominal-diameter high-strength bolt (mean diameter $22.6\\,\\text{mm}$, lead $3\\,\\text{mm}$, square-threaded), the required tension is $210\\,\\text{kN}$. Assuming $\\mu_s = 0.40$ on the threads and neglecting washer friction, find the required tightening couple.",
+      a: "$1068\\,\\text{N}\\cdot\\text{m}$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-71.png"
+    },
+    {
+      q: "The automobile jack is controlled by screw $ABC$ (single-threaded, right-hand at $A$, left-hand at $C$; pitch $0.1\\,\\text{in.}$, mean diameter $0.375\\,\\text{in.}$, $\\mu_s = 0.15$). Determine the couple $M$ required to raise the $800\\text{-lb}$ load.",
+      a: "$M = 153.1\\,\\text{lb}\\cdot\\text{in.}$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-72.png"
+    },
+    {
+      q: "Two fixed rods $A$ (right-hand) and $B$ (left-hand) have single-threaded screws of mean radius $6\\,\\text{mm}$ and pitch $2\\,\\text{mm}$ ($\\mu_s = 0.12$) under $2\\text{-kN}$ axial tension. Determine the couple required on the sleeve to draw the rods closer together.",
+      a: "$4.18\\,\\text{N}\\cdot\\text{m}$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-75.png"
+    }
+  ]}
+/>
+
+---
+
+### 8.7 Journal Bearings. Axle Friction
+
+**Journal bearings** provide lateral support to rotating shafts and axles. When unlubricated or partially lubricated, the axle "climbs" inside the bearing until contact occurs along a line $B$ (Fig. 8.10b) where the bearing reaction $\mathbf{R}$ makes the friction angle $\phi_k$ (or $\phi_s$ if impending) with the normal. Thus $\mathbf{R}$ does not pass through the axle center $O$, but is tangent to a **circle of friction** of radius $r_f$ centered at $O$.
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-10.png"
+  caption="Beer & Johnston Fig. 8.10 — Journal bearing contact and circle of friction of radius rf = r sin φk ≈ rμk."
+/>
+
+<RuleBox kind="formula" title="Equations (8.5)–(8.7) — Journal Bearing Friction & Circle of Friction">
+
+For an axle of radius $r$ carrying radial load $R$, the moment $M$ required to overcome bearing friction and the radius $r_f$ of the **circle of friction** are:
+
+$$M = R r \sin \phi_k \approx R r \mu_k \qquad (8.5, 8.6)$$
+
+$$r_f = r \sin \phi_k \approx r \mu_k \qquad (8.7)$$
+
+For **impending** rotation, replace $\phi_k, \mu_k$ with $\phi_s, \mu_s$ so $r_f = r \sin\phi_s \approx r \mu_s$. The line of action of $\mathbf{R}$ is always tangent to the circle of friction on the side that creates a moment opposing the rotation (or impending rotation) of the shaft relative to the bearing.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Sample Problem 8.6 — Pulley on a Fixed Shaft (Circle of Friction)"
+  source="Beer & Johnston 10e, Ch. 8, Sample Problem 8.6"
+  figure="/diagrams/get-207/dry-friction-and-inclines-sp-8-6.png"
+  problem="A pulley of diameter $4\\,\\text{in.}$ rotates about a fixed shaft of diameter $2\\,\\text{in.}$ with $\\mu_s = 0.20$. Determine (a) the smallest vertical force $P$ required to start raising a $500\\text{-lb}$ load, (b) the smallest vertical force $P$ required to hold the load, and (c) the smallest horizontal force $P$ required to start raising the load."
+  steps={[
+    "Compute the radius of the friction circle using the shaft radius $r = 1\\,\\text{in.}$: $r_f = r\\sin\\phi_s \\approx r\\mu_s = (1\\,\\text{in.})(0.20) = 0.20\\,\\text{in.}$",
+    "(a) **Vertical $P$ to raise $W$:** The pulley tends clockwise, so contact climbs to the right at $B$ ($0.20\\,\\text{in.}$ right of $O$). Moment arms to $B$ are $2.00 + 0.20 = 2.20\\,\\text{in.}$ for $W$ and $2.00 - 0.20 = 1.80\\,\\text{in.}$ for $P$.",
+    "Sum moments about $B$ ($\\curvearrowleft + \\sum M_B = 0$): $(2.20\\,\\text{in.})(500\\,\\text{lb}) - (1.80\\,\\text{in.})P = 0 \\implies P = 611\\,\\text{lb}\\downarrow$.",
+    "(b) **Vertical $P$ to hold $W$:** Impending motion is counterclockwise (load descending), so contact shifts left to $C$ ($0.20\\,\\text{in.}$ left of $O$). Moment arms are $1.80\\,\\text{in.}$ for $W$ and $2.20\\,\\text{in.}$ for $P$: $(1.80)(500) - (2.20)P = 0 \\implies P = 409\\,\\text{lb}\\downarrow$.",
+    "(c) **Horizontal $P$ to raise $W$:** The three nonparallel forces $\\mathbf{W}, \\mathbf{P}, \\mathbf{R}$ are concurrent at intersection $D$ of $\\mathbf{W}$ and $\\mathbf{P}$ ($OD = 2\\sqrt{2}\\,\\text{in.}$). Because $\\mathbf{R}$ must pass through $D$ and be tangent to the friction circle (opposing clockwise rotation), $\\sin\\theta = \\frac{OE}{OD} = \\frac{0.20}{2\\sqrt{2}} = 0.0707 \\implies \\theta = 4.1^\\circ$.",
+    "From the force triangle, $\\mathbf{R}$ is inclined at $45^\\circ - \\theta = 40.9^\\circ$ to $\\mathbf{P}$, so $P = W\\cot(45^\\circ - \\theta) = (500\\,\\text{lb})\\cot 40.9^\\circ = 577\\,\\text{lb}\\rightarrow$."
+  ]}
+  answer="(a) $P = 611\\,\\text{lb}\\downarrow$; (b) $P = 409\\,\\text{lb}\\downarrow$; (c) $P = 577\\,\\text{lb}\\rightarrow$"
+/>
+
+---
+
+### 8.8 Thrust Bearings. Disk Friction
+
+**Thrust bearings** provide *axial* support to rotating shafts via either an **end bearing** (full circular or hollow end face) or a **collar bearing** (annular ring area) (Fig. 8.11). The same analysis applies to **disk clutches**.
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-11.png"
+  caption="Beer & Johnston Fig. 8.11 — Axial thrust bearings: (a) end bearing and (b) collar bearing."
+/>
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-12.png"
+  caption="Beer & Johnston Fig. 8.12 — Integration of elemental friction moments ΔM = r ΔF over an annular contact zone from R1 to R2."
+/>
+
+<RuleBox kind="formula" title="Equations (8.8)–(8.9) — Disk & Thrust-Bearing Friction (Uniform Pressure)">
+
+Assuming uniform normal pressure $p = P / [\pi(R_2^2 - R_1^2)]$ over an annular contact zone of inner radius $R_1$ and outer radius $R_2$ under axial load $P$, integrating $dM = r\,\mu_k\,p\,dA$ yields:
+
+$$M = \frac{2}{3}\mu_k P \frac{R_2^3 - R_1^3}{R_2^2 - R_1^2} \qquad (8.8)$$
+
+For a **solid circular area** ($R_1 = 0, R_2 = R$), Eq. (8.8) reduces to:
+
+$$M = \frac{2}{3}\mu_k P R \qquad (8.9)$$
+
+For impending slip (e.g., maximum torque transmitted by a disk clutch or starting torque of a thrust bearing), replace $\mu_k$ with $\mu_s$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Worked Problem 8.92 — Collar Thrust Bearing Static Friction Coefficient"
+  source="Beer & Johnston 10e, Ch. 8, Problem 8.92"
+  figure="/diagrams/get-207/dry-friction-and-inclines-p8-92.png"
+  problem="A vertical shaft carrying a $4\\text{-kN}$ axial load rests on an annular collar bearing with inner diameter $50\\,\\text{mm}$ and outer diameter $120\\,\\text{mm}$. Knowing that a couple of magnitude $M = 30\\,\\text{N}\\cdot\\text{m}$ is required to start the vertical shaft rotating, determine the coefficient of static friction between the annular surfaces of contact."
+  steps={[
+    "Convert the inner and outer diameters to radii in meters: $R_1 = \\frac{50\\,\\text{mm}}{2} = 0.025\\,\\text{m}$ and $R_2 = \\frac{120\\,\\text{mm}}{2} = 0.060\\,\\text{m}$.",
+    "Because the shaft is just about to start rotating, apply Eq. (8.8) with $\\mu_s$ in place of $\\mu_k$ and $P = 4000\\,\\text{N}$: $M = \\frac{2}{3}\\mu_s P \\frac{R_2^3 - R_1^3}{R_2^2 - R_1^2}$.",
+    "Evaluate the geometric factor: $\\frac{R_2^3 - R_1^3}{R_2^2 - R_1^2} = \\frac{(0.060)^3 - (0.025)^3}{(0.060)^2 - (0.025)^2} = \\frac{2.16 \\times 10^{-4} - 1.5625 \\times 10^{-5}}{3.60 \\times 10^{-3} - 6.25 \\times 10^{-4}} = \\frac{2.00375 \\times 10^{-4}}{2.975 \\times 10^{-3}} = 0.067353\\,\\text{m}$.",
+    "Substitute $M = 30\\,\\text{N}\\cdot\\text{m}$ and $P = 4000\\,\\text{N}$: $30 = \\frac{2}{3}\\mu_s (4000)(0.067353) = 179.61\\,\\mu_s$.",
+    "Solve for $\\mu_s$: $\\mu_s = \\frac{30}{179.61} = 0.1670$."
+  ]}
+  answer="$\\mu_s = 0.1670$"
+/>
+
+---
+
+### 8.9 Wheel Friction. Rolling Resistance
+
+A wheel rolling at constant speed experiences two distinct sources of resistance: (1) axle/bearing friction paired with rim traction (Fig. 8.13a), and (2) **rolling resistance**, caused by slight deformation of the wheel and ground so contact occurs over a finite patch whose resultant reaction $\mathbf{R}$ acts at a point $B$ slightly ahead of the wheel center $O$ by horizontal distance $b$ (Fig. 8.13c).
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-13.png"
+  caption="Beer & Johnston Fig. 8.13 — (a) Effect of axle friction, (b) idealized free wheel, and (c) rolling resistance with reaction R offset ahead by distance b."
+/>
+
+<RuleBox kind="formula" title="Equation (8.10) — Coefficient of Rolling Resistance">
+
+Summing moments about the leading contact point $B$ ($\sum M_B = 0$) for a wheel of radius $r$ and load $W$ pushed horizontally at its axle by $P$:
+
+$$P r = W b \implies P = \frac{W b}{r} \qquad (8.10)$$
+
+Unlike $\mu_s$ and $\mu_k$, the **coefficient of rolling resistance $b$** is *not* dimensionless—it is a **length** (typically $0.01\text{ in.}$ or $0.25\text{ mm}$ for steel on steel rail, up to $5.0\text{ in.}$ or $125\text{ mm}$ on soft ground).
+
+</RuleBox>
+
+<StepRevealExample
+  title="Worked Problem 8.100 — Rolling Resistance on Pipe Rollers"
+  source="Beer & Johnston 10e, Ch. 8, Problem 8.100"
+  figure="/diagrams/get-207/dry-friction-and-inclines-p8-100.png"
+  problem="A $900\\text{-kg}$ machine base is rolled along a concrete floor using a series of steel pipes with outside diameters of $100\\,\\text{mm}$. Knowing that the coefficient of rolling resistance is $0.5\\,\\text{mm}$ between the pipes and the base and $1.25\\,\\text{mm}$ between the pipes and the concrete floor, determine the magnitude of the horizontal force $P$ required to slowly move the base along the floor."
+  steps={[
+    "Compute the total weight of the machine base: $W = mg = (900\\,\\text{kg})(9.81\\,\\text{m/s}^2) = 8829\\,\\text{N}$.",
+    "Consider the FBD of all rollers combined (total vertical load $W$ from the base and $W$ from the floor). On each pipe of diameter $2r = 100\\,\\text{mm}$ ($r = 50\\,\\text{mm}$), the top reaction from the base is shifted *back* by $b_1 = 0.5\\,\\text{mm}$ relative to the moving base, while the bottom floor reaction is shifted *ahead* by $b_2 = 1.25\\,\\text{mm}$.",
+    "Because the base exerts the horizontal driving force $P$ at the top of the rollers (vertical distance $2r = 100\\,\\text{mm}$ above the floor) and the horizontal separation between the lines of action of the top and bottom vertical reactions $W$ is $b_1 + b_2 = 0.5 + 1.25 = 1.75\\,\\text{mm}$, take moments about the bottom contact line of the rollers: $P(2r) = W(b_1 + b_2)$.",
+    "Solve for $P$: $P = \\frac{W(b_1 + b_2)}{2r} = \\frac{(8829\\,\\text{N})(1.75\\,\\text{mm})}{100\\,\\text{mm}} = 154.5\\,\\text{N}$ (printed answer in Beer & Johnston: $154.4\\,\\text{N}$)."
+  ]}
+  answer="$P = 154.4\\,\\text{N}$"
+/>
+
+<ExerciseSet
+  title="Practice Problems — Bearings, Disk Friction & Rolling Resistance (§8.7–8.9)"
+  source="Beer & Johnston 10e, Ch. 8, Problems 8.77–8.98"
+  items={[
+    {
+      q: "A lever of negligible weight is loosely fitted onto a $30\\text{-mm}$-radius fixed shaft ($40\\text{-kg}$ load at $100\\,\\text{mm}$ left, $P$ at $160\\,\\text{mm}$ right). Knowing that $P = 275\\,\\text{N}$ will just start the lever rotating clockwise, find (a) $\\mu_s$ between shaft and lever, and (b) the smallest $P$ to prevent counterclockwise rotation.",
+      a: "(a) $\\mu_s = 0.238$; (b) $P = 218\\,\\text{N}\\downarrow$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-77.png"
+    },
+    {
+      q: "A hot-metal ladle and its contents weigh $130\\,\\text{kips}$ ($16\\,\\text{in.}$ pinion radius, cable $AB$ at $64\\,\\text{in.}$ offset). Knowing $\\mu_s = 0.30$ between hooks and pinion, find the tension in cable $AB$ to start tipping the ladle.",
+      a: "$4.70\\,\\text{kips}$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-78.png"
+    },
+    {
+      q: "At each of the $60\\text{-mm}$-diameter pins $A$ and $B$ of the highway bridge expansion link ($500\\,\\text{mm}$ between pins), $\\mu_s = 0.20$. Knowing the vertical load from $BC$ is $200\\,\\text{kN}$, find (a) the horizontal force on $BC$ to just move the link, and (b) the angle of the resultant force with the vertical.",
+      a: "(a) $4.80\\,\\text{kN}$; (b) $1.375^\\circ$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-86.png"
+    },
+    {
+      q: "A $50\\text{-lb}$ electric floor polisher ($18\\text{-in.}$ disk diameter, $\\mu_k = 0.25$) has uniform contact pressure. Find the magnitude $Q$ of the horizontal couple forces ($20\\,\\text{in.}$ apart) required to prevent rotation.",
+      a: "$Q = 3.75\\,\\text{lb}$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-93.png"
+    },
+    {
+      q: "Determine the horizontal force required to move a $2500\\text{-lb}$ automobile with $23\\text{-in.}$-diameter tires along a horizontal road at constant speed if $b = 0.05\\,\\text{in.}$ (neglect all other friction).",
+      a: "$10.87\\,\\text{lb}$"
+    }
+  ]}
+/>
+
+---
+
+### 8.10 Belt Friction
+
+For a flat belt, rope, or band brake wrapped over a cylindrical drum through contact angle $\beta$ (Fig. 8.14a), let the belt be on the verge of slipping toward the $T_2$ side. Writing equilibrium for an infinitesimal element $PP'$ subtending $\Delta\theta$ (Fig. 8.14b) gives Eqs. (8.11)–(8.12):
+
+$$\Delta T \cos\frac{\Delta\theta}{2} - \mu_s(2T + \Delta T)\sin\frac{\Delta\theta}{2} = 0 \implies \frac{dT}{d\theta} = \mu_s T$$
+
+Integrating from $\theta = 0$ ($T = T_1$) to $\theta = \beta$ ($T = T_2$) produces the exponential **belt-friction equations**.
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-14.png"
+  caption="Beer & Johnston Fig. 8.14 — (a) Flat belt on cylindrical drum with angle of wrap β, and (b) free-body diagram of infinitesimal belt element PP'."
+/>
+
+<DiagramFigure
+  src="/diagrams/get-207/dry-friction-and-inclines-fig-8-15.png"
+  caption="Beer & Johnston Fig. 8.15 — V-belt drive of groove angle α: wedging doubles the normal reaction components to 2 ΔN sin(α/2)."
+/>
+
+<RuleBox kind="formula" title="Equations (8.13)–(8.16) — Flat-Belt and V-Belt Friction">
+
+For **flat belts, ropes on bollards, and band brakes** at impending slip (with $T_2 > T_1$ and $\beta$ strictly in **radians**):
+
+$$\ln \frac{T_2}{T_1} = \mu_s \beta \qquad (8.13)$$
+
+$$\frac{T_2}{T_1} = e^{\mu_s \beta} \qquad (8.14)$$
+
+For a **V-belt** running in a sheave of groove angle $\alpha$ (Fig. 8.15), friction acts on both flanks ($2\Delta F$) while the $y$-normal sum is $2\Delta N\sin(\alpha/2)$, yielding:
+
+$$\ln \frac{T_2}{T_1} = \frac{\mu_s \beta}{\sin(\alpha/2)} \qquad (8.15)$$
+
+$$\frac{T_2}{T_1} = e^{\mu_s \beta / \sin(\alpha/2)} \qquad (8.16)$$
+
+**Crucial rules:** (1) $T_2$ is always the *larger* tension (on the side toward which the belt tends to slip *relative to the drum*); (2) $\beta$ must be in **radians** ($n$ full turns $\implies \beta = 2\pi n$); (3) if the belt is actively slipping, replace $\mu_s$ with $\mu_k$; (4) if the belt is neither slipping nor about to slip, these equations do *not* apply.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Sample Problem 8.7 — Ship Hawser Wrapped Around a Bollard"
+  source="Beer & Johnston 10e, Ch. 8, Sample Problem 8.7"
+  figure="/diagrams/get-207/dry-friction-and-inclines-sp-8-7.png"
+  problem="A hawser thrown from a ship to a pier is wrapped two full turns around a bollard. The tension in the hawser is $7500\\,\\text{N}$; by exerting a force of $150\\,\\text{N}$ on its free end, a dockworker can just keep the hawser from slipping. Determine (a) the coefficient of static friction $\\mu_s$, and (b) the hawser tension that could be resisted by the $150\\text{-N}$ force with three full turns."
+  steps={[
+    "(a) For two full turns, the angle of wrap is $\\beta = 2(2\\pi\\,\\text{rad}) = 12.57\\,\\text{rad}$, with $T_1 = 150\\,\\text{N}$ and $T_2 = 7500\\,\\text{N}$.",
+    "Apply Eq. (8.13): $\\mu_s \\beta = \\ln\\frac{T_2}{T_1} \\implies \\mu_s(12.57\\,\\text{rad}) = \\ln\\frac{7500}{150} = \\ln 50 = 3.912$.",
+    "Solve for $\\mu_s$: $\\mu_s = \\frac{3.912}{12.57} = 0.311$.",
+    "(b) For three full turns, $\\beta = 3(2\\pi\\,\\text{rad}) = 18.85\\,\\text{rad}$ with $T_1 = 150\\,\\text{N}$ and $\\mu_s = 0.311$.",
+    "Apply Eq. (8.14): $\\frac{T_2}{150\\,\\text{N}} = e^{(0.311)(18.85)} = e^{5.862} = 351.5 \\implies T_2 = 52\\,725\\,\\text{N} = 52.7\\,\\text{kN}$."
+  ]}
+  answer="(a) $\\mu_s = 0.311$; (b) $T_2 = 52.7\\,\\text{kN}$"
+/>
+
+<StepRevealExample
+  title="Sample Problem 8.8 — Flat Belt Drive Between Two Pulleys"
+  source="Beer & Johnston 10e, Ch. 8, Sample Problem 8.8"
+  figure="/diagrams/get-207/dry-friction-and-inclines-sp-8-8.png"
+  problem="A flat belt connects $8\\text{-in.}$-radius pulley $A$ to motor pulley $B$ ($\\beta_A = 240^\\circ, \\beta_B = 120^\\circ$). The coefficients of friction are $\\mu_s = 0.25$ and $\\mu_k = 0.20$ on both pulleys, and the maximum allowable belt tension is $600\\,\\text{lb}$. Determine the largest torque $M_A$ that can be exerted by the belt on pulley $A$."
+  steps={[
+    "Because $\\mu_s$ is identical on both pulleys, slipping occurs first on the pulley with the **smaller angle of contact**, which is pulley $B$ ($\\beta_B = 120^\\circ = \\frac{2\\pi}{3}\\,\\text{rad}$).",
+    "On pulley $B$, set $T_2 = 600\\,\\text{lb}$ and apply Eq. (8.14): $\\frac{600\\,\\text{lb}}{T_1} = e^{0.25(2\\pi/3)} = 1.688 \\implies T_1 = \\frac{600}{1.688} = 355.4\\,\\text{lb}$.",
+    "Draw the FBD of pulley $A$ (radius $r_A = 8\\,\\text{in.}$) and sum moments about center $A$: $\\curvearrowleft + \\sum M_A = 0: M_A - (600\\,\\text{lb})(8\\,\\text{in.}) + (355.4\\,\\text{lb})(8\\,\\text{in.}) = 0$.",
+    "Solve for $M_A$: $M_A = (600 - 355.4)(8\\,\\text{in.}) = 1957\\,\\text{lb}\\cdot\\text{in.} = 163.1\\,\\text{lb}\\cdot\\text{ft}$."
+  ]}
+  answer="$M_A = 163.1\\,\\text{lb}\\cdot\\text{ft}$"
+/>
+
+<ExerciseSet
+  title="Practice Problems — Belt Friction & Band Brakes (§8.10)"
+  source="Beer & Johnston 10e, Ch. 8, Problems 8.103–8.113"
+  items={[
+    {
+      q: "A $300\\text{-lb}$ block is supported by a rope wrapped $1\\frac{1}{2}$ turns around a horizontal rod ($\\mu_s = 0.15$). Determine the range of values of $P$ for which equilibrium is maintained.",
+      a: "$73.0\\,\\text{lb} \\le P \\le 1233\\,\\text{lb}$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-103.png"
+    },
+    {
+      q: "A hawser is wrapped two full turns around a bollard. Exerting an $80\\text{-lb}$ force on the free end resists $5000\\,\\text{lb}$. Find (a) $\\mu_s$, and (b) the number of turns needed to resist $20{,}000\\,\\text{lb}$ with the same $80\\text{-lb}$ force.",
+      a: "(a) $\\mu_s = 0.329$; (b) $2.67\\,\\text{turns}$"
+    },
+    {
+      q: "Rope $ABCD$ is looped over two fixed pipes as shown ($50\\text{-kg}$ block $A$, $\\mu_s = 0.25$). Determine (a) the smallest mass $m$ for equilibrium, and (b) the corresponding tension in $BC$.",
+      a: "(a) $m = 22.8\\,\\text{kg}$; (b) $T_{BC} = 291\\,\\text{N}$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-105.png"
+    },
+    {
+      q: "A band brake controls a $360\\text{-mm}$-radius flywheel rotating counterclockwise at constant speed ($\\mu_s = 0.30, \\mu_k = 0.25$). If $P = 45\\,\\text{N}$ at $A$, find the resisting couple on the flywheel.",
+      a: "$44.9\\,\\text{N}\\cdot\\text{m}$ counterclockwise",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-109.png"
+    },
+    {
+      q: "A flat belt transmits a couple between two $60\\text{-mm}$-radius pulleys ($P = 900\\,\\text{N}$, $\\mu_s = 0.35$). Determine (a) the largest couple that can be transmitted, and (b) the corresponding maximum belt tension.",
+      a: "(a) $27.0\\,\\text{N}\\cdot\\text{m}$; (b) $675\\,\\text{N}$",
+      figure: "/diagrams/get-207/dry-friction-and-inclines-p8-113.png"
+    }
+  ]}
+/>
+
+---
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Five Classic Friction Traps in Beer & Johnston Ch. 8">
+
+1. **Assuming $F = \mu_s N$ when motion is NOT known to be impending:** In Category 1 problems, $F$ and $N$ are independent unknowns solved from equilibrium; only *after* computing $F_{\text{req}}$ do you test $|F_{\text{req}}| \le \mu_s N$. If $|F_{\text{req}}| > \mu_s N$, the body slides and friction drops to $F_k = \mu_k N$.
+2. **Ignoring tipping vs. slipping:** Always verify that the normal reaction acts within the physical base of the body (or that the rear support reaction $N_A \ge 0$). On a tall crate or cabinet, tipping often occurs at a lower load $P$ than sliding.
+3. **Confusing screw pitch $p$ with lead $L$:** For a double-threaded screw, $L = 2p$; using $p$ instead of $L$ halves $\tan\theta$ and distorts both clamping torque and the self-locking check ($\phi_s > \theta$).
+4. **Using degrees instead of radians for belt wrap $\beta$:** In $T_2 / T_1 = e^{\mu_s \beta}$, $\beta$ MUST be in **radians** (e.g., $120^\circ = 2\pi/3\,\text{rad}$, $2\text{ turns} = 4\pi\,\text{rad}$). Also, in a two-pulley drive with equal $\mu_s$, slip always initiates on the pulley with the **smaller wrap angle $\beta$**.
+5. **Reversing $T_1$ and $T_2$ in band brakes:** $T_2$ is always on the end toward which the drum tries to drag the belt (the tight side); swapping $T_1$ and $T_2$ flips the brake from non-self-locking to self-locking or miscalculates the braking torque by a factor of $e^{\mu\beta}$.
+
+</Callout>
+
+---
+
+## Summary of Formulas
+
+<RuleBox kind="formula" title="Chapter 8 Master Formula Sheet (Beer & Johnston 10e)">
+
+- **Coulomb Dry Friction:** $F_m = \mu_s N$, $\quad F_k = \mu_k N$, $\quad \tan\phi_s = \mu_s$, $\quad \tan\phi_k = \mu_k$
+- **Angle of Repose (block on incline under weight only):** $\theta_{\max} = \phi_s = \tan^{-1}\mu_s$
+- **Square-Threaded Screw ($\tan\theta = \frac{L}{2\pi r}$, $M = Qr$):**
+  - Raise / tighten: $M = Wr\tan(\phi_s + \theta)$
+  - Lower (self-locking, $\phi_s > \theta$): $M = Wr\tan(\phi_s - \theta)$
+  - Hold (overhauling, $\phi_s < \theta$): $M = Wr\tan(\theta - \phi_s)$
+- **Journal Bearing & Circle of Friction:** $M = Rr\sin\phi_k \approx Rr\mu_k$, $\quad r_f = r\sin\phi \approx r\mu$
+- **Thrust Bearing / Disk Clutch (uniform pressure):**
+  - Annular collar ($R_1, R_2$): $M = \frac{2}{3}\mu P \frac{R_2^3 - R_1^3}{R_2^2 - R_1^2}$
+  - Full circular disk ($R_1 = 0$): $M = \frac{2}{3}\mu P R$
+- **Rolling Resistance (length $b$):** $P r = W b \implies P = \frac{Wb}{r}$
+- **Flat Belt / Rope / Band Brake ($\beta$ in radians):** $\ln\frac{T_2}{T_1} = \mu\beta \iff \frac{T_2}{T_1} = e^{\mu\beta}$
+- **V-Belt (groove angle $\alpha$, $\beta$ in radians):** $\ln\frac{T_2}{T_1} = \frac{\mu\beta}{\sin(\alpha/2)} \iff \frac{T_2}{T_1} = e^{\mu\beta/\sin(\alpha/2)}$
+
+</RuleBox>

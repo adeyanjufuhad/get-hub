@@ -577,6 +577,26 @@ button,
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
+/* Landing department marquee loop (GPU-only translate3d, hover-gated pause) */
+@keyframes rb-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.rb-logo-loop-track {
+  animation: rb-marquee 26s linear infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rb-logo-loop:hover .rb-logo-loop-track {
+    animation-play-state: paused;
+  }
+}
+
 /* Reduced transparency (Apple HIG / apple-design): solidify translucent chrome */
 @media (prefers-reduced-transparency: reduce) {
   .translucent-chrome {
@@ -595,6 +615,9 @@ button,
   .popover-enter,
   .modal-enter {
     transform: none !important;
+  }
+  .rb-logo-loop-track {
+    animation: none !important;
   }
   *,
   *::before,

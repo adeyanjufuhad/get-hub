@@ -25,22 +25,22 @@ export function HeroProductPreview() {
   const [revealed, setRevealed] = useState(1);
 
   return (
-    /* Concentric app-frame: Outer 28px = Inner 16px + Padding 12px (p-3) */
-    <div className="mx-auto mt-8 w-full max-w-4xl overflow-hidden rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] sm:mt-10">
-      {/* App-Frame Header Bar (no fake macOS traffic-light dots) */}
-      <div className="flex flex-col gap-2.5 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/65 p-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2 px-1">
-          <span className="h-2 w-2 rounded-full bg-[var(--accent)]" aria-hidden="true" />
-          <span className="font-mono text-xs font-semibold text-[var(--text-secondary)]">
-            Interactive study workspace · Select a course
+    <div className="mx-auto mt-8 w-full max-w-4xl overflow-hidden rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] sm:mt-10 sm:rounded-[24px]">
+      {/* App-Frame Window Chrome */}
+      <div className="flex flex-col gap-2.5 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/65 px-3.5 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+        <div className="flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" aria-hidden="true" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[var(--border-strong)]" aria-hidden="true" />
+          <span className="ml-1 font-mono text-xs font-medium text-[var(--text-muted)]">
+            Live study workspace · Tap a course tab
           </span>
         </div>
 
-        {/* Concentric segmented tablist: Outer 16px = Inner 12px + Padding 4px (p-1) */}
         <div
           role="tablist"
           aria-label="Course workspace preview"
-          className="grid w-full grid-cols-3 gap-1 rounded-[16px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-1 sm:inline-flex sm:w-auto"
+          className="grid w-full grid-cols-3 gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-1 sm:inline-flex sm:w-auto"
         >
           {[
             { id: "example", shortLabel: "GET 207", label: "GET 207 · Folio" },
@@ -56,7 +56,7 @@ export function HeroProductPreview() {
                 aria-selected={selected}
                 onClick={() => setActiveTab(tab.id as "example" | "diagram" | "quiz")}
                 className={cn(
-                  "pressable min-h-[38px] rounded-[12px] px-2.5 text-xs font-semibold cursor-pointer sm:px-3.5",
+                  "pressable min-h-[38px] rounded-full px-2.5 text-xs font-semibold transition-colors cursor-pointer sm:px-3.5",
                   selected
                     ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                     : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
@@ -74,11 +74,11 @@ export function HeroProductPreview() {
         </div>
       </div>
 
-      {/* App-Frame Body: p-3 (12px) inside rounded-[28px] -> inner panels rounded-[16px] (16 + 12 = 28) */}
-      <div className="p-3 text-left">
+      {/* App-Frame Body (Maximum 2 levels of nesting: frame > direct panel) */}
+      <div className="p-3.5 text-left sm:p-5">
         {activeTab === "example" && (
-          <div className="grid gap-3 md:grid-cols-5">
-            <div className="rounded-[16px] border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-3.5 md:col-span-2">
+          <div className="grid gap-4 md:grid-cols-5">
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-4 md:col-span-2">
               <Badge variant="accent" className="mb-2 font-mono">
                 <span translate="no">GET 207</span> · Hibbeler 14e
               </Badge>
@@ -98,13 +98,12 @@ export function HeroProductPreview() {
                 width={420}
                 height={220}
                 decoding="async"
-                className="mt-3 h-auto w-full rounded-[10px] border border-[var(--border-hairline)] bg-white"
+                className="mt-3 h-auto w-full rounded-xl border border-[var(--border-hairline)] bg-white"
               />
             </div>
 
-            {/* Inner panel 16px, bottom button bar p-2 (8px) -> button 8px (8 + 8 = 16) */}
-            <div className="notebook-ruled-surface flex flex-col justify-between overflow-hidden rounded-[16px] border border-[var(--border-hairline)] md:col-span-3">
-              <div className="p-3.5">
+            <div className="notebook-ruled-surface flex flex-col justify-between rounded-2xl border border-[var(--border-hairline)] p-4 md:col-span-3">
+              <div>
                 <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-2">
                   <span className="font-mono text-xs font-semibold text-[var(--text-muted)]">
                     Lined Folio · Worked Steps
@@ -128,12 +127,12 @@ export function HeroProductPreview() {
                 </ol>
               </div>
 
-              <div className="flex flex-col items-stretch justify-between gap-2 border-t border-[var(--border-hairline)] bg-[var(--paper-bg)]/90 p-2 sm:flex-row sm:items-center">
+              <div className="mt-4 flex flex-col items-stretch justify-between gap-2 border-t border-[var(--border-hairline)] pt-3 sm:flex-row sm:items-center">
                 {revealed < DEMO_STEPS.length ? (
                   <button
                     type="button"
                     onClick={() => setRevealed((r) => Math.min(DEMO_STEPS.length, r + 1))}
-                    className="pressable inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-[8px] bg-[var(--ink-cta)] px-4 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90 sm:w-auto cursor-pointer"
+                    className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-4 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90 sm:w-auto cursor-pointer"
                   >
                     <Eye className="h-4 w-4" aria-hidden="true" />
                     Reveal Step {revealed + 1}
@@ -142,12 +141,12 @@ export function HeroProductPreview() {
                   <button
                     type="button"
                     onClick={() => setRevealed(1)}
-                    className="pressable inline-flex min-h-[42px] w-full items-center justify-center gap-2 rounded-[8px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-sm font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] sm:w-auto cursor-pointer"
+                    className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-sm font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] sm:w-auto cursor-pointer"
                   >
                     Fold steps
                   </button>
                 )}
-                <span className="px-1.5 text-center font-mono text-xs text-[var(--text-muted)] sm:text-right">
+                <span className="text-center font-mono text-xs text-[var(--text-muted)] sm:text-right">
                   Every algebraic step written out
                 </span>
               </div>
@@ -156,8 +155,8 @@ export function HeroProductPreview() {
         )}
 
         {activeTab === "diagram" && (
-          <div className="grid gap-3 md:grid-cols-2">
-            <div className="rounded-[16px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
               <Badge variant="accent" className="mb-2 font-mono">
                 <span translate="no">GET 205</span> · Çengel Ch. 2
               </Badge>
@@ -178,7 +177,7 @@ export function HeroProductPreview() {
                 </li>
               </ul>
             </div>
-            <div className="flex items-center justify-center overflow-hidden rounded-[16px] border border-[var(--border-hairline)] bg-white p-3">
+            <div className="flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/textbook-figures/get-205/cengel-fig-2-49-diff-manometer.webp"
@@ -194,8 +193,8 @@ export function HeroProductPreview() {
         )}
 
         {activeTab === "quiz" && (
-          <div className="grid gap-3 md:grid-cols-2">
-            <div className="rounded-[16px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
               <Badge variant="accent" className="mb-2 font-mono">
                 <span translate="no">GET 209</span> · Stewart 7e + Go API
               </Badge>
@@ -209,7 +208,7 @@ export function HeroProductPreview() {
                 Numeric and MCQ answers are verified on the Go server with ±1% engineering tolerance; worked solutions unlock only after submission.
               </p>
             </div>
-            <div className="flex items-center justify-center overflow-hidden rounded-[16px] border border-[var(--border-hairline)] bg-white p-2">
+            <div className="flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/diagrams/get-209/removable-discontinuity.svg"
@@ -261,12 +260,7 @@ export function CourseCurriculumExplorer() {
 
   return (
     <div className="mt-6">
-      {/* Concentric tab tray: Outer 16px = Inner 12px + Padding 4px (p-1) */}
-      <div
-        className="inline-flex flex-wrap gap-1 rounded-[16px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1"
-        role="tablist"
-        aria-label="Select GET course"
-      >
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Select GET course">
         {COURSES.map((course) => {
           const active = course.slug === activeCourse.slug;
           return (
@@ -280,10 +274,10 @@ export function CourseCurriculumExplorer() {
                 setSelectedTopicIdx(0);
               }}
               className={cn(
-                "pressable min-h-[42px] rounded-[12px] px-3.5 text-xs font-semibold sm:text-sm cursor-pointer",
+                "pressable min-h-[44px] rounded-full border px-4 text-xs font-semibold transition-colors sm:text-sm cursor-pointer",
                 active
-                  ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
-                  : "text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+                  ? "border-[var(--ink-cta)] bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
+                  : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]"
               )}
             >
               <span translate="no" className="font-mono">
@@ -297,8 +291,8 @@ export function CourseCurriculumExplorer() {
         })}
       </div>
 
-      {/* Concentric explorer card: Outer 28px = Inner 12px + Padding 16px (p-4) */}
-      <div className="mt-4 grid grid-cols-1 gap-4 rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 lg:grid-cols-12">
+      {/* 2-level course explorer card */}
+      <div className="mt-4 grid grid-cols-1 gap-4 rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-6 lg:grid-cols-12">
         <div className="min-w-0 lg:col-span-7">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="accent" className="font-mono">
@@ -326,21 +320,21 @@ export function CourseCurriculumExplorer() {
           <div className="mt-4 flex flex-col gap-2 min-[420px]:flex-row min-[420px]:flex-wrap">
             <Link
               href={`/courses/${activeCourse.slug}/${firstFolioSlug}`}
-              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90 min-[420px]:w-auto sm:text-sm"
+              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90 min-[420px]:w-auto sm:text-sm"
             >
               Read Folio 01
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
             </Link>
             <Link
               href="/signup"
-              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] min-[420px]:w-auto sm:text-sm"
+              className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] min-[420px]:w-auto sm:text-sm"
             >
               Solve 24 course drills
             </Link>
           </div>
         </div>
 
-        <div className="flex min-w-0 flex-col justify-between rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5 lg:col-span-5">
+        <div className="flex min-w-0 flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4 lg:col-span-5">
           <div>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
@@ -353,7 +347,7 @@ export function CourseCurriculumExplorer() {
               )}
             </div>
             {plateImg && (
-              <div className="mt-3 flex h-[180px] items-center justify-center overflow-hidden rounded-[8px] border border-[var(--border-hairline)] bg-white p-2.5">
+              <div className="mt-3 flex h-[180px] items-center justify-center overflow-hidden rounded-xl border border-[var(--border-hairline)] bg-white p-2.5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={plateImg}
@@ -487,7 +481,7 @@ export function StudyLoopStepper() {
       completeCta={
         <Link
           href="/signup"
-          className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-[12px] bg-[var(--accent)] px-5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)]"
+          className="pressable inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-[var(--accent)] px-5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)]"
         >
           Create free account
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -511,8 +505,8 @@ const FAQS = [
     a: "All eight 200L departments in the Faculty of Technology taking GET 205, GET 207, and GET 209: Computer, Electrical & Electronic, Mechanical, Civil, Chemical, Agricultural & Environmental, Materials Science, and Food Science & Technology.",
   },
   {
-    q: "How are practice drills and timed mock exams graded?",
-    a: "Both MCQ and numeric calculation answers are verified on the Go backend with ±1% tolerance for engineering rounding. Answer keys stay server-side until you submit, then unlock step-by-step worked solutions.",
+    q: "What is inside the Part 2 PDF Library?",
+    a: "123 student-shared lecture notes, tutorial sheets, lab manuals, and past question papers across 14 Second Year courses (including MEE 203/205/206, MTH 201/202, CHE 201, CSC 201, and EEE 251–282) with exact MB sizes listed before you download.",
   },
 ];
 
@@ -520,35 +514,28 @@ export function StudentFaqAccordion() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    /* Concentric container: Outer 24px = Inner 16px + Padding 8px (p-2) */
-    <div className="space-y-1 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-2">
+    <div className="divide-y divide-[var(--border-hairline)] rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]">
       {FAQS.map((item, idx) => {
         const open = openIdx === idx;
         return (
-          <div
-            key={item.q}
-            className={cn(
-              "rounded-[16px] transition-colors duration-150",
-              open && "bg-[var(--bg-canvas)]"
-            )}
-          >
+          <div key={item.q} className="px-4 py-1 sm:px-5">
             <button
               type="button"
               onClick={() => setOpenIdx(open ? null : idx)}
               aria-expanded={open}
-              className="pressable flex min-h-[52px] w-full items-center justify-between gap-4 rounded-[16px] px-3.5 py-3 text-left text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent)] sm:px-4 sm:text-base cursor-pointer"
+              className="flex min-h-[54px] w-full items-center justify-between gap-4 py-3 text-left text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent)] sm:text-base cursor-pointer"
             >
               <span>{item.q}</span>
               <ChevronDown
                 aria-hidden="true"
                 className={cn(
-                  "h-4 w-4 shrink-0 text-[var(--text-muted)] transition-transform duration-150 ease-[var(--ease-out)]",
+                  "h-4 w-4 shrink-0 text-[var(--text-muted)] transition-transform duration-200",
                   open && "rotate-180 text-[var(--accent)]"
                 )}
               />
             </button>
             {open && (
-              <p className="px-3.5 pb-4 pr-6 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty sm:px-4">
+              <p className="pb-4 pr-4 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
                 {item.a}
               </p>
             )}

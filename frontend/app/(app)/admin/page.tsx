@@ -245,15 +245,15 @@ export default function AdminQuestionsPage() {
         </Button>
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-3 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5">
+      {/* Concentric Filter Bar: Outer 20px = Inner 12px + Padding 8px (p-2) */}
+      <div className="flex flex-wrap gap-2 rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-2">
         <select
           value={filterCourse}
           onChange={(e) => {
             setFilterCourse(e.target.value);
             void reloadQuestions(e.target.value, filterStatus);
           }}
-          className="min-h-[44px] min-w-0 flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-base sm:flex-initial sm:text-sm"
+          className="min-h-[44px] min-w-0 flex-1 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-base sm:flex-initial sm:text-sm"
         >
           <option value="">All courses</option>
           {courses.map((c) => (
@@ -269,7 +269,7 @@ export default function AdminQuestionsPage() {
             setFilterStatus(e.target.value);
             void reloadQuestions(filterCourse, e.target.value);
           }}
-          className="min-h-[44px] min-w-0 flex-1 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-base sm:flex-initial sm:text-sm"
+          className="min-h-[44px] min-w-0 flex-1 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-base sm:flex-initial sm:text-sm"
         >
           <option value="">All statuses</option>
           <option value="draft">Draft</option>
@@ -277,11 +277,11 @@ export default function AdminQuestionsPage() {
         </select>
       </div>
 
-      {/* Create / Edit Question Form */}
+      {/* Concentric Create / Edit Question Form: Outer 28px (12+16) / sm: 32px (12+20) */}
       {showForm && (
         <form
           onSubmit={handleSave}
-          className="space-y-4 rounded-[24px] border border-[var(--accent-border)] bg-[var(--bg-surface)] p-5 sm:p-6"
+          className="space-y-4 rounded-[28px] border border-[var(--accent-border)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5"
         >
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-extrabold">
@@ -368,8 +368,8 @@ export default function AdminQuestionsPage() {
               placeholder="Optional prompt SVG/image URL (e.g. /diagrams/get-205/...)"
               className="min-h-[44px] w-full min-w-0 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 sm:flex-1"
             />
-            <label className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-xs font-semibold cursor-pointer">
-              <Upload className="h-3.5 w-3.5" />
+            <label className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-xs font-semibold hover:border-[var(--border-strong)] cursor-pointer">
+              <Upload className="h-3.5 w-3.5" aria-hidden="true" />
               Upload SVG/PNG
               <input
                 type="file"
@@ -388,9 +388,10 @@ export default function AdminQuestionsPage() {
             <div className="space-y-3">
               <p className="text-xs font-bold">Options (select the single correct answer)</p>
               {options.map((opt, idx) => (
+                /* Concentric option row: Outer 18px = Inner 8px + Padding 10px (p-2.5) */
                 <div
                   key={opt.label}
-                  className="grid gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3 sm:grid-cols-12"
+                  className="grid gap-2 rounded-[18px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:grid-cols-12"
                 >
                   <label className="flex items-center gap-2 sm:col-span-2 cursor-pointer">
                     <input
@@ -550,12 +551,12 @@ export default function AdminQuestionsPage() {
         </form>
       )}
 
-      {/* Question Bank List */}
+      {/* Question Bank List: Concentric cards Outer 24px (12+12) / sm: 28px (12+16) */}
       <div className="space-y-3">
         {questions.map((q) => (
           <article
             key={q.id}
-            className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5"
+            className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 sm:rounded-[28px] sm:p-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="flex flex-wrap items-center gap-2">
@@ -573,11 +574,11 @@ export default function AdminQuestionsPage() {
 
               <div className="flex flex-wrap items-center gap-1.5">
                 <Button type="button" variant="secondary" size="sm" onClick={() => togglePublish(q)}>
-                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
                   {q.status === "published" ? "Unpublish" : "Publish"}
                 </Button>
                 <Button type="button" variant="subtle" size="sm" onClick={() => openEditForm(q)}>
-                  <Eye className="h-3.5 w-3.5" />
+                  <Eye className="h-3.5 w-3.5" aria-hidden="true" />
                   Edit
                 </Button>
                 <Button
@@ -587,7 +588,7 @@ export default function AdminQuestionsPage() {
                   aria-label="Delete question"
                   onClick={() => handleDelete(q)}
                 >
-                  <Trash2 className="h-4 w-4 text-[var(--danger)]" />
+                  <Trash2 className="h-4 w-4 text-[var(--danger)]" aria-hidden="true" />
                 </Button>
               </div>
             </div>

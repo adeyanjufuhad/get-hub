@@ -58,7 +58,7 @@ export function GoogleAuthButton({ dividerLabel }: { dividerLabel: string }) {
       <a
         href={api.googleAuthStartUrl()}
         aria-disabled={enabled === null}
-        className={`pressable mt-5 flex min-h-[46px] w-full items-center justify-center gap-2.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-sm font-semibold text-[var(--text-primary)] ${
+        className={`pressable mt-5 flex min-h-[46px] w-full items-center justify-center gap-2.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-sm font-semibold text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:bg-[var(--bg-subtle)] ${
           enabled === null ? "pointer-events-none opacity-60" : ""
         }`}
       >

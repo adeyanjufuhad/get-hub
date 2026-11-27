@@ -94,17 +94,18 @@ export default async function TopicReaderPage({
           </span>
         </Link>
 
-        <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center">
+        {/* Concentric quick-action tray: Outer 16px = Inner 12px + Padding 4px (p-1) */}
+        <div className="grid grid-cols-2 gap-1 rounded-[16px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1 sm:inline-flex sm:items-center">
           <Link
             href={`/practice/${frontmatter.topicId}`}
-            className="pressable inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
+            className="pressable inline-flex min-h-[40px] items-center justify-center gap-1.5 rounded-[12px] px-3.5 text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
           >
             <ClipboardCheck className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" aria-hidden="true" />
             Topic Drill
           </Link>
           <Link
             href={`/courses/${slug}/mock-exam`}
-            className="pressable inline-flex min-h-[42px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
+            className="pressable inline-flex min-h-[40px] items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
           >
             Timed Test
           </Link>
@@ -285,10 +286,10 @@ export default async function TopicReaderPage({
           {prevTopic ? (
             <Link
               href={`/courses/${slug}/${prevTopic.slug}`}
-              className="hover-lift flex min-h-[60px] flex-col justify-center rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3"
+              className="pressable hover-lift flex min-h-[60px] flex-col justify-center rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3"
             >
               <span className="inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-[var(--text-muted)]">
-                <ArrowLeft className="h-3 w-3" /> Previous folio
+                <ArrowLeft className="h-3 w-3" aria-hidden="true" /> Previous folio
               </span>
               <span className="mt-0.5 truncate text-sm font-bold text-[var(--text-primary)]">
                 {prevTopic.title}
@@ -301,10 +302,10 @@ export default async function TopicReaderPage({
           {nextTopic && (
             <Link
               href={`/courses/${slug}/${nextTopic.slug}`}
-              className="hover-lift flex min-h-[60px] flex-col justify-center rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 sm:items-end sm:text-right"
+              className="pressable hover-lift flex min-h-[60px] flex-col justify-center rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-3 sm:items-end sm:text-right"
             >
               <span className="inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-[var(--accent)]">
-                Turn to next folio <ArrowRight className="h-3 w-3" />
+                Turn to next folio <ArrowRight className="h-3 w-3" aria-hidden="true" />
               </span>
               <span className="mt-0.5 truncate text-sm font-bold text-[var(--text-primary)]">
                 {nextTopic.title}

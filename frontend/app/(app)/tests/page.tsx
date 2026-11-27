@@ -6,9 +6,9 @@ import {
   CheckCircle2,
   ClipboardCheck,
   Clock,
+  Layers,
   PenTool,
   ShieldCheck,
-  Sparkles,
   Timer,
 } from "lucide-react";
 import Link from "next/link";
@@ -104,17 +104,17 @@ export default function TestsHubPage() {
           </p>
         </div>
 
-        {/* Course Scope Pills */}
+        {/* Concentric Course Scope Tray: Outer 16px = Inner 12px + Padding 4px (p-1) */}
         <div className="-mx-4 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
-          <div className="inline-flex w-max gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1">
+          <div className="inline-flex w-max gap-1 rounded-[16px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1">
             <button
               type="button"
               onClick={() => setSelectedCourse("all")}
               className={cn(
-                "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-full px-3.5 text-xs font-semibold cursor-pointer",
+                "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-[12px] px-3.5 text-xs font-semibold cursor-pointer",
                 selectedCourse === "all"
                   ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
-                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  : "text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
               )}
             >
               All courses
@@ -125,10 +125,10 @@ export default function TestsHubPage() {
                 type="button"
                 onClick={() => setSelectedCourse(c.slug)}
                 className={cn(
-                  "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-full px-3.5 font-mono text-xs font-semibold cursor-pointer",
+                  "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-[12px] px-3.5 font-mono text-xs font-semibold cursor-pointer",
                   selectedCourse === c.slug
                     ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    : "text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                 )}
               >
                 {c.code}
@@ -139,7 +139,7 @@ export default function TestsHubPage() {
       </section>
 
       {/* ==================== 1. TIMED CBT MOCK EXAM STUDIO ==================== */}
-      <section className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-6">
+      <section className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
@@ -150,7 +150,7 @@ export default function TestsHubPage() {
             </h2>
           </div>
           <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--text-muted)]">
-            <ShieldCheck className="h-4 w-4 text-[var(--success)]" />
+            <ShieldCheck className="h-4 w-4 text-[var(--success)]" aria-hidden="true" />
             Solutions unlock after submission
           </span>
         </div>
@@ -164,9 +164,10 @@ export default function TestsHubPage() {
             const book = TEXTBOOKS.find((b) => b.courseSlug === course.slug);
 
             return (
+              /* Concentric CBT card: Outer 24px = Inner 12px + Padding 12px (p-3) */
               <article
                 key={course.slug}
-                className="flex flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4"
+                className="flex flex-col justify-between rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -186,7 +187,7 @@ export default function TestsHubPage() {
                     </p>
                   )}
 
-                  {/* 3 Preset Selector Pills */}
+                  {/* 3 Preset Selector Buttons (rounded-[12px]) */}
                   <div className="mt-3.5 grid grid-cols-3 gap-1.5">
                     {EXAM_PRESETS.map((preset) => {
                       const selected = activePresetId === preset.id;
@@ -201,10 +202,10 @@ export default function TestsHubPage() {
                             }))
                           }
                           className={cn(
-                            "pressable flex min-h-[48px] flex-col items-center justify-center rounded-xl border px-1.5 py-2 text-center cursor-pointer sm:px-2",
+                            "pressable flex min-h-[48px] flex-col items-center justify-center rounded-[12px] border px-1.5 py-2 text-center cursor-pointer sm:px-2",
                             selected
                               ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
-                              : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)]"
+                              : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-[var(--border-strong)]"
                           )}
                         >
                           <span className="text-[11px] font-bold leading-tight">
@@ -219,21 +220,21 @@ export default function TestsHubPage() {
                   </div>
                 </div>
 
-                <div className="mt-4 flex flex-col gap-2 border-t border-[var(--border-hairline)] pt-3.5 min-[360px]:flex-row min-[360px]:items-center">
+                <div className="mt-4 flex flex-col gap-2 border-t border-[var(--border-hairline)] pt-3 min-[360px]:flex-row min-[360px]:items-center">
                   <button
                     type="button"
                     disabled={Boolean(launchingSlug)}
                     onClick={() => handleQuickStartExam(course.slug)}
-                    className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] cursor-pointer disabled:opacity-60"
+                    className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90 cursor-pointer disabled:opacity-60"
                   >
-                    <Timer className="h-3.5 w-3.5 shrink-0" />
+                    <Timer className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                     {isLaunching
                       ? "Starting…"
                       : `Start ${activePreset.questions}Q (${activePreset.minutes}m)`}
                   </button>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-secondary)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                   >
                     Custom
                   </Link>
@@ -292,9 +293,10 @@ export default function TestsHubPage() {
                     const acc = st?.accuracy_pct ?? 0;
 
                     return (
+                      /* Concentric topic drill card: Outer 24px = Inner 12px + Padding 12px (p-3) */
                       <div
                         key={topic.id}
-                        className="flex flex-col justify-between rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4"
+                        className="flex flex-col justify-between rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
                       >
                         <div>
                           <div className="flex items-center justify-between gap-2">
@@ -308,7 +310,7 @@ export default function TestsHubPage() {
                               >
                                 {acc >= 70 ? (
                                   <>
-                                    <CheckCircle2 className="h-3 w-3" /> {acc}%
+                                    <CheckCircle2 className="h-3 w-3" aria-hidden="true" /> {acc}%
                                   </>
                                 ) : (
                                   `${acc}% · Review`
@@ -332,17 +334,17 @@ export default function TestsHubPage() {
                         <div className="mt-4 flex items-center gap-2 border-t border-[var(--border-hairline)] pt-3">
                           <Link
                             href={`/practice/${topic.id}`}
-                            className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+                            className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
                           >
-                            <PenTool className="h-3.5 w-3.5 shrink-0" />
+                            <PenTool className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                             Drill ({topic.question_count})
                           </Link>
                           <Link
                             href={`/courses/${course.slug}/${topic.slug}`}
-                            className="pressable inline-flex min-h-[44px] items-center justify-center gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                            className="pressable inline-flex min-h-[44px] items-center justify-center gap-1 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                             title="Read lined folio notes"
                           >
-                            <BookOpen className="h-3.5 w-3.5 shrink-0" />
+                            <BookOpen className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                             Notes
                           </Link>
                         </div>
@@ -358,7 +360,7 @@ export default function TestsHubPage() {
 
       {/* ==================== 3. STRICT TEXTBOOK FIGURE PROBLEMS + RECENT SCRIPTS ==================== */}
       <div className="grid gap-5 lg:grid-cols-12">
-        <section className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 lg:col-span-8">
+        <section className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5 lg:col-span-8">
           <div className="flex items-center justify-between gap-2">
             <div>
               <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
@@ -368,7 +370,7 @@ export default function TestsHubPage() {
                 Strict Textbook Figure Questions
               </h2>
             </div>
-            <Sparkles className="h-4 w-4 text-[var(--accent)]" />
+            <Layers className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" />
           </div>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -376,11 +378,11 @@ export default function TestsHubPage() {
               <Link
                 key={drill.id}
                 href={`/practice/${drill.topicId}`}
-                className="hover-lift flex flex-col justify-between overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5"
+                className="pressable hover-lift flex flex-col justify-between overflow-hidden rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
               >
                 <div>
                   {drill.figureImage && (
-                    <div className="mb-3 flex h-32 items-center justify-center overflow-hidden rounded-xl border border-[var(--border-hairline)] bg-white p-2">
+                    <div className="mb-3 flex h-32 items-center justify-center overflow-hidden rounded-[8px] border border-[var(--border-hairline)] bg-white p-2">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={drill.figureImage}
@@ -406,7 +408,7 @@ export default function TestsHubPage() {
                   </h3>
                 </div>
                 <span className="mt-3 inline-flex items-center gap-1 font-mono text-xs font-bold text-[var(--accent)]">
-                  Solve in runner <ArrowRight className="h-3.5 w-3.5" />
+                  Solve in runner <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
               </Link>
             ))}
@@ -414,20 +416,20 @@ export default function TestsHubPage() {
         </section>
 
         {/* Recent Graded Exam Scripts */}
-        <aside className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 lg:col-span-4">
+        <aside className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5 lg:col-span-4">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-extrabold text-[var(--text-primary)]">
               Recent Exam Scripts
             </h2>
-            <ClipboardCheck className="h-4 w-4 text-[var(--text-muted)]" />
+            <ClipboardCheck className="h-4 w-4 text-[var(--text-muted)]" aria-hidden="true" />
           </div>
 
           {!user ? (
-            <div className="mt-4 rounded-2xl bg-[var(--bg-canvas)] p-4 text-xs text-[var(--text-secondary)]">
-              <p>Sign in to save your graded CBT exam scripts and track weak topics automatically.</p>
+            <div className="mt-4 rounded-[24px] bg-[var(--bg-canvas)] p-3 text-xs text-[var(--text-secondary)]">
+              <p className="px-1">Sign in to save your graded CBT exam scripts and track weak topics automatically.</p>
               <Link
                 href="/login"
-                className="pressable mt-3 inline-flex min-h-[38px] items-center rounded-full bg-[var(--ink-cta)] px-4 font-semibold text-[var(--ink-cta-text)]"
+                className="pressable mt-3 inline-flex min-h-[40px] w-full items-center justify-center rounded-[12px] bg-[var(--ink-cta)] px-4 font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
               >
                 Log in →
               </Link>
@@ -437,7 +439,7 @@ export default function TestsHubPage() {
               No timed mock exams submitted yet. Pick a preset in the Exam Studio above to generate your first CBT paper!
             </p>
           ) : (
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-4 space-y-2">
               {data.recent_exams.slice(0, 6).map((ex) => {
                 const pct =
                   ex.score != null && ex.total_questions > 0
@@ -447,14 +449,14 @@ export default function TestsHubPage() {
                   <li key={ex.id}>
                     <Link
                       href={`/mock-exams/${ex.id}`}
-                      className="pressable flex items-center justify-between gap-2 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
+                      className="pressable hover-lift flex items-center justify-between gap-2 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
                     >
                       <div className="min-w-0">
                         <span className="font-mono text-[11px] font-bold text-[var(--accent)]">
                           {ex.course_code}
                         </span>
                         <p className="mt-0.5 flex items-center gap-1 text-xs font-semibold text-[var(--text-primary)]">
-                          <Clock className="h-3 w-3 text-[var(--text-muted)]" />
+                          <Clock className="h-3 w-3 text-[var(--text-muted)]" aria-hidden="true" />
                           {ex.total_questions} Qs · {Math.round(ex.duration_seconds / 60)}m
                         </p>
                       </div>

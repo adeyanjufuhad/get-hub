@@ -186,12 +186,18 @@ The interface alternates across **three disciplined surface modes** (90–95% ne
 
 ---
 
-## 4. Layout Principles (`tasteskill` + `awesome-design-md`)
+## 4. Layout Principles (`tasteskill` + `awesome-design-md` + `emil-design-eng`)
 
 1. **Equal Left & Right Content Edges:** Every section on a page shares the exact same container max-width (`max-w-5xl` / `1024px` across landing and app shell) and horizontal gutter (`px-4 sm:px-6`) so left and right edges form one unbroken vertical line.
-2. **Two Levels, Never Three:** Cards hold content or a single visual plate (`card > plate` or `card > row`). Avoid triple-nested bordered boxes (`card > bordered box > bordered white box`).
-3. **4px Spacing Rhythm:** `4, 8, 12, 16, 24, 32, 48, 72px`.
-4. **Scroll Margin Clearance:** `scroll-padding-top: 5rem` on `<html>` so sticky headers never cover anchored headings or focused controls.
+2. **Concentric Border-Radius Rule (`Outer Radius = Inner Radius + Padding`):** Every container `div` holding buttons or nested rounded tiles MUST match its outer radius to the inner radius plus its padding:
+   - Compact tray / segmented control (`p-1` = `4px`): `rounded-[16px]` outer → `rounded-[12px]` inner button (`12 + 4 = 16`).
+   - Button dock / action bar (`p-1.5` = `6px` or `p-2` = `8px`): `rounded-[18px]` / `rounded-[20px]` outer → `rounded-[12px]` inner button (`12 + 6 = 18`, `12 + 8 = 20`).
+   - Standard card / drawer with buttons (`p-3` = `12px`): `rounded-[24px]` outer → `rounded-[12px]` inner button (`12 + 12 = 24`).
+   - Roomy card / form / modal with buttons (`p-4` = `16px` / `sm:p-5` = `20px`): `rounded-[28px] sm:rounded-[32px]` outer → `rounded-[12px]` inner button (`12 + 16 = 28`, `12 + 20 = 32`).
+   - Pill containers (`rounded-full` + `p-1.5`): `rounded-full` inner controls.
+3. **Two Levels, Never Three:** Cards hold content or a single visual plate (`card > plate` or `card > row`). Avoid triple-nested bordered boxes (`card > bordered box > bordered white box`).
+4. **4px Spacing Rhythm:** `4, 8, 12, 16, 24, 32, 48, 72px`.
+5. **Scroll Margin Clearance:** `scroll-padding-top: 5.5rem` on `<html>` so sticky headers never cover anchored headings or focused controls.
 
 ---
 

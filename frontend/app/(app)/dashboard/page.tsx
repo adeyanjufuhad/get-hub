@@ -102,24 +102,24 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        {/* Segmented Quick-Jump Strip (Pinterest EasyLearn / Nixtio pattern, zero SVG) */}
+        {/* Concentric Segmented Quick-Jump Strip: Outer 16px = Inner 12px + Padding 4px (p-1) */}
         <div className="-mx-4 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
-          <div className="inline-flex items-center gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1">
+          <div className="inline-flex items-center gap-1 rounded-[16px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1">
             <Link
               href="/courses"
-              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-[12px] bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
             >
               Study Folios
             </Link>
             <Link
               href="/tests"
-              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-full px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-[12px] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
             >
               Test Center
             </Link>
             <a
               href="#textbooks"
-              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-full px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-[12px] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
             >
               3 Textbooks
             </a>
@@ -129,8 +129,8 @@ export default function DashboardPage() {
 
       {/* ==================== 2. BENTO HERO: RESUME FOLIO + SEMESTER MASTERY ==================== */}
       <section className="grid gap-4 lg:grid-cols-12">
-        {/* Left 7 cols: Obsidian Resume Lined Folio Hero */}
-        <div className="relative flex flex-col justify-between overflow-hidden rounded-[26px] bg-[#141413] p-5 text-white sm:p-7 lg:col-span-7">
+        {/* Left 7 cols: Concentric Obsidian Hero (Outer 28px = Inner 12px + p-4 [16px]; sm: Outer 32px = 12 + 20) */}
+        <div className="relative flex flex-col justify-between overflow-hidden rounded-[28px] bg-[#141413] p-4 text-white sm:rounded-[32px] sm:p-5 lg:col-span-7">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={heroBanner}
@@ -180,14 +180,14 @@ export default function DashboardPage() {
             )}
           </div>
 
-          <div className="relative z-10 mt-6 grid grid-cols-1 gap-2.5 min-[420px]:flex min-[420px]:flex-wrap min-[420px]:items-center">
+          <div className="relative z-10 mt-6 grid grid-cols-1 gap-2 min-[420px]:flex min-[420px]:flex-wrap min-[420px]:items-center">
             <Link
               href={
                 data.continue_topic
                   ? `/courses/${data.continue_topic.course_slug}/${data.continue_topic.topic_slug}`
                   : "/courses/get-205/fluid-properties-and-hydrostatics"
               }
-              className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#EA580C] px-5 text-sm font-semibold text-white"
+              className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] bg-[#EA580C] px-5 text-sm font-semibold text-white hover:bg-[#C2410C]"
             >
               Open lined folio →
             </Link>
@@ -197,15 +197,15 @@ export default function DashboardPage() {
                   ? `/practice/${data.continue_topic.topic_id}`
                   : "/practice/22222222-2222-4222-8222-222222220205"
               }
-              className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 text-sm font-semibold text-white hover:bg-white/15"
+              className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-white/20 bg-white/10 px-5 text-sm font-semibold text-white hover:bg-white/15"
             >
               Drill chapter questions
             </Link>
           </div>
         </div>
 
-        {/* Right 5 cols: Semester Mastery & Exam Readiness Bento (Pinterest EduNova + EasyLearn) */}
-        <div className="flex flex-col justify-between rounded-[26px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-6 lg:col-span-5">
+        {/* Right 5 cols: Concentric Readiness Bento (Outer 28px = 12+16; sm: Outer 32px = 12+20) */}
+        <div className="flex flex-col justify-between rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5 lg:col-span-5">
           <div>
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -218,13 +218,13 @@ export default function DashboardPage() {
               </div>
               <Link
                 href="/tests"
-                className="pressable inline-flex min-h-[40px] shrink-0 items-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 font-mono text-xs font-semibold text-[var(--text-primary)]"
+                className="pressable inline-flex min-h-[40px] shrink-0 items-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 font-mono text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
               >
                 Take a test →
               </Link>
             </div>
 
-            {/* Segmented Mastery Bar */}
+            {/* GPU-composited scaleX Progress Bar */}
             <div
               role="progressbar"
               aria-valuenow={readinessPct}
@@ -233,26 +233,26 @@ export default function DashboardPage() {
               className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-[var(--bg-canvas)]"
             >
               <div
-                className="h-full rounded-full bg-[var(--accent)] transition-[width] duration-300"
-                style={{ width: `${Math.max(4, readinessPct)}%` }}
+                className="h-full w-full origin-left rounded-full bg-[var(--accent)] transition-transform duration-200 ease-[var(--ease-out)]"
+                style={{ transform: `scaleX(${Math.max(0.04, readinessPct / 100)})` }}
               />
             </div>
 
-            {/* 3 Crisp Status Mini-Tiles */}
-            <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-2.5">
-              <div className="min-w-0 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
+            {/* 3 Crisp Status Mini-Tiles (rounded-[12px] concentric with parent) */}
+            <div className="mt-4 grid grid-cols-3 gap-2">
+              <div className="min-w-0 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
                 <p className="truncate text-[11px] font-medium text-[var(--text-muted)]">Folios</p>
                 <p className="tabular mt-1 font-mono text-sm font-extrabold text-[var(--text-primary)] sm:text-base">
                   {data.summary.completed_topics}/{data.summary.total_topics}
                 </p>
               </div>
-              <div className="min-w-0 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
+              <div className="min-w-0 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
                 <p className="truncate text-[11px] font-medium text-[var(--text-muted)]">Solved</p>
                 <p className="tabular mt-1 font-mono text-sm font-extrabold text-[var(--text-primary)] sm:text-base">
                   {data.summary.total_attempts}
                 </p>
               </div>
-              <div className="min-w-0 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
+              <div className="min-w-0 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
                 <p className="truncate text-[11px] font-medium text-[var(--text-muted)]">Accuracy</p>
                 <p className="tabular mt-1 font-mono text-sm font-extrabold text-[var(--accent)] sm:text-base">
                   {accuracyPct}%
@@ -302,9 +302,10 @@ export default function DashboardPage() {
             const folios = COURSE_TOPICS_FALLBACK[course.slug] ?? [];
 
             return (
+              /* Concentric course card: Outer 24px, bottom action bar p-3 (12px) -> inner buttons 12px (12+12=24) */
               <article
                 key={course.id}
-                className="hover-lift flex flex-col justify-between overflow-hidden rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                className="flex flex-col justify-between overflow-hidden rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
               >
                 <div>
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#141413]">
@@ -335,7 +336,7 @@ export default function DashboardPage() {
                     </div>
                   </div>
 
-                  <div className="p-4 sm:p-5">
+                  <div className="p-4">
                     <h3 className="text-base font-extrabold leading-snug text-[var(--text-primary)]">
                       {course.title}
                     </h3>
@@ -345,15 +346,15 @@ export default function DashboardPage() {
                       </p>
                     )}
 
-                    {/* Direct Folio Chapter Links inside each course card */}
-                    <div className="mt-3.5 space-y-1.5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-2.5">
+                    {/* Concentric inner folio list: Outer 20px = Inner 12px + Padding 8px (p-2) */}
+                    <div className="mt-3.5 space-y-1 rounded-[20px] border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-2">
                       {folios.map((folio) => {
                         const isRead = completedIds.has(folio.id);
                         return (
                           <Link
                             key={folio.id}
                             href={`/courses/${course.slug}/${folio.slug}`}
-                            className="flex items-center justify-between gap-2 rounded-xl px-2 py-1.5 text-xs transition-colors hover:bg-[var(--bg-subtle)]"
+                            className="pressable flex items-center justify-between gap-2 rounded-[12px] px-2.5 py-1.5 text-xs hover:bg-[var(--bg-subtle)]"
                           >
                             <span className="min-w-0 truncate font-medium text-[var(--text-primary)]">
                               <span
@@ -382,23 +383,24 @@ export default function DashboardPage() {
                       className="mt-3.5 h-1.5 w-full overflow-hidden rounded-full bg-[var(--bg-canvas)]"
                     >
                       <div
-                        className="h-full rounded-full bg-[var(--accent)] transition-[width] duration-300"
-                        style={{ width: `${pct}%` }}
+                        className="h-full w-full origin-left rounded-full bg-[var(--accent)] transition-transform duration-200 ease-[var(--ease-out)]"
+                        style={{ transform: `scaleX(${pct / 100})` }}
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] px-4 py-3.5 min-[340px]:grid-cols-2">
+                {/* Concentric card footer: p-3 (12px) + inner buttons 12px = 24px outer */}
+                <div className="grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] p-3 min-[340px]:grid-cols-2">
                   <Link
                     href={`/courses/${course.slug}`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
                   >
                     Open folios →
                   </Link>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-full border border-[var(--border-hairline)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                   >
                     Timed CBT
                   </Link>
@@ -411,8 +413,9 @@ export default function DashboardPage() {
 
       {/* ==================== 4. TOPIC RISK ALERTS + RECENT CBT EXAMS ==================== */}
       <section className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5">
-          <div className="flex items-center justify-between gap-2">
+        {/* Outer 28px = Inner row 16px + p-3 (12px); Inner row 16px = Button 8px + p-2 (8px) */}
+        <div className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 sm:p-4">
+          <div className="flex items-center justify-between gap-2 px-1">
             <div>
               <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--danger)]">
                 Revision Priority
@@ -430,7 +433,7 @@ export default function DashboardPage() {
           </div>
 
           {data.weak_topics.length === 0 ? (
-            <div className="mt-3.5 rounded-2xl bg-[var(--bg-canvas)] p-4 text-xs leading-relaxed text-[var(--text-secondary)]">
+            <div className="mt-3.5 rounded-[16px] bg-[var(--bg-canvas)] p-4 text-xs leading-relaxed text-[var(--text-secondary)]">
               No weak topics flagged yet! Solve chapter drills in the{" "}
               <Link href="/tests" className="font-bold text-[var(--accent)] underline">
                 Test Center
@@ -438,13 +441,13 @@ export default function DashboardPage() {
               to automatically track accuracy across GET 205, 207, and 209.
             </div>
           ) : (
-            <ul className="mt-3.5 space-y-2.5">
+            <ul className="mt-3.5 space-y-2">
               {data.weak_topics.slice(0, 4).map((wt) => (
                 <li
                   key={wt.topic_id}
-                  className="flex flex-col items-start justify-between gap-2.5 rounded-2xl border border-[var(--danger)]/20 bg-[var(--bg-canvas)] p-3.5 min-[420px]:flex-row min-[420px]:items-center"
+                  className="flex flex-col items-start justify-between gap-2.5 rounded-[16px] border border-[var(--danger)]/20 bg-[var(--bg-canvas)] p-2 min-[420px]:flex-row min-[420px]:items-center"
                 >
-                  <div className="min-w-0">
+                  <div className="min-w-0 px-1.5">
                     <div className="flex items-center gap-1.5">
                       <span
                         aria-hidden="true"
@@ -460,7 +463,7 @@ export default function DashboardPage() {
                   </div>
                   <Link
                     href={`/practice/${wt.topic_id}`}
-                    className="pressable inline-flex min-h-[38px] shrink-0 items-center rounded-full bg-[var(--danger-soft)] px-3.5 font-mono text-xs font-bold text-[var(--danger)]"
+                    className="pressable inline-flex min-h-[38px] shrink-0 items-center rounded-[8px] bg-[var(--danger-soft)] px-3.5 font-mono text-xs font-bold text-[var(--danger)]"
                   >
                     {wt.accuracy_pct}% · Drill
                   </Link>
@@ -470,8 +473,8 @@ export default function DashboardPage() {
           )}
         </div>
 
-        <div className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5">
-          <div className="flex items-center justify-between gap-2">
+        <div className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 sm:p-4">
+          <div className="flex items-center justify-between gap-2 px-1">
             <div>
               <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
                 Exam Simulation History
@@ -489,19 +492,19 @@ export default function DashboardPage() {
           </div>
 
           {data.recent_exams.length === 0 ? (
-            <div className="mt-3.5 flex flex-col justify-between gap-3 rounded-2xl bg-[var(--bg-canvas)] p-4 sm:flex-row sm:items-center">
-              <p className="text-xs leading-relaxed text-[var(--text-secondary)]">
+            <div className="mt-3.5 flex flex-col justify-between gap-3 rounded-[16px] bg-[var(--bg-canvas)] p-2.5 sm:flex-row sm:items-center">
+              <p className="px-1.5 text-xs leading-relaxed text-[var(--text-secondary)]">
                 No timed CBT papers taken yet. Simulate OAU test pressure with 5, 10, or 15 questions.
               </p>
               <Link
                 href="/tests"
-                className="pressable inline-flex min-h-[38px] shrink-0 items-center justify-center rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)]"
+                className="pressable inline-flex min-h-[38px] shrink-0 items-center justify-center rounded-[8px] bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
               >
                 Start CBT →
               </Link>
             </div>
           ) : (
-            <ul className="mt-3.5 space-y-2.5">
+            <ul className="mt-3.5 space-y-2">
               {data.recent_exams.slice(0, 4).map((ex) => {
                 const pct =
                   ex.score != null && ex.total_questions > 0
@@ -511,7 +514,7 @@ export default function DashboardPage() {
                   <li key={ex.id}>
                     <Link
                       href={`/mock-exams/${ex.id}`}
-                      className="pressable flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3.5"
+                      className="pressable hover-lift flex flex-wrap items-center justify-between gap-2 rounded-[16px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
                     >
                       <div className="min-w-0">
                         <span className="font-mono text-[11px] font-bold text-[var(--accent)]">

@@ -169,22 +169,66 @@ button,
   -webkit-touch-callout: none;
 }
 
-/* Tactile press feedback (100-150ms ease-out, GPU-only transform) */
+/* Tactile press feedback (Emil Kowalski: 100-160ms ease-out, GPU-only transform) */
 .pressable {
-  transition: transform 130ms var(--ease-out), background-color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+  transition: transform 130ms var(--ease-out), background-color 150ms ease, border-color 150ms ease, color 150ms ease, opacity 150ms ease;
 }
 
 .pressable:active {
   transform: scale(0.97);
 }
 
-/* Touch-safe hover gate: never stick hover states after mobile taps */
+/* Concentric Border Radius Helpers: Outer Radius = Inner Radius + Padding */
+.concentric-tray {
+  --r-in: 12px;
+  --r-pad: 4px;
+  padding: var(--r-pad);
+  border-radius: calc(var(--r-in) + var(--r-pad)); /* 16px */
+}
+
+.concentric-bar {
+  --r-in: 12px;
+  --r-pad: 8px;
+  padding: var(--r-pad);
+  border-radius: calc(var(--r-in) + var(--r-pad)); /* 20px */
+}
+
+/* Origin-aware menu & centered modal entrances (never scale(0); sub-200ms ease-out) */
+.popover-enter {
+  transform-origin: top center;
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: opacity 160ms var(--ease-out), transform 180ms var(--ease-out);
+}
+
+@starting-style {
+  .popover-enter {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+}
+
+.modal-enter {
+  transform-origin: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 160ms var(--ease-out), transform 200ms var(--ease-out);
+}
+
+@starting-style {
+  .modal-enter {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+/* Touch-safe hover gate: never stick hover states after mobile taps.
+   Emil Kowalski remove-animations: reduce card hover from lift/scale to quiet border shift (<= 150ms ease). */
 @media (hover: hover) and (pointer: fine) {
   .hover-lift {
-    transition: transform 180ms var(--ease-out), border-color 150ms ease;
+    transition: border-color 150ms ease, background-color 150ms ease;
   }
   .hover-lift:hover {
-    transform: translateY(-2px);
     border-color: var(--border-strong);
   }
   .hover-accent-border:hover {
@@ -533,92 +577,29 @@ button,
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* React Bits micro-interaction keyframes (GPU-only transform & background-position) */
-@keyframes rb-marquee {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-.rb-logo-loop-track {
-  animation: rb-marquee 26s linear infinite;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .rb-logo-loop:hover .rb-logo-loop-track {
-    animation-play-state: paused;
+/* Reduced transparency (Apple HIG / apple-design): solidify translucent chrome */
+@media (prefers-reduced-transparency: reduce) {
+  .translucent-chrome {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: var(--bg-surface) !important;
   }
 }
 
-@keyframes rb-shine {
-  0% {
-    background-position: 120% 0;
-  }
-  100% {
-    background-position: -120% 0;
-  }
-}
-
-.rb-shiny-text {
-  background-image: linear-gradient(
-    110deg,
-    currentColor 35%,
-    color-mix(in srgb, currentColor 40%, #ffffff) 50%,
-    currentColor 65%
-  );
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: rb-shine 3.6s linear infinite;
-}
-
-.glare-hover-sheen {
-  background: linear-gradient(
-    115deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.55) 50%,
-    transparent 70%
-  );
-  transform: translate3d(-120%, 0, 0);
-  transition: transform 480ms var(--ease-out);
-}
-
-.dark .glare-hover-sheen {
-  background: linear-gradient(
-    115deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.14) 50%,
-    transparent 70%
-  );
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .glare-hover:hover .glare-hover-sheen {
-    transform: translate3d(120%, 0, 0);
-  }
-}
-
-/* Reduced motion: halt decorative loops and strip spatial movement */
+/* Reduced motion (emil-design-eng: gentler, not zero — keep opacity/color, drop movement) */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .pressable:active,
-  .hover-lift:hover {
+  .popover-enter,
+  .modal-enter {
     transform: none !important;
-  }
-  .rb-logo-loop-track,
-  .rb-shiny-text {
-    animation: none !important;
   }
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 120ms !important;
   }
 }

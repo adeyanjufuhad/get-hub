@@ -34,15 +34,16 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
 
   return (
     <>
-      <figure className="my-6 overflow-hidden rounded-2xl border border-[var(--border-strong)] bg-[var(--paper-plate-bg)] p-3 sm:my-7 sm:p-3.5">
-        <div className="mb-2.5 flex items-center justify-between gap-2 border-b border-[var(--border-hairline)] pb-2">
+      {/* Concentric figure plate: Outer 20px (12+8) / sm: 24px (12+12) */}
+      <figure className="my-6 overflow-hidden rounded-[20px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)] p-2 sm:my-7 sm:rounded-[24px] sm:p-3">
+        <div className="mb-2 flex items-center justify-between gap-2 border-b border-[var(--border-hairline)] px-1 pb-2">
           <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
             ▸ Textbook Figure Plate
           </span>
           <button
             type="button"
             onClick={() => setZoomed(true)}
-            className="pressable inline-flex min-h-[34px] items-center gap-1 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 py-1 font-mono text-[10px] font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer"
+            className="pressable inline-flex min-h-[34px] items-center gap-1 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 py-1 font-mono text-[10px] font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)] cursor-pointer"
           >
             <Maximize2 className="h-3 w-3" aria-hidden="true" />
             Enlarge
@@ -53,7 +54,7 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
           type="button"
           onClick={() => setZoomed(true)}
           aria-label={caption ? `Enlarge figure: ${caption}` : "Enlarge textbook figure"}
-          className="block w-full rounded-xl bg-white p-2 cursor-zoom-in"
+          className="block w-full rounded-[12px] bg-white p-2 cursor-zoom-in"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -68,7 +69,7 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
         </button>
 
         {caption && (
-          <figcaption className="mt-2.5 border-t border-dashed border-[var(--border-hairline)] pt-2 text-center font-mono text-[11px] leading-relaxed text-[var(--text-muted)]">
+          <figcaption className="mt-2.5 border-t border-dashed border-[var(--border-hairline)] px-1 pt-2 text-center font-mono text-[11px] leading-relaxed text-[var(--text-muted)]">
             {caption}
           </figcaption>
         )}
@@ -80,26 +81,27 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
           aria-modal="true"
           aria-label={caption || "Enlarged textbook figure"}
           onClick={() => setZoomed(false)}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-2.5 backdrop-blur-xs sm:p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-3 backdrop-blur-xs sm:p-4"
         >
+          {/* Centered modal entrance (scale 0.96 -> 1) + Concentric radius: Outer 24px (12+12) / sm: 28px (12+16) */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="max-h-[90dvh] w-full max-w-3xl overflow-auto overscroll-contain rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 shadow-2xl sm:rounded-[24px] sm:p-6"
+            className="modal-enter max-h-[90dvh] w-full max-w-3xl overflow-auto overscroll-contain rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 shadow-2xl sm:rounded-[28px] sm:p-4"
           >
             <div className="mb-3 flex items-center justify-between gap-3">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
+              <span className="px-1 font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
                 Textbook Figure Inspection
               </span>
               <button
                 type="button"
                 onClick={() => setZoomed(false)}
                 aria-label="Close enlarged figure"
-                className="pressable inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] cursor-pointer"
+                className="pressable inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] cursor-pointer"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
-            <div className="rounded-2xl bg-white p-2 sm:p-3">
+            <div className="rounded-[12px] bg-white p-2 sm:p-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={src}
@@ -141,8 +143,9 @@ export function StepRevealExample({
   const done = shown >= steps.length;
 
   return (
-    <div className="my-7 overflow-hidden rounded-[20px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)]">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/75 px-4 py-3 sm:px-5">
+    /* Concentric worked-example card: Outer 24px (12+12) / sm: 28px (12+16) -> inner blocks & buttons 12px */
+    <div className="my-7 overflow-hidden rounded-[24px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)] sm:rounded-[28px]">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/75 px-3 py-3 sm:px-4">
         <div className="min-w-0">
           <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
             Worked Textbook Example
@@ -159,19 +162,19 @@ export function StepRevealExample({
         </span>
       </div>
 
-      <div className="p-3.5 sm:p-5">
-        <div className="math-scroll-x rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3 text-sm leading-relaxed text-[var(--text-primary)] sm:p-3.5">
+      <div className="p-3 sm:p-4">
+        <div className="math-scroll-x rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3 text-sm leading-relaxed text-[var(--text-primary)] sm:p-3.5">
           <MathText text={problem} />
         </div>
 
         {figure && <InlineFigure src={figure} alt={`Figure for ${title}`} />}
 
         {shown > 0 && (
-          <ol className="!pl-0 !list-none !mb-0 mt-4 space-y-2.5">
+          <ol className="!pl-0 !list-none !mb-0 mt-3.5 space-y-2.5">
             {steps.slice(0, shown).map((step, idx) => (
               <li
                 key={idx}
-                className="flex gap-2.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)]/70 p-3 text-sm leading-relaxed text-[var(--text-secondary)] sm:gap-3 sm:p-3.5"
+                className="flex gap-2.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)]/70 p-3 text-sm leading-relaxed text-[var(--text-secondary)] sm:gap-3 sm:p-3.5"
               >
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)] font-mono text-xs font-bold text-white">
                   {idx + 1}
@@ -185,7 +188,7 @@ export function StepRevealExample({
         )}
 
         {done && answer && (
-          <div className="math-scroll-x mt-3 flex items-start gap-2 rounded-xl border border-[var(--success)]/30 bg-[var(--success)]/10 px-3 py-2.5 text-sm text-[var(--text-primary)]">
+          <div className="math-scroll-x mt-3 flex items-start gap-2 rounded-[12px] border border-[var(--success)]/30 bg-[var(--success)]/10 px-3 py-2.5 text-sm text-[var(--text-primary)]">
             <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--success)]" aria-hidden="true" />
             <span className="min-w-0">
               <span className="mr-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--success)]">
@@ -206,7 +209,7 @@ export function StepRevealExample({
                 className="w-full sm:w-auto"
                 onClick={() => setShown((s) => Math.min(steps.length, s + 1))}
               >
-                <Eye className="h-4 w-4" />
+                <Eye className="h-4 w-4" aria-hidden="true" />
                 {shown === 0 ? "Solve Step 1" : `Next step (${shown + 1} of ${steps.length})`}
               </Button>
               <Button
@@ -227,7 +230,7 @@ export function StepRevealExample({
               className="w-full sm:w-auto"
               onClick={() => setShown(0)}
             >
-              <RotateCcw className="h-4 w-4" />
+              <RotateCcw className="h-4 w-4" aria-hidden="true" />
               Fold steps &amp; retry yourself
             </Button>
           )}
@@ -296,9 +299,10 @@ export function ExerciseSet({
     });
 
   return (
-    <section className="my-8 overflow-hidden rounded-[20px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)]">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/75 px-4 py-3 sm:px-5">
-        <div className="min-w-0">
+    /* Concentric exercise container: Outer 24px = Inner 12px + Header Padding 12px (p-3) */
+    <section className="my-8 overflow-hidden rounded-[24px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)]">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/75 p-3">
+        <div className="min-w-0 px-1">
           <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
             Textbook Exercise · {items.length} questions
           </span>
@@ -429,10 +433,11 @@ export function TopicActionBar({
   }
 
   return (
-    <div className="mt-8 flex flex-col gap-4 rounded-[22px] border border-[var(--border-strong)] bg-[var(--bg-surface)] p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+    /* Concentric action bar: Outer 24px (12+12) mobile / 28px (12+16) sm -> inner buttons 12px */
+    <div className="mt-8 flex flex-col gap-4 rounded-[24px] border border-[var(--border-strong)] bg-[var(--bg-surface)] p-3 sm:flex-row sm:items-center sm:justify-between sm:rounded-[28px] sm:p-4">
       <div className="flex items-start gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[var(--accent-soft)] text-[var(--accent)]">
-          <BookOpenCheck className="h-5 w-5" />
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-[var(--accent-soft)] text-[var(--accent)]">
+          <BookOpenCheck className="h-5 w-5" aria-hidden="true" />
         </span>
         <div className="min-w-0">
           <p className="text-sm font-extrabold text-[var(--text-primary)]">
@@ -453,6 +458,7 @@ export function TopicActionBar({
           className="w-full min-[420px]:w-auto"
         >
           <CheckCircle2
+            aria-hidden="true"
             className={completed ? "h-4 w-4 text-[var(--success)]" : "h-4 w-4 text-[var(--text-muted)]"}
           />
           {completed ? "Folio completed" : "Mark folio read"}
@@ -461,10 +467,10 @@ export function TopicActionBar({
         {topicId && (
           <Link
             href={`/practice/${topicId}`}
-            className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-5 text-sm font-semibold text-white min-[420px]:w-auto"
+            className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-[12px] bg-[var(--accent)] px-5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)] min-[420px]:w-auto"
           >
             Solve textbook drills
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         )}
       </div>

@@ -38,7 +38,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(fu
         aria-pressed={visible}
         aria-controls={props.id}
         title={visible ? "Hide password" : "Show password"}
-        className="absolute inset-y-0 right-1 my-auto flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)] focus-visible:text-[var(--text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)] disabled:opacity-50"
+        className="pressable absolute inset-y-0 right-1 my-auto flex h-10 w-10 items-center justify-center rounded-[8px] text-[var(--text-muted)] hover:text-[var(--text-primary)] focus-visible:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-[var(--accent)] disabled:opacity-50 cursor-pointer"
       >
         {visible ? <EyeOff className="h-[18px] w-[18px]" aria-hidden="true" /> : <Eye className="h-[18px] w-[18px]" aria-hidden="true" />}
       </button>

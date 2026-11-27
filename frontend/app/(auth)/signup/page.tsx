@@ -64,7 +64,8 @@ export default function SignupPage() {
           </span>
         </Link>
 
-        <div className="rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:rounded-[24px] sm:p-7">
+        {/* Concentric card: Outer 28px (12+16) mobile / 32px (12+20) sm -> inner inputs & buttons 12px */}
+        <div className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5">
           <h1 className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl">
             Create your student account
           </h1>
@@ -83,6 +84,7 @@ export default function SignupPage() {
                 id="full_name"
                 name="full_name"
                 type="text"
+                enterKeyHint="next"
                 required
                 autoComplete="name"
                 aria-invalid={Boolean(fieldErrors.full_name)}
@@ -90,7 +92,7 @@ export default function SignupPage() {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Tunde Adebayo…"
-                className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
+                className="mt-1.5 min-h-[46px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
               />
               {fieldErrors.full_name && (
                 <p id="err-full-name" role="alert" className="mt-1 text-xs text-[var(--danger)]">
@@ -107,6 +109,7 @@ export default function SignupPage() {
                 id="email"
                 name="email"
                 type="email"
+                enterKeyHint="next"
                 required
                 autoComplete="email"
                 autoCapitalize="none"
@@ -116,7 +119,7 @@ export default function SignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="tunde@student.oauife.edu.ng…"
-                className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
+                className="mt-1.5 min-h-[46px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
               />
               {fieldErrors.email && (
                 <p id="err-email" role="alert" className="mt-1 text-xs text-[var(--danger)]">
@@ -136,7 +139,7 @@ export default function SignupPage() {
                 aria-describedby={fieldErrors.department ? "err-department" : undefined}
                 value={department}
                 onChange={(e) => setDepartment(e.target.value)}
-                className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-[var(--text-primary)]"
+                className="mt-1.5 min-h-[46px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-[var(--text-primary)]"
               >
                 {OAU_DEPARTMENTS.map((d) => (
                   <option key={d} value={d}>
@@ -158,6 +161,7 @@ export default function SignupPage() {
               <PasswordInput
                 id="password"
                 name="password"
+                enterKeyHint="done"
                 wrapperClassName="mt-1.5"
                 required
                 minLength={8}
@@ -167,7 +171,7 @@ export default function SignupPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Create an 8+ character password…"
-                className="min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
+                className="min-h-[46px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
               />
               {fieldErrors.password && (
                 <p id="err-password" role="alert" className="mt-1 text-xs text-[var(--danger)]">

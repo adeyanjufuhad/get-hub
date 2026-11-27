@@ -103,8 +103,8 @@ export default function CourseDetailPage() {
         All coursebooks
       </Link>
 
-      {/* Course Header */}
-      <section className="relative overflow-hidden rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:p-7">
+      {/* Concentric Course Header: Outer 28px = 12 + 16 (p-4); sm: Outer 32px = 12 + 20 (p-5) */}
+      <section className="relative overflow-hidden rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={banner}
@@ -136,11 +136,11 @@ export default function CourseDetailPage() {
             {course.description}
           </p>
 
-          <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+          <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
             {topics[0] && (
               <Link
                 href={`/courses/${course.slug}/${topics[0].slug}`}
-                className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-[#EA580C] px-5 text-sm font-semibold text-white hover:bg-[#C2410C]"
+                className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[12px] bg-[#EA580C] px-5 text-sm font-semibold text-white hover:bg-[#C2410C]"
               >
                 <BookOpen className="h-4 w-4" aria-hidden="true" />
                 Open Folio 01
@@ -148,7 +148,7 @@ export default function CourseDetailPage() {
             )}
             <Link
               href={`/courses/${course.slug}/mock-exam`}
-              className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-5 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
+              className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[12px] bg-[var(--ink-cta)] px-5 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
             >
               <Timer className="h-4 w-4" aria-hidden="true" />
               Start timed mock exam
@@ -189,8 +189,9 @@ export default function CourseDetailPage() {
                     <span aria-hidden="true" className="h-px flex-1 bg-[var(--border-hairline)]" />
                   </div>
                 )}
+                {/* Concentric folio card: Outer 24px = 12 + 12 (p-3); sm: Outer 28px = 12 + 16 (p-4) */}
                 <article
-                  className="hover-lift relative overflow-hidden rounded-[22px] border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-4 pl-6 shadow-xs sm:p-5 sm:pl-7"
+                  className="relative overflow-hidden rounded-[24px] border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-3 pl-5 sm:rounded-[28px] sm:p-4 sm:pl-6"
                 >
                   {/* Subtle left notebook margin accent */}
                   <span
@@ -201,9 +202,9 @@ export default function CourseDetailPage() {
                   <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                     <div className="flex min-w-0 items-start gap-3">
                       {topic.completed ? (
-                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--success)]" />
+                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--success)]" aria-hidden="true" />
                       ) : (
-                        <Circle className="mt-0.5 h-5 w-5 shrink-0 text-[var(--border-strong)]" />
+                        <Circle className="mt-0.5 h-5 w-5 shrink-0 text-[var(--border-strong)]" aria-hidden="true" />
                       )}
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
@@ -230,18 +231,18 @@ export default function CourseDetailPage() {
                     <div className="grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:flex sm:shrink-0 sm:items-center">
                       <Link
                         href={`/courses/${course.slug}/${topic.slug}`}
-                        className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)]"
+                        className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
                       >
-                        <BookOpen className="h-3.5 w-3.5 shrink-0" />
+                        <BookOpen className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                         Read folio
                       </Link>
                       <Link
                         href={`/practice/${topic.id}`}
-                        className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-strong)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-primary)]"
+                        className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] border border-[var(--border-strong)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
                       >
-                        <PenTool className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
+                        <PenTool className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" aria-hidden="true" />
                         Drill ({topic.question_count ?? fb?.question_count ?? 7})
-                        <ArrowRight className="hidden h-3.5 w-3.5 sm:inline" />
+                        <ArrowRight className="hidden h-3.5 w-3.5 sm:inline" aria-hidden="true" />
                       </Link>
                     </div>
                   </div>

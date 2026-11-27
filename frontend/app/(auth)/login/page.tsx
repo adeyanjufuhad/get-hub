@@ -43,7 +43,8 @@ function LoginForm() {
   }
 
   return (
-    <div className="rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:rounded-[24px] sm:p-7">
+    /* Concentric card: Outer 28px (12+16) mobile / 32px (12+20) sm -> inner inputs & buttons 12px */
+    <div className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5">
       <h1 className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl">
         Welcome back
       </h1>
@@ -55,7 +56,7 @@ function LoginForm() {
         <div
           role="alert"
           aria-live="polite"
-          className="mt-4 rounded-xl bg-[var(--danger-soft)] px-3.5 py-2.5 text-xs font-medium text-[var(--danger)]"
+          className="mt-4 rounded-[12px] bg-[var(--danger-soft)] px-3.5 py-2.5 text-xs font-medium text-[var(--danger)]"
         >
           {oauthError} Sign in with your email and password below instead.
         </div>
@@ -72,6 +73,7 @@ function LoginForm() {
             id="email"
             name="email"
             type="email"
+            enterKeyHint="next"
             required
             autoComplete="email"
             autoCapitalize="none"
@@ -79,7 +81,7 @@ function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="tunde@student.oauife.edu.ng…"
-            className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
+            className="mt-1.5 min-h-[46px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
           />
         </div>
 
@@ -90,13 +92,14 @@ function LoginForm() {
           <PasswordInput
             id="password"
             name="password"
+            enterKeyHint="go"
             wrapperClassName="mt-1.5"
             required
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password…"
-            className="min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
+            className="min-h-[46px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
           />
         </div>
 

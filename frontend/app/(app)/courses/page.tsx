@@ -53,12 +53,12 @@ export default function CoursesIndexPage() {
             Every course is paired with the exact textbook matching its CCMAS syllabus, lined notebook study pages, real cropped textbook figures, and 72 step-by-step practice questions.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:flex sm:flex-wrap">
+        <div className="flex flex-wrap gap-2">
           <Link
             href="/tests"
-            className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)]"
+            className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90 sm:w-auto"
           >
-            <ClipboardCheck className="h-3.5 w-3.5 shrink-0" />
+            <ClipboardCheck className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
             Open Test Center
           </Link>
         </div>
@@ -67,7 +67,7 @@ export default function CoursesIndexPage() {
       {!loaded ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-80 animate-pulse rounded-[22px] bg-[var(--bg-surface)]" />
+            <div key={i} className="h-80 animate-pulse rounded-[24px] bg-[var(--bg-surface)]" />
           ))}
         </div>
       ) : (
@@ -82,9 +82,10 @@ export default function CoursesIndexPage() {
             const fallbackTopics = COURSE_TOPICS_FALLBACK[course.slug] ?? [];
 
             return (
+              /* Concentric course card: Outer 24px, footer p-3 (12px) -> buttons 12px (12+12=24) */
               <article
                 key={course.slug}
-                className="hover-lift flex flex-col justify-between overflow-hidden rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                className="flex flex-col justify-between overflow-hidden rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
               >
                 <div>
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#141413]">
@@ -115,7 +116,7 @@ export default function CoursesIndexPage() {
                     </div>
                   </div>
 
-                  <div className="p-4 sm:p-5">
+                  <div className="p-4">
                     <h2 className="text-lg font-extrabold leading-snug text-[var(--text-primary)]">
                       {course.title}
                     </h2>
@@ -124,7 +125,7 @@ export default function CoursesIndexPage() {
                     </p>
 
                     {matchedBook && (
-                      <div className="mt-3.5 flex items-center gap-2.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5">
+                      <div className="mt-3.5 flex items-center gap-2.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={matchedBook.coverImage}
@@ -133,7 +134,7 @@ export default function CoursesIndexPage() {
                           height={88}
                           loading="lazy"
                           decoding="async"
-                          className="h-11 w-8 shrink-0 rounded object-cover"
+                          className="h-11 w-8 shrink-0 rounded-[4px] object-cover"
                         />
                         <div className="min-w-0">
                           <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
@@ -150,12 +151,12 @@ export default function CoursesIndexPage() {
                     )}
 
                     {/* Mini Folio Index */}
-                    <ul className="mt-3.5 space-y-1.5">
+                    <ul className="mt-3.5 space-y-1">
                       {fallbackTopics.map((ft) => (
                         <li key={ft.id}>
                           <Link
                             href={`/courses/${course.slug}/${ft.slug}`}
-                            className="flex items-center justify-between gap-2 rounded-xl px-2.5 py-1.5 text-xs transition-colors hover:bg-[var(--bg-subtle)]"
+                            className="pressable flex items-center justify-between gap-2 rounded-[10px] px-2.5 py-1.5 text-xs hover:bg-[var(--bg-subtle)]"
                           >
                             <span className="truncate font-medium text-[var(--text-secondary)]">
                               <span className="mr-1.5 font-mono text-[11px] font-bold text-[var(--accent)]">
@@ -163,7 +164,7 @@ export default function CoursesIndexPage() {
                               </span>
                               {ft.title}
                             </span>
-                            <ArrowRight className="h-3 w-3 shrink-0 text-[var(--text-muted)]" />
+                            <ArrowRight className="h-3 w-3 shrink-0 text-[var(--text-muted)]" aria-hidden="true" />
                           </Link>
                         </li>
                       ))}
@@ -177,26 +178,27 @@ export default function CoursesIndexPage() {
                       className="mt-3.5 h-1.5 w-full overflow-hidden rounded-full bg-[var(--bg-canvas)]"
                     >
                       <div
-                        className="h-full rounded-full bg-[var(--accent)] transition-[width] duration-300"
-                        style={{ width: `${pct}%` }}
+                        className="h-full w-full origin-left rounded-full bg-[var(--accent)] transition-transform duration-200 ease-[var(--ease-out)]"
+                        style={{ transform: `scaleX(${pct / 100})` }}
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] p-4 min-[340px]:grid-cols-2">
+                {/* Concentric card footer: p-3 (12px) + inner buttons 12px = 24px outer */}
+                <div className="grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] p-3 min-[340px]:grid-cols-2">
                   <Link
                     href={`/courses/${course.slug}`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
                   >
-                    <BookOpen className="h-3.5 w-3.5 shrink-0" />
+                    <BookOpen className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                     Open folios
                   </Link>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] border border-[var(--border-hairline)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                   >
-                    <Timer className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" />
+                    <Timer className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" aria-hidden="true" />
                     Timed test
                   </Link>
                 </div>

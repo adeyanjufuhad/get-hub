@@ -17,15 +17,11 @@ import {
   StudentFaqAccordion,
   StudyLoopStepper,
 } from "@/components/landing/interactive-preview";
-import { Counter } from "@/components/reactbits/counter";
-import { LogoLoop } from "@/components/reactbits/logo-loop";
-import { Magnet } from "@/components/reactbits/magnet";
-import ParticleText from "@/components/reactbits/ParticleText";
 import { Badge } from "@/components/ui/badge";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { APP_INSTITUTION, APP_NAME } from "@/lib/config";
 
-const OAU_DEPT_LOOP = [
+const OAU_DEPARTMENTS = [
   { code: "CSC", name: "Computer" },
   { code: "EEE", name: "Electrical" },
   { code: "MEE", name: "Mechanical" },
@@ -34,6 +30,13 @@ const OAU_DEPT_LOOP = [
   { code: "AGE", name: "Agric & Env" },
   { code: "MSE", name: "Materials" },
   { code: "FST", name: "Food Tech" },
+] as const;
+
+const FACT_STATS = [
+  { value: "9", label: "Lined Study Folios", accent: false },
+  { value: "72", label: "Server-Graded Drills", accent: false },
+  { value: "26", label: "Cropped Textbook Plates", accent: false },
+  { value: "3", label: "Matched Course Textbooks", accent: true },
 ] as const;
 
 const FEATURES = [
@@ -69,85 +72,68 @@ const FEATURES = [
   },
   {
     icon: Users,
-    title: "Part 2 Handout & PQ Archive",
-    body: "Download 123 OAU Second Year lecture notes, lab manuals, and past questions across 14 courses with exact MB file sizes upfront.",
-    tag: "14 courses",
+    title: "Built for Campus Mobile Data",
+    body: "Vector schematics weigh 1–3 KB, cropped textbook plates use compressed WebP, and equations render with CSS KaTeX — zero heavy video streams.",
+    tag: "Low data",
   },
 ];
 
 export default function LandingPage() {
   return (
-    <div className="min-h-dvh bg-[var(--bg-canvas)] text-[var(--text-primary)]">
-      {/* Floating Frosted Pill Navbar (includes Skip-to-content link) */}
+    <div className="min-h-svh bg-[var(--bg-canvas)] text-[var(--text-primary)]">
       <ExpandingPillNav />
 
       <main id="main-content" tabIndex={-1} className="outline-none">
-        {/* ==================== 1. HERO (Cream Canvas + Single Grainient Effect + App-Frame) ==================== */}
+        {/* ==================== 1. HERO (Calm Warm Canvas + Direct Typography + App-Frame) ==================== */}
         <section className="relative overflow-hidden px-4 pb-12 pt-24 sm:px-6 sm:pb-16 sm:pt-32">
           <HeroGrainientBackground />
 
           <div className="relative z-10 mx-auto max-w-5xl text-center">
-            <h1 className="mx-auto max-w-3xl text-[1.9rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--text-primary)] text-balance min-[380px]:text-[2.25rem] sm:text-5xl md:text-6xl">
+            <h1 className="mx-auto max-w-3xl text-[2rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--text-primary)] text-balance min-[380px]:text-[2.35rem] sm:text-5xl md:text-6xl">
               <span>Master </span>
               <span translate="no">GET 205, 207 &amp; 209</span>
-              <span className="mx-auto mt-1 block h-[64px] w-full max-w-[300px] text-[var(--accent)] min-[380px]:h-[78px] min-[380px]:max-w-[380px] sm:h-[96px] sm:max-w-[460px] md:h-[112px] md:max-w-[520px]">
-                <ParticleText
-                  text="from the book."
-                  particleSize={2}
-                  density={3}
-                  color="currentColor"
-                  highlightColor="#ff5a36"
-                  highlightMode="motion"
-                  shape="circle"
-                  intro="gather"
-                  scatter={150}
-                  gatherDuration={1400}
-                  stagger={380}
-                  clickBurst
-                  burstStrength={1}
-                  pointerRepel={40}
-                  repelRadius={110}
-                  idleDrift={0.65}
-                  trigger="hover"
-                  fontSize="clamp(1.85rem, 7.2vw, 4.1rem)"
-                  fontWeight={800}
-                  fontFamily="inherit"
-                  glow
-                />
-              </span>
+              <span className="mt-1 block text-[var(--accent)]">from the book.</span>
             </h1>
 
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-secondary)] text-pretty min-[380px]:text-base sm:mt-5 sm:text-lg">
               9 lined coursebook folios, 26 cropped schematics from Çengel, Hibbeler 14e &amp; Stewart 7e, and 72 server-graded exam drills built for campus mobile data.
             </p>
 
-            {/* Two disciplined CTAs (Primary Ink + Secondary Surface) */}
-            <div className="mt-7 flex flex-col items-stretch justify-center gap-2.5 sm:mt-8 sm:flex-row sm:items-center sm:gap-3">
-              <Magnet strength={0.18} className="w-full sm:w-auto">
-                <Link
-                  href="/signup"
-                  className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-6 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90 sm:min-h-[50px] sm:w-auto sm:px-7 sm:text-base"
-                >
-                  Create student account
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </Magnet>
-              <Magnet strength={0.14} className="w-full sm:w-auto">
-                <a
-                  href="#courses"
-                  className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)]/92 px-6 text-sm font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] sm:min-h-[50px] sm:w-auto sm:text-base"
-                >
-                  Inspect the 3 GET courses
-                </a>
-              </Magnet>
+            {/* Concentric CTA Dock: Outer 18px = Inner 12px + Padding 6px (p-1.5) */}
+            <div className="mx-auto mt-7 inline-flex w-full max-w-md flex-col gap-1.5 rounded-[18px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-1.5 sm:mt-8 sm:w-auto sm:max-w-none sm:flex-row sm:items-center">
+              <Link
+                href="/signup"
+                className="pressable inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-[12px] bg-[var(--ink-cta)] px-5 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90 sm:w-auto sm:px-6 sm:text-base"
+              >
+                Create student account
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <a
+                href="#courses"
+                className="pressable inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-5 text-sm font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] sm:w-auto sm:text-base"
+              >
+                Inspect the 3 GET courses
+              </a>
             </div>
 
-            {/* Department Ticker with Pause Control */}
-            <div className="mt-8 space-y-2">
+            {/* Static Department Strip (calm, scannable, zero infinite marquee motion) */}
+            <div className="mt-8 space-y-2.5">
               <p className="font-mono text-[11px] font-medium uppercase tracking-wider text-[var(--text-muted)]">
                 8 OAU Engineering Departments · One Shared Curriculum
               </p>
-              <LogoLoop items={OAU_DEPT_LOOP} />
+              <ul className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-1.5">
+                {OAU_DEPARTMENTS.map((dept) => (
+                  <li
+                    key={dept.code}
+                    className="inline-flex items-center gap-1.5 rounded-[10px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-medium text-[var(--text-secondary)]"
+                  >
+                    <span translate="no" className="font-mono text-[11px] font-bold text-[var(--accent)]">
+                      {dept.code}
+                    </span>
+                    <span className="text-[11px]">{dept.name}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Live 2-Level App-Frame Workspace Preview */}
@@ -155,52 +141,32 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* ==================== 2. FACT STRIP (Equal max-w-5xl edges, tabular figures) ==================== */}
+        {/* ==================== 2. FACT STRIP (Instant static tabular figures) ==================== */}
         <section className="border-y border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-7 sm:px-6">
           <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
-              <Counter
-                value={9}
-                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
-              />
-              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Lined Study Folios
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
-              <Counter
-                value={72}
-                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
-              />
-              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Server-Graded Drills
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
-              <Counter
-                value={123}
-                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
-              />
-              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Part 2 Library Files
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
-              <Counter
-                value={3}
-                className="text-2xl font-extrabold tracking-tight text-[var(--accent)]"
-              />
-              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Matched Course Textbooks
-              </p>
-            </div>
+            {FACT_STATS.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4"
+              >
+                <p
+                  className={
+                    stat.accent
+                      ? "tabular text-2xl font-extrabold tracking-tight text-[var(--accent)]"
+                      : "tabular text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
+                  }
+                >
+                  {stat.value}
+                </p>
+                <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* ==================== 3. COURSE CURRICULUM EXPLORER (Equal max-w-5xl edges) ==================== */}
+        {/* ==================== 3. COURSE CURRICULUM EXPLORER ==================== */}
         <section id="courses" className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="max-w-2xl">
             <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
@@ -217,7 +183,7 @@ export default function LandingPage() {
           <CourseCurriculumExplorer />
         </section>
 
-        {/* ==================== 4. CAPABILITIES GRID (Warm Cream Surface Contrast, Flat 1px Cards) ==================== */}
+        {/* ==================== 4. CAPABILITIES GRID ==================== */}
         <section
           id="features"
           className="border-y border-[var(--border-hairline)] bg-[var(--bg-subtle)]/65 px-4 py-12 sm:px-6 sm:py-16"
@@ -238,11 +204,12 @@ export default function LandingPage() {
                 return (
                   <article
                     key={feat.title}
-                    className="flex flex-col justify-between rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5"
+                    className="flex flex-col justify-between rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[28px] sm:p-5"
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] text-[var(--accent)]">
+                        {/* Concentric icon well: Outer 24/28px = Inner 12px + Padding 12/16px */}
+                        <span className="flex h-10 w-10 items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] text-[var(--accent)]">
                           <Icon className="h-4 w-4" aria-hidden="true" />
                         </span>
                         <Badge variant="neutral" className="font-mono">
@@ -263,7 +230,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* ==================== 5. STUDY WORKFLOW (Equal max-w-5xl 12-Col Editorial Split) ==================== */}
+        {/* ==================== 5. STUDY WORKFLOW ==================== */}
         <section id="how-it-works" className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="grid gap-6 lg:grid-cols-12 lg:items-start lg:gap-8">
             <div className="lg:col-span-4">
@@ -284,7 +251,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* ==================== 6. FAQ (Equal max-w-5xl 12-Col Editorial Split) ==================== */}
+        {/* ==================== 6. FAQ ==================== */}
         <section id="faq" className="mx-auto max-w-5xl border-t border-[var(--border-hairline)] px-4 py-12 sm:px-6 sm:py-16">
           <div className="grid gap-6 lg:grid-cols-12 lg:items-start lg:gap-8">
             <div className="lg:col-span-4">
@@ -302,9 +269,9 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* ==================== 7. OBSIDIAN CALLOUT BAND (Equal max-w-5xl edges) ==================== */}
+        {/* ==================== 7. OBSIDIAN CALLOUT BAND ==================== */}
         <section className="mx-auto max-w-5xl px-4 pb-14 sm:px-6 sm:pb-16">
-          <div className="rounded-[24px] bg-[#141413] px-5 py-10 text-center text-[#FAF9F5] sm:px-10 sm:py-12">
+          <div className="rounded-[28px] bg-[#141413] p-5 text-center text-[#FAF9F5] sm:rounded-[32px] sm:px-10 sm:py-12">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 font-mono text-xs font-semibold text-orange-300">
               <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
               Open Phase 1 Access · Zero Subscription Fee
@@ -313,21 +280,20 @@ export default function LandingPage() {
               Open your 200L coursebooks before the next test.
             </h2>
             <p className="mx-auto mt-2.5 max-w-lg text-sm leading-relaxed text-neutral-300 text-pretty">
-              Select your OAU engineering department, read all 9 lined study folios, practice 72 textbook-verified questions, and access 123 Part 2 handouts in one place.
+              Select your OAU engineering department, read all 9 lined study folios, practice 72 textbook-verified questions, and sit timed CBT papers in one place.
             </p>
-            <div className="mt-6 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:items-center sm:gap-3">
-              <Magnet strength={0.2} className="w-full sm:w-auto">
-                <Link
-                  href="/signup"
-                  className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#EA580C] px-6 text-sm font-semibold text-white hover:bg-[#C2410C] sm:w-auto"
-                >
-                  Create student account
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </Magnet>
+            {/* Concentric button tray: Outer 18px = Inner 12px + Padding 6px (p-1.5) */}
+            <div className="mx-auto mt-6 inline-flex w-full max-w-md flex-col gap-1.5 rounded-[18px] border border-white/12 bg-white/[0.04] p-1.5 sm:w-auto sm:max-w-none sm:flex-row sm:items-center">
+              <Link
+                href="/signup"
+                className="pressable inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-[12px] bg-[#EA580C] px-6 text-sm font-semibold text-white hover:bg-[#C2410C] sm:w-auto"
+              >
+                Create student account
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
               <Link
                 href="/login"
-                className="pressable inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 text-sm font-semibold text-[#FAF9F5] hover:bg-white/10 sm:w-auto"
+                className="pressable inline-flex min-h-[46px] w-full items-center justify-center rounded-[12px] border border-white/15 bg-white/5 px-6 text-sm font-semibold text-[#FAF9F5] hover:bg-white/10 sm:w-auto"
               >
                 Sign in to existing account
               </Link>
@@ -336,7 +302,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      {/* ==================== 8. EDITORIAL DARK CLOSING FOOTER (VoltAgent claude-DESIGN.md + tasteskill) ==================== */}
+      {/* ==================== 8. EDITORIAL DARK CLOSING FOOTER ==================== */}
       <footer className="border-t border-white/10 bg-[#141413] px-4 py-12 text-[#A3A098] sm:px-6">
         <div className="mx-auto max-w-5xl">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12">
@@ -360,7 +326,7 @@ export default function LandingPage() {
                 <li>
                   <Link
                     href="/courses/get-205/fluid-properties-and-hydrostatics"
-                    className="hover:text-[#FAF9F5]"
+                    className="transition-colors hover:text-[#FAF9F5]"
                   >
                     <span translate="no">GET 205</span> · Fluid Mechanics
                   </Link>
@@ -368,7 +334,7 @@ export default function LandingPage() {
                 <li>
                   <Link
                     href="/courses/get-207/forces-moments-and-equilibrium"
-                    className="hover:text-[#FAF9F5]"
+                    className="transition-colors hover:text-[#FAF9F5]"
                   >
                     <span translate="no">GET 207</span> · Applied Mechanics
                   </Link>
@@ -376,7 +342,7 @@ export default function LandingPage() {
                 <li>
                   <Link
                     href="/courses/get-209/limits-and-continuity"
-                    className="hover:text-[#FAF9F5]"
+                    className="transition-colors hover:text-[#FAF9F5]"
                   >
                     <span translate="no">GET 209</span> · Engineering Maths I
                   </Link>
@@ -390,12 +356,12 @@ export default function LandingPage() {
               </h3>
               <ul className="mt-3 space-y-2 text-xs">
                 <li>
-                  <Link href="/tests" className="hover:text-[#FAF9F5]">
+                  <Link href="/tests" className="transition-colors hover:text-[#FAF9F5]">
                     Test Center
                   </Link>
                 </li>
                 <li>
-                  <Link href="/progress" className="hover:text-[#FAF9F5]">
+                  <Link href="/progress" className="transition-colors hover:text-[#FAF9F5]">
                     Study Progress
                   </Link>
                 </li>
@@ -408,12 +374,12 @@ export default function LandingPage() {
               </h3>
               <ul className="mt-3 space-y-2 text-xs">
                 <li>
-                  <Link href="/signup" className="hover:text-[#FAF9F5]">
+                  <Link href="/signup" className="transition-colors hover:text-[#FAF9F5]">
                     Create account
                   </Link>
                 </li>
                 <li>
-                  <Link href="/login" className="hover:text-[#FAF9F5]">
+                  <Link href="/login" className="transition-colors hover:text-[#FAF9F5]">
                     Log in
                   </Link>
                 </li>

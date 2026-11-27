@@ -66,7 +66,8 @@ export default function MockExamLauncherPage() {
         </Link>
       </div>
 
-      <div className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5 sm:rounded-[26px] sm:p-8">
+      {/* Concentric launcher card: Outer 28px (12+16) mobile / 32px (12+20) sm -> inner presets, selects, CTA 12px */}
+      <div className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="accent" className="font-mono">
             {course?.code || slug.toUpperCase()} · Timed CBT Simulation
@@ -85,7 +86,7 @@ export default function MockExamLauncherPage() {
           Randomized questions pulled across all <span translate="no">{course?.code}</span> study folios (including diagram-backed textbook problems), graded on the Go server with per-topic breakdown.
         </p>
 
-        {/* Tactile Preset Cards */}
+        {/* Tactile Preset Cards (rounded-[12px] concentric with parent) */}
         <div className="mt-6">
           <p className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
             Choose an exam format
@@ -102,10 +103,10 @@ export default function MockExamLauncherPage() {
                     setMinutes(p.m);
                   }}
                   className={cn(
-                    "pressable flex flex-col items-start rounded-2xl border p-3.5 text-left cursor-pointer",
+                    "pressable flex flex-col items-start rounded-[12px] border p-3.5 text-left cursor-pointer",
                     active
                       ? "border-2 border-[var(--accent)] bg-[var(--accent-soft)]"
-                      : "border-[var(--border-hairline)] bg-[var(--bg-canvas)]"
+                      : "border-[var(--border-hairline)] bg-[var(--bg-canvas)] hover:border-[var(--border-strong)]"
                   )}
                 >
                   <span className="text-xs font-extrabold text-[var(--text-primary)]">
@@ -134,7 +135,7 @@ export default function MockExamLauncherPage() {
               name="question_count"
               value={questionCount}
               onChange={(e) => setQuestionCount(Number(e.target.value))}
-              className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
+              className="mt-1.5 min-h-[46px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
             >
               <option value={5}>5 questions</option>
               <option value={10}>10 questions</option>
@@ -152,7 +153,7 @@ export default function MockExamLauncherPage() {
               name="duration_minutes"
               value={minutes}
               onChange={(e) => setMinutes(Number(e.target.value))}
-              className="mt-1.5 min-h-[46px] w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
+              className="mt-1.5 min-h-[46px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3.5 text-[var(--text-primary)]"
             >
               <option value={8}>8 minutes</option>
               <option value={15}>15 minutes</option>
@@ -162,13 +163,13 @@ export default function MockExamLauncherPage() {
           </div>
         </div>
 
-        <ul className="mt-5 space-y-2 rounded-2xl bg-[var(--bg-canvas)] p-4 text-xs text-[var(--text-secondary)]">
+        <ul className="mt-5 space-y-2 rounded-[12px] bg-[var(--bg-canvas)] p-4 text-xs text-[var(--text-secondary)]">
           <li className="flex items-center gap-2">
-            <Timer className="h-4 w-4 shrink-0 text-[var(--accent)]" />
+            <Timer className="h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden="true" />
             Live countdown timer with question map flagging and auto-submit at 00:00.
           </li>
           <li className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 shrink-0 text-[var(--accent)]" />
+            <ShieldCheck className="h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden="true" />
             Full step-by-step worked solutions unlock immediately upon submission.
           </li>
         </ul>
@@ -182,7 +183,7 @@ export default function MockExamLauncherPage() {
           className="mt-6 w-full text-xs min-[380px]:text-sm"
         >
           {starting ? "Generating CBT paper…" : `Start ${questionCount}-question exam (${minutes} min)`}
-          {!starting && <ArrowRight className="h-4 w-4 shrink-0" />}
+          {!starting && <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />}
         </Button>
       </div>
     </div>

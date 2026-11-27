@@ -44,17 +44,17 @@ export function PrescribedTextbooks() {
             </p>
           </div>
 
-          {/* Course filter pills */}
+          {/* Concentric course filter tray: Outer 16px = Inner 12px + Padding 4px (p-1) */}
           <div className="-mx-4 overflow-x-auto px-4 pb-0.5 [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-max gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-1">
+            <div className="flex w-max gap-1 rounded-[16px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-1">
               <button
                 type="button"
                 onClick={() => setSelectedCourse("all")}
                 className={cn(
-                  "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-full px-3.5 text-xs font-semibold cursor-pointer",
+                  "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-[12px] px-3.5 text-xs font-semibold cursor-pointer",
                   selectedCourse === "all"
                     ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    : "text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                 )}
               >
                 All 3 Courses
@@ -65,10 +65,10 @@ export function PrescribedTextbooks() {
                   type="button"
                   onClick={() => setSelectedCourse(c.slug)}
                   className={cn(
-                    "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-full px-3.5 font-mono text-xs font-semibold cursor-pointer",
+                    "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-[12px] px-3.5 font-mono text-xs font-semibold cursor-pointer",
                     selectedCourse === c.slug
                       ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
-                      : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                      : "text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                   )}
                 >
                   {c.code}
@@ -82,14 +82,15 @@ export function PrescribedTextbooks() {
           {visibleBooks.map((book) => {
             const isOpen = expandedId === book.id;
             return (
+              /* Concentric book card: Outer 24px = Inner 12px + Padding 12px (p-3) */
               <article
                 key={book.id}
-                className="flex min-w-0 flex-col justify-between rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4"
+                className="flex min-w-0 flex-col justify-between rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
               >
                 <div>
                   <div className="flex items-start gap-3">
                     {/* Authentic raster PDF cover */}
-                    <div className="relative aspect-[3/4] w-16 shrink-0 overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] sm:w-20">
+                    <div className="relative aspect-[3/4] w-16 shrink-0 overflow-hidden rounded-[12px] border border-[var(--border-strong)] bg-[var(--bg-surface)] sm:w-20">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={book.coverImage}
@@ -133,7 +134,7 @@ export function PrescribedTextbooks() {
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "inline-block text-[11px] transition-transform duration-150",
+                        "inline-block text-[11px] transition-transform duration-150 ease-[var(--ease-out)]",
                         isOpen && "rotate-180"
                       )}
                     >
@@ -142,7 +143,7 @@ export function PrescribedTextbooks() {
                   </button>
 
                   {isOpen && (
-                    <ul className="mt-1.5 space-y-1.5 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 text-[11px] text-[var(--text-secondary)]">
+                    <ul className="mt-1.5 space-y-1.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 text-[11px] text-[var(--text-secondary)]">
                       {book.chapters.map((ch) => (
                         <li key={ch} className="leading-snug">
                           • {ch}
@@ -152,16 +153,16 @@ export function PrescribedTextbooks() {
                   )}
                 </div>
 
-                <div className="mt-4 grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] pt-3.5 min-[340px]:grid-cols-2">
+                <div className="mt-4 grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] pt-3 min-[340px]:grid-cols-2">
                   <Link
                     href={`/courses/${book.courseSlug}`}
-                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-full bg-[var(--ink-cta)] px-3 text-xs font-semibold text-[var(--ink-cta-text)]"
+                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-[12px] bg-[var(--ink-cta)] px-3 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
                   >
                     Study Folios →
                   </Link>
                   <Link
                     href="/tests"
-                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 text-xs font-semibold text-[var(--text-primary)]"
+                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
                   >
                     Practice Tests
                   </Link>
@@ -173,7 +174,7 @@ export function PrescribedTextbooks() {
       </section>
 
       {/* Strict Textbook Figures & Questions Showcase (Zero SVG — real cropped schematics) */}
-      <section className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-6">
+      <section className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
@@ -196,13 +197,14 @@ export function PrescribedTextbooks() {
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {visibleDrills.map((drill) => (
+            /* Concentric drill card: Outer 24px = Inner 12px + Padding 12px (p-3) */
             <article
               key={drill.id}
-              className="hover-lift flex flex-col justify-between overflow-hidden rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4"
+              className="flex flex-col justify-between overflow-hidden rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
             >
               <div>
                 {drill.figureImage && (
-                  <div className="mb-3.5 flex h-40 items-center justify-center overflow-hidden rounded-xl border border-[var(--border-hairline)] bg-white p-2.5">
+                  <div className="mb-3 flex h-40 items-center justify-center overflow-hidden rounded-[12px] border border-[var(--border-hairline)] bg-white p-2.5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={drill.figureImage}
@@ -247,7 +249,7 @@ export function PrescribedTextbooks() {
               <div className="mt-4 border-t border-[var(--border-hairline)] pt-3">
                 <Link
                   href={`/practice/${drill.topicId}`}
-                  className="pressable inline-flex min-h-[40px] w-full items-center justify-center rounded-full bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)]"
+                  className="pressable inline-flex min-h-[42px] w-full items-center justify-center rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
                 >
                   Solve textbook problem →
                 </Link>

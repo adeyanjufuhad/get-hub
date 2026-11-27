@@ -48,11 +48,11 @@ $$\frac{\partial z}{\partial x} = p, \qquad \frac{\partial z}{\partial y} = q, \
 
 </RuleBox>
 
-Geometrically, the equation $z = f(x, y)$ represents a surface in three-dimensional space. Slicing this surface with the vertical plane $y = y_0$ yields a space curve $C_1$ along which $y$ is constant; the partial derivative $\dfrac{\partial z}{\partial x}$ at $(x_0, y_0)$ is the slope of the tangent line $T_1$ to $C_1$ at $P(x_0, y_0, z_0)$. Likewise, slicing with the vertical plane $x = x_0$ produces a trace curve $C_2$ whose tangent line $T_2$ at $P$ has slope $\dfrac{\partial z}{\partial y}$.
+Geometrically, the equation $z = f(x, y)$ represents a surface $S$ in three-dimensional space. Slicing this surface with a vertical plane $y = k$ parallel to the $XZ$-plane produces a section curve $APB$ through $P(x, k, z)$ along which $y$ is constant; the partial derivative $\dfrac{\partial z}{\partial x}$ is the slope of the tangent to $APB$ at $P$. Likewise, $\dfrac{\partial z}{\partial y}$ is the slope of the tangent to the curve of intersection of $z = f(x, y)$ with a plane parallel to the $YZ$-plane.
 
 <DiagramFigure
-  src="/diagrams/get-209/partial-differentiation-and-eulers-theorem-geometric-interpretation.svg"
-  caption="Geometric interpretation of first-order partial derivatives (§1.7): holding y = y₀ constant gives the tangent slope ∂z/∂x along trace C₁; holding x = x₀ constant gives the tangent slope ∂z/∂y along trace C₂."
+  src="/diagrams/get-209/partial-differentiation-and-eulers-theorem-geometric-interpretation.png"
+  caption="H. K. Dass §1.19 — Geometrical interpretation of ∂z/∂x and ∂z/∂y: vertical plane y = k cutting the surface z = f(x, y) along curve APB through P(x, k, z)."
 />
 
 <StepRevealExample
@@ -250,11 +250,6 @@ Consider the two ways to express $r$ in terms of $x$:
 
 The two results ($\sec\theta$ versus $\cos\theta$) differ because holding $\theta$ fixed moves the point along a radial ray, whereas holding $y$ fixed moves the point horizontally.
 
-<DiagramFigure
-  src="/diagrams/get-209/partial-differentiation-and-eulers-theorem-polar-constant-variable.svg"
-  caption="Geometric contrast in §1.9 for x = r cos θ, y = r sin θ: (i) holding θ constant yields (∂r/∂x)_θ = sec θ; (ii) holding y constant yields (∂r/∂x)_y = cos θ."
-/>
-
 <RuleBox kind="working-rule" title="§1.9 Subscript convention for held variables">
 
 To eliminate ambiguity when multiple coordinate systems appear:
@@ -393,11 +388,6 @@ $$x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} + z\frac{\part
 **Proof.** Since $z$ is homogeneous of degree $n$, Euler's theorem gives $x\dfrac{\partial z}{\partial x} + y\dfrac{\partial z}{\partial y} = nz$. Substituting $z = f(u)$, $\dfrac{\partial z}{\partial x} = f'(u)\dfrac{\partial u}{\partial x}$, and $\dfrac{\partial z}{\partial y} = f'(u)\dfrac{\partial u}{\partial y}$ yields
 
 $$x f'(u)\frac{\partial u}{\partial x} + y f'(u)\frac{\partial u}{\partial y} = n f(u) \implies x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = n\frac{f(u)}{f'(u)}. \qquad \blacksquare$$
-
-<DiagramFigure
-  src="/diagrams/get-209/partial-differentiation-and-eulers-theorem-euler-workflow.svg"
-  caption="Decision workflow for §1.10–1.11: distinguish directly homogeneous functions from composite functions z = f(u), then select the matching first- or second-order Euler identity."
-/>
 
 <StepRevealExample
   title="Example 20 (§1.11)"

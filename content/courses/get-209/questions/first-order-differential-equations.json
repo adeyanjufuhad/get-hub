@@ -11,138 +11,268 @@
       "solution": "First clear the fractional exponent $3/2$ by squaring both sides:\n\n$$\\left[1 + \\left(\\frac{dy}{dx}\\right)^2\\right]^3 = \\left(\\frac{d^2y}{dx^2}\\right)^2.$$\n\nThe highest-order derivative is $\\dfrac{d^2y}{dx^2}$ (order $2$), and its exponent after removing radicals is **$2$**. Hence the degree is $2$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 3, Exercise 3.1, Q1(ii)",
-      "tags": ["order-and-degree"]
+      "tags": [
+        "order-and-degree"
+      ]
     },
     {
       "key": "ex-3-1-q1-iii-order-and-degree",
       "type": "mcq",
       "prompt": "What are the **order** and **degree** of the differential equation $x^2\\left(\\dfrac{d^2y}{dx^2}\\right)^3 + y\\left(\\dfrac{dy}{dx}\\right)^4 + y^4 = 0$?",
       "options": [
-        { "label": "A", "text": "Order $2$, degree $4$", "correct": false },
-        { "label": "B", "text": "Order $2$, degree $3$", "correct": true },
-        { "label": "C", "text": "Order $3$, degree $2$", "correct": false },
-        { "label": "D", "text": "Order $4$, degree $2$", "correct": false }
+        {
+          "label": "A",
+          "text": "Order $2$, degree $4$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "Order $2$, degree $3$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "Order $3$, degree $2$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "Order $4$, degree $2$",
+          "correct": false
+        }
       ],
       "solution": "The equation is already a polynomial in all derivatives (free of radicals and fractions). The highest-order derivative present is $\\dfrac{d^2y}{dx^2}$, so the **order is $2$**. Its power is $3$ (the higher power $4$ on the lower derivative $\\dfrac{dy}{dx}$ does not determine the degree). Hence **order $2$, degree $3$**.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 3, Exercise 3.1, Q1(iii)",
-      "tags": ["order-and-degree"]
+      "tags": [
+        "order-and-degree"
+      ]
     },
     {
       "key": "ex-3-1-q5-form-ode-exponentials",
       "type": "mcq",
       "prompt": "Find the differential equation formed by eliminating the arbitrary constants $a$ and $b$ from $y = a e^{3x} + b e^{x}$.",
       "options": [
-        { "label": "A", "text": "$\\dfrac{d^2y}{dx^2} + 4\\dfrac{dy}{dx} + 3y = 0$", "correct": false },
-        { "label": "B", "text": "$\\dfrac{d^2y}{dx^2} - 4\\dfrac{dy}{dx} + 3y = 0$", "correct": true },
-        { "label": "C", "text": "$\\dfrac{d^2y}{dx^2} - 3\\dfrac{dy}{dx} + 4y = 0$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{d^2y}{dx^2} - 4\\dfrac{dy}{dx} - 3y = 0$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{d^2y}{dx^2} + 4\\dfrac{dy}{dx} + 3y = 0$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{d^2y}{dx^2} - 4\\dfrac{dy}{dx} + 3y = 0$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{d^2y}{dx^2} - 3\\dfrac{dy}{dx} + 4y = 0$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{d^2y}{dx^2} - 4\\dfrac{dy}{dx} - 3y = 0$",
+          "correct": false
+        }
       ],
       "solution": "Differentiating $y = a e^{3x} + b e^x$ twice:\n\n$$y' = 3a e^{3x} + b e^x, \\qquad y'' = 9a e^{3x} + b e^x.$$\n\nSubtracting $y$ from $y'$ gives $y' - y = 2a e^{3x}$. Subtracting $y'$ from $y''$ gives $y'' - y' = 6a e^{3x} = 3(y' - y)$. Rearranging yields:\n\n$$\\frac{d^2y}{dx^2} - 4\\frac{dy}{dx} + 3y = 0.$$",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 3, Exercise 3.1, Q5",
-      "tags": ["formation-of-ode"]
+      "tags": [
+        "formation-of-ode"
+      ]
     },
     {
       "key": "ex-3-1-q6-form-ode-exp-trig",
       "type": "mcq",
       "prompt": "By eliminating the arbitrary constants $A$ and $B$, obtain the differential equation whose primitive is $y = e^x(A\\cos x + B\\sin x)$.",
       "options": [
-        { "label": "A", "text": "$\\dfrac{d^2y}{dx^2} - 2\\dfrac{dy}{dx} + 2y = 0$", "correct": true },
-        { "label": "B", "text": "$\\dfrac{d^2y}{dx^2} + 2\\dfrac{dy}{dx} + 2y = 0$", "correct": false },
-        { "label": "C", "text": "$\\dfrac{d^2y}{dx^2} - 2\\dfrac{dy}{dx} - 2y = 0$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{d^2y}{dx^2} + 2y = 0$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{d^2y}{dx^2} - 2\\dfrac{dy}{dx} + 2y = 0$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{d^2y}{dx^2} + 2\\dfrac{dy}{dx} + 2y = 0$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{d^2y}{dx^2} - 2\\dfrac{dy}{dx} - 2y = 0$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{d^2y}{dx^2} + 2y = 0$",
+          "correct": false
+        }
       ],
       "solution": "Differentiate $y = e^x(A\\cos x + B\\sin x)$:\n\n$$y' = e^x(A\\cos x + B\\sin x) + e^x(-A\\sin x + B\\cos x) = y + e^x(-A\\sin x + B\\cos x).$$\n\nHence $y' - y = e^x(-A\\sin x + B\\cos x)$. Differentiating again:\n\n$$y'' - y' = e^x(-A\\sin x + B\\cos x) + e^x(-A\\cos x - B\\sin x) = (y' - y) - y.$$\n\nSimplifying gives $\\dfrac{d^2y}{dx^2} - 2\\dfrac{dy}{dx} + 2y = 0$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 3, Exercise 3.1, Q6",
-      "tags": ["formation-of-ode"]
+      "tags": [
+        "formation-of-ode"
+      ]
     },
     {
       "key": "ex-3-2-q5-separable-ivp-value",
       "type": "numeric",
       "prompt": "Solve the separable equation $(1 + x^2)\\,dy - xy\\,dx = 0$ subject to the initial condition $y(0) = 1$, and evaluate $y(\\sqrt{3})$.",
-      "image": "/diagrams/get-209/first-order-differential-equations-integral-curves.svg",
       "answer": 2,
       "tolerancePct": 1,
       "unit": "",
       "solution": "Separate the variables:\n\n$$\\frac{dy}{y} = \\frac{x\\,dx}{1 + x^2}.$$\n\nIntegrating both sides gives $\\log y = \\frac{1}{2}\\log(1 + x^2) + \\log c \\implies y^2 = C(1 + x^2)$. Applying $y(0) = 1$ gives $1 = C(1 + 0) \\implies C = 1$, so the particular solution (taking the positive branch through $(0,1)$) is $y = \\sqrt{1 + x^2}$. At $x = \\sqrt{3}$:\n\n$$y(\\sqrt{3}) = \\sqrt{1 + 3} = 2.$$",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 3, Exercise 3.2, Q5",
-      "tags": ["variables-separable"]
+      "tags": [
+        "variables-separable"
+      ]
     },
     {
       "key": "ex-3-2-q9-separable-exponential",
       "type": "mcq",
       "prompt": "Find the general solution of $\\dfrac{dy}{dx} = e^{x - y} + x^2 e^{-y}$.",
       "options": [
-        { "label": "A", "text": "$e^{-y} = e^x + \\dfrac{x^3}{3} + C$", "correct": false },
-        { "label": "B", "text": "$e^y = e^x + \\dfrac{x^3}{3} + C$", "correct": true },
-        { "label": "C", "text": "$y = e^x + \\dfrac{x^3}{3} + C$", "correct": false },
-        { "label": "D", "text": "$e^y = e^x + x^3 + C$", "correct": false }
+        {
+          "label": "A",
+          "text": "$e^{-y} = e^x + \\dfrac{x^3}{3} + C$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$e^y = e^x + \\dfrac{x^3}{3} + C$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$y = e^x + \\dfrac{x^3}{3} + C$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$e^y = e^x + x^3 + C$",
+          "correct": false
+        }
       ],
       "solution": "Factor $e^{-y}$ on the right-hand side:\n\n$$\\frac{dy}{dx} = e^{-y}(e^x + x^2) \\implies e^y\\,dy = (e^x + x^2)\\,dx.$$\n\nIntegrating both sides yields $e^y = e^x + \\dfrac{x^3}{3} + C$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 3, Exercise 3.2, Q9",
-      "tags": ["variables-separable"]
+      "tags": [
+        "variables-separable"
+      ]
     },
     {
       "key": "ex-3-3-q2-homogeneous-equation",
       "type": "mcq",
       "prompt": "Find the general solution of the homogeneous equation $(x^2 - y^2)\\,dx + 2xy\\,dy = 0$.",
       "options": [
-        { "label": "A", "text": "$x^2 - y^2 = ax$", "correct": false },
-        { "label": "B", "text": "$x^2 + y^2 = ay$", "correct": false },
-        { "label": "C", "text": "$x^2 + y^2 = ax$", "correct": true },
-        { "label": "D", "text": "$x^2 + y^2 = a$", "correct": false }
+        {
+          "label": "A",
+          "text": "$x^2 - y^2 = ax$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$x^2 + y^2 = ay$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$x^2 + y^2 = ax$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$x^2 + y^2 = a$",
+          "correct": false
+        }
       ],
       "solution": "Rewrite as $\\dfrac{dy}{dx} = \\dfrac{y^2 - x^2}{2xy}$. Put $y = vx$ so $\\dfrac{dy}{dx} = v + x\\dfrac{dv}{dx}$:\n\n$$v + x\\frac{dv}{dx} = \\frac{v^2 - 1}{2v} \\implies x\\frac{dv}{dx} = -\\frac{v^2 + 1}{2v} \\implies \\frac{2v}{v^2 + 1}\\,dv = -\\frac{dx}{x}.$$\n\nIntegrating gives $\\log(v^2 + 1) = -\\log x + \\log a \\implies x(v^2 + 1) = a$. Substituting $v = y/x$ yields $x^2 + y^2 = ax$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 3, Exercise 3.3, Q2 (A.M.I.E.T.E., June 2009)",
-      "tags": ["homogeneous-ode"]
+      "tags": [
+        "homogeneous-ode"
+      ]
     },
     {
       "key": "ex-3-3-q17-homogeneous-radical",
       "type": "mcq",
       "prompt": "Solve the homogeneous differential equation $\\dfrac{dy}{dx} = \\dfrac{y + \\sqrt{x^2 + y^2}}{x}$ ($x > 0$).",
       "options": [
-        { "label": "A", "text": "$y + \\sqrt{x^2 + y^2} = Cx$", "correct": false },
-        { "label": "B", "text": "$y + \\sqrt{x^2 + y^2} = Cx^2$", "correct": true },
-        { "label": "C", "text": "$x + \\sqrt{x^2 + y^2} = Cy^2$", "correct": false },
-        { "label": "D", "text": "$\\sqrt{x^2 + y^2} - y = Cx^2$", "correct": false }
+        {
+          "label": "A",
+          "text": "$y + \\sqrt{x^2 + y^2} = Cx$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$y + \\sqrt{x^2 + y^2} = Cx^2$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$x + \\sqrt{x^2 + y^2} = Cy^2$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\sqrt{x^2 + y^2} - y = Cx^2$",
+          "correct": false
+        }
       ],
       "solution": "Put $y = vx$, so $\\dfrac{dy}{dx} = v + x\\dfrac{dv}{dx}$:\n\n$$v + x\\frac{dv}{dx} = v + \\sqrt{1 + v^2} \\implies \\frac{dv}{\\sqrt{1 + v^2}} = \\frac{dx}{x}.$$\n\nIntegrating gives $\\log(v + \\sqrt{1 + v^2}) = \\log x + \\log C \\implies v + \\sqrt{1 + v^2} = Cx$. Replacing $v = y/x$ and multiplying by $x$ yields $y + \\sqrt{x^2 + y^2} = Cx^2$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 3, Exercise 3.3, Q17",
-      "tags": ["homogeneous-ode"]
+      "tags": [
+        "homogeneous-ode"
+      ]
     },
     {
       "key": "ex-3-4-q1-origin-shift-hk",
       "type": "numeric",
       "prompt": "To reduce $\\dfrac{dy}{dx} = \\dfrac{2x + 9y - 20}{6x + 2y - 10}$ to homogeneous form via the origin shift $x = X + h,\\; y = Y + k$, find the sum $h + k$.",
-      "image": "/diagrams/get-209/first-order-differential-equations-origin-shift.svg",
       "answer": 3,
       "tolerancePct": 0,
       "unit": "",
       "solution": "Since $\\dfrac{2}{6} \\neq \\dfrac{9}{2}$, Case I of §3.8 applies. Choose $h$ and $k$ so that both constant terms vanish:\n\n$$2h + 9k - 20 = 0, \\qquad 6h + 2k - 10 = 0.$$\n\nFrom the second equation $3h + k = 5 \\implies k = 5 - 3h$. Substituting into the first: $2h + 9(5 - 3h) = 20 \\implies -25h = -25 \\implies h = 1$, and $k = 5 - 3(1) = 2$. Therefore $h + k = 1 + 2 = 3$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 3, Exercise 3.4, Q1",
-      "tags": ["reducible-to-homogeneous"]
+      "tags": [
+        "reducible-to-homogeneous"
+      ]
     },
     {
       "key": "ex-3-4-q7-reducible-case-ii",
       "type": "mcq",
       "prompt": "Find the general solution of $(x - y - 2)\\,dx - (2x - 2y - 3)\\,dy = 0$.",
       "options": [
-        { "label": "A", "text": "$\\log(x - y - 1) = x - 2y + C$", "correct": true },
-        { "label": "B", "text": "$\\log(x - y - 1) = 2x - y + C$", "correct": false },
-        { "label": "C", "text": "$\\log(x + y - 1) = x - 2y + C$", "correct": false },
-        { "label": "D", "text": "$x - y - 1 = C(x - 2y)$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\log(x - y - 1) = x - 2y + C$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$\\log(x - y - 1) = 2x - y + C$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$\\log(x + y - 1) = x - 2y + C$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$x - y - 1 = C(x - 2y)$",
+          "correct": false
+        }
       ],
       "solution": "Here $\\dfrac{dy}{dx} = \\dfrac{x - y - 2}{2(x - y) - 3}$, which falls under Case II ($a/A = b/B = 1/2$). Put $z = x - y$, so $dx = dz + dy$:\n\n$$(z - 2)(dz + dy) - (2z - 3)\\,dy = 0 \\implies (z - 2)\\,dz = (z - 1)\\,dy.$$\n\nSeparating variables: $\\left(1 - \\dfrac{1}{z - 1}\\right)dz = dy \\implies z - \\log(z - 1) = y + C'$. Substituting $z = x - y$ gives $\\log(x - y - 1) = x - 2y + C$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 3, Exercise 3.4, Q7 (U.P. B. Pharm C.O. 2005)",
-      "tags": ["reducible-to-homogeneous"]
+      "tags": [
+        "reducible-to-homogeneous"
+      ]
     },
     {
       "key": "ex-3-5-q14-linear-ivp",
@@ -154,7 +284,9 @@
       "solution": "Here $P = \\tan x$ and $Q = \\cos x$. The integrating factor is:\n\n$$\\text{I.F.} = e^{\\int \\tan x\\,dx} = e^{\\log\\sec x} = \\sec x.$$\n\nHence $y\\sec x = \\int \\cos x\\cdot\\sec x\\,dx + C = \\int 1\\,dx + C = x + C$. Using $y(0) = 0$ gives $0 = 0 + C \\implies C = 0$, so $y = x\\cos x$. Evaluating at $x = \\pi/3$:\n\n$$y\\!\\left(\\frac{\\pi}{3}\\right) = \\frac{\\pi}{3}\\cos\\frac{\\pi}{3} = \\frac{\\pi}{3}\\cdot\\frac{1}{2} = \\frac{\\pi}{6} \\approx 0.5236.$$",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 3, Exercise 3.5, Q14 (A.M.I.E.T.E., June 2006)",
-      "tags": ["linear-ode"]
+      "tags": [
+        "linear-ode"
+      ]
     },
     {
       "key": "ex-3-5-q18-if-parameter-alpha",
@@ -166,68 +298,142 @@
       "solution": "Rewrite the equation as a first-order linear ODE in $x$:\n\n$$\\frac{dx}{dy} + y x = e^{-y^2/2}.$$\n\nHere $P(y) = y$, so the integrating factor is:\n\n$$\\text{I.F.} = e^{\\int y\\,dy} = e^{y^2/2}.$$\n\nComparing with $e^{\\alpha y^2}$ gives $\\alpha = \\dfrac{1}{2} = 0.5$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 3, Exercise 3.5, Q18 (A.M.I.E.T.E., Dec. 2005)",
-      "tags": ["linear-ode", "integrating-factor"]
+      "tags": [
+        "linear-ode",
+        "integrating-factor"
+      ]
     },
     {
       "key": "ex-3-5-q19-amiete-substitution",
       "type": "mcq",
       "prompt": "The solution of the differential equation $(y + x)^2\\dfrac{dy}{dx} = a^2$ is given by:",
       "options": [
-        { "label": "A", "text": "$y + x = a\\tan\\left(\\dfrac{y - c}{a}\\right)$", "correct": true },
-        { "label": "B", "text": "$y - x = \\tan\\left(\\dfrac{y - c}{a}\\right)$", "correct": false },
-        { "label": "C", "text": "$y - x = a\\tan(y - c)$", "correct": false },
-        { "label": "D", "text": "$a(y - x) = \\tan\\left(y - \\dfrac{c}{a}\\right)$", "correct": false }
+        {
+          "label": "A",
+          "text": "$y + x = a\\tan\\left(\\dfrac{y - c}{a}\\right)$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$y - x = \\tan\\left(\\dfrac{y - c}{a}\\right)$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$y - x = a\\tan(y - c)$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$a(y - x) = \\tan\\left(y - \\dfrac{c}{a}\\right)$",
+          "correct": false
+        }
       ],
       "solution": "Put $y + x = v$, so $\\dfrac{dy}{dx} = \\dfrac{dv}{dx} - 1$. Then $v^2\\left(\\dfrac{dv}{dx} - 1\\right) = a^2 \\implies \\dfrac{dv}{dx} = \\dfrac{v^2 + a^2}{v^2}$. Separating variables:\n\n$$\\frac{v^2}{v^2 + a^2}\\,dv = dx \\implies \\left(1 - \\frac{a^2}{v^2 + a^2}\\right)dv = dx.$$\n\nIntegrating: $v - a\\tan^{-1}\\dfrac{v}{a} = x + c \\implies y - c = a\\tan^{-1}\\dfrac{y+x}{a} \\implies y + x = a\\tan\\left(\\dfrac{y - c}{a}\\right)$.",
       "difficulty": "hard",
       "source": "H. K. Dass, Ch. 3, Exercise 3.5, Q19 (A.M.I.E.T.E., June 2010)",
-      "tags": ["variables-separable"]
+      "tags": [
+        "variables-separable"
+      ]
     },
     {
       "key": "ex-3-6-q22-bernoulli-equation",
       "type": "mcq",
       "prompt": "Solve the Bernoulli differential equation $3\\dfrac{dy}{dx} + xy = x y^{-2}$.",
       "options": [
-        { "label": "A", "text": "$y^3 = 1 + C e^{x^2/2}$", "correct": false },
-        { "label": "B", "text": "$y^3 = 1 + C e^{-x^2/2}$", "correct": true },
-        { "label": "C", "text": "$y^2 = 1 + C e^{-x^2/2}$", "correct": false },
-        { "label": "D", "text": "$y^{-3} = 1 + C e^{-x^2/2}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$y^3 = 1 + C e^{x^2/2}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$y^3 = 1 + C e^{-x^2/2}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$y^2 = 1 + C e^{-x^2/2}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$y^{-3} = 1 + C e^{-x^2/2}$",
+          "correct": false
+        }
       ],
       "solution": "Multiply both sides by $y^2$: $3y^2\\dfrac{dy}{dx} + x y^3 = x$. Put $z = y^3$, so $\\dfrac{dz}{dx} = 3y^2\\dfrac{dy}{dx}$. The ODE becomes linear:\n\n$$\\frac{dz}{dx} + xz = x.$$\n\nHere $\\text{I.F.} = e^{\\int x\\,dx} = e^{x^2/2}$, so $z e^{x^2/2} = \\int x e^{x^2/2}\\,dx + C = e^{x^2/2} + C$. Dividing by $e^{x^2/2}$ and restoring $z = y^3$ gives $y^3 = 1 + C e^{-x^2/2}$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 3, Exercise 3.6, Q22 (A.M.I.E.T.E., June 2009)",
-      "tags": ["bernoulli-equation"]
+      "tags": [
+        "bernoulli-equation"
+      ]
     },
     {
       "key": "ex-3-6-q23-linear-in-x-general-solution",
       "type": "mcq",
       "prompt": "The general solution of the first-order linear differential equation $\\dfrac{dx}{dy} + Px = Q$ (where $P$ and $Q$ are constants or functions of $y$) is:",
       "options": [
-        { "label": "A", "text": "$y e^{\\int P\\,dx} = \\int Q e^{\\int P\\,dx}\\,dx + c$", "correct": false },
-        { "label": "B", "text": "$x e^{\\int P\\,dy} = \\int Q e^{\\int P\\,dy}\\,dy + c$", "correct": true },
-        { "label": "C", "text": "$y = \\int Q e^{\\int P\\,dx}\\,dx + c$", "correct": false },
-        { "label": "D", "text": "$x = \\int Q e^{\\int P\\,dy}\\,dy + c$", "correct": false }
+        {
+          "label": "A",
+          "text": "$y e^{\\int P\\,dx} = \\int Q e^{\\int P\\,dx}\\,dx + c$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$x e^{\\int P\\,dy} = \\int Q e^{\\int P\\,dy}\\,dy + c$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$y = \\int Q e^{\\int P\\,dx}\\,dx + c$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$x = \\int Q e^{\\int P\\,dy}\\,dy + c$",
+          "correct": false
+        }
       ],
       "solution": "For $\\dfrac{dx}{dy} + P(y)x = Q(y)$, $x$ is the dependent variable and $y$ is the independent variable. Multiplying by $\\text{I.F.} = e^{\\int P\\,dy}$ turns the left side into $\\dfrac{d}{dy}\\left(x e^{\\int P\\,dy}\\right)$, so integrating with respect to $y$ yields $x e^{\\int P\\,dy} = \\int Q e^{\\int P\\,dy}\\,dy + c$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 3, Exercise 3.6, Q23 (A.M.I.E.T.E., June 2010)",
-      "tags": ["linear-ode"]
+      "tags": [
+        "linear-ode"
+      ]
     },
     {
       "key": "ex-3-7-q12-exactness-condition",
       "type": "mcq",
       "prompt": "The differential equation $M(x,y)\\,dx + N(x,y)\\,dy = 0$ is an **exact** differential equation if and only if:",
-      "image": "/diagrams/get-209/first-order-differential-equations-if-rules-matrix.svg",
       "options": [
-        { "label": "A", "text": "$\\dfrac{\\partial M}{\\partial y} + \\dfrac{\\partial N}{\\partial x} = 0$", "correct": false },
-        { "label": "B", "text": "$\\dfrac{\\partial M}{\\partial y} - \\dfrac{\\partial N}{\\partial x} = 0$", "correct": true },
-        { "label": "C", "text": "$\\dfrac{\\partial M}{\\partial y} \\times \\dfrac{\\partial N}{\\partial x} = 1$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{\\partial M}{\\partial x} - \\dfrac{\\partial N}{\\partial y} = 0$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{\\partial M}{\\partial y} + \\dfrac{\\partial N}{\\partial x} = 0$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{\\partial M}{\\partial y} - \\dfrac{\\partial N}{\\partial x} = 0$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{\\partial M}{\\partial y} \\times \\dfrac{\\partial N}{\\partial x} = 1$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{\\partial M}{\\partial x} - \\dfrac{\\partial N}{\\partial y} = 0$",
+          "correct": false
+        }
       ],
       "solution": "By §3.11, $M\\,dx + N\\,dy = 0$ is exact if and only if $\\dfrac{\\partial M}{\\partial y} = \\dfrac{\\partial N}{\\partial x}$, which is equivalently written as $\\dfrac{\\partial M}{\\partial y} - \\dfrac{\\partial N}{\\partial x} = 0$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 3, Exercise 3.7, Q12 (A.M.I.E.T.E., Dec. 2010, Dec. 2006)",
-      "tags": ["exact-ode"]
+      "tags": [
+        "exact-ode"
+      ]
     },
     {
       "key": "ex-3-11-q1-rule-iv-exponents",
@@ -239,22 +445,44 @@
       "solution": "Compare with $x^m y^n(ay\\,dx + bx\\,dy) + x^{m'}y^{n'}(a'y\\,dx + b'x\\,dy) = 0$: here $m = 0, n = 0, a = 2, b = 3$ and $m' = 1, n' = 1, a' = 6, b' = 8$ (or equivalently $a' = 3, b' = 4$). Rule IV gives:\n\n$$\\frac{0 + h + 1}{2} = \\frac{0 + k + 1}{3} \\implies 3h - 2k = -1,$$\n$$\\frac{1 + h + 1}{3} = \\frac{1 + k + 1}{4} \\implies 4h - 3k = -2.$$\n\nSolving simultaneously gives $h = 1$ and $k = 2$ (so $\\text{I.F.} = xy^2$). Thus $h + k = 1 + 2 = 3$.",
       "difficulty": "hard",
       "source": "H. K. Dass, Ch. 3, Exercise 3.11, Q1",
-      "tags": ["integrating-factor", "reducible-to-exact"]
+      "tags": [
+        "integrating-factor",
+        "reducible-to-exact"
+      ]
     },
     {
       "key": "ex-3-12-q1-rule-v-homogeneous-if",
       "type": "mcq",
       "prompt": "Apply Rule V (§3.12) to find the general solution of the homogeneous non-exact equation $x^2 y\\,dx - (x^3 + y^3)\\,dy = 0$.",
       "options": [
-        { "label": "A", "text": "$\\dfrac{x^3}{3y^3} + \\log y = c$", "correct": false },
-        { "label": "B", "text": "$-\\dfrac{x^3}{3y^3} + \\log y = c$", "correct": true },
-        { "label": "C", "text": "$-\\dfrac{x^3}{3y^3} + \\log x = c$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{y^3}{3x^3} - \\log x = c$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{x^3}{3y^3} + \\log y = c$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-\\dfrac{x^3}{3y^3} + \\log y = c$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$-\\dfrac{x^3}{3y^3} + \\log x = c$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{y^3}{3x^3} - \\log x = c$",
+          "correct": false
+        }
       ],
       "solution": "Here $M = x^2 y$ and $N = -(x^3 + y^3)$ are homogeneous of degree $3$. Compute:\n\n$$Mx + Ny = x^3 y - x^3 y - y^4 = -y^4 \\neq 0, \\implies \\text{I.F.} = -\\frac{1}{y^4}.$$\n\nMultiplying by $-\\dfrac{1}{y^4}$ gives the exact equation $-\\dfrac{x^2}{y^3}\\,dx + \\left(\\dfrac{x^3}{y^4} + \\dfrac{1}{y}\\right)dy = 0$. Integrating $M$ w.r.t. $x$ (holding $y$ constant) plus the $x$-free term $\\dfrac{1}{y}$ of $N$ w.r.t. $y$ yields:\n\n$$-\\frac{x^3}{3y^3} + \\log y = c.$$",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 3, Exercise 3.12, Q1",
-      "tags": ["integrating-factor", "reducible-to-exact"]
+      "tags": [
+        "integrating-factor",
+        "reducible-to-exact"
+      ]
     }
   ]
 }

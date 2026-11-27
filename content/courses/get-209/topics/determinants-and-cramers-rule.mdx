@@ -118,11 +118,6 @@ $$\Delta = \sum_{c=1}^{n} a_{rc} A_{rc} = \sum_{r=1}^{n} a_{rc} A_{rc}.$$
 
 </RuleBox>
 
-<DiagramFigure
-  src="/diagrams/get-209/determinants-and-cramers-rule-cofactor-signs.svg"
-  caption="Left: Deleting Row 1 and Column 2 isolates the 2×2 minor M₁₂. Right: Alternating cofactor sign chessboards (−1)^(r+c) for orders 3 and 4."
-/>
-
 <StepRevealExample
   title="Example 2 (§4.5)"
   source="H. K. Dass, Ch. 4, Example 2"
@@ -194,8 +189,8 @@ Write columns $C_1$ and $C_2$ again to the right of $C_3$:
 </RuleBox>
 
 <DiagramFigure
-  src="/diagrams/get-209/determinants-and-cramers-rule-sarrus-rule.svg"
-  caption="H. K. Dass §4.6 (redrawn) — Sarrus' diagonal schematic for a 3rd-order determinant: cobalt downward-right products add, crimson downward-left products subtract."
+  src="/diagrams/get-209/determinants-and-cramers-rule-sarrus-rule.png"
+  caption="H. K. Dass §4.6 — Rule of Sarrus for a third-order determinant: downward-right diagonals are added (+) and downward-left diagonals are subtracted (−)."
 />
 
 <StepRevealExample
@@ -507,11 +502,6 @@ $$\begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix} 
 
 </RuleBox>
 
-<DiagramFigure
-  src="/diagrams/get-209/determinants-and-cramers-rule-triangle-area.svg"
-  caption="Left: Signed triangle area Δ = ½|det| from vertex coordinates. Right: Three collinear points enclose zero area (det = 0)."
-/>
-
 <StepRevealExample
   title="Example 52 (§4.13)"
   source="H. K. Dass, Ch. 4, Example 52"
@@ -683,8 +673,13 @@ For a general **non-homogeneous** system $a_i x + b_i y + c_i z = d_i$ ($i = 1, 
 </RuleBox>
 
 <DiagramFigure
-  src="/diagrams/get-209/determinants-and-cramers-rule-consistency-trees.svg"
-  caption="H. K. Dass §4.16–4.17 (redrawn) — Decision trees classifying homogeneous (top) and non-homogeneous (bottom) linear systems via D, D₁, D₂, D₃."
+  src="/diagrams/get-209/determinants-and-cramers-rule-consistency-homogeneous.png"
+  caption="H. K. Dass §4.16 — Consistency decision tree for a system of three simultaneous homogeneous linear equations."
+/>
+
+<DiagramFigure
+  src="/diagrams/get-209/determinants-and-cramers-rule-consistency-three-unknowns.png"
+  caption="H. K. Dass §4.17 — Consistency decision tree for a system of three simultaneous non-homogeneous linear equations via D, D₁, D₂, D₃."
 />
 
 <StepRevealExample

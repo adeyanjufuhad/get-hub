@@ -5,14 +5,17 @@
       "key": "ex-5-1-q1-parallelepiped-volume",
       "type": "numeric",
       "prompt": "Find the volume of the parallelepiped whose three coterminous edges extending from the origin $O$ are $\\overrightarrow{OA} = 3\\hat{i} - \\hat{j}$, $\\overrightarrow{OB} = \\hat{j} + 2\\hat{k}$, and $\\overrightarrow{OC} = \\hat{i} + 5\\hat{j} + 4\\hat{k}$.",
-      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-parallelepiped.svg",
+      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-parallelepiped.png",
       "answer": 20,
       "tolerancePct": 1,
       "unit": "",
       "solution": "The volume of the parallelepiped is the absolute value of the scalar triple product $[\\overrightarrow{OA}\\;\\overrightarrow{OB}\\;\\overrightarrow{OC}]$:\n$$\\begin{vmatrix} 3 & -1 & 0 \\\\ 0 & 1 & 2 \\\\ 1 & 5 & 4 \\end{vmatrix} = 3(4 - 10) - (-1)(0 - 2) + 0 = -18 - 2 = -20.$$\nTaking the magnitude gives $V = |-20| = 20$ cubic units.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Exercise 5.1, Q1",
-      "tags": ["scalar-triple-product", "volume"]
+      "tags": [
+        "scalar-triple-product",
+        "volume"
+      ]
     },
     {
       "key": "ex-5-1-q3-linearly-dependent",
@@ -24,7 +27,10 @@
       "solution": "Three vectors in $\\mathbb{R}^3$ are linearly dependent if and only if their scalar triple product vanishes:\n$$\\begin{vmatrix} 7 & y & 1 \\\\ 3 & 2 & 1 \\\\ 5 & 3 & 1 \\end{vmatrix} = 0.$$\nExpanding along the first row:\n$$7(2 - 3) - y(3 - 5) + 1(9 - 10) = -7 + 2y - 1 = 2y - 8 = 0 \\implies y = 4.$$",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Exercise 5.1, Q3",
-      "tags": ["coplanarity", "scalar-triple-product"]
+      "tags": [
+        "coplanarity",
+        "scalar-triple-product"
+      ]
     },
     {
       "key": "ex-5-2-q3-coplanar-constant-a",
@@ -36,7 +42,9 @@
       "solution": "Set the determinant of the three vectors equal to zero:\n$$\\begin{vmatrix} 2 & -1 & 1 \\\\ 1 & 2 & -3 \\\\ 3 & a & 5 \\end{vmatrix} = 0.$$\nExpanding along the first row:\n$$2(10 + 3a) - (-1)(5 + 9) + 1(a - 6) = 20 + 6a + 14 + a - 6 = 7a + 28 = 0 \\implies a = -4.$$",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Exercise 5.2, Q3",
-      "tags": ["coplanarity"]
+      "tags": [
+        "coplanarity"
+      ]
     },
     {
       "key": "ex-5-4-q1-quadruple-scalar-product",
@@ -48,35 +56,61 @@
       "solution": "By Lagrange's identity (§5.20), $(\\vec{a}\\times\\vec{b})\\cdot(\\vec{a}\\times\\vec{c}) = (\\vec{a}\\cdot\\vec{a})(\\vec{b}\\cdot\\vec{c}) - (\\vec{a}\\cdot\\vec{b})(\\vec{a}\\cdot\\vec{c})$.\nCompute the dot products:\n- $\\vec{a}\\cdot\\vec{a} = 4 + 9 + 1 = 14$\n- $\\vec{b}\\cdot\\vec{c} = -1 + 2 - 4 = -3$\n- $\\vec{a}\\cdot\\vec{b} = -2 + 6 + 4 = 8$\n- $\\vec{a}\\cdot\\vec{c} = 2 + 3 - 1 = 4$\nSubstituting gives $14(-3) - (8)(4) = -42 - 32 = -74$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 5, Exercise 5.4, Q1",
-      "tags": ["quadruple-product", "lagrange-identity"]
+      "tags": [
+        "quadruple-product",
+        "lagrange-identity"
+      ]
     },
     {
       "key": "ex-5-6-q1-particle-speed",
       "type": "numeric",
       "prompt": "The coordinates of a moving particle are $x = 4t - \\dfrac{t^2}{2}$ and $y = 3 + 6t - \\dfrac{t^3}{6}$. Find the magnitude of the velocity of the particle at $t = 2$ s (to two decimal places).",
-      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-vector-derivative.svg",
+      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-vector-derivative.png",
       "answer": 4.47,
       "tolerancePct": 1,
       "unit": "",
       "solution": "Differentiate each coordinate with respect to $t$:\n$$v_x = \\frac{dx}{dt} = 4 - t, \\qquad v_y = \\frac{dy}{dt} = 6 - \\frac{t^2}{2}.$$\nAt $t = 2$: $v_x = 4 - 2 = 2$ and $v_y = 6 - 2 = 4$.\nHence the speed is $|\\vec{v}| = \\sqrt{2^2 + 4^2} = \\sqrt{20} = 2\\sqrt{5} \\approx 4.47$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Exercise 5.6, Q1",
-      "tags": ["vector-differentiation", "velocity"]
+      "tags": [
+        "vector-differentiation",
+        "velocity"
+      ]
     },
     {
       "key": "ex-5-6-q2-velocity-component",
       "type": "mcq",
       "prompt": "A particle moves along the curve $x = 2t^2$, $y = t^2 - 4t$, $z = 3t - 5$. What are the components of its velocity and acceleration at $t = 1$ in the direction $\\hat{i} - 3\\hat{j} + 2\\hat{k}$?",
       "options": [
-        { "label": "A", "text": "$\\dfrac{8\\sqrt{14}}{7}$ and $-\\dfrac{\\sqrt{14}}{7}$", "correct": true },
-        { "label": "B", "text": "$\\dfrac{16}{7}$ and $-\\dfrac{2}{7}$", "correct": false },
-        { "label": "C", "text": "$\\dfrac{8\\sqrt{14}}{7}$ and $\\dfrac{\\sqrt{14}}{7}$", "correct": false },
-        { "label": "D", "text": "$16$ and $-2$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{8\\sqrt{14}}{7}$ and $-\\dfrac{\\sqrt{14}}{7}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{16}{7}$ and $-\\dfrac{2}{7}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{8\\sqrt{14}}{7}$ and $\\dfrac{\\sqrt{14}}{7}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$16$ and $-2$",
+          "correct": false
+        }
       ],
       "solution": "Differentiate $\\vec{r} = 2t^2\\hat{i} + (t^2 - 4t)\\hat{j} + (3t - 5)\\hat{k}$:\n$$\\vec{v} = 4t\\hat{i} + (2t - 4)\\hat{j} + 3\\hat{k} \\implies \\vec{v}(1) = 4\\hat{i} - 2\\hat{j} + 3\\hat{k},$$\n$$\\vec{a} = 4\\hat{i} + 2\\hat{j} \\implies \\vec{a}(1) = 4\\hat{i} + 2\\hat{j}.$$\nThe unit vector in the given direction is $\\hat{d} = \\dfrac{\\hat{i} - 3\\hat{j} + 2\\hat{k}}{\\sqrt{1 + 9 + 4}} = \\dfrac{\\hat{i} - 3\\hat{j} + 2\\hat{k}}{\\sqrt{14}}$.\nComponent of velocity $= \\vec{v}\\cdot\\hat{d} = \\dfrac{4 + 6 + 6}{\\sqrt{14}} = \\dfrac{16}{\\sqrt{14}} = \\dfrac{8\\sqrt{14}}{7}$.\nComponent of acceleration $= \\vec{a}\\cdot\\hat{d} = \\dfrac{4 - 6 + 0}{\\sqrt{14}} = -\\dfrac{2}{\\sqrt{14}} = -\\dfrac{\\sqrt{14}}{7}$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 5, Exercise 5.6, Q2",
-      "tags": ["vector-differentiation", "velocity", "acceleration"]
+      "tags": [
+        "vector-differentiation",
+        "velocity",
+        "acceleration"
+      ]
     },
     {
       "key": "ex-5-6-q6-orthogonal-surfaces-b",
@@ -88,54 +122,115 @@
       "solution": "Let $\\phi_1 = 5x^2 - 2byz - 9x$ and $\\phi_2 = 4x^2 y + z^3 - 4$.\nTheir gradients are:\n$$\\nabla\\phi_1 = (10x - 9)\\hat{i} - 2bz\\hat{j} - 2by\\hat{k}, \\qquad \\nabla\\phi_2 = 8xy\\hat{i} + 4x^2\\hat{j} + 3z^2\\hat{k}.$$\nAt $(1, -1, 2)$: $\\nabla\\phi_1 = \\hat{i} - 4b\\hat{j} + 2b\\hat{k}$ and $\\nabla\\phi_2 = -8\\hat{i} + 4\\hat{j} + 12\\hat{k}$.\nOrthogonality requires $\\nabla\\phi_1\\cdot\\nabla\\phi_2 = 0 \\implies -8 - 16b + 24b = 0 \\implies 8b = 8 \\implies b = 1$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 5, Exercise 5.6, Q6",
-      "tags": ["gradient", "orthogonal-surfaces"]
+      "tags": [
+        "gradient",
+        "orthogonal-surfaces"
+      ]
     },
     {
       "key": "ex-5-28-ex20-rate-normal-surface",
       "type": "mcq",
       "prompt": "Find the rate of change of $\\phi = xyz$ in the direction normal to the surface $x^2 y + y^2 x + yz^2 = 3$ at the point $(1, 1, 1)$.",
-      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-directional-derivative.svg",
+      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-gradient-level-surfaces.png",
       "options": [
-        { "label": "A", "text": "$\\dfrac{9}{\\sqrt{29}}$", "correct": true },
-        { "label": "B", "text": "$\\dfrac{9}{\\sqrt{3}}$", "correct": false },
-        { "label": "C", "text": "$9$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{7}{\\sqrt{29}}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{9}{\\sqrt{29}}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{9}{\\sqrt{3}}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$9$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{7}{\\sqrt{29}}$",
+          "correct": false
+        }
       ],
       "solution": "First compute $\\nabla\\phi = yz\\hat{i} + xz\\hat{j} + xy\\hat{k}$. At $(1,1,1)$, $\\nabla\\phi = \\hat{i} + \\hat{j} + \\hat{k}$.\nNext let $\\psi = x^2 y + y^2 x + yz^2 - 3$. Its normal is\n$$\\nabla\\psi = (2xy + y^2)\\hat{i} + (x^2 + 2xy + z^2)\\hat{j} + 2yz\\hat{k}.$$\nAt $(1,1,1)$, $\\nabla\\psi = 3\\hat{i} + 4\\hat{j} + 2\\hat{k}$, with unit normal $\\hat{N} = \\dfrac{3\\hat{i} + 4\\hat{j} + 2\\hat{k}}{\\sqrt{9 + 16 + 4}} = \\dfrac{3\\hat{i} + 4\\hat{j} + 2\\hat{k}}{\\sqrt{29}}$.\nTherefore the required directional derivative is $\\nabla\\phi\\cdot\\hat{N} = \\dfrac{3 + 4 + 2}{\\sqrt{29}} = \\dfrac{9}{\\sqrt{29}}$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 5, Example 20",
-      "tags": ["gradient", "directional-derivative", "normal-vector"]
+      "tags": [
+        "gradient",
+        "directional-derivative",
+        "normal-vector"
+      ]
     },
     {
       "key": "ex-5-28-ex27-dd-along-pq",
       "type": "mcq",
       "prompt": "Find the directional derivative of $\\phi = x^2 - y^2 + 2z^2$ at the point $P(1, 2, 3)$ in the direction of the line $PQ$, where $Q$ is the point $(5, 0, 4)$.",
       "options": [
-        { "label": "A", "text": "$\\dfrac{28}{\\sqrt{21}}$", "correct": true },
-        { "label": "B", "text": "$\\dfrac{28}{21}$", "correct": false },
-        { "label": "C", "text": "$\\dfrac{12}{\\sqrt{21}}$", "correct": false },
-        { "label": "D", "text": "$28$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{28}{\\sqrt{21}}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{28}{21}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{12}{\\sqrt{21}}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$28$",
+          "correct": false
+        }
       ],
       "solution": "Compute $\\nabla\\phi = 2x\\hat{i} - 2y\\hat{j} + 4z\\hat{k}$. At $P(1,2,3)$, $\\nabla\\phi = 2\\hat{i} - 4\\hat{j} + 12\\hat{k}$.\nThe direction vector is $\\overrightarrow{PQ} = (5-1)\\hat{i} + (0-2)\\hat{j} + (4-3)\\hat{k} = 4\\hat{i} - 2\\hat{j} + \\hat{k}$, with length $|\\overrightarrow{PQ}| = \\sqrt{16 + 4 + 1} = \\sqrt{21}$.\nHence the directional derivative is\n$$(2\\hat{i} - 4\\hat{j} + 12\\hat{k})\\cdot\\frac{4\\hat{i} - 2\\hat{j} + \\hat{k}}{\\sqrt{21}} = \\frac{8 + 8 + 12}{\\sqrt{21}} = \\frac{28}{\\sqrt{21}}.$$",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 5, Example 27",
-      "tags": ["directional-derivative", "gradient"]
+      "tags": [
+        "directional-derivative",
+        "gradient"
+      ]
     },
     {
       "key": "ex-5-7-q6-mosquito-warmest-direction",
       "type": "mcq",
       "prompt": "The temperature of points in space is given by $T(x,y,z) = x^2 + y^2 - z$. A mosquito located at $(1, 1, 2)$ wants to fly in the direction in which it gets warm as soon as possible. What is the unit vector in that direction?",
-      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-gradient-level-surfaces.svg",
+      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-gradient-level-surfaces.png",
       "options": [
-        { "label": "A", "text": "$\\dfrac{1}{3}(2\\hat{i} + 2\\hat{j} - \\hat{k})$", "correct": true },
-        { "label": "B", "text": "$\\dfrac{1}{3}(2\\hat{i} + 2\\hat{j} + \\hat{k})$", "correct": false },
-        { "label": "C", "text": "$2\\hat{i} + 2\\hat{j} - \\hat{k}$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{1}{\\sqrt{6}}(\\hat{i} + \\hat{j} - 2\\hat{k})$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{1}{3}(2\\hat{i} + 2\\hat{j} - \\hat{k})$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{1}{3}(2\\hat{i} + 2\\hat{j} + \\hat{k})$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$2\\hat{i} + 2\\hat{j} - \\hat{k}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{1}{\\sqrt{6}}(\\hat{i} + \\hat{j} - 2\\hat{k})$",
+          "correct": false
+        }
       ],
       "solution": "The fastest rate of increase of $T$ is in the direction of $\\nabla T$:\n$$\\nabla T = 2x\\hat{i} + 2y\\hat{j} - \\hat{k}.$$\nAt $(1, 1, 2)$, $\\nabla T = 2\\hat{i} + 2\\hat{j} - \\hat{k}$, with magnitude $\\sqrt{4 + 4 + 1} = 3$.\nTherefore the required unit direction is $\\dfrac{1}{3}(2\\hat{i} + 2\\hat{j} - \\hat{k})$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Exercise 5.7, Q6",
-      "tags": ["gradient", "maximum-rate-of-increase"]
+      "tags": [
+        "gradient",
+        "maximum-rate-of-increase"
+      ]
     },
     {
       "key": "ex-5-7-q9-greatest-rate-of-increase",
@@ -147,7 +242,10 @@
       "solution": "Compute the gradient:\n$$\\nabla u = yz^2\\hat{i} + xz^2\\hat{j} + 2xyz\\hat{k}.$$\nAt $(1, 0, 3)$, $\\nabla u = 0\\hat{i} + (1)(9)\\hat{j} + 0\\hat{k} = 9\\hat{j}$.\nThe greatest rate of increase is $|\\nabla u| = |9\\hat{j}| = 9$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Exercise 5.7, Q9",
-      "tags": ["gradient", "maximum-rate-of-increase"]
+      "tags": [
+        "gradient",
+        "maximum-rate-of-increase"
+      ]
     },
     {
       "key": "ex-5-9-q12-normal-magnitude",
@@ -159,95 +257,194 @@
       "solution": "Compute $\\nabla\\phi = 2x\\hat{i} + 4y\\hat{j} + 2z\\hat{k}$.\nAt $(1, -1, 2)$: $\\nabla\\phi = 2\\hat{i} - 4\\hat{j} + 4\\hat{k}$.\nIts magnitude is $\\sqrt{2^2 + (-4)^2 + 4^2} = \\sqrt{4 + 16 + 16} = \\sqrt{36} = 6$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Exercise 5.9, Q12",
-      "tags": ["gradient", "normal-vector"]
+      "tags": [
+        "gradient",
+        "normal-vector"
+      ]
     },
     {
       "key": "ex-5-30-ex35-div-ur",
       "type": "mcq",
       "prompt": "If $u = x^2 + y^2 + z^2$ and $\\vec{r} = x\\hat{i} + y\\hat{j} + z\\hat{k}$, what is $\\operatorname{div}(u\\vec{r})$ expressed in terms of $u$?",
       "options": [
-        { "label": "A", "text": "$3u$", "correct": false },
-        { "label": "B", "text": "$5u$", "correct": true },
-        { "label": "C", "text": "$6u$", "correct": false },
-        { "label": "D", "text": "$2u$", "correct": false }
+        {
+          "label": "A",
+          "text": "$3u$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$5u$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$6u$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$2u$",
+          "correct": false
+        }
       ],
       "solution": "Since $u = r^2$, we have $u\\vec{r} = r^2\\vec{r}$. Either directly:\n$$\\operatorname{div}(u\\vec{r}) = \\frac{\\partial}{\\partial x}(x^3 + xy^2 + xz^2) + \\frac{\\partial}{\\partial y}(x^2 y + y^3 + yz^2) + \\frac{\\partial}{\\partial z}(x^2 z + y^2 z + z^3)$$\n$$= (3x^2 + y^2 + z^2) + (x^2 + 3y^2 + z^2) + (x^2 + y^2 + 3z^2) = 5(x^2 + y^2 + z^2) = 5u,$$\nor via $\\nabla\\cdot(r^n\\vec{r}) = (n + 3)r^n$ with $n = 2$, giving $5r^2 = 5u$.",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Example 35",
-      "tags": ["divergence"]
+      "tags": [
+        "divergence"
+      ]
     },
     {
       "key": "ex-5-9-q18-div-r",
       "type": "numeric",
       "prompt": "If $\\vec{r} = x\\hat{i} + y\\hat{j} + z\\hat{k}$ is the position vector, evaluate $\\operatorname{div}\\vec{r} = \\nabla\\cdot\\vec{r}$.",
-      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-example-15-fields.svg",
+      "image": "/diagrams/get-209/vectors-gradient-divergence-and-curl-example-15-fields.png",
       "answer": 3,
       "tolerancePct": 1,
       "unit": "",
       "solution": "By definition of divergence:\n$$\\nabla\\cdot\\vec{r} = \\frac{\\partial x}{\\partial x} + \\frac{\\partial y}{\\partial y} + \\frac{\\partial z}{\\partial z} = 1 + 1 + 1 = 3.$$",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Exercise 5.9, Q18",
-      "tags": ["divergence"]
+      "tags": [
+        "divergence"
+      ]
     },
     {
       "key": "ex-5-9-q19-curl-at-point",
       "type": "mcq",
       "prompt": "If $\\vec{V} = xy^2\\hat{i} + 2yx^2 z\\hat{j} - 3yz^2\\hat{k}$, find $\\operatorname{curl}\\vec{V}$ at the point $(1, -1, 1)$.",
       "options": [
-        { "label": "A", "text": "$-(\\hat{j} + 2\\hat{k})$", "correct": false },
-        { "label": "B", "text": "$\\hat{i} + 3\\hat{k}$", "correct": false },
-        { "label": "C", "text": "$-(\\hat{i} + 2\\hat{k})$", "correct": true },
-        { "label": "D", "text": "$\\hat{i} + 2\\hat{j} + \\hat{k}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$-(\\hat{j} + 2\\hat{k})$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\hat{i} + 3\\hat{k}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-(\\hat{i} + 2\\hat{k})$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$\\hat{i} + 2\\hat{j} + \\hat{k}$",
+          "correct": false
+        }
       ],
       "solution": "Expand the curl determinant:\n$$\\nabla\\times\\vec{V} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ \\partial/\\partial x & \\partial/\\partial y & \\partial/\\partial z \\\\ xy^2 & 2x^2 yz & -3yz^2 \\end{vmatrix} = (-3z^2 - 2x^2 y)\\hat{i} - (0 - 0)\\hat{j} + (4xyz - 2xy)\\hat{k}.$$\nEvaluate at $(1, -1, 1)$:\n- $\\hat{i}$-component: $-3(1) - 2(1)(-1) = -3 + 2 = -1$\n- $\\hat{j}$-component: $0$\n- $\\hat{k}$-component: $4(1)(-1)(1) - 2(1)(-1) = -4 + 2 = -2$\nHence $\\operatorname{curl}\\vec{V} = -\\hat{i} - 2\\hat{k} = -(\\hat{i} + 2\\hat{k})$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 5, Exercise 5.9, Q19",
-      "tags": ["curl"]
+      "tags": [
+        "curl"
+      ]
     },
     {
       "key": "ex-5-32-ex46-scalar-potential",
       "type": "mcq",
       "prompt": "Which scalar potential function $f(x,y,z)$ satisfies $\\vec{A} = \\nabla f$ for the irrotational vector field $\\vec{A} = y^2\\hat{i} + 2xy\\hat{j} - z^2\\hat{k}$?",
       "options": [
-        { "label": "A", "text": "$xy^2 - \\dfrac{z^3}{3} + C$", "correct": true },
-        { "label": "B", "text": "$2xy^2 - \\dfrac{z^3}{3} + C$", "correct": false },
-        { "label": "C", "text": "$xy^2 + \\dfrac{z^3}{3} + C$", "correct": false },
-        { "label": "D", "text": "$x^2 y - z^3 + C$", "correct": false }
+        {
+          "label": "A",
+          "text": "$xy^2 - \\dfrac{z^3}{3} + C$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$2xy^2 - \\dfrac{z^3}{3} + C$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$xy^2 + \\dfrac{z^3}{3} + C$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$x^2 y - z^3 + C$",
+          "correct": false
+        }
       ],
       "solution": "First verify $\\nabla\\times\\vec{A} = (0-0)\\hat{i} - (0-0)\\hat{j} + (2y - 2y)\\hat{k} = \\vec{0}$, so $\\vec{A}$ is irrotational.\nWrite $df = \\vec{A}\\cdot d\\vec{r} = y^2\\,dx + 2xy\\,dy - z^2\\,dz = d(xy^2) - z^2\\,dz$.\nIntegrating directly gives $f = xy^2 - \\dfrac{z^3}{3} + C$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 5, Example 46",
-      "tags": ["curl", "irrotational", "scalar-potential"]
+      "tags": [
+        "curl",
+        "irrotational",
+        "scalar-potential"
+      ]
     },
     {
       "key": "ex-5-9-q10-irrotational-constants",
       "type": "mcq",
       "prompt": "For what values of $a, b, c$ is the vector field $\\vec{v} = (x + y + az)\\hat{i} + (bx + 3y - z)\\hat{j} + (3x + cy + z)\\hat{k}$ irrotational?",
       "options": [
-        { "label": "A", "text": "$a = 3,\\; b = 1,\\; c = -1$", "correct": true },
-        { "label": "B", "text": "$a = 3,\\; b = -1,\\; c = 1$", "correct": false },
-        { "label": "C", "text": "$a = -3,\\; b = 1,\\; c = -1$", "correct": false },
-        { "label": "D", "text": "$a = 1,\\; b = 3,\\; c = -1$", "correct": false }
+        {
+          "label": "A",
+          "text": "$a = 3,\\; b = 1,\\; c = -1$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$a = 3,\\; b = -1,\\; c = 1$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$a = -3,\\; b = 1,\\; c = -1$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$a = 1,\\; b = 3,\\; c = -1$",
+          "correct": false
+        }
       ],
       "solution": "Compute $\\nabla\\times\\vec{v}$:\n$$\\nabla\\times\\vec{v} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ \\partial/\\partial x & \\partial/\\partial y & \\partial/\\partial z \\\\ x+y+az & bx+3y-z & 3x+cy+z \\end{vmatrix} = (c + 1)\\hat{i} - (3 - a)\\hat{j} + (b - 1)\\hat{k}.$$\nSetting $\\nabla\\times\\vec{v} = \\vec{0}$ gives $c + 1 = 0 \\implies c = -1$, $3 - a = 0 \\implies a = 3$, and $b - 1 = 0 \\implies b = 1$.",
       "difficulty": "medium",
       "source": "H. K. Dass, Ch. 5, Exercise 5.9, Q10",
-      "tags": ["curl", "irrotational"]
+      "tags": [
+        "curl",
+        "irrotational"
+      ]
     },
     {
       "key": "ex-5-9-q17-grad-log-r",
       "type": "mcq",
       "prompt": "If $\\vec{r} = x\\hat{i} + y\\hat{j} + z\\hat{k}$ and $r = |\\vec{r}|$, what is the value of $\\nabla(\\log r)$?",
       "options": [
-        { "label": "A", "text": "$\\dfrac{\\vec{r}}{r}$", "correct": false },
-        { "label": "B", "text": "$\\dfrac{\\vec{r}}{r^2}$", "correct": true },
-        { "label": "C", "text": "$-\\dfrac{\\vec{r}}{r^3}$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{2\\vec{r}}{r^2}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{\\vec{r}}{r}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{\\vec{r}}{r^2}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$-\\dfrac{\\vec{r}}{r^3}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{2\\vec{r}}{r^2}$",
+          "correct": false
+        }
       ],
       "solution": "Using the radial gradient formula $\\nabla\\phi(r) = \\phi'(r)\\dfrac{\\vec{r}}{r}$ with $\\phi(r) = \\log r$ (so $\\phi'(r) = \\dfrac{1}{r}$):\n$$\\nabla(\\log r) = \\frac{1}{r}\\cdot\\frac{\\vec{r}}{r} = \\frac{\\vec{r}}{r^2}.$$",
       "difficulty": "easy",
       "source": "H. K. Dass, Ch. 5, Exercise 5.9, Q17",
-      "tags": ["gradient", "radial-identities"]
+      "tags": [
+        "gradient",
+        "radial-identities"
+      ]
     }
   ]
 }

@@ -154,8 +154,6 @@ These operators are applied once for $u_x,u_y$ and again (to the result) for $u_
 
 </RuleBox>
 
-<DiagramFigure src="/diagrams/get-209/total-differentials-jacobians-and-errors-polar-coordinates.svg" caption="Polar co-ordinates: x = r cos θ, y = r sin θ, with the partial derivatives ∂x/∂r = cos θ, ∂y/∂r = sin θ, ∂x/∂θ = −r sin θ, ∂y/∂θ = r cos θ used in the chain rule (redrawn illustration)." />
-
 <StepRevealExample
   title="Example 35 (§1.16)"
   source="H. K. Dass, Ch. 1, Example 35"
@@ -440,7 +438,7 @@ For a surface $S: z = f(x, y)$:
 
 </RuleBox>
 
-<DiagramFigure src="/diagrams/get-209/total-differentials-jacobians-and-errors-partial-slope.svg" caption="H. K. Dass §1.19 (redrawn) — Vertical plane y = k cutting surface z = f(x, y) along curve APB; the tangent slope at P(x, k, z) is ∂z/∂x." />
+<DiagramFigure src="/diagrams/get-209/total-differentials-jacobians-and-errors-partial-slope.png" caption="H. K. Dass §1.19 — Vertical plane y = k cutting surface z = f(x, y) along curve APB; the tangent slope at P(x, k, z) is ∂z/∂x." />
 
 ### 1.20 Tangent Plane to a Surface
 
@@ -476,7 +474,7 @@ Two surfaces $f(x, y, z) = 0$ and $F(x, y, z) = 0$ intersect **orthogonally** (p
 
 </RuleBox>
 
-<DiagramFigure src="/diagrams/get-209/total-differentials-jacobians-and-errors-tangent-plane.svg" caption="H. K. Dass §1.20 (redrawn) — Surface S: F(x, y, z) = 0 with point P(x₁, y₁, z₁), tangent line PT, tangent plane, and normal vector with direction ratios (∂F/∂x, ∂F/∂y, ∂F/∂z)." />
+<DiagramFigure src="/diagrams/get-209/total-differentials-jacobians-and-errors-tangent-plane.png" caption="H. K. Dass §1.20 — Surface S: F(x, y, z) = 0 with point P, neighbouring point Q, and tangent line PT." />
 
 <StepRevealExample
   title="Example 49 (§1.20)"
@@ -595,7 +593,7 @@ $$\left|\frac{\delta u}{u}\right|_{\max} \approx |a|\left|\frac{\delta x}{x}\rig
 <StepRevealExample
   title="Example 54 (§1.21)"
   source="H. K. Dass, Ch. 1, Example 54 (U.P. I Sem., Dec. 2005, Comp. 2002)"
-  figure="/diagrams/get-209/total-differentials-jacobians-and-errors-balloon.svg"
+  figure="/diagrams/get-209/total-differentials-jacobians-and-errors-balloon.png"
   problem="A balloon is in the form of a right circular cylinder of radius $1.5\\,\\text{m}$ and length $4\\,\\text{m}$ and is surmounted by hemispherical ends. If the radius is increased by $0.01\\,\\text{m}$ and the length by $0.05\\,\\text{m}$, find the percentage change in the volume of the balloon."
   steps={[
     "Radius $r = 1.5\\,\\text{m}$, cylinder length $h = 4\\,\\text{m}$, with $\\delta r = 0.01\\,\\text{m}$ and $\\delta h = 0.05\\,\\text{m}$.",
@@ -641,7 +639,7 @@ $$\left|\frac{\delta u}{u}\right|_{\max} \approx |a|\left|\frac{\delta x}{x}\rig
 <StepRevealExample
   title="Example 57 (§1.21)"
   source="H. K. Dass, Ch. 1, Example 57 (A.M.I.E.T.E., Summer 2003)"
-  figure="/diagrams/get-209/total-differentials-jacobians-and-errors-cone-error.svg"
+  figure="/diagrams/get-209/total-differentials-jacobians-and-errors-cone-error.png"
   problem="The height $h$ and semi-vertical angle $\\alpha$ of a cone are measured, and from them $A$, the total area of the cone including the base, is calculated. If $h$ and $\\alpha$ are in error by $\\delta h$ and $\\delta\\alpha$ respectively, find the corresponding error in $A$. Show further that if $\\alpha = \\dfrac{\\pi}{6}$, an error of $+1\\%$ in $h$ is approximately compensated by an error of $-19.8'$ in $\\alpha$."
   steps={[
     "From right $\\triangle ABD$, radius $r = h\\tan\\alpha$ and slant height $l = h\\sec\\alpha$.",
@@ -671,6 +669,7 @@ $$\left|\frac{\delta u}{u}\right|_{\max} \approx |a|\left|\frac{\delta x}{x}\rig
 <StepRevealExample
   title="Example 59 (§1.21)"
   source="H. K. Dass, Ch. 1, Example 59"
+  figure="/diagrams/get-209/total-differentials-jacobians-and-errors-circumcircle.png"
   problem="If the sides and angles of a plane triangle vary in such a way that its circumradius $R$ remains constant, prove that $\\dfrac{da}{\\cos A} + \\dfrac{db}{\\cos B} + \\dfrac{dc}{\\cos C} = 0$, where $da, db, dc$ are small increments in the sides $a, b, c$."
   steps={[
     "By the sine rule, $\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = \\dfrac{c}{\\sin C} = 2R$, so $R = \\dfrac{a}{2\\sin A}$ ... (1).",

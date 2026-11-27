@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 264" role="img" aria-label="Triangle law of vector addition">
+  <defs>
+    <marker id="ah0F766E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0F766E"/></marker>
+    <marker id="ah141413" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#141413"/></marker>
+    <marker id="ahEA580C" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EA580C"/></marker>
+  </defs>
+  <rect width="560" height="264" rx="14" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">Fig. 5.2 (redrawn) — Addition of vectors (triangle law)</text>
+  <line x1="80" y1="200" x2="420" y2="200" stroke="#0F766E" stroke-width="2.4" marker-end="url(#ah0F766E)"/>
+  <line x1="420" y1="200" x2="500" y2="70" stroke="#EA580C" stroke-width="2.4" marker-end="url(#ahEA580C)"/>
+  <line x1="80" y1="200" x2="500" y2="70" stroke="#141413" stroke-width="3" marker-end="url(#ah141413)"/>
+  <circle cx="80" cy="200" r="3.5" fill="#141413"/>
+  <circle cx="420" cy="200" r="3.5" fill="#141413"/>
+  <circle cx="500" cy="70" r="3.5" fill="#141413"/>
+  <text x="66" y="222" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">O</text>
+  <text x="418" y="222" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">A</text>
+  <text x="508" y="66" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">B</text>
+  <text x="250" y="222" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#0F766E" text-anchor="start" font-style="italic">a</text>
+  <text x="474" y="148" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#EA580C" text-anchor="start" font-style="italic">b</text>
+  <text x="270" y="120" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#141413" text-anchor="start">a + b</text>
+  <text x="20" y="252" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="#64748B" text-anchor="start">OA + AB = OB, i.e. a + b = OB</text>
+</svg>

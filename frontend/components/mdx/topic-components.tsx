@@ -126,12 +126,19 @@ export function StepRevealExample({
   title,
   problem,
   steps,
+  source,
+  figure,
+  answer,
 }: {
   title: string;
   problem: string;
   steps: string[];
+  source?: string;
+  figure?: string;
+  answer?: string;
 }) {
   const [shown, setShown] = useState(0);
+  const done = shown >= steps.length;
 
   return (
     <div className="my-7 overflow-hidden rounded-[20px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)]">
@@ -140,9 +147,12 @@ export function StepRevealExample({
           <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
             Worked Textbook Example
           </span>
-          <h3 className="!mt-0.5 !mb-0 text-sm font-extrabold leading-snug text-[var(--text-primary)] sm:text-base">
+          <p className="!mt-0.5 !mb-0 text-sm font-extrabold leading-snug text-[var(--text-primary)] sm:text-base">
             {title}
-          </h3>
+          </p>
+          {source && (
+            <p className="!mb-0 !mt-0.5 font-mono text-[10px] text-[var(--text-muted)]">{source}</p>
+          )}
         </div>
         <span className="tabular shrink-0 rounded-full bg-[var(--accent-soft)] px-2.5 py-1 font-mono text-xs font-semibold text-[var(--accent)]">
           {shown} / {steps.length} steps
@@ -153,6 +163,8 @@ export function StepRevealExample({
         <div className="math-scroll-x rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3 text-sm leading-relaxed text-[var(--text-primary)] sm:p-3.5">
           <MathText text={problem} />
         </div>
+
+        {figure && <InlineFigure src={figure} alt={`Figure for ${title}`} />}
 
         {shown > 0 && (
           <ol className="!pl-0 !list-none !mb-0 mt-4 space-y-2.5">
@@ -170,6 +182,18 @@ export function StepRevealExample({
               </li>
             ))}
           </ol>
+        )}
+
+        {done && answer && (
+          <div className="math-scroll-x mt-3 flex items-start gap-2 rounded-xl border border-[var(--success)]/30 bg-[var(--success)]/10 px-3 py-2.5 text-sm text-[var(--text-primary)]">
+            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--success)]" aria-hidden="true" />
+            <span className="min-w-0">
+              <span className="mr-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--success)]">
+                Answer
+              </span>
+              <MathText text={answer} />
+            </span>
+          </div>
         )}
 
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
@@ -210,6 +234,116 @@ export function StepRevealExample({
         </div>
       </div>
     </div>
+  );
+}
+
+function InlineFigure({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="mt-3 rounded-xl border border-[var(--border-hairline)] bg-white p-2">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} loading="lazy" decoding="async" className="mx-auto max-h-[300px] w-auto max-w-full object-contain" />
+    </div>
+  );
+}
+
+const RULE_LABELS = {
+  definition: "Definition",
+  theorem: "Theorem",
+  "working-rule": "Working Rule",
+  formula: "Formula Sheet",
+  note: "Note",
+} as const;
+
+export function RuleBox({
+  kind = "definition",
+  title,
+  children,
+}: {
+  kind?: keyof typeof RULE_LABELS;
+  title?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="my-6 rounded-2xl border border-[var(--border-strong)] bg-[var(--bg-canvas)]/85 p-4 sm:p-5">
+      <p className="!mb-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
+        {RULE_LABELS[kind] ?? "Note"}
+        {title ? ` · ${title}` : ""}
+      </p>
+      <div className="math-scroll-x text-sm leading-relaxed text-[var(--text-primary)] [&_p]:!mb-2 [&_ul]:!mb-0">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export function ExerciseSet({
+  title,
+  source,
+  items,
+}: {
+  title: string;
+  source?: string;
+  items: Array<{ q: string; a: string; figure?: string }>;
+}) {
+  const [open, setOpen] = useState<Set<number>>(new Set());
+  const allOpen = open.size === items.length;
+  const toggle = (i: number) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
+
+  return (
+    <section className="my-8 overflow-hidden rounded-[20px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)]">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/75 px-4 py-3 sm:px-5">
+        <div className="min-w-0">
+          <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
+            Textbook Exercise · {items.length} questions
+          </span>
+          <p className="!mb-0 !mt-0.5 text-sm font-extrabold text-[var(--text-primary)] sm:text-base">{title}</p>
+          {source && <p className="!mb-0 !mt-0.5 font-mono text-[10px] text-[var(--text-muted)]">{source}</p>}
+        </div>
+        <Button
+          type="button"
+          variant="secondary"
+          size="md"
+          onClick={() => setOpen(allOpen ? new Set() : new Set(items.map((_, i) => i)))}
+        >
+          {allOpen ? "Hide all answers" : "Show all answers"}
+        </Button>
+      </div>
+      <ol className="!list-none !pl-0 !mb-0 divide-y divide-[var(--border-hairline)]">
+        {items.map((item, i) => (
+          <li key={i} className="px-4 py-3.5 sm:px-5">
+            <div className="flex gap-3">
+              <span className="tabular mt-0.5 w-6 shrink-0 font-mono text-xs font-bold text-[var(--text-muted)]">{i + 1}.</span>
+              <div className="min-w-0 flex-1">
+                <div className="math-scroll-x text-sm leading-relaxed text-[var(--text-primary)]">
+                  <MathText text={item.q} />
+                </div>
+                {item.figure && <InlineFigure src={item.figure} alt={`Figure for exercise ${i + 1}`} />}
+                {open.has(i) ? (
+                  <div className="math-scroll-x mt-2 rounded-lg bg-[var(--success)]/10 px-3 py-2 text-sm text-[var(--text-primary)]">
+                    <span className="mr-1.5 font-mono text-[10px] font-bold uppercase text-[var(--success)]">Ans.</span>
+                    <MathText text={item.a} />
+                  </div>
+                ) : null}
+                <button
+                  type="button"
+                  onClick={() => toggle(i)}
+                  className="mt-1.5 inline-flex min-h-[32px] items-center gap-1 font-mono text-[11px] font-semibold text-[var(--accent)] cursor-pointer"
+                >
+                  <Eye className="h-3 w-3" aria-hidden="true" />
+                  {open.has(i) ? "Hide answer" : "Check answer"}
+                </button>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 

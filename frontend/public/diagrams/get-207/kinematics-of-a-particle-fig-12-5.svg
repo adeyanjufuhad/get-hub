@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 330" role="img" aria-label="Metallic particle between plates A and B with C at the midpoint; s measured downward from plate A">
+  <rect width="380" height="330" rx="12" fill="#FFFFFF"/>
+  <rect x="110.0" y="50.0" width="150.0" height="14.0" rx="0" fill="#9CA3AF" stroke="#141413" stroke-width="1.5"/>
+  <rect x="110.0" y="240.0" width="150.0" height="14.0" rx="0" fill="#9CA3AF" stroke="#141413" stroke-width="1.5"/>
+  <text x="280.0" y="62.0" font-family="system-ui,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#141413">A</text>
+  <text x="280.0" y="252.0" font-family="system-ui,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#141413">B</text>
+  <circle cx="185.0" cy="147.0" r="6" fill="#0F766E" stroke="#0F766E" stroke-width="1"/>
+  <text x="198.0" y="152.0" font-family="system-ui,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#0F766E">C</text>
+  <line x1="60.0" y1="64.0" x2="60.0" y2="233.0" stroke="#141413" stroke-width="1.6"/>
+  <polygon points="60.0,240.0 56.5,233.0 63.5,233.0" fill="#141413"/>
+  <text x="66.0" y="200.0" font-family="system-ui,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#141413" font-style="italic">s</text>
+  <line x1="330.0" y1="64.0" x2="330.0" y2="140.0" stroke="#6B7280" stroke-width="1.4"/>
+  <polygon points="330.0,147.0 326.5,140.0 333.5,140.0" fill="#6B7280"/>
+  <line x1="330.0" y1="147.0" x2="330.0" y2="71.0" stroke="#6B7280" stroke-width="1.4"/>
+  <polygon points="330.0,64.0 333.5,71.0 326.5,71.0" fill="#6B7280"/>
+  <text x="338.0" y="110.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="start" fill="#6B7280">100 mm</text>
+  <line x1="330.0" y1="147.0" x2="330.0" y2="233.0" stroke="#6B7280" stroke-width="1.4"/>
+  <polygon points="330.0,240.0 326.5,233.0 333.5,233.0" fill="#6B7280"/>
+  <line x1="330.0" y1="240.0" x2="330.0" y2="154.0" stroke="#6B7280" stroke-width="1.4"/>
+  <polygon points="330.0,147.0 333.5,154.0 326.5,154.0" fill="#6B7280"/>
+  <text x="338.0" y="198.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="start" fill="#6B7280">100 mm</text>
+  <text x="20.0" y="24.0" font-family="system-ui,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#141413">Fig. 12–5 (redrawn): Example 12.4</text>
+</svg>

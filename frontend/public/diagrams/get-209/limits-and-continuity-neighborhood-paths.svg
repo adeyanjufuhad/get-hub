@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 310" width="740" height="310" font-family="system-ui, -apple-system, sans-serif">
+  <rect width="740" height="310" fill="#ffffff"/>
+
+  <!-- ================= LEFT PANEL: Punctured delta-neighborhood ================= -->
+  <text x="180" y="24" text-anchor="middle" font-size="13.5" font-weight="700" fill="#111827">(a) Punctured &#948;-disk around (a, b)</text>
+
+  <!-- Axes -->
+  <g stroke="#475569" stroke-width="1.5" fill="none">
+    <line x1="36" y1="248" x2="328" y2="248"/>
+    <path d="M321 244 L329 248 L321 252" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="62" y1="274" x2="62" y2="42"/>
+    <path d="M58 49 L62 41 L66 49" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="336" y="252" font-size="13" font-style="italic" fill="#111827">x</text>
+  <text x="62" y="34" text-anchor="middle" font-size="13" font-style="italic" fill="#111827">y</text>
+  <text x="48" y="263" font-size="12" fill="#475569">O</text>
+
+  <!-- Dashed guides to (a, b) -->
+  <line x1="190" y1="248" x2="190" y2="145" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <line x1="62" y1="145" x2="190" y2="145" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="190" y="264" text-anchor="middle" font-size="12.5" font-style="italic" fill="#111827">a</text>
+  <text x="48" y="149" text-anchor="middle" font-size="12.5" font-style="italic" fill="#111827">b</text>
+
+  <!-- Delta disk -->
+  <circle cx="190" cy="145" r="76" fill="#eff6ff" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="5 4"/>
+
+  <!-- Radius delta -->
+  <line x1="190" y1="145" x2="244" y2="91" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="210" y="108" font-size="13.5" font-style="italic" font-weight="700" fill="#1d4ed8">&#948;</text>
+
+  <!-- Sample point (x, y) inside disk -->
+  <circle cx="144" cy="115" r="3.5" fill="#111827"/>
+  <text x="115" y="106" font-size="12" fill="#111827">(x, y)</text>
+
+  <!-- Curved paths approaching (a, b) with explicit arrowheads -->
+  <path d="M 110 198 Q 145 186 182 152" fill="none" stroke="#0f766e" stroke-width="1.8"/>
+  <path d="M 174 152 L 183 151 L 180 159" fill="none" stroke="#0f766e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M 284 180 Q 242 174 199 150" fill="none" stroke="#dc2626" stroke-width="1.8"/>
+  <path d="M 207 148 L 198 149 L 203 156" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M 152 60 Q 162 104 184 136" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+  <path d="M 176 133 L 184 137 L 183 128" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Punctured center (a, b) -->
+  <circle cx="190" cy="145" r="4.5" fill="#ffffff" stroke="#111827" stroke-width="2"/>
+  <text x="203" y="140" font-size="12.5" font-weight="700" fill="#111827">(a, b)</text>
+
+  <!-- Caption inside panel -->
+  <text x="180" y="294" text-anchor="middle" font-size="11.5" fill="#334155">0 &lt; (x &#8722; a)&#178; + (y &#8722; b)&#178; &lt; &#948;&#178;  &#8658;  |f(x, y) &#8722; l| &lt; &#949;</text>
+
+  <!-- Divider -->
+  <line x1="368" y1="22" x2="368" y2="294" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ================= RIGHT PANEL: Dass §1.3 test paths at (0, 0) ================= -->
+  <text x="556" y="24" text-anchor="middle" font-size="13.5" font-weight="700" fill="#111827">(b) Approach paths to (0, 0) (&#167;1.3)</text>
+
+  <!-- Axes centered at (540, 165) -->
+  <g stroke="#475569" stroke-width="1.5" fill="none">
+    <line x1="400" y1="165" x2="698" y2="165"/>
+    <path d="M691 161 L699 165 L691 169" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="540" y1="268" x2="540" y2="44"/>
+    <path d="M536 51 L540 43 L544 51" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="706" y="169" font-size="13" font-style="italic" fill="#111827">x</text>
+  <text x="540" y="36" text-anchor="middle" font-size="13" font-style="italic" fill="#111827">y</text>
+
+  <!-- Path (i): x = 0 (y-axis) -->
+  <line x1="540" y1="68" x2="540" y2="155" stroke="#0f766e" stroke-width="2.4"/>
+  <path d="M535 147 L540 156 L545 147" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="488" y="64" font-size="11.5" font-weight="700" fill="#0f766e">(i) x = 0</text>
+
+  <!-- Path (ii): y = 0 (x-axis) -->
+  <line x1="422" y1="165" x2="530" y2="165" stroke="#0f766e" stroke-width="2.4"/>
+  <path d="M522 160 L531 165 L522 170" fill="none" stroke="#0f766e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="410" y="185" font-size="11.5" font-weight="700" fill="#0f766e">(ii) y = 0</text>
+
+  <!-- Path (iii): Straight line y = mx -->
+  <line x1="436" y1="245" x2="646" y2="84" stroke="#2563eb" stroke-width="2"/>
+  <path d="M560 155 L550 158 L554 148" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="652" y="84" font-size="12" font-weight="700" fill="#1d4ed8">(iii) y = mx</text>
+
+  <!-- Path (iv): Parabola y = mx^2 -->
+  <path d="M 436 74 Q 492 165 540 165 Q 588 165 644 74" fill="none" stroke="#dc2626" stroke-width="2.2"/>
+  <path d="M 564 156 L 554 162 L 563 166" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="414" y="64" font-size="12" font-weight="700" fill="#dc2626">(iv) y = mx&#178;</text>
+
+  <!-- Origin dot -->
+  <circle cx="540" cy="165" r="4.5" fill="#ffffff" stroke="#111827" stroke-width="2"/>
+  <text x="554" y="182" font-size="12" font-weight="700" fill="#111827">(0, 0)</text>
+
+  <!-- Bottom note -->
+  <text x="556" y="294" text-anchor="middle" font-size="11.5" fill="#334155">Different limits along different paths &#8658; limit does not exist</text>
+</svg>

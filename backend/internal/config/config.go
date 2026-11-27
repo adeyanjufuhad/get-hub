@@ -24,6 +24,9 @@ type Config struct {
 	GoogleClientSecret  string
 	GoogleRedirectURL   string
 	IncludeDraftContent bool
+	// LibraryEnabled exposes the raw-materials library API. Off by default:
+	// students study from the notes, not from raw PDFs or textbooks.
+	LibraryEnabled bool
 	EnforcePaidGating   bool
 	UploadDir           string
 
@@ -73,6 +76,7 @@ func Load() (Config, error) {
 		// OAuth state cookie and auth cookies all stay first-party on the site domain.
 		GoogleRedirectURL:   getEnv("GOOGLE_REDIRECT_URL", frontendURL+"/api/v1/auth/google/callback"),
 		IncludeDraftContent: getEnvBool("INCLUDE_DRAFT_CONTENT", appEnv != "production"),
+		LibraryEnabled:      getEnvBool("LIBRARY_ENABLED", false),
 		EnforcePaidGating:   getEnvBool("ENFORCE_PAID_GATING", false),
 		UploadDir:           getEnv("UPLOAD_DIR", "./uploads"),
 

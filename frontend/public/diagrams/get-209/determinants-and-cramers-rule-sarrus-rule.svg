@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="760" height="320">
+  <defs>
+    <marker id="arrBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="320" rx="10" fill="#fafaf8" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Heading -->
+  <text x="380" y="28" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#111827">Rule of Sarrus (3rd-Order Determinants Only — H. K. Dass §4.6)</text>
+
+  <!-- Main card -->
+  <rect x="24" y="44" width="712" height="256" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2"/>
+
+  <!-- Original determinant on left -->
+  <line x1="54" y1="92" x2="54" y2="216" stroke="#111827" stroke-width="2.2"/>
+  <line x1="184" y1="92" x2="184" y2="216" stroke="#111827" stroke-width="2.2"/>
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="600" text-anchor="middle" fill="#111827">
+    <text x="80" y="114">a₁</text><text x="119" y="114">b₁</text><text x="158" y="114">c₁</text>
+    <text x="80" y="159">a₂</text><text x="119" y="159">b₂</text><text x="158" y="159">c₂</text>
+    <text x="80" y="204">a₃</text><text x="119" y="204">b₃</text><text x="158" y="204">c₃</text>
+  </g>
+  <text x="210" y="160" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#111827">=</text>
+
+  <!-- Augmented Sarrus array -->
+  <!-- Subtle tint behind repeated columns 1 & 2 -->
+  <rect x="444" y="88" width="132" height="132" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-dasharray="4,3"/>
+  <text x="510" y="79" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#64748b">Repeated C₁, C₂</text>
+
+  <!-- Vertical determinant bars around first 3 columns -->
+  <line x1="238" y1="88" x2="238" y2="220" stroke="#111827" stroke-width="2.2"/>
+  <line x1="436" y1="88" x2="436" y2="220" stroke="#111827" stroke-width="2.2"/>
+
+  <!-- Positive (down-right) diagonals in cobalt -->
+  <g stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrBlue)">
+    <line x1="264" y1="100" x2="412" y2="216"/>
+    <line x1="330" y1="100" x2="478" y2="216"/>
+    <line x1="396" y1="100" x2="544" y2="216"/>
+  </g>
+  <!-- Plus signs at top of positive diagonals -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" text-anchor="middle" fill="#2563eb">
+    <text x="262" y="84">+</text>
+    <text x="328" y="84">+</text>
+    <text x="394" y="84">+</text>
+  </g>
+
+  <!-- Negative (down-left) diagonals in crimson -->
+  <g stroke="#dc2626" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrRed)">
+    <line x1="414" y1="100" x2="266" y2="216"/>
+    <line x1="480" y1="100" x2="332" y2="216"/>
+    <line x1="546" y1="100" x2="398" y2="216"/>
+  </g>
+  <!-- Minus signs at top of negative diagonals -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="800" text-anchor="middle" fill="#dc2626">
+    <text x="416" y="84">−</text>
+    <text x="482" y="84">−</text>
+    <text x="548" y="84">−</text>
+  </g>
+
+  <!-- Entries with clean white pill backgrounds so diagonal lines never obscure text -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="15.5" font-weight="700" text-anchor="middle">
+    <!-- Row 1 -->
+    <rect x="257" y="99" width="32" height="22" rx="4" fill="#ffffff"/>
+    <rect x="323" y="99" width="32" height="22" rx="4" fill="#ffffff"/>
+    <rect x="389" y="99" width="32" height="22" rx="4" fill="#ffffff"/>
+    <rect x="455" y="99" width="32" height="22" rx="4" fill="#f8fafc"/>
+    <rect x="521" y="99" width="32" height="22" rx="4" fill="#f8fafc"/>
+    <text x="273" y="115" fill="#111827">a₁</text>
+    <text x="339" y="115" fill="#111827">b₁</text>
+    <text x="405" y="115" fill="#111827">c₁</text>
+    <text x="471" y="115" fill="#475569">a₁</text>
+    <text x="537" y="115" fill="#475569">b₁</text>
+
+    <!-- Row 2 -->
+    <rect x="257" y="143" width="32" height="22" rx="4" fill="#ffffff"/>
+    <rect x="323" y="143" width="32" height="22" rx="4" fill="#ffffff"/>
+    <rect x="389" y="143" width="32" height="22" rx="4" fill="#ffffff"/>
+    <rect x="455" y="143" width="32" height="22" rx="4" fill="#f8fafc"/>
+    <rect x="521" y="143" width="32" height="22" rx="4" fill="#f8fafc"/>
+    <text x="273" y="159" fill="#111827">a₂</text>
+    <text x="339" y="159" fill="#111827">b₂</text>
+    <text x="405" y="159" fill="#111827">c₂</text>
+    <text x="471" y="159" fill="#475569">a₂</text>
+    <text x="537" y="159" fill="#475569">b₂</text>
+
+    <!-- Row 3 -->
+    <rect x="257" y="187" width="32" height="22" rx="4" fill="#ffffff"/>
+    <rect x="323" y="187" width="32" height="22" rx="4" fill="#ffffff"/>
+    <rect x="389" y="187" width="32" height="22" rx="4" fill="#ffffff"/>
+    <rect x="455" y="187" width="32" height="22" rx="4" fill="#f8fafc"/>
+    <rect x="521" y="187" width="32" height="22" rx="4" fill="#f8fafc"/>
+    <text x="273" y="203" fill="#111827">a₃</text>
+    <text x="339" y="203" fill="#111827">b₃</text>
+    <text x="405" y="203" fill="#111827">c₃</text>
+    <text x="471" y="203" fill="#475569">a₃</text>
+    <text x="537" y="203" fill="#475569">b₃</text>
+  </g>
+
+  <!-- Right-hand legend box -->
+  <rect x="594" y="92" width="126" height="122" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="657" y="114" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1e293b">Diagonal Signs</text>
+  <line x1="606" y1="134" x2="636" y2="134" stroke="#2563eb" stroke-width="2.2" stroke-dasharray="4,2"/>
+  <text x="644" y="138" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600" fill="#2563eb">Down-right (+)</text>
+  <line x1="606" y1="162" x2="636" y2="162" stroke="#dc2626" stroke-width="2.2" stroke-dasharray="4,2"/>
+  <text x="644" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600" fill="#dc2626">Down-left (−)</text>
+  <text x="657" y="192" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b">Does NOT apply</text>
+  <text x="657" y="206" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b">to order ≥ 4</text>
+
+  <!-- Bottom expansion formula -->
+  <rect x="48" y="242" width="664" height="42" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="380" y="268" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700">
+    <tspan fill="#111827">Δ = </tspan>
+    <tspan fill="#2563eb">(a₁b₂c₃ + b₁c₂a₃ + c₁a₂b₃)</tspan>
+    <tspan fill="#111827"> − </tspan>
+    <tspan fill="#dc2626">(c₁b₂a₃ + a₁c₂b₃ + b₁a₂c₃)</tspan>
+  </text>
+</svg>

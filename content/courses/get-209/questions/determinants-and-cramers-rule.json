@@ -1,0 +1,218 @@
+{
+  "topicSlug": "determinants-and-cramers-rule",
+  "questions": [
+    {
+      "key": "ex-4-1-second-order-neg",
+      "type": "numeric",
+      "prompt": "Evaluate the second-order determinant $\\begin{vmatrix} -3 & 7 \\\\ 2 & 4 \\end{vmatrix}$.",
+      "answer": -26,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Using the second-order formula $a_1b_2 - a_2b_1$: $(-3)(4) - (7)(2) = -12 - 14 = -26$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.1, Q2",
+      "tags": ["second-order-determinant"]
+    },
+    {
+      "key": "ex-4-2-cofactor-a21",
+      "type": "numeric",
+      "prompt": "Find the cofactor $A_{21}$ of the element $4$ in $\\begin{vmatrix} 1 & 3 & -2 \\\\ 4 & -5 & 6 \\\\ 3 & 5 & 2 \\end{vmatrix}$.",
+      "answer": -16,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Delete Row 2 and Column 1 to get $M_{21} = \\begin{vmatrix} 3 & -2 \\\\ 5 & 2 \\end{vmatrix} = (3)(2) - (-2)(5) = 6 + 10 = 16$. Then $A_{21} = (-1)^{2+1} M_{21} = -16$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Example 2",
+      "tags": ["minors-and-cofactors"]
+    },
+    {
+      "key": "ex-4-2-third-order-eval",
+      "type": "numeric",
+      "prompt": "Evaluate the third-order determinant $\\begin{vmatrix} 5 & 0 & 7 \\\\ 8 & -6 & -4 \\\\ 2 & 3 & 9 \\end{vmatrix}$.",
+      "answer": 42,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Expand along Row 1: $5\\begin{vmatrix} -6 & -4 \\\\ 3 & 9 \\end{vmatrix} - 0 + 7\\begin{vmatrix} 8 & -6 \\\\ 2 & 3 \\end{vmatrix} = 5(-54 + 12) + 7(24 + 12) = 5(-42) + 7(36) = -210 + 252 = 42$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.2, Q6",
+      "tags": ["cofactor-expansion"]
+    },
+    {
+      "key": "ex-4-2-fourth-order-eval",
+      "type": "numeric",
+      "prompt": "Evaluate the fourth-order determinant $\\begin{vmatrix} 3 & 2 & 5 & 7 \\\\ -1 & -4 & -3 & 0 \\\\ 6 & 4 & 2 & -1 \\\\ 2 & -1 & 0 & 3 \\end{vmatrix}$.",
+      "answer": 96,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Use $R_1 \\to R_1 + 7R_3$ and $R_4 \\to R_4 + 3R_3$ to clear Column 4 except at $(3,4)$: Column 4 becomes $(0, 0, -1, 0)^T$. Expanding along Column 4 with sign $(-1)^{3+4} = -1$ gives $-(-1)\\begin{vmatrix} 45 & 30 & 19 \\\\ -1 & -4 & -3 \\\\ 20 & 11 & 6 \\end{vmatrix} = 96$.",
+      "difficulty": "hard",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.2, Q13",
+      "tags": ["higher-order-determinant"]
+    },
+    {
+      "key": "ex-4-3-sarrus-rule-eval",
+      "type": "numeric",
+      "prompt": "Evaluate $\\begin{vmatrix} 3 & 2 & -4 \\\\ 5 & 1 & -1 \\\\ -2 & 6 & 7 \\end{vmatrix}$ using the Rule of Sarrus.",
+      "image": "/diagrams/get-209/determinants-and-cramers-rule-sarrus-rule.svg",
+      "answer": -155,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Downward-right products: $(3)(1)(7) + (2)(-1)(-2) + (-4)(5)(6) = 21 + 4 - 120 = -95$. Downward-left products subtracted: $-(-4)(1)(-2) - (3)(-1)(6) - (2)(5)(7) = -8 + 18 - 70 = -60$. Total: $-95 - 60 = -155$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.3, Q1",
+      "tags": ["sarrus-rule"]
+    },
+    {
+      "key": "obj-4-1-powers-of-five",
+      "type": "mcq",
+      "prompt": "The value of the determinant $\\begin{vmatrix} 5^2 & 5^3 & 5^4 \\\\ 5^3 & 5^4 & 5^5 \\\\ 5^4 & 5^6 & 5^7 \\end{vmatrix}$ is:",
+      "options": [
+        { "label": "A", "text": "$5^2$", "correct": false },
+        { "label": "B", "text": "$0$", "correct": true },
+        { "label": "C", "text": "$5^{13}$", "correct": false },
+        { "label": "D", "text": "$5^9$", "correct": false }
+      ],
+      "solution": "Factor $5^2$ from $R_1$ and $5^3$ from $R_2$: both Row 1 and Row 2 become $(1,\\; 5,\\; 5^2)$. By Property (iii), two identical rows imply the determinant equals $0$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Objective Questions, Q1",
+      "tags": ["properties-of-determinants"]
+    },
+    {
+      "key": "obj-4-2-cofactor-determinant",
+      "type": "mcq",
+      "prompt": "If $\\Delta = \\begin{vmatrix} a_1 & b_1 & c_1 \\\\ a_2 & b_2 & c_2 \\\\ a_3 & b_3 & c_3 \\end{vmatrix} = 5$, then the value of its cofactor determinant $\\begin{vmatrix} A_1 & B_1 & C_1 \\\\ A_2 & B_2 & C_2 \\\\ A_3 & B_3 & C_3 \\end{vmatrix}$ is:",
+      "options": [
+        { "label": "A", "text": "$5$", "correct": false },
+        { "label": "B", "text": "$25$", "correct": true },
+        { "label": "C", "text": "$125$", "correct": false },
+        { "label": "D", "text": "$0$", "correct": false }
+      ],
+      "solution": "Multiplying $\\Delta$ row-by-row by its cofactor determinant produces a diagonal determinant with entries $\\Delta, \\Delta, \\Delta$, whose value is $\\Delta^3$. Hence $\\Delta \\cdot \\Delta_{\\text{cof}} = \\Delta^3 \\implies \\Delta_{\\text{cof}} = \\Delta^2 = 5^2 = 25$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Objective Questions, Q2 (cf. Example 64)",
+      "tags": ["multiplication-of-determinants", "cofactors"]
+    },
+    {
+      "key": "obj-4-4-cube-roots-unity",
+      "type": "mcq",
+      "prompt": "If $1, \\omega, \\omega^2$ are the cube roots of unity (with $n$ not a multiple of $3$), then $\\Delta = \\begin{vmatrix} 1 & \\omega^n & \\omega^{2n} \\\\ \\omega^n & \\omega^{2n} & 1 \\\\ \\omega^{2n} & 1 & \\omega^n \\end{vmatrix}$ equals:",
+      "options": [
+        { "label": "A", "text": "$0$", "correct": true },
+        { "label": "B", "text": "$1$", "correct": false },
+        { "label": "C", "text": "$\\omega$", "correct": false },
+        { "label": "D", "text": "$\\omega^2$", "correct": false }
+      ],
+      "solution": "Apply $C_1 \\to C_1 + C_2 + C_3$. Every entry in Column 1 becomes $1 + \\omega^n + \\omega^{2n}$, which equals $0$ whenever $n$ is not a multiple of $3$ (and if $n$ is a multiple of $3$, all entries are $1$ so rows are identical and $\\Delta = 0$ as well). Thus $\\Delta = 0$ for every integer $n$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Objective Questions, Q4 (cf. Example 20)",
+      "tags": ["properties-of-determinants"]
+    },
+    {
+      "key": "ex-4-6-pivotal-condensation-4x4",
+      "type": "numeric",
+      "prompt": "Using pivotal condensation (or row operations), evaluate $\\begin{vmatrix} 1 & 2 & 1 & 3 \\\\ 3 & 4 & 2 & 5 \\\\ 6 & 1 & 7 & 1 \\\\ 4 & 3 & 9 & 2 \\end{vmatrix}$.",
+      "answer": 75,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "With pivot $a_1 = 1$ ($n = 4$), $D = \\dfrac{1}{1^2}\\begin{vmatrix} 4-6 & 2-3 & 5-9 \\\\ 1-12 & 7-6 & 1-18 \\\\ 3-8 & 9-4 & 2-12 \\end{vmatrix} = \\begin{vmatrix} -2 & -1 & -4 \\\\ -11 & 1 & -17 \\\\ -5 & 5 & -10 \\end{vmatrix}$. Condensing again with pivot $-2$: $D = \\dfrac{1}{-2}\\begin{vmatrix} -2-11 & 34-44 \\\\ -10-5 & 20-20 \\end{vmatrix} = -\\dfrac{1}{2}\\begin{vmatrix} -13 & -10 \\\\ -15 & 0 \\end{vmatrix} = -\\dfrac{1}{2}(0 - 150) = 75$.",
+      "difficulty": "hard",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.6, Q4",
+      "tags": ["pivotal-condensation"]
+    },
+    {
+      "key": "sec-4-11-skew-symmetric-parity",
+      "type": "mcq",
+      "prompt": "Which statement is ALWAYS true for skew-symmetric determinants?",
+      "options": [
+        { "label": "A", "text": "Every skew-symmetric determinant of even order equals zero.", "correct": false },
+        { "label": "B", "text": "Every skew-symmetric determinant of odd order vanishes, and every even-order one is a perfect square.", "correct": true },
+        { "label": "C", "text": "The leading diagonal of a skew-symmetric determinant consists of all $1$s.", "correct": false },
+        { "label": "D", "text": "Interchanging two rows of a skew-symmetric determinant leaves its sign unchanged.", "correct": false }
+      ],
+      "solution": "By §4.11, factoring $-1$ from each of $n$ columns and transposing gives $\\Delta = (-1)^n \\Delta$. For odd $n$, $\\Delta = -\\Delta \\implies \\Delta = 0$. For even $n$, $\\Delta$ is always a perfect square (Property 2).",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, §4.11 Properties 1 & 2",
+      "tags": ["special-determinants", "skew-symmetric"]
+    },
+    {
+      "key": "ex-4-7-triangle-area",
+      "type": "numeric",
+      "prompt": "Using determinants, find the area (in square units) of the triangle whose vertices are $(-2, 4)$, $(2, -6)$, and $(5, 4)$.",
+      "image": "/diagrams/get-209/determinants-and-cramers-rule-triangle-area.svg",
+      "answer": 35,
+      "tolerancePct": 1,
+      "unit": "sq. units",
+      "solution": "Form $\\Delta = \\dfrac{1}{2}\\left|\\begin{vmatrix} -2 & 4 & 1 \\\\ 2 & -6 & 1 \\\\ 5 & 4 & 1 \\end{vmatrix}\\right|$. Apply $R_1 \\to R_1 - R_3$: Row 1 becomes $(-7, 0, 0)$. Expanding along Row 1 gives $\\dfrac{1}{2}|-7(-6 - 4)| = \\dfrac{1}{2}|70| = 35\\text{ sq. units}$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.7, Q2",
+      "tags": ["triangle-area"]
+    },
+    {
+      "key": "ex-4-7-collinear-alpha",
+      "type": "numeric",
+      "prompt": "Find the value of $\\alpha$ such that the points $(1, -5)$, $(-4, 5)$, and $(\\alpha, 7)$ are collinear.",
+      "answer": -5,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Collinearity requires $\\begin{vmatrix} 1 & -5 & 1 \\\\ -4 & 5 & 1 \\\\ \\alpha & 7 & 1 \\end{vmatrix} = 0$. Apply $R_1 \\to R_1 - R_2$ and $R_2 \\to R_2 - R_3$: $\\begin{vmatrix} 5 & -10 & 0 \\\\ -4 - \\alpha & -2 & 0 \\\\ \\alpha & 7 & 1 \\end{vmatrix} = 0 \\implies 5(-2) - (-10)(-4 - \\alpha) = 0 \\implies -10 - 40 - 10\\alpha = 0 \\implies \\alpha = -5$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.7, Q6",
+      "tags": ["collinearity"]
+    },
+    {
+      "key": "ex-4-8-cramer-3x3-z",
+      "type": "numeric",
+      "prompt": "Solve the linear system by Cramer's rule and report the value of $z$: $x + 2y + 5z = 23$, $3x + y + 4z = 26$, $6x + y + 7z = 47$.",
+      "answer": 3,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "$D = \\begin{vmatrix} 1 & 2 & 5 \\\\ 3 & 1 & 4 \\\\ 6 & 1 & 7 \\end{vmatrix} = 1(7 - 4) - 2(21 - 24) + 5(3 - 6) = 3 + 6 - 15 = -6$. $D_3 = \\begin{vmatrix} 1 & 2 & 23 \\\\ 3 & 1 & 26 \\\\ 6 & 1 & 47 \\end{vmatrix} = 1(47 - 26) - 2(141 - 156) + 23(3 - 6) = 21 + 30 - 69 = -18$. Hence $z = \\dfrac{D_3}{D} = \\dfrac{-18}{-6} = 3$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.8, Q9",
+      "tags": ["cramers-rule"]
+    },
+    {
+      "key": "obj-4-11-homogeneous-nontrivial",
+      "type": "mcq",
+      "prompt": "The homogeneous system $x + \\alpha y = 0$, $y + \\alpha z = 0$, $z + \\alpha x = 0$ has infinitely many solutions when:",
+      "image": "/diagrams/get-209/determinants-and-cramers-rule-consistency-trees.svg",
+      "options": [
+        { "label": "A", "text": "$\\alpha = 1$", "correct": false },
+        { "label": "B", "text": "$\\alpha = -1$", "correct": true },
+        { "label": "C", "text": "$\\alpha = 0$", "correct": false },
+        { "label": "D", "text": "No real value of $\\alpha$", "correct": false }
+      ],
+      "solution": "For nontrivial (infinitely many) solutions of a homogeneous system, $D = \\begin{vmatrix} 1 & \\alpha & 0 \\\\ 0 & 1 & \\alpha \\\\ \\alpha & 0 & 1 \\end{vmatrix} = 0$. Expanding along Column 1 gives $1(1 - 0) + \\alpha(\\alpha^2 - 0) = 1 + \\alpha^3 = 0$, whose unique real root is $\\alpha = -1$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Objective Questions, Q11",
+      "tags": ["homogeneous-consistency"]
+    },
+    {
+      "key": "obj-4-12-homogeneous-k-values",
+      "type": "mcq",
+      "prompt": "If the homogeneous system $x - ky - z = 0$, $kx - y - z = 0$, $x + y - z = 0$ has a non-zero solution, then the possible values of $k$ are:",
+      "options": [
+        { "label": "A", "text": "$-1,\\; 2$", "correct": false },
+        { "label": "B", "text": "$1,\\; 2$", "correct": false },
+        { "label": "C", "text": "$0,\\; 1$", "correct": false },
+        { "label": "D", "text": "$-1,\\; 1$", "correct": true }
+      ],
+      "solution": "Set $D = \\begin{vmatrix} 1 & -k & -1 \\\\ k & -1 & -1 \\\\ 1 & 1 & -1 \\end{vmatrix} = 0$. Apply $R_1 \\to R_1 - R_3$ and $R_2 \\to R_2 - R_3$: $\\begin{vmatrix} 0 & -k - 1 & 0 \\\\ k - 1 & -2 & 0 \\\\ 1 & 1 & -1 \\end{vmatrix} = 0$. Expanding along Column 3 gives $(-1)\\big(0 + (k+1)(k-1)\\big) = 0 \\implies k^2 - 1 = 0 \\implies k = -1, 1$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Objective Questions, Q12",
+      "tags": ["homogeneous-consistency"]
+    },
+    {
+      "key": "obj-4-13-inconsistent-lambda",
+      "type": "numeric",
+      "prompt": "Find the value of $\\lambda$ for which the system $2x - y - 2z = 2$, $x - 2y + z = -4$, $x + y + \\lambda z = 4$ has no solution.",
+      "answer": -3,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Compute $D = \\begin{vmatrix} 2 & -1 & -2 \\\\ 1 & -2 & 1 \\\\ 1 & 1 & \\lambda \\end{vmatrix} = 2(-2\\lambda - 1) + 1(\\lambda - 1) - 2(1 + 2) = -3\\lambda - 9$. Setting $D = 0$ gives $\\lambda = -3$. Checking $D_1$ at $\\lambda = -3$: $D_1 = \\begin{vmatrix} 2 & -1 & -2 \\\\ -4 & -2 & 1 \\\\ 4 & 1 & -3 \\end{vmatrix} = 2(6 - 1) + 1(12 - 4) - 2(-4 + 8) = 10 + 8 - 8 = 10 \\neq 0$, confirming inconsistency.",
+      "difficulty": "hard",
+      "source": "H. K. Dass, Ch. 4, Objective Questions, Q13",
+      "tags": ["non-homogeneous-consistency"]
+    }
+  ]
+}

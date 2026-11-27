@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="Equilateral triangle formed by unit vectors a, b and their sum">
+  <defs>
+    <marker id="ah0F766E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0F766E"/></marker>
+    <marker id="ah141413" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#141413"/></marker>
+    <marker id="ahEA580C" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EA580C"/></marker>
+  </defs>
+  <rect width="480" height="300" rx="14" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">Example 1 (redrawn) — a, b, a + b all of unit length</text>
+  <line x1="110" y1="230" x2="235" y2="60" stroke="#0F766E" stroke-width="2.4" marker-end="url(#ah0F766E)"/>
+  <line x1="235" y1="60" x2="360" y2="230" stroke="#EA580C" stroke-width="2.4" marker-end="url(#ahEA580C)"/>
+  <line x1="110" y1="230" x2="360" y2="230" stroke="#141413" stroke-width="3" marker-end="url(#ah141413)"/>
+  <circle cx="110" cy="230" r="3.5" fill="#141413"/>
+  <circle cx="235" cy="60" r="3.5" fill="#141413"/>
+  <circle cx="360" cy="230" r="3.5" fill="#141413"/>
+  <text x="96" y="252" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">O</text>
+  <text x="366" y="252" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">B</text>
+  <text x="228" y="50" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">A</text>
+  <text x="150" y="138" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#0F766E" text-anchor="end" font-style="italic">a</text>
+  <text x="312" y="138" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#EA580C" text-anchor="start" font-style="italic">b</text>
+  <text x="235" y="252" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="middle">c = a + b</text>
+  <text x="262" y="88" font-family="system-ui,sans-serif" font-size="16" font-weight="700" fill="#141413" text-anchor="start">α</text>
+  <text x="20" y="285" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="#64748B" text-anchor="start">|a| = |b| = |a + b| = 1  ⇒  OAB equilateral,  α = π − π/3 = 2π/3</text>
+</svg>

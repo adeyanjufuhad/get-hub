@@ -1,0 +1,221 @@
+{
+  "topicSlug": "limits-and-continuity",
+  "questions": [
+    {
+      "key": "ex-1-1-q2-rational-limit",
+      "type": "numeric",
+      "prompt": "Evaluate the limit:\n\n$$\\lim_{\\substack{x \\to 2 \\\\ y \\to 3}} \\frac{x^3 + y^2}{x^2 - y}$$",
+      "answer": 17,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Check the denominator at $(2, 3)$: $x^2 - y = 2^2 - 3 = 1 \\neq 0$. Since the rational function is continuous at $(2, 3)$, direct substitution gives:\n\n$$\\lim_{\\substack{x \\to 2 \\\\ y \\to 3}} \\frac{x^3 + y^2}{x^2 - y} = \\frac{2^3 + 3^2}{2^2 - 3} = \\frac{8 + 9}{4 - 3} = 17.$$",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q2",
+      "tags": ["limits", "direct-substitution"]
+    },
+    {
+      "key": "ex-1-1-q1-direct-sub",
+      "type": "numeric",
+      "prompt": "Evaluate the limit (give your answer as a decimal):\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{2x^2 + y^2}{2xy}$$",
+      "answer": 1.5,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "At $(1, 2)$, the denominator is $2(1)(2) = 4 \\neq 0$. Taking the limit directly (or iterating $x \\to 1$ and $y \\to 2$ in either order):\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{2x^2 + y^2}{2xy} = \\frac{2(1)^2 + 2^2}{2(1)(2)} = \\frac{2 + 4}{4} = \\frac{6}{4} = \\frac{3}{2} = 1.5.$$",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q1",
+      "tags": ["limits", "direct-substitution"]
+    },
+    {
+      "key": "ex-1-1-q6-direct-sub",
+      "type": "numeric",
+      "prompt": "Evaluate the limit:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{xy - 2x}{xy - 2y}$$",
+      "answer": 1,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Check the denominator at $(1, 1)$: $xy - 2y = 1(1) - 2(1) = -1 \\neq 0$. Substituting $x = 1$ and $y = 1$ directly yields:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{xy - 2x}{xy - 2y} = \\frac{1(1) - 2(1)}{1(1) - 2(1)} = \\frac{-1}{-1} = 1.$$",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q6",
+      "tags": ["limits", "direct-substitution"]
+    },
+    {
+      "key": "ex-1-1-q10-direct-sub",
+      "type": "numeric",
+      "prompt": "Evaluate the limit (give your answer as a decimal):\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{3x(y - 2)}{2y(x - 2)}$$",
+      "answer": 1.5,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "At $(1, 1)$, the denominator is $2(1)(1 - 2) = -2 \\neq 0$. Evaluating directly gives:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{3x(y - 2)}{2y(x - 2)} = \\frac{3(1)(1 - 2)}{2(1)(1 - 2)} = \\frac{-3}{-2} = \\frac{3}{2} = 1.5.$$",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q10",
+      "tags": ["limits", "direct-substitution"]
+    },
+    {
+      "key": "example-3-rational-limit",
+      "type": "numeric",
+      "prompt": "Evaluate the limit (give your answer as a decimal):\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{3x^2 y}{x^2 + y^2 + 5}$$",
+      "answer": 0.6,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "At $(1, 2)$, the denominator is $1^2 + 2^2 + 5 = 10 \\neq 0$. Applying Dass's sequential evaluation:\n\n$$\\lim_{x \\to 1}\\left[\\lim_{y \\to 2} \\frac{3x^2 y}{x^2 + y^2 + 5}\\right] = \\lim_{x \\to 1} \\frac{6x^2}{x^2 + 9} = \\frac{6(1)^2}{1 + 9} = \\frac{6}{10} = \\frac{3}{5} = 0.6.$$",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 1, Example 3",
+      "tags": ["limits", "direct-substitution"]
+    },
+    {
+      "key": "ex-1-1-q3-infinity-limit",
+      "type": "numeric",
+      "prompt": "Evaluate the limit:\n\n$$\\lim_{\\substack{x \\to \\infty \\\\ y \\to 3}} \\frac{2xy - 3}{x^3 + 4y^3}$$",
+      "answer": 0,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Divide numerator and denominator by $x^3$:\n\n$$\\frac{2xy - 3}{x^3 + 4y^3} = \\frac{\\dfrac{2y}{x^2} - \\dfrac{3}{x^3}}{1 + 4\\left(\\dfrac{y}{x}\\right)^3}.$$\n\nAs $x \\to \\infty$ and $y \\to 3$, every term with $x$ in the denominator vanishes, so both iterated limits and the simultaneous limit equal $\\dfrac{0 - 0}{1 + 0} = 0$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q3",
+      "tags": ["limits", "limit-at-infinity"]
+    },
+    {
+      "key": "ex-1-1-q8-polar-limit",
+      "type": "numeric",
+      "prompt": "Evaluate the limit (for $x \\neq 0, y \\neq 0$):\n\n$$\\lim_{\\substack{x \\to 0 \\\\ y \\to 0}} \\frac{x^2 y^3}{x^2 + y^2}$$",
+      "answer": 0,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Along $y = mx$, $\\dfrac{x^2(m^3 x^3)}{x^2(1 + m^2)} = \\dfrac{m^3}{1 + m^2}x^3 \\to 0$. Confirming uniformly in polar coordinates $x = r\\cos\\theta$, $y = r\\sin\\theta$ ($r > 0$):\n\n$$\\left|\\frac{x^2 y^3}{x^2 + y^2}\\right| = \\left|\\frac{r^5 \\cos^2\\theta \\sin^3\\theta}{r^2}\\right| = r^3 |\\cos^2\\theta \\sin^3\\theta| \\le r^3 \\to 0 \\quad \\text{as } r \\to 0.$$\n\nHence the limit exists and equals $0$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q8",
+      "tags": ["limits", "polar-coordinates"]
+    },
+    {
+      "key": "ex-1-2-q6-limit-at-point",
+      "type": "numeric",
+      "prompt": "For the function\n\n$$f(x, y) = \\begin{cases} \\dfrac{x^2 + 2y}{x + y^2}, & (x, y) \\neq (1, 2) \\\\[6pt] k, & (x, y) = (1, 2) \\end{cases}$$\n\nfind the value of $k$ that makes $f(x, y)$ continuous at $(1, 2)$.",
+      "answer": 1,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "By §1.5, continuity at $(1, 2)$ requires $k = f(1, 2) = \\lim_{(x, y) \\to (1, 2)} f(x, y)$. Since $x + y^2 = 1 + 2^2 = 5 \\neq 0$ at $(1, 2)$, direct substitution gives:\n\n$$\\lim_{(x, y) \\to (1, 2)} \\frac{x^2 + 2y}{x + y^2} = \\frac{1^2 + 2(2)}{1 + 2^2} = \\frac{5}{5} = 1.$$\n\nThus $k = 1$ makes $f$ continuous at $(1, 2)$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q6",
+      "tags": ["continuity", "working-rule"]
+    },
+    {
+      "key": "ex-1-2-q7-removable-value",
+      "type": "numeric",
+      "prompt": "The function\n\n$$f(x, y) = \\begin{cases} 2x^2 + y, & (x, y) \\neq (1, 2) \\\\[4pt] 0, & (x, y) = (1, 2) \\end{cases}$$\n\nis discontinuous at $(1, 2)$. What value should replace $0$ at $(1, 2)$ to remove the discontinuity?",
+      "answer": 4,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Evaluate the limit as $(x, y) \\to (1, 2)$:\n\n$$\\lim_{(x, y) \\to (1, 2)} (2x^2 + y) = 2(1)^2 + 2 = 4.$$\n\nSince $f(1, 2) = 0 \\neq 4$, the function has a removable discontinuity at $(1, 2)$; redefining $f(1, 2) = 4$ makes $f$ continuous there.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q7",
+      "tags": ["continuity", "removable-discontinuity"]
+    },
+    {
+      "key": "example-1-parabolic-path",
+      "type": "mcq",
+      "prompt": "Consider $\\displaystyle f(x, y) = \\frac{x^2 y}{x^4 + y^2}$. Although $f(x, y) \\to 0$ along $x = 0$, $y = 0$, and every straight line $y = mx$, what is the limit as $(x, y) \\to (0, 0)$ along the parabola $y = mx^2$, and what does this imply?",
+      "image": "/diagrams/get-209/limits-and-continuity-neighborhood-paths.svg",
+      "options": [
+        { "label": "A", "text": "$0$, so the simultaneous limit exists and equals $0$", "correct": false },
+        { "label": "B", "text": "$\\dfrac{m}{1 + m^2}$, so the simultaneous limit does not exist", "correct": true },
+        { "label": "C", "text": "$\\dfrac{1}{1 + m^2}$, so the simultaneous limit exists only for $m = 0$", "correct": false },
+        { "label": "D", "text": "$\\dfrac{m}{1 + m}$, so the limit equals $\\dfrac{1}{2}$", "correct": false }
+      ],
+      "solution": "Substituting $y = mx^2$ into $f(x, y)$:\n\n$$\\lim_{x \\to 0} \\frac{x^2(mx^2)}{x^4 + (mx^2)^2} = \\lim_{x \\to 0} \\frac{m x^4}{(1 + m^2)x^4} = \\frac{m}{1 + m^2}.$$\n\nBecause this result depends on $m$ (e.g., $m = 1$ gives $\\tfrac{1}{2} \\neq 0$), the limit depends on the path of approach and therefore does not exist.",
+      "difficulty": "hard",
+      "source": "H. K. Dass, Ch. 1, Example 1",
+      "tags": ["limits", "path-dependence"]
+    },
+    {
+      "key": "ex-1-1-q5-nonexistence",
+      "type": "mcq",
+      "prompt": "Determine the behaviour of the limit (for $x \\neq 0, y \\neq 0$):\n\n$$\\lim_{\\substack{x \\to 0 \\\\ y \\to 0}} \\frac{x - y}{x^2 + y^2}$$",
+      "options": [
+        { "label": "A", "text": "The limit exists and equals $0$", "correct": false },
+        { "label": "B", "text": "The limit exists and equals $1$", "correct": false },
+        { "label": "C", "text": "The limit does not exist", "correct": true },
+        { "label": "D", "text": "The limit exists and equals $-1$", "correct": false }
+      ],
+      "solution": "Along the line $y = x$, $f(x, x) = \\dfrac{x - x}{2x^2} = 0$, so the limit along $y = x$ is $0$. Along the line $y = 0$, $f(x, 0) = \\dfrac{x}{x^2} = \\dfrac{1}{x}$, which diverges to $\\pm\\infty$ as $x \\to 0^{\\pm}$. Since different paths give different behaviours, the limit does not exist.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q5",
+      "tags": ["limits", "path-dependence"]
+    },
+    {
+      "key": "ex-1-2-q1-origin-continuity",
+      "type": "mcq",
+      "prompt": "Test the following function for continuity at the origin $(0, 0)$:\n\n$$f(x, y) = \\begin{cases} \\dfrac{xy(x^2 - y^2)}{x^2 + y^2}, & x \\neq 0,\\; y \\neq 0 \\\\[6pt] 0, & x = 0,\\; y = 0 \\end{cases}$$",
+      "options": [
+        { "label": "A", "text": "Continuous at $(0, 0)$, because $\\lim_{(x, y) \\to (0, 0)} f(x, y) = 0 = f(0, 0)$", "correct": true },
+        { "label": "B", "text": "Not continuous at $(0, 0)$, because the limit along $y = mx$ depends on $m$", "correct": false },
+        { "label": "C", "text": "Not continuous at $(0, 0)$, because the limit along $y = mx^2$ is $\\dfrac{m}{1 + m^2}$", "correct": false },
+        { "label": "D", "text": "Not continuous at $(0, 0)$, because $f(0, 0)$ is not defined", "correct": false }
+      ],
+      "solution": "Step 1: $f(0, 0) = 0$ is well defined. Step 2: Set $x = r\\cos\\theta$, $y = r\\sin\\theta$ ($r > 0$). Then:\n\n$$f(x, y) = \\frac{(r^2\\cos\\theta\\sin\\theta)\\,r^2(\\cos^2\\theta - \\sin^2\\theta)}{r^2} = r^2 \\cos\\theta\\sin\\theta\\cos 2\\theta = \\frac{1}{4}r^2\\sin 4\\theta.$$\n\nHence $|f(x, y) - 0| \\le \\frac{1}{4}r^2 \\to 0$ as $r \\to 0$, so $\\lim_{(x, y) \\to (0, 0)} f(x, y) = 0$. Step 3: The limit equals $f(0, 0) = 0$, so $f$ is continuous at the origin.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q1",
+      "tags": ["continuity", "polar-coordinates"]
+    },
+    {
+      "key": "ex-1-2-q2-path-dependence",
+      "type": "mcq",
+      "prompt": "For the function\n\n$$f(x, y) = \\begin{cases} \\dfrac{x^2 - y^2}{x^2 + y^2}, & x \\neq 0,\\; y \\neq 0 \\\\[6pt] 0, & x = 0,\\; y = 0 \\end{cases}$$\n\nwhat is the limit along the straight line $y = mx$ as $x \\to 0$, and is $f$ continuous at the origin?",
+      "options": [
+        { "label": "A", "text": "$0$; continuous at $(0, 0)$", "correct": false },
+        { "label": "B", "text": "$\\dfrac{1 - m^2}{1 + m^2}$; not continuous at $(0, 0)$", "correct": true },
+        { "label": "C", "text": "$\\dfrac{1 - m}{1 + m}$; not continuous at $(0, 0)$", "correct": false },
+        { "label": "D", "text": "$1$; discontinuous with a removable discontinuity at $(0, 0)$", "correct": false }
+      ],
+      "solution": "Substituting $y = mx$ gives:\n\n$$\\lim_{x \\to 0} \\frac{x^2 - m^2 x^2}{x^2 + m^2 x^2} = \\frac{1 - m^2}{1 + m^2}.$$\n\nSince this value depends on the slope $m$ (for example, $m = 0$ gives $1$ while $m = 1$ gives $0$), the limit at $(0, 0)$ does not exist, and therefore $f(x, y)$ is not continuous at the origin.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q2",
+      "tags": ["continuity", "path-dependence"]
+    },
+    {
+      "key": "ex-1-2-q4-xy-over-r2",
+      "type": "mcq",
+      "prompt": "For the function\n\n$$f(x, y) = \\begin{cases} \\dfrac{xy}{x^2 + y^2}, & x \\neq 0,\\; y \\neq 0 \\\\[6pt] 0, & x = 0,\\; y = 0 \\end{cases}$$\n\nwhat is the limit along $y = mx$ as $x \\to 0$, and what follows about continuity at $(0, 0)$?",
+      "options": [
+        { "label": "A", "text": "$\\dfrac{m}{1 + m^2}$; not continuous at $(0, 0)$", "correct": true },
+        { "label": "B", "text": "$0$; continuous at $(0, 0)$", "correct": false },
+        { "label": "C", "text": "$\\dfrac{1}{2}$; continuous at $(0, 0)$ if $f(0, 0) = \\dfrac{1}{2}$", "correct": false },
+        { "label": "D", "text": "$\\dfrac{m^2}{1 + m^2}$; not continuous at $(0, 0)$", "correct": false }
+      ],
+      "solution": "Along $y = mx$:\n\n$$\\lim_{x \\to 0} \\frac{x(mx)}{x^2 + m^2 x^2} = \\lim_{x \\to 0} \\frac{m x^2}{(1 + m^2)x^2} = \\frac{m}{1 + m^2}.$$\n\nBecause the limiting value varies with $m$ (e.g., $m = 0$ gives $0$ whereas $m = 1$ gives $\\tfrac{1}{2}$), the simultaneous limit fails to exist and $f(x, y)$ is not continuous at the origin.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q4",
+      "tags": ["continuity", "path-dependence"]
+    },
+    {
+      "key": "sec-1-6-first-kind-graph",
+      "type": "mcq",
+      "prompt": "Identify the type of discontinuity at $x = x_1$ illustrated in the figure and its exact defining condition according to H. K. Dass (§1.6).",
+      "image": "/diagrams/get-209/limits-and-continuity-first-kind.svg",
+      "options": [
+        { "label": "A", "text": "Discontinuity of the first kind: both $f(x_1 - 0)$ and $f(x_1 + 0)$ exist finitely, but $f(x_1 - 0) \\neq f(x_1 + 0)$", "correct": true },
+        { "label": "B", "text": "Discontinuity of the second kind: neither $f(x_1 - 0)$ nor $f(x_1 + 0)$ exists", "correct": false },
+        { "label": "C", "text": "Discontinuity of the third kind (mixed): only one of $f(x_1 - 0)$ and $f(x_1 + 0)$ exists", "correct": false },
+        { "label": "D", "text": "Discontinuity of the fifth kind (removable): $f(x_1 - 0) = f(x_1 + 0) \\neq f(x_1)$", "correct": false }
+      ],
+      "solution": "The graph approaches two distinct finite values from the left and the right of $x_1$, so both $f(x_1 - 0)$ and $f(x_1 + 0)$ exist finitely but are unequal: $f(x_1 - 0) \\neq f(x_1 + 0)$. By H. K. Dass §1.6, this is a discontinuity of the first kind.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 1, §1.6 (Gujarat Univ. I sem. Jan. 2009)",
+      "tags": ["discontinuity", "first-kind"]
+    },
+    {
+      "key": "sec-1-6-fifth-kind-graph",
+      "type": "mcq",
+      "prompt": "Which statement accurately describes the discontinuity at $x = x_1$ shown in the figure?",
+      "image": "/diagrams/get-209/limits-and-continuity-fifth-kind.svg",
+      "options": [
+        { "label": "A", "text": "Fourth kind (infinite): at least one one-sided limit is infinite", "correct": false },
+        { "label": "B", "text": "First kind (jump): both one-sided limits exist finitely but differ", "correct": false },
+        { "label": "C", "text": "Third kind (mixed): only the right-hand limit exists", "correct": false },
+        { "label": "D", "text": "Fifth kind (removable): $f(x_1 - 0) = f(x_1 + 0)$ finitely, but this common limit differs from $f(x_1)$", "correct": true }
+      ],
+      "solution": "In the figure, the left-hand and right-hand branches meet at the same open hole—so $f(x_1 - 0) = f(x_1 + 0)$ exists finitely—while the solid dot $f(x_1)$ lies elsewhere. By §1.6, $f(x_1 - 0) = f(x_1 + 0) \\neq f(x_1)$ defines a discontinuity of the fifth kind (removable discontinuity).",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 1, §1.6 (Gujarat Univ. I sem. Jan. 2009)",
+      "tags": ["discontinuity", "removable-discontinuity"]
+    }
+  ]
+}

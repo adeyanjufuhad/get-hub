@@ -1,4 +1,6 @@
 import coursesManifest from "../../content/courses.json";
+import get207Manifest from "../../content/courses/get-207/course.json";
+import get209Manifest from "../../content/courses/get-209/course.json";
 import textbooksManifest from "../../content/textbooks.json";
 
 // Change the platform name in this single constant (and content/courses.json) to rename the site.
@@ -104,9 +106,11 @@ export interface FallbackTopicMeta {
   readonly ccmas_ref: string;
   readonly textbook_ref: string;
   readonly question_count: number;
+  /** Book part a folio belongs to, e.g. "Statics" / "Dynamics" (GET 207). */
+  readonly part?: string;
 }
 
-export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]> = {
+const STATIC_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]> = {
   "get-205": [
     {
       id: "22222222-2222-4222-8222-222222220205",
@@ -136,64 +140,39 @@ export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]
       question_count: 7,
     },
   ],
-  "get-207": [
-    {
-      id: "22222222-2222-4222-8222-222222220207",
-      slug: "forces-moments-and-equilibrium",
-      title: "Forces, Moments, Couples & 2D Equilibrium",
-      display_order: 1,
-      ccmas_ref: "Forces, moments, couples; equilibrium of simple structures and machine parts",
-      textbook_ref: "Hibbeler 14e · Ch. 2, Ch. 4 & Ch. 5",
-      question_count: 10,
-    },
-    {
-      id: "22222222-2222-4222-8222-222222270002",
-      slug: "dry-friction-and-inclines",
-      title: "Dry Friction on Inclined Planes, Ladders & Wedges",
-      display_order: 2,
-      ccmas_ref: "Friction on inclined planes, ladders & wedges",
-      textbook_ref: "Hibbeler 14e · Ch. 8 (§8.1–8.3)",
-      question_count: 7,
-    },
-    {
-      id: "22222222-2222-4222-8222-222222270003",
-      slug: "centroids-and-second-moments",
-      title: "Centroids, First & Second Moments of Area",
-      display_order: 3,
-      ccmas_ref: "Centroids, first & second moments of area",
-      textbook_ref: "Hibbeler 14e · Ch. 9 (§9.2) & Ch. 10 (§10.1–10.4)",
-      question_count: 7,
-    },
-  ],
-  "get-209": [
-    {
-      id: "22222222-2222-4222-8222-222222220209",
-      slug: "limits-and-continuity",
-      title: "Limits and Continuity of Functions",
-      display_order: 1,
-      ccmas_ref: "Limits; continuity",
-      textbook_ref: "James Stewart 7e · Ch. 2 (§2.2–2.6)",
-      question_count: 10,
-    },
-    {
-      id: "22222222-2222-4222-8222-222222290002",
-      slug: "first-order-linear-odes",
-      title: "First-Order Linear Differential Equations",
-      display_order: 2,
-      ccmas_ref: "Linear first-order differential equations",
-      textbook_ref: "James Stewart 7e · Ch. 9 (§9.5 Linear Equations)",
-      question_count: 7,
-    },
-    {
-      id: "22222222-2222-4222-8222-222222290003",
-      slug: "partial-derivatives-and-matrices",
-      title: "Partial Derivatives, Gradients & Matrices",
-      display_order: 3,
-      ccmas_ref: "Partial & total derivatives; directional derivatives & gradients; matrices & determinants",
-      textbook_ref: "Stewart 7e · Ch. 14 (§14.3–14.6) & Bird · Ch. 60",
-      question_count: 7,
-    },
-  ],
+};
+
+interface CourseManifestJson {
+  readonly topics: ReadonlyArray<{
+    readonly slug: string;
+    readonly topicId: string;
+    readonly title: string;
+    readonly order: number;
+    readonly ccmasRef: string;
+    readonly bookRef?: string;
+    readonly part?: string;
+  }>;
+}
+
+function topicsFromManifest(manifest: CourseManifestJson): readonly FallbackTopicMeta[] {
+  return manifest.topics.map((t) => ({
+    id: t.topicId,
+    slug: t.slug,
+    title: t.title,
+    display_order: t.order,
+    ccmas_ref: t.ccmasRef,
+    textbook_ref: t.bookRef ?? "",
+    question_count: 0,
+    part: t.part,
+  }));
+}
+
+// GET 207 and GET 209 folios come straight from content/courses/*/course.json,
+// so the book references shown in the UI never drift from the notes.
+export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]> = {
+  ...STATIC_TOPICS_FALLBACK,
+  "get-207": topicsFromManifest(get207Manifest),
+  "get-209": topicsFromManifest(get209Manifest),
 };
 
 export const TEXTBOOKS: readonly TextbookConfig[] = textbooksManifest.textbooks;

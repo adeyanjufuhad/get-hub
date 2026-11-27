@@ -1,0 +1,1063 @@
+---
+title: "Matrices: Algebra, Inverse, Rank & Systems of Linear Equations"
+order: 6
+topicId: "22222222-2222-4222-8222-222222290006"
+courseCode: "GET 209"
+courseSlug: "get-209"
+ccmasRef: "Matrix algebra; adjoint and inverse; rank; consistency of linear systems"
+textbookRef: "H. K. Dass · Ch. 4, §4.18–4.44"
+outcomes:
+  - "Classify special matrices (diagonal, scalar, identity, symmetric, skew-symmetric, triangular, orthogonal, Hermitian, skew-Hermitian, unitary, idempotent, periodic, nilpotent, involutory and singular) and perform matrix algebra."
+  - "Multiply conformable matrices, apply the reversal law $(AB)'=B'A'$, decompose any square matrix into symmetric and skew-symmetric parts, and prove matrix power identities by mathematical induction."
+  - "Compute the adjoint and inverse of a non-singular square matrix by both the cofactor/adjoint formula $A^{-1} = \\frac{1}{|A|}\\operatorname{adj} A$ and Gauss–Jordan elementary row transformations."
+  - "Reduce a matrix to echelon (upper triangular) form and normal (canonical) form $PAQ = \\begin{bmatrix} I_r & 0 \\\\ 0 & 0 \\end{bmatrix}$ to determine its rank $\\rho(A)$."
+  - "Solve non-homogeneous ($AX=B$) and homogeneous ($AX=O$) linear systems by Gaussian elimination, Gauss–Jordan reduction and rank consistency criteria, including parametric conditions for unique, infinite, trivial, non-trivial or no solutions."
+status: "published"
+isFree: true
+---
+
+## Overview
+
+In the first half of Chapter 4 (§4.1–4.17), determinants reduced a square array of numbers to a single scalar. Here we treat the rectangular array itself as an algebraic object — a **matrix**. Matrix algebra allows entire systems of linear equations, coordinate transformations, and engineering network models to be written compactly as $AX = B$.
+
+This folio follows H. K. Dass, *Advanced Engineering Mathematics*, Chapter 4, **§4.18 to §4.44** in exact section order: matrix classification and arithmetic, multiplication and its non-commutative properties, mathematical induction, adjoint and inverse, elementary row/column transformations and Gauss–Jordan inversion, rank and normal (canonical) form, and the complete consistency and solution theory for non-homogeneous and homogeneous linear systems.
+
+---
+
+### 4.18 Matrices
+
+Consider a system of simultaneous linear equations such as
+
+$$x + 2y + 3z + 5t = 0, \qquad 4x + 2y + 5z + 7t = 0, \qquad 3x + 4y + 2z + 6t = 0.$$
+
+Extracting the coefficients of $x, y, z, t$ and enclosing them in brackets yields the rectangular array
+
+$$A = \begin{bmatrix} 1 & 2 & 3 & 5 \\ 4 & 2 & 5 & 7 \\ 3 & 4 & 2 & 6 \end{bmatrix}.$$
+
+<RuleBox kind="definition" title="§4.18 Matrix and its order">
+
+A **matrix** is a rectangular array of numbers arranged in rows and columns and enclosed within brackets. A matrix with $m$ rows and $n$ columns has $m \times n$ elements and is said to be of **order $m \times n$** (read "$m$ by $n$").
+
+In double-subscript notation $A = [a_{ij}]_{m\times n}$, the first subscript $i$ identifies the **row** and the second subscript $j$ identifies the **column** in which the element $a_{ij}$ lies.
+
+</RuleBox>
+
+---
+
+### 4.19 Various Types of Matrices
+
+Dass classifies the principal types of matrices encountered across engineering mathematics as follows.
+
+<RuleBox kind="definition" title="§4.19 Classification of matrices (a)–(w)">
+
+- **(a) Row Matrix:** A matrix with only one row and any number of columns, e.g., $[2\;\;7\;\;3\;\;9]$.
+- **(b) Column Matrix:** A matrix with only one column and any number of rows, e.g., $\begin{bmatrix}1\\2\\3\end{bmatrix}$.
+- **(c) Null (or Zero) Matrix:** A matrix in which every element is zero, denoted $O$, e.g., $\begin{bmatrix}0&0&0&0\\0&0&0&0\end{bmatrix}$.
+- **(d) Square Matrix:** A matrix whose number of rows equals its number of columns ($m = n$), e.g., $\begin{bmatrix}2&5\\1&4\end{bmatrix}$.
+- **(e) Diagonal Matrix:** A square matrix in which all non-diagonal elements are zero ($a_{ij} = 0$ for $i \ne j$), e.g., $\begin{bmatrix}1&0&0\\0&3&0\\0&0&4\end{bmatrix}$.
+- **(f) Scalar Matrix:** A diagonal matrix whose diagonal elements are all equal to the same scalar $k$:
+$$a_{ij} = \begin{cases} 0, & i \ne j, \\ k, & i = j. \end{cases}$$
+- **(g) Unit (or Identity) Matrix:** A scalar matrix with $k = 1$, denoted $I$ or $I_n$, e.g., $I_3 = \begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}$.
+- **(h) Symmetric Matrix:** A square matrix satisfying $a_{ij} = a_{ji}$ for all $i, j$, i.e., $A' = A$, e.g., $\begin{bmatrix}a&h&g\\h&b&f\\g&f&c\end{bmatrix}$.
+- **(i) Skew-Symmetric Matrix:** A square matrix satisfying $a_{ij} = -a_{ji}$ for all $i, j$, i.e., $A' = -A$. Setting $i = j$ gives $a_{ii} = -a_{ii} \implies a_{ii} = 0$, so every leading diagonal element is zero, e.g., $\begin{bmatrix}0&-h&-g\\h&0&-f\\g&f&0\end{bmatrix}$.
+- **(j) Triangular Matrix (Echelon form):** A square matrix is **upper triangular** if all elements below the leading diagonal are zero, and **lower triangular** if all elements above the leading diagonal are zero.
+- **(k) Transpose of a Matrix:** Obtained from $A$ by interchanging its rows and corresponding columns; denoted $A'$ or $A^T$. If $A$ is $m \times n$, then $A'$ is $n \times m$.
+- **(l) Orthogonal Matrix:** A square matrix $A$ satisfying $AA' = I$ (equivalently $A^{-1} = A'$). Its determinant is $|A| = \pm 1$; if $|A| = 1$, $A$ is called **proper orthogonal**.
+- **(m) Conjugate of a Matrix:** For a complex matrix $A$, its conjugate $\bar{A}$ is obtained by replacing each entry by its complex conjugate.
+- **(n) Conjugate Transpose $A^\theta$:** The transpose of the conjugate of $A$, written $A^\theta = (\bar{A})' = \overline{(A')}$.
+- **(o) Unitary Matrix:** A square complex matrix satisfying $A^\theta A = I$ (and $A A^\theta = I$).
+- **(p) Hermitian Matrix:** A square matrix $A = (a_{ij})$ with $a_{ij} = \bar{a}_{ji}$ for all $i,j$; equivalently $A = A^\theta = (\bar{A})'$. Every diagonal element of a Hermitian matrix is real.
+- **(q) Skew-Hermitian Matrix:** A square matrix $A = (a_{ij})$ with $a_{ij} = -\bar{a}_{ji}$ for all $i,j$; equivalently $A^\theta = -A$. For diagonal entries, $a_{ii} + \bar{a}_{ii} = 0$, so every diagonal entry is either zero or purely imaginary.
+- **(r) Idempotent Matrix:** A square matrix satisfying $A^2 = A$.
+- **(s) Periodic Matrix:** A square matrix satisfying $A^{k+1} = A$ for some positive integer $k$; the least such $k$ is the **period** of $A$ (for $k=1$, $A$ is idempotent).
+- **(t) Nilpotent Matrix:** A square matrix satisfying $A^k = O$ for some positive integer $k$; the least such $k$ is the **index** of nilpotency. For instance, $A = \begin{bmatrix}ab & b^2 \\ -a^2 & -ab\end{bmatrix}$ has $A^2 = O$, so its index is $2$.
+- **(u) Involutory Matrix:** A square matrix satisfying $A^2 = I$ (Dass spells this "involuntary"). Clearly $I^2 = I$, so the identity matrix is involutory.
+- **(v) Equal Matrices:** Two matrices $A$ and $B$ are equal ($A = B$) if and only if they have the same order and their corresponding elements are equal ($a_{ij} = b_{ij}$ for all $i, j$).
+- **(w) Singular Matrix:** A square matrix whose determinant is zero ($|A| = 0$). If $|A| \ne 0$, the matrix is **non-singular**.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 1 (§4.19)"
+  source="H. K. Dass, Ch. 4, Example 1"
+  problem="Find the values of $x, y, z$ and $a$ which satisfy the matrix equation $\begin{bmatrix} x+3 & 2y+x \\ z-1 & 4a-6 \end{bmatrix} = \begin{bmatrix} 0 & -7 \\ 3 & 2a \end{bmatrix}$."
+  steps={[
+    "Because the two $2\\times 2$ matrices are equal, equate their corresponding entries: (1) $x + 3 = 0$, (2) $2y + x = -7$, (3) $z - 1 = 3$, (4) $4a - 6 = 2a$.",
+    "From (1): $x = -3$.",
+    "From (3): $z = 4$.",
+    "From (4): $2a = 6 \\implies a = 3$.",
+    "Substitute $x = -3$ into (2): $2y - 3 = -7 \\implies 2y = -4 \\implies y = -2$."
+  ]}
+  answer="$x = -3,\\; y = -2,\\; z = 4,\\; a = 3$"
+/>
+
+---
+
+### 4.20 Addition of Matrices
+
+If $A = [a_{ij}]$ and $B = [b_{ij}]$ have the **same order** $m \times n$, their sum $A + B$ is the $m \times n$ matrix obtained by adding corresponding elements:
+
+$$A + B = [a_{ij} + b_{ij}].$$
+
+For example, if $A = \begin{bmatrix}4&2&5\\1&3&-6\end{bmatrix}$ and $B = \begin{bmatrix}1&0&2\\3&1&4\end{bmatrix}$, then $A + B = \begin{bmatrix}5&2&7\\4&4&-2\end{bmatrix}$.
+
+<StepRevealExample
+  title="Example 2 (§4.20)"
+  source="H. K. Dass, Ch. 4, Example 2"
+  problem="Show that any square matrix can be expressed as the sum of two matrices, one symmetric and the other anti-symmetric (skew-symmetric)."
+  steps={[
+    "Let $A$ be any square matrix and $A'$ its transpose. Write identically $A = \\dfrac{1}{2}(A + A') + \\dfrac{1}{2}(A - A')$.",
+    "Check the first part: $(A + A')' = A' + (A')' = A' + A = A + A'$, so $\\dfrac{1}{2}(A + A')$ is symmetric.",
+    "Check the second part: $(A - A')' = A' - A = -(A - A')$, so $\\dfrac{1}{2}(A - A')$ is anti-symmetric (skew-symmetric).",
+    "Hence every square matrix decomposes uniquely as $A = \\dfrac{1}{2}(A + A') + \\dfrac{1}{2}(A - A')$."
+  ]}
+  answer="$A = \\dfrac{1}{2}(A + A') + \\dfrac{1}{2}(A - A')$"
+/>
+
+<StepRevealExample
+  title="Example 3 (§4.20)"
+  source="H. K. Dass, Ch. 4, Example 3"
+  problem="Write the matrix $A = \\begin{bmatrix} 1 & 2 & 4 \\\\ -2 & 5 & 3 \\\\ -1 & 6 & 3 \\end{bmatrix}$ as the sum of a symmetric and a skew-symmetric matrix."
+  steps={[
+    "Find the transpose: $A' = \\begin{bmatrix} 1 & -2 & -1 \\\\ 2 & 5 & 6 \\\\ 4 & 3 & 3 \\end{bmatrix}$.",
+    "Compute $A + A' = \\begin{bmatrix} 2 & 0 & 3 \\\\ 0 & 10 & 9 \\\\ 3 & 9 & 6 \\end{bmatrix}$ and $A - A' = \\begin{bmatrix} 0 & 4 & 5 \\\\ -4 & 0 & -3 \\\\ -5 & 3 & 0 \\end{bmatrix}$.",
+    "Divide each by $2$ and add: $A = \\dfrac{1}{2}(A + A') + \\dfrac{1}{2}(A - A') = \\begin{bmatrix} 1 & 0 & 3/2 \\\\ 0 & 5 & 9/2 \\\\ 3/2 & 9/2 & 3 \\end{bmatrix} + \\begin{bmatrix} 0 & 2 & 5/2 \\\\ -2 & 0 & -3/2 \\\\ -5/2 & 3/2 & 0 \\end{bmatrix}$.",
+    "The first matrix equals its transpose (symmetric) and the second equals the negative of its transpose (skew-symmetric)."
+  ]}
+  answer="$A = \\begin{bmatrix} 1 & 0 & \\frac{3}{2} \\\\ 0 & 5 & \\frac{9}{2} \\\\ \\frac{3}{2} & \\frac{9}{2} & 3 \\end{bmatrix} + \\begin{bmatrix} 0 & 2 & \\frac{5}{2} \\\\ -2 & 0 & -\\frac{3}{2} \\\\ -\\frac{5}{2} & \\frac{3}{2} & 0 \\end{bmatrix}$"
+/>
+
+---
+
+### 4.21 Properties of Matrix Addition
+
+Only matrices of the **same order** can be added or subtracted. For conformable matrices $A, B, C$:
+
+1. **Commutative Law:** $A + B = B + A$.
+2. **Associative Law:** $A + (B + C) = (A + B) + C$.
+
+---
+
+### 4.22 Subtraction of Matrices
+
+For two matrices $A = [a_{ij}]$ and $B = [b_{ij}]$ of the same order, their difference is defined elementwise by
+
+$$A - B = [a_{ij} - b_{ij}].$$
+
+For example, $\begin{bmatrix}8&6&4\\1&2&0\end{bmatrix} - \begin{bmatrix}3&5&1\\7&6&2\end{bmatrix} = \begin{bmatrix}5&1&3\\-6&-4&-2\end{bmatrix}$.
+
+---
+
+### 4.23 Scalar Multiple of a Matrix
+
+When a matrix $A = [a_{ij}]$ is multiplied by a scalar $k$, **every** element of $A$ is multiplied by $k$:
+
+$$kA = [ka_{ij}].$$
+
+Contrast this with determinants, where multiplying a determinant by $k$ multiplies only a single row or column.
+
+<ExerciseSet
+  title="Exercise 4.10"
+  source="H. K. Dass, Ch. 4, Exercise 4.10"
+  items={[
+    {
+      q: "If $A = \\begin{bmatrix} -1 & 7 & 1 \\\\ 2 & 3 & 4 \\\\ 5 & 0 & 5 \\end{bmatrix}$, represent it as $A = B + C$ where $B$ is symmetric and $C$ is skew-symmetric.",
+      a: "$B = \\begin{bmatrix} -1 & 9/2 & 3 \\\\ 9/2 & 3 & 2 \\\\ 3 & 2 & 5 \\end{bmatrix},\\; C = \\begin{bmatrix} 0 & 5/2 & -2 \\\\ -5/2 & 0 & 2 \\\\ 2 & -2 & 0 \\end{bmatrix}$"
+    },
+    {
+      q: "Matrices $A$ and $B$ satisfy $3A - 2B = \\begin{bmatrix} 2 & 1 \\\\ -2 & -1 \\end{bmatrix}$ and $-4A + B = \\begin{bmatrix} -1 & 2 \\\\ -4 & 3 \\end{bmatrix}$. Find $A$ and $B$.",
+      a: "$A = \\begin{bmatrix} 0 & -1 \\\\ 2 & -1 \\end{bmatrix},\\; B = \\begin{bmatrix} -1 & -2 \\\\ 4 & -1 \\end{bmatrix}$"
+    },
+    {
+      q: "Given $3\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} = \\begin{bmatrix} x & 6 \\\\ -1 & 2w \\end{bmatrix} + \\begin{bmatrix} 4 & x+y \\\\ z+w & 3 \\end{bmatrix}$, find $x, y, z$ and $w$.",
+      a: "$x = 2,\\; y = 4,\\; z = 1,\\; w = 3$"
+    },
+    {
+      q: "If $A = \\begin{bmatrix} 0 & 2 & 0 \\\\ 1 & 0 & 3 \\\\ 1 & 1 & 2 \\end{bmatrix}$ and $B = \\begin{bmatrix} 1 & 2 & 1 \\\\ 2 & 1 & 0 \\\\ 0 & 0 & 3 \\end{bmatrix}$, find (i) $2A + 3B$ and (ii) $3A - 4B$.",
+      a: "(i) $\\begin{bmatrix} 3 & 10 & 3 \\\\ 8 & 3 & 6 \\\\ 2 & 2 & 13 \\end{bmatrix}$, (ii) $\\begin{bmatrix} -4 & -2 & -4 \\\\ -5 & -4 & 9 \\\\ 3 & 3 & -6 \\end{bmatrix}$"
+    }
+  ]}
+/>
+
+---
+
+### 4.24 Multiplication
+
+The matrix product $AB$ is defined **only when the number of columns of $A$ equals the number of rows of $B$** (we say $A$ and $B$ are conformable for the product $AB$).
+
+<RuleBox kind="definition" title="§4.24 Matrix multiplication">
+
+Let $A = [a_{ij}]$ be an $m \times n$ matrix and $B = [b_{ij}]$ be an $n \times p$ matrix. Their product $C = AB = [c_{ij}]$ is an $m \times p$ matrix whose $(i,j)$-th element is the dot product of the $i$-th row of $A$ and the $j$-th column of $B$:
+
+$$c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \dots + a_{in}b_{nj} = \sum_{k=1}^{n} a_{ik}b_{kj}.$$
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-209/matrices-inverse-rank-and-linear-systems-multiplication.svg"
+  caption="Conformability condition for matrix multiplication (m × n times n × p gives m × p) and the row-by-column entry rule c_ij = R_i · C_j (H. K. Dass §4.24)."
+/>
+
+---
+
+### 4.25 Reversal Law of Transpose: $(AB)' = B'A'$
+
+<RuleBox kind="theorem" title="§4.25 Transpose of a product">
+
+If $A$ ($m \times n$) and $B$ ($n \times p$) are conformable for the product $AB$, then
+
+$$(AB)' = B'A'.$$
+
+**Proof:** $AB$ is $m \times p$, so $(AB)'$ is $p \times m$. Also $B'$ is $p \times n$ and $A'$ is $n \times m$, so $B'A'$ is $p \times m$. The $(j,i)$-th entry of $(AB)'$ is the $(i,j)$-th entry of $AB$, namely $\sum_{k=1}^{n} a_{ik}b_{kj}$. Meanwhile, the $j$-th row of $B'$ is $(b_{1j}, b_{2j}, \dots, b_{nj})$ and the $i$-th column of $A'$ is $(a_{i1}, a_{i2}, \dots, a_{in})^T$, so the $(j,i)$-th entry of $B'A'$ is $\sum_{k=1}^{n} b_{kj}a_{ik}$. Since corresponding entries match, $(AB)' = B'A'$.
+
+</RuleBox>
+
+---
+
+### 4.26 Properties of Matrix Multiplication
+
+<RuleBox kind="formula" title="§4.26 Algebraic laws of matrix multiplication">
+
+1. **Not commutative in general:** $AB \ne BA$ (indeed $BA$ may not even be defined).
+2. **Associative (when conformable):** $A(BC) = (AB)C$.
+3. **Distributive over addition:** $A(B + C) = AB + AC$ and $(A + B)C = AC + BC$.
+4. **Multiplicative identity:** $AI = IA = A$.
+5. **Multiplicative inverse:** Exists for a square matrix $A$ if $|A| \ne 0$, satisfying $A A^{-1} = A^{-1} A = I$.
+6. **Positive integer powers:** For square $A$, $A^2 = AA$, $A^3 = AAA$, etc.
+7. **Zero power:** $A^0 = I$ (for square $A$).
+8. **Powers of identity:** $I^n = I$ for every positive integer $n$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 4 (§4.26)"
+  source="H. K. Dass, Ch. 4, Example 4"
+  problem="If $A = \\begin{bmatrix} 0 & 1 & 2 \\\\ 1 & 2 & 3 \\\\ 2 & 3 & 4 \\end{bmatrix}$ and $B = \\begin{bmatrix} 1 & -2 \\\\ -1 & 0 \\\\ 2 & -1 \\end{bmatrix}$, obtain the product $AB$ and explain why $BA$ is not defined."
+  steps={[
+    "$A$ is $3 \\times 3$ and $B$ is $3 \\times 2$. Because the number of columns of $A$ ($3$) equals the number of rows of $B$ ($3$), $AB$ is defined and has order $3 \\times 2$.",
+    "Compute each row-by-column inner product $R_i \\cdot C_j$: Row 1: $[0(1)+1(-1)+2(2),\\; 0(-2)+1(0)+2(-1)] = [3,\\; -2]$.",
+    "Row 2: $[1(1)+2(-1)+3(2),\\; 1(-2)+2(0)+3(-1)] = [5,\\; -5]$.",
+    "Row 3: $[2(1)+3(-1)+4(2),\\; 2(-2)+3(0)+4(-1)] = [7,\\; -8]$.",
+    "For $BA$, the number of columns of $B$ ($2$) does not equal the number of rows of $A$ ($3$), so $BA$ is not defined."
+  ]}
+  answer="$AB = \\begin{bmatrix} 3 & -2 \\\\ 5 & -5 \\\\ 7 & -8 \\end{bmatrix}$; $BA$ is undefined because $2 \\ne 3$."
+/>
+
+<StepRevealExample
+  title="Example 7 (§4.26)"
+  source="H. K. Dass, Ch. 4, Example 7 (A.M.I.E., Summer 2004)"
+  problem="If $A = \\begin{bmatrix} 1 & 2 & 2 \\\\ 2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{bmatrix}$, show that $A^2 - 4A - 5I = O$, where $I$ and $O$ are the unit and null matrices of order $3$. Use this result to find $A^{-1}$."
+  steps={[
+    "Compute $A^2 = \\begin{bmatrix} 1 & 2 & 2 \\\\ 2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{bmatrix}\\begin{bmatrix} 1 & 2 & 2 \\\\ 2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{bmatrix} = \\begin{bmatrix} 9 & 8 & 8 \\\\ 8 & 9 & 8 \\\\ 8 & 8 & 9 \\end{bmatrix}$.",
+    "Evaluate $A^2 - 4A - 5I = \\begin{bmatrix} 9-4-5 & 8-8-0 & 8-8-0 \\\\ 8-8-0 & 9-4-5 & 8-8-0 \\\\ 8-8-0 & 8-8-0 & 9-4-5 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{bmatrix} = O$.",
+    "Rearrange to $5I = A^2 - 4A$ and multiply both sides by $A^{-1}$: $5A^{-1} = A - 4I$.",
+    "Compute $A - 4I = \\begin{bmatrix} 1 & 2 & 2 \\\\ 2 & 1 & 2 \\\\ 2 & 2 & 1 \\end{bmatrix} - \\begin{bmatrix} 4 & 0 & 0 \\\\ 0 & 4 & 0 \\\\ 0 & 0 & 4 \\end{bmatrix} = \\begin{bmatrix} -3 & 2 & 2 \\\\ 2 & -3 & 2 \\\\ 2 & 2 & -3 \\end{bmatrix}$.",
+    "Divide by $5$ to obtain $A^{-1}$."
+  ]}
+  answer="$A^{-1} = \\dfrac{1}{5}\\begin{bmatrix} -3 & 2 & 2 \\\\ 2 & -3 & 2 \\\\ 2 & 2 & -3 \\end{bmatrix}$"
+/>
+
+<StepRevealExample
+  title="Example 8 (§4.26)"
+  source="H. K. Dass, Ch. 4, Example 8"
+  problem="Show by means of an example that in matrices $AB = O$ does not necessarily imply $A = O$ or $B = O$."
+  steps={[
+    "Choose the non-zero matrices $A = \\begin{bmatrix} 1 & -1 & 1 \\\\ -3 & 2 & -1 \\\\ -2 & 1 & 0 \\end{bmatrix}$ and $B = \\begin{bmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\\\ 1 & 2 & 3 \\end{bmatrix}$.",
+    "Compute $AB = \\begin{bmatrix} 1-2+1 & 2-4+2 & 3-6+3 \\\\ -3+4-1 & -6+8-2 & -9+12-3 \\\\ -2+2+0 & -4+4+0 & -6+6+0 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{bmatrix} = O$.",
+    "Thus $AB = O$ even though neither $A = O$ nor $B = O$ (zero divisors exist in matrix algebra)."
+  ]}
+  answer="$AB = O$ with $A \\ne O$ and $B \\ne O$. Proved."
+/>
+
+<StepRevealExample
+  title="Example 11 (§4.26)"
+  source="H. K. Dass, Ch. 4, Example 11"
+  problem="Prove that the product of $\\begin{bmatrix} \\cos^2\\theta & \\cos\\theta\\sin\\theta \\\\ \\cos\\theta\\sin\\theta & \\sin^2\\theta \\end{bmatrix}$ and $\\begin{bmatrix} \\cos^2\\phi & \\cos\\phi\\sin\\phi \\\\ \\cos\\phi\\sin\\phi & \\sin^2\\phi \\end{bmatrix}$ is the zero matrix when $\\theta$ and $\\phi$ differ by an odd multiple of $\\dfrac{\\pi}{2}$."
+  steps={[
+    "Multiply the two $2 \\times 2$ matrices and factor out common terms from each entry.",
+    "The $(1,1)$ entry is $\\cos^2\\theta\\cos^2\\phi + \\cos\\theta\\sin\\theta\\cos\\phi\\sin\\phi = \\cos\\theta\\cos\\phi(\\cos\\theta\\cos\\phi + \\sin\\theta\\sin\\phi) = \\cos\\theta\\cos\\phi\\cos(\\theta - \\phi)$.",
+    "Similarly the entire product simplifies to $\\cos(\\theta - \\phi)\\begin{bmatrix} \\cos\\theta\\cos\\phi & \\cos\\theta\\sin\\phi \\\\ \\sin\\theta\\cos\\phi & \\sin\\theta\\sin\\phi \\end{bmatrix}$.",
+    "When $\\theta - \\phi = (2n + 1)\\dfrac{\\pi}{2}$, $\\cos(\\theta - \\phi) = 0$, so the product equals $\\begin{bmatrix} 0 & 0 \\\\ 0 & 0 \\end{bmatrix} = O$."
+  ]}
+  answer="The product is the zero matrix $O$. Proved."
+/>
+
+<StepRevealExample
+  title="Example 13 (§4.26)"
+  source="H. K. Dass, Ch. 4, Example 13"
+  problem="Determine the values of $\\alpha, \\beta, \\gamma$ when $A = \\begin{bmatrix} 0 & 2\\beta & \\gamma \\\\ \\alpha & \\beta & -\\gamma \\\\ \\alpha & -\\beta & \\gamma \\end{bmatrix}$ is orthogonal."
+  steps={[
+    "Write the transpose $A' = \\begin{bmatrix} 0 & \\alpha & \\alpha \\\\ 2\\beta & \\beta & -\\beta \\\\ \\gamma & -\\gamma & \\gamma \\end{bmatrix}$.",
+    "Apply the orthogonality condition $AA' = I$: $\\begin{bmatrix} 4\\beta^2+\\gamma^2 & 2\\beta^2-\\gamma^2 & -2\\beta^2+\\gamma^2 \\\\ 2\\beta^2-\\gamma^2 & \\alpha^2+\\beta^2+\\gamma^2 & \\alpha^2-\\beta^2-\\gamma^2 \\\\ -2\\beta^2+\\gamma^2 & \\alpha^2-\\beta^2-\\gamma^2 & \\alpha^2+\\beta^2+\\gamma^2 \\end{bmatrix} = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$.",
+    "Equating corresponding entries gives $4\\beta^2 + \\gamma^2 = 1$ and $2\\beta^2 - \\gamma^2 = 0$. Adding them yields $6\\beta^2 = 1 \\implies \\beta = \\pm\\dfrac{1}{\\sqrt{6}}$.",
+    "Then $\\gamma^2 = 2\\beta^2 = \\dfrac{1}{3} \\implies \\gamma = \\pm\\dfrac{1}{\\sqrt{3}}$.",
+    "Finally, $\\alpha^2 + \\beta^2 + \\gamma^2 = 1 \\implies \\alpha^2 = 1 - \\dfrac{1}{6} - \\dfrac{1}{3} = \\dfrac{1}{2} \\implies \\alpha = \\pm\\dfrac{1}{\\sqrt{2}}$."
+  ]}
+  answer="$\\alpha = \\pm\\dfrac{1}{\\sqrt{2}},\\; \\beta = \\pm\\dfrac{1}{\\sqrt{6}},\\; \\gamma = \\pm\\dfrac{1}{\\sqrt{3}}$"
+/>
+
+<ExerciseSet
+  title="Exercise 4.11"
+  source="H. K. Dass, Ch. 4, Exercise 4.11"
+  items={[
+    {
+      q: "Compute $AB$ if $A = \\begin{bmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{bmatrix}$ and $B = \\begin{bmatrix} 2 & 5 & 3 \\\\ 3 & 6 & 4 \\\\ 4 & 7 & 5 \\end{bmatrix}$.",
+      a: "$AB = \\begin{bmatrix} 20 & 38 & 26 \\\\ 47 & 92 & 62 \\end{bmatrix}$"
+    },
+    {
+      q: "If $A = \\begin{bmatrix} 0 & 1 \\\\ -1 & 0 \\end{bmatrix}$, choose $\\alpha$ and $\\beta$ so that $(\\alpha I + \\beta A)^2 = A$.",
+      a: "$\\alpha = \\beta = \\pm\\dfrac{1}{\\sqrt{2}}$"
+    },
+    {
+      q: "The linear transformation $\\begin{pmatrix} y_1 \\\\ y_2 \\end{pmatrix} = \\begin{pmatrix} 0 & 0 \\\\ 0 & 1 \\end{pmatrix}\\begin{pmatrix} x_1 \\\\ x_2 \\end{pmatrix}$ represents which geometric operation? (A.M.I.E.T.E., Summer 2005)",
+      a: "Orthogonal projection onto the $x_2$-axis (since $y_1 = 0, y_2 = x_2$)."
+    },
+    {
+      q: "If $f(x) = x^3 - 20x + 8$, find $f(A)$ where $A = \\begin{bmatrix} 1 & 1 & 3 \\\\ 1 & 3 & -3 \\\\ -2 & -4 & -4 \\end{bmatrix}$.",
+      a: "$f(A) = O$ (the $3\\times 3$ zero matrix)"
+    },
+    {
+      q: "If $A^2 = A$, what type of matrix is $A$? (A.M.I.E.T.E., Dec. 2006)",
+      a: "Idempotent matrix"
+    }
+  ]}
+/>
+
+---
+
+### 4.27 Mathematical Induction
+
+Mathematical induction proves matrix identities valid for every positive integer $n$.
+
+<RuleBox kind="working-rule" title="§4.27 Working rule for mathematical induction">
+
+1. **Step 1 (Base case):** Verify that the formula holds for $n = 1$.
+2. **Step 2 (Inductive step):** Assume the formula holds for an arbitrary positive integer $n = k$, and prove that it consequently holds for $n = k + 1$.
+
+By induction, the statement is then valid for all positive integers $n = 1, 2, 3, \dots$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 15 (§4.27)"
+  source="H. K. Dass, Ch. 4, Example 15"
+  problem="By mathematical induction, if $A = \\begin{bmatrix} \\cos\\alpha & \\sin\\alpha \\\\ -\\sin\\alpha & \\cos\\alpha \\end{bmatrix}$, show that $A^n = \\begin{bmatrix} \\cos n\\alpha & \\sin n\\alpha \\\\ -\\sin n\\alpha & \\cos n\\alpha \\end{bmatrix}$ for every positive integer $n$."
+  steps={[
+    "Base case ($n = 1$): $A^1 = \\begin{bmatrix} \\cos 1\\alpha & \\sin 1\\alpha \\\\ -\\sin 1\\alpha & \\cos 1\\alpha \\end{bmatrix} = A$. True for $n = 1$.",
+    "Inductive hypothesis: Assume the result holds for $n = k$, i.e., $A^k = \\begin{bmatrix} \\cos k\\alpha & \\sin k\\alpha \\\\ -\\sin k\\alpha & \\cos k\\alpha \\end{bmatrix}$.",
+    "Multiply by $A$: $A^{k+1} = A^k A = \\begin{bmatrix} \\cos k\\alpha & \\sin k\\alpha \\\\ -\\sin k\\alpha & \\cos k\\alpha \\end{bmatrix}\\begin{bmatrix} \\cos\\alpha & \\sin\\alpha \\\\ -\\sin\\alpha & \\cos\\alpha \\end{bmatrix}$.",
+    "Expand entries: $A^{k+1} = \\begin{bmatrix} \\cos k\\alpha\\cos\\alpha - \\sin k\\alpha\\sin\\alpha & \\cos k\\alpha\\sin\\alpha + \\sin k\\alpha\\cos\\alpha \\\\ -\\sin k\\alpha\\cos\\alpha - \\cos k\\alpha\\sin\\alpha & -\\sin k\\alpha\\sin\\alpha + \\cos k\\alpha\\cos\\alpha \\end{bmatrix}$.",
+    "Apply compound-angle identities: $A^{k+1} = \\begin{bmatrix} \\cos(k+1)\\alpha & \\sin(k+1)\\alpha \\\\ -\\sin(k+1)\\alpha & \\cos(k+1)\\alpha \\end{bmatrix}$. True for $n = k+1$, hence true for all positive integers $n$."
+  ]}
+  answer="$A^n = \\begin{bmatrix} \\cos n\\alpha & \\sin n\\alpha \\\\ -\\sin n\\alpha & \\cos n\\alpha \\end{bmatrix}$ for all $n \\in \\mathbb{Z}^+$. Proved."
+/>
+
+---
+
+### 4.28 Adjoint of a Square Matrix
+
+Let $A = \begin{bmatrix} a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3 \end{bmatrix}$ be a square matrix, and let $A_1, A_2, A_3, B_1, B_2, B_3, C_1, C_2, C_3$ denote the **cofactors** of the corresponding elements in $|A|$ (including the checkerboard sign $(-1)^{i+j}$).
+
+<RuleBox kind="definition" title="§4.28 Adjoint (adjugate) of A">
+
+The **adjoint** of a square matrix $A$, written $\operatorname{adj} A$, is the **transpose of the matrix of cofactors** of $|A|$:
+
+$$\operatorname{adj} A = \begin{bmatrix} A_1 & A_2 & A_3 \\ B_1 & B_2 & B_3 \\ C_1 & C_2 & C_3 \end{bmatrix}' = \begin{bmatrix} A_1 & B_1 & C_1 \\ A_2 & B_2 & C_2 \\ A_3 & B_3 & C_3 \end{bmatrix}.$$
+
+</RuleBox>
+
+---
+
+### 4.29 Property of Adjoint Matrix
+
+<RuleBox kind="theorem" title="§4.29 Fundamental adjoint identity">
+
+For any square matrix $A$ of order $n$,
+
+$$A \cdot (\operatorname{adj} A) = (\operatorname{adj} A) \cdot A = |A|\,I.$$
+
+**Proof:** In the product $A \cdot (\operatorname{adj} A)$, each diagonal entry is the sum of the products of a row of $A$ with its **own** cofactors, which equals $|A|$ (e.g., $a_1 A_1 + a_2 A_2 + a_3 A_3 = |A|$). Each off-diagonal entry is the sum of the products of a row of $A$ with the cofactors of a **different** row, which equals $0$ (e.g., $a_1 B_1 + a_2 B_2 + a_3 B_3 = 0$). Hence $A \cdot (\operatorname{adj} A) = |A|\,I$.
+
+</RuleBox>
+
+---
+
+### 4.30 Inverse of a Matrix
+
+If $A$ and $B$ are square matrices of the same order satisfying $AB = BA = I$, then $B$ is called the **inverse** of $A$, written $B = A^{-1}$.
+
+Taking determinants of $AB = I$ gives $|A||B| = 1$, which implies $|A| \ne 0$. Thus a square matrix $A$ possesses an inverse if and only if $A$ is **non-singular** ($|A| \ne 0$). Dividing $A \cdot (\operatorname{adj} A) = |A|\,I$ by $|A|$ immediately gives the adjoint formula for the inverse.
+
+<RuleBox kind="formula" title="§4.30 Inverse of a non-singular matrix via adjoint">
+
+$$A^{-1} = \frac{1}{|A|}\operatorname{adj} A \qquad (|A| \ne 0)$$
+
+Also, for non-singular matrices $A$ and $B$ of the same order:
+$$(AB)^{-1} = B^{-1}A^{-1}, \qquad (A^m)^{-1} = (A^{-1})^m, \qquad (A^{-1})' = (A')^{-1}.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 16 (§4.30)"
+  source="H. K. Dass, Ch. 4, Example 16 (A.M.I.E., Summer 2004)"
+  problem="If $A = \\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}$, find $A^{-1}$."
+  steps={[
+    "Compute the determinant along the first row: $|A| = 3(-3 + 4) - (-3)(2 - 0) + 4(-2 - 0) = 3 + 6 - 8 = 1 \\ne 0$, so $A^{-1}$ exists.",
+    "Evaluate the nine cofactors (including alternating signs): Row 1: $A_1 = (-3+4) = 1$, $A_2 = -(2-0) = -2$, $A_3 = (-2-0) = -2$.",
+    "Row 2: $B_1 = -(-3+4) = -1$, $B_2 = (3-0) = 3$, $B_3 = -(-3-0) = 3$.",
+    "Row 3: $C_1 = (-12+12) = 0$, $C_2 = -(12-8) = -4$, $C_3 = (-9+6) = -3$.",
+    "Form the cofactor matrix $\\begin{bmatrix} 1 & -2 & -2 \\\\ -1 & 3 & 3 \\\\ 0 & -4 & -3 \\end{bmatrix}$ and transpose it to obtain $\\operatorname{adj} A = \\begin{bmatrix} 1 & -1 & 0 \\\\ -2 & 3 & -4 \\\\ -2 & 3 & -3 \\end{bmatrix}$.",
+    "Apply $A^{-1} = \\dfrac{1}{|A|}\\operatorname{adj} A = \\dfrac{1}{1}\\operatorname{adj} A$."
+  ]}
+  answer="$A^{-1} = \\begin{bmatrix} 1 & -1 & 0 \\\\ -2 & 3 & -4 \\\\ -2 & 3 & -3 \\end{bmatrix}$"
+/>
+
+<StepRevealExample
+  title="Example 18 (§4.30)"
+  source="H. K. Dass, Ch. 4, Example 18 (A.M.I.E., Winter 2003)"
+  problem="If a matrix $A$ satisfies $A^2 + A - I = O$, prove that $A^{-1}$ exists and that $A^{-1} = I + A$."
+  steps={[
+    "Rewrite $A^2 + A - I = O$ as $A^2 + AI = I$, i.e., $A(A + I) = I$.",
+    "Take determinants of both sides: $|A|\\,|A + I| = |I| = 1$. Therefore $|A| \\ne 0$, proving that $A^{-1}$ exists.",
+    "Pre-multiply $A^2 + A = I$ by $A^{-1}$: $A^{-1}(A^2 + A) = A^{-1}I \\implies A + I = A^{-1}$, i.e., $A^{-1} = I + A$."
+  ]}
+  answer="$A^{-1}$ exists and $A^{-1} = I + A$. Proved."
+/>
+
+<StepRevealExample
+  title="Example 20 (§4.30)"
+  source="H. K. Dass, Ch. 4, Example 20"
+  problem="Find the matrix $A$ satisfying the matrix equation $\\begin{bmatrix} 2 & 1 \\\\ 3 & 2 \\end{bmatrix} A \\begin{bmatrix} -3 & 2 \\\\ 5 & -3 \\end{bmatrix} = \\begin{bmatrix} -2 & 4 \\\\ 3 & -1 \\end{bmatrix}$."
+  steps={[
+    "For a $2\\times 2$ matrix $\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}$, its inverse is $\\dfrac{1}{ad-bc}\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}$. Thus $\\begin{bmatrix} 2 & 1 \\\\ 3 & 2 \\end{bmatrix}^{-1} = \\begin{bmatrix} 2 & -1 \\\\ -3 & 2 \\end{bmatrix}$ (determinant $4-3=1$).",
+    "Pre-multiply both sides by $\\begin{bmatrix} 2 & -1 \\\\ -3 & 2 \\end{bmatrix}$: $A\\begin{bmatrix} -3 & 2 \\\\ 5 & -3 \\end{bmatrix} = \\begin{bmatrix} 2 & -1 \\\\ -3 & 2 \\end{bmatrix}\\begin{bmatrix} -2 & 4 \\\\ 3 & -1 \\end{bmatrix} = \\begin{bmatrix} -7 & 9 \\\\ 12 & -14 \\end{bmatrix}$.",
+    "Next, $\\begin{bmatrix} -3 & 2 \\\\ 5 & -3 \\end{bmatrix}^{-1} = \\dfrac{1}{9-10}\\begin{bmatrix} -3 & -2 \\\\ -5 & -3 \\end{bmatrix} = \\begin{bmatrix} 3 & 2 \\\\ 5 & 3 \\end{bmatrix}$.",
+    "Post-multiply both sides by $\\begin{bmatrix} 3 & 2 \\\\ 5 & 3 \\end{bmatrix}$: $A = \\begin{bmatrix} -7 & 9 \\\\ 12 & -14 \\end{bmatrix}\\begin{bmatrix} 3 & 2 \\\\ 5 & 3 \\end{bmatrix} = \\begin{bmatrix} 24 & 13 \\\\ -34 & -18 \\end{bmatrix}$."
+  ]}
+  answer="$A = \\begin{bmatrix} 24 & 13 \\\\ -34 & -18 \\end{bmatrix}$"
+/>
+
+<ExerciseSet
+  title="Exercise 4.12"
+  source="H. K. Dass, Ch. 4, Exercise 4.12"
+  items={[
+    {
+      q: "Find the inverse of $\\begin{bmatrix} 2 & 5 & 3 \\\\ 3 & 1 & 2 \\\\ 1 & 2 & 1 \\end{bmatrix}$.",
+      a: "$\\dfrac{1}{4}\\begin{bmatrix} -3 & 1 & 7 \\\\ -1 & -1 & 5 \\\\ 5 & 1 & -13 \\end{bmatrix}$"
+    },
+    {
+      q: "Find the inverse of $\\begin{bmatrix} 1 & 1 & 2 \\\\ 1 & 9 & 3 \\\\ 1 & 4 & 2 \\end{bmatrix}$.",
+      a: "$-\\dfrac{1}{3}\\begin{bmatrix} 6 & 6 & -15 \\\\ 1 & 0 & -1 \\\\ -5 & -3 & 8 \\end{bmatrix}$"
+    },
+    {
+      q: "Given $A = \\begin{bmatrix} 3 & 2 & 2 \\\\ 1 & 3 & 1 \\\\ 5 & 3 & 4 \\end{bmatrix}$, compute $\\det(A)$, $A^{-1}$, and $B$ such that $AB = \\begin{bmatrix} 3 & 4 & 2 \\\\ 1 & 6 & 1 \\\\ 5 & 6 & 4 \\end{bmatrix}$.",
+      a: "$\\det(A) = 5$, $A^{-1} = \\dfrac{1}{5}\\begin{bmatrix} 9 & -2 & -4 \\\\ 1 & 2 & -1 \\\\ -12 & 1 & 7 \\end{bmatrix}$, $B = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$"
+    },
+    {
+      q: "Find the condition on $k$ so that $A = \\begin{bmatrix} 1 & 3 & 4 \\\\ 3 & k & 6 \\\\ -1 & 5 & 1 \\end{bmatrix}$ has an inverse, and obtain $A^{-1}$ for $k = 1$.",
+      a: "$k \\ne -\\dfrac{3}{5}$; for $k=1$, $A^{-1} = \\dfrac{1}{8}\\begin{bmatrix} -29 & 17 & 14 \\\\ -9 & 5 & 6 \\\\ 16 & -8 & -8 \\end{bmatrix}$"
+    },
+    {
+      q: "For what values of $x$ is the matrix $\\begin{bmatrix} 3-x & 2 & 2 \\\\ 2 & 4-x & 1 \\\\ -2 & -4 & -1-x \\end{bmatrix}$ singular? (A.M.I.E.T.E., Summer 2004)",
+      a: "$x = 0$ and $x = 3$"
+    },
+    {
+      q: "Let $I$ be the unit matrix of order $n$ and $\\operatorname{adj}(2I) = 2^k I$. Find $k$.",
+      a: "$k = n - 1$"
+    }
+  ]}
+/>
+
+---
+
+### 4.31 Elementary Transformations
+
+<RuleBox kind="definition" title="§4.31 The three elementary operations (E-operations)">
+
+Any one of the following operations on a matrix is called an **elementary transformation**:
+
+1. **Interchanging two rows (or columns):** $R_i \leftrightarrow R_j$ (or $C_i \leftrightarrow C_j$).
+2. **Scaling a row (or column) by a non-zero scalar $k$:** $R_i \to kR_i$ (or $C_i \to kC_i$, $k \ne 0$).
+3. **Adding a scalar multiple of one row (or column) to another:** $R_i \to R_i + kR_j$ (or $C_i \to C_i + kC_j$, $i \ne j$).
+
+If matrix $B$ is obtained from $A$ by a finite sequence of elementary transformations, $B$ is said to be **equivalent** to $A$, written $A \sim B$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 21 (§4.31)"
+  source="H. K. Dass, Ch. 4, Example 21"
+  problem="Reduce the matrix $A = \\begin{bmatrix} 1 & 2 & 3 \\\\ 2 & 5 & 7 \\\\ 3 & 1 & 2 \\end{bmatrix}$ to upper triangular (echelon) form."
+  steps={[
+    "Eliminate the entries below the $(1,1)$ pivot using $R_2 \\to R_2 - 2R_1$ and $R_3 \\to R_3 - 3R_1$: $\\begin{bmatrix} 1 & 2 & 3 \\\\ 0 & 1 & 1 \\\\ 0 & -5 & -7 \\end{bmatrix}$.",
+    "Eliminate the entry below the $(2,2)$ pivot using $R_3 \\to R_3 + 5R_2$: $\\begin{bmatrix} 1 & 2 & 3 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & -2 \\end{bmatrix}$.",
+    "All entries below the leading diagonal are zero, so the matrix is in upper triangular (echelon) form."
+  ]}
+  answer="$\\begin{bmatrix} 1 & 2 & 3 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & -2 \\end{bmatrix}$"
+/>
+
+<StepRevealExample
+  title="Example 22 (§4.31)"
+  source="H. K. Dass, Ch. 4, Example 22 (Q. Bank U.P., 2001)"
+  problem="Transform $A = \\begin{bmatrix} 1 & 3 & 3 \\\\ 2 & 4 & 10 \\\\ 3 & 8 & 4 \\end{bmatrix}$ into the unit matrix $I_3$."
+  steps={[
+    "Apply $R_2 \\to R_2 - 2R_1$ and $R_3 \\to R_3 - 3R_1$: $\\begin{bmatrix} 1 & 3 & 3 \\\\ 0 & -2 & 4 \\\\ 0 & -1 & -5 \\end{bmatrix}$.",
+    "Scale $R_2 \\to -\\dfrac{1}{2}R_2$: $\\begin{bmatrix} 1 & 3 & 3 \\\\ 0 & 1 & -2 \\\\ 0 & -1 & -5 \\end{bmatrix}$.",
+    "Clear column 2 with $R_1 \\to R_1 - 3R_2$ and $R_3 \\to R_3 + R_2$: $\\begin{bmatrix} 1 & 0 & 9 \\\\ 0 & 1 & -2 \\\\ 0 & 0 & -7 \\end{bmatrix}$.",
+    "Scale $R_3 \\to -\\dfrac{1}{7}R_3$: $\\begin{bmatrix} 1 & 0 & 9 \\\\ 0 & 1 & -2 \\\\ 0 & 0 & 1 \\end{bmatrix}$.",
+    "Clear column 3 with $R_1 \\to R_1 - 9R_3$ and $R_2 \\to R_2 + 2R_3$ to reach $\\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = I_3$."
+  ]}
+  answer="$I_3 = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$"
+/>
+
+---
+
+### 4.32 Elementary Matrices
+
+An **elementary matrix** is any matrix obtained from the unit matrix $I$ by applying a **single** elementary transformation. For example, applying $R_2 \to R_2 + 3R_1$ to $I_3$ produces the elementary matrix
+
+$$E = \begin{bmatrix} 1 & 0 & 0 \\ 3 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}.$$
+
+---
+
+### 4.33 Theorem on Pre- and Post-Multiplication by Elementary Matrices
+
+<RuleBox kind="theorem" title="§4.33 Matrix realization of elementary transformations">
+
+- Every **elementary row transformation** of a matrix $A$ is effected by **pre-multiplying** $A$ by the corresponding elementary matrix $E$ (i.e., $EA$).
+- Every **elementary column transformation** of a matrix $A$ is effected by **post-multiplying** $A$ by the corresponding elementary matrix $E$ (i.e., $AE$).
+
+</RuleBox>
+
+For instance, applying $R_3 \to R_3 + 4R_1$ to $A = \begin{bmatrix}2&3&4\\5&6&7\\3&5&9\end{bmatrix}$ gives $B = \begin{bmatrix}2&3&4\\5&6&7\\11&17&25\end{bmatrix}$, which equals $\begin{bmatrix}1&0&0\\0&1&0\\4&0&1\end{bmatrix}A$.
+
+---
+
+### 4.34 Computing the Inverse from Elementary Matrices (Gauss–Jordan Method)
+
+If a sequence of elementary row transformations $P_1, P_2, \dots, P_n$ reduces a non-singular square matrix $A$ to the identity matrix $I$, then $(P_n \cdots P_2 P_1)A = I$, i.e., $PA = I$, so $P = A^{-1}$.
+
+<RuleBox kind="working-rule" title="§4.34 Gauss–Jordan row-reduction method for A⁻¹">
+
+1. Write the identity $A = I A$ (or equivalently form the augmented array $[A \mid I]$).
+2. Apply **elementary row transformations only** simultaneously to $A$ on the left and to $I$ on the right (leaving the trailing factor $A$ untouched).
+3. Continue until the left matrix becomes $I$, yielding $I = PA$. Then **$A^{-1} = P$**.
+
+*(Warning: Never mix row and column transformations in the same Gauss–Jordan inversion.)*
+
+</RuleBox>
+
+---
+
+### 4.35 The Inverse of a Symmetric Matrix
+
+When inverting a symmetric matrix while preserving symmetry at every stage, elementary transformations must be applied in **congruent pairs**: each elementary row transformation is immediately followed by the identical elementary column transformation.
+
+<StepRevealExample
+  title="Example 24 (§4.34–4.35)"
+  source="H. K. Dass, Ch. 4, p. 289, Example 24 (U.P., I Semester, Compartment 2002)"
+  problem="Find the inverse of $A = \\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}$ employing elementary row transformations."
+  steps={[
+    "Set up $A = IA$: $\\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} A$.",
+    "Apply $R_1 \\to \\dfrac{1}{3}R_1$: $\\begin{bmatrix} 1 & -1 & 4/3 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix} = \\begin{bmatrix} 1/3 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} A$.",
+    "Apply $R_2 \\to R_2 - 2R_1$ then $R_2 \\to -R_2$: $\\begin{bmatrix} 1 & -1 & 4/3 \\\\ 0 & 1 & -4/3 \\\\ 0 & -1 & 1 \\end{bmatrix} = \\begin{bmatrix} 1/3 & 0 & 0 \\\\ 2/3 & -1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} A$.",
+    "Apply $R_3 \\to R_3 + R_2$ then $R_3 \\to -3R_3$: $\\begin{bmatrix} 1 & -1 & 4/3 \\\\ 0 & 1 & -4/3 \\\\ 0 & 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 1/3 & 0 & 0 \\\\ 2/3 & -1 & 0 \\\\ -2 & 3 & -3 \\end{bmatrix} A$.",
+    "Clear column 3 via $R_1 \\to R_1 - \\dfrac{4}{3}R_3$ and $R_2 \\to R_2 + \\dfrac{4}{3}R_3$: $\\begin{bmatrix} 1 & -1 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 3 & -4 & 4 \\\\ -2 & 3 & -4 \\\\ -2 & 3 & -3 \\end{bmatrix} A$.",
+    "Finally apply $R_1 \\to R_1 + R_2$ to obtain $I_3 = \\begin{bmatrix} 1 & -1 & 0 \\\\ -2 & 3 & -4 \\\\ -2 & 3 & -3 \\end{bmatrix} A$, confirming our adjoint result from Example 16."
+  ]}
+  answer="$A^{-1} = \\begin{bmatrix} 1 & -1 & 0 \\\\ -2 & 3 & -4 \\\\ -2 & 3 & -3 \\end{bmatrix}$"
+/>
+
+<StepRevealExample
+  title="Example 23 (§4.34–4.35)"
+  source="H. K. Dass, Ch. 4, p. 290, Example 23 (U.P.T.U. (C.O.) 2003)"
+  problem="Find the inverse of the $4\\times 4$ matrix $M = \\begin{bmatrix} 0 & 2 & 1 & 3 \\\\ 1 & 1 & -1 & -2 \\\\ 1 & 2 & 0 & 1 \\\\ -1 & 1 & 2 & 6 \\end{bmatrix}$ by applying elementary row transformations."
+  steps={[
+    "Write $M = I_4 M$ and swap $R_1 \\leftrightarrow R_2$ to place a $1$ in the $(1,1)$ pivot position: $\\begin{bmatrix} 1 & 1 & -1 & -2 \\\\ 0 & 2 & 1 & 3 \\\\ 1 & 2 & 0 & 1 \\\\ -1 & 1 & 2 & 6 \\end{bmatrix} = \\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 1 & 0 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix} M$.",
+    "Apply $R_3 \\to R_3 - R_1$ and $R_4 \\to R_4 + R_1$, then swap $R_2 \\leftrightarrow R_3$: $\\begin{bmatrix} 1 & 1 & -1 & -2 \\\\ 0 & 1 & 1 & 3 \\\\ 0 & 2 & 1 & 3 \\\\ 0 & 2 & 1 & 4 \\end{bmatrix} = \\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 0 & -1 & 1 & 0 \\\\ 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 1 \\end{bmatrix} M$.",
+    "Apply $R_3 \\to R_3 - 2R_2$ and $R_4 \\to R_4 - 2R_2$, then $R_4 \\to R_4 - R_3$ and $R_3 \\to -R_3$: $\\begin{bmatrix} 1 & 1 & -1 & -2 \\\\ 0 & 1 & 1 & 3 \\\\ 0 & 0 & 1 & 3 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 0 & 1 & 0 & 0 \\\\ 0 & -1 & 1 & 0 \\\\ -1 & -2 & 2 & 0 \\\\ -1 & 1 & 0 & 1 \\end{bmatrix} M$.",
+    "Clear column 4 ($R_1 \\to R_1 + 2R_4$, $R_2 \\to R_2 - 3R_4$, $R_3 \\to R_3 - 3R_4$): right matrix becomes $\\begin{bmatrix} -2 & 3 & 0 & 2 \\\\ 3 & -4 & 1 & -3 \\\\ 2 & -5 & 2 & -3 \\\\ -1 & 1 & 0 & 1 \\end{bmatrix}$.",
+    "Clear column 3 ($R_1 \\to R_1 + R_3$, $R_2 \\to R_2 - R_3$) and finally column 2 ($R_1 \\to R_1 - R_2$) to reach $I_4 = M^{-1}M$."
+  ]}
+  answer="$M^{-1} = \\begin{bmatrix} -1 & -3 & 3 & -1 \\\\ 1 & 1 & -1 & 0 \\\\ 2 & -5 & 2 & -3 \\\\ -1 & 1 & 0 & 1 \\end{bmatrix}$"
+/>
+
+<ExerciseSet
+  title="Exercise 4.13"
+  source="H. K. Dass, Ch. 4, Exercise 4.13"
+  items={[
+    {
+      q: "Find the inverse of $\\begin{bmatrix} 1 & 3 & 3 \\\\ 1 & 4 & 3 \\\\ 1 & 3 & 4 \\end{bmatrix}$ by elementary row operations.",
+      a: "$\\begin{bmatrix} 7 & -3 & -3 \\\\ -1 & 1 & 0 \\\\ -1 & 0 & 1 \\end{bmatrix}$"
+    },
+    {
+      q: "Find the inverse of $\\begin{bmatrix} 1 & -1 & 1 \\\\ 4 & 1 & 0 \\\\ 8 & 1 & 1 \\end{bmatrix}$.",
+      a: "$\\begin{bmatrix} 1 & 2 & -1 \\\\ -4 & -7 & 4 \\\\ -4 & -9 & 5 \\end{bmatrix}$"
+    },
+    {
+      q: "Use elementary row operations to find the inverse of $A = \\begin{bmatrix} 1 & 1 & 3 \\\\ 1 & 3 & -3 \\\\ -2 & -4 & -4 \\end{bmatrix}$. (A.M.I.E.T.E., June 2010)",
+      a: "$\\dfrac{1}{4}\\begin{bmatrix} 12 & 4 & 6 \\\\ -5 & -1 & -3 \\\\ -1 & -1 & -1 \\end{bmatrix}$"
+    },
+    {
+      q: "Find the inverse of the $4\\times 4$ matrix $\\begin{bmatrix} 1 & 2 & 3 & 1 \\\\ 1 & 3 & 3 & 2 \\\\ 2 & 4 & 3 & 3 \\\\ 1 & 1 & 1 & 1 \\end{bmatrix}$. (Q. Bank U.P., II Semester 2001)",
+      a: "$\\begin{bmatrix} 1 & -2 & 1 & 0 \\\\ 1 & -2 & 2 & -3 \\\\ 0 & 1 & -1 & 1 \\\\ -2 & 3 & -2 & 3 \\end{bmatrix}$"
+    }
+  ]}
+/>
+
+---
+
+### 4.36 Rank of a Matrix
+
+<RuleBox kind="definition" title="§4.36 Rank of a matrix">
+
+The **rank** of a matrix $A$, denoted $\rho(A)$ or $R(A)$, is the non-negative integer $r$ such that:
+
+- **(a)** $A$ has **at least one non-zero minor** of order $r$; and
+- **(b)** **every minor** of $A$ of order higher than $r$ is zero.
+
+**Key properties:**
+1. A **non-zero row** is a row having at least one non-zero element.
+2. Elementary transformations do **not** alter the rank of a matrix.
+3. The rank of a product cannot exceed the rank of either factor: $\rho(AB) \le \min\{\rho(A), \rho(B)\}$.
+4. For every $m \times n$ matrix $A$ of rank $r$, there exist non-singular matrices $P$ ($m \times m$) and $Q$ ($n \times n$) such that $PAQ = \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix}$.
+
+</RuleBox>
+
+---
+
+### 4.37 Normal Form (Canonical Form)
+
+By combining elementary **row** and **column** transformations, any non-zero matrix $A$ can be reduced to one of four **normal (canonical) forms**:
+
+$$(i)\; I_r, \qquad (ii)\; \begin{bmatrix} I_r & 0 \end{bmatrix}, \qquad (iii)\; \begin{bmatrix} I_r \\ 0 \end{bmatrix}, \qquad (iv)\; \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix}.$$
+
+The integer $r$ is immediately the **rank** of $A$: $\rho(A) = r$. To find non-singular matrices $P$ and $Q$ such that $PAQ = N$ (the normal form), write $A_{m\times n} = I_m \, A \, I_n$ and mirror every **row** operation on $I_m$ (left factor) and every **column** operation on $I_n$ (right factor). Note that $P$ and $Q$ are not unique. If $A$ is square and non-singular with $PAQ = I$, then $A^{-1} = QP$.
+
+<StepRevealExample
+  title="Example 24 (§4.37)"
+  source="H. K. Dass, Ch. 4, p. 292, Example 24"
+  problem="Reduce the matrix $A = \\begin{bmatrix} 1 & 2 & 3 & 4 \\\\ 2 & 1 & 4 & 3 \\\\ 3 & 0 & 5 & -10 \\end{bmatrix}$ to normal form."
+  steps={[
+    "Clear column 1 below $(1,1)$ via $R_2 \\to R_2 - 2R_1$ and $R_3 \\to R_3 - 3R_1$: $\\begin{bmatrix} 1 & 2 & 3 & 4 \\\\ 0 & -3 & -2 & -5 \\\\ 0 & -6 & -4 & -22 \\end{bmatrix}$.",
+    "Clear row 1 right of $(1,1)$ via $C_2 \\to C_2 - 2C_1$, $C_3 \\to C_3 - 3C_1$, $C_4 \\to C_4 - 4C_1$: $\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & -3 & -2 & -5 \\\\ 0 & -6 & -4 & -22 \\end{bmatrix}$.",
+    "Apply $R_2 \\to -\\dfrac{1}{3}R_2$, $R_3 \\to -\\dfrac{1}{6}R_3$, then $R_3 \\to R_3 - R_2$: $\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & 1 & 2/3 & 5/3 \\\\ 0 & 0 & 0 & 2 \\end{bmatrix}$.",
+    "Clear row 2 via $C_3 \\to C_3 - \\dfrac{2}{3}C_2$ and $C_4 \\to C_4 - \\dfrac{5}{3}C_2$: $\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 0 & 2 \\end{bmatrix}$.",
+    "Swap $C_3 \\leftrightarrow C_4$ and scale $C_3 \\to \\dfrac{1}{2}C_3$ to get $\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\end{bmatrix} = [I_3 \\;\\; 0]$."
+  ]}
+  answer="Normal form is $[I_3 \\;\\; 0]$; rank $= 3$."
+/>
+
+<StepRevealExample
+  title="Example 25 (§4.37)"
+  source="H. K. Dass, Ch. 4, Example 25 (U.P., I Sem., Com. 2002, Winter 2001)"
+  problem="Find the rank of $A = \\begin{bmatrix} 1 & 2 & -1 & 3 \\\\ 4 & 1 & 2 & 1 \\\\ 3 & -1 & 1 & 2 \\\\ 1 & 2 & 0 & 1 \\end{bmatrix}$ by reducing it to normal form."
+  steps={[
+    "Apply $R_2 \\to R_2 - 4R_1$, $R_3 \\to R_3 - 3R_1$, $R_4 \\to R_4 - R_1$: $\\begin{bmatrix} 1 & 2 & -1 & 3 \\\\ 0 & -7 & 6 & -11 \\\\ 0 & -7 & 4 & -7 \\\\ 0 & 0 & 1 & -2 \\end{bmatrix}$.",
+    "Apply $C_2 \\to C_2 - 2C_1$, $C_3 \\to C_3 + C_1$, $C_4 \\to C_4 - 3C_1$, then $R_3 \\to R_3 - R_2$: $\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & -7 & 6 & -11 \\\\ 0 & 0 & -2 & 4 \\\\ 0 & 0 & 1 & -2 \\end{bmatrix}$.",
+    "Apply $C_3 \\to C_3 + \\dfrac{6}{7}C_2$, $C_4 \\to C_4 - \\dfrac{11}{7}C_2$, then $R_4 \\to R_4 + \\dfrac{1}{2}R_3$: $\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & -7 & 0 & 0 \\\\ 0 & 0 & -2 & 4 \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}$.",
+    "Apply $C_4 \\to C_4 + 2C_3$, then $R_2 \\to -\\dfrac{1}{7}R_2$ and $R_3 \\to -\\dfrac{1}{2}R_3$ to get $\\begin{bmatrix} I_3 & 0 \\\\ 0 & 0 \\end{bmatrix}$."
+  ]}
+  answer="$\\text{Rank of } A = 3$"
+/>
+
+<StepRevealExample
+  title="Example 27 (§4.37)"
+  source="H. K. Dass, Ch. 4, Example 27 (R.G.P.V., Bhopal, April 2010; U.P., I Sem., Winter 2002)"
+  problem="Find non-singular matrices $P$ and $Q$ so that $PAQ$ is in normal form, where $A = \\begin{bmatrix} 2 & 1 & -3 & -6 \\\\ 3 & -3 & 1 & 2 \\\\ 1 & 1 & 1 & 2 \\end{bmatrix}$, and hence find its rank."
+  steps={[
+    "Since $A$ is $3 \\times 4$, write $A = I_3 A I_4$. Mirror every row operation on the left $3\\times 3$ matrix and every column operation on the right $4\\times 4$ matrix.",
+    "Swap $R_1 \\leftrightarrow R_3$, then apply $R_2 \\to R_2 - 3R_1$ and $R_3 \\to R_3 - 2R_1$: $\\begin{bmatrix} 1 & 1 & 1 & 2 \\\\ 0 & -6 & -2 & -4 \\\\ 0 & -1 & -5 & -10 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 & 1 \\\\ 0 & 1 & -3 \\\\ 1 & 0 & -2 \\end{bmatrix} A I_4$.",
+    "Clear row 1 via $C_2 \\to C_2 - C_1$, $C_3 \\to C_3 - C_1$, $C_4 \\to C_4 - 2C_1$, then negate $R_2, R_3$ and swap $R_2 \\leftrightarrow R_3$: $\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & 1 & 5 & 10 \\\\ 0 & 6 & 2 & 4 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 & 1 \\\\ -1 & 0 & 2 \\\\ 0 & -1 & 3 \\end{bmatrix} A \\begin{bmatrix} 1 & -1 & -1 & -2 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix}$.",
+    "Apply $R_3 \\to R_3 - 6R_2$, then $C_3 \\to C_3 - 5C_2$ and $C_4 \\to C_4 - 10C_2$: $\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 0 \\\\ 0 & 0 & -28 & -56 \\end{bmatrix} = \\begin{bmatrix} 0 & 0 & 1 \\\\ -1 & 0 & 2 \\\\ 6 & -1 & -9 \\end{bmatrix} A \\begin{bmatrix} 1 & -1 & 4 & 8 \\\\ 0 & 1 & -5 & -10 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix}$.",
+    "Finally apply $R_3 \\to -\\dfrac{1}{28}R_3$ and $C_4 \\to C_4 - 2C_3$ to reach $[I_3 \\;\\; 0] = PAQ$."
+  ]}
+  answer="$P = \\begin{bmatrix} 0 & 0 & 1 \\\\ -1 & 0 & 2 \\\\ -\\frac{3}{14} & \\frac{1}{28} & \\frac{9}{28} \\end{bmatrix}$, $Q = \\begin{bmatrix} 1 & -1 & 4 & 0 \\\\ 0 & 1 & -5 & 0 \\\\ 0 & 0 & 1 & -2 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix}$; Rank $= 3$."
+/>
+
+<StepRevealExample
+  title="Example 28 (§4.37)"
+  source="H. K. Dass, Ch. 4, Example 28"
+  problem="If $A = \\begin{bmatrix} 3 & -3 & 4 \\\\ 2 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix}$, find non-singular matrices $P$ and $Q$ such that $PAQ = I$, and hence find $A^{-1}$."
+  steps={[
+    "Start from $A = I_3 A I_3$. Apply $R_1 \\to R_1 - R_2$, then $R_2 \\to R_2 - 2R_1$: $\\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & -3 & 4 \\\\ 0 & -1 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 & -1 & 0 \\\\ -2 & 3 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix} A I_3$.",
+    "Apply $C_2 \\to -C_2$, swap $R_2 \\leftrightarrow R_3$, then $R_3 \\to R_3 - 3R_2$: $\\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 1 \\end{bmatrix} = \\begin{bmatrix} 1 & -1 & 0 \\\\ 0 & 0 & 1 \\\\ -2 & 3 & -3 \\end{bmatrix} A \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & -1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$.",
+    "Apply $C_3 \\to C_3 - C_2$: $I_3 = \\begin{bmatrix} 1 & -1 & 0 \\\\ 0 & 0 & 1 \\\\ -2 & 3 & -3 \\end{bmatrix} A \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & -1 & 1 \\\\ 0 & 0 & 1 \\end{bmatrix} = PAQ$.",
+    "Since $PAQ = I$, $A = P^{-1}Q^{-1}$ and therefore $A^{-1} = QP = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & -1 & 1 \\\\ 0 & 0 & 1 \\end{bmatrix}\\begin{bmatrix} 1 & -1 & 0 \\\\ 0 & 0 & 1 \\\\ -2 & 3 & -3 \\end{bmatrix} = \\begin{bmatrix} 1 & -1 & 0 \\\\ -2 & 3 & -4 \\\\ -2 & 3 & -3 \\end{bmatrix}$."
+  ]}
+  answer="$A^{-1} = QP = \\begin{bmatrix} 1 & -1 & 0 \\\\ -2 & 3 & -4 \\\\ -2 & 3 & -3 \\end{bmatrix}$"
+/>
+
+<ExerciseSet
+  title="Exercise 4.14"
+  source="H. K. Dass, Ch. 4, Exercise 4.14"
+  items={[
+    {
+      q: "Find non-singular matrices $P$ and $Q$ such that $PAQ$ is in normal form for $A = \\begin{bmatrix} 1 & 2 & 3 \\\\ 3 & 1 & 2 \\end{bmatrix}$.",
+      a: "$P = \\begin{bmatrix} 1 & 0 \\\\ -3 & 1 \\end{bmatrix},\\; Q = \\begin{bmatrix} 1 & 2/5 & -1/5 \\\\ 0 & -1/5 & -7/5 \\\\ 0 & 0 & 1 \\end{bmatrix}$ (not unique; normal form $[I_2 \\;\\; 0]$, rank $= 2$)"
+    },
+    {
+      q: "Find non-singular matrices $P$ and $Q$ such that $PAQ$ is in normal form for $A = \\begin{bmatrix} 1 & 1 & 2 \\\\ 1 & 2 & 3 \\\\ 0 & -1 & -1 \\end{bmatrix}$.",
+      a: "$P = \\begin{bmatrix} 1 & 0 & 0 \\\\ -1 & 1 & 0 \\\\ -1 & 1 & 1 \\end{bmatrix},\\; Q = \\begin{bmatrix} 1 & -1 & -1 \\\\ 0 & 1 & -1 \\\\ 0 & 0 & 1 \\end{bmatrix}$ (rank $= 2$)"
+    }
+  ]}
+/>
+
+---
+
+### 4.38 Rank of Matrix by Triangular (Echelon) Form
+
+To compute the rank quickly without column operations, reduce $A$ by elementary **row** transformations to upper triangular (row-echelon) form.
+
+<RuleBox kind="working-rule" title="§4.38 Rank from row-echelon (triangular) form">
+
+$$\operatorname{Rank}(A) = \text{Number of non-zero rows in the upper triangular (echelon) form of } A.$$
+
+A row is **non-zero** if at least one of its entries is non-zero.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 29 (§4.38)"
+  source="H. K. Dass, Ch. 4, Example 29 (U.P., I Semester, Winter 2003, 2000)"
+  problem="Find the rank of the matrix $A = \\begin{bmatrix} 1 & 2 & 3 & 2 \\\\ 2 & 3 & 5 & 1 \\\\ 1 & 3 & 4 & 5 \\end{bmatrix}$."
+  steps={[
+    "Apply $R_2 \\to R_2 - 2R_1$ and $R_3 \\to R_3 - R_1$: $\\begin{bmatrix} 1 & 2 & 3 & 2 \\\\ 0 & -1 & -1 & -3 \\\\ 0 & 1 & 1 & 3 \\end{bmatrix}$.",
+    "Apply $R_3 \\to R_3 + R_2$: $\\begin{bmatrix} 1 & 2 & 3 & 2 \\\\ 0 & -1 & -1 & -3 \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}$.",
+    "Count the non-zero rows in the echelon form: there are $2$ non-zero rows."
+  ]}
+  answer="$\\text{Rank} = 2$"
+/>
+
+<StepRevealExample
+  title="Example 32 (§4.38)"
+  source="H. K. Dass, Ch. 4, Example 32 (R.G.P.V., Bhopal, June 2007; U.P., I Sem., Dec. 2005)"
+  problem="Use elementary row transformations to reduce $A = \\begin{bmatrix} 2 & 3 & -1 & -1 \\\\ 1 & -1 & -2 & -4 \\\\ 3 & 1 & 3 & -2 \\\\ 6 & 3 & 0 & -7 \\end{bmatrix}$ to triangular form and hence find its rank."
+  steps={[
+    "Swap $R_1 \\leftrightarrow R_2$ to bring pivot $1$ to the top-left: $\\begin{bmatrix} 1 & -1 & -2 & -4 \\\\ 2 & 3 & -1 & -1 \\\\ 3 & 1 & 3 & -2 \\\\ 6 & 3 & 0 & -7 \\end{bmatrix}$.",
+    "Apply $R_2 \\to R_2 - 2R_1$, $R_3 \\to R_3 - 3R_1$, $R_4 \\to R_4 - 6R_1$: $\\begin{bmatrix} 1 & -1 & -2 & -4 \\\\ 0 & 5 & 3 & 7 \\\\ 0 & 4 & 9 & 10 \\\\ 0 & 9 & 12 & 17 \\end{bmatrix}$.",
+    "Apply $R_3 \\to R_3 - \\dfrac{4}{5}R_2$ and $R_4 \\to R_4 - \\dfrac{9}{5}R_2$: $\\begin{bmatrix} 1 & -1 & -2 & -4 \\\\ 0 & 5 & 3 & 7 \\\\ 0 & 0 & 33/5 & 22/5 \\\\ 0 & 0 & 33/5 & 22/5 \\end{bmatrix}$.",
+    "Apply $R_4 \\to R_4 - R_3$: $\\begin{bmatrix} 1 & -1 & -2 & -4 \\\\ 0 & 5 & 3 & 7 \\\\ 0 & 0 & 33/5 & 22/5 \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}$. There are $3$ non-zero rows."
+  ]}
+  answer="$R(A) = 3$"
+/>
+
+<ExerciseSet
+  title="Exercise 4.15"
+  source="H. K. Dass, Ch. 4, Exercise 4.15"
+  items={[
+    {
+      q: "Find the rank of $\\begin{bmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 7 \\\\ 3 & 6 & 10 \\end{bmatrix}$.",
+      a: "$2$"
+    },
+    {
+      q: "Find the rank of $\\begin{bmatrix} 0 & 1 & 2 & -2 \\\\ 4 & 0 & 2 & 6 \\\\ 2 & 1 & 3 & 1 \\end{bmatrix}$.",
+      a: "$2$"
+    },
+    {
+      q: "Find the rank of $\\begin{bmatrix} 3 & 4 & 1 & 1 \\\\ 2 & 4 & 3 & 6 \\\\ -1 & -2 & 6 & 4 \\\\ 1 & -1 & 2 & -3 \\end{bmatrix}$.",
+      a: "$4$"
+    },
+    {
+      q: "Find the rank of $\\begin{bmatrix} 1 & 4 & 3 & -2 & 1 \\\\ -2 & -3 & -1 & 4 & 3 \\\\ -1 & 6 & 7 & 2 & 9 \\\\ -3 & 3 & 6 & 6 & 12 \\end{bmatrix}$.",
+      a: "$2$"
+    },
+    {
+      q: "Find the rank of $A = \\begin{bmatrix} 1 & 2 & 3 \\\\ 1 & 4 & 2 \\\\ 2 & 6 & 5 \\end{bmatrix}$. (A.M.I.E.T.E., June 2009)",
+      a: "$2$"
+    },
+    {
+      q: "For which value of $b$ is the rank of $A = \\begin{bmatrix} 1 & 5 & 4 \\\\ 0 & 3 & 2 \\\\ b & 13 & 10 \\end{bmatrix}$ equal to $2$? (A.M.I.E.T.E., Dec. 2009)",
+      a: "$b = 2$"
+    }
+  ]}
+/>
+
+---
+
+### 4.39 Solution of Simultaneous Equations
+
+Write a linear system in matrix form $AX = B$. By applying elementary **row** transformations to both $A$ and $B$ simultaneously (i.e., to the augmented matrix $[A : B]$), the coefficient matrix is reduced to upper triangular (echelon) form. The unknowns are then computed from the bottom equation upward by **backward substitution**.
+
+<StepRevealExample
+  title="Example 33 (§4.39)"
+  source="H. K. Dass, Ch. 4, Example 33"
+  problem="Solve the simultaneous equations $x - y + 2z = 3$, $x + 2y + 3z = 5$, $3x - 4y - 5z = -13$."
+  steps={[
+    "Write in matrix form: $\\begin{bmatrix} 1 & -1 & 2 \\\\ 1 & 2 & 3 \\\\ 3 & -4 & -5 \\end{bmatrix}\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} 3 \\\\ 5 \\\\ -13 \\end{bmatrix}$.",
+    "Apply $R_2 \\to R_2 - R_1$ and $R_3 \\to R_3 - 3R_1$: $\\begin{bmatrix} 1 & -1 & 2 \\\\ 0 & 3 & 1 \\\\ 0 & -1 & -11 \\end{bmatrix}\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} 3 \\\\ 2 \\\\ -22 \\end{bmatrix}$.",
+    "Apply $R_3 \\to R_3 + \\dfrac{1}{3}R_2$: $\\begin{bmatrix} 1 & -1 & 2 \\\\ 0 & 3 & 1 \\\\ 0 & 0 & -32/3 \\end{bmatrix}\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} 3 \\\\ 2 \\\\ -64/3 \\end{bmatrix}$.",
+    "Back-substitute: $-\\dfrac{32}{3}z = -\\dfrac{64}{3} \\implies z = 2$; then $3y + 2 = 2 \\implies y = 0$; then $x - 0 + 4 = 3 \\implies x = -1$."
+  ]}
+  answer="$x = -1,\\; y = 0,\\; z = 2$"
+/>
+
+<StepRevealExample
+  title="Example 34 (§4.39)"
+  source="H. K. Dass, Ch. 4, Example 34"
+  problem="Find all solutions of $x_1 + 2x_2 - x_3 = 1$, $3x_1 - 2x_2 + 2x_3 = 2$, $7x_1 - 2x_2 + 3x_3 = 5$."
+  steps={[
+    "Apply $R_2 \\to R_2 - 3R_1$ and $R_3 \\to R_3 - 7R_1$: $\\begin{bmatrix} 1 & 2 & -1 \\\\ 0 & -8 & 5 \\\\ 0 & -16 & 10 \\end{bmatrix}\\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ -1 \\\\ -2 \\end{bmatrix}$.",
+    "Apply $R_3 \\to R_3 - 2R_2$: $\\begin{bmatrix} 1 & 2 & -1 \\\\ 0 & -8 & 5 \\\\ 0 & 0 & 0 \\end{bmatrix}\\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ -1 \\\\ 0 \\end{bmatrix}$.",
+    "The third row vanishes identically, leaving two equations in three unknowns: $x_1 + 2x_2 - x_3 = 1$ and $-8x_2 + 5x_3 = -1$.",
+    "Set the free variable $x_3 = k$. Then $x_2 = \\dfrac{5k + 1}{8}$, and $x_1 = 1 + k - \\dfrac{5k + 1}{4} = -\\dfrac{k}{4} + \\dfrac{3}{4}$."
+  ]}
+  answer="$x_1 = -\\dfrac{k}{4} + \\dfrac{3}{4},\\; x_2 = \\dfrac{5k}{8} + \\dfrac{1}{8},\\; x_3 = k$ (infinite solutions)"
+/>
+
+---
+
+### 4.40 Gauss–Jordan Method
+
+The **Gauss–Jordan method** modifies Gaussian elimination by eliminating unknowns both **below and above** each pivot so that the coefficient matrix reduces directly to a diagonal (or identity) matrix, eliminating the need for backward substitution. In Dass's Examples 35 and 36, row reduction of the matrix equation $AX = B$ is demonstrated on $4\times 4$ and $3\times 4$ systems.
+
+<StepRevealExample
+  title="Example 35 (§4.40)"
+  source="H. K. Dass, Ch. 4, Example 35 (R.G.P.V., Bhopal, III Semester, Dec. 2007)"
+  problem="Express the system $2x_1 + x_2 + 2x_3 + x_4 = 6$, $6x_1 - 6x_2 + 6x_3 + 12x_4 = 36$, $4x_1 + 3x_2 + 3x_3 - 3x_4 = -1$, $2x_1 + 2x_2 - x_3 + x_4 = 10$ in matrix form and solve by elimination."
+  steps={[
+    "Write $\\begin{bmatrix} 2 & 1 & 2 & 1 \\\\ 6 & -6 & 6 & 12 \\\\ 4 & 3 & 3 & -3 \\\\ 2 & 2 & -1 & 1 \\end{bmatrix}\\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\end{bmatrix} = \\begin{bmatrix} 6 \\\\ 36 \\\\ -1 \\\\ 10 \\end{bmatrix}$.",
+    "Apply $R_2 \\to R_2 - 3R_1$, $R_3 \\to R_3 - 2R_1$, $R_4 \\to R_4 - R_1$, then scale $R_2 \\to -\\dfrac{1}{9}R_2$: $\\begin{bmatrix} 2 & 1 & 2 & 1 \\\\ 0 & 1 & 0 & -1 \\\\ 0 & 1 & -1 & -5 \\\\ 0 & 1 & -3 & 0 \\end{bmatrix} X = \\begin{bmatrix} 6 \\\\ -2 \\\\ -13 \\\\ 4 \\end{bmatrix}$.",
+    "Apply $R_3 \\to R_3 - R_2$ and $R_4 \\to R_4 - R_2$, then $R_4 \\to R_4 - 3R_3$: $\\begin{bmatrix} 2 & 1 & 2 & 1 \\\\ 0 & 1 & 0 & -1 \\\\ 0 & 0 & -1 & -4 \\\\ 0 & 0 & 0 & 13 \\end{bmatrix} X = \\begin{bmatrix} 6 \\\\ -2 \\\\ -11 \\\\ 39 \\end{bmatrix}$.",
+    "Solve sequentially: $13x_4 = 39 \\implies x_4 = 3$; $-x_3 - 12 = -11 \\implies x_3 = -1$; $x_2 - 3 = -2 \\implies x_2 = 1$; $2x_1 + 1 - 2 + 3 = 6 \\implies x_1 = 2$."
+  ]}
+  answer="$x_1 = 2,\\; x_2 = 1,\\; x_3 = -1,\\; x_4 = 3$"
+/>
+
+---
+
+### 4.41 Types of Linear Equations
+
+<RuleBox kind="definition" title="§4.41 Consistent vs. inconsistent systems">
+
+1. **Consistent System:** A system of linear equations is **consistent** if it possesses **one or more solutions** — either a **unique solution** (e.g., $x + 2y = 4,\; 3x + 2y = 2$) or **infinitely many solutions** (e.g., $x + 2y = 4,\; 3x + 6y = 12$).
+2. **Inconsistent System:** A system is **inconsistent** if it has **no solution** (e.g., $x + 2y = 4,\; 3x + 6y = 5$).
+
+</RuleBox>
+
+---
+
+### 4.42 Consistency of a System of Linear Equations
+
+Consider $m$ non-homogeneous linear equations in $n$ unknowns written as $AX = B$, where $A$ is the $m \times n$ coefficient matrix and $C = [A : B]$ is the $m \times (n + 1)$ **augmented matrix**.
+
+<RuleBox kind="theorem" title="§4.42 Rank test for consistency of AX = B (Rouché–Capelli criterion)">
+
+Let $R(A)$ be the rank of the coefficient matrix $A$ and $R(C)$ be the rank of the augmented matrix $C = [A : B]$ for $n$ unknowns:
+
+- **(a) Consistent** if and only if $R(A) = R(C)$:
+  - **(i) Unique solution** when $R(A) = R(C) = n$.
+  - **(ii) Infinite number of solutions** when $R(A) = R(C) = r < n$ (with $n - r$ arbitrary parameters).
+- **(b) Inconsistent (no solution)** if and only if $R(A) \ne R(C)$.
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-209/matrices-inverse-rank-and-linear-systems-nonhomogeneous-flowchart.svg"
+  caption="H. K. Dass §4.42 (redrawn) — Rank-based consistency decision flowchart for a non-homogeneous system AX = B."
+/>
+
+<StepRevealExample
+  title="Example 37 (§4.42)"
+  source="H. K. Dass, Ch. 4, Example 37"
+  problem="Show that the equations $2x + 6y = -11$, $6x + 20y - 6z = -3$, $6y - 18z = -1$ are not consistent."
+  steps={[
+    "Form the augmented matrix $C = [A : B] = \\begin{bmatrix} 2 & 6 & 0 & : & -11 \\\\ 6 & 20 & -6 & : & -3 \\\\ 0 & 6 & -18 & : & -1 \\end{bmatrix}$.",
+    "Apply $R_2 \\to R_2 - 3R_1$: $\\begin{bmatrix} 2 & 6 & 0 & : & -11 \\\\ 0 & 2 & -6 & : & 30 \\\\ 0 & 6 & -18 & : & -1 \\end{bmatrix}$.",
+    "Apply $R_3 \\to R_3 - 3R_2$: $\\begin{bmatrix} 2 & 6 & 0 & : & -11 \\\\ 0 & 2 & -6 & : & 30 \\\\ 0 & 0 & 0 & : & -91 \\end{bmatrix}$.",
+    "In echelon form, $A$ has $2$ non-zero rows ($R(A) = 2$) whereas $C$ has $3$ non-zero rows ($R(C) = 3$). Because $R(A) \\ne R(C)$, the system is inconsistent."
+  ]}
+  answer="$R(A) = 2 \\ne R(C) = 3$; the equations are inconsistent."
+/>
+
+<StepRevealExample
+  title="Example 38 (§4.42)"
+  source="H. K. Dass, Ch. 4, Example 38 (U.P., I Semester, Compartment 2002)"
+  problem="Test the consistency and hence solve: $x_1 + 2x_2 + x_3 = 2$, $3x_1 + x_2 - 2x_3 = 1$, $4x_1 - 3x_2 - x_3 = 3$, $2x_1 + 4x_2 + 2x_3 = 4$."
+  steps={[
+    "Form $C = [A : B] = \\begin{bmatrix} 1 & 2 & 1 & 2 \\\\ 3 & 1 & -2 & 1 \\\\ 4 & -3 & -1 & 3 \\\\ 2 & 4 & 2 & 4 \\end{bmatrix}$.",
+    "Apply $R_2 \\to R_2 - 3R_1$, $R_3 \\to R_3 - 4R_1$, $R_4 \\to R_4 - 2R_1$: $\\begin{bmatrix} 1 & 2 & 1 & 2 \\\\ 0 & -5 & -5 & -5 \\\\ 0 & -11 & -5 & -5 \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}$.",
+    "Scale $R_2 \\to -\\dfrac{1}{5}R_2$, apply $R_3 \\to R_3 + 11R_2$, and scale $R_3 \\to \\dfrac{1}{6}R_3$: $\\begin{bmatrix} 1 & 2 & 1 & 2 \\\\ 0 & 1 & 1 & 1 \\\\ 0 & 0 & 1 & 1 \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}$.",
+    "Here $R(A) = R(C) = 3 = n$ (number of unknowns), so the system is consistent with a unique solution.",
+    "Back-substitution: $x_3 = 1$, $x_2 + 1 = 1 \\implies x_2 = 0$, $x_1 + 0 + 1 = 2 \\implies x_1 = 1$."
+  ]}
+  answer="Consistent with unique solution: $x_1 = 1,\\; x_2 = 0,\\; x_3 = 1$"
+/>
+
+<StepRevealExample
+  title="Example 41 (§4.42)"
+  source="H. K. Dass, Ch. 4, Example 41 (Uttarakhand, 1st Semester, Dec. 2006)"
+  problem="Find for what values of $\\lambda$ and $\\mu$ the system $x + y + z = 6$, $x + 2y + 5z = 10$, $2x + 3y + \\lambda z = \\mu$ has (i) a unique solution, (ii) no solution, (iii) infinite solutions. Also solve when $\\lambda = 2, \\mu = 8$."
+  steps={[
+    "Form $C = [A : B] = \\begin{bmatrix} 1 & 1 & 1 & : & 6 \\\\ 1 & 2 & 5 & : & 10 \\\\ 2 & 3 & \\lambda & : & \\mu \\end{bmatrix}$.",
+    "Apply $R_2 \\to R_2 - R_1$ and $R_3 \\to R_3 - 2R_1$, followed by $R_3 \\to R_3 - R_2$: $\\begin{bmatrix} 1 & 1 & 1 & : & 6 \\\\ 0 & 1 & 4 & : & 4 \\\\ 0 & 0 & \\lambda - 6 & : & \\mu - 16 \\end{bmatrix}$.",
+    "(i) Unique solution: $R(A) = R(C) = 3$, which requires $\\lambda - 6 \\ne 0 \\implies \\lambda \\ne 6$ (for any value of $\\mu$).",
+    "(ii) No solution: $R(A) = 2 \\ne R(C) = 3$, which occurs when $\\lambda = 6$ and $\\mu \\ne 16$.",
+    "(iii) Infinite solutions: $R(A) = R(C) = 2 < 3$, which occurs when $\\lambda = 6$ and $\\mu = 16$.",
+    "(iv) For $\\lambda = 2, \\mu = 8$: the third equation gives $-4z = -8 \\implies z = 2$; then $y + 8 = 4 \\implies y = -4$; then $x - 4 + 2 = 6 \\implies x = 8$."
+  ]}
+  answer="(i) $\\lambda \\ne 6$ (any $\\mu$); (ii) $\\lambda = 6, \\mu \\ne 16$; (iii) $\\lambda = 6, \\mu = 16$; for $\\lambda = 2, \\mu = 8$: $x = 8, y = -4, z = 2$"
+/>
+
+<StepRevealExample
+  title="Example 42 (§4.42)"
+  source="H. K. Dass, Ch. 4, Example 42 (A.M.I.E.T.E., Summer 2004)"
+  problem="Find for what values of $k$ the system $2x - 3y + 6z - 5t = 3$, $y - 4z + t = 1$, $4x - 5y + 8z - 9t = k$ has (i) no solution, (ii) an infinite number of solutions, and find the general solution."
+  steps={[
+    "Reduce $C = [A : B] = \\begin{bmatrix} 2 & -3 & 6 & -5 & : & 3 \\\\ 0 & 1 & -4 & 1 & : & 1 \\\\ 4 & -5 & 8 & -9 & : & k \\end{bmatrix}$ via $R_3 \\to R_3 - 2R_1$ and $R_3 \\to R_3 - R_2$: $\\begin{bmatrix} 2 & -3 & 6 & -5 & : & 3 \\\\ 0 & 1 & -4 & 1 & : & 1 \\\\ 0 & 0 & 0 & 0 & : & k - 7 \\end{bmatrix}$.",
+    "(i) No solution when $R(A) = 2 \\ne R(C) = 3$, i.e., $k - 7 \\ne 0 \\implies k \\ne 7$.",
+    "(ii) Infinite solutions when $R(A) = R(C) = 2 < 4$, i.e., $k = 7$.",
+    "For $k = 7$, set the $4 - 2 = 2$ free variables $t = k_1, z = k_2$. Then $y = 1 + 4k_2 - k_1$ and $2x = 3 + 3(1 + 4k_2 - k_1) - 6k_2 + 5k_1 = 6 + 6k_2 + 2k_1 \\implies x = 3 + 3k_2 + k_1$."
+  ]}
+  answer="(i) $k \\ne 7$; (ii) $k = 7$, with $x = 3 + 3k_2 + k_1,\\; y = 1 + 4k_2 - k_1,\\; z = k_2,\\; t = k_1$"
+/>
+
+---
+
+### 4.43 Homogeneous Equations
+
+A linear system with zero right-hand side is written $AX = O$ and is called a **homogeneous system**.
+
+<RuleBox kind="theorem" title="§4.43 Solutions of a homogeneous system AX = O">
+
+1. **$X = O$ (the trivial or null solution)** always satisfies $AX = O$, so every homogeneous system is **always consistent**.
+2. If **$R(A) = n$** (number of unknowns), the system has **only the trivial solution** $x_1 = x_2 = \dots = x_n = 0$. (For square $A$, this holds iff $|A| \ne 0$.)
+3. If **$R(A) = r < n$**, the system has **infinitely many non-trivial solutions** containing $n - r$ linearly independent solutions (arbitrary parameters). (For square $A$, a non-trivial solution exists iff $|A| = 0$.)
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-209/matrices-inverse-rank-and-linear-systems-homogeneous-flowchart.svg"
+  caption="H. K. Dass §4.43 (redrawn) — Solution decision flowchart for a homogeneous linear system AX = O."
+/>
+
+<StepRevealExample
+  title="Example 43 (§4.43)"
+  source="H. K. Dass, Ch. 4, Example 43 (U.P., I Sem., Dec. 2008)"
+  problem="Determine $b$ such that the homogeneous system $2x + y + 2z = 0$, $x + y + 3z = 0$, $4x + 3y + bz = 0$ has (i) the trivial solution, (ii) a non-trivial solution."
+  steps={[
+    "(i) $x = y = z = 0$ always satisfies the system for any value of $b$ (and is the unique solution whenever $b \\ne 8$).",
+    "(ii) Swap $R_1 \\leftrightarrow R_2$ in $A$: $\\begin{bmatrix} 1 & 1 & 3 \\\\ 2 & 1 & 2 \\\\ 4 & 3 & b \\end{bmatrix}$.",
+    "Apply $R_2 \\to R_2 - 2R_1$ and $R_3 \\to R_3 - 4R_1$: $\\begin{bmatrix} 1 & 1 & 3 \\\\ 0 & -1 & -4 \\\\ 0 & -1 & b - 12 \\end{bmatrix}$.",
+    "Apply $R_3 \\to R_3 - R_2$: $\\begin{bmatrix} 1 & 1 & 3 \\\\ 0 & -1 & -4 \\\\ 0 & 0 & b - 8 \\end{bmatrix}$.",
+    "For a non-trivial solution we need $R(A) < 3$, which requires $b - 8 = 0 \\implies b = 8$."
+  ]}
+  answer="(i) Trivial solution exists for any $b$ (unique if $b \\ne 8$); (ii) non-trivial solution when $b = 8$."
+/>
+
+<StepRevealExample
+  title="Example 44 (§4.43)"
+  source="H. K. Dass, Ch. 4, Example 44"
+  problem="Find the values of $k$ such that the system $x + ky + 3z = 0$, $4x + 3y + kz = 0$, $2x + y + 2z = 0$ has a non-trivial solution."
+  steps={[
+    "Interchange $R_1 \\leftrightarrow R_3$ in $A$: $\\begin{bmatrix} 2 & 1 & 2 \\\\ 4 & 3 & k \\\\ 1 & k & 3 \\end{bmatrix}$.",
+    "Apply $R_2 \\to R_2 - 2R_1$ and $R_3 \\to R_3 - \\dfrac{1}{2}R_1$: $\\begin{bmatrix} 2 & 1 & 2 \\\\ 0 & 1 & k - 4 \\\\ 0 & k - 1/2 & 2 \\end{bmatrix}$.",
+    "Apply $R_3 \\to R_3 - \\left(k - \\dfrac{1}{2}\\right)R_2$: the $(3,3)$ pivot becomes $2 - \\left(k - \\dfrac{1}{2}\\right)(k - 4)$.",
+    "For a non-trivial solution ($R(A) < 3$), set $2 - \\left(k - \\dfrac{1}{2}\\right)(k - 4) = 0 \\implies 2 - k^2 + 4k + \\dfrac{k}{2} - 2 = 0 \\implies k\\left(-k + \\dfrac{9}{2}\\right) = 0$."
+  ]}
+  answer="$k = 0$ or $k = \\dfrac{9}{2}$"
+/>
+
+---
+
+### 4.44 Cramer's Rule (Determinant Condition for Homogeneous Systems)
+
+For a square homogeneous system $AX = O$ of order $n$, the condition $R(A) < n$ for non-trivial solutions is equivalent to **$|A| = 0$**. Solving $|A| = 0$ directly finds the parameter values yielding infinitely many solutions, after which substituting each parameter value into $AX = O$ produces the corresponding general solution.
+
+<StepRevealExample
+  title="Example 45 (§4.44)"
+  source="H. K. Dass, Ch. 4, Example 45 (A.M.I.E.T.E., Summer 2010, 2001)"
+  problem="Find values of $\\lambda$ for which $(\\lambda - 1)x + (3\\lambda + 1)y + 2\\lambda z = 0$, $(\\lambda - 1)x + (4\\lambda - 2)y + (\\lambda + 3)z = 0$, $2x + (3\\lambda + 1)y + 3(\\lambda - 1)z = 0$ has non-trivial solutions, and solve for such values."
+  steps={[
+    "For non-trivial solutions, set $|A| = \\begin{vmatrix} \\lambda - 1 & 3\\lambda + 1 & 2\\lambda \\\\ \\lambda - 1 & 4\\lambda - 2 & \\lambda + 3 \\\\ 2 & 3\\lambda + 1 & 3\\lambda - 3 \\end{vmatrix} = 0$.",
+    "Apply $R_1 \\to R_1 - R_2$, then $C_2 \\to C_2 + C_3$: $\\begin{vmatrix} 0 & 0 & \\lambda - 3 \\\\ \\lambda - 1 & 5\\lambda + 1 & \\lambda + 3 \\\\ 2 & 6\\lambda - 2 & 3\\lambda - 3 \\end{vmatrix} = 0$.",
+    "Expand along row 1: $(\\lambda - 3)[(\\lambda - 1)(6\\lambda - 2) - 2(5\\lambda + 1)] = (\\lambda - 3)(6\\lambda^2 - 18\\lambda) = 6\\lambda(\\lambda - 3)^2 = 0$, giving $\\lambda = 3$ or $\\lambda = 0$.",
+    "For $\\lambda = 3$, all three rows become $2x + 10y + 6z = 0$, i.e., $x + 5y + 3z = 0$ (rank $1$, two free parameters). Setting $x = k_1, y = k_2$ gives $z = -\\dfrac{k_1}{3} - \\dfrac{5k_2}{3}$.",
+    "(Completeness note: for $\\lambda = 0$, the system becomes $-x + y = 0,\\; -x - 2y + 3z = 0,\\; 2x + y - 3z = 0$, giving rank $2$ and $x = y = z = k$.)"
+  ]}
+  answer="For $\\lambda = 3$: $x = k_1,\\; y = k_2,\\; z = -\\dfrac{k_1}{3} - \\dfrac{5k_2}{3}$ (and for $\\lambda = 0$: $x = y = z = k$)"
+/>
+
+<ExerciseSet
+  title="Exercise 4.16"
+  source="H. K. Dass, Ch. 4, Exercise 4.16"
+  items={[
+    {
+      q: "Test the consistency and solve: $3x + 3y + 2z = 1$, $x + 2y = 4$, $10y + 3z = -2$, $2x - 3y - z = 5$. (R.G.P.V., Bhopal, 1st Sem., 2001)",
+      a: "Consistent; $x = 2,\\; y = 1,\\; z = -4$"
+    },
+    {
+      q: "Find the value of $\\lambda$ for which $x + y + 4z = 1$, $x + 2y - 2z = 1$, $\\lambda x + y + z = 1$ has a unique solution. (A.M.I.E., Winter 2000)",
+      a: "$\\lambda \\ne \\dfrac{7}{10}$"
+    },
+    {
+      q: "Determine $a$ and $b$ for which $\\begin{bmatrix} 3 & -2 & 1 \\\\ 5 & -8 & 9 \\\\ 2 & 1 & a \\end{bmatrix}\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} b \\\\ 3 \\\\ -1 \\end{bmatrix}$ has (i) a unique solution, (ii) no solution, (iii) infinitely many solutions.",
+      a: "(i) $a \\ne -3$; (ii) $a = -3,\\; b \\ne \\dfrac{1}{3}$; (iii) $a = -3,\\; b = \\dfrac{1}{3}$"
+    },
+    {
+      q: "Choose $\\lambda$ so that $x + y - z + t = 2$, $2y + 4z + 2t = 3$, $x + 2y + z + 2t = \\lambda$ is consistent, and find the general solution.",
+      a: "$\\lambda = \\dfrac{7}{2}$; $x = \\dfrac{1}{2} + 3k_2,\\; y = \\dfrac{3}{2} - 2k_2 - k_1,\\; z = k_2,\\; t = k_1$"
+    },
+    {
+      q: "Find $k$ so that $4x_1 + 9x_2 + x_3 = 0$, $kx_1 + 3x_2 + kx_3 = 0$, $x_1 + 4x_2 + 2x_3 = 0$ has a non-trivial solution, and solve it.",
+      a: "$k = 1$; $x_1 = 2\\lambda,\\; x_2 = -\\lambda,\\; x_3 = \\lambda$"
+    },
+    {
+      q: "Find $\\lambda$ so that $\\lambda x_1 - x_2 - x_3 = 0$, $-x_1 + \\lambda x_2 - x_3 = 0$, $-x_1 - x_2 + \\lambda x_3 = 0$ has exactly two linearly independent solutions.",
+      a: "$\\lambda = -1$ (gives rank $1$, hence $3 - 1 = 2$ linearly independent solutions)"
+    },
+    {
+      q: "Find the values of $k$ for which $(3k-8)x + 3y + 3z = 0$, $3x + (3k-8)y + 3z = 0$, $3x + 3y + (3k-8)z = 0$ has a non-trivial solution. (A.M.I.E.T.E., June 2010)",
+      a: "$k = \\dfrac{2}{3}$ and $k = \\dfrac{11}{3}$"
+    },
+    {
+      q: "If $A = \\begin{bmatrix} -1 & 2 & 1 \\\\ 3 & -1 & 2 \\\\ 0 & 1 & \\lambda \\end{bmatrix}$, find $\\lambda$ so that $AX = O$ has (i) a unique (trivial) solution, (ii) more than one solution.",
+      a: "(i) $\\lambda \\ne 1$; (ii) $\\lambda = 1$"
+    }
+  ]}
+/>
+
+---
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Frequent mistakes in GET 209 matrix examinations">
+
+- **Forgetting to transpose the cofactor matrix:** $\operatorname{adj} A$ is the **transpose** of the matrix of cofactors, not the cofactor matrix itself. Always check $A \cdot A^{-1} = I$ on at least one row and column.
+- **Mixing row and column operations during Gauss–Jordan inversion:** In §4.34 ($A = IA$), use **row operations only**. Mixing column operations corrupts the identity $PA = I$. Column operations are permitted when computing **rank / normal form** (§4.37), provided column operations are mirrored on the **right** factor $I_n$ in $A = I_m A I_n$.
+- **Reversing multiplication order in $(AB)'$ and $(AB)^{-1}$:** Both transpose and inverse reverse the order of factors: $(AB)' = B'A'$ and $(AB)^{-1} = B^{-1}A^{-1}$. Likewise, $(A+B)^2 = A^2 + AB + BA + B^2 \ne A^2 + 2AB + B^2$ unless $AB = BA$.
+- **Assuming $AB = O$ implies $A = O$ or $B = O$:** False for singular matrices (Example 8). Cancellation ($AB = AC \implies B = C$) is valid only when $A$ is **non-singular** ($|A| \ne 0$).
+- **Applying column operations to $AX = B$ when solving linear equations:** Column operations swap or combine the unknowns $x_1, \dots, x_n$. Always use **elementary row operations only** on the augmented matrix $[A : B]$ when solving a system.
+- **Misstating the unique-solution condition for parametric $AX = B$:** When the last echelon row is $[0\;\;0\;\;\lambda - 6 \mid \mu - 16]$, a unique solution requires **only $\lambda \ne 6$** — the value of $\mu$ is completely unrestricted!
+
+</Callout>
+
+---
+
+## Summary of Formulas
+
+<RuleBox kind="formula" title="Chapter 4 (§4.18–4.44) Quick Reference">
+
+- **Symmetric / Skew-symmetric decomposition (§4.20):**
+$$A = \frac{1}{2}(A + A') + \frac{1}{2}(A - A')$$
+- **Special square matrices (§4.19):**
+  - Symmetric: $A' = A$ | Skew-symmetric: $A' = -A$
+  - Orthogonal: $AA' = I$ | Unitary: $A^\theta A = I$
+  - Hermitian: $A^\theta = A$ | Skew-Hermitian: $A^\theta = -A$
+  - Idempotent: $A^2 = A$ | Nilpotent: $A^k = O$ | Involutory: $A^2 = I$
+- **Reversal laws (§4.25, §4.30):**
+$$(AB)' = B'A', \qquad (AB)^{-1} = B^{-1}A^{-1}, \qquad (A^{-1})' = (A')^{-1}$$
+- **Adjoint & Inverse (§4.29–4.30):**
+$$A(\operatorname{adj} A) = (\operatorname{adj} A)A = |A|\,I, \qquad A^{-1} = \frac{1}{|A|}\operatorname{adj} A \quad (|A| \ne 0)$$
+- **Normal form & Rank (§4.36–4.38):**
+$$PAQ = \begin{bmatrix} I_r & 0 \\ 0 & 0 \end{bmatrix}, \qquad \rho(A) = r = \text{number of non-zero rows in echelon form}$$
+- **Consistency of $AX = B$ with $C = [A:B]$ and $n$ unknowns (§4.42):**
+  - $R(A) \ne R(C) \implies$ **Inconsistent (no solution)**
+  - $R(A) = R(C) = n \implies$ **Consistent, unique solution**
+  - $R(A) = R(C) = r < n \implies$ **Consistent, infinite solutions** ($n - r$ parameters)
+- **Homogeneous system $AX = O$ (§4.43–4.44):**
+  - Always consistent ($X = O$ always solves it)
+  - $R(A) = n$ (or $|A| \ne 0$ for square $A$) $\implies$ **Trivial solution only**
+  - $R(A) = r < n$ (or $|A| = 0$ for square $A$) $\implies$ **Infinite non-trivial solutions** ($n - r$ linearly independent solutions)
+
+</RuleBox>

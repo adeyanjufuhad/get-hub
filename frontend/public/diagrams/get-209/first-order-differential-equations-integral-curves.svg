@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" width="760" height="400">
+  <defs>
+    <marker id="axis-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/>
+    </marker>
+    <marker id="tangent-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="760" height="400" fill="#ffffff" rx="8"/>
+  <rect x="1" y="1" width="758" height="398" fill="none" stroke="#e2e8f0" stroke-width="1.5" rx="8"/>
+
+  <!-- Title -->
+  <text x="380" y="28" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#111827">
+    General Solution (One-Parameter Family) vs. Particular Solution (§3.4 &amp; Exercise 3.2 Q5)
+  </text>
+  <text x="380" y="48" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#475569">
+    ODE: (1 + x²) dy − xy dx = 0   ⇒   dy/dx = xy / (1 + x²)   ⇒   General solution: y² = C(1 + x²)
+  </text>
+
+  <!-- Plot Area Frame -->
+  <rect x="55" y="68" width="445" height="295" fill="#fafaf8" stroke="#cbd5e1" stroke-width="1"/>
+
+  <!-- Subtle Grid (origin at x=277.5, y=215.5; scale: 1 unit x = 68px, 1 unit y = 42px) -->
+  <g stroke="#e2e8f0" stroke-width="1">
+    <line x1="141.5" y1="68" x2="141.5" y2="363"/>
+    <line x1="209.5" y1="68" x2="209.5" y2="363"/>
+    <line x1="345.5" y1="68" x2="345.5" y2="363"/>
+    <line x1="413.5" y1="68" x2="413.5" y2="363"/>
+    <line x1="55" y1="131.5" x2="500" y2="131.5"/>
+    <line x1="55" y1="173.5" x2="500" y2="173.5"/>
+    <line x1="55" y1="257.5" x2="500" y2="257.5"/>
+    <line x1="55" y1="299.5" x2="500" y2="299.5"/>
+  </g>
+
+  <!-- Axes -->
+  <line x1="65" y1="215.5" x2="492" y2="215.5" stroke="#334155" stroke-width="1.6" marker-end="url(#axis-arrow)"/>
+  <line x1="277.5" y1="355" x2="277.5" y2="76" stroke="#334155" stroke-width="1.6" marker-end="url(#axis-arrow)"/>
+  <text x="488" y="232" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-style="italic" font-weight="600" fill="#111827">x</text>
+  <text x="290" y="84" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-style="italic" font-weight="600" fill="#111827">y</text>
+
+  <!-- Tick labels -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b">
+    <text x="141.5" y="230" text-anchor="middle">−2</text>
+    <text x="209.5" y="230" text-anchor="middle">−1</text>
+    <text x="345.5" y="230" text-anchor="middle">1</text>
+    <text x="413.5" y="230" text-anchor="middle">2</text>
+    <text x="266" y="177" text-anchor="end">1</text>
+    <text x="266" y="135" text-anchor="end">2</text>
+    <text x="266" y="261" text-anchor="end">−1</text>
+    <text x="266" y="303" text-anchor="end">−2</text>
+    <text x="268" y="229" text-anchor="end">O</text>
+  </g>
+
+  <!-- Family of Integral Curves: y = ±sqrt(C * (1 + x^2)) -->
+  <!-- C = 0.25 (y0 = ±0.5) -->
+  <!-- x in [-2.6, 2.6]: px = 277.5 + 68*x; py = 215.5 - 42*y -->
+  <path d="M 100.7 156.9 Q 189.1 190.0 277.5 194.5 Q 365.9 190.0 454.3 156.9" fill="none" stroke="#93c5fd" stroke-width="1.8"/>
+  <path d="M 100.7 274.1 Q 189.1 241.0 277.5 236.5 Q 365.9 241.0 454.3 274.1" fill="none" stroke="#93c5fd" stroke-width="1.8"/>
+
+  <!-- C = 2.25 (y0 = ±1.5): at x=0 y=1.5 (py=152.5); at x=1 y=2.121 (py=126.4); at x=2 y=3.354 (py=74.6) -->
+  <path d="M 141.5 74.6 Q 209.5 147.0 277.5 152.5 Q 345.5 147.0 413.5 74.6" fill="none" stroke="#93c5fd" stroke-width="1.8"/>
+  <path d="M 141.5 356.4 Q 209.5 284.0 277.5 278.5 Q 345.5 284.0 413.5 356.4" fill="none" stroke="#93c5fd" stroke-width="1.8"/>
+
+  <!-- C = 0 (y = 0) -->
+  <line x1="75" y1="215.5" x2="475" y2="215.5" stroke="#93c5fd" stroke-width="1.4" stroke-dasharray="4 4"/>
+
+  <!-- Highlighted Particular Solution: C = 1, upper branch y = +sqrt(1 + x^2) -->
+  <!-- Exact points: x=-2.4 y=2.60 (114.3,106.3); x=-2 y=2.236 (141.5,121.6); x=-1 y=1.414 (209.5,156.1); x=0 y=1 (277.5,173.5); x=1 y=1.414 (345.5,156.1); x=2 y=2.236 (413.5,121.6); x=2.4 y=2.60 (440.7,106.3) -->
+  <path d="M 114.3 106.3 L 141.5 121.6 L 175.5 139.8 L 209.5 156.1 L 243.5 168.5 L 277.5 173.5 L 311.5 168.5 L 345.5 156.1 L 379.5 139.8 L 413.5 121.6 L 440.7 106.3"
+        fill="none" stroke="#2563eb" stroke-width="2.8"/>
+  <!-- Lower branch C = 1 dashed -->
+  <path d="M 114.3 324.7 L 141.5 309.4 L 175.5 291.2 L 209.5 274.9 L 243.5 262.5 L 277.5 257.5 L 311.5 262.5 L 345.5 274.9 L 379.5 291.2 L 413.5 309.4 L 440.7 324.7"
+        fill="none" stroke="#60a5fa" stroke-width="1.8" stroke-dasharray="5 3"/>
+
+  <!-- Tangent Slope Vector at P(1, sqrt(2)) where dy/dx = 1*sqrt(2)/2 = 0.7071 -->
+  <!-- At (345.5, 156.1), dx_px = 54, dy_px = -54 * (42/68) * 0.7071 = -23.6 -->
+  <line x1="315" y1="169.4" x2="395" y2="134.5" stroke="#dc2626" stroke-width="2" marker-end="url(#tangent-arrow)"/>
+  <circle cx="345.5" cy="156.1" r="4.2" fill="#dc2626"/>
+
+  <!-- Initial Condition Point (0, 1) -->
+  <circle cx="277.5" cy="173.5" r="4.8" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+
+  <!-- Curve & Point Annotations -->
+  <text x="419" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#3b82f6">C = 2.25</text>
+  <text x="444" y="109" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#2563eb">C = 1</text>
+  <text x="456" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#3b82f6">C = 0.25</text>
+  <text x="285" y="166" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#1e3a8a">(0, 1)</text>
+  <text x="358" y="128" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#dc2626">slope dy/dx = √2 / 2</text>
+
+  <!-- Right-side Explanatory Legend Box -->
+  <rect x="518" y="68" width="222" height="295" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+  <text x="532" y="92" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="700" fill="#111827">Key Concepts (§3.3–3.4)</text>
+
+  <line x1="532" y1="112" x2="562" y2="112" stroke="#93c5fd" stroke-width="2.2"/>
+  <text x="570" y="116" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600" fill="#1e293b">General Solution</text>
+  <text x="532" y="134" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">Order 1 ODE → 1 arbitrary</text>
+  <text x="532" y="149" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">constant C, generating an</text>
+  <text x="532" y="164" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">infinite family of curves.</text>
+
+  <line x1="532" y1="190" x2="562" y2="190" stroke="#2563eb" stroke-width="2.8"/>
+  <text x="570" y="194" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600" fill="#1e3a8a">Particular Solution</text>
+  <text x="532" y="212" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">Imposing y(0) = 1 fixes</text>
+  <text x="532" y="227" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">C = 1, selecting the unique</text>
+  <text x="532" y="242" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">curve y = √(1 + x²).</text>
+
+  <line x1="532" y1="268" x2="562" y2="268" stroke="#dc2626" stroke-width="2" marker-end="url(#tangent-arrow)"/>
+  <text x="570" y="272" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="600" fill="#b91c1c">Differential Equation</text>
+  <text x="532" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">Prescribes the tangent</text>
+  <text x="532" y="305" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">slope dy/dx at every point</text>
+  <text x="532" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#475569">(x, y) independently of C.</text>
+
+  <text x="532" y="348" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-style="italic" fill="#64748b">Eliminating C recovers the ODE.</text>
+</svg>

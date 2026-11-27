@@ -123,12 +123,6 @@ export default function DashboardPage() {
             >
               3 Textbooks
             </a>
-            <Link
-              href="/library"
-              className="pressable inline-flex min-h-[40px] items-center whitespace-nowrap rounded-full px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
-            >
-              PDF Library
-            </Link>
           </div>
         </div>
       </section>
@@ -537,32 +531,6 @@ export default function DashboardPage() {
             </ul>
           )}
         </div>
-      </section>
-
-      {/* ==================== 5. PART 2 DOWNLOADABLE NOTES ARCHIVE BANNER ==================== */}
-      <section className="flex flex-col justify-between gap-4 rounded-[24px] border border-[var(--accent-border)] bg-[var(--accent-soft)]/70 p-5 sm:flex-row sm:items-center">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="accent" className="font-mono">
-              OAU PART 2 ARCHIVE
-            </Badge>
-            <span className="font-mono text-[11px] font-semibold text-[var(--text-muted)]">
-              14 Courses · 123 Lecture Notes &amp; Past Questions
-            </span>
-          </div>
-          <h2 className="mt-1.5 text-base font-extrabold tracking-tight text-[var(--text-primary)]">
-            Need raw OAU handouts, lab manuals, or past question PDFs?
-          </h2>
-          <p className="mt-0.5 text-xs leading-relaxed text-[var(--text-secondary)]">
-            Download MEE 203/205/206, MTH 201/202, CHE 201, CSC 201, and EEE 251–282 files with exact MB sizes shown upfront.
-          </p>
-        </div>
-        <Link
-          href="/library"
-          className="pressable inline-flex min-h-[44px] w-full shrink-0 items-center justify-center rounded-full bg-[var(--ink-cta)] px-5 text-xs font-semibold text-[var(--ink-cta-text)] sm:w-auto"
-        >
-          Open PDF Archive →
-        </Link>
       </section>
 
       {/* ==================== 6. 3 MATCHED TEXTBOOKS + STRICT TEXTBOOK PROBLEMS ==================== */}

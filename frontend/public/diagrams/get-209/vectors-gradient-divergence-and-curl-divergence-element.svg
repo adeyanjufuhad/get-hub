@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 312" role="img" aria-label="Fluid flow through a small rectangular parallelepiped">
+  <defs>
+    <marker id="ah0F766E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0F766E"/></marker>
+    <marker id="ahEA580C" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EA580C"/></marker>
+  </defs>
+  <rect width="600" height="312" rx="14" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">§5.30 (redrawn) — Flow through a small element dx dy dz</text>
+  <polygon points="150,120 190,90 370,90 330,120" fill="#E2E8F0" stroke="#141413" stroke-width="1.6"/>
+  <polygon points="330,230 370,200 370,90 330,120" fill="#CBD5E1" stroke="#141413" stroke-width="1.6"/>
+  <polygon points="150,230 330,230 330,120 150,120" fill="#F1F5F9" stroke="#141413" stroke-width="1.6"/>
+  <line x1="150" y1="230" x2="190" y2="200" stroke="#141413" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <line x1="190" y1="200" x2="370" y2="200" stroke="#141413" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <line x1="190" y1="200" x2="190" y2="90" stroke="#141413" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <line x1="40" y1="165" x2="150" y2="165" stroke="#0F766E" stroke-width="2.6" marker-end="url(#ah0F766E)"/>
+  <line x1="372" y1="150" x2="470" y2="150" stroke="#EA580C" stroke-width="2.6" marker-end="url(#ahEA580C)"/>
+  <text x="30" y="152" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#0F766E" text-anchor="start">V_x  (in, face ABCD)</text>
+  <text x="376" y="138" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#EA580C" text-anchor="start">V_x + (∂V_x/∂x) dx</text>
+  <text x="376" y="174" font-family="system-ui,sans-serif" font-size="12" font-weight="700" fill="#EA580C" text-anchor="start">(out, face PQRS)</text>
+  <text x="134" y="244" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">A</text>
+  <text x="198" y="196" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">B</text>
+  <text x="198" y="86" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">C</text>
+  <text x="134" y="116" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">D</text>
+  <text x="338" y="244" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">P</text>
+  <text x="378" y="196" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">Q</text>
+  <text x="378" y="86" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">R</text>
+  <text x="338" y="116" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">S</text>
+  <text x="250" y="262" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#1D4ED8" text-anchor="middle">dx</text>
+  <text x="142" y="212" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#1D4ED8" text-anchor="end">dz</text>
+  <text x="20" y="296" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="#64748B" text-anchor="start">Net outflow per unit volume = ∂V_x/∂x + ∂V_y/∂y + ∂V_z/∂z = div V</text>
+</svg>

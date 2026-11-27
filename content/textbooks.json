@@ -17,45 +17,45 @@
         "Ch. 12 & Ch. 13: Continuity, Bernoulli's Equation, Pitot Tubes & Momentum",
         "Ch. 14: Pipe Head Losses, Venturi & Orifice Flow Meters"
       ],
-      "readUrl": "/library?course=CHE%20201"
+      "readUrl": ""
     },
     {
-      "id": "get-207-hibbeler",
+      "id": "get-207-beer-johnston",
       "courseCode": "GET 207",
       "courseSlug": "get-207",
-      "title": "Engineering Mechanics: Statics & Dynamics",
-      "authors": "Russell C. Hibbeler",
-      "edition": "14th Edition (SI Units)",
-      "role": "Course Outline Match",
-      "coverImage": "/images/textbooks/get-207-hibbeler.webp",
-      "bestFor": "Prescribed in the OAU Mechanical Engineering work plan and covers both the Statics and Dynamics halves of GET 207 with full-color Free-Body Diagrams, Fundamental Problems, and verified answers.",
+      "title": "Vector Mechanics for Engineers: Statics & Dynamics",
+      "authors": "Ferdinand P. Beer, E. Russell Johnston Jr., David F. Mazurek & Phillip J. Cornwell",
+      "edition": "10th Edition",
+      "role": "Prescribed Textbook",
+      "coverImage": "/images/textbooks/get-207-beer-johnston.png",
+      "bestFor": "Matches the OAU MEE 205 / GET 207 work plan chapter-for-chapter across both Statics (Ch. 2–9) and Particle Dynamics (Ch. 11–13) with full-color Free-Body Diagrams, Sample Problems, and verified answers.",
       "chapters": [
-        "Ch. 2–4: Force Vectors, Moments, Cross Products & Couple Moments",
-        "Ch. 5–6: Rigid-Body Equilibrium, Beams, Trusses, Frames & Machines",
-        "Ch. 8: Dry Friction on Horizontal Surfaces, Inclines, Wedges & Ladders",
-        "Ch. 9–10: Centroids of Composite Areas & Parallel-Axis Moments of Inertia",
-        "Ch. 12–19: Kinematics, Newton's Laws, Work-Energy & Impulse-Momentum"
+        "Ch. 2–3: Statics of Particles, Equivalent Force Systems, Moments & Couples",
+        "Ch. 4 & 6: Rigid-Body Equilibrium, Trusses, Frames & Machines",
+        "Ch. 5 & 9: Distributed Forces, Centroids, Centers of Gravity & Moments of Inertia",
+        "Ch. 8: Dry Friction, Wedges, Square-Threaded Screws & Belt Friction",
+        "Ch. 11–13: Particle Kinematics, Newton's Second Law, Work-Energy & Impulse-Momentum"
       ],
-      "readUrl": "/library?course=MEE%20205"
+      "readUrl": ""
     },
     {
-      "id": "get-209-stewart",
+      "id": "get-209-hkdass",
       "courseCode": "GET 209",
       "courseSlug": "get-209",
-      "title": "Calculus: Early Transcendentals",
-      "authors": "James Stewart",
-      "edition": "7th Edition",
-      "role": "Course Outline Match",
-      "coverImage": "/images/textbooks/get-209-stewart.webp",
-      "bestFor": "Matches your OAU MTH 201 / GET 209 calculus, differential equations, multivariable & vector syllabus directly (paired with Bird Ch. 60 for 2×2 and 3×3 matrix algebra).",
+      "title": "Advanced Engineering Mathematics",
+      "authors": "H. K. Dass",
+      "edition": "S. Chand (21st Revised Edition)",
+      "role": "Prescribed Textbook",
+      "coverImage": "/images/textbooks/get-209-hkdass.webp",
+      "bestFor": "The single source for every GET 209 folio: limits and continuity, partial and total differentiation, Jacobians and errors, first-order differential equations, determinants, matrices and vector calculus, with the book's own solved examples and exercises.",
       "chapters": [
-        "Ch. 2 (§2.2–2.6): Limits, Indeterminate Forms, Infinite Limits & Continuity",
-        "Ch. 3: Differentiation Rules, Implicit Differentiation & Chain Rule",
-        "Ch. 9 (§9.5): First-Order Linear Differential Equations & Integrating Factors",
-        "Ch. 12 & Ch. 16: Vector Algebra, Dot/Cross Determinants & Vector Calculus",
-        "Ch. 14 (§14.3–14.6): Partial Derivatives, Total Differentials, Gradients & Directional Derivatives"
+        "Ch. 1 (§1.1–1.11): Limits, Continuity, Partial Derivatives & Euler's Theorem",
+        "Ch. 1 (§1.12–1.25): Total Derivatives, Change of Variables, Errors & Jacobians",
+        "Ch. 3 (§3.1–3.12): First-Order Differential Equations",
+        "Ch. 4 (§4.1–4.44): Determinants, Matrices, Rank & Linear Systems",
+        "Ch. 5 (§5.1–5.32): Vector Algebra, Gradient, Divergence & Curl"
       ],
-      "readUrl": "/library?course=MTH%20201"
+      "readUrl": ""
     }
   ],
   "drills": [
@@ -124,39 +124,6 @@
       "title": "Centroidal Moment of Inertia Ix' of an Inverted T-Beam",
       "preview": "Locate centroid ȳ = 60 mm and compute Ix' about the centroidal horizontal axis for the 150 mm × 30 mm flange and 30 mm × 150 mm web.",
       "figureImage": "/images/textbook-figures/get-207/hibbeler-f10-8-tbeam-moi.webp"
-    },
-    {
-      "id": "drill-209-stewart-ex-2-3",
-      "courseCode": "GET 209",
-      "courseSlug": "get-209",
-      "topicId": "22222222-2222-4222-8222-222222220209",
-      "textbookRef": "Stewart 7e · §2.3 Examples 3 & 4 (Fig. 2)",
-      "difficulty": "Easy",
-      "title": "Limit at a Removable Discontinuity Hole vs. Redefined Point",
-      "preview": "Evaluate lim(x → 1) (x² − 1)/(x − 1) and compare with g(x) redefined as g(1) = 3 on the graph.",
-      "figureImage": "/images/textbook-figures/get-209/stewart-fig-2-3-2-removable-hole.webp"
-    },
-    {
-      "id": "drill-209-stewart-ex-9-5-2",
-      "courseCode": "GET 209",
-      "courseSlug": "get-209",
-      "topicId": "22222222-2222-4222-8222-222222290002",
-      "textbookRef": "Stewart 7e · §9.5 Example 2 (Fig. 2)",
-      "difficulty": "Medium",
-      "title": "Variable-Coefficient Linear ODE Initial-Value Problem",
-      "preview": "Solve x²y' + xy = 1 (x > 0) subject to y(1) = 2 by normalizing and applying integrating factor I(x) = x.",
-      "figureImage": "/images/textbook-figures/get-209/stewart-fig-9-5-2-ivp-curve.webp"
-    },
-    {
-      "id": "drill-209-stewart-ex-14-6-4",
-      "courseCode": "GET 209",
-      "courseSlug": "get-209",
-      "topicId": "22222222-2222-4222-8222-222222290003",
-      "textbookRef": "Stewart 7e · §14.6 Example 4 (Fig. 6)",
-      "difficulty": "Medium",
-      "title": "Directional Derivative Along Vector v = 2i + 5j on Contour Plot",
-      "preview": "Find Du f(2, −1) for f(x, y) = x²y³ − 4y in the direction of v = 2i + 5j using ∇f(2, −1) = −4i + 8j.",
-      "figureImage": "/images/textbook-figures/get-209/stewart-fig-14-6-6-gradient-contour.webp"
     }
   ]
 }

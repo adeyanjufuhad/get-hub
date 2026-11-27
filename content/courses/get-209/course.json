@@ -2,32 +2,77 @@
   "code": "GET 209",
   "slug": "get-209",
   "title": "Engineering Mathematics I",
-  "description": "Step-by-step mastery of limits, continuity, differentiation, first-order linear ODEs, partial derivatives, matrices, and vector calculus.",
+  "description": "Limits and continuity, partial and total differentiation, first-order differential equations, determinants, matrices and vector calculus — written strictly from H. K. Dass, Advanced Engineering Mathematics.",
+  "textbook": "H. K. Dass — Advanced Engineering Mathematics (S. Chand)",
+  "retireLegacyQuestions": true,
   "topics": [
     {
       "slug": "limits-and-continuity",
       "topicId": "22222222-2222-4222-8222-222222220209",
-      "title": "Limits and Continuity of Functions",
+      "title": "Limits and Continuity of Functions of Two Variables",
       "order": 1,
       "ccmasRef": "Limits; continuity",
+      "bookRef": "H. K. Dass · Ch. 1, §1.1–1.6",
       "status": "published",
       "isFree": true
     },
     {
-      "slug": "first-order-linear-odes",
-      "topicId": "22222222-2222-4222-8222-222222290002",
-      "title": "First-Order Linear Differential Equations",
-      "order": 2,
-      "ccmasRef": "Linear first-order differential equations",
-      "status": "published",
-      "isFree": true
-    },
-    {
-      "slug": "partial-derivatives-and-matrices",
+      "slug": "partial-differentiation-and-eulers-theorem",
       "topicId": "22222222-2222-4222-8222-222222290003",
-      "title": "Partial Derivatives, Gradients & Matrices",
+      "title": "Partial Derivatives, Homogeneous Functions & Euler's Theorem",
+      "order": 2,
+      "ccmasRef": "Partial derivatives; higher-order partial derivatives; Euler's theorem",
+      "bookRef": "H. K. Dass · Ch. 1, §1.7–1.11",
+      "status": "published",
+      "isFree": true
+    },
+    {
+      "slug": "total-differentials-jacobians-and-errors",
+      "topicId": "22222222-2222-4222-8222-222222290004",
+      "title": "Total Derivatives, Change of Variables, Errors & Jacobians",
       "order": 3,
-      "ccmasRef": "Partial & total derivatives; directional derivatives & gradients; matrices & determinants",
+      "ccmasRef": "Total derivatives; chain rule; approximation of errors; Jacobians",
+      "bookRef": "H. K. Dass · Ch. 1, §1.12–1.25",
+      "status": "published",
+      "isFree": true
+    },
+    {
+      "slug": "first-order-differential-equations",
+      "topicId": "22222222-2222-4222-8222-222222290002",
+      "title": "Differential Equations of the First Order and First Degree",
+      "order": 4,
+      "ccmasRef": "First-order ODEs: separable, homogeneous, linear, Bernoulli and exact equations",
+      "bookRef": "H. K. Dass · Ch. 3, §3.1–3.12",
+      "status": "published",
+      "isFree": true
+    },
+    {
+      "slug": "determinants-and-cramers-rule",
+      "topicId": "22222222-2222-4222-8222-222222290005",
+      "title": "Determinants, Properties & Cramer's Rule",
+      "order": 5,
+      "ccmasRef": "Determinants; minors and cofactors; Cramer's rule",
+      "bookRef": "H. K. Dass · Ch. 4, §4.1–4.17",
+      "status": "published",
+      "isFree": true
+    },
+    {
+      "slug": "matrices-inverse-rank-and-linear-systems",
+      "topicId": "22222222-2222-4222-8222-222222290006",
+      "title": "Matrices: Algebra, Inverse, Rank & Systems of Linear Equations",
+      "order": 6,
+      "ccmasRef": "Matrix algebra; adjoint and inverse; rank; consistency of linear systems",
+      "bookRef": "H. K. Dass · Ch. 4, §4.18–4.44",
+      "status": "published",
+      "isFree": true
+    },
+    {
+      "slug": "vectors-gradient-divergence-and-curl",
+      "topicId": "22222222-2222-4222-8222-222222290007",
+      "title": "Vectors: Products, Differentiation, Gradient, Divergence & Curl",
+      "order": 7,
+      "ccmasRef": "Vector algebra; vector differentiation; gradient, directional derivative, divergence and curl",
+      "bookRef": "H. K. Dass · Ch. 5, §5.1–5.32",
       "status": "published",
       "isFree": true
     }

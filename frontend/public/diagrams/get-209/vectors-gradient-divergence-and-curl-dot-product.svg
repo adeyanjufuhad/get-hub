@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 278" role="img" aria-label="Geometrical interpretation of the scalar product through projection">
+  <defs>
+    <marker id="ah0F766E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0F766E"/></marker>
+    <marker id="ahEA580C" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EA580C"/></marker>
+  </defs>
+  <rect width="560" height="278" rx="14" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">§5.8 (redrawn) — a · b = |a||b| cos θ = (OA)(ON)</text>
+  <line x1="80" y1="210" x2="470" y2="210" stroke="#0F766E" stroke-width="2.6" marker-end="url(#ah0F766E)"/>
+  <line x1="80" y1="210" x2="360" y2="60" stroke="#EA580C" stroke-width="2.6" marker-end="url(#ahEA580C)"/>
+  <line x1="360" y1="60" x2="360" y2="210" stroke="#64748B" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <circle cx="80" cy="210" r="3.5" fill="#141413"/>
+  <circle cx="360" cy="210" r="3.5" fill="#141413"/>
+  <text x="66" y="230" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">O</text>
+  <text x="476" y="214" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">A</text>
+  <text x="366" y="56" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">B</text>
+  <text x="352" y="232" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">N</text>
+  <text x="200" y="232" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#0F766E" text-anchor="start" font-style="italic">a</text>
+  <text x="200" y="118" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#EA580C" text-anchor="start" font-style="italic">b</text>
+  <path d="M 132.0 210.0 A 52 52 0 0 0 123.1 180.9" fill="none" stroke="#141413" stroke-width="1.6"/>
+  <text x="140" y="200" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#141413" text-anchor="start">θ</text>
+  <text x="20" y="262" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="#64748B" text-anchor="start">ON = |b| cos θ is the projection of b along a</text>
+</svg>

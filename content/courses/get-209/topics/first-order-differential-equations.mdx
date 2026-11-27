@@ -1,0 +1,976 @@
+---
+title: "Differential Equations of the First Order and First Degree"
+order: 4
+topicId: "22222222-2222-4222-8222-222222290002"
+courseCode: "GET 209"
+courseSlug: "get-209"
+ccmasRef: "First-order ODEs: separable, homogeneous, linear, Bernoulli and exact equations"
+textbookRef: "H. K. Dass · Ch. 3, §3.1–3.12"
+outcomes:
+  - "Classify differential equations as ordinary or partial and determine their order and degree after clearing radicals and fractional powers."
+  - "Form differential equations of order n by differentiating a primitive and eliminating n arbitrary constants."
+  - "Solve first-order, first-degree ODEs using separation of variables and algebraic substitutions."
+  - "Solve homogeneous differential equations via y = vx and equations reducible to homogeneous form using coordinate shifts (Case I) or linear substitutions (Case II)."
+  - "Solve first-order linear ODEs (in y or in x) using integrating factors and reduce Bernoulli and generalized nonlinear equations to linear form."
+  - "Test exactness of M dx + N dy = 0 via ∂M/∂y = ∂N/∂x, integrate exact equations directly, and find integrating factors using Rules I–V when an equation is non-exact."
+status: "published"
+isFree: true
+---
+
+## Overview
+
+A wide range of physical laws in mechanics, electrical circuits, heat transfer, and chemical kinetics express relationships between a quantity and its rate of change. Chapter 3 of H. K. Dass's *Advanced Engineering Mathematics* develops the theory and solution methods for differential equations from first principles. Sections §3.1–§3.4 introduce definitions, order, degree, formation of differential equations, and the concept of a solution. Sections §3.5–§3.12 then present the complete toolkit for **differential equations of the first order and first degree**: variables separable, homogeneous and reducible-to-homogeneous equations, linear and Bernoulli equations, exact equations, and five systematic rules for finding integrating factors of non-exact equations.
+
+### 3.1 Definition
+
+An equation that contains one or more differential coefficients (derivatives) of a dependent variable with respect to one or more independent variables is called a **differential equation**. Representative examples from Dass include:
+
+1. $\dfrac{dy}{dx} = \dfrac{1+x^2}{1-y^2}$
+2. $\dfrac{d^2y}{dx^2} - 2\dfrac{dy}{dx} - 8y = 0$
+3. $\left[1 + \left(\dfrac{dy}{dx}\right)^2\right]^{3/2} = k\,\dfrac{d^2y}{dx^2}$
+4. $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} = nu$
+5. $\dfrac{\partial^2 z}{\partial x\,\partial y} = \dfrac{\partial z}{\partial y}$
+
+Equations (1)–(3) involve derivatives with respect to a single independent variable $x$, whereas equations (4)–(5) involve partial derivatives with respect to two independent variables $x$ and $y$. This leads to the fundamental division of the subject.
+
+<RuleBox kind="definition" title="§3.1 Ordinary and Partial Differential Equations">
+
+- **Ordinary Differential Equation (ODE):** A differential equation involving derivatives with respect to a **single** independent variable (e.g. $y$ as a function of $x$ alone).
+- **Partial Differential Equation (PDE):** A differential equation involving partial derivatives with respect to **more than one** independent variable (e.g. $u(x,y)$ or $z(x,y)$).
+
+</RuleBox>
+
+### 3.2 Order and Degree of a Differential Equation
+
+Every differential equation is characterized by two positive integers: its **order** and its **degree**.
+
+<RuleBox kind="definition" title="§3.2 Order and Degree">
+
+- **Order:** The order of a differential equation is the order of the **highest differential coefficient (derivative)** present in the equation.
+- **Degree:** The degree of a differential equation is the **power (exponent) of the highest-order derivative**, *after the equation has been made free of radicals and fractions* as far as derivatives are concerned.
+
+</RuleBox>
+
+Consider the three equations analyzed in Dass §3.2:
+
+1. $L\dfrac{d^2q}{dt^2} + R\dfrac{dq}{dt} + \dfrac{q}{C} = E\sin \omega t$ — highest derivative is $\dfrac{d^2q}{dt^2}$ raised to power $1$: **order $2$, degree $1$**.
+2. $\cos x\,\dfrac{d^2y}{dx^2} + \sin x\left(\dfrac{dy}{dx}\right)^2 + 8y = \tan x$ — highest derivative is $\dfrac{d^2y}{dx^2}$ raised to power $1$ (the square on $\dfrac{dy}{dx}$ does not control the degree): **order $2$, degree $1$**.
+3. $\left[1 + \left(\dfrac{dy}{dx}\right)^2\right]^{3} = \left(\dfrac{d^2y}{dx^2}\right)^{2}$ — obtained by squaring $\left[1 + \left(\dfrac{dy}{dx}\right)^2\right]^{3/2} = \dfrac{d^2y}{dx^2}$ to remove the fractional exponent $\tfrac{3}{2}$. Highest derivative is $\dfrac{d^2y}{dx^2}$ raised to power $2$: **order $2$, degree $2$**.
+
+### 3.3 Formation of Differential Equations
+
+A differential equation can be formed from an ordinary algebraic relation (the *primitive*) containing arbitrary constants by differentiating successively with respect to the independent variable and eliminating all arbitrary constants between the original equation and its derivatives.
+
+<RuleBox kind="working-rule" title="§3.3 Forming an ODE by Eliminating Arbitrary Constants">
+
+1. Count the number $n$ of independent arbitrary constants in the given relation $F(x, y, c_1, c_2, \dots, c_n) = 0$.
+2. Differentiate the relation $n$ times with respect to $x$, producing $n+1$ equations in all.
+3. Eliminate the $n$ arbitrary constants from these $n+1$ equations.
+4. The resulting differential equation has **order $n$** — equal to the number of arbitrary constants eliminated.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 1 (§3.3)"
+  source="H. K. Dass, Ch. 3, Example 1 (R.G.P.V. Bhopal, June 2008)"
+  problem="Form the differential equation by eliminating arbitrary constants in the following cases and also write down the order of the differential equations obtained: (a) $y = Ax + A^2$, (b) $y = A\\cos x + B\\sin x$, (c) $y^2 = Ax^2 + Bx + C$."
+  steps={[
+    "(a) Given $y = Ax + A^2$ ... (1), which contains $1$ arbitrary constant $A$. Differentiating once with respect to $x$ gives $\\dfrac{dy}{dx} = A$.",
+    "Substitute $A = \\dfrac{dy}{dx}$ back into (1): $y = x\\dfrac{dy}{dx} + \\left(\\dfrac{dy}{dx}\\right)^2$. Eliminating $1$ constant yields an ODE of **order 1**.",
+    "(b) Given $y = A\\cos x + B\\sin x$, which contains $2$ arbitrary constants $A$ and $B$. Differentiate twice: $\\dfrac{dy}{dx} = -A\\sin x + B\\cos x$, and $\\dfrac{d^2y}{dx^2} = -A\\cos x - B\\sin x = -(A\\cos x + B\\sin x)$.",
+    "Since $A\\cos x + B\\sin x = y$, we obtain $\\dfrac{d^2y}{dx^2} = -y \\implies \\dfrac{d^2y}{dx^2} + y = 0$. Eliminating $2$ constants yields an ODE of **order 2**.",
+    "(c) Given $y^2 = Ax^2 + Bx + C$, which contains $3$ arbitrary constants $A, B, C$. Differentiate three times with respect to $x$: first, $2y\\dfrac{dy}{dx} = 2Ax + B$.",
+    "Second differentiation: $2y\\dfrac{d^2y}{dx^2} + 2\\left(\\dfrac{dy}{dx}\\right)^2 = 2A$, i.e. $y\\dfrac{d^2y}{dx^2} + \\left(\\dfrac{dy}{dx}\\right)^2 = A$.",
+    "Third differentiation eliminates $A$: $y\\dfrac{d^3y}{dx^3} + \\dfrac{dy}{dx}\\dfrac{d^2y}{dx^2} + 2\\dfrac{dy}{dx}\\dfrac{d^2y}{dx^2} = 0 \\implies y\\dfrac{d^3y}{dx^3} + 3\\dfrac{dy}{dx}\\dfrac{d^2y}{dx^2} = 0$. Eliminating $3$ constants yields an ODE of **order 3**."
+  ]}
+  answer="(a) $y = x\\dfrac{dy}{dx} + \\left(\\dfrac{dy}{dx}\\right)^2$ (order $1$); (b) $\\dfrac{d^2y}{dx^2} + y = 0$ (order $2$); (c) $y\\dfrac{d^3y}{dx^3} + 3\\dfrac{dy}{dx}\\dfrac{d^2y}{dx^2} = 0$ (order $3$)"
+/>
+
+<ExerciseSet
+  title="Exercise 3.1"
+  source="H. K. Dass, Ch. 3, pp. 139–140"
+  items={[
+    { q: "1. Write the order and the degree of: (i) $\\dfrac{d^2y}{dx^2} + a^2 x = 0$; (ii) $\\left[1 + \\left(\\dfrac{dy}{dx}\\right)^2\\right]^{3/2} = \\dfrac{d^2y}{dx^2}$; (iii) $x^2\\left(\\dfrac{d^2y}{dx^2}\\right)^3 + y\\left(\\dfrac{dy}{dx}\\right)^4 + y^4 = 0$.", a: "(i) order $2$, degree $1$; (ii) order $2$, degree $2$; (iii) order $2$, degree $3$" },
+    { q: "3. Obtain the differential equation of which $y^2 = 4a(x + a)$ is a solution.", a: "$y^2\\left(\\dfrac{dy}{dx}\\right)^2 + 2xy\\dfrac{dy}{dx} - y^2 = 0$" },
+    { q: "4. Obtain the differential equation associated with the primitive $Ax^2 + By^2 = 1$.", a: "$xy\\dfrac{d^2y}{dx^2} + x\\left(\\dfrac{dy}{dx}\\right)^2 - y\\dfrac{dy}{dx} = 0$" },
+    { q: "5. Find the differential equation corresponding to $y = a e^{3x} + b e^{x}$.", a: "$\\dfrac{d^2y}{dx^2} - 4\\dfrac{dy}{dx} + 3y = 0$" },
+    { q: "6. By the elimination of constants $A$ and $B$, find the differential equation of which $y = e^x(A\\cos x + B\\sin x)$ is a solution.", a: "$\\dfrac{d^2y}{dx^2} - 2\\dfrac{dy}{dx} + 2y = 0$" }
+  ]}
+/>
+
+### 3.4 Solution of a Differential Equation
+
+In Example 1(b), eliminating the two constants $A$ and $B$ from $y = A\cos x + B\sin x$ gave the second-order equation $\dfrac{d^2y}{dx^2} + y = 0$. Conversely, $y = A\cos x + B\sin x$ is called a **solution** (or **primitive**) of $\dfrac{d^2y}{dx^2} + y = 0$. Notice that the number of independent arbitrary constants ($2$) equals the order of the differential equation ($2$).
+
+<RuleBox kind="definition" title="§3.4 Solution (Primitive) of a Differential Equation">
+
+A relation between the dependent variable $y$ and the independent variable $x$, free from derivatives, which satisfies the differential equation identically is called its **solution** or **primitive**.
+
+- The **general (complete) solution** of an $n$-th order ODE contains exactly **$n$ independent arbitrary constants**.
+- A **particular solution** is obtained from the general solution by assigning specific numerical values to those constants (for example, via an initial condition such as $y(x_0) = y_0$).
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-209/first-order-differential-equations-integral-curves.svg"
+  caption="Geometrical meaning of a first-order ODE and its primitive (§3.4): the general solution y² = C(1 + x²) generates a one-parameter family of integral curves, while an initial condition y(0) = 1 selects a single particular solution curve whose tangent slope at every point satisfies dy/dx = xy / (1 + x²)."
+/>
+
+### 3.5 Differential Equations of the First Order and First Degree
+
+A differential equation of the first order and first degree has the general form
+
+$$\frac{dy}{dx} = F(x,y) \qquad \text{or equivalently} \qquad M(x,y)\,dx + N(x,y)\,dy = 0.$$
+
+Because no single universal formula integrates every first-order ODE, Dass classifies solvable equations into four standard families (together with equations reducible to them):
+
+1. **Equations solvable by separation of variables** (§3.6)
+2. **Homogeneous equations** (§3.7) and **equations reducible to homogeneous form** (§3.8)
+3. **Linear equations of the first order** (§3.9) and **Bernoulli equations** (§3.10)
+4. **Exact differential equations** (§3.11) and **equations reducible to exact form** (§3.12)
+
+<DiagramFigure
+  src="/diagrams/get-209/first-order-differential-equations-classification-map.svg"
+  caption="Decision roadmap for classifying and solving differential equations of the first order and first degree across H. K. Dass §3.5–§3.12."
+/>
+
+### 3.6 Variables Separable
+
+If a first-order differential equation can be rearranged so that all $y$-terms appear solely with $dy$ on one side and all $x$-terms appear solely with $dx$ on the other side,
+
+$$f(y)\,dy = \phi(x)\,dx,$$
+
+the variables are said to be **separable**, and the equation is solved directly by integrating both sides.
+
+<RuleBox kind="working-rule" title="§3.6 Working Rule for Variables Separable">
+
+- **Step 1.** Separate the variables into the form $f(y)\,dy = \phi(x)\,dx$.
+- **Step 2.** Integrate both sides:
+
+$$\int f(y)\,dy = \int \phi(x)\,dx + C$$
+
+- **Step 3.** Add an arbitrary constant of integration $C$ on the right-hand side (which may be written as $\log C$ when all integrated terms are logarithms).
+
+*Note:* Many equations that are not immediately separable become separable after an algebraic substitution such as $z = ax + by + c$ or $v = xy$ (see Examples 3–5 below).
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 2 (§3.6)"
+  source="H. K. Dass, Ch. 3, Example 2 (U.P., II 2008; U.P.B. Pharm C.O. 2005)"
+  problem="Solve: $\\dfrac{dy}{dx} = \\dfrac{x(2\\log x + 1)}{\\sin y + y\\cos y}$."
+  steps={[
+    "Separate the variables by bringing all $y$-terms to the left and all $x$-terms to the right: $(\\sin y + y\\cos y)\\,dy = x(2\\log x + 1)\\,dx$.",
+    "Integrate both sides: $\\displaystyle \\int (\\sin y + y\\cos y)\\,dy = \\int (2x\\log x + x)\\,dx + C$.",
+    "Evaluate the left side using integration by parts on $\\int y\\cos y\\,dy$: $\\int \\sin y\\,dy + y\\sin y - \\int 1\\cdot\\sin y\\,dy = -\\cos y + y\\sin y + \\cos y = y\\sin y$.",
+    "Evaluate the right side using integration by parts on $2\\int (\\log x)\\cdot x\\,dx$: $2\\left[\\log x \\cdot \\dfrac{x^2}{2} - \\int \\dfrac{1}{x}\\cdot \\dfrac{x^2}{2}\\,dx\\right] + \\dfrac{x^2}{2} + C = x^2\\log x - \\dfrac{x^2}{2} + \\dfrac{x^2}{2} + C = x^2\\log x + C$.",
+    "Equating both sides gives the general solution $y\\sin y = x^2\\log x + C$."
+  ]}
+  answer="$y\\sin y = x^2\\log x + C$"
+/>
+
+<StepRevealExample
+  title="Example 3 (§3.6)"
+  source="H. K. Dass, Ch. 3, Example 3 (A.M.I.E.T.E., Winter 2003)"
+  problem="Solve the differential equation $x^4\\dfrac{dy}{dx} + x^3 y = -\\sec(xy)$."
+  steps={[
+    "Factor $x^3$ from the left-hand side: $x^3\\left(x\\dfrac{dy}{dx} + y\\right) = -\\sec(xy)$.",
+    "Substitute $v = xy$, so that $\\dfrac{dv}{dx} = x\\dfrac{dy}{dx} + y$. The equation becomes $x^3\\dfrac{dv}{dx} = -\\sec v$.",
+    "Separate the variables $v$ and $x$: $\\dfrac{dv}{\\sec v} = -\\dfrac{dx}{x^3} \\implies \\cos v\\,dv = -x^{-3}\\,dx$.",
+    "Integrate both sides: $\\displaystyle \\int \\cos v\\,dv = -\\int x^{-3}\\,dx + c \\implies \\sin v = \\dfrac{1}{2x^2} + c$.",
+    "Replace $v$ by $xy$: $\\sin(xy) = \\dfrac{1}{2x^2} + c$."
+  ]}
+  answer="$\\sin xy = \\dfrac{1}{2x^2} + c$"
+/>
+
+<StepRevealExample
+  title="Example 4 (§3.6)"
+  source="H. K. Dass, Ch. 3, Example 4"
+  problem="Solve: $\\cos(x + y)\\,dy = dx$."
+  steps={[
+    "Rewrite as $\\dfrac{dy}{dx} = \\sec(x + y)$.",
+    "Substitute $x + y = z$, so that $1 + \\dfrac{dy}{dx} = \\dfrac{dz}{dx} \\implies \\dfrac{dy}{dx} = \\dfrac{dz}{dx} - 1$.",
+    "Substituting into the ODE gives $\\dfrac{dz}{dx} - 1 = \\sec z \\implies \\dfrac{dz}{dx} = 1 + \\sec z$.",
+    "Separate variables: $\\dfrac{dz}{1 + \\sec z} = dx \\implies \\dfrac{\\cos z}{\\cos z + 1}\\,dz = dx$.",
+    "Rewrite the integrand using the half-angle identity $\\cos z + 1 = 2\\cos^2\\dfrac{z}{2}$: $\\dfrac{\\cos z}{\\cos z + 1} = 1 - \\dfrac{1}{\\cos z + 1} = 1 - \\dfrac{1}{2}\\sec^2\\dfrac{z}{2}$.",
+    "Integrate both sides: $\\displaystyle \\int \\left(1 - \\dfrac{1}{2}\\sec^2\\dfrac{z}{2}\\right)dz = \\int dx + C \\implies z - \\tan\\dfrac{z}{2} = x + C$.",
+    "Substitute back $z = x + y$: $x + y - \\tan\\dfrac{x+y}{2} = x + C \\implies y - \\tan\\dfrac{x+y}{2} = C$."
+  ]}
+  answer="$y - \\tan\\dfrac{x+y}{2} = C$"
+/>
+
+<StepRevealExample
+  title="Example 5 (§3.6)"
+  source="H. K. Dass, Ch. 3, Example 5 (U.P. II Semester, Summer 2005)"
+  problem="Solve the equation $(2x^2 + 3y^2 - 7)x\\,dx - (3x^2 + 2y^2 - 8)y\\,dy = 0$."
+  steps={[
+    "Rearrange into a ratio of differentials: $\\dfrac{x\\,dx}{y\\,dy} = \\dfrac{3x^2 + 2y^2 - 8}{2x^2 + 3y^2 - 7}$.",
+    "Apply the componendo and dividendo rule $\\left(\\text{if } \\dfrac{p}{q} = \\dfrac{r}{s}, \\text{ then } \\dfrac{p+q}{p-q} = \\dfrac{r+s}{r-s}\\right)$: $\\dfrac{x\\,dx + y\\,dy}{x\\,dx - y\\,dy} = \\dfrac{5x^2 + 5y^2 - 15}{x^2 - y^2 - 1} = 5\\dfrac{x^2 + y^2 - 3}{x^2 - y^2 - 1}$.",
+    "Separate into total-differential quotients and multiply both sides by $2$: $\\dfrac{2x\\,dx + 2y\\,dy}{x^2 + y^2 - 3} = 5\\left(\\dfrac{2x\\,dx - 2y\\,dy}{x^2 - y^2 - 1}\\right)$.",
+    "Since each numerator is the exact differential of its denominator, integrate both sides directly: $\\log(x^2 + y^2 - 3) = 5\\log(x^2 - y^2 - 1) + \\log C$.",
+    "Remove logarithms to obtain $x^2 + y^2 - 3 = C(x^2 - y^2 - 1)^5$."
+  ]}
+  answer="$x^2 + y^2 - 3 = C(x^2 - y^2 - 1)^5$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.2"
+  source="H. K. Dass, Ch. 3, p. 142"
+  items={[
+    { q: "1. $\\dfrac{dx}{x} = \\tan y\\,dy$", a: "$x\\cos y = C$" },
+    { q: "2. $\\dfrac{dy}{dx} = \\dfrac{\\sqrt{1-y^2}}{\\sqrt{1-x^2}}$", a: "$\\sin^{-1}y = \\sin^{-1}x + C$" },
+    { q: "3. $y(1+x^2)^{1/2}\\,dy + x\\sqrt{1+y^2}\\,dx = 0$", a: "$\\sqrt{1+y^2} + \\sqrt{1+x^2} = C$" },
+    { q: "4. $\\sec^2 x\\tan y\\,dx + \\sec^2 y\\tan x\\,dy = 0$", a: "$\\tan x\\tan y = C$" },
+    { q: "5. $(1 + x^2)\\,dy - xy\\,dx = 0$", a: "$y^2 = C(1 + x^2)$" },
+    { q: "6. $(e^y + 1)\\cos x\\,dx + e^y\\sin x\\,dy = 0$", a: "$(e^y + 1)\\sin x = C$" },
+    { q: "7. $3e^x\\tan y\\,dx + (1 - e^x)\\sec^2 y\\,dy = 0$", a: "$(1 - e^x)^3 = C\\tan y$" },
+    { q: "8. $(e^y + 2)\\sin x\\,dx - e^y\\cos x\\,dy = 0$", a: "$(e^y + 2)\\cos x = C$" },
+    { q: "9. $\\dfrac{dy}{dx} = e^{x-y} + x^2 e^{-y}$", a: "$e^y = e^x + \\dfrac{x^3}{3} + C$" },
+    { q: "10. $\\dfrac{dy}{dx} = 1 + \\tan(y - x)$ [Hint: Put $y - x = z$]", a: "$\\sin(y - x) = e^{x+c}$" },
+    { q: "11. $(4x + y)^2\\dfrac{dx}{dy} = 1$", a: "$\\tan^{-1}\\dfrac{4x+y}{2} = 2x + C$" },
+    { q: "12. $\\dfrac{dy}{dx} = (4x + y + 1)^2$ [Hint: Put $4x + y + 1 = z$]", a: "$\\tan^{-1}\\dfrac{4x+y+1}{2} = 2x + C$" }
+  ]}
+/>
+
+### 3.7 Homogeneous Differential Equations
+
+A differential equation of the form
+
+$$\frac{dy}{dx} = \frac{f(x,y)}{\phi(x,y)}$$
+
+is called **homogeneous** if $f(x,y)$ and $\phi(x,y)$ are homogeneous functions of the **same degree** in $x$ and $y$ — that is, every term in both numerator and denominator has the same total degree (for instance, $\dfrac{dy}{dx} = \dfrac{3xy + y^2}{3x^2 + xy}$, where every term has degree $2$). Equivalently, the right-hand side can be written purely as a function of the ratio $\dfrac{y}{x}$.
+
+<RuleBox kind="working-rule" title="§3.7 Working Rule for Homogeneous Differential Equations">
+
+To solve a homogeneous equation $\dfrac{dy}{dx} = \dfrac{f(x,y)}{\phi(x,y)}$:
+
+- **Step 1.** Put $y = vx$, so that
+
+$$\frac{dy}{dx} = v + x\frac{dv}{dx}.$$
+
+- **Step 2.** Substitute $y = vx$ and $\dfrac{dy}{dx} = v + x\dfrac{dv}{dx}$ into the differential equation. All powers of $x$ cancel in the ratio, leaving a separable equation in $v$ and $x$.
+- **Step 3.** Separate the variables $v$ and $x$, and integrate both sides.
+- **Step 4.** Replace $v$ by $\dfrac{y}{x}$ and simplify.
+
+*(If the equation involves $\dfrac{x}{y}$ more naturally, put $x = vy$ and $\dfrac{dx}{dy} = v + y\dfrac{dv}{dy}$ instead.)*
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 6 (§3.7)"
+  source="H. K. Dass, Ch. 3, Example 6 (A.M.I.E.T.E., Dec. 2006)"
+  problem="Solve the following differential equation: $(2xy + x^2)\\dfrac{dy}{dx} = 3y^2 + 2xy$."
+  steps={[
+    "Write in standard homogeneous form: $\\dfrac{dy}{dx} = \\dfrac{3y^2 + 2xy}{2xy + x^2}$. Every term in both numerator and denominator has degree $2$.",
+    "Put $y = vx$ so that $\\dfrac{dy}{dx} = v + x\\dfrac{dv}{dx}$. Substituting gives $v + x\\dfrac{dv}{dx} = \\dfrac{3v^2 x^2 + 2vx^2}{2vx^2 + x^2} = \\dfrac{3v^2 + 2v}{2v + 1}$.",
+    "Subtract $v$ from both sides: $x\\dfrac{dv}{dx} = \\dfrac{3v^2 + 2v - 2v^2 - v}{2v + 1} = \\dfrac{v^2 + v}{2v + 1}$.",
+    "Separate the variables: $\\left(\\dfrac{2v + 1}{v^2 + v}\\right)dv = \\dfrac{dx}{x}$. Notice that the numerator $2v + 1$ is the exact derivative of $v^2 + v$.",
+    "Integrate both sides: $\\log(v^2 + v) = \\log x + \\log c \\implies v^2 + v = cx$.",
+    "Put $v = \\dfrac{y}{x}$: $\\dfrac{y^2}{x^2} + \\dfrac{y}{x} = cx \\implies y^2 + xy = cx^3$."
+  ]}
+  answer="$y^2 + xy = cx^3$"
+/>
+
+<StepRevealExample
+  title="Example 7 (§3.7)"
+  source="H. K. Dass, Ch. 3, Example 7"
+  problem="Solve the equation: $\\dfrac{dy}{dx} = \\dfrac{y}{x} + x\\sin\\dfrac{y}{x}$."
+  steps={[
+    "Although the factor $x$ precedes $\\sin(y/x)$, the substitution $y = vx$ (with $\\dfrac{dy}{dx} = v + x\\dfrac{dv}{dx}$) still simplifies the equation immediately.",
+    "Substituting gives $v + x\\dfrac{dv}{dx} = v + x\\sin v \\implies x\\dfrac{dv}{dx} = x\\sin v \\implies \\dfrac{dv}{dx} = \\sin v$.",
+    "Separate the variables: $\\dfrac{dv}{\\sin v} = dx \\implies \\operatorname{cosec} v\\,dv = dx$.",
+    "Integrate both sides: $\\displaystyle \\int \\operatorname{cosec} v\\,dv = \\int dx + C \\implies \\log\\tan\\dfrac{v}{2} = x + C$.",
+    "Replace $v$ by $\\dfrac{y}{x}$: $\\log\\tan\\dfrac{y}{2x} = x + C$."
+  ]}
+  answer="$\\log\\tan\\dfrac{y}{2x} = x + C$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.3"
+  source="H. K. Dass, Ch. 3, p. 144"
+  items={[
+    { q: "1. $(y^2 - xy)\\,dx + x^2\\,dy = 0$", a: "$\\dfrac{x}{y} = \\log x + C$" },
+    { q: "2. $(x^2 - y^2)\\,dx + 2xy\\,dy = 0$ (A.M.I.E.T.E., June 2009)", a: "$x^2 + y^2 = ax$" },
+    { q: "3. $x(y - x)\\dfrac{dy}{dx} = y(y + x)$", a: "$\\dfrac{y}{x} - \\log xy = a$" },
+    { q: "4. $x(x - y)\\,dy + y^2\\,dx = 0$ (U.P. B. Pharm C.O. 2005)", a: "$y = x\\log Cy$" },
+    { q: "6. $\\dfrac{dy}{dx} = \\tan\\dfrac{y}{x} + \\dfrac{y}{x}$", a: "$\\sin\\dfrac{y}{x} = Cx$" },
+    { q: "11. $(y^2 + 2xy)\\,dx + (2x^2 + 3xy)\\,dy = 0$ (A.M.I.E.T.E., Summer 2004)", a: "$xy^2(x + y) = C$" },
+    { q: "13. $(x^3 - 3xy^2)\\,dx + (y^3 - 3x^2 y)\\,dy = 0$, $y(0) = 1$", a: "$x^4 - 6x^2 y^2 + y^4 = 1$" },
+    { q: "17. $\\dfrac{dy}{dx} = \\dfrac{y + \\sqrt{x^2 + y^2}}{x}$", a: "$y + \\sqrt{x^2 + y^2} = Cx^2$" },
+    { q: "18. $x\\dfrac{dy}{dx} = y(\\log y - \\log x + 1)$ (A.M.I.E.T.E., Summer 2004)", a: "$\\log\\dfrac{y}{x} = Cx$" }
+  ]}
+/>
+
+### 3.8 Equations Reducible to Homogeneous Form
+
+Consider a first-order equation with linear numerator and linear denominator containing constant terms:
+
+$$\frac{dy}{dx} = \frac{ax + by + c}{Ax + By + C}.$$
+
+Because of the constants $c$ and $C$, the equation is not homogeneous as written. Its reduction depends on whether the two straight lines $ax + by + c = 0$ and $Ax + By + C = 0$ intersect or are parallel.
+
+<RuleBox kind="working-rule" title="§3.8 Two Cases for Reducible-to-Homogeneous Equations">
+
+Given $\dfrac{dy}{dx} = \dfrac{ax + by + c}{Ax + By + C}$:
+
+- **Case I ($\dfrac{a}{A} \neq \dfrac{b}{B}$ — intersecting lines):** Shift the origin to the point of intersection $(h, k)$ by setting
+  $$x = X + h, \qquad y = Y + k \qquad \left(\text{so } \frac{dy}{dx} = \frac{dY}{dX}\right).$$
+  Choose the constants $h$ and $k$ to satisfy the simultaneous equations
+  $$ah + bk + c = 0, \qquad Ah + Bk + C = 0.$$
+  The constants vanish and the equation becomes homogeneous:
+  $$\frac{dY}{dX} = \frac{aX + bY}{AX + BY},$$
+  which is solved by putting $Y = vX$, then substituting back $X = x - h$ and $Y = y - k$.
+
+- **Case II ($\dfrac{a}{A} = \dfrac{b}{B} = \dfrac{1}{m}$ — parallel lines / case of failure):** Here $h$ and $k$ are not finite. Write $A = am$, $B = bm$, so that
+  $$\frac{dy}{dx} = \frac{ax + by + c}{m(ax + by) + C}.$$
+  Substitute $z = ax + by$ (so $a + b\dfrac{dy}{dx} = \dfrac{dz}{dx}$). The resulting equation is immediately **variables separable** in $z$ and $x$.
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-209/first-order-differential-equations-origin-shift.svg"
+  caption="Geometric interpretation of §3.8: in Case I (Example 8), shifting the origin to the intersection (h, k) = (1, 1) eliminates the constant terms and makes the ODE homogeneous; in Case II (Example 9), the lines are parallel so z = x + 2y reduces the ODE directly to separable form."
+/>
+
+<StepRevealExample
+  title="Example 8 (§3.8 — Case I)"
+  source="H. K. Dass, Ch. 3, Example 8"
+  problem="Solve: $\\dfrac{dy}{dx} = \\dfrac{x + 2y - 3}{2x + y - 3}$."
+  steps={[
+    "Check the ratio of coefficients: $\\dfrac{a}{A} = \\dfrac{1}{2} \\neq \\dfrac{2}{1} = \\dfrac{b}{B}$, so Case I applies.",
+    "Put $x = X + h$ and $y = Y + k$ (so $\\dfrac{dy}{dx} = \\dfrac{dY}{dX}$): $\\dfrac{dY}{dX} = \\dfrac{X + 2Y + (h + 2k - 3)}{2X + Y + (2h + k - 3)}$.",
+    "Choose $h, k$ so that $h + 2k - 3 = 0$ and $2h + k - 3 = 0$. Solving simultaneously gives $h = 1, k = 1$.",
+    "The equation reduces to the homogeneous ODE $\\dfrac{dY}{dX} = \\dfrac{X + 2Y}{2X + Y}$.",
+    "Put $Y = vX$ so $\\dfrac{dY}{dX} = v + X\\dfrac{dv}{dX}$: $v + X\\dfrac{dv}{dX} = \\dfrac{1 + 2v}{2 + v} \\implies X\\dfrac{dv}{dX} = \\dfrac{1 + 2v}{2 + v} - v = \\dfrac{1 - v^2}{2 + v}$.",
+    "Separate variables and decompose into partial fractions: $\\dfrac{2 + v}{1 - v^2}\\,dv = \\dfrac{dX}{X} \\implies \\left(\\dfrac{1}{2}\\cdot\\dfrac{1}{1+v} + \\dfrac{3}{2}\\cdot\\dfrac{1}{1-v}\\right)dv = \\dfrac{dX}{X}$.",
+    "Integrate both sides: $\\dfrac{1}{2}\\log(1 + v) - \\dfrac{3}{2}\\log(1 - v) = \\log X + \\log C \\implies \\log\\dfrac{1 + v}{(1 - v)^3} = \\log(C^2 X^2) \\implies \\dfrac{1 + v}{(1 - v)^3} = C^2 X^2$.",
+    "Substitute $v = \\dfrac{Y}{X}$: $\\dfrac{X + Y}{(X - Y)^3} = C^2 \\implies X + Y = C^2(X - Y)^3$. Finally substitute $X = x - 1$, $Y = y - 1$ (and write $a = C^2$): $x + y - 2 = a(x - y)^3$."
+  ]}
+  answer="$x + y - 2 = a(x - y)^3$"
+/>
+
+<StepRevealExample
+  title="Example 9 (§3.8 — Case II)"
+  source="H. K. Dass, Ch. 3, Example 9"
+  problem="Solve: $(x + 2y)(dx - dy) = dx + dy$."
+  steps={[
+    "Expand and collect $dx$ and $dy$ terms: $(x + 2y - 1)\\,dx - (x + 2y + 1)\\,dy = 0 \\implies \\dfrac{dy}{dx} = \\dfrac{x + 2y - 1}{x + 2y + 1}$.",
+    "Check coefficient ratios: $\\dfrac{a}{A} = \\dfrac{1}{1} = \\dfrac{2}{2} = \\dfrac{b}{B}$ — Case II (case of failure).",
+    "Put $x + 2y = z$, so that $1 + 2\\dfrac{dy}{dx} = \\dfrac{dz}{dx} \\implies \\dfrac{dy}{dx} = \\dfrac{1}{2}\\dfrac{dz}{dx} - \\dfrac{1}{2}$.",
+    "Substitute into the ODE: $\\dfrac{1}{2}\\dfrac{dz}{dx} - \\dfrac{1}{2} = \\dfrac{z - 1}{z + 1} \\implies \\dfrac{dz}{dx} = \\dfrac{2(z - 1)}{z + 1} + 1 = \\dfrac{3z - 1}{z + 1}$.",
+    "Separate variables and divide polynomial terms: $\\dfrac{z + 1}{3z - 1}\\,dz = dx \\implies \\left(\\dfrac{1}{3} + \\dfrac{4}{3}\\cdot\\dfrac{1}{3z - 1}\\right)dz = dx$.",
+    "Integrate both sides: $\\dfrac{z}{3} + \\dfrac{4}{9}\\log(3z - 1) = x + C \\implies 3z + 4\\log(3z - 1) = 9x + 9C$.",
+    "Substitute $z = x + 2y$: $3(x + 2y) + 4\\log(3x + 6y - 1) = 9x + 9C \\implies 6x - 6y + 9C = 4\\log(3x + 6y - 1)$. Dividing by $2$ and setting $a = \\dfrac{9C}{2}$ gives $3x - 3y + a = 2\\log(3x + 6y - 1)$."
+  ]}
+  answer="$3x - 3y + a = 2\\log(3x + 6y - 1)$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.4"
+  source="H. K. Dass, Ch. 3, pp. 146–147"
+  items={[
+    { q: "1. $\\dfrac{dy}{dx} = \\dfrac{2x + 9y - 20}{6x + 2y - 10}$", a: "$(2x - y)^2 = C(x + 2y - 5)$" },
+    { q: "2. $\\dfrac{dy}{dx} = \\dfrac{y - x + 1}{y + x + 5}$", a: "$\\log\\left[(y+3)^2 + (x+2)^2\\right] + 2\\tan^{-1}\\dfrac{y+3}{x+2} = a$" },
+    { q: "3. $\\dfrac{dy}{dx} = \\dfrac{x - y - 2}{x + y + 6}$", a: "$(y+4)^2 + 2(x+2)(y+4) - (x+2)^2 = a^2$" },
+    { q: "6. $(2x + y + 1)\\,dx + (4x + 2y - 1)\\,dy = 0$", a: "$2(2x + y) + \\log(2x + y - 1) = 3x + C$" },
+    { q: "7. $(x - y - 2)\\,dx - (2x - 2y - 3)\\,dy = 0$ (U.P. B. Pharm C.O. 2005)", a: "$\\log(x - y - 1) = x - 2y + C$" }
+  ]}
+/>
+
+### 3.9 Linear Differential Equations
+
+A differential equation is **linear of the first order** (also called *Leibniz's linear equation*) if the dependent variable $y$ and its derivative $\dfrac{dy}{dx}$ occur only to the first degree and are never multiplied together. Its standard form is
+
+$$\frac{dy}{dx} + P y = Q,$$
+
+where $P$ and $Q$ are functions of $x$ alone (not of $y$) or constants.
+
+To derive its general solution, multiply both sides by the **integrating factor** $e^{\int P\,dx}$:
+
+$$e^{\int P\,dx}\left(\frac{dy}{dx} + Py\right) = Q\,e^{\int P\,dx}.$$
+
+By the product rule, the left-hand side is the exact derivative $\dfrac{d}{dx}\!\left(y\,e^{\int P\,dx}\right)$. Integrating both sides with respect to $x$ immediately gives the closed-form solution.
+
+<RuleBox kind="formula" title="§3.9 Standard Linear ODE, Integrating Factor & Working Rule">
+
+**Standard Form (linear in $y$):**
+$$\frac{dy}{dx} + P(x)\,y = Q(x)$$
+
+- **Step 1.** Divide through by the coefficient of $\dfrac{dy}{dx}$ to bring the equation into the standard form $\dfrac{dy}{dx} + Py = Q$, and identify $P$ and $Q$ (watching signs carefully).
+- **Step 2.** Compute the **Integrating Factor**:
+  $$\text{I.F.} = e^{\int P\,dx}$$
+- **Step 3.** Write the general solution:
+  $$y \cdot (\text{I.F.}) = \int Q \cdot (\text{I.F.})\,dx + C$$
+
+**Symmetric Form (linear in $x$):** When an equation is not linear in $y$, check whether it is linear in $x$:
+$$\frac{dx}{dy} + P(y)\,x = Q(y) \implies \text{I.F.} = e^{\int P\,dy}, \qquad x \cdot (\text{I.F.}) = \int Q \cdot (\text{I.F.})\,dy + C.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 10 (§3.9)"
+  source="H. K. Dass, Ch. 3, Example 10 (A.M.I.E.T.E., Summer 2002)"
+  problem="Solve: $(x + 1)\\dfrac{dy}{dx} - y = e^x(x + 1)^2$."
+  steps={[
+    "Divide by $(x + 1)$ to obtain standard linear form: $\\dfrac{dy}{dx} - \\dfrac{1}{x+1}y = e^x(x + 1)$.",
+    "Here $P = -\\dfrac{1}{x+1}$ and $Q = e^x(x + 1)$.",
+    "Compute the integrating factor: $\\text{I.F.} = e^{\\int -\\frac{dx}{x+1}} = e^{-\\log(x+1)} = e^{\\log(x+1)^{-1}} = \\dfrac{1}{x+1}$.",
+    "Apply $y(\\text{I.F.}) = \\int Q(\\text{I.F.})\\,dx + C$: $y\\cdot\\dfrac{1}{x+1} = \\displaystyle \\int e^x(x+1)\\cdot\\dfrac{1}{x+1}\\,dx + C = \\int e^x\\,dx + C$.",
+    "Hence $\\dfrac{y}{x+1} = e^x + C$."
+  ]}
+  answer="$\\dfrac{y}{x+1} = e^x + C$"
+/>
+
+<StepRevealExample
+  title="Example 11 (§3.9)"
+  source="H. K. Dass, Ch. 3, Example 11 (Nagpur University, Summer 2008)"
+  problem="Solve the differential equation $(x^3 - x)\\dfrac{dy}{dx} - (3x^2 - 1)y = x^5 - 2x^3 + x$."
+  steps={[
+    "Divide through by $(x^3 - x)$: $\\dfrac{dy}{dx} - \\dfrac{3x^2 - 1}{x^3 - x}y = \\dfrac{x^5 - 2x^3 + x}{x^3 - x}$.",
+    "Factor the right-hand side: $x^5 - 2x^3 + x = x(x^4 - 2x^2 + 1) = x(x^2 - 1)^2$, while $x^3 - x = x(x^2 - 1)$, so $Q = x^2 - 1$.",
+    "Since $\\dfrac{d}{dx}(x^3 - x) = 3x^2 - 1$, the integrating factor is $\\text{I.F.} = e^{-\\int \\frac{3x^2-1}{x^3-x}\\,dx} = e^{-\\log(x^3 - x)} = \\dfrac{1}{x^3 - x}$.",
+    "The solution is $y\\left(\\dfrac{1}{x^3 - x}\\right) = \\displaystyle \\int \\dfrac{x^2 - 1}{x^3 - x}\\,dx + C = \\int \\dfrac{x^2 - 1}{x(x^2 - 1)}\\,dx + C = \\int \\dfrac{1}{x}\\,dx + C$.",
+    "Thus $\\dfrac{y}{x^3 - x} = \\log x + C \\implies y = (x^3 - x)\\log x + C(x^3 - x)$."
+  ]}
+  answer="$y = (x^3 - x)\\log x + (x^3 - x)C$"
+/>
+
+<StepRevealExample
+  title="Example 12 (§3.9)"
+  source="H. K. Dass, Ch. 3, Example 12 (Nagpur University, Summer 2004)"
+  problem="Solve $\\sin x\\dfrac{dy}{dx} + 2y = \\tan^3\\left(\\dfrac{x}{2}\\right)$."
+  steps={[
+    "Divide by $\\sin x$ to write in standard form: $\\dfrac{dy}{dx} + \\dfrac{2}{\\sin x}y = \\dfrac{\\tan^3(x/2)}{\\sin x}$, so $P = 2\\operatorname{cosec} x$ and $Q = \\dfrac{\\tan^3(x/2)}{\\sin x}$.",
+    "Compute the integrating factor: $\\text{I.F.} = e^{2\\int \\operatorname{cosec} x\\,dx} = e^{2\\log\\tan(x/2)} = \\tan^2\\dfrac{x}{2}$.",
+    "Form the solution: $y\\tan^2\\dfrac{x}{2} = \\displaystyle \\int \\tan^2\\dfrac{x}{2}\\cdot\\dfrac{\\tan^3(x/2)}{2\\sin(x/2)\\cos(x/2)}\\,dx + C$.",
+    "Simplify the integrand using $\\tan\\dfrac{x}{2} = \\dfrac{\\sin(x/2)}{\\cos(x/2)}$: $\\dfrac{\\tan^5(x/2)}{2\\sin(x/2)\\cos(x/2)} = \\dfrac{1}{2}\\dfrac{\\tan^4(x/2)}{\\cos^2(x/2)} = \\dfrac{1}{2}\\tan^4\\dfrac{x}{2}\\sec^2\\dfrac{x}{2}$.",
+    "Substitute $t = \\tan\\dfrac{x}{2}$, so $\\dfrac{1}{2}\\sec^2\\dfrac{x}{2}\\,dx = dt$: $y\\tan^2\\dfrac{x}{2} = \\displaystyle \\int t^4\\,dt + C = \\dfrac{t^5}{5} + C$.",
+    "Replace $t = \\tan\\dfrac{x}{2}$: $y\\tan^2\\dfrac{x}{2} = \\dfrac{\\tan^5(x/2)}{5} + C$."
+  ]}
+  answer="$y\\tan^2\\dfrac{x}{2} = \\dfrac{\\tan^5(x/2)}{5} + C$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.5"
+  source="H. K. Dass, Ch. 3, pp. 148–149"
+  items={[
+    { q: "1. $\\dfrac{dy}{dx} + \\dfrac{1}{x}y = x^3 - 3$", a: "$xy = \\dfrac{x^5}{5} - \\dfrac{3x^2}{2} + C$" },
+    { q: "2. $(2y - 3x)\\,dx + x\\,dy = 0$", a: "$yx^2 = x^3 + C$" },
+    { q: "3. $\\dfrac{dy}{dx} + y\\cot x = \\cos x$", a: "$y\\sin x = \\dfrac{\\sin^2 x}{2} + C$" },
+    { q: "4. $\\dfrac{dy}{dx} + y\\sec x = \\tan x$", a: "$y = \\dfrac{C - x}{\\sec x + \\tan x} + 1$" },
+    { q: "5. $\\cos^2 x\\dfrac{dy}{dx} + y = \\tan x$", a: "$y = \\tan x - 1 + C e^{-\\tan x}$" },
+    { q: "6. $(x + a)\\dfrac{dy}{dx} - 3y = (x + a)^5$", a: "$2y = (x + a)^5 + 2C(x + a)^3$" },
+    { q: "7. $x\\cos x\\dfrac{dy}{dx} + y(x\\sin x + \\cos x) = 1$", a: "$xy = \\sin x + C\\cos x$" },
+    { q: "8. $x\\log x\\dfrac{dy}{dx} + y = 2\\log x$", a: "$y\\log x = (\\log x)^2 + C$" },
+    { q: "9. $x\\dfrac{dy}{dx} + 2y = x^2\\log x$", a: "$yx^2 = \\dfrac{x^4}{4}\\log x - \\dfrac{x^4}{16} + C$" },
+    { q: "10. $dr + (2r\\cot\\theta + \\sin 2\\theta)\\,d\\theta = 0$", a: "$r\\sin^2\\theta = -\\dfrac{\\sin^4\\theta}{2} + C$" },
+    { q: "11. $\\dfrac{dy}{dx} + y\\cos x = \\dfrac{1}{2}\\sin 2x$", a: "$y = \\sin x - 1 + C e^{-\\sin x}$" },
+    { q: "12. $(1 - x^2)\\dfrac{dy}{dx} + 2xy = x(1 - x^2)^{1/2}$", a: "$y = \\sqrt{1 - x^2} + C(1 - x^2)$" },
+    { q: "13. $\\sec x\\dfrac{dy}{dx} = y + \\sin x$ (A.M.I.E.T.E., Dec. 2005)", a: "$y = -\\sin x - 1 + c e^{\\sin x}$" },
+    { q: "14. $y' + y\\tan x = \\cos x$, $y(0) = 0$ (A.M.I.E.T.E., June 2006)", a: "$y = x\\cos x$" },
+    { q: "18. Find $\\alpha$ so that $e^{\\alpha y^2}$ is an integrating factor of $(e^{-y^2/2} - xy)\\,dy - dx = 0$ (A.M.I.E.T.E., Dec. 2005).", a: "$\\alpha = \\dfrac{1}{2}$" }
+  ]}
+/>
+
+### 3.10 Equations Reducible to the Linear Form (Bernoulli Equation)
+
+Many nonlinear first-order equations can be transformed into Leibniz's linear form by a clean change of dependent variable. The archetype is **Bernoulli's equation**:
+
+$$\frac{dy}{dx} + P y = Q y^n,$$
+
+where $P$ and $Q$ are functions of $x$ alone (or constants) and $n \neq 0, 1$.
+
+Dividing both sides by $y^n$ produces
+
+$$y^{-n}\frac{dy}{dx} + P\,y^{1-n} = Q.$$
+
+Putting $z = y^{1-n} = \dfrac{1}{y^{n-1}}$, we have $\dfrac{dz}{dx} = (1-n)y^{-n}\dfrac{dy}{dx}$, so the equation becomes linear in $z$:
+
+$$\frac{dz}{dx} + (1 - n)P\,z = (1 - n)Q.$$
+
+<RuleBox kind="working-rule" title="§3.10 Reduction of Bernoulli and Generalized Equations to Linear Form">
+
+1. **Bernoulli Equation:** $\dfrac{dy}{dx} + Py = Qy^n$.
+   - Divide through by $y^n$: $y^{-n}\dfrac{dy}{dx} + P\,y^{1-n} = Q$.
+   - Substitute $z = y^{1-n}$, so $y^{-n}\dfrac{dy}{dx} = \dfrac{1}{1-n}\dfrac{dz}{dx}$.
+   - Solve the resulting linear ODE $\dfrac{dz}{dx} + (1-n)Pz = (1-n)Q$ by §3.9, then restore $y^{1-n}$.
+2. **Generalized Form:** $f'(y)\dfrac{dy}{dx} + P(x)\,f(y) = Q(x)$.
+   - Substitute $z = f(y)$, so $\dfrac{dz}{dx} = f'(y)\dfrac{dy}{dx}$, giving the linear ODE $\dfrac{dz}{dx} + P(x)\,z = Q(x)$ (see Examples 14–16).
+3. **Interchanging Variables:** If an equation is nonlinear in $y$ (or has $x$ appearing only to the first power), rewrite it as $\dfrac{dx}{dy} + P(y)\,x = Q(y)$ (see Examples 18–19).
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 13 (§3.10)"
+  source="H. K. Dass, Ch. 3, Example 13 (U.P. II Semester, Summer 2006)"
+  problem="Solve $x^2\\,dy + y(x + y)\\,dx = 0$."
+  steps={[
+    "Rearrange into Bernoulli form: $\\dfrac{dy}{dx} + \\dfrac{y}{x} = -\\dfrac{y^2}{x^2}$ (here $n = 2$).",
+    "Divide both sides by $y^2$: $\\dfrac{1}{y^2}\\dfrac{dy}{dx} + \\dfrac{1}{xy} = -\\dfrac{1}{x^2}$.",
+    "Put $-\\dfrac{1}{y} = z$ so that $\\dfrac{1}{y^2}\\dfrac{dy}{dx} = \\dfrac{dz}{dx}$. The ODE becomes linear in $z$: $\\dfrac{dz}{dx} - \\dfrac{z}{x} = -\\dfrac{1}{x^2}$.",
+    "Compute $\\text{I.F.} = e^{-\\int \\frac{1}{x}\\,dx} = e^{-\\log x} = \\dfrac{1}{x}$.",
+    "Integrate: $z\\cdot\\dfrac{1}{x} = \\displaystyle \\int -\\dfrac{1}{x^2}\\cdot\\dfrac{1}{x}\\,dx + C = -\\int x^{-3}\\,dx + C = \\dfrac{1}{2x^2} + C$.",
+    "Substitute $z = -\\dfrac{1}{y}$: $-\\dfrac{1}{xy} = \\dfrac{1}{2x^2} + C \\implies \\dfrac{1}{xy} = -\\dfrac{1}{2x^2} - C$."
+  ]}
+  answer="$\\dfrac{1}{xy} = -\\dfrac{1}{2x^2} - C$"
+/>
+
+<StepRevealExample
+  title="Example 14 (§3.10)"
+  source="H. K. Dass, Ch. 3, Example 14 (A.M.I.E., Summer 2000)"
+  problem="Solve: $x\\dfrac{dy}{dx} + y\\log y = x y e^x$."
+  steps={[
+    "Divide both sides by $xy$: $\\dfrac{1}{y}\\dfrac{dy}{dx} + \\dfrac{1}{x}\\log y = e^x$.",
+    "Put $\\log y = z$, so that $\\dfrac{1}{y}\\dfrac{dy}{dx} = \\dfrac{dz}{dx}$. The equation becomes linear: $\\dfrac{dz}{dx} + \\dfrac{z}{x} = e^x$.",
+    "Integrating factor: $\\text{I.F.} = e^{\\int \\frac{1}{x}\\,dx} = e^{\\log x} = x$.",
+    "Solution: $zx = \\displaystyle \\int x e^x\\,dx + C = x e^x - e^x + C$.",
+    "Restore $z = \\log y$: $x\\log y = x e^x - e^x + C$."
+  ]}
+  answer="$x\\log y = x e^x - e^x + C$"
+/>
+
+<StepRevealExample
+  title="Example 15 (§3.10)"
+  source="H. K. Dass, Ch. 3, Example 15 (Nagpur University, Summer 2000)"
+  problem="Solve: $\\dfrac{dy}{dx} - \\dfrac{\\tan y}{1+x} = (1+x)e^x\\sec y$."
+  steps={[
+    "Multiply both sides by $\\cos y$ (dividing by $\\sec y$): $\\cos y\\dfrac{dy}{dx} - \\dfrac{\\sin y}{1+x} = (1+x)e^x$.",
+    "Put $\\sin y = z$, so that $\\cos y\\dfrac{dy}{dx} = \\dfrac{dz}{dx}$. This yields the linear equation $\\dfrac{dz}{dx} - \\dfrac{z}{1+x} = (1+x)e^x$.",
+    "Compute $\\text{I.F.} = e^{-\\int \\frac{1}{1+x}\\,dx} = e^{-\\log(1+x)} = \\dfrac{1}{1+x}$.",
+    "Integrate: $z\\cdot\\dfrac{1}{1+x} = \\displaystyle \\int (1+x)e^x\\cdot\\dfrac{1}{1+x}\\,dx + C = \\int e^x\\,dx + C = e^x + C$.",
+    "Substitute $z = \\sin y$: $\\dfrac{\\sin y}{1+x} = e^x + C$."
+  ]}
+  answer="$\\dfrac{\\sin y}{1+x} = e^x + C$"
+/>
+
+<StepRevealExample
+  title="Example 16 (§3.10)"
+  source="H. K. Dass, Ch. 3, Example 16 (Nagpur University, Summer 2000)"
+  problem="Solve: $\\tan y\\dfrac{dy}{dx} + \\tan x = \\cos y\\cos^2 x$."
+  steps={[
+    "Multiply both sides by $\\sec y$ (dividing by $\\cos y$): $\\sec y\\tan y\\dfrac{dy}{dx} + \\sec y\\tan x = \\cos^2 x$.",
+    "Put $z = \\sec y$, so that $\\dfrac{dz}{dx} = \\sec y\\tan y\\dfrac{dy}{dx}$. The ODE becomes linear: $\\dfrac{dz}{dx} + z\\tan x = \\cos^2 x$.",
+    "Compute $\\text{I.F.} = e^{\\int \\tan x\\,dx} = e^{\\log\\sec x} = \\sec x$.",
+    "Solve: $z\\sec x = \\displaystyle \\int \\cos^2 x\\sec x\\,dx + C = \\int \\cos x\\,dx + C = \\sin x + C$.",
+    "Restore $z = \\sec y$ and multiply by $\\cos x$: $\\sec y = (\\sin x + C)\\cos x$."
+  ]}
+  answer="$\\sec y = (\\sin x + C)\\cos x$"
+/>
+
+<StepRevealExample
+  title="Example 17 (§3.10)"
+  source="H. K. Dass, Ch. 3, Example 17 (Nagpur University, Summer 2004)"
+  problem="Solve $x\\left(\\dfrac{dy}{dx} + y\\right) = 1 - y$."
+  steps={[
+    "Divide by $x$ and collect the $y$-terms on the left: $\\dfrac{dy}{dx} + y = \\dfrac{1}{x} - \\dfrac{y}{x} \\implies \\dfrac{dy}{dx} + \\left(1 + \\dfrac{1}{x}\\right)y = \\dfrac{1}{x}$.",
+    "This is linear in $y$ with $P = 1 + \\dfrac{1}{x}$ and $Q = \\dfrac{1}{x}$.",
+    "Integrating factor: $\\text{I.F.} = e^{\\int (1 + 1/x)\\,dx} = e^{x + \\log x} = x e^x$.",
+    "Solution: $y(x e^x) = \\displaystyle \\int (x e^x)\\cdot\\dfrac{1}{x}\\,dx + C = \\int e^x\\,dx + C = e^x + C$.",
+    "Divide by $x e^x$: $y = \\dfrac{1}{x} + \\dfrac{C}{x}e^{-x}$."
+  ]}
+  answer="$y = \\dfrac{1}{x} + \\dfrac{C}{x}e^{-x}$"
+/>
+
+<StepRevealExample
+  title="Example 18 (§3.10 — Linear in x)"
+  source="H. K. Dass, Ch. 3, Example 18 (Uttarakhand II Semester, June 2007)"
+  problem="Solve the differential equation $y\\log y\\,dx + (x - \\log y)\\,dy = 0$."
+  steps={[
+    "Notice $x$ appears only to the first degree, so divide by $y\\log y\\,dy$ to treat $x$ as the dependent variable: $\\dfrac{dx}{dy} = \\dfrac{-x + \\log y}{y\\log y} = -\\dfrac{x}{y\\log y} + \\dfrac{1}{y}$.",
+    "Write in standard linear form in $x$: $\\dfrac{dx}{dy} + \\dfrac{1}{y\\log y}x = \\dfrac{1}{y}$.",
+    "Compute $\\text{I.F.} = e^{\\int \\frac{1}{y\\log y}\\,dy} = e^{\\log(\\log y)} = \\log y$.",
+    "Integrate: $x\\log y = \\displaystyle \\int \\dfrac{1}{y}(\\log y)\\,dy + C = \\dfrac{(\\log y)^2}{2} + C$."
+  ]}
+  answer="$x\\log y = \\dfrac{(\\log y)^2}{2} + C$"
+/>
+
+<StepRevealExample
+  title="Example 19 (§3.10 — Linear in x)"
+  source="H. K. Dass, Ch. 3, Example 19 (A.M.I.E.T.E., June 2010, 2004; R.G.P.V. Bhopal, 2010, 2008)"
+  problem="Solve: $(1 + y^2)\\,dx = (\\tan^{-1} y - x)\\,dy$."
+  steps={[
+    "Rewrite as a linear differential equation in $x$: $\\dfrac{dx}{dy} + \\dfrac{1}{1 + y^2}x = \\dfrac{\\tan^{-1} y}{1 + y^2}$.",
+    "Integrating factor: $\\text{I.F.} = e^{\\int \\frac{1}{1+y^2}\\,dy} = e^{\\tan^{-1} y}$.",
+    "Apply the linear solution formula: $x e^{\\tan^{-1} y} = \\displaystyle \\int e^{\\tan^{-1} y}\\dfrac{\\tan^{-1} y}{1 + y^2}\\,dy + C$.",
+    "Substitute $t = \\tan^{-1} y$, so $dt = \\dfrac{dy}{1 + y^2}$: $x e^{\\tan^{-1} y} = \\displaystyle \\int t e^t\\,dt + C = t e^t - e^t + C = e^{\\tan^{-1} y}(\\tan^{-1} y - 1) + C$.",
+    "Divide by $e^{\\tan^{-1} y}$: $x = (\\tan^{-1} y - 1) + C e^{-\\tan^{-1} y}$."
+  ]}
+  answer="$x = (\\tan^{-1} y - 1) + C e^{-\\tan^{-1} y}$"
+/>
+
+<StepRevealExample
+  title="Example 20 (§3.10 — Polar Bernoulli)"
+  source="H. K. Dass, Ch. 3, Example 20 (Nagpur University, Summer 2005)"
+  problem="Solve: $r\\sin\\theta - \\dfrac{dr}{d\\theta}\\cos\\theta = r^2$."
+  steps={[
+    "Rewrite as $-\\dfrac{dr}{d\\theta}\\cos\\theta + r\\sin\\theta = r^2$ and divide by $r^2\\cos\\theta$: $-r^{-2}\\dfrac{dr}{d\\theta} + r^{-1}\\tan\\theta = \\sec\\theta$.",
+    "Substitute $v = r^{-1}$, so $\\dfrac{dv}{d\\theta} = -r^{-2}\\dfrac{dr}{d\\theta}$. The ODE becomes linear in $v$: $\\dfrac{dv}{d\\theta} + v\\tan\\theta = \\sec\\theta$.",
+    "Compute $\\text{I.F.} = e^{\\int \\tan\\theta\\,d\\theta} = e^{\\log\\sec\\theta} = \\sec\\theta$.",
+    "Integrate: $v\\sec\\theta = \\displaystyle \\int \\sec^2\\theta\\,d\\theta + C = \\tan\\theta + C$.",
+    "Restore $v = \\dfrac{1}{r}$: $\\dfrac{\\sec\\theta}{r} = \\tan\\theta + C \\implies \\dfrac{1}{r} = \\sin\\theta + C\\cos\\theta \\implies r = \\dfrac{1}{\\sin\\theta + C\\cos\\theta}$."
+  ]}
+  answer="$r = \\dfrac{1}{\\sin\\theta + C\\cos\\theta}$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.6"
+  source="H. K. Dass, Ch. 3, pp. 153–154"
+  items={[
+    { q: "1. $\\dfrac{1}{y^2}\\dfrac{dy}{dx} - \\dfrac{1}{y} = 2x e^{-x}$", a: "$e^x + x^2 y + Cy = 0$" },
+    { q: "3. $\\dfrac{dy}{dx} = y\\tan x - y^2\\sec x$", a: "$\\sec x = (\\tan x + C)y$" },
+    { q: "4. $\\dfrac{dy}{dx} = 2y\\tan x + y^2\\tan^2 x$, if $y = 1$ at $x = 0$", a: "$\\dfrac{1}{y}\\sec^2 x = -\\dfrac{\\tan^3 x}{3} + 1$" },
+    { q: "5. $\\dfrac{dy}{dx} + \\tan x\\tan y = \\cos x\\sec y$", a: "$\\sin y\\sec x = x + C$" },
+    { q: "6. $dy + y\\tan x\\,dx = y^2\\sec x\\,dx$", a: "$y(x + C) + \\cos x = 0$" },
+    { q: "9. $\\dfrac{dy}{dx} + y = 3e^x y^3$", a: "$\\dfrac{1}{y^2} = 6e^x + C e^{2x}$" },
+    { q: "10. $(x - y^2)\\,dx + 2xy\\,dy = 0$", a: "$\\dfrac{y^2}{x} + \\log x = C$" },
+    { q: "11. $e^y\\left(\\dfrac{dy}{dx} + 1\\right) = e^x$", a: "$e^{x+y} = \\dfrac{e^{2x}}{2} + C$" },
+    { q: "15. $\\dfrac{dy}{dx} + x\\sin 2y = x^3\\cos^2 y$", a: "$\\tan y = \\dfrac{1}{2}(x^2 - 1) + C e^{-x^2}$" },
+    { q: "16. $\\dfrac{1}{1+y^2}\\dfrac{dy}{dx} + 2x\\tan^{-1} y = x^3$", a: "$\\tan^{-1} y = \\dfrac{1}{2}(x^2 - 1) + C e^{-x^2}$" },
+    { q: "18. $(x + y + 1)\\dfrac{dy}{dx} = 1$", a: "$x + y + 2 = C e^y$" },
+    { q: "21. $\\dfrac{dy}{dx} + \\dfrac{y}{x}\\log y = \\dfrac{y}{x^2}(\\log y)^2$ (A.M.I.E.T.E., 2001–2004)", a: "$\\dfrac{1}{x\\log y} = \\dfrac{1}{2x^2} + C$" },
+    { q: "22. $3\\dfrac{dy}{dx} + xy = x y^{-2}$ (A.M.I.E.T.E., June 2009)", a: "$y^3 = 1 + C e^{-x^2/2}$" }
+  ]}
+/>
+
+### 3.11 Exact Differential Equation
+
+A differential equation $M(x,y)\,dx + N(x,y)\,dy = 0$ is called **exact** if it can be obtained directly by taking the total differential $du = \dfrac{\partial u}{\partial x}dx + \dfrac{\partial u}{\partial y}dy = 0$ of some primitive $u(x,y) = C$ without any further multiplication or algebraic elimination. By symmetry of mixed partial derivatives ($\dfrac{\partial^2 u}{\partial y\,\partial x} = \dfrac{\partial^2 u}{\partial x\,\partial y}$), exactness is governed by a simple partial-derivative test.
+
+<RuleBox kind="theorem" title="§3.11 Exactness Criterion & Method for Solving Exact ODEs">
+
+**Necessary and Sufficient Condition:** The equation $M\,dx + N\,dy = 0$ is **exact** if and only if
+
+$$\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x},$$
+
+where $\dfrac{\partial M}{\partial y}$ is differentiated holding $x$ constant and $\dfrac{\partial N}{\partial x}$ is differentiated holding $y$ constant.
+
+**Method for Solving Exact Differential Equations:**
+
+- **Step I.** Integrate $M$ with respect to $x$, treating $y$ as a constant.
+- **Step II.** Integrate with respect to $y$ **only those terms of $N$ that do not contain $x$**.
+- **Step III.** Add the two results and equate to an arbitrary constant:
+
+$$\int_{(y\text{ const.})} M\,dx + \int (\text{terms of } N \text{ not containing } x)\,dy = C.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 21 (§3.11)"
+  source="H. K. Dass, Ch. 3, Example 21"
+  problem="Solve: $(5x^4 + 3x^2 y^2 - 2xy^3)\\,dx + (2x^3 y - 3x^2 y^2 - 5y^4)\\,dy = 0$."
+  steps={[
+    "Identify $M = 5x^4 + 3x^2 y^2 - 2xy^3$ and $N = 2x^3 y - 3x^2 y^2 - 5y^4$.",
+    "Test for exactness: $\\dfrac{\\partial M}{\\partial y} = 6x^2 y - 6xy^2$ and $\\dfrac{\\partial N}{\\partial x} = 6x^2 y - 6xy^2$. Since $\\dfrac{\\partial M}{\\partial y} = \\dfrac{\\partial N}{\\partial x}$, the equation is exact.",
+    "Apply the exact solution formula: $\\displaystyle \\int_{(y\\text{ const.})} (5x^4 + 3x^2 y^2 - 2xy^3)\\,dx + \\int (-5y^4)\\,dy = C$ (only $-5y^4$ in $N$ is free of $x$).",
+    "Evaluate both integrals: $x^5 + x^3 y^2 - x^2 y^3 - y^5 = C$."
+  ]}
+  answer="$x^5 + x^3 y^2 - x^2 y^3 - y^5 = C$"
+/>
+
+<StepRevealExample
+  title="Example 22 (§3.11)"
+  source="H. K. Dass, Ch. 3, Example 22 (Nagpur University, Summer 2000)"
+  problem="Solve: $(2xy\\cos x^2 - 2xy + 1)\\,dx + (\\sin x^2 - x^2 + 3)\\,dy = 0$."
+  steps={[
+    "Here $M = 2xy\\cos x^2 - 2xy + 1$ and $N = \\sin x^2 - x^2 + 3$.",
+    "Check exactness: $\\dfrac{\\partial M}{\\partial y} = 2x\\cos x^2 - 2x$ and $\\dfrac{\\partial N}{\\partial x} = 2x\\cos x^2 - 2x$. Hence $\\dfrac{\\partial M}{\\partial y} = \\dfrac{\\partial N}{\\partial x}$, so the ODE is exact.",
+    "The only term of $N$ free of $x$ is $3$. Thus $\\displaystyle \\int_{(y\\text{ const.})} (2xy\\cos x^2 - 2xy + 1)\\,dx + \\int 3\\,dy = C$.",
+    "For $\\int 2x\\cos(x^2)\\,dx$, put $t = x^2$ ($dt = 2x\\,dx$) to get $\\sin(x^2)$. Evaluating all terms yields $y\\sin x^2 - yx^2 + x + 3y = C$."
+  ]}
+  answer="$y\\sin x^2 - yx^2 + x + 3y = C$"
+/>
+
+<StepRevealExample
+  title="Example 23 (§3.11)"
+  source="H. K. Dass, Ch. 3, Example 23 (Nagpur University, Summer 2008; A.M.I.E.T.E., June 2009)"
+  problem="Solve: $\\left(1 + e^{x/y}\\right) + e^{x/y}\\left(1 - \\dfrac{x}{y}\\right)\\dfrac{dy}{dx} = 0$."
+  steps={[
+    "Write in differential form: $\\left(1 + e^{x/y}\\right)dx + \\left(e^{x/y} - \\dfrac{x}{y}e^{x/y}\\right)dy = 0$.",
+    "Compute partial derivatives: $\\dfrac{\\partial M}{\\partial y} = -\\dfrac{x}{y^2}e^{x/y}$ and $\\dfrac{\\partial N}{\\partial x} = \\dfrac{1}{y}e^{x/y} - \\dfrac{1}{y}e^{x/y} - \\dfrac{x}{y^2}e^{x/y} = -\\dfrac{x}{y^2}e^{x/y}$.",
+    "Since $\\dfrac{\\partial M}{\\partial y} = \\dfrac{\\partial N}{\\partial x}$, the equation is exact.",
+    "No term of $N$ is free of $x$, so the solution is $\\displaystyle \\int_{(y\\text{ const.})} \\left(1 + e^{x/y}\\right)dx + 0 = C \\implies x + y e^{x/y} = C$."
+  ]}
+  answer="$x + y e^{x/y} = C$"
+/>
+
+<StepRevealExample
+  title="Example 24 (§3.11)"
+  source="H. K. Dass, Ch. 3, Example 24 (Nagpur University, Winter 2003)"
+  problem="Solve: $[1 + \\log(xy)]\\,dx + \\left[1 + \\dfrac{x}{y}\\right]dy = 0$."
+  steps={[
+    "Expand $\\log(xy) = \\log x + \\log y$, giving $M = 1 + \\log x + \\log y$ and $N = 1 + \\dfrac{x}{y}$.",
+    "Check exactness: $\\dfrac{\\partial M}{\\partial y} = \\dfrac{1}{y}$ and $\\dfrac{\\partial N}{\\partial x} = \\dfrac{1}{y}$. Equal — the equation is exact.",
+    "The only term of $N$ not containing $x$ is $1$. Thus $\\displaystyle \\int_{(y\\text{ const.})} (1 + \\log x + \\log y)\\,dx + \\int 1\\,dy = C$.",
+    "Using $\\int \\log x\\,dx = x\\log x - x$ (by parts), we obtain $x + (x\\log x - x) + x\\log y + y = C$.",
+    "Simplify: $x(\\log x + \\log y) + y = C \\implies x\\log(xy) + y = C$."
+  ]}
+  answer="$x\\log xy + y = C$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.7"
+  source="H. K. Dass, Ch. 3, pp. 156–157"
+  items={[
+    { q: "1. $(x + y - 10)\\,dx + (x - y - 2)\\,dy = 0$", a: "$\\dfrac{x^2}{2} + xy - 10x - \\dfrac{y^2}{2} - 2y = C$" },
+    { q: "2. $(y^2 - x^2)\\,dx + 2xy\\,dy = 0$", a: "$\\dfrac{x^3}{3} = xy^2 + C$" },
+    { q: "3. $(1 + 3e^{x/y})\\,dx + 3e^{x/y}\\left(1 - \\dfrac{x}{y}\\right)dy = 0$ (R.G.P.V. Bhopal, Winter 2010)", a: "$x + 3y e^{x/y} = C$" },
+    { q: "4. $(2x - y)\\,dx = (x - y)\\,dy$", a: "$xy = x^2 + \\dfrac{y^2}{2} + C$" },
+    { q: "5. $(y\\sec^2 x + \\sec x\\tan x)\\,dx + (\\tan x + 2y)\\,dy = 0$", a: "$y\\tan x + \\sec x + y^2 = C$" },
+    { q: "6. $(ax + hy + g)\\,dx + (hx + by + f)\\,dy = 0$", a: "$ax^2 + 2hxy + by^2 + 2gx + 2fy + C = 0$" },
+    { q: "7. $(x^4 - 2xy^2 + y^4)\\,dx - (2x^2 y - 4xy^3 + \\sin y)\\,dy = 0$", a: "$\\dfrac{x^5}{5} - x^2 y^2 + xy^4 + \\cos y = C$" },
+    { q: "8. $(2xy + e^y)\\,dx + (x^2 + x e^y)\\,dy = 0$", a: "$x^2 y + x e^y = C$" },
+    { q: "9. $(x^2 + 2y e^{2x})\\,dy + (2xy + 2y^2 e^{2x})\\,dx = 0$", a: "$x^2 y + y^2 e^{2x} = C$" },
+    { q: "10. $\\left[y\\left(1 + \\dfrac{1}{x}\\right) + \\cos y\\right]dx + (x + \\log x - x\\sin y)\\,dy = 0$ (M.D.U., 2010)", a: "$y(x + \\log x) + x\\cos y = C$" },
+    { q: "11. $(x^3 - 3xy^2)\\,dx + (y^3 - 3x^2 y)\\,dy = 0$, $y(0) = 1$", a: "$x^4 - 6x^2 y^2 + y^4 = 1$" },
+    { q: "12. State the exactness condition for $M(x,y)\\,dx + N(x,y)\\,dy = 0$ (A.M.I.E.T.E., Dec. 2010, Dec. 2006).", a: "$\\dfrac{\\partial M}{\\partial y} - \\dfrac{\\partial N}{\\partial x} = 0$" }
+  ]}
+/>
+
+### 3.12 Equations Reducible to the Exact Equations
+
+When $M\,dx + N\,dy = 0$ fails the exactness test $\left(\dfrac{\partial M}{\partial y} \neq \dfrac{\partial N}{\partial x}\right)$, it can often be made exact by multiplying through by a suitable nonzero function $\mu(x,y)$ called an **integrating factor (I.F.)**. Once multiplied by the integrating factor, the transformed equation satisfies $\dfrac{\partial (\mu M)}{\partial y} = \dfrac{\partial (\mu N)}{\partial x}$ and is solved by the exact method of §3.11. Dass gives **five systematic rules** for finding integrating factors.
+
+<DiagramFigure
+  src="/diagrams/get-209/first-order-differential-equations-if-rules-matrix.svg"
+  caption="Exactness test (§3.11) and complete reference chart of Integrating Factor Rules I–V (§3.12) in H. K. Dass."
+/>
+
+#### Rule I — Integrating Factor Depending on $x$ Alone
+
+<RuleBox kind="formula" title="§3.12 Rule I (I.F. a function of x alone)">
+
+If the quotient
+
+$$\frac{\dfrac{\partial M}{\partial y} - \dfrac{\partial N}{\partial x}}{N} = f(x)$$
+
+is a function of $x$ alone (or a constant), then
+
+$$\text{I.F.} = e^{\int f(x)\,dx}.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 25 (§3.12 — Rule I)"
+  source="H. K. Dass, Ch. 3, Example 25"
+  problem="Solve $(2x\\log x - xy)\\,dy + 2y\\,dx = 0$."
+  steps={[
+    "Identify $M = 2y$ (coefficient of $dx$) and $N = 2x\\log x - xy$ (coefficient of $dy$).",
+    "Compute partial derivatives: $\\dfrac{\\partial M}{\\partial y} = 2$ and $\\dfrac{\\partial N}{\\partial x} = 2(1 + \\log x) - y = 2 + 2\\log x - y$. Since these are unequal, the ODE is not exact.",
+    "Test Rule I: $\\dfrac{\\frac{\\partial M}{\\partial y} - \\frac{\\partial N}{\\partial x}}{N} = \\dfrac{2 - (2 + 2\\log x - y)}{2x\\log x - xy} = \\dfrac{-(2\\log x - y)}{x(2\\log x - y)} = -\\dfrac{1}{x} = f(x)$.",
+    "Find the integrating factor: $\\text{I.F.} = e^{\\int -\\frac{1}{x}\\,dx} = e^{-\\log x} = \\dfrac{1}{x}$.",
+    "Multiply the original equation by $\\dfrac{1}{x}$: $\\dfrac{2y}{x}\\,dx + (2\\log x - y)\\,dy = 0$, which is now exact.",
+    "Integrate by §3.11: $\\displaystyle \\int_{(y\\text{ const.})} \\dfrac{2y}{x}\\,dx + \\int (-y)\\,dy = c \\implies 2y\\log x - \\dfrac{1}{2}y^2 = c$."
+  ]}
+  answer="$2y\\log x - \\dfrac{1}{2}y^2 = c$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.8"
+  source="H. K. Dass, Ch. 3, pp. 157–158"
+  items={[
+    { q: "1. $(y\\log y)\\,dx + (x - \\log y)\\,dy = 0$", a: "$2x\\log y = c + (\\log y)^2$" },
+    { q: "2. $\\left(y + \\dfrac{1}{3}y^3 + \\dfrac{1}{2}x^2\\right)dx + \\dfrac{1}{4}(1 + y^2)x\\,dy = 0$", a: "$\\dfrac{yx^4}{4} + \\dfrac{y^3 x^4}{12} + \\dfrac{x^6}{12} = c$" },
+    { q: "3. $(y - 2x^3)\\,dx - x(1 - xy)\\,dy = 0$", a: "$-\\dfrac{y}{x} - x^2 + \\dfrac{y^2}{2} = c$" },
+    { q: "4. $(x\\sec^2 y - x^2\\cos y)\\,dy = (\\tan y - 3x^4)\\,dx$", a: "$-\\dfrac{1}{x}\\tan y - x^3 + \\sin y = c$" },
+    { q: "5. $(x - y^2)\\,dx + 2xy\\,dy = 0$", a: "$y^2 = cx - x\\log x$" }
+  ]}
+/>
+
+#### Rule II — Integrating Factor Depending on $y$ Alone
+
+<RuleBox kind="formula" title="§3.12 Rule II (I.F. a function of y alone)">
+
+If the quotient
+
+$$\frac{\dfrac{\partial N}{\partial x} - \dfrac{\partial M}{\partial y}}{M} = f(y)$$
+
+is a function of $y$ alone (or a constant), then
+
+$$\text{I.F.} = e^{\int f(y)\,dy}.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 26 (§3.12 — Rule II)"
+  source="H. K. Dass, Ch. 3, Example 26"
+  problem="Solve $(y^4 + 2y)\\,dx + (xy^3 + 2y^4 - 4x)\\,dy = 0$."
+  steps={[
+    "Here $M = y^4 + 2y$ and $N = xy^3 + 2y^4 - 4x$.",
+    "Compute partial derivatives: $\\dfrac{\\partial M}{\\partial y} = 4y^3 + 2$ and $\\dfrac{\\partial N}{\\partial x} = y^3 - 4$ (not exact).",
+    "Test Rule II: $\\dfrac{\\frac{\\partial N}{\\partial x} - \\frac{\\partial M}{\\partial y}}{M} = \\dfrac{(y^3 - 4) - (4y^3 + 2)}{y^4 + 2y} = \\dfrac{-3(y^3 + 2)}{y(y^3 + 2)} = -\\dfrac{3}{y} = f(y)$.",
+    "Compute $\\text{I.F.} = e^{\\int -\\frac{3}{y}\\,dy} = e^{-3\\log y} = y^{-3} = \\dfrac{1}{y^3}$.",
+    "Multiply the ODE by $\\dfrac{1}{y^3}$ to obtain the exact equation $\\left(y + \\dfrac{2}{y^2}\\right)dx + \\left(x + 2y - \\dfrac{4x}{y^3}\\right)dy = 0$.",
+    "Integrate by §3.11: $\\displaystyle \\int_{(y\\text{ const.})} \\left(y + \\dfrac{2}{y^2}\\right)dx + \\int 2y\\,dy = c \\implies x\\left(y + \\dfrac{2}{y^2}\\right) + y^2 = c$."
+  ]}
+  answer="$x\\left(y + \\dfrac{2}{y^2}\\right) + y^2 = c$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.9"
+  source="H. K. Dass, Ch. 3, p. 158"
+  items={[
+    { q: "1. $(3x^2 y^4 + 2xy)\\,dx + (2x^3 y^3 - x^2)\\,dy = 0$", a: "$x^3 y^2 + \\dfrac{x^2}{y} = c$" },
+    { q: "2. $(xy^3 + y)\\,dx + 2(x^2 y^2 + x + y^4)\\,dy = 0$", a: "$\\dfrac{x^2 y^4}{2} + xy^2 + \\dfrac{y^6}{3} = c$" },
+    { q: "3. $y(x^2 y + e^x)\\,dx - e^x\\,dy = 0$", a: "$\\dfrac{x^3}{3} + \\dfrac{e^x}{y} = c$" }
+  ]}
+/>
+
+#### Rule III — Equations of the Form $y f_1(xy)\,dx + x f_2(xy)\,dy = 0$
+
+<RuleBox kind="formula" title="§3.12 Rule III (Form y f₁(xy) dx + x f₂(xy) dy = 0)">
+
+If $M = y f_1(xy)$ and $N = x f_2(xy)$, and $Mx - Ny \neq 0$, then
+
+$$\text{I.F.} = \frac{1}{Mx - Ny}.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 27 (§3.12 — Rule III)"
+  source="H. K. Dass, Ch. 3, Example 27"
+  problem="Solve $y(xy + 2x^2 y^2)\\,dx + x(xy - x^2 y^2)\\,dy = 0$."
+  steps={[
+    "Divide through by the common factor $xy$ to simplify: $y(1 + 2xy)\\,dx + x(1 - xy)\\,dy = 0$.",
+    "This matches $M = y f_1(xy)$ and $N = x f_2(xy)$, with $M = y(1 + 2xy)$ and $N = x(1 - xy)$.",
+    "Compute $Mx - Ny = xy(1 + 2xy) - xy(1 - xy) = 3x^2 y^2 \\neq 0$, so $\\text{I.F.} = \\dfrac{1}{3x^2 y^2}$.",
+    "Multiply the simplified equation by $\\dfrac{1}{3x^2 y^2}$: $\\left(\\dfrac{1}{3x^2 y} + \\dfrac{2}{3x}\\right)dx + \\left(\\dfrac{1}{3xy^2} - \\dfrac{1}{3y}\\right)dy = 0$, which is exact.",
+    "Integrate by §3.11: $\\displaystyle \\int_{(y\\text{ const.})} \\left(\\dfrac{1}{3x^2 y} + \\dfrac{2}{3x}\\right)dx + \\int \\left(-\\dfrac{1}{3y}\\right)dy = c \\implies -\\dfrac{1}{3xy} + \\dfrac{2}{3}\\log x - \\dfrac{1}{3}\\log y = c$.",
+    "Multiply by $3$ and set $b = 3c$: $-\\dfrac{1}{xy} + 2\\log x - \\log y = b$."
+  ]}
+  answer="$-\\dfrac{1}{xy} + 2\\log x - \\log y = b$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.10"
+  source="H. K. Dass, Ch. 3, p. 159"
+  items={[
+    { q: "1. $(y - xy^2)\\,dx - (x + x^2 y)\\,dy = 0$", a: "$\\log\\left(\\dfrac{x}{y}\\right) - xy = A$" },
+    { q: "2. $y(1 + xy)\\,dx + x(1 - xy)\\,dy = 0$", a: "$xy\\log\\left(\\dfrac{y}{x}\\right) = cxy - 1$" },
+    { q: "3. $y(1 + xy)\\,dx + x(1 + xy + x^2 y^2)\\,dy = 0$", a: "$\\dfrac{1}{2x^2 y^2} + \\dfrac{1}{xy} - \\log y = c$" },
+    { q: "4. $(xy\\sin xy + \\cos xy)y\\,dx + (xy\\sin xy - \\cos xy)x\\,dy = 0$", a: "$y\\cos xy = cx$" }
+  ]}
+/>
+
+#### Rule IV — Integrating Factor of the Form $x^h y^k$
+
+<RuleBox kind="formula" title="§3.12 Rule IV (I.F. of the form xʰ yᵏ)">
+
+For an equation expressible in the two-group form
+
+$$x^m y^n(ay\,dx + bx\,dy) + x^{m'} y^{n'}(a'y\,dx + b'x\,dy) = 0,$$
+
+an integrating factor is $\text{I.F.} = x^h y^k$, where the exponents $h$ and $k$ are determined by solving the two linear equations:
+
+$$\frac{m + h + 1}{a} = \frac{n + k + 1}{b} \qquad \text{and} \qquad \frac{m' + h + 1}{a'} = \frac{n' + k + 1}{b'}.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 28 (§3.12 — Rule IV)"
+  source="H. K. Dass, Ch. 3, Example 28"
+  problem="Solve $(y^3 - 2x^2 y)\\,dx + (2xy^2 - x^3)\\,dy = 0$."
+  steps={[
+    "Regroup terms into the Rule IV structure: $y^2(y\\,dx + 2x\\,dy) + x^2(-2y\\,dx - x\\,dy) = 0$.",
+    "Read off the parameters: $m = 0, n = 2, a = 1, b = 2$ and $m' = 2, n' = 0, a' = -2, b' = -1$.",
+    "Set up the two equations for $h$ and $k$: $\\dfrac{0 + h + 1}{1} = \\dfrac{2 + k + 1}{2}$ and $\\dfrac{2 + h + 1}{-2} = \\dfrac{0 + k + 1}{-1}$.",
+    "Simplify: $2h + 2 = k + 3 \\implies 2h - k = 1$, and $h + 3 = 2k + 2 \\implies h - 2k = -1$.",
+    "Solving simultaneously yields $h = 1, k = 1$, so $\\text{I.F.} = x^1 y^1 = xy$.",
+    "Multiply the original equation by $xy$: $(xy^4 - 2x^3 y^2)\\,dx + (2x^2 y^3 - x^4 y)\\,dy = 0$, which is exact (and no term of $N$ is free of $x$).",
+    "Integrate $M$ with respect to $x$: $\\displaystyle \\int_{(y\\text{ const.})} (xy^4 - 2x^3 y^2)\\,dx = C \\implies \\dfrac{x^2 y^4}{2} - \\dfrac{2x^4 y^2}{4} = C \\implies x^2 y^2(y^2 - x^2) = C'$."
+  ]}
+  answer="$x^2 y^2(y^2 - x^2) = C'$"
+/>
+
+<StepRevealExample
+  title="Example 29 (§3.12 — Rule IV)"
+  source="H. K. Dass, Ch. 3, Example 29 (U.P., II Semester, June 2007)"
+  problem="Solve $(3y - 2xy^3)\\,dx + (4x - 3x^2 y^2)\\,dy = 0$."
+  steps={[
+    "Group into the Rule IV form: $(3y\\,dx + 4x\\,dy) + xy^2(-2y\\,dx - 3x\\,dy) = 0$.",
+    "Identify parameters: $m = 0, n = 0, a = 3, b = 4$ and $m' = 1, n' = 2, a' = -2, b' = -3$.",
+    "Form the equations for $h, k$: $\\dfrac{h + 1}{3} = \\dfrac{k + 1}{4} \\implies 4h - 3k + 1 = 0$, and $\\dfrac{h + 2}{-2} = \\dfrac{k + 3}{-3} \\implies 3h - 2k = 0 \\implies h = \\dfrac{2k}{3}$.",
+    "Substitute $h = \\dfrac{2k}{3}$ into $4h - 3k + 1 = 0$: $\\dfrac{8k}{3} - 3k + 1 = 0 \\implies -\\dfrac{k}{3} + 1 = 0 \\implies k = 3$, and $h = 2$. Thus $\\text{I.F.} = x^2 y^3$.",
+    "Multiply the equation by $x^2 y^3$: $(3x^2 y^4 - 2x^3 y^6)\\,dx + (4x^3 y^3 - 3x^4 y^5)\\,dy = 0$ (exact, with no $x$-free terms in $N$).",
+    "Integrate $M$ with respect to $x$: $\\displaystyle \\int_{(y\\text{ const.})} (3x^2 y^4 - 2x^3 y^6)\\,dx = C \\implies x^3 y^4 - \\dfrac{x^4}{2}y^6 = C$."
+  ]}
+  answer="$x^3 y^4 - \\dfrac{x^4}{2}y^6 = C$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.11"
+  source="H. K. Dass, Ch. 3, p. 160"
+  items={[
+    { q: "1. $(2y\\,dx + 3x\\,dy) + 2xy(3y\\,dx + 4x\\,dy) = 0$", a: "$x^2 y^3(1 + 2xy) = c$" },
+    { q: "3. $(3x + 2y^2)y\\,dx + 2x(2x + 3y^2)\\,dy = 0$", a: "$x^2 y^4(x + y^2) = c$" },
+    { q: "5. $x(3y\\,dx + 2x\\,dy) + 8y^4(y\\,dx + 3x\\,dy) = 0$", a: "$x^3 y^2 + 4x^2 y^6 = c$" }
+  ]}
+/>
+
+#### Rule V — Homogeneous Equations ($Mx + Ny \neq 0$)
+
+<RuleBox kind="formula" title="§3.12 Rule V (Homogeneous Equation Integrating Factor)">
+
+If $M\,dx + N\,dy = 0$ is a **homogeneous** equation (every term of $M$ and $N$ has the same degree) and $Mx + Ny \neq 0$, then
+
+$$\text{I.F.} = \frac{1}{Mx + Ny}.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 30 (§3.12 — Rule V)"
+  source="H. K. Dass, Ch. 3, Example 30"
+  problem="Solve $\\dfrac{dy}{dx} = \\dfrac{x^3 + y^3}{xy^2}$."
+  steps={[
+    "Write in differential form: $(x^3 + y^3)\\,dx - (xy^2)\\,dy = 0$, where $M = x^3 + y^3$ and $N = -xy^2$ are both homogeneous of degree $3$.",
+    "Compute $Mx + Ny = x(x^3 + y^3) + y(-xy^2) = x^4 + xy^3 - xy^3 = x^4 \\neq 0$.",
+    "By Rule V, $\\text{I.F.} = \\dfrac{1}{Mx + Ny} = \\dfrac{1}{x^4}$.",
+    "Multiply the equation by $\\dfrac{1}{x^4}$: $\\left(\\dfrac{1}{x} + \\dfrac{y^3}{x^4}\\right)dx - \\dfrac{y^2}{x^3}\\,dy = 0$, which is exact (and no term of $N$ is free of $x$).",
+    "Integrate with respect to $x$ holding $y$ constant: $\\displaystyle \\int \\left(\\dfrac{1}{x} + \\dfrac{y^3}{x^4}\\right)dx = c \\implies \\log x - \\dfrac{y^3}{3x^3} = c$."
+  ]}
+  answer="$\\log x - \\dfrac{y^3}{3x^3} = c$"
+/>
+
+<ExerciseSet
+  title="Exercise 3.12"
+  source="H. K. Dass, Ch. 3, p. 161"
+  items={[
+    { q: "1. $x^2 y\\,dx - (x^3 + y^3)\\,dy = 0$", a: "$-\\dfrac{x^3}{3y^3} + \\log y = c$" },
+    { q: "2. $(y^3 - 3xy^2)\\,dx + (2x^2 y - xy^2)\\,dy = 0$", a: "$\\dfrac{y}{x} + 3\\log x - 2\\log y = c$" },
+    { q: "3. $(x^2 y - 2xy^2)\\,dx - (x^3 - 3x^2 y)\\,dy = 0$", a: "$\\dfrac{x}{y} - 2\\log x + 3\\log y = c$" },
+    { q: "4. $(y^3 - 2yx^2)\\,dx + (2xy^2 - x^3)\\,dy = 0$", a: "$x^2 y^4 - x^4 y^2 = c$" }
+  ]}
+/>
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Key Pitfalls to Avoid in First-Order ODE Exams">
+
+- **Determining degree before clearing radicals:** Never read off the degree of an ODE while fractional exponents or radicals surround derivatives. For example, $\left[1 + \left(\frac{dy}{dx}\right)^2\right]^{3/2} = \frac{d^2y}{dx^2}$ has degree **2** (not 1), because squaring both sides yields $\left(\frac{d^2y}{dx^2}\right)^2$.
+- **Forgetting to normalize $\dfrac{dy}{dx}$ in linear ODEs (§3.9):** Before computing $\text{I.F.} = e^{\int P\,dx}$, the coefficient of $\dfrac{dy}{dx}$ **must be $+1$**. Dividing $(x+1)\frac{dy}{dx} - y = e^x(x+1)^2$ by $(x+1)$ first is mandatory.
+- **Sign errors in Rules I and II (§3.12):** Rule I uses $\dfrac{M_y - N_x}{N} = f(x)$, while Rule II reverses the numerator to $\dfrac{N_x - M_y}{M} = f(y)$. Flipping the sign produces the reciprocal of the true integrating factor, which fails to make the equation exact.
+- **Double-counting $x$-dependent terms in exact integration (§3.11):** In $\int M\,dx + \int (\text{terms of } N \text{ free of } x)\,dy = C$, omit **every** term of $N$ that contains $x$ — those cross-terms are already accounted for inside $\int M\,dx$.
+- **Missing linear-in-$x$ equations (§3.9–§3.10):** If an ODE looks hopeless as $\dfrac{dy}{dx}$, check $\dfrac{dx}{dy}$ (like Examples 18 and 19) before trying complicated substitutions.
+
+</Callout>
+
+## Summary of Formulas
+
+<RuleBox kind="formula" title="Master Formula Reference — Dass Ch. 3 (§3.1–§3.12)">
+
+| Section | Equation Type | Standard Form | Key Substitution / Formula |
+| --- | --- | --- | --- |
+| **§3.6** | Variables separable | $f(y)\,dy = \phi(x)\,dx$ | $\displaystyle \int f(y)\,dy = \int \phi(x)\,dx + C$ |
+| **§3.7** | Homogeneous | $\dfrac{dy}{dx} = \dfrac{f(x,y)}{\phi(x,y)}$ (same degree) | $y = vx,\quad \dfrac{dy}{dx} = v + x\dfrac{dv}{dx}$ |
+| **§3.8 (I)** | Reducible to homogeneous ($\frac{a}{A} \neq \frac{b}{B}$) | $\dfrac{dy}{dx} = \dfrac{ax+by+c}{Ax+By+C}$ | $x = X+h,\; y = Y+k$ with $ah+bk+c=0,\; Ah+Bk+C=0$ |
+| **§3.8 (II)** | Reducible to homogeneous ($\frac{a}{A} = \frac{b}{B}$) | $\dfrac{dy}{dx} = \dfrac{ax+by+c}{m(ax+by)+C}$ | $z = ax + by$ (becomes separable) |
+| **§3.9** | Linear in $y$ | $\dfrac{dy}{dx} + Py = Q$ | $\text{I.F.} = e^{\int P\,dx},\quad y(\text{I.F.}) = \displaystyle \int Q(\text{I.F.})\,dx + C$ |
+| **§3.9** | Linear in $x$ | $\dfrac{dx}{dy} + Px = Q$ | $\text{I.F.} = e^{\int P\,dy},\quad x(\text{I.F.}) = \displaystyle \int Q(\text{I.F.})\,dy + C$ |
+| **§3.10** | Bernoulli | $\dfrac{dy}{dx} + Py = Qy^n$ | Divide by $y^n$, put $z = y^{1-n}$ |
+| **§3.11** | Exact | $M\,dx + N\,dy = 0,\; \dfrac{\partial M}{\partial y} = \dfrac{\partial N}{\partial x}$ | $\displaystyle \int_{(y\text{ const.})} M\,dx + \int (N\text{ free of } x)\,dy = C$ |
+| **§3.12 (I)** | Non-exact (I.F. in $x$) | $\dfrac{M_y - N_x}{N} = f(x)$ | $\text{I.F.} = e^{\int f(x)\,dx}$ |
+| **§3.12 (II)** | Non-exact (I.F. in $y$) | $\dfrac{N_x - M_y}{M} = f(y)$ | $\text{I.F.} = e^{\int f(y)\,dy}$ |
+| **§3.12 (III)** | Non-exact ($y f_1(xy), x f_2(xy)$) | $y f_1(xy)\,dx + x f_2(xy)\,dy = 0$ | $\text{I.F.} = \dfrac{1}{Mx - Ny}$ ($Mx - Ny \neq 0$) |
+| **§3.12 (IV)** | Non-exact (power I.F.) | $x^m y^n(ay\,dx+bx\,dy) + x^{m'}y^{n'}(a'y\,dx+b'x\,dy) = 0$ | $\text{I.F.} = x^h y^k,\; \dfrac{m+h+1}{a} = \dfrac{n+k+1}{b}$ |
+| **§3.12 (V)** | Non-exact (homogeneous) | $M\,dx + N\,dy = 0$ homogeneous | $\text{I.F.} = \dfrac{1}{Mx + Ny}$ ($Mx + Ny \neq 0$) |
+
+</RuleBox>

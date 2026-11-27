@@ -61,13 +61,6 @@ export default function CoursesIndexPage() {
             <ClipboardCheck className="h-3.5 w-3.5 shrink-0" />
             Open Test Center
           </Link>
-          <Link
-            href="/library"
-            className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 text-xs font-semibold text-[var(--text-primary)]"
-          >
-            Part 2 PDF Library
-            <ArrowRight className="h-3.5 w-3.5 shrink-0" />
-          </Link>
         </div>
       </div>
 

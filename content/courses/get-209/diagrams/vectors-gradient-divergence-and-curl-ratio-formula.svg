@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-label="Point C dividing AB internally in the ratio m to n">
+  <defs>
+    <marker id="ah0F766E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0F766E"/></marker>
+    <marker id="ah141413" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#141413"/></marker>
+    <marker id="ahEA580C" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EA580C"/></marker>
+  </defs>
+  <rect width="560" height="300" rx="14" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">§5.6 (redrawn) — C divides AB in the ratio m : n</text>
+  <line x1="80" y1="70" x2="480" y2="70" stroke="#141413" stroke-width="2.6"/>
+  <line x1="280" y1="230" x2="80" y2="70" stroke="#0F766E" stroke-width="2.4" marker-end="url(#ah0F766E)"/>
+  <line x1="280" y1="230" x2="480" y2="70" stroke="#EA580C" stroke-width="2.4" marker-end="url(#ahEA580C)"/>
+  <line x1="280" y1="230" x2="340" y2="70" stroke="#141413" stroke-width="2.4" marker-end="url(#ah141413)"/>
+  <circle cx="80" cy="70" r="3.5" fill="#141413"/>
+  <circle cx="340" cy="70" r="3.5" fill="#141413"/>
+  <circle cx="480" cy="70" r="3.5" fill="#141413"/>
+  <circle cx="280" cy="230" r="3.5" fill="#141413"/>
+  <text x="66" y="60" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">A (a)</text>
+  <text x="334" y="60" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">C</text>
+  <text x="470" y="60" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">B (b)</text>
+  <text x="268" y="252" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">O</text>
+  <text x="200" y="92" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#1D4ED8" text-anchor="start">m</text>
+  <text x="405" y="92" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#1D4ED8" text-anchor="start">n</text>
+  <text x="20" y="285" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="#64748B" text-anchor="start">OC = (m b + n a) / (m + n);   m = n = 1 gives the mid-point (a + b)/2</text>
+</svg>

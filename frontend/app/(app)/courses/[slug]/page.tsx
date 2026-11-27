@@ -174,11 +174,22 @@ export default function CourseDetailPage() {
           </div>
 
           <div className="space-y-3.5">
-            {topics.map((topic) => {
+            {topics.map((topic, idx) => {
               const fb = fallbackMeta.find((f) => f.slug === topic.slug);
+              const prevPart =
+                idx > 0 ? fallbackMeta.find((f) => f.slug === topics[idx - 1]?.slug)?.part : undefined;
+              const showPartHeader = Boolean(fb?.part) && fb?.part !== prevPart;
               return (
+                <div key={topic.id} className="space-y-3.5">
+                {showPartHeader && (
+                  <div className="flex items-center gap-3 pt-2">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                      Part · {fb?.part}
+                    </span>
+                    <span aria-hidden="true" className="h-px flex-1 bg-[var(--border-hairline)]" />
+                  </div>
+                )}
                 <article
-                  key={topic.id}
                   className="hover-lift relative overflow-hidden rounded-[22px] border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-4 pl-6 shadow-xs sm:p-5 sm:pl-7"
                 >
                   {/* Subtle left notebook margin accent */}
@@ -197,7 +208,7 @@ export default function CourseDetailPage() {
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="font-mono text-xs font-bold text-[var(--accent)]">
-                            Folio 0{topic.display_order}
+                            Folio {String(topic.display_order).padStart(2, "0")}
                           </span>
                           {fb?.textbook_ref && (
                             <span className="rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-0.5 font-mono text-[10px] font-semibold text-[var(--text-secondary)]">
@@ -235,6 +246,7 @@ export default function CourseDetailPage() {
                     </div>
                   </div>
                 </article>
+                </div>
               );
             })}
           </div>
@@ -277,12 +289,6 @@ export default function CourseDetailPage() {
                   </li>
                 ))}
               </ul>
-              <Link
-                href={matchedBook.readUrl || "/library"}
-                className="pressable mt-3.5 inline-flex min-h-[42px] w-full items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-4 text-xs font-semibold text-[var(--text-primary)]"
-              >
-                Open {course.code} materials in Library →
-              </Link>
             </section>
           )}
 

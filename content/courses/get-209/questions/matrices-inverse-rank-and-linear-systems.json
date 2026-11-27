@@ -1,0 +1,248 @@
+{
+  "topicSlug": "matrices-inverse-rank-and-linear-systems",
+  "questions": [
+    {
+      "key": "ex-4-19-matrix-equality-y",
+      "type": "numeric",
+      "prompt": "If $\\begin{bmatrix} x+3 & 2y+x \\\\ z-1 & 4a-6 \\end{bmatrix} = \\begin{bmatrix} 0 & -7 \\\\ 3 & 2a \\end{bmatrix}$, find the value of $y$.",
+      "answer": -2,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Equating corresponding entries gives $x + 3 = 0 \\implies x = -3$ and $2y + x = -7$. Substituting $x = -3$ yields $2y - 3 = -7 \\implies 2y = -4 \\implies y = -2$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Example 1",
+      "tags": ["matrix-equality"]
+    },
+    {
+      "key": "ex-4-10-q3-find-w",
+      "type": "numeric",
+      "prompt": "Given $3\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} = \\begin{bmatrix} x & 6 \\\\ -1 & 2w \\end{bmatrix} + \\begin{bmatrix} 4 & x+y \\\\ z+w & 3 \\end{bmatrix}$, find the value of $w$.",
+      "answer": 3,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Equating the $(2,2)$ entries on both sides gives $3w = 2w + 3$, so $w = 3$. (Similarly, $3x = x + 4 \\implies x = 2$, $3y = 6 + x + y \\implies y = 4$, and $3z = -1 + z + w \\implies z = 1$.)",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.10, Q3",
+      "tags": ["matrix-algebra", "scalar-multiplication"]
+    },
+    {
+      "key": "ex-4-19-skew-hermitian-diagonal",
+      "type": "mcq",
+      "prompt": "All the principal diagonal elements of a skew-Hermitian matrix are necessarily:",
+      "options": [
+        { "label": "A", "text": "Purely real and non-zero", "correct": false },
+        { "label": "B", "text": "Either zero or purely imaginary", "correct": true },
+        { "label": "C", "text": "Equal to unity", "correct": false },
+        { "label": "D", "text": "Strictly zero in all cases", "correct": false }
+      ],
+      "solution": "For a skew-Hermitian matrix $A = (a_{ij})$, $a_{ij} = -\\bar{a}_{ji}$. Setting $i = j$ gives $a_{ii} + \\bar{a}_{ii} = 0$. Writing $a_{ii} = a + ib$, we get $2a = 0 \\implies a = 0$, so every diagonal entry is $0$ or purely imaginary $ib$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, §4.19(q)",
+      "tags": ["types-of-matrices", "skew-hermitian"]
+    },
+    {
+      "key": "ex-4-11-q18-idempotent",
+      "type": "mcq",
+      "prompt": "If a square matrix $A$ satisfies $A^2 = A$, then $A$ is called:",
+      "options": [
+        { "label": "A", "text": "Idempotent matrix", "correct": true },
+        { "label": "B", "text": "Involutory matrix", "correct": false },
+        { "label": "C", "text": "Nilpotent matrix", "correct": false },
+        { "label": "D", "text": "Orthogonal matrix", "correct": false }
+      ],
+      "solution": "By definition (§4.19(r)), a square matrix satisfying $A^2 = A$ is an idempotent matrix. (Involutory satisfies $A^2 = I$, nilpotent satisfies $A^k = O$, and orthogonal satisfies $AA' = I$.)",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.11, Q18 (A.M.I.E.T.E., Dec. 2006)",
+      "tags": ["types-of-matrices", "idempotent"]
+    },
+    {
+      "key": "ex-4-11-q1-product-entry",
+      "type": "numeric",
+      "prompt": "Let $A = \\begin{bmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{bmatrix}$ and $B = \\begin{bmatrix} 2 & 5 & 3 \\\\ 3 & 6 & 4 \\\\ 4 & 7 & 5 \\end{bmatrix}$. Compute the $(2,2)$ entry of the product matrix $AB$.",
+      "image": "/diagrams/get-209/matrices-inverse-rank-and-linear-systems-multiplication.svg",
+      "answer": 92,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "The $(2,2)$ entry of $AB$ is the dot product of Row 2 of $A$ and Column 2 of $B$: $c_{22} = 4(5) + 5(6) + 6(7) = 20 + 30 + 42 = 92$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.11, Q1",
+      "tags": ["matrix-multiplication"]
+    },
+    {
+      "key": "ex-4-11-q7-linear-transformation",
+      "type": "mcq",
+      "prompt": "The linear transformation $\\begin{pmatrix} y_1 \\\\ y_2 \\end{pmatrix} = \\begin{pmatrix} 0 & 0 \\\\ 0 & 1 \\end{pmatrix}\\begin{pmatrix} x_1 \\\\ x_2 \\end{pmatrix}$ represents:",
+      "options": [
+        { "label": "A", "text": "Reflection about the $x_1$-axis", "correct": false },
+        { "label": "B", "text": "Reflection about the $x_2$-axis", "correct": false },
+        { "label": "C", "text": "Clockwise rotation through angle $\\pi/2$", "correct": false },
+        { "label": "D", "text": "Orthogonal projection onto the $x_2$-axis", "correct": true }
+      ],
+      "solution": "Expanding the matrix product gives $y_1 = 0$ and $y_2 = x_2$, which maps every point $(x_1, x_2)$ onto $(0, x_2)$ on the $x_2$-axis — an orthogonal projection onto the $x_2$-axis.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.11, Q7 (A.M.I.E.T.E., Summer 2005)",
+      "tags": ["matrix-multiplication", "linear-transformation"]
+    },
+    {
+      "key": "ex-4-12-q13-adj-2i",
+      "type": "mcq",
+      "prompt": "Let $I$ be the unit matrix of order $n$ and suppose $\\operatorname{adj}(2I) = 2^k I$. Then $k$ equals:",
+      "options": [
+        { "label": "A", "text": "$1$", "correct": false },
+        { "label": "B", "text": "$2$", "correct": false },
+        { "label": "C", "text": "$n - 1$", "correct": true },
+        { "label": "D", "text": "$n$", "correct": false }
+      ],
+      "solution": "Using $A \\cdot \\operatorname{adj}(A) = |A|\\,I$ with $A = 2I$: $(2I)\\operatorname{adj}(2I) = |2I|\\,I = 2^n I$. Dividing both sides by $2$ gives $\\operatorname{adj}(2I) = 2^{n-1} I$, so $k = n - 1$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.12, Q13",
+      "tags": ["adjoint"]
+    },
+    {
+      "key": "ex-4-12-q7-det-a",
+      "type": "numeric",
+      "prompt": "Compute $\\det(A)$ for the matrix $A = \\begin{bmatrix} 3 & 2 & 2 \\\\ 1 & 3 & 1 \\\\ 5 & 3 & 4 \\end{bmatrix}$.",
+      "answer": 5,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Expanding along the first row: $|A| = 3(3\\cdot 4 - 1\\cdot 3) - 2(1\\cdot 4 - 1\\cdot 5) + 2(1\\cdot 3 - 3\\cdot 5) = 3(9) - 2(-1) + 2(-12) = 27 + 2 - 24 = 5$.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.12, Q7",
+      "tags": ["determinant", "inverse"]
+    },
+    {
+      "key": "ex-4-12-q8-singular-k",
+      "type": "numeric",
+      "prompt": "Find the value of $k$ for which the matrix $A = \\begin{bmatrix} 1 & 3 & 4 \\\\ 3 & k & 6 \\\\ -1 & 5 & 1 \\end{bmatrix}$ fails to have an inverse (is singular).",
+      "answer": -0.6,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "$A$ fails to have an inverse when $|A| = 0$. Expanding along Row 1: $|A| = 1(k - 30) - 3(3 + 6) + 4(15 + k) = k - 30 - 27 + 60 + 4k = 5k + 3$. Setting $5k + 3 = 0$ gives $k = -\\frac{3}{5} = -0.6$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.12, Q8",
+      "tags": ["inverse", "singular-matrix"]
+    },
+    {
+      "key": "ex-4-12-q11-singular-roots",
+      "type": "mcq",
+      "prompt": "For what values of $x$ is the matrix $\\begin{bmatrix} 3-x & 2 & 2 \\\\ 2 & 4-x & 1 \\\\ -2 & -4 & -1-x \\end{bmatrix}$ singular?",
+      "options": [
+        { "label": "A", "text": "$x = 0$ and $x = 3$", "correct": true },
+        { "label": "B", "text": "$x = 1$ and $x = 3$", "correct": false },
+        { "label": "C", "text": "$x = -1$ and $x = 4$", "correct": false },
+        { "label": "D", "text": "$x = 0$ and $x = -3$", "correct": false }
+      ],
+      "solution": "Add $R_2$ to $R_3$: Row 3 becomes $[0,\\; -x,\\; -x]$. Expanding the determinant yields $-x[(3-x)(4-x) - 4] + x[(3-x)(1) - 4] = -x(x^2 - 6x + 9) = -x(x-3)^2 = 0$, giving $x = 0$ and $x = 3$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.12, Q11 (A.M.I.E.T.E., Summer 2004)",
+      "tags": ["singular-matrix", "determinant"]
+    },
+    {
+      "key": "ex-4-13-q3-inverse-entry",
+      "type": "numeric",
+      "prompt": "Find the $(1,1)$ entry of $A^{-1}$ for $A = \\begin{bmatrix} 1 & 3 & 3 \\\\ 1 & 4 & 3 \\\\ 1 & 3 & 4 \\end{bmatrix}$.",
+      "answer": 7,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "First $|A| = 1(16-9) - 3(4-3) + 3(3-4) = 7 - 3 - 3 = 1$. The $(1,1)$ cofactor is $C_{11} = \\begin{vmatrix} 4 & 3 \\\\ 3 & 4 \\end{vmatrix} = 7$. Since $A^{-1} = \\frac{1}{|A|}\\operatorname{adj} A$, its $(1,1)$ entry is $7/1 = 7$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.13, Q3",
+      "tags": ["inverse", "gauss-jordan"]
+    },
+    {
+      "key": "ex-4-15-q6-rank-4x5",
+      "type": "numeric",
+      "prompt": "Find the rank of the $4 \\times 5$ matrix $A = \\begin{bmatrix} 1 & 4 & 3 & -2 & 1 \\\\ -2 & -3 & -1 & 4 & 3 \\\\ -1 & 6 & 7 & 2 & 9 \\\\ -3 & 3 & 6 & 6 & 12 \\end{bmatrix}$.",
+      "answer": 2,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Apply $R_2 \\to R_2 + 2R_1$, $R_3 \\to R_3 + R_1$, $R_4 \\to R_4 + 3R_1$ to get $\\begin{bmatrix} 1 & 4 & 3 & -2 & 1 \\\\ 0 & 5 & 5 & 0 & 5 \\\\ 0 & 10 & 10 & 0 & 10 \\\\ 0 & 15 & 15 & 0 & 15 \\end{bmatrix}$. Applying $R_3 \\to R_3 - 2R_2$ and $R_4 \\to R_4 - 3R_2$ zeroes out $R_3$ and $R_4$, leaving $2$ non-zero rows. Hence $\\rho(A) = 2$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.15, Q6",
+      "tags": ["rank", "echelon-form"]
+    },
+    {
+      "key": "ex-4-15-q20-rank-b",
+      "type": "numeric",
+      "prompt": "Find the value of $b$ for which the rank of the matrix $A = \\begin{bmatrix} 1 & 5 & 4 \\\\ 0 & 3 & 2 \\\\ b & 13 & 10 \\end{bmatrix}$ is $2$.",
+      "answer": 2,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "The upper-left $2\\times 2$ minor is $3 \\ne 0$, so $\\rho(A) \\ge 2$. For $\\rho(A) = 2$ we require $|A| = 0$. Expanding along column 1: $1(30 - 26) + b(10 - 12) = 4 - 2b = 0 \\implies b = 2$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.15, Q20 (A.M.I.E.T.E., Dec. 2009)",
+      "tags": ["rank", "determinant"]
+    },
+    {
+      "key": "ex-4-42-consistency-criterion",
+      "type": "mcq",
+      "prompt": "A non-homogeneous linear system $AX = B$ in $n$ unknowns with augmented matrix $C = [A : B]$ has infinitely many solutions if and only if:",
+      "image": "/diagrams/get-209/matrices-inverse-rank-and-linear-systems-nonhomogeneous-flowchart.svg",
+      "options": [
+        { "label": "A", "text": "$R(A) \\ne R(C)$", "correct": false },
+        { "label": "B", "text": "$R(A) = R(C) = n$", "correct": false },
+        { "label": "C", "text": "$R(A) = R(C) < n$", "correct": true },
+        { "label": "D", "text": "$R(A) < R(C) = n$", "correct": false }
+      ],
+      "solution": "By the Rouché–Capelli rank theorem (§4.42), $AX = B$ is consistent iff $R(A) = R(C)$, and it has infinitely many solutions when this common rank $r$ is strictly less than the number of unknowns $n$, yielding $n - r$ free parameters.",
+      "difficulty": "easy",
+      "source": "H. K. Dass, Ch. 4, §4.42",
+      "tags": ["consistency", "linear-systems"]
+    },
+    {
+      "key": "ex-4-16-q4-unique-lambda",
+      "type": "numeric",
+      "prompt": "Find the excluded value of $\\lambda$ (i.e., the value for which the system does NOT have a unique solution) for $x + y + 4z = 1$, $x + 2y - 2z = 1$, $\\lambda x + y + z = 1$.",
+      "answer": 0.7,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "A $3\\times 3$ system has a unique solution iff $|A| \\ne 0$. Compute $|A| = \\begin{vmatrix} 1 & 1 & 4 \\\\ 1 & 2 & -2 \\\\ \\lambda & 1 & 1 \\end{vmatrix} = 1(2+2) - 1(1+2\\lambda) + 4(1-2\\lambda) = 4 - 1 - 2\\lambda + 4 - 8\\lambda = 7 - 10\\lambda$. Setting $|A| = 0$ gives $\\lambda = \\frac{7}{10} = 0.7$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.16, Q4 (A.M.I.E., Winter 2000)",
+      "tags": ["consistency", "unique-solution"]
+    },
+    {
+      "key": "ex-4-16-q5-param-a-b",
+      "type": "mcq",
+      "prompt": "For the system $\\begin{bmatrix} 3 & -2 & 1 \\\\ 5 & -8 & 9 \\\\ 2 & 1 & a \\end{bmatrix}\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} b \\\\ 3 \\\\ -1 \\end{bmatrix}$, which values of $a$ and $b$ yield infinitely many solutions?",
+      "options": [
+        { "label": "A", "text": "$a = -3$ and $b = \\dfrac{1}{3}$", "correct": true },
+        { "label": "B", "text": "$a = -3$ and $b \\ne \\dfrac{1}{3}$", "correct": false },
+        { "label": "C", "text": "$a = 3$ and $b = \\dfrac{1}{3}$", "correct": false },
+        { "label": "D", "text": "$a \\ne -3$ and $b = \\dfrac{1}{3}$", "correct": false }
+      ],
+      "solution": "Computing $|A| = 3(-8a - 9) + 2(5a - 18) + 1(5 + 16) = -14a - 42 = -14(a + 3)$, so $|A| = 0 \\iff a = -3$. Setting $a = -3$ and row-reducing $[A : B]$ yields the last row $[0,\\; 0,\\; 0 \\mid 63b - 21]$. For infinitely many solutions we need $R(A) = R(C) = 2$, so $63b - 21 = 0 \\implies b = \\frac{1}{3}$.",
+      "difficulty": "hard",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.16, Q5",
+      "tags": ["consistency", "parametric-systems"]
+    },
+    {
+      "key": "ex-4-16-q6-consistent-lambda",
+      "type": "numeric",
+      "prompt": "Find the value of $\\lambda$ that makes the linear system $x + y - z + t = 2$, $2y + 4z + 2t = 3$, $x + 2y + z + 2t = \\lambda$ consistent.",
+      "answer": 3.5,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Form $C = \\begin{bmatrix} 1 & 1 & -1 & 1 & 2 \\\\ 0 & 2 & 4 & 2 & 3 \\\\ 1 & 2 & 1 & 2 & \\lambda \\end{bmatrix}$. Apply $R_3 \\to R_3 - R_1$: $R_3 = [0, 1, 2, 1, \\lambda - 2]$. Then $R_3 \\to 2R_3 - R_2$: $R_3 = [0, 0, 0, 0, 2\\lambda - 7]$. For consistency ($R(A) = R(C) = 2$), $2\\lambda - 7 = 0 \\implies \\lambda = \\frac{7}{2} = 3.5$.",
+      "difficulty": "medium",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.16, Q6",
+      "tags": ["consistency", "echelon-form"]
+    },
+    {
+      "key": "ex-4-16-q10-homogeneous-two-indep",
+      "type": "mcq",
+      "prompt": "For what value of $\\lambda$ does the homogeneous system $\\lambda x_1 - x_2 - x_3 = 0$, $-x_1 + \\lambda x_2 - x_3 = 0$, $-x_1 - x_2 + \\lambda x_3 = 0$ have **exactly two** linearly independent solutions?",
+      "image": "/diagrams/get-209/matrices-inverse-rank-and-linear-systems-homogeneous-flowchart.svg",
+      "options": [
+        { "label": "A", "text": "$\\lambda = 2$", "correct": false },
+        { "label": "B", "text": "$\\lambda = -1$", "correct": true },
+        { "label": "C", "text": "$\\lambda = 0$", "correct": false },
+        { "label": "D", "text": "$\\lambda = 1$", "correct": false }
+      ],
+      "solution": "The number of linearly independent solutions is $n - R(A) = 3 - R(A)$, so having exactly $2$ independent solutions requires $R(A) = 1$. Factoring $|A| = (\\lambda - 2)(\\lambda + 1)^2 = 0$ gives $\\lambda = 2$ (where $R(A) = 2$, giving $1$ independent solution) or $\\lambda = -1$ (where every row is $[-1, -1, -1]$, so $R(A) = 1$, giving $3 - 1 = 2$ independent solutions).",
+      "difficulty": "hard",
+      "source": "H. K. Dass, Ch. 4, Exercise 4.16, Q10",
+      "tags": ["homogeneous-systems", "rank"]
+    }
+  ]
+}

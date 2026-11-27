@@ -395,11 +395,6 @@ export default function LandingPage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/library" className="hover:text-[#FAF9F5]">
-                    Part 2 Library
-                  </Link>
-                </li>
-                <li>
                   <Link href="/progress" className="hover:text-[#FAF9F5]">
                     Study Progress
                   </Link>

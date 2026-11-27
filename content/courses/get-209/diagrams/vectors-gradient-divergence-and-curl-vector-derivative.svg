@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 298" role="img" aria-label="Differentiation of a position vector with tangent at P">
+  <defs>
+    <marker id="ah0F766E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0F766E"/></marker>
+    <marker id="ah1D4ED8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1D4ED8"/></marker>
+    <marker id="ahEA580C" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EA580C"/></marker>
+  </defs>
+  <rect width="560" height="298" rx="14" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">§5.23 (redrawn) — dr/dt is along the tangent at P</text>
+  <path d="M 170 230 Q 250 70 480 90" fill="none" stroke="#141413" stroke-width="2.4"/>
+  <circle cx="60" cy="230" r="3.5" fill="#141413"/>
+  <circle cx="300" cy="88" r="3.5" fill="#141413"/>
+  <circle cx="410" cy="90" r="3.5" fill="#141413"/>
+  <line x1="60" y1="230" x2="410" y2="90" stroke="#0F766E" stroke-width="2.2" marker-end="url(#ah0F766E)"/>
+  <line x1="60" y1="230" x2="300" y2="88" stroke="#1D4ED8" stroke-width="2.2" marker-end="url(#ah1D4ED8)"/>
+  <line x1="300" y1="88" x2="410" y2="90" stroke="#EA580C" stroke-width="2.4" marker-end="url(#ahEA580C)"/>
+  <text x="46" y="252" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">O</text>
+  <text x="284" y="76" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">P (r)</text>
+  <text x="414" y="82" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">Q</text>
+  <text x="350" y="116" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#EA580C" text-anchor="start" font-style="italic">δr</text>
+  <text x="190" y="176" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#0F766E" text-anchor="start" font-style="italic">r + δr</text>
+  <text x="150" y="128" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#1D4ED8" text-anchor="start" font-style="italic">r</text>
+  <text x="430" y="66" font-family="system-ui,sans-serif" font-size="13" font-weight="400" fill="#64748B" text-anchor="start">tangent</text>
+  <text x="20" y="282" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="#64748B" text-anchor="start">δr/δt → dr/dt as δt → 0: velocity along the tangent; d²r/dt² = acceleration</text>
+</svg>

@@ -96,3 +96,49 @@ export function getTopicDocument(courseSlug: string, topicSlug: string): TopicDo
     content: parsed.content,
   };
 }
+
+export interface TopicHeading {
+  level: 2 | 3;
+  text: string;
+  id: string;
+}
+
+/**
+ * Stable anchor id for a heading. Book-numbered headings ("1.7 Partial
+ * Derivatives", "§4.3 …") anchor on their section number so the id is the same
+ * whether derived from the MDX source or from the rendered heading text.
+ */
+export function headingId(text: string): string {
+  const clean = text.replace(/\$[^$]*\$/g, "").replace(/[§*_`]/g, "").trim();
+  const numbered = clean.match(/^(\d+(?:\.\d+)*)(?=[\s.:)]|$)/);
+  if (numbered?.[1]) return `s-${numbered[1].replace(/\./g, "-")}`;
+  return (
+    "h-" +
+    clean
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 60)
+  );
+}
+
+export function listTopicHeadings(content: string): TopicHeading[] {
+  const out: TopicHeading[] = [];
+  const seen = new Set<string>();
+  let inFence = false;
+  for (const line of content.split(/\r?\n/)) {
+    if (line.trimStart().startsWith("```")) inFence = !inFence;
+    if (inFence) continue;
+    const m = line.match(/^(#{2,3})\s+(.+?)\s*$/);
+    if (!m?.[1] || !m[2]) continue;
+    const id = headingId(m[2]);
+    if (seen.has(id)) continue;
+    seen.add(id);
+    out.push({
+      level: m[1].length as 2 | 3,
+      text: m[2].replace(/\$([^$]*)\$/g, "$1").replace(/[*_`]/g, ""),
+      id,
+    });
+  }
+  return out;
+}

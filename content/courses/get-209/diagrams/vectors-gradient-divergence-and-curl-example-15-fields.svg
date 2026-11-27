@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 304" role="img" aria-label="Sketch of constant field m i and radial field m r">
+  <defs>
+    <marker id="ah0F766E" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0F766E"/></marker>
+    <marker id="ah141413" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#141413"/></marker>
+    <marker id="ahEA580C" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#EA580C"/></marker>
+  </defs>
+  <rect width="620" height="304" rx="14" fill="#FFFFFF"/>
+  <text x="20" y="28" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#141413" text-anchor="start">Example 15 (redrawn) — fields A = m i and A = m r</text>
+  <line x1="130" y1="230" x2="130" y2="50" stroke="#141413" stroke-width="1.6" marker-end="url(#ah141413)"/>
+  <line x1="130" y1="130" x2="280" y2="130" stroke="#141413" stroke-width="1.6" marker-end="url(#ah141413)"/>
+  <line x1="130" y1="130" x2="80" y2="180" stroke="#141413" stroke-width="1.6"/>
+  <line x1="130" y1="130" x2="50" y2="200" stroke="#0F766E" stroke-width="3" marker-end="url(#ah0F766E)"/>
+  <text x="112" y="56" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">k</text>
+  <text x="284" y="128" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">j</text>
+  <text x="60" y="222" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">i</text>
+  <text x="96" y="252" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#0F766E" text-anchor="start">(i)  A = m i</text>
+  <text x="136" y="150" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="#141413" text-anchor="start">O</text>
+  <line x1="430" y1="230" x2="430" y2="50" stroke="#141413" stroke-width="1.6" marker-end="url(#ah141413)"/>
+  <line x1="430" y1="130" x2="580" y2="130" stroke="#141413" stroke-width="1.6" marker-end="url(#ah141413)"/>
+  <line x1="430" y1="130" x2="380" y2="180" stroke="#141413" stroke-width="1.6"/>
+  <line x1="430" y1="130" x2="500" y2="60" stroke="#EA580C" stroke-width="3" marker-end="url(#ahEA580C)"/>
+  <text x="412" y="56" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">k</text>
+  <text x="584" y="128" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">j</text>
+  <text x="376" y="196" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#141413" text-anchor="start">i</text>
+  <text x="396" y="252" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#EA580C" text-anchor="start">(ii)  A = m r</text>
+  <text x="20" y="288" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="#64748B" text-anchor="start">(i) ∇·A = 0, ∇×A = 0;   (ii) for m = 1: ∇·r = 3, ∇×r = 0 (number line at 3)</text>
+</svg>

@@ -5,7 +5,6 @@ import {
   BookOpen,
   ClipboardCheck,
   Home,
-  Library,
   LogOut,
   Shield,
 } from "lucide-react";
@@ -31,7 +30,6 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/dashboard", label: "Home", icon: Home },
   { href: "/courses", label: "Notes", icon: BookOpen },
   { href: "/tests", label: "Tests", icon: ClipboardCheck },
-  { href: "/library", label: "Library", icon: Library },
   { href: "/progress", label: "Progress", icon: BarChart3 },
   { href: "/admin", label: "Admin", icon: Shield, adminOnly: true },
 ];

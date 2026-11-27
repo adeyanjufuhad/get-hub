@@ -1,0 +1,1195 @@
+---
+title: "Total Derivatives, Change of Variables, Errors & Jacobians"
+order: 3
+topicId: "22222222-2222-4222-8222-222222290004"
+courseCode: "GET 209"
+courseSlug: "get-209"
+ccmasRef: "Total derivatives; chain rule; approximation of errors; Jacobians"
+textbookRef: "H. K. Dass · Ch. 1, §1.12–1.25"
+outcomes:
+  - "Write the total differential $dz$ and the total differential coefficient $\\dfrac{dz}{dt}$ of a function of several variables and evaluate them."
+  - "Change the independent variables of a function (to $u,v$, to polar co-ordinates, to $r,\\theta,\\phi$) and transform first- and second-order partial derivatives and equations."
+  - "Find $\\dfrac{dy}{dx}$ and $\\dfrac{d^2y}{dx^2}$ of an implicit function using $\\dfrac{dy}{dx}=-\\dfrac{f_x}{f_y}$."
+  - "Write the tangent plane and normal line to a surface at a point."
+  - "Estimate absolute, relative and percentage errors and approximate values using the total differential."
+  - "Compute Jacobians, use their properties, test functional dependence, and apply the Jacobian method to implicit functions."
+status: "published"
+isFree: true
+---
+
+## Overview
+
+In §1.7–1.11 only *one* variable at a time was allowed to change. Here every variable of a function is allowed to change together. That single idea produces the **total differential** $dz=\dfrac{\partial f}{\partial x}\,dx+\dfrac{\partial f}{\partial y}\,dy$, and from it the whole toolkit of this part of Chapter 1: the chain rule for composite functions, change of variables (including polar co-ordinates), implicit differentiation, geometrical meaning of partial derivatives, tangent planes and normal lines, error estimation, and the Jacobian determinant (including its properties, functional dependence, and implicit systems). Each section below follows Dass's numbering (§1.12 to §1.25) and uses his solved examples and exercises.
+
+### 1.12 Total Differential
+
+When we differentiate partially, only one variable varies while the others are frozen. In total differentiation the increments are given to **all** the variables simultaneously. The total differential is the first-order change of the function produced by those simultaneous small changes.
+
+### 1.13 Total Differential Co-efficient
+
+Let $z=f(x,y)$. Give $x$ and $y$ small increments $\delta x,\delta y$, and let $\delta z$ be the resulting increment in $z$. Then
+
+$$\delta z=f(x+\delta x,\,y+\delta y)-f(x,y).$$
+
+Adding and subtracting $f(x,y+\delta y)$ splits this into a change in $x$ (with $y+\delta y$ held) and a change in $y$ (with $x$ held):
+
+$$\delta z=\frac{f(x+\delta x,y+\delta y)-f(x,y+\delta y)}{\delta x}\,\delta x+\frac{f(x,y+\delta y)-f(x,y)}{\delta y}\,\delta y .$$
+
+Letting $\delta x\to0$ and $\delta y\to0$, each quotient becomes a partial derivative.
+
+<RuleBox kind="formula" title="§1.13 Total differential of z = f(x, y)">
+
+$$dz=\frac{\partial f}{\partial x}\,dx+\frac{\partial f}{\partial y}\,dy$$
+
+Here $dz$ is called the **total differential** of $z$. For $u=f(x,y,z)$ the same pattern gives $du=\dfrac{\partial u}{\partial x}\,dx+\dfrac{\partial u}{\partial y}\,dy+\dfrac{\partial u}{\partial z}\,dz$.
+
+</RuleBox>
+
+### 1.14 Change of Two Independent Variables x and y by Any Other Variable t
+
+Suppose $z=f(x,y)$ where $x=\varphi(t)$ and $y=\psi(t)$. Then $z$ is a **composite function of $t$** alone. Dividing the total differential by $dt$ gives the rule.
+
+<RuleBox kind="formula" title="§1.14 Differentiation of a composite function (total differential co-efficient)">
+
+$$\frac{dz}{dt}=\frac{\partial z}{\partial x}\frac{dx}{dt}+\frac{\partial z}{\partial y}\frac{dy}{dt}$$
+
+Here $\dfrac{dz}{dt}$ is called the **total differential co-efficient** of $z$ with respect to $t$.
+
+</RuleBox>
+
+### 1.15 Change in the Independent Variables x and y by Other Two Variables u and v
+
+Let $z=f(x,y)$ with $x=\varphi(u,v)$ and $y=\psi(u,v)$. Applying the previous rule while $v$ is held fixed, and then while $u$ is held fixed:
+
+<RuleBox kind="formula" title="§1.15 Chain rule for two new variables u, v">
+
+$$\frac{\partial z}{\partial u}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u},\qquad \frac{\partial z}{\partial v}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial v}$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 30 (§1.15)"
+  source="H. K. Dass, Ch. 1, Example 30"
+  problem="If $u=x^3+y^3$ where $x=a\\cos t$, $y=b\\sin t$, find $\\dfrac{du}{dt}$ and verify the result."
+  steps={[
+    "Use the total differential co-efficient: $\\dfrac{du}{dt}=\\dfrac{\\partial u}{\\partial x}\\dfrac{dx}{dt}+\\dfrac{\\partial u}{\\partial y}\\dfrac{dy}{dt}$.",
+    "$\\dfrac{\\partial u}{\\partial x}=3x^2$, $\\dfrac{\\partial u}{\\partial y}=3y^2$, $\\dfrac{dx}{dt}=-a\\sin t$, $\\dfrac{dy}{dt}=b\\cos t$.",
+    "So $\\dfrac{du}{dt}=(3x^2)(-a\\sin t)+(3y^2)(b\\cos t)=-3a^3\\cos^2t\\sin t+3b^3\\sin^2t\\cos t$ ... (1).",
+    "Verification: substitute first, $u=a^3\\cos^3t+b^3\\sin^3t$. Differentiating directly, $\\dfrac{du}{dt}=-3a^3\\cos^2t\\sin t+3b^3\\sin^2t\\cos t$ ... (2).",
+    "Results (1) and (2) are the same. Verified."
+  ]}
+  answer="$\\dfrac{du}{dt}=-3a^3\\cos^2t\\sin t+3b^3\\sin^2t\\cos t$"
+/>
+
+<StepRevealExample
+  title="Example 31 (§1.15)"
+  source="H. K. Dass, Ch. 1, Example 31 (M.U. 2009; Nagpur University 2002)"
+  problem="If $z=f(x,y)$ where $x=e^u\\cos v$ and $y=e^u\\sin v$, show that (i) $y\\dfrac{\\partial z}{\\partial u}+x\\dfrac{\\partial z}{\\partial v}=e^{2u}\\dfrac{\\partial z}{\\partial y}$; (ii) $\\left(\\dfrac{\\partial z}{\\partial x}\\right)^2+\\left(\\dfrac{\\partial z}{\\partial y}\\right)^2=e^{-2u}\\left[\\left(\\dfrac{\\partial z}{\\partial u}\\right)^2+\\left(\\dfrac{\\partial z}{\\partial v}\\right)^2\\right]$."
+  steps={[
+    "Partial derivatives of the substitutions: $\\dfrac{\\partial x}{\\partial u}=e^u\\cos v$, $\\dfrac{\\partial x}{\\partial v}=-e^u\\sin v$, $\\dfrac{\\partial y}{\\partial u}=e^u\\sin v$, $\\dfrac{\\partial y}{\\partial v}=e^u\\cos v$.",
+    "(i) $\\dfrac{\\partial z}{\\partial u}=\\dfrac{\\partial z}{\\partial x}e^u\\cos v+\\dfrac{\\partial z}{\\partial y}e^u\\sin v=x\\dfrac{\\partial z}{\\partial x}+y\\dfrac{\\partial z}{\\partial y}$. Multiplying by $y$: $y\\dfrac{\\partial z}{\\partial u}=xy\\dfrac{\\partial z}{\\partial x}+y^2\\dfrac{\\partial z}{\\partial y}$ ... (1).",
+    "$\\dfrac{\\partial z}{\\partial v}=\\dfrac{\\partial z}{\\partial x}(-e^u\\sin v)+\\dfrac{\\partial z}{\\partial y}(e^u\\cos v)=-y\\dfrac{\\partial z}{\\partial x}+x\\dfrac{\\partial z}{\\partial y}$. Multiplying by $x$: $x\\dfrac{\\partial z}{\\partial v}=-xy\\dfrac{\\partial z}{\\partial x}+x^2\\dfrac{\\partial z}{\\partial y}$ ... (2).",
+    "Add (1) and (2): $y\\dfrac{\\partial z}{\\partial u}+x\\dfrac{\\partial z}{\\partial v}=(x^2+y^2)\\dfrac{\\partial z}{\\partial y}=(e^{2u}\\cos^2v+e^{2u}\\sin^2v)\\dfrac{\\partial z}{\\partial y}=e^{2u}\\dfrac{\\partial z}{\\partial y}$. Proved.",
+    "(ii) From $\\dfrac{\\partial z}{\\partial u}=e^u\\cos v\\,z_x+e^u\\sin v\\,z_y$ we get $e^{-u}\\dfrac{\\partial z}{\\partial u}=\\cos v\\,z_x+\\sin v\\,z_y$. Squaring: $e^{-2u}z_u^2=z_x^2\\cos^2v+z_y^2\\sin^2v+2z_xz_y\\sin v\\cos v$ ... (3).",
+    "From $\\dfrac{\\partial z}{\\partial v}=-e^u\\sin v\\,z_x+e^u\\cos v\\,z_y$: $e^{-u}z_v=-\\sin v\\,z_x+\\cos v\\,z_y$. Squaring: $e^{-2u}z_v^2=z_x^2\\sin^2v+z_y^2\\cos^2v-2z_xz_y\\sin v\\cos v$ ... (4).",
+    "Add (3) and (4): $e^{-2u}\\left[z_u^2+z_v^2\\right]=z_x^2(\\sin^2v+\\cos^2v)+z_y^2(\\sin^2v+\\cos^2v)=\\left(\\dfrac{\\partial z}{\\partial x}\\right)^2+\\left(\\dfrac{\\partial z}{\\partial y}\\right)^2$. Proved."
+  ]}
+  answer="Both identities are proved."
+/>
+
+<StepRevealExample
+  title="Example 32 (§1.15)"
+  source="H. K. Dass, Ch. 1, Example 32 (Nagpur University, Winter 2002; U.P. I Sem., Winter 2002; A.M.I.E. Winter 2001)"
+  problem="If $u=u(y-z,\\;z-x,\\;x-y)$, prove that $\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial u}{\\partial z}=0$."
+  steps={[
+    "Put $r=y-z$, $s=z-x$, $t=x-y$ so that $u=u(r,s,t)$.",
+    "$\\dfrac{\\partial u}{\\partial x}=\\dfrac{\\partial u}{\\partial r}\\dfrac{\\partial r}{\\partial x}+\\dfrac{\\partial u}{\\partial s}\\dfrac{\\partial s}{\\partial x}+\\dfrac{\\partial u}{\\partial t}\\dfrac{\\partial t}{\\partial x}=\\dfrac{\\partial u}{\\partial r}(0)+\\dfrac{\\partial u}{\\partial s}(-1)+\\dfrac{\\partial u}{\\partial t}(1)=-\\dfrac{\\partial u}{\\partial s}+\\dfrac{\\partial u}{\\partial t}$ ... (1).",
+    "$\\dfrac{\\partial u}{\\partial y}=\\dfrac{\\partial u}{\\partial r}(1)+\\dfrac{\\partial u}{\\partial s}(0)+\\dfrac{\\partial u}{\\partial t}(-1)=\\dfrac{\\partial u}{\\partial r}-\\dfrac{\\partial u}{\\partial t}$ ... (2).",
+    "$\\dfrac{\\partial u}{\\partial z}=\\dfrac{\\partial u}{\\partial r}(-1)+\\dfrac{\\partial u}{\\partial s}(1)+\\dfrac{\\partial u}{\\partial t}(0)=-\\dfrac{\\partial u}{\\partial r}+\\dfrac{\\partial u}{\\partial s}$ ... (3).",
+    "Adding (1), (2), (3), every term cancels: $\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial u}{\\partial z}=0$. Proved."
+  ]}
+  answer="$\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial u}{\\partial z}=0$"
+/>
+
+<StepRevealExample
+  title="Example 33 (§1.15)"
+  source="H. K. Dass, Ch. 1, Example 33 (U.P. I Sem., Dec. 2004; Nagpur University, Summer 2000)"
+  problem="If $u=u\\left(\\dfrac{y-x}{xy},\\dfrac{z-x}{zx}\\right)$, show that $x^2\\dfrac{\\partial u}{\\partial x}+y^2\\dfrac{\\partial u}{\\partial y}+z^2\\dfrac{\\partial u}{\\partial z}=0$."
+  steps={[
+    "Put $r=\\dfrac{y-x}{xy}=\\dfrac1x-\\dfrac1y$ and $s=\\dfrac{z-x}{zx}=\\dfrac1x-\\dfrac1z$, so $u=u(r,s)$.",
+    "Then $\\dfrac{\\partial r}{\\partial x}=-\\dfrac1{x^2}$, $\\dfrac{\\partial s}{\\partial x}=-\\dfrac1{x^2}$, $\\dfrac{\\partial r}{\\partial y}=\\dfrac1{y^2}$, $\\dfrac{\\partial s}{\\partial y}=0$, $\\dfrac{\\partial r}{\\partial z}=0$, $\\dfrac{\\partial s}{\\partial z}=\\dfrac1{z^2}$.",
+    "$\\dfrac{\\partial u}{\\partial x}=\\dfrac{\\partial u}{\\partial r}\\left(-\\dfrac1{x^2}\\right)+\\dfrac{\\partial u}{\\partial s}\\left(-\\dfrac1{x^2}\\right)$, so $x^2\\dfrac{\\partial u}{\\partial x}=-\\dfrac{\\partial u}{\\partial r}-\\dfrac{\\partial u}{\\partial s}$ ... (1).",
+    "$\\dfrac{\\partial u}{\\partial y}=\\dfrac{\\partial u}{\\partial r}\\dfrac1{y^2}+\\dfrac{\\partial u}{\\partial s}\\cdot0$, so $y^2\\dfrac{\\partial u}{\\partial y}=\\dfrac{\\partial u}{\\partial r}$ ... (2).",
+    "$\\dfrac{\\partial u}{\\partial z}=\\dfrac{\\partial u}{\\partial r}\\cdot0+\\dfrac{\\partial u}{\\partial s}\\dfrac1{z^2}$, so $z^2\\dfrac{\\partial u}{\\partial z}=\\dfrac{\\partial u}{\\partial s}$ ... (3).",
+    "Adding (1), (2) and (3): $x^2\\dfrac{\\partial u}{\\partial x}+y^2\\dfrac{\\partial u}{\\partial y}+z^2\\dfrac{\\partial u}{\\partial z}=0$. Proved."
+  ]}
+  answer="$x^2u_x+y^2u_y+z^2u_z=0$"
+/>
+
+<StepRevealExample
+  title="Example 34 (§1.15)"
+  source="H. K. Dass, Ch. 1, Example 34"
+  problem="If $\\varphi(cx-az,\\;cy-bz)=0$, show that $ap+bq=c$, where $p=\\dfrac{\\partial z}{\\partial x}$ and $q=\\dfrac{\\partial z}{\\partial y}$."
+  steps={[
+    "Here $x$ and $y$ are independent and $z$ depends on them. Put $r=cx-az$, $s=cy-bz$, so $\\varphi(r,s)=0$.",
+    "$\\dfrac{\\partial r}{\\partial x}=c-a\\dfrac{\\partial z}{\\partial x}$, $\\dfrac{\\partial s}{\\partial x}=-b\\dfrac{\\partial z}{\\partial x}$, $\\dfrac{\\partial r}{\\partial y}=-a\\dfrac{\\partial z}{\\partial y}$, $\\dfrac{\\partial s}{\\partial y}=c-b\\dfrac{\\partial z}{\\partial y}$.",
+    "Differentiate $\\varphi=0$ with respect to $x$: $0=\\dfrac{\\partial\\varphi}{\\partial r}\\left(c-a\\dfrac{\\partial z}{\\partial x}\\right)+\\dfrac{\\partial\\varphi}{\\partial s}\\left(-b\\dfrac{\\partial z}{\\partial x}\\right)$, i.e. $c\\dfrac{\\partial\\varphi}{\\partial r}=\\dfrac{\\partial z}{\\partial x}\\left(a\\dfrac{\\partial\\varphi}{\\partial r}+b\\dfrac{\\partial\\varphi}{\\partial s}\\right)$. Hence $a\\dfrac{\\partial z}{\\partial x}=\\dfrac{ac\\,\\varphi_r}{a\\varphi_r+b\\varphi_s}$ ... (1).",
+    "Differentiate with respect to $y$: $0=\\varphi_r\\left(-a\\dfrac{\\partial z}{\\partial y}\\right)+\\varphi_s\\left(c-b\\dfrac{\\partial z}{\\partial y}\\right)$, so $c\\varphi_s=\\dfrac{\\partial z}{\\partial y}(a\\varphi_r+b\\varphi_s)$ and $b\\dfrac{\\partial z}{\\partial y}=\\dfrac{bc\\,\\varphi_s}{a\\varphi_r+b\\varphi_s}$ ... (2).",
+    "Add (1) and (2): $a\\dfrac{\\partial z}{\\partial x}+b\\dfrac{\\partial z}{\\partial y}=\\dfrac{c\\,(a\\varphi_r+b\\varphi_s)}{a\\varphi_r+b\\varphi_s}=c$, i.e. $ap+bq=c$. Proved."
+  ]}
+  answer="$ap+bq=c$"
+/>
+
+### 1.16 Change in Both the Independent and Dependent Variables (Polar Co-ordinates)
+
+Changing from Cartesian $(x,y)$ to polar $(r,\theta)$ uses $x=r\cos\theta$, $y=r\sin\theta$, with $r^2=x^2+y^2$ and $\theta=\tan^{-1}\dfrac yx$. A function $w=f(x,y)$ then becomes a function of $r,\theta$, and the chain rule of §1.15 supplies the first derivatives. For second derivatives, apply the first-derivative operators twice.
+
+<RuleBox kind="formula" title="§1.16 Polar co-ordinate operators">
+
+For $x=r\cos\theta,\;y=r\sin\theta$:
+
+$$\frac{\partial}{\partial x}=\cos\theta\frac{\partial}{\partial r}-\frac{\sin\theta}{r}\frac{\partial}{\partial\theta},\qquad \frac{\partial}{\partial y}=\sin\theta\frac{\partial}{\partial r}+\frac{\cos\theta}{r}\frac{\partial}{\partial\theta}$$
+
+These operators are applied once for $u_x,u_y$ and again (to the result) for $u_{xx},u_{yy}$.
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/total-differentials-jacobians-and-errors-polar-coordinates.svg" caption="Polar co-ordinates: x = r cos θ, y = r sin θ, with the partial derivatives ∂x/∂r = cos θ, ∂y/∂r = sin θ, ∂x/∂θ = −r sin θ, ∂y/∂θ = r cos θ used in the chain rule (redrawn illustration)." />
+
+<StepRevealExample
+  title="Example 35 (§1.16)"
+  source="H. K. Dass, Ch. 1, Example 35"
+  problem="If $w=f(x,y)$, $x=r\\cos\\theta$, $y=r\\sin\\theta$, show that $\\left(\\dfrac{\\partial w}{\\partial r}\\right)^2+\\dfrac1{r^2}\\left(\\dfrac{\\partial w}{\\partial\\theta}\\right)^2=\\left(\\dfrac{\\partial f}{\\partial x}\\right)^2+\\left(\\dfrac{\\partial f}{\\partial y}\\right)^2$."
+  steps={[
+    "$\\dfrac{\\partial x}{\\partial r}=\\cos\\theta$, $\\dfrac{\\partial y}{\\partial r}=\\sin\\theta$, $\\dfrac{\\partial x}{\\partial\\theta}=-r\\sin\\theta$, $\\dfrac{\\partial y}{\\partial\\theta}=r\\cos\\theta$.",
+    "$\\dfrac{\\partial w}{\\partial r}=\\dfrac{\\partial f}{\\partial x}\\cos\\theta+\\dfrac{\\partial f}{\\partial y}\\sin\\theta$ ... (1).",
+    "$\\dfrac{\\partial w}{\\partial\\theta}=\\dfrac{\\partial f}{\\partial x}(-r\\sin\\theta)+\\dfrac{\\partial f}{\\partial y}(r\\cos\\theta)$, so $\\dfrac1r\\dfrac{\\partial w}{\\partial\\theta}=-\\dfrac{\\partial f}{\\partial x}\\sin\\theta+\\dfrac{\\partial f}{\\partial y}\\cos\\theta$ ... (2).",
+    "Square (1) and (2) and add. The cross terms $\\pm2f_xf_y\\sin\\theta\\cos\\theta$ cancel and $\\sin^2\\theta+\\cos^2\\theta=1$, leaving $\\left(\\dfrac{\\partial w}{\\partial r}\\right)^2+\\dfrac1{r^2}\\left(\\dfrac{\\partial w}{\\partial\\theta}\\right)^2=\\left(\\dfrac{\\partial f}{\\partial x}\\right)^2+\\left(\\dfrac{\\partial f}{\\partial y}\\right)^2$. Proved."
+  ]}
+  answer="Proved."
+/>
+
+<StepRevealExample
+  title="Example 36 (§1.16)"
+  source="H. K. Dass, Ch. 1, Example 36"
+  problem="Transform the equation $\\dfrac{\\partial^2u}{\\partial x^2}+\\dfrac{\\partial^2u}{\\partial y^2}=0$ into polar co-ordinates."
+  steps={[
+    "With $r^2=x^2+y^2$, $\\theta=\\tan^{-1}\\dfrac yx$: $\\dfrac{\\partial r}{\\partial x}=\\dfrac xr=\\cos\\theta$ and $\\dfrac{\\partial\\theta}{\\partial x}=\\dfrac{-y}{x^2+y^2}=-\\dfrac{\\sin\\theta}{r}$. So $\\dfrac{\\partial u}{\\partial x}=\\cos\\theta\\dfrac{\\partial u}{\\partial r}-\\dfrac{\\sin\\theta}{r}\\dfrac{\\partial u}{\\partial\\theta}$.",
+    "Apply the operator $\\left(\\cos\\theta\\dfrac{\\partial}{\\partial r}-\\dfrac{\\sin\\theta}{r}\\dfrac{\\partial}{\\partial\\theta}\\right)$ again and collect terms: $\\dfrac{\\partial^2u}{\\partial x^2}=\\cos^2\\theta\\dfrac{\\partial^2u}{\\partial r^2}+\\dfrac{2\\sin\\theta\\cos\\theta}{r^2}\\dfrac{\\partial u}{\\partial\\theta}-\\dfrac{2\\sin\\theta\\cos\\theta}{r}\\dfrac{\\partial^2u}{\\partial r\\partial\\theta}+\\dfrac{\\sin^2\\theta}{r}\\dfrac{\\partial u}{\\partial r}+\\dfrac{\\sin^2\\theta}{r^2}\\dfrac{\\partial^2u}{\\partial\\theta^2}$ ... (1).",
+    "Similarly $\\dfrac{\\partial r}{\\partial y}=\\dfrac yr=\\sin\\theta$, $\\dfrac{\\partial\\theta}{\\partial y}=\\dfrac x{x^2+y^2}=\\dfrac{\\cos\\theta}{r}$, so $\\dfrac{\\partial u}{\\partial y}=\\sin\\theta\\dfrac{\\partial u}{\\partial r}+\\dfrac{\\cos\\theta}{r}\\dfrac{\\partial u}{\\partial\\theta}$.",
+    "Applying $\\left(\\sin\\theta\\dfrac{\\partial}{\\partial r}+\\dfrac{\\cos\\theta}{r}\\dfrac{\\partial}{\\partial\\theta}\\right)$ again: $\\dfrac{\\partial^2u}{\\partial y^2}=\\sin^2\\theta\\dfrac{\\partial^2u}{\\partial r^2}-\\dfrac{2\\sin\\theta\\cos\\theta}{r^2}\\dfrac{\\partial u}{\\partial\\theta}+\\dfrac{2\\sin\\theta\\cos\\theta}{r}\\dfrac{\\partial^2u}{\\partial r\\partial\\theta}+\\dfrac{\\cos^2\\theta}{r}\\dfrac{\\partial u}{\\partial r}+\\dfrac{\\cos^2\\theta}{r^2}\\dfrac{\\partial^2u}{\\partial\\theta^2}$ ... (2).",
+    "Add (1) and (2). The $\\dfrac{\\partial u}{\\partial\\theta}$ and mixed terms cancel and each remaining coefficient is $\\sin^2\\theta+\\cos^2\\theta=1$."
+  ]}
+  answer="$\\dfrac{\\partial^2u}{\\partial r^2}+\\dfrac1r\\dfrac{\\partial u}{\\partial r}+\\dfrac1{r^2}\\dfrac{\\partial^2u}{\\partial\\theta^2}=0$"
+/>
+
+<StepRevealExample
+  title="Example 37 (§1.16)"
+  source="H. K. Dass, Ch. 1, Example 37 (Nagpur University, Winter 2004; A.M.I.E.T.E., Winter 2003; U.P. I Semester, Winter 2005, 2000)"
+  problem="If $u=f(r)$ and $x=r\\cos\\theta$, $y=r\\sin\\theta$, prove that $\\dfrac{\\partial^2u}{\\partial x^2}+\\dfrac{\\partial^2u}{\\partial y^2}=f''(r)+\\dfrac1rf'(r)$."
+  steps={[
+    "$r^2=x^2+y^2$ gives $\\dfrac{\\partial r}{\\partial x}=\\dfrac xr$. Since $u=f(r)$: $\\dfrac{\\partial u}{\\partial x}=\\dfrac{df}{dr}\\dfrac xr$.",
+    "Differentiate again with respect to $x$ (product and quotient rule): $\\dfrac{\\partial^2u}{\\partial x^2}=\\dfrac{d^2f}{dr^2}\\dfrac{x}{r}\\cdot\\dfrac xr+\\dfrac{df}{dr}\\cdot\\dfrac{r-x\\cdot\\frac xr}{r^2}=\\dfrac{d^2f}{dr^2}\\dfrac{x^2}{r^2}+\\dfrac{df}{dr}\\dfrac{r^2-x^2}{r^3}=\\dfrac{d^2f}{dr^2}\\dfrac{x^2}{r^2}+\\dfrac{df}{dr}\\dfrac{y^2}{r^3}$ ... (1).",
+    "Similarly (interchanging the roles of $x$ and $y$): $\\dfrac{\\partial^2u}{\\partial y^2}=\\dfrac{d^2f}{dr^2}\\dfrac{y^2}{r^2}+\\dfrac{df}{dr}\\dfrac{x^2}{r^3}$ ... (2).",
+    "Add: $\\dfrac{\\partial^2u}{\\partial x^2}+\\dfrac{\\partial^2u}{\\partial y^2}=\\dfrac{d^2f}{dr^2}\\dfrac{x^2+y^2}{r^2}+\\dfrac{df}{dr}\\dfrac{x^2+y^2}{r^3}=\\dfrac{d^2f}{dr^2}+\\dfrac1r\\dfrac{df}{dr}=f''(r)+\\dfrac1rf'(r)$. Proved."
+  ]}
+  answer="$f''(r)+\\dfrac1rf'(r)$"
+/>
+
+<StepRevealExample
+  title="Example 38 (§1.16)"
+  source="H. K. Dass, Ch. 1, Example 38"
+  problem="A function $f(x,y)$ is rewritten in terms of new variables $u=e^x\\cos y$, $v=e^x\\sin y$. Show that (i) $\\dfrac{\\partial f}{\\partial x}=u\\dfrac{\\partial f}{\\partial u}+v\\dfrac{\\partial f}{\\partial v}$, (ii) $\\dfrac{\\partial f}{\\partial y}=-v\\dfrac{\\partial f}{\\partial u}+u\\dfrac{\\partial f}{\\partial v}$, and hence deduce (iii) $\\dfrac{\\partial^2f}{\\partial x^2}+\\dfrac{\\partial^2f}{\\partial y^2}=(u^2+v^2)\\left(\\dfrac{\\partial^2f}{\\partial u^2}+\\dfrac{\\partial^2f}{\\partial v^2}\\right)$."
+  steps={[
+    "$u=e^x\\cos y$: $\\dfrac{\\partial u}{\\partial x}=u$, $\\dfrac{\\partial u}{\\partial y}=-e^x\\sin y=-v$. $v=e^x\\sin y$: $\\dfrac{\\partial v}{\\partial x}=v$, $\\dfrac{\\partial v}{\\partial y}=e^x\\cos y=u$.",
+    "(i) $\\dfrac{\\partial f}{\\partial x}=\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial v}{\\partial x}=u\\dfrac{\\partial f}{\\partial u}+v\\dfrac{\\partial f}{\\partial v}$ ... (1). Proved.",
+    "(ii) $\\dfrac{\\partial f}{\\partial y}=\\dfrac{\\partial f}{\\partial u}(-v)+\\dfrac{\\partial f}{\\partial v}(u)=-v\\dfrac{\\partial f}{\\partial u}+u\\dfrac{\\partial f}{\\partial v}$ ... (2). Proved.",
+    "(iii) Result (1) says the operator $\\dfrac{\\partial}{\\partial x}\\equiv u\\dfrac{\\partial}{\\partial u}+v\\dfrac{\\partial}{\\partial v}$. Applying it twice (with $u,v$ differentiated as variables): $\\dfrac{\\partial^2f}{\\partial x^2}=u^2\\dfrac{\\partial^2f}{\\partial u^2}+u\\dfrac{\\partial f}{\\partial u}+2uv\\dfrac{\\partial^2f}{\\partial u\\partial v}+v^2\\dfrac{\\partial^2f}{\\partial v^2}+v\\dfrac{\\partial f}{\\partial v}$ ... (3).",
+    "From (2), $\\dfrac{\\partial}{\\partial y}\\equiv-v\\dfrac{\\partial}{\\partial u}+u\\dfrac{\\partial}{\\partial v}$. Applying it twice: $\\dfrac{\\partial^2f}{\\partial y^2}=v^2\\dfrac{\\partial^2f}{\\partial u^2}-2uv\\dfrac{\\partial^2f}{\\partial u\\partial v}-v\\dfrac{\\partial f}{\\partial v}-u\\dfrac{\\partial f}{\\partial u}+u^2\\dfrac{\\partial^2f}{\\partial v^2}$ ... (4).",
+    "Add (3) and (4): the first-order terms and the mixed terms cancel, giving $\\dfrac{\\partial^2f}{\\partial x^2}+\\dfrac{\\partial^2f}{\\partial y^2}=(u^2+v^2)\\dfrac{\\partial^2f}{\\partial u^2}+(u^2+v^2)\\dfrac{\\partial^2f}{\\partial v^2}=(u^2+v^2)\\left(\\dfrac{\\partial^2f}{\\partial u^2}+\\dfrac{\\partial^2f}{\\partial v^2}\\right)$. Proved."
+  ]}
+  answer="$(u^2+v^2)\\left(\\dfrac{\\partial^2f}{\\partial u^2}+\\dfrac{\\partial^2f}{\\partial v^2}\\right)$"
+/>
+
+<StepRevealExample
+  title="Example 39 (§1.16)"
+  source="H. K. Dass, Ch. 1, Example 39 (A.M.I.E.T.E., Winter 2007; Nagpur University, Summer 2001, Winter 2000; U.P. I Semester, Winter 2001)"
+  problem="If $x+y=2e^\\theta\\cos\\phi$ and $x-y=2ie^\\theta\\sin\\phi$, show that $\\dfrac{\\partial^2V}{\\partial\\theta^2}+\\dfrac{\\partial^2V}{\\partial\\phi^2}=4xy\\dfrac{\\partial^2V}{\\partial x\\partial y}$."
+  steps={[
+    "Add and subtract the two relations: $2x=2e^\\theta(\\cos\\phi+i\\sin\\phi)$ and $2y=2e^\\theta(\\cos\\phi-i\\sin\\phi)$, so $x=e^{\\theta+i\\phi}$ and $y=e^{\\theta-i\\phi}$ ... (3). $V=f(x,y)$ is a composite function of $\\theta,\\phi$.",
+    "From (3): $\\dfrac{\\partial x}{\\partial\\theta}=x$, $\\dfrac{\\partial x}{\\partial\\phi}=ix$, $\\dfrac{\\partial y}{\\partial\\theta}=y$, $\\dfrac{\\partial y}{\\partial\\phi}=-iy$.",
+    "$\\dfrac{\\partial V}{\\partial\\theta}=x\\dfrac{\\partial V}{\\partial x}+y\\dfrac{\\partial V}{\\partial y}$, so $\\dfrac{\\partial}{\\partial\\theta}\\equiv x\\dfrac{\\partial}{\\partial x}+y\\dfrac{\\partial}{\\partial y}$.",
+    "Apply it twice: $\\dfrac{\\partial^2V}{\\partial\\theta^2}=x^2\\dfrac{\\partial^2V}{\\partial x^2}+y^2\\dfrac{\\partial^2V}{\\partial y^2}+2xy\\dfrac{\\partial^2V}{\\partial x\\partial y}+\\left(x\\dfrac{\\partial V}{\\partial x}+y\\dfrac{\\partial V}{\\partial y}\\right)$ ... (4).",
+    "$\\dfrac{\\partial V}{\\partial\\phi}=i\\left[x\\dfrac{\\partial V}{\\partial x}-y\\dfrac{\\partial V}{\\partial y}\\right]$, so $\\dfrac{\\partial}{\\partial\\phi}\\equiv i\\left(x\\dfrac{\\partial}{\\partial x}-y\\dfrac{\\partial}{\\partial y}\\right)$. Applying twice (with $i^2=-1$): $\\dfrac{\\partial^2V}{\\partial\\phi^2}=-\\left[x\\dfrac{\\partial V}{\\partial x}+y\\dfrac{\\partial V}{\\partial y}\\right]+2xy\\dfrac{\\partial^2V}{\\partial x\\partial y}-\\left[x^2\\dfrac{\\partial^2V}{\\partial x^2}+y^2\\dfrac{\\partial^2V}{\\partial y^2}\\right]$ ... (5).",
+    "Add (4) and (5): everything cancels except $4xy\\dfrac{\\partial^2V}{\\partial x\\partial y}$. Proved."
+  ]}
+  answer="$\\dfrac{\\partial^2V}{\\partial\\theta^2}+\\dfrac{\\partial^2V}{\\partial\\phi^2}=4xy\\dfrac{\\partial^2V}{\\partial x\\partial y}$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.5"
+  source="H. K. Dass, Ch. 1, Exercise 1.5"
+  items={[
+    { q: "If $z=u^2+v^2$ and $u=at^2$, $v=2at$, find $\\dfrac{dz}{dt}$.", a: "$4a^2t(t^2+2)$" },
+    { q: "If $z=\\sin^{-1}(x-y)$, $x=3t$, $y=4t^3$, show that $\\dfrac{dz}{dt}=\\dfrac{3}{\\sqrt{1-t^2}}$.", a: "$\\dfrac{3}{\\sqrt{1-t^2}}$" },
+    { q: "If $u=xe^yz$, where $y=\\sqrt{a^2-x^2}$, $z=\\sin^3x$, find $\\dfrac{du}{dx}$.", a: "$e^yz\\left(1-\\dfrac{x^2}{y}+3x\\cot x\\right)$" },
+    { q: "If $u=x\\cos\\dfrac yz$, $x=3r^2+2s$, $y=4r-2s^3$, $z=2r^2-3s^2$, find $\\dfrac{\\partial u}{\\partial r}$ and $\\dfrac{\\partial u}{\\partial s}$.", a: "$\\dfrac{\\partial u}{\\partial r}=6r\\cos\\dfrac yz-\\dfrac{4x}{z}\\sin\\dfrac yz+\\dfrac{4xyr}{z^2}\\sin\\dfrac yz$; $\\dfrac{\\partial u}{\\partial s}=2\\cos\\dfrac yz+\\dfrac{6xs^2}{z}\\sin\\dfrac yz-\\dfrac{6xys}{z^2}\\sin\\dfrac yz$" },
+    { q: "Find $\\dfrac{\\partial w}{\\partial v}$ when $u=0$, $v=0$, if $w=(x^2+y-2)^4+(x-y+2)^3$, $x=u-2v+1$ and $y=2u+v-2$.", a: "$99$" },
+    { q: "If $u=x+ay$ and $v=x+by$, transform the equation $2\\dfrac{\\partial^2z}{\\partial x^2}-5\\dfrac{\\partial^2z}{\\partial x\\partial y}+3\\dfrac{\\partial^2z}{\\partial y^2}=0$ into $\\dfrac{\\partial^2z}{\\partial u\\partial v}=0$ and find the values of $a$ and $b$.", a: "$a=1,\\;b=\\dfrac23$ or $a=\\dfrac23,\\;b=1$" }
+  ]}
+/>
+
+### 1.17 Important Deductions
+
+Let $z=f(x,y)$, so $dz=\dfrac{\partial f}{\partial x}\,dx+\dfrac{\partial f}{\partial y}\,dy$. If $z$ is held constant, $dz=0$, which gives a formula for the derivative of an **implicit function** $f(x,y)=0$.
+
+<RuleBox kind="formula" title="§1.17 Derivative of an implicit function">
+
+If $f(x,y)=0$, then
+
+$$\frac{dy}{dx}=-\frac{\partial f/\partial x}{\partial f/\partial y}.$$
+
+For the second derivative write $p=\dfrac{\partial f}{\partial x}$, $q=\dfrac{\partial f}{\partial y}$, $r=\dfrac{\partial^2 f}{\partial x^2}$, $s=\dfrac{\partial^2 f}{\partial x\partial y}$, $t=\dfrac{\partial^2 f}{\partial y^2}$. Then $\dfrac{dy}{dx}=-\dfrac pq$ and
+
+$$\frac{d^2y}{dx^2}=-\frac{q^2r-2pqs+p^2t}{q^3}.$$
+
+</RuleBox>
+
+The second-derivative formula follows by differentiating $-p/q$ once more: $\dfrac{d^2y}{dx^2}=-\dfrac{q\,\frac{dp}{dx}-p\,\frac{dq}{dx}}{q^2}$ with $\dfrac{dp}{dx}=r+s\dfrac{dy}{dx}=\dfrac{qr-ps}{q}$ and $\dfrac{dq}{dx}=s+t\dfrac{dy}{dx}=\dfrac{qs-tp}{q}$.
+
+<StepRevealExample
+  title="Example 40 (§1.17)"
+  source="H. K. Dass, Ch. 1, Example 40"
+  problem="If $x^3+3x^2y+6xy^2+y^3=1$, find $\\dfrac{dy}{dx}$."
+  steps={[
+    "Let $f(x,y)=x^3+3x^2y+6xy^2+y^3-1=0$.",
+    "$\\dfrac{\\partial f}{\\partial x}=3x^2+6xy+6y^2$ and $\\dfrac{\\partial f}{\\partial y}=3x^2+12xy+3y^2$.",
+    "$\\dfrac{dy}{dx}=-\\dfrac{f_x}{f_y}=-\\dfrac{3x^2+6xy+6y^2}{3x^2+12xy+3y^2}=-\\dfrac{x^2+2xy+2y^2}{x^2+4xy+y^2}$."
+  ]}
+  answer="$-\\dfrac{x^2+2xy+2y^2}{x^2+4xy+y^2}$"
+/>
+
+<StepRevealExample
+  title="Example 41 (§1.17)"
+  source="H. K. Dass, Ch. 1, Example 41"
+  problem="If $y^3-3ax^2+x^3=0$, prove that $\\dfrac{d^2y}{dx^2}=-\\dfrac{2a^2x^2}{y^5}$."
+  steps={[
+    "Let $f(x,y)=y^3-3ax^2+x^3$ ... (1). Then $p=f_x=-6ax+3x^2$, $q=f_y=3y^2$, $r=f_{xx}=-6a+6x$, $s=f_{xy}=0$, $t=f_{yy}=6y$.",
+    "Use $\\dfrac{d^2y}{dx^2}=-\\dfrac{q^2r-2pqs+p^2t}{q^3}$ with $s=0$: $q^2r=9y^4(6x-6a)=54y^4(x-a)$ and $p^2t=(3x^2-6ax)^2(6y)=54x^2y(x-2a)^2$.",
+    "$\\dfrac{d^2y}{dx^2}=-\\dfrac{54y^4(x-a)+54x^2y(x-2a)^2}{27y^6}=-\\dfrac{2y^3(x-a)+2x^2(x-2a)^2}{y^5}$ ... (3).",
+    "Use (1) to replace $y^3=3ax^2-x^3$: $2y^3(x-a)=2(3ax^2-x^3)(x-a)=8ax^3-6a^2x^2-2x^4$, while $2x^2(x-2a)^2=2x^4-8ax^3+8a^2x^2$.",
+    "Their sum is $2a^2x^2$. Hence $\\dfrac{d^2y}{dx^2}=-\\dfrac{2a^2x^2}{y^5}$. Proved."
+  ]}
+  answer="$-\\dfrac{2a^2x^2}{y^5}$"
+/>
+
+<StepRevealExample
+  title="Example 42 (§1.17)"
+  source="H. K. Dass, Ch. 1, Example 42"
+  problem="If $x^3+y^3-3axy=0$, find $\\dfrac{dy}{dx}$ and $\\dfrac{d^2y}{dx^2}$."
+  steps={[
+    "Let $f(x,y)=x^3+y^3-3axy=0$. Then $p=f_x=3x^2-3ay$, $q=f_y=3y^2-3ax$, $r=6x$, $s=-3a$, $t=6y$.",
+    "$\\dfrac{dy}{dx}=-\\dfrac pq=-\\dfrac{3x^2-3ay}{3y^2-3ax}=\\dfrac{ay-x^2}{y^2-ax}$.",
+    "$\\dfrac{d^2y}{dx^2}=-\\dfrac{q^2r-2pqs+p^2t}{q^3}=-\\dfrac{(3y^2-3ax)^2\\,6x-2(3x^2-3ay)(3y^2-3ax)(-3a)+(3x^2-3ay)^2\\,6y}{(3y^2-3ax)^3}$.",
+    "Cancel the common factor and simplify: $\\dfrac{d^2y}{dx^2}=-\\dfrac{2x(y^2-ax)^2+2a(x^2-ay)(y^2-ax)+2y(x^2-ay)^2}{(y^2-ax)^3}$.",
+    "Using $x^3+y^3=3axy$, the numerator $2x(y^2-ax)^2+2a(x^2-ay)(y^2-ax)+2y(x^2-ay)^2$ reduces to $2a^3xy$, so $\\dfrac{d^2y}{dx^2}=-\\dfrac{2a^3xy}{(y^2-ax)^3}=\\dfrac{2a^3xy}{(ax-y^2)^3}$."
+  ]}
+  answer="$\\dfrac{dy}{dx}=\\dfrac{ay-x^2}{y^2-ax}$, $\\;\\dfrac{d^2y}{dx^2}=\\dfrac{2a^3xy}{(ax-y^2)^3}$"
+/>
+
+<StepRevealExample
+  title="Example 43 (§1.17)"
+  source="H. K. Dass, Ch. 1, Example 43"
+  problem="Find $\\dfrac{dy}{dx}$ when $(\\cos x)^y=(\\sin y)^x$."
+  steps={[
+    "Write the equation as $f(x,y)=(\\cos x)^y-(\\sin y)^x=0$.",
+    "$\\dfrac{\\partial f}{\\partial x}=y(\\cos x)^{y-1}(-\\sin x)-(\\sin y)^x\\log\\sin y=-\\left[y\\sin x(\\cos x)^{y-1}+(\\sin y)^x\\log\\sin y\\right]$.",
+    "$\\dfrac{\\partial f}{\\partial y}=(\\cos x)^y\\log\\cos x-x(\\sin y)^{x-1}\\cos y$.",
+    "$\\dfrac{dy}{dx}=-\\dfrac{f_x}{f_y}=\\dfrac{y\\sin x(\\cos x)^{y-1}+(\\sin y)^x\\log\\sin y}{(\\cos x)^y\\log\\cos x-x(\\sin y)^{x-1}\\cos y}$ ... (1).",
+    "In (1) put $(\\sin y)^x=(\\cos x)^y$, so $(\\sin y)^{x-1}=\\dfrac{(\\cos x)^y}{\\sin y}$ and $(\\cos x)^{y-1}=\\dfrac{(\\cos x)^y}{\\cos x}$. Then $\\dfrac{dy}{dx}=\\dfrac{(\\cos x)^y\\,[\\,y\\tan x+\\log\\sin y\\,]}{(\\cos x)^y\\,[\\,\\log\\cos x-x\\cot y\\,]}$."
+  ]}
+  answer="$\\dfrac{y\\tan x+\\log\\sin y}{\\log\\cos x-x\\cot y}$"
+/>
+
+<StepRevealExample
+  title="Example 44 (§1.17)"
+  source="H. K. Dass, Ch. 1, Example 44"
+  problem="If $f(x,y)=0$ and $\\varphi(y,z)=0$, show that $\\dfrac{\\partial f}{\\partial y}\\dfrac{\\partial\\varphi}{\\partial z}\\dfrac{dz}{dx}=\\dfrac{\\partial f}{\\partial x}\\dfrac{\\partial\\varphi}{\\partial y}$."
+  steps={[
+    "Differentiate $f(x,y)=0$ with respect to $x$: $0=\\dfrac{\\partial f}{\\partial x}+\\dfrac{\\partial f}{\\partial y}\\dfrac{dy}{dx}$, so $\\dfrac{dy}{dx}=-\\dfrac{\\partial f/\\partial x}{\\partial f/\\partial y}$ ... (3).",
+    "Differentiate $\\varphi(y,z)=0$ with respect to $y$: $0=\\dfrac{\\partial\\varphi}{\\partial y}+\\dfrac{\\partial\\varphi}{\\partial z}\\dfrac{dz}{dy}$, so $\\dfrac{dz}{dy}=-\\dfrac{\\partial\\varphi/\\partial y}{\\partial\\varphi/\\partial z}$ ... (4).",
+    "Multiply (3) and (4): $\\dfrac{dy}{dx}\\cdot\\dfrac{dz}{dy}=\\dfrac{dz}{dx}=\\dfrac{\\frac{\\partial f}{\\partial x}\\,\\frac{\\partial\\varphi}{\\partial y}}{\\frac{\\partial f}{\\partial y}\\,\\frac{\\partial\\varphi}{\\partial z}}$.",
+    "Cross-multiplying: $\\dfrac{\\partial f}{\\partial y}\\dfrac{\\partial\\varphi}{\\partial z}\\dfrac{dz}{dx}=\\dfrac{\\partial f}{\\partial x}\\dfrac{\\partial\\varphi}{\\partial y}$. Proved."
+  ]}
+  answer="Proved."
+/>
+
+<StepRevealExample
+  title="Example 45 (§1.17)"
+  source="H. K. Dass, Ch. 1, Example 45 (U.P. I Sem., Dec. 2005, Com. 2002)"
+  problem="If $u=x\\log xy$ where $x^3+y^3+3xy=1$, find $\\dfrac{du}{dx}$."
+  steps={[
+    "$u$ depends on $x$ directly and through $y$: $\\dfrac{du}{dx}=\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial u}{\\partial y}\\dfrac{dy}{dx}$.",
+    "$\\dfrac{\\partial u}{\\partial x}=x\\cdot\\dfrac1{xy}\\cdot y+\\log xy=1+\\log xy$ ... (1), and $\\dfrac{\\partial u}{\\partial y}=x\\cdot\\dfrac1{xy}\\cdot x=\\dfrac xy$ ... (2).",
+    "Differentiate $x^3+y^3+3xy=1$: $3x^2+3y^2\\dfrac{dy}{dx}+3x\\dfrac{dy}{dx}+3y=0$, so $\\dfrac{dy}{dx}=-\\dfrac{x^2+y}{x+y^2}$ ... (3).",
+    "Substituting (1), (2), (3): $\\dfrac{du}{dx}=(1+\\log xy)+\\dfrac xy\\left(-\\dfrac{x^2+y}{x+y^2}\\right)$."
+  ]}
+  answer="$1+\\log xy-\\dfrac xy\\cdot\\dfrac{x^2+y}{x+y^2}$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.6"
+  source="H. K. Dass, Ch. 1, Exercise 1.6"
+  items={[
+    { q: "Find $\\dfrac{dy}{dx}$ if $x\\sin(x-y)-(x+y)=0$.", a: "$\\dfrac{y+x^2\\cos(x-y)}{x+x^2\\cos(x-y)}$" },
+    { q: "Find $\\dfrac{dy}{dx}$ if $x^y=y^x$.", a: "$\\dfrac{y\\,(y-x\\log y)}{x\\,(x-y\\log x)}$" },
+    { q: "If $ax^2+2hxy+by^2=1$, find $\\dfrac{d^2y}{dx^2}$.", a: "$\\dfrac{h^2-ab}{(hx+by)^3}$" },
+    { q: "If $u=x^2y+y^2z+z^2x$ and $z$ is defined implicitly as a function of $x$ and $y$ by $x^2+yz+z^3=0$, find $\\dfrac{\\partial u}{\\partial x}$, where $u$ is considered as a function of $x$ and $y$ alone.", a: "$\\dfrac{\\partial u}{\\partial x}=2xy+z^2-(y^2+2zx)\\left(\\dfrac{2x}{y+3z^2}\\right)$" },
+    { q: "Find $\\dfrac{dy}{dx}$ if $\\tan^{-1}\\dfrac xy+y^3+1=0$.", a: "$\\dfrac{y}{x-3x^2y^2-3y^4}$" },
+    { q: "If $f(x,y,z)=0$, prove that $\\left(\\dfrac{dx}{dy}\\right)_z\\left(\\dfrac{dy}{dz}\\right)_x\\left(\\dfrac{dz}{dx}\\right)_y=-1$. [Hint: $\\left(\\dfrac{dx}{dy}\\right)_z=-\\dfrac{\\partial f}{\\partial y}\\div\\dfrac{\\partial f}{\\partial x}$.]", a: "Each factor is $-\\dfrac{f_y}{f_x},\\;-\\dfrac{f_z}{f_y},\\;-\\dfrac{f_x}{f_z}$ respectively; their product is $-1$." }
+  ]}
+/>
+
+### 1.18 Typical Cases
+
+When $x$ and $y$ are given as functions of two new variables, $x=f(u,v)$ and $y=\varphi(u,v)$, and we want the derivatives of $u,v$ with respect to $x,y$ (the inverse relations), we differentiate the two given equations partially with respect to $x$ (treating $y$ as constant) and then with respect to $y$ (treating $x$ as constant), and solve each pair of linear equations.
+
+<RuleBox kind="working-rule" title="§1.18 Typical case: x = f(u, v), y = φ(u, v)">
+
+Differentiate both relations with respect to $x$ ($y$ constant):
+
+$$1=\frac{\partial f}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial f}{\partial v}\frac{\partial v}{\partial x},\qquad 0=\frac{\partial\varphi}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial\varphi}{\partial v}\frac{\partial v}{\partial x}.$$
+
+Then with respect to $y$ ($x$ constant):
+
+$$0=\frac{\partial f}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial f}{\partial v}\frac{\partial v}{\partial y},\qquad 1=\frac{\partial\varphi}{\partial u}\frac{\partial u}{\partial y}+\frac{\partial\varphi}{\partial v}\frac{\partial v}{\partial y}.$$
+
+Solve each pair simultaneously for $\dfrac{\partial u}{\partial x},\dfrac{\partial v}{\partial x}$ and $\dfrac{\partial u}{\partial y},\dfrac{\partial v}{\partial y}$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 46 (§1.18)"
+  source="H. K. Dass, Ch. 1, Example 46"
+  problem="If $x=f(u,v)$, $y=\\varphi(u,v)$, find $\\dfrac{\\partial u}{\\partial x},\\dfrac{\\partial u}{\\partial y},\\dfrac{\\partial v}{\\partial x},\\dfrac{\\partial v}{\\partial y}$."
+  steps={[
+    "Differentiate $x=f(u,v)$ and $y=\\varphi(u,v)$ with respect to $x$ (treating $y$ as constant): $1=\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial v}{\\partial x}$ ... (3) and $0=\\dfrac{\\partial\\varphi}{\\partial u}\\dfrac{\\partial u}{\\partial x}+\\dfrac{\\partial\\varphi}{\\partial v}\\dfrac{\\partial v}{\\partial x}$ ... (4).",
+    "Solve (3), (4) for $\\dfrac{\\partial u}{\\partial x}$ and $\\dfrac{\\partial v}{\\partial x}$. Write $D=\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial\\varphi}{\\partial v}-\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial\\varphi}{\\partial u}$. Then $\\dfrac{\\partial u}{\\partial x}=\\dfrac{\\partial\\varphi/\\partial v}{D}$ and $\\dfrac{\\partial v}{\\partial x}=\\dfrac{-\\partial\\varphi/\\partial u}{D}$.",
+    "Differentiate with respect to $y$ (treating $x$ as constant): $0=\\dfrac{\\partial f}{\\partial u}\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial f}{\\partial v}\\dfrac{\\partial v}{\\partial y}$ ... (5) and $1=\\dfrac{\\partial\\varphi}{\\partial u}\\dfrac{\\partial u}{\\partial y}+\\dfrac{\\partial\\varphi}{\\partial v}\\dfrac{\\partial v}{\\partial y}$ ... (6).",
+    "Solving (5), (6): $\\dfrac{\\partial u}{\\partial y}=\\dfrac{-\\partial f/\\partial v}{D}$ and $\\dfrac{\\partial v}{\\partial y}=\\dfrac{\\partial f/\\partial u}{D}$."
+  ]}
+  answer="$\\dfrac{\\partial u}{\\partial x}=\\dfrac{\\varphi_v}{f_u\\varphi_v-f_v\\varphi_u},\\;\\dfrac{\\partial v}{\\partial x}=\\dfrac{-\\varphi_u}{f_u\\varphi_v-f_v\\varphi_u},\\;\\dfrac{\\partial u}{\\partial y}=\\dfrac{-f_v}{f_u\\varphi_v-f_v\\varphi_u},\\;\\dfrac{\\partial v}{\\partial y}=\\dfrac{f_u}{f_u\\varphi_v-f_v\\varphi_u}$"
+/>
+
+<StepRevealExample
+  title="Example 47 (§1.18)"
+  source="H. K. Dass, Ch. 1, Example 47 (Nagpur University, Winter 2003)"
+  problem="If $x=u^2-v^2$ and $y=uv$, find $\\dfrac{\\partial u}{\\partial x},\\dfrac{\\partial u}{\\partial y},\\dfrac{\\partial v}{\\partial x}$ and $\\dfrac{\\partial v}{\\partial y}$."
+  steps={[
+    "$\\dfrac{\\partial x}{\\partial u}=2u$, $\\dfrac{\\partial x}{\\partial v}=-2v$, $\\dfrac{\\partial y}{\\partial u}=v$, $\\dfrac{\\partial y}{\\partial v}=u$.",
+    "Differentiate $x=u^2-v^2$ with respect to $x$: $1=2u\\dfrac{\\partial u}{\\partial x}-2v\\dfrac{\\partial v}{\\partial x}$ ... (3). Differentiate $y=uv$ with respect to $x$: $0=v\\dfrac{\\partial u}{\\partial x}+u\\dfrac{\\partial v}{\\partial x}$ ... (4).",
+    "From (4), $\\dfrac{\\partial v}{\\partial x}=-\\dfrac vu\\dfrac{\\partial u}{\\partial x}$. Put in (3): $1=\\left(2u+\\dfrac{2v^2}{u}\\right)\\dfrac{\\partial u}{\\partial x}$, so $\\dfrac{\\partial u}{\\partial x}=\\dfrac{u}{2u^2+2v^2}$ and $\\dfrac{\\partial v}{\\partial x}=-\\dfrac{v}{2u^2+2v^2}$.",
+    "Differentiate with respect to $y$: $0=2u\\dfrac{\\partial u}{\\partial y}-2v\\dfrac{\\partial v}{\\partial y}$ ... (5) and $1=v\\dfrac{\\partial u}{\\partial y}+u\\dfrac{\\partial v}{\\partial y}$ ... (6).",
+    "From (5), $\\dfrac{\\partial u}{\\partial y}=\\dfrac vu\\dfrac{\\partial v}{\\partial y}$. Put in (6): $1=\\left(\\dfrac{v^2}{u}+u\\right)\\dfrac{\\partial v}{\\partial y}$, so $\\dfrac{\\partial v}{\\partial y}=\\dfrac{u}{u^2+v^2}$ and $\\dfrac{\\partial u}{\\partial y}=\\dfrac{v}{u^2+v^2}$."
+  ]}
+  answer="$\\dfrac{\\partial u}{\\partial x}=\\dfrac{u}{2u^2+2v^2},\\;\\dfrac{\\partial v}{\\partial x}=-\\dfrac{v}{2u^2+2v^2},\\;\\dfrac{\\partial v}{\\partial y}=\\dfrac{u}{u^2+v^2},\\;\\dfrac{\\partial u}{\\partial y}=\\dfrac{v}{u^2+v^2}$"
+/>
+
+<StepRevealExample
+  title="Example 48 (§1.18)"
+  source="H. K. Dass, Ch. 1, Example 48"
+  problem="Find $p$ and $q$, if $x=\\sqrt a(\\sin u+\\cos v)$, $y=\\sqrt a(\\cos u-\\sin v)$, $z=1+\\sin(u-v)$, where $p$ and $q$ mean $\\dfrac{\\partial z}{\\partial x}$ and $\\dfrac{\\partial z}{\\partial y}$ respectively."
+  steps={[
+    "Differentiate $z=1+\\sin(u-v)$ with respect to $x$: $\\dfrac{\\partial z}{\\partial x}=\\cos(u-v)\\left[\\dfrac{\\partial u}{\\partial x}-\\dfrac{\\partial v}{\\partial x}\\right]$ ... (4).",
+    "Differentiate the equations for $x$ and $y$ with respect to $x$: $1=\\sqrt a\\left(\\cos u\\dfrac{\\partial u}{\\partial x}-\\sin v\\dfrac{\\partial v}{\\partial x}\\right)$ ... (5), $0=\\sqrt a\\left(-\\sin u\\dfrac{\\partial u}{\\partial x}-\\cos v\\dfrac{\\partial v}{\\partial x}\\right)$ ... (6).",
+    "Solving (5), (6) (the determinant of the coefficients is $-\\cos(u-v)$): $\\dfrac{\\partial u}{\\partial x}=\\dfrac1{\\sqrt a}\\dfrac{\\cos v}{\\cos(u-v)}$, $\\dfrac{\\partial v}{\\partial x}=-\\dfrac1{\\sqrt a}\\dfrac{\\sin u}{\\cos(u-v)}$.",
+    "Put in (4): $p=\\cos(u-v)\\left[\\dfrac{\\cos v}{\\sqrt a\\cos(u-v)}+\\dfrac{\\sin u}{\\sqrt a\\cos(u-v)}\\right]=\\dfrac1{\\sqrt a}(\\sin u+\\cos v)$.",
+    "Now with respect to $y$: $\\dfrac{\\partial z}{\\partial y}=\\cos(u-v)\\left[\\dfrac{\\partial u}{\\partial y}-\\dfrac{\\partial v}{\\partial y}\\right]$ ... (7); $0=\\sqrt a\\left(\\cos u\\dfrac{\\partial u}{\\partial y}-\\sin v\\dfrac{\\partial v}{\\partial y}\\right)$ ... (8); $1=\\sqrt a\\left(-\\sin u\\dfrac{\\partial u}{\\partial y}-\\cos v\\dfrac{\\partial v}{\\partial y}\\right)$ ... (9).",
+    "Solving (8), (9): $\\dfrac{\\partial u}{\\partial y}=-\\dfrac{\\sin v}{\\sqrt a\\cos(u-v)}$, $\\dfrac{\\partial v}{\\partial y}=-\\dfrac{\\cos u}{\\sqrt a\\cos(u-v)}$. Put in (7): $q=\\cos(u-v)\\left[-\\dfrac{\\sin v}{\\sqrt a\\cos(u-v)}+\\dfrac{\\cos u}{\\sqrt a\\cos(u-v)}\\right]=\\dfrac1{\\sqrt a}(-\\sin v+\\cos u)$."
+  ]}
+  answer="$p=\\dfrac1{\\sqrt a}(\\sin u+\\cos v),\\quad q=\\dfrac1{\\sqrt a}(\\cos u-\\sin v)$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.7"
+  source="H. K. Dass, Ch. 1, Exercise 1.7"
+  items={[
+    { q: "Fill in the blank: if $f(x,y,z)=0$, then $\\dfrac{\\partial x}{\\partial y}\\cdot\\dfrac{\\partial y}{\\partial z}\\cdot\\dfrac{\\partial z}{\\partial x}$ is equal to ......", a: "$-1$" },
+    { q: "Fill in the blank: if $z=f(x,y)$, where $x=\\varphi(t)$, $y=\\psi(t)$, then $\\dfrac{dz}{dt}=$ ......", a: "$\\dfrac{\\partial z}{\\partial x}\\dfrac{dx}{dt}+\\dfrac{\\partial z}{\\partial y}\\dfrac{dy}{dt}$" },
+    { q: "Fill in the blank: if $f(x,y)=0$, then $\\dfrac{dy}{dx}=$ ......", a: "$-\\dfrac{\\partial f/\\partial x}{\\partial f/\\partial y}$" },
+    { q: "Fill in the blank: if $u=x^2+y^2$, $x=s+3t$, $y=2s-t$, then $\\dfrac{du}{ds}=$ ......", a: "$2x+4y$" },
+    { q: "Fill in the blank: if $f(x,y)=0$ and $\\varphi(y,z)=0$, then $\\dfrac{\\partial f}{\\partial y}\\cdot\\dfrac{\\partial\\varphi}{\\partial z}\\cdot\\dfrac{dz}{dx}=$ ......", a: "$\\dfrac{\\partial f}{\\partial x}\\cdot\\dfrac{\\partial\\varphi}{\\partial y}$" },
+    { q: "Fill in the blank: if $f(x,y)=0$, then $\\dfrac{d^2y}{dx^2}=$ ......", a: "$-\\dfrac{q^2r-2pqs+p^2t}{q^3}$" }
+  ]}
+/>
+
+### 1.19 Geometrical Interpretation of ∂z/∂x and ∂z/∂y
+
+Consider a surface $S$ defined explicitly by $z = f(x, y)$. Slice this surface with a vertical plane $y = k$ parallel to the $XZ$-plane, passing through the point $P(x, k, z)$ on $S$. The intersection is a plane curve $APB$ lying in the plane $y = k$, described by the pair of equations
+
+$$z = f(x, y), \qquad y = k.$$
+
+Along this curve only $x$ and $z$ vary while $y$ stays fixed at $k$. Hence the slope of the tangent line to the curve $APB$ at $P$ is $\dfrac{\partial z}{\partial x}$. By symmetry, slicing the surface with a plane $x = c$ parallel to the $YZ$-plane gives a section curve whose tangent slope at the point is $\dfrac{\partial z}{\partial y}$.
+
+<RuleBox kind="definition" title="§1.19 Geometrical meaning of first partial derivatives">
+
+For a surface $S: z = f(x, y)$:
+
+- $\dfrac{\partial z}{\partial x}$ is the **slope of the tangent** to the curve of intersection of the surface $z = f(x, y)$ with a plane $y = k$ parallel to the $XZ$-plane.
+- $\dfrac{\partial z}{\partial y}$ is the **slope of the tangent** to the curve of intersection of the surface $z = f(x, y)$ with a plane $x = c$ parallel to the $YZ$-plane.
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/total-differentials-jacobians-and-errors-partial-slope.svg" caption="H. K. Dass §1.19 (redrawn) — Vertical plane y = k cutting surface z = f(x, y) along curve APB; the tangent slope at P(x, k, z) is ∂z/∂x." />
+
+### 1.20 Tangent Plane to a Surface
+
+Now let a surface $S$ be given implicitly by $F(x, y, z) = 0$, and let $P(x_1, y_1, z_1)$ be a point on $S$. Take a neighbouring point $Q(x_1 + \delta x_1,\, y_1 + \delta y_1,\, z_1 + \delta z_1)$ on a smooth curve drawn on $S$ through $P$, with arc length $PQ = \delta s$ and chord length $PQ = \delta c$.
+
+The direction cosines of the chord $PQ$ are
+
+$$\frac{\delta x}{\delta c},\; \frac{\delta y}{\delta c},\; \frac{\delta z}{\delta c} \quad \Longrightarrow \quad \frac{\delta x}{\delta s}\cdot\frac{\delta s}{\delta c},\; \frac{\delta y}{\delta s}\cdot\frac{\delta s}{\delta c},\; \frac{\delta z}{\delta s}\cdot\frac{\delta s}{\delta c}.$$
+
+As $\delta s \to 0$, $Q \to P$, $\delta s/\delta c \to 1$, and the chord $PQ$ approaches the tangent line $PT$, whose direction cosines are
+
+$$\frac{dx}{ds},\; \frac{dy}{ds},\; \frac{dz}{ds}.$$
+
+Differentiating $F(x, y, z) = 0$ totally with respect to the arc length $s$ yields
+
+$$\frac{\partial F}{\partial x}\frac{dx}{ds} + \frac{\partial F}{\partial y}\frac{dy}{ds} + \frac{\partial F}{\partial z}\frac{dz}{ds} = 0.$$
+
+This orthogonality condition shows that **every** tangent line $PT$ at $P$ is perpendicular to the fixed direction having direction ratios $\left(\dfrac{\partial F}{\partial x},\, \dfrac{\partial F}{\partial y},\, \dfrac{\partial F}{\partial z}\right)$ evaluated at $P(x_1, y_1, z_1)$. Therefore all tangent lines to curves on $S$ through $P$ lie in a single plane — the **tangent plane** — and the line through $P$ perpendicular to that plane is the **normal line**.
+
+<RuleBox kind="formula" title="§1.20 Equations of the tangent plane and normal line">
+
+At a point $P(x_1, y_1, z_1)$ on the surface $F(x, y, z) = 0$, with partial derivatives evaluated at $(x_1, y_1, z_1)$:
+
+**Equation of the tangent plane:**
+
+$$(x - x_1)\frac{\partial F}{\partial x} + (y - y_1)\frac{\partial F}{\partial y} + (z - z_1)\frac{\partial F}{\partial z} = 0$$
+
+**Equation of the normal line:**
+
+$$\frac{x - x_1}{\partial F/\partial x} = \frac{y - y_1}{\partial F/\partial y} = \frac{z - z_1}{\partial F/\partial z}$$
+
+Two surfaces $f(x, y, z) = 0$ and $F(x, y, z) = 0$ intersect **orthogonally** (perpendicularly) at a common point if the dot product of their normal direction ratios vanishes: $l_1 l_2 + m_1 m_2 + n_1 n_2 = f_x F_x + f_y F_y + f_z F_z = 0$.
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/total-differentials-jacobians-and-errors-tangent-plane.svg" caption="H. K. Dass §1.20 (redrawn) — Surface S: F(x, y, z) = 0 with point P(x₁, y₁, z₁), tangent line PT, tangent plane, and normal vector with direction ratios (∂F/∂x, ∂F/∂y, ∂F/∂z)." />
+
+<StepRevealExample
+  title="Example 49 (§1.20)"
+  source="H. K. Dass, Ch. 1, Example 49"
+  problem="Find the equation of the tangent plane and normal line to the surface $x^2 + 2y^2 + 3z^2 = 12$ at $(1, 2, -1)$."
+  steps={[
+    "Write the surface as $F(x, y, z) = x^2 + 2y^2 + 3z^2 - 12 = 0$.",
+    "Compute the first partial derivatives: $\\dfrac{\\partial F}{\\partial x} = 2x$, $\\dfrac{\\partial F}{\\partial y} = 4y$, $\\dfrac{\\partial F}{\\partial z} = 6z$.",
+    "Evaluate at $(1, 2, -1)$: $\\dfrac{\\partial F}{\\partial x} = 2$, $\\dfrac{\\partial F}{\\partial y} = 8$, $\\dfrac{\\partial F}{\\partial z} = -6$.",
+    "Equation of the tangent plane: $2(x - 1) + 8(y - 2) - 6(z + 1) = 0 \\implies 2x + 8y - 6z = 24 \\implies x + 4y - 3z = 12$.",
+    "Equation of the normal line: $\\dfrac{x - 1}{2} = \\dfrac{y - 2}{8} = \\dfrac{z + 1}{-6}$, which simplifies (dividing denominators by $2$) to $\\dfrac{x - 1}{1} = \\dfrac{y - 2}{4} = \\dfrac{z + 1}{-3}$."
+  ]}
+  answer="Tangent plane: $x + 4y - 3z = 12$; Normal line: $\\dfrac{x - 1}{1} = \\dfrac{y - 2}{4} = \\dfrac{z + 1}{-3}$"
+/>
+
+<StepRevealExample
+  title="Example 50 (§1.20)"
+  source="H. K. Dass, Ch. 1, Example 50"
+  problem="Show that the surface $x^2 - 2yz + y^3 = 4$ is perpendicular to any member of the family of surfaces $x^2 + 1 = (2 - 4a)y^2 + az^2$ at the point of intersection $(1, -1, 2)$."
+  steps={[
+    "Let $f(x, y, z) = x^2 - 2yz + y^3 - 4 = 0$ ... (1) and $F(x, y, z) = x^2 + 1 - (2 - 4a)y^2 - az^2 = 0$ ... (2).",
+    "For (1): $\\dfrac{\\partial f}{\\partial x} = 2x$, $\\dfrac{\\partial f}{\\partial y} = -2z + 3y^2$, $\\dfrac{\\partial f}{\\partial z} = -2y$. At $(1, -1, 2)$ the direction ratios of the normal are $(l_1, m_1, n_1) = (2,\\; -4 + 3,\\; 2) = (2, -1, 2)$.",
+    "For (2): $\\dfrac{\\partial F}{\\partial x} = 2x$, $\\dfrac{\\partial F}{\\partial y} = -2(2 - 4a)y = (-4 + 8a)y$, $\\dfrac{\\partial F}{\\partial z} = -2az$. At $(1, -1, 2)$ the direction ratios of the normal are $(l_2, m_2, n_2) = (2,\\; 4 - 8a,\\; -4a)$.",
+    "Check the perpendicularity condition: $l_1 l_2 + m_1 m_2 + n_1 n_2 = (2)(2) + (-1)(4 - 8a) + (2)(-4a) = 4 - 4 + 8a - 8a = 0$.",
+    "Since the sum vanishes identically for every value of $a$, the two surfaces are perpendicular at $(1, -1, 2)$."
+  ]}
+  answer="Perpendicular at $(1, -1, 2)$ for all $a$."
+/>
+
+<ExerciseSet
+  title="Exercise 1.8"
+  source="H. K. Dass, Ch. 1, Exercise 1.8"
+  items={[
+    { q: "Find the equation of the tangent plane and the normal line to the surface $xyz = 6$ at $(1, 2, 3)$.", a: "$6x + 3y + 2z = 18$, $\\;\\dfrac{x - 1}{6} = \\dfrac{y - 2}{3} = \\dfrac{z - 3}{2}$" },
+    { q: "Find the equations of the tangent plane and the normal to the surface $z^2 = 4(1 + x^2 + y^2)$ at $(2, 2, 6)$.", a: "$4x + 4y - 3z + 2 = 0$, $\\;\\dfrac{x - 2}{4} = \\dfrac{y - 2}{4} = \\dfrac{z - 6}{-3}$" },
+    { q: "Find the equations of the tangent plane and the normal to the surface $\\dfrac{x^2}{2} - \\dfrac{y^2}{3} = z$ at $(2, 3, -1)$.", a: "$2x - 2y - z + 1 = 0$, $\\;\\dfrac{x - 2}{2} = \\dfrac{y - 3}{-2} = \\dfrac{z + 1}{-1}$" },
+    { q: "Show that the plane $ax + by + cz + d = 0$ touches the surface $px^2 + qy^2 + 2z = 0$ if $\\dfrac{a^2}{p} + \\dfrac{b^2}{q} + 2cd = 0$.", a: "Tangent plane at $(x_1, y_1, z_1)$ is $px_1 x + qy_1 y + z + z_1 = 0$; comparing coefficients gives $x_1 = \\dfrac{a}{pc}$, $y_1 = \\dfrac{b}{qc}$, $z_1 = \\dfrac{d}{c}$, and substituting into the surface equation yields $\\dfrac{a^2}{p} + \\dfrac{b^2}{q} + 2cd = 0$." }
+  ]}
+/>
+
+### 1.21 Error Determination
+
+When physical quantities are measured in the laboratory or field, small measurement errors $\delta x, \delta y, \dots$ propagate into any computed output $u = f(x, y, \dots)$. Since $\lim_{\delta x \to 0}\dfrac{\delta y}{\delta x} = \dfrac{dy}{dx}$, for sufficiently small errors we replace $\delta y$ by the total differential $dy$:
+
+$$\delta y \approx \left(\frac{dy}{dx}\right)\delta x, \qquad \delta u \approx \frac{\partial u}{\partial x}\,\delta x + \frac{\partial u}{\partial y}\,\delta y + \frac{\partial u}{\partial z}\,\delta z.$$
+
+<RuleBox kind="definition" title="§1.21 Absolute, relative and percentage errors">
+
+If $x$ is measured with a small error $\delta x$:
+
+1. **Absolute error** in $x$: $\;\delta x$
+2. **Relative error** in $x$: $\;\dfrac{\delta x}{x}$
+3. **Percentage error** in $x$: $\;\left(\dfrac{\delta x}{x}\right)\times 100$
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="§1.21 Logarithmic differentiation and maximum possible error">
+
+1. For formulas built from products, quotients, and powers (such as $u = k\,x^a y^b z^{-c}$), **take natural logarithms first**:
+
+$$\log u = \log k + a\log x + b\log y - c\log z$$
+
+and then differentiate to get the relative error directly:
+
+$$\frac{\delta u}{u} \approx a\frac{\delta x}{x} + b\frac{\delta y}{y} - c\frac{\delta z}{z}.$$
+
+2. Multiply by $100$ to pass directly from relative error to percentage error.
+3. For **maximum possible error**, take the **positive sum of magnitudes** of every term so that individual errors reinforce rather than cancel:
+
+$$\left|\frac{\delta u}{u}\right|_{\max} \approx |a|\left|\frac{\delta x}{x}\right| + |b|\left|\frac{\delta y}{y}\right| + |c|\left|\frac{\delta z}{z}\right|.$$
+
+4. For numerical approximations of $f(x + \delta x,\, y + \delta y)$, evaluate $f(x, y)$ at a convenient nearby point $(x, y)$ and add $df = f_x\,\delta x + f_y\,\delta y$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 51 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 51 (A.M.I.E., Summer 2001)"
+  problem="The power dissipated in a resistor is given by $P = \\dfrac{E^2}{R}$. Find by using calculus the approximate percentage change in $P$ when $E$ is increased by $3\\%$ and $R$ is decreased by $2\\%$."
+  steps={[
+    "Take logarithms of $P = \\dfrac{E^2}{R}$: $\\log P = 2\\log E - \\log R$.",
+    "Differentiate: $\\dfrac{\\delta P}{P} = 2\\dfrac{\\delta E}{E} - \\dfrac{\\delta R}{R}$.",
+    "Multiply by $100$: $100\\dfrac{\\delta P}{P} = 2\\left(100\\dfrac{\\delta E}{E}\\right) - \\left(100\\dfrac{\\delta R}{R}\\right)$.",
+    "Substitute the given percentage changes $\\dfrac{100\\,\\delta E}{E} = +3$ and $\\dfrac{100\\,\\delta R}{R} = -2$: $100\\dfrac{\\delta P}{P} = 2(3) - (-2) = 8$."
+  ]}
+  answer="Percentage change in $P = 8\\%$"
+/>
+
+<StepRevealExample
+  title="Example 52 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 52"
+  problem="The diameter and altitude of a can in the shape of a right circular cylinder are measured as $40\\,\\text{cm}$ and $64\\,\\text{cm}$ respectively. The possible error in each measurement is $\\pm 5\\%$. Find approximately the maximum possible percentage error in the computed value for the volume and the lateral surface."
+  steps={[
+    "Given $D = 40\\,\\text{cm}$, $h = 64\\,\\text{cm}$, and $\\dfrac{100\\,\\delta D}{D} = \\dfrac{100\\,\\delta h}{h} = \\pm 5\\%$.",
+    "Volume: $V = \\pi r^2 h = \\dfrac{\\pi}{4}D^2 h$. Taking logarithms: $\\log V = \\log\\dfrac{\\pi}{4} + 2\\log D + \\log h$.",
+    "Differentiating: $\\dfrac{\\delta V}{V} = 2\\dfrac{\\delta D}{D} + \\dfrac{\\delta h}{h}$. Multiplying by $100$: $\\dfrac{\\delta V}{V}\\times 100 = 2(\\pm 5) + (\\pm 5) = \\pm 15\\%$.",
+    "Lateral surface area: $S = 2\\pi r h = \\pi D h$. Taking logarithms: $\\log S = \\log\\pi + \\log D + \\log h$.",
+    "Differentiating: $\\dfrac{\\delta S}{S} = \\dfrac{\\delta D}{D} + \\dfrac{\\delta h}{h}$. Multiplying by $100$: $\\dfrac{\\delta S}{S}\\times 100 = (\\pm 5) + (\\pm 5) = \\pm 10\\%$."
+  ]}
+  answer="Volume: $\\pm 15\\%$; Lateral surface: $\\pm 10\\%$"
+/>
+
+<StepRevealExample
+  title="Example 53 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 53 (U.P. I Semester, Winter 2003)"
+  problem="The period $T$ of a simple pendulum is $T = 2\\pi\\sqrt{\\dfrac{l}{g}}$. Find the maximum error in $T$ due to possible errors up to $1\\%$ in $l$ and $2\\%$ in $g$."
+  steps={[
+    "Take logarithms: $\\log T = \\log 2\\pi + \\dfrac{1}{2}\\log l - \\dfrac{1}{2}\\log g$.",
+    "Differentiate: $\\dfrac{\\delta T}{T} = \\dfrac{1}{2}\\dfrac{\\delta l}{l} - \\dfrac{1}{2}\\dfrac{\\delta g}{g}$.",
+    "Multiply by $100$: $\\left(\\dfrac{\\delta T}{T}\\right)\\times 100 = \\dfrac{1}{2}\\left[\\left(\\dfrac{\\delta l}{l}\\times 100\\right) - \\left(\\dfrac{\\delta g}{g}\\times 100\\right)\\right]$.",
+    "For the maximum error, choose the worst-case signs ($+1\\%$ in $l$ and $-2\\%$ in $g$): $\\left(\\dfrac{\\delta T}{T}\\right)_{\\max}\\times 100 = \\dfrac{1}{2}(1 + 2) = \\dfrac{3}{2} = 1.5\\%$."
+  ]}
+  answer="Maximum error in $T = 1.5\\%$"
+/>
+
+<StepRevealExample
+  title="Example 54 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 54 (U.P. I Sem., Dec. 2005, Comp. 2002)"
+  figure="/diagrams/get-209/total-differentials-jacobians-and-errors-balloon.svg"
+  problem="A balloon is in the form of a right circular cylinder of radius $1.5\\,\\text{m}$ and length $4\\,\\text{m}$ and is surmounted by hemispherical ends. If the radius is increased by $0.01\\,\\text{m}$ and the length by $0.05\\,\\text{m}$, find the percentage change in the volume of the balloon."
+  steps={[
+    "Radius $r = 1.5\\,\\text{m}$, cylinder length $h = 4\\,\\text{m}$, with $\\delta r = 0.01\\,\\text{m}$ and $\\delta h = 0.05\\,\\text{m}$.",
+    "Total volume = cylinder + two hemispheres: $V = \\pi r^2 h + \\dfrac{2}{3}\\pi r^3 + \\dfrac{2}{3}\\pi r^3 = \\pi r^2 h + \\dfrac{4}{3}\\pi r^3$.",
+    "Differentiate totally: $\\delta V = 2\\pi r h\\,\\delta r + \\pi r^2\\,\\delta h + 4\\pi r^2\\,\\delta r = \\pi r\\,[2h\\,\\delta r + r\\,\\delta h + 4r\\,\\delta r]$.",
+    "Divide by $V = \\pi r\\left(rh + \\dfrac{4}{3}r^2\\right)$: $\\dfrac{\\delta V}{V} = \\dfrac{2h\\,\\delta r + r\\,\\delta h + 4r\\,\\delta r}{rh + \\frac{4}{3}r^2}$.",
+    "Substitute the numbers: $\\dfrac{\\delta V}{V} = \\dfrac{2(4)(0.01) + (1.5)(0.05) + 4(1.5)(0.01)}{(1.5)(4) + \\frac{4}{3}(1.5)^2} = \\dfrac{0.08 + 0.075 + 0.06}{6 + 3} = \\dfrac{0.215}{9}$.",
+    "Percentage change: $100\\dfrac{\\delta V}{V} = \\dfrac{21.5}{9} \\approx 2.389\\%$."
+  ]}
+  answer="$2.389\\%$"
+/>
+
+<StepRevealExample
+  title="Example 55 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 55 (U.P. I Semester, Winter 2000)"
+  problem="In estimating the number of bricks in a pile which is measured to be $(5\\,\\text{m}\\times 10\\,\\text{m}\\times 5\\,\\text{m})$, the count of bricks is taken as $100$ bricks per $\\text{m}^3$. Find the error in the cost when the tape is stretched $2\\%$ beyond its standard length. The cost of bricks is ₹ $2000$ per thousand bricks."
+  steps={[
+    "Let the measured dimensions be $x, y, z$, so $V = xyz$ and $\\log V = \\log x + \\log y + \\log z$.",
+    "Differentiate: $\\dfrac{\\delta V}{V} = \\dfrac{\\delta x}{x} + \\dfrac{\\delta y}{y} + \\dfrac{\\delta z}{z}$.",
+    "Since the tape is stretched $2\\%$ beyond standard, each true dimension exceeds the measured reading by $2\\%$: $100\\dfrac{\\delta V}{V} = 2 + 2 + 2 = 6\\%$.",
+    "Absolute error in volume: $\\delta V = \\dfrac{6V}{100} = \\dfrac{6(5\\times 10\\times 5)}{100} = 15\\,\\text{m}^3$.",
+    "Number of bricks in $\\delta V$: $15 \\times 100 = 1500$ bricks.",
+    "Error in cost (loss to the seller): $\\dfrac{1500 \\times 2000}{1000} = 3000$ (₹ $3000$)."
+  ]}
+  answer="₹ $3000$ (loss to the seller)"
+/>
+
+<StepRevealExample
+  title="Example 56 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 56 (U.P. I Sem., Winter 2001; A.M.I.E.T.E., 2001)"
+  problem="The angles of a triangle are calculated from the sides $a, b, c$. If small changes $\\delta a, \\delta b, \\delta c$ are made in the sides, show that approximately $\\delta A = \\dfrac{a}{2\\Delta}[\\delta a - \\delta b\\cos C - \\delta c\\cos B]$, where $\\Delta$ is the area of the triangle and $A, B, C$ are opposite $a, b, c$. Verify that $\\delta A + \\delta B + \\delta C = 0$."
+  steps={[
+    "By the cosine rule, $a^2 = b^2 + c^2 - 2bc\\cos A$ ... (1).",
+    "Differentiate (1): $2a\\,\\delta a = 2b\\,\\delta b + 2c\\,\\delta c - 2b\\cos A\\,\\delta c - 2c\\cos A\\,\\delta b + 2bc\\sin A\\,\\delta A$.",
+    "Divide by $2$ and isolate $bc\\sin A\\,\\delta A$: $bc\\sin A\\,\\delta A = a\\,\\delta a - (b - c\\cos A)\\,\\delta b - (c - b\\cos A)\\,\\delta c$.",
+    "Using the triangle identities $\\Delta = \\dfrac{1}{2}bc\\sin A$, $b = c\\cos A + a\\cos C$, and $c = b\\cos A + a\\cos B$: $2\\Delta\\,\\delta A = a\\,\\delta a - (a\\cos C)\\,\\delta b - (a\\cos B)\\,\\delta c = a(\\delta a - \\delta b\\cos C - \\delta c\\cos B)$.",
+    "Hence $\\delta A = \\dfrac{a}{2\\Delta}[\\delta a - \\delta b\\cos C - \\delta c\\cos B]$ ... (2). Cyclically, $\\delta B = \\dfrac{b}{2\\Delta}[\\delta b - \\delta c\\cos A - \\delta a\\cos C]$ ... (3) and $\\delta C = \\dfrac{c}{2\\Delta}[\\delta c - \\delta a\\cos B - \\delta b\\cos A]$ ... (4).",
+    "Adding (2), (3), (4): $\\delta A + \\delta B + \\delta C = \\dfrac{1}{2\\Delta}[(a - b\\cos C - c\\cos B)\\,\\delta a + (b - c\\cos A - a\\cos C)\\,\\delta b + (c - a\\cos B - b\\cos A)\\,\\delta c] = 0$, since $b\\cos C + c\\cos B = a$, etc. Verified."
+  ]}
+  answer="$\\delta A = \\dfrac{a}{2\\Delta}[\\delta a - \\delta b\\cos C - \\delta c\\cos B]$ and $\\delta A + \\delta B + \\delta C = 0$"
+/>
+
+<StepRevealExample
+  title="Example 57 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 57 (A.M.I.E.T.E., Summer 2003)"
+  figure="/diagrams/get-209/total-differentials-jacobians-and-errors-cone-error.svg"
+  problem="The height $h$ and semi-vertical angle $\\alpha$ of a cone are measured, and from them $A$, the total area of the cone including the base, is calculated. If $h$ and $\\alpha$ are in error by $\\delta h$ and $\\delta\\alpha$ respectively, find the corresponding error in $A$. Show further that if $\\alpha = \\dfrac{\\pi}{6}$, an error of $+1\\%$ in $h$ is approximately compensated by an error of $-19.8'$ in $\\alpha$."
+  steps={[
+    "From right $\\triangle ABD$, radius $r = h\\tan\\alpha$ and slant height $l = h\\sec\\alpha$.",
+    "Total surface area: $A = \\pi r^2 + \\pi r l = \\pi h^2\\tan^2\\alpha + \\pi h^2\\tan\\alpha\\sec\\alpha = \\pi h^2[\\tan^2\\alpha + \\tan\\alpha\\sec\\alpha]$.",
+    "Take the differential: $\\delta A = 2\\pi h\\,\\delta h\\,[\\tan^2\\alpha + \\tan\\alpha\\sec\\alpha] + \\pi h^2[2\\tan\\alpha\\sec^2\\alpha + \\sec^3\\alpha + \\tan^2\\alpha\\sec\\alpha]\\,\\delta\\alpha$.",
+    "Factor the $\\delta\\alpha$ bracket: $2\\tan\\alpha\\sec^2\\alpha + \\sec^3\\alpha + \\tan^2\\alpha\\sec\\alpha = \\sec\\alpha\\,[\\tan^2\\alpha + 2\\tan\\alpha\\sec\\alpha + \\sec^2\\alpha] = (\\tan\\alpha + \\sec\\alpha)^2\\sec\\alpha$.",
+    "Thus $\\delta A = \\pi h^2(\\tan\\alpha + \\sec\\alpha)\\left[2\\tan\\alpha\\,\\dfrac{\\delta h}{h} + (\\tan\\alpha + \\sec\\alpha)\\sec\\alpha\\,\\delta\\alpha\\right]$.",
+    "For compensation set $\\delta A = 0$ with $\\alpha = \\dfrac{\\pi}{6}$ ($\\tan\\dfrac{\\pi}{6} = \\dfrac{1}{\\sqrt{3}}$, $\\sec\\dfrac{\\pi}{6} = \\dfrac{2}{\\sqrt{3}}$) and $\\dfrac{\\delta h}{h} = \\dfrac{1}{100}$: $0 = \\dfrac{2}{\\sqrt{3}}\\cdot\\dfrac{1}{100} + \\left(\\dfrac{1}{\\sqrt{3}} + \\dfrac{2}{\\sqrt{3}}\\right)\\dfrac{2}{\\sqrt{3}}\\,\\delta\\alpha$.",
+    "Dividing by $\\dfrac{2}{\\sqrt{3}}$: $\\dfrac{1}{100} = -\\dfrac{3}{\\sqrt{3}}\\,\\delta\\alpha \\implies \\delta\\alpha = -\\dfrac{1}{100\\sqrt{3}}\\,\\text{rad} = -\\dfrac{1}{100\\sqrt{3}}\\cdot\\dfrac{180}{\\pi}\\cdot 60' \\approx -19.8'$."
+  ]}
+  answer="$\\delta A = \\pi h^2(\\tan\\alpha + \\sec\\alpha)\\left[2\\tan\\alpha\\,\\dfrac{\\delta h}{h} + (\\tan\\alpha + \\sec\\alpha)\\sec\\alpha\\,\\delta\\alpha\\right]$; $\\delta\\alpha \\approx -19.8'$"
+/>
+
+<StepRevealExample
+  title="Example 58 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 58"
+  problem="Find the possible percentage error in computing the parallel resistance $r$ of three resistances $r_1, r_2, r_3$ from the formula $\\dfrac{1}{r} = \\dfrac{1}{r_1} + \\dfrac{1}{r_2} + \\dfrac{1}{r_3}$ if $r_1, r_2, r_3$ are each in error by $+1.2\\%$."
+  steps={[
+    "Differentiate $\\dfrac{1}{r} = \\dfrac{1}{r_1} + \\dfrac{1}{r_2} + \\dfrac{1}{r_3}$: $-\\dfrac{1}{r^2}\\,dr = -\\dfrac{1}{r_1^2}\\,dr_1 - \\dfrac{1}{r_2^2}\\,dr_2 - \\dfrac{1}{r_3^2}\\,dr_3$.",
+    "Multiply through by $-100$ and group percentage errors: $\\dfrac{1}{r}\\left(\\dfrac{100\\,dr}{r}\\right) = \\dfrac{1}{r_1}\\left(\\dfrac{100\\,dr_1}{r_1}\\right) + \\dfrac{1}{r_2}\\left(\\dfrac{100\\,dr_2}{r_2}\\right) + \\dfrac{1}{r_3}\\left(\\dfrac{100\\,dr_3}{r_3}\\right)$.",
+    "Substitute $1.2$ for each component percentage error: $\\dfrac{1}{r}\\left(\\dfrac{100\\,dr}{r}\\right) = 1.2\\left(\\dfrac{1}{r_1} + \\dfrac{1}{r_2} + \\dfrac{1}{r_3}\\right) = 1.2\\left(\\dfrac{1}{r}\\right)$.",
+    "Cancel $\\dfrac{1}{r}$: $\\dfrac{100\\,dr}{r} = 1.2\\%$."
+  ]}
+  answer="$1.2\\%$"
+/>
+
+<StepRevealExample
+  title="Example 59 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 59"
+  problem="If the sides and angles of a plane triangle vary in such a way that its circumradius $R$ remains constant, prove that $\\dfrac{da}{\\cos A} + \\dfrac{db}{\\cos B} + \\dfrac{dc}{\\cos C} = 0$, where $da, db, dc$ are small increments in the sides $a, b, c$."
+  steps={[
+    "By the sine rule, $\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = \\dfrac{c}{\\sin C} = 2R$, so $R = \\dfrac{a}{2\\sin A}$ ... (1).",
+    "Partial derivatives: $\\dfrac{\\partial R}{\\partial A} = -\\dfrac{a\\cos A}{2\\sin^2 A}$ and $\\dfrac{\\partial R}{\\partial a} = \\dfrac{1}{2\\sin A}$.",
+    "Since $R$ is constant, $dR = \\dfrac{\\partial R}{\\partial A}\\,dA + \\dfrac{\\partial R}{\\partial a}\\,da = 0$, giving $-\\dfrac{a\\cos A}{2\\sin^2 A}\\,dA + \\dfrac{1}{2\\sin A}\\,da = 0$.",
+    "Multiply by $2\\sin A$: $\\dfrac{a\\cos A}{\\sin A}\\,dA = da \\implies \\dfrac{da}{\\cos A} = \\dfrac{a}{\\sin A}\\,dA = 2R\\,dA$.",
+    "Similarly $\\dfrac{db}{\\cos B} = 2R\\,dB$ and $\\dfrac{dc}{\\cos C} = 2R\\,dC$.",
+    "Adding: $\\dfrac{da}{\\cos A} + \\dfrac{db}{\\cos B} + \\dfrac{dc}{\\cos C} = 2R(dA + dB + dC)$. Because $A + B + C = \\pi$, we have $dA + dB + dC = 0$, so the sum is $0$. Proved."
+  ]}
+  answer="$\\dfrac{da}{\\cos A} + \\dfrac{db}{\\cos B} + \\dfrac{dc}{\\cos C} = 0$"
+/>
+
+<StepRevealExample
+  title="Example 60 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 60"
+  problem="Compute an approximate value of $(1.04)^{3.01}$."
+  steps={[
+    "Let $f(x, y) = x^y$, so $\\dfrac{\\partial f}{\\partial x} = y x^{y-1}$ and $\\dfrac{\\partial f}{\\partial y} = x^y\\log x$.",
+    "Choose the nearby point $x = 1$, $y = 3$ with increments $\\delta x = 0.04$ and $\\delta y = 0.01$.",
+    "Evaluate $df = \\dfrac{\\partial f}{\\partial x}\\,\\delta x + \\dfrac{\\partial f}{\\partial y}\\,\\delta y = (3)(1)^{2}(0.04) + (1)^3(\\log 1)(0.01) = 0.12 + 0 = 0.12$.",
+    "Then $(1.04)^{3.01} \\approx f(1, 3) + df = 1^3 + 0.12 = 1.12$."
+  ]}
+  answer="$1.12$"
+/>
+
+<StepRevealExample
+  title="Example 61 (§1.21)"
+  source="H. K. Dass, Ch. 1, Example 61"
+  problem="Find an approximate value of $\\left[(3.82)^2 + 2(2.1)^3\\right]^{1/5}$."
+  steps={[
+    "Let $f(x, y) = (x^2 + 2y^3)^{1/5}$. Take $x = 4$, $y = 2$, so $\\delta x = 3.82 - 4 = -0.18$ and $\\delta y = 2.1 - 2 = 0.1$.",
+    "Notice $x^2 + 2y^3 = 16 + 16 = 32 = 2^5$, so $f(4, 2) = 2$ and $(x^2 + 2y^3)^{-4/5} = 32^{-4/5} = \\dfrac{1}{16}$.",
+    "$\\dfrac{\\partial f}{\\partial x} = \\dfrac{1}{5}(x^2 + 2y^3)^{-4/5}(2x) = \\dfrac{2(4)}{5}\\cdot\\dfrac{1}{16} = \\dfrac{1}{10}$.",
+    "$\\dfrac{\\partial f}{\\partial y} = \\dfrac{1}{5}(x^2 + 2y^3)^{-4/5}(6y^2) = \\dfrac{6(4)}{5}\\cdot\\dfrac{1}{16} = \\dfrac{3}{10}$.",
+    "Total differential: $df = \\dfrac{1}{10}(-0.18) + \\dfrac{3}{10}(0.1) = -0.018 + 0.03 = 0.012$.",
+    "Hence $\\left[(3.82)^2 + 2(2.1)^3\\right]^{1/5} \\approx f(4, 2) + df = 2 + 0.012 = 2.012$."
+  ]}
+  answer="$2.012$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.9"
+  source="H. K. Dass, Ch. 1, Exercise 1.9"
+  items={[
+    { q: "If the density $\\rho = \\dfrac{W}{W - \\omega}$ of a body is inferred from its weights $W, \\omega$ in air and water respectively, show that the relative error in $\\rho$ due to errors $\\delta W, \\delta\\omega$ is $\\dfrac{\\delta\\rho}{\\rho} = \\dfrac{-\\omega}{W - \\omega}\\cdot\\dfrac{\\delta W}{W} + \\dfrac{\\delta\\omega}{W - \\omega}$.", a: "Take $\\log\\rho = \\log W - \\log(W - \\omega)$ and differentiate to obtain $\\dfrac{\\delta\\rho}{\\rho} = \\dfrac{-\\omega}{W(W - \\omega)}\\delta W + \\dfrac{\\delta\\omega}{W - \\omega}$." },
+    { q: "The period of oscillation of a pendulum is $T = 2\\pi\\sqrt{\\dfrac{l}{g}}$. Show that the percentage error in $T$ is $\\dfrac{1}{2}[\\%\\text{ error in }l - \\%\\text{ error in }g]$. If $l = 6\\,\\text{cm}$, $g = 981\\,\\text{cm/s}^2$, and the relative error in $g$ is $\\dfrac{1}{160}$ (with no error in $l$), find the error in $T$.", a: "$-0.00153\\,\\text{s}$ (exact $-0.00154\\,\\text{s}$)" },
+    { q: "The indicated horse power $I$ of an engine is $I = PLAN/33000$, where $A = \\dfrac{\\pi}{4}d^2$. Assuming errors of $r\\%$ may be made in measuring $P, L, N$ and $d$, find the greatest possible percentage error in $I$.", a: "$5r\\%$" },
+    { q: "The dimensions of a cone are radius $4\\,\\text{cm}$, height $6\\,\\text{cm}$. What is the approximate error in its volume if the scale used in taking the measurement is short by $0.01\\,\\text{cm}$ per $\\text{cm}$?", a: "$0.96\\pi\\,\\text{cm}^3$" },
+    { q: "The work to propel a ship of displacement $D$ for distance $s$ in time $t$ is proportional to $s^2 D^{2/3} t^2$. Find approximately the percentage increase of work when $D$ increases by $1\\%$, $t$ diminishes by $1\\%$, and $s$ increases by $3\\%$.", a: "$\\dfrac{14}{3}\\%$" },
+    { q: "The power $P$ required to propel a ship of length $l$ moving with velocity $V$ is given by $P = kV^3 l^2$. Find the percentage increase in power if velocity increases by $3\\%$ and length increases by $4\\%$.", a: "$17\\%$" },
+    { q: "In estimating the cost of a pile of bricks measured as $2\\,\\text{m}\\times 15\\,\\text{m}\\times 1.2\\,\\text{m}$, the tape is stretched $1\\%$ beyond standard length. If the count is $450$ bricks per $\\text{m}^3$ and bricks cost ₹ $1300$ per $1000$, find the approximate error in the cost.", a: "₹ $631.80$" },
+    { q: "Find the possible percentage error in computing the parallel resistance $r$ of two resistances $r_1$ and $r_2$ from $\\dfrac{1}{r} = \\dfrac{1}{r_1} + \\dfrac{1}{r_2}$, where $r_1$ and $r_2$ are both in error by $+2\\%$ each.", a: "$2\\%$" },
+    { q: "Find the percentage error in calculating the area of the ellipse $\\dfrac{x^2}{a^2} + \\dfrac{y^2}{b^2} = 1$ when an error of $+1\\%$ is made in measuring both the semi-major and semi-minor axes.", a: "$2\\%$" },
+    { q: "The diameter and altitude of a right circular cylindrical can are measured as $4\\,\\text{cm}$ and $6\\,\\text{cm}$ respectively, with possible error $0.1\\,\\text{cm}$ in each measurement. Find approximately the maximum possible error in the computed volume and lateral surface area.", a: "$\\delta V = 1.6\\pi \\approx 5.03\\,\\text{cm}^3$, $\\delta S = \\pi \\approx 3.14\\,\\text{cm}^2$" }
+  ]}
+/>
+
+### 1.22 Jacobians
+
+When changing multiple variables simultaneously — from Cartesian $(x, y)$ to polar $(r, \theta)$ or spherical $(r, \theta, \phi)$, or between arbitrary functions $u, v, w$ and $x, y, z$ — all first partial derivatives organize naturally into a square determinant called the **Jacobian**.
+
+<RuleBox kind="definition" title="§1.22 Jacobian of two and three variables">
+
+If $u$ and $v$ are differentiable functions of the two independent variables $x$ and $y$, the **Jacobian** of $u, v$ with respect to $x, y$ is the $2\times 2$ determinant
+
+$$\frac{\partial(u, v)}{\partial(x, y)} = J\!\left(\frac{u, v}{x, y}\right) = \begin{vmatrix} \dfrac{\partial u}{\partial x} & \dfrac{\partial u}{\partial y} \\[8pt] \dfrac{\partial v}{\partial x} & \dfrac{\partial v}{\partial y} \end{vmatrix}.$$
+
+Similarly, for three functions $u, v, w$ of $x, y, z$:
+
+$$\frac{\partial(u, v, w)}{\partial(x, y, z)} = \begin{vmatrix} \dfrac{\partial u}{\partial x} & \dfrac{\partial u}{\partial y} & \dfrac{\partial u}{\partial z} \\[8pt] \dfrac{\partial v}{\partial x} & \dfrac{\partial v}{\partial y} & \dfrac{\partial v}{\partial z} \\[8pt] \dfrac{\partial w}{\partial x} & \dfrac{\partial w}{\partial y} & \dfrac{\partial w}{\partial z} \end{vmatrix}.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 62 (§1.22)"
+  source="H. K. Dass, Ch. 1, Example 62"
+  problem="If $x = r\\cos\\theta$, $y = r\\sin\\theta$, evaluate $\\dfrac{\\partial(x, y)}{\\partial(r, \\theta)}$ and $\\dfrac{\\partial(r, \\theta)}{\\partial(x, y)}$."
+  steps={[
+    "First compute the partial derivatives of $x, y$ with respect to $r, \\theta$: $\\dfrac{\\partial x}{\\partial r} = \\cos\\theta$, $\\dfrac{\\partial x}{\\partial\\theta} = -r\\sin\\theta$, $\\dfrac{\\partial y}{\\partial r} = \\sin\\theta$, $\\dfrac{\\partial y}{\\partial\\theta} = r\\cos\\theta$.",
+    "Then $\\dfrac{\\partial(x, y)}{\\partial(r, \\theta)} = \\begin{vmatrix} \\cos\\theta & -r\\sin\\theta \\\\ \\sin\\theta & r\\cos\\theta \\end{vmatrix} = r\\cos^2\\theta + r\\sin^2\\theta = r$.",
+    "For the inverse Jacobian, use $r^2 = x^2 + y^2$ and $\\theta = \\tan^{-1}\\dfrac{y}{x}$: $\\dfrac{\\partial r}{\\partial x} = \\dfrac{x}{r}$, $\\dfrac{\\partial r}{\\partial y} = \\dfrac{y}{r}$, $\\dfrac{\\partial\\theta}{\\partial x} = \\dfrac{-y}{x^2+y^2} = -\\dfrac{y}{r^2}$, $\\dfrac{\\partial\\theta}{\\partial y} = \\dfrac{x}{x^2+y^2} = \\dfrac{x}{r^2}$.",
+    "Hence $\\dfrac{\\partial(r, \\theta)}{\\partial(x, y)} = \\begin{vmatrix} \\frac{x}{r} & \\frac{y}{r} \\\\ -\\frac{y}{r^2} & \\frac{x}{r^2} \\end{vmatrix} = \\dfrac{x^2}{r^3} + \\dfrac{y^2}{r^3} = \\dfrac{x^2 + y^2}{r^3} = \\dfrac{r^2}{r^3} = \\dfrac{1}{r}$.",
+    "Note that $\\dfrac{\\partial(x, y)}{\\partial(r, \\theta)} \\times \\dfrac{\\partial(r, \\theta)}{\\partial(x, y)} = r \\cdot \\dfrac{1}{r} = 1$."
+  ]}
+  answer="$\\dfrac{\\partial(x, y)}{\\partial(r, \\theta)} = r$, $\\;\\dfrac{\\partial(r, \\theta)}{\\partial(x, y)} = \\dfrac{1}{r}$"
+/>
+
+<StepRevealExample
+  title="Example 63 (§1.22)"
+  source="H. K. Dass, Ch. 1, Example 63"
+  problem="If $x = a\\cosh\\xi\\cos\\eta$, $y = a\\sinh\\xi\\sin\\eta$, show that $\\dfrac{\\partial(x, y)}{\\partial(\\xi, \\eta)} = \\dfrac{a^2}{2}(\\cosh 2\\xi - \\cos 2\\eta)$."
+  steps={[
+    "Compute the partial derivatives: $\\dfrac{\\partial x}{\\partial\\xi} = a\\sinh\\xi\\cos\\eta$, $\\dfrac{\\partial x}{\\partial\\eta} = -a\\cosh\\xi\\sin\\eta$, $\\dfrac{\\partial y}{\\partial\\xi} = a\\cosh\\xi\\sin\\eta$, $\\dfrac{\\partial y}{\\partial\\eta} = a\\sinh\\xi\\cos\\eta$.",
+    "Form the determinant: $\\dfrac{\\partial(x, y)}{\\partial(\\xi, \\eta)} = a^2\\begin{vmatrix} \\sinh\\xi\\cos\\eta & -\\cosh\\xi\\sin\\eta \\\\ \\cosh\\xi\\sin\\eta & \\sinh\\xi\\cos\\eta \\end{vmatrix} = a^2(\\sinh^2\\xi\\cos^2\\eta + \\cosh^2\\xi\\sin^2\\eta)$.",
+    "Substitute $\\cos^2\\eta = 1 - \\sin^2\\eta$ and $\\cosh^2\\xi = 1 + \\sinh^2\\xi$: $a^2[\\sinh^2\\xi(1 - \\sin^2\\eta) + (1 + \\sinh^2\\xi)\\sin^2\\eta] = a^2(\\sinh^2\\xi + \\sin^2\\eta)$.",
+    "Use the half-angle identities $\\sinh^2\\xi = \\dfrac{\\cosh 2\\xi - 1}{2}$ and $\\sin^2\\eta = \\dfrac{1 - \\cos 2\\eta}{2}$: $a^2\\left(\\dfrac{\\cosh 2\\xi - 1 + 1 - \\cos 2\\eta}{2}\\right) = \\dfrac{a^2}{2}(\\cosh 2\\xi - \\cos 2\\eta)$. Proved."
+  ]}
+  answer="$\\dfrac{a^2}{2}(\\cosh 2\\xi - \\cos 2\\eta)$"
+/>
+
+<StepRevealExample
+  title="Example 64 (§1.22)"
+  source="H. K. Dass, Ch. 1, Example 64 (U.P. I Sem. Jan 2011, 2004; A.M.I.E. Summer 2002, 2000, Winter 2001)"
+  problem="If $y_1 = \\dfrac{x_2 x_3}{x_1}$, $y_2 = \\dfrac{x_3 x_1}{x_2}$, $y_3 = \\dfrac{x_1 x_2}{x_3}$, show that the Jacobian of $y_1, y_2, y_3$ with respect to $x_1, x_2, x_3$ is $4$."
+  steps={[
+    "Write the $3\\times 3$ Jacobian determinant: $\\dfrac{\\partial(y_1, y_2, y_3)}{\\partial(x_1, x_2, x_3)} = \\begin{vmatrix} -\\frac{x_2 x_3}{x_1^2} & \\frac{x_3}{x_1} & \\frac{x_2}{x_1} \\\\ \\frac{x_3}{x_2} & -\\frac{x_3 x_1}{x_2^2} & \\frac{x_1}{x_2} \\\\ \\frac{x_2}{x_3} & \\frac{x_1}{x_3} & -\\frac{x_1 x_2}{x_3^2} \\end{vmatrix}$.",
+    "Factor $\\dfrac{1}{x_1^2}$ from row 1, $\\dfrac{1}{x_2^2}$ from row 2, and $\\dfrac{1}{x_3^2}$ from row 3: $= \\dfrac{1}{x_1^2 x_2^2 x_3^2}\\begin{vmatrix} -x_2 x_3 & x_3 x_1 & x_1 x_2 \\\\ x_2 x_3 & -x_3 x_1 & x_1 x_2 \\\\ x_2 x_3 & x_3 x_1 & -x_1 x_2 \\end{vmatrix}$.",
+    "Now factor $x_2 x_3$ from column 1, $x_3 x_1$ from column 2, and $x_1 x_2$ from column 3: $= \\dfrac{x_1^2 x_2^2 x_3^2}{x_1^2 x_2^2 x_3^2}\\begin{vmatrix} -1 & 1 & 1 \\\\ 1 & -1 & 1 \\\\ 1 & 1 & -1 \\end{vmatrix}$.",
+    "Expand along row 1: $-1(1 - 1) - 1(-1 - 1) + 1(1 + 1) = 0 + 2 + 2 = 4$. Proved."
+  ]}
+  answer="$4$"
+/>
+
+<StepRevealExample
+  title="Example 65 (§1.22)"
+  source="H. K. Dass, Ch. 1, Example 65 (U.P. I Semester, Winter 2000)"
+  problem="If $x = r\\sin\\theta\\cos\\varphi$, $y = r\\sin\\theta\\sin\\varphi$, $z = r\\cos\\theta$, show that $\\dfrac{\\partial(x, y, z)}{\\partial(r, \\theta, \\varphi)} = r^2\\sin\\theta$."
+  steps={[
+    "Compute all nine partial derivatives: $\\dfrac{\\partial x}{\\partial r}=\\sin\\theta\\cos\\varphi$, $\\dfrac{\\partial x}{\\partial\\theta}=r\\cos\\theta\\cos\\varphi$, $\\dfrac{\\partial x}{\\partial\\varphi}=-r\\sin\\theta\\sin\\varphi$; $\\dfrac{\\partial y}{\\partial r}=\\sin\\theta\\sin\\varphi$, $\\dfrac{\\partial y}{\\partial\\theta}=r\\cos\\theta\\sin\\varphi$, $\\dfrac{\\partial y}{\\partial\\varphi}=r\\sin\\theta\\cos\\varphi$; $\\dfrac{\\partial z}{\\partial r}=\\cos\\theta$, $\\dfrac{\\partial z}{\\partial\\theta}=-r\\sin\\theta$, $\\dfrac{\\partial z}{\\partial\\varphi}=0$.",
+    "Form the Jacobian and factor $r$ from column 2 and $r\\sin\\theta$ from column 3: $\\dfrac{\\partial(x, y, z)}{\\partial(r, \\theta, \\varphi)} = r^2\\sin\\theta\\begin{vmatrix} \\sin\\theta\\cos\\varphi & \\cos\\theta\\cos\\varphi & -\\sin\\varphi \\\\ \\sin\\theta\\sin\\varphi & \\cos\\theta\\sin\\varphi & \\cos\\varphi \\\\ \\cos\\theta & -\\sin\\theta & 0 \\end{vmatrix}$.",
+    "Expand along row 1: $r^2\\sin\\theta\\left[\\sin\\theta\\cos\\varphi(\\sin\\theta\\cos\\varphi) - \\cos\\theta\\cos\\varphi(-\\cos\\theta\\cos\\varphi) - \\sin\\varphi(-\\sin^2\\theta\\sin\\varphi - \\cos^2\\theta\\sin\\varphi)\\right]$.",
+    "Collect terms: $r^2\\sin\\theta\\left[(\\sin^2\\theta + \\cos^2\\theta)\\cos^2\\varphi + (\\sin^2\\theta + \\cos^2\\theta)\\sin^2\\varphi\\right] = r^2\\sin\\theta(\\cos^2\\varphi + \\sin^2\\varphi) = r^2\\sin\\theta$. Proved."
+  ]}
+  answer="$r^2\\sin\\theta$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.10"
+  source="H. K. Dass, Ch. 1, Exercise 1.10"
+  items={[
+    { q: "If $u = x^2$, $v = y^2$, find $\\dfrac{\\partial(u, v)}{\\partial(x, y)}$.", a: "$4xy$" },
+    { q: "If $u = \\dfrac{y - x}{1 + xy}$ and $v = \\tan^{-1}y - \\tan^{-1}x$, find $\\dfrac{\\partial(u, v)}{\\partial(x, y)}$.", a: "$0$" },
+    { q: "If $u = xyz$, $v = xy + yz + zx$, $w = x + y + z$, compute $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)}$.", a: "$(x - y)(y - z)(z - x)$" },
+    { q: "If $x = r\\cos\\theta$, $y = r\\sin\\theta$, $z = z$ (cylindrical co-ordinates), find $\\dfrac{\\partial(x, y, z)}{\\partial(r, \\theta, z)}$.", a: "$r$" },
+    { q: "Find the value of $\\dfrac{\\partial(y_1, y_2, y_3)}{\\partial(x_1, x_2, x_3)}$ if $y_1 = 1 - x_1$, $y_2 = x_1(1 - x_2)$, $y_3 = x_1 x_2(1 - x_3)$.", a: "$-x_1^2 x_2$" },
+    { q: "If $u = \\dfrac{x}{y - z}$, $v = \\dfrac{y}{z - x}$, $w = \\dfrac{z}{x - y}$, show that $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = 0$.", a: "$0$" },
+    { q: "Fill in the blanks: (i) If $x = r\\cos\\theta$, $y = r\\sin\\theta$, then $\\dfrac{\\partial(x, y)}{\\partial(r, \\theta)} = \\dots$; (ii) If $u = x(1 - y)$, $v = xy$, then $\\dfrac{\\partial(u, v)}{\\partial(x, y)} = \\dots$", a: "(i) $r$; (ii) $x$" }
+  ]}
+/>
+
+### 1.23 Properties of Jacobians
+
+Jacobians obey three fundamental algebraic properties that mirror ordinary derivatives: the **inverse (reciprocal) rule**, the **chain rule**, and the **vanishing criterion for functional dependence**.
+
+#### (1) First Property: Reciprocal Relation ($JJ' = 1$)
+
+Let $u = f(x, y)$ and $v = \varphi(x, y)$. Multiplying $\dfrac{\partial(u, v)}{\partial(x, y)}$ by $\dfrac{\partial(x, y)}{\partial(u, v)}$ using row-by-column determinant multiplication (or transposing the second determinant and multiplying row-by-row) gives
+
+$$\frac{\partial(u, v)}{\partial(x, y)} \times \frac{\partial(x, y)}{\partial(u, v)} = \begin{vmatrix} \dfrac{\partial u}{\partial x}\dfrac{\partial x}{\partial u} + \dfrac{\partial u}{\partial y}\dfrac{\partial y}{\partial u} & \dfrac{\partial u}{\partial x}\dfrac{\partial x}{\partial v} + \dfrac{\partial u}{\partial y}\dfrac{\partial y}{\partial v} \\[10pt] \dfrac{\partial v}{\partial x}\dfrac{\partial x}{\partial u} + \dfrac{\partial v}{\partial y}\dfrac{\partial y}{\partial u} & \dfrac{\partial v}{\partial x}\dfrac{\partial x}{\partial v} + \dfrac{\partial v}{\partial y}\dfrac{\partial y}{\partial v} \end{vmatrix} = \begin{vmatrix} \dfrac{\partial u}{\partial u} & \dfrac{\partial u}{\partial v} \\[8pt] \dfrac{\partial v}{\partial u} & \dfrac{\partial v}{\partial v} \end{vmatrix} = \begin{vmatrix} 1 & 0 \\ 0 & 1 \end{vmatrix} = 1.$$
+
+<RuleBox kind="theorem" title="§1.23 First property of Jacobians (JJ' = 1)">
+
+If $u, v$ are invertible functions of $x, y$, then
+
+$$J \cdot J' = \frac{\partial(u, v)}{\partial(x, y)} \times \frac{\partial(x, y)}{\partial(u, v)} = 1.$$
+
+Equivalently, whenever $x, y$ are given explicitly in terms of $u, v$ (or vice versa), compute the easier Jacobian first and take its reciprocal. The same property holds for $n$ variables: $\dfrac{\partial(u, v, w)}{\partial(x, y, z)} \times \dfrac{\partial(x, y, z)}{\partial(u, v, w)} = 1$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 66 (§1.23)"
+  source="H. K. Dass, Ch. 1, Example 66"
+  problem="If $x = uv$, $y = \\dfrac{u + v}{u - v}$, find $\\dfrac{\\partial(u, v)}{\\partial(x, y)}$."
+  steps={[
+    "Since $x$ and $y$ are explicit in $u$ and $v$, compute $\\dfrac{\\partial(x, y)}{\\partial(u, v)}$ first.",
+    "$\\dfrac{\\partial x}{\\partial u} = v$, $\\dfrac{\\partial x}{\\partial v} = u$, $\\dfrac{\\partial y}{\\partial u} = \\dfrac{(u - v) - (u + v)}{(u - v)^2} = \\dfrac{-2v}{(u - v)^2}$, $\\dfrac{\\partial y}{\\partial v} = \\dfrac{(u - v) + (u + v)}{(u - v)^2} = \\dfrac{2u}{(u - v)^2}$.",
+    "$\\dfrac{\\partial(x, y)}{\\partial(u, v)} = \\begin{vmatrix} v & u \\\\ \\frac{-2v}{(u-v)^2} & \\frac{2u}{(u-v)^2} \\end{vmatrix} = \\dfrac{uv}{(u - v)^2}\\begin{vmatrix} 1 & 1 \\\\ -2 & 2 \\end{vmatrix} = \\dfrac{4uv}{(u - v)^2}$.",
+    "By the first property $JJ' = 1$: $\\dfrac{\\partial(u, v)}{\\partial(x, y)} = \\dfrac{1}{\\partial(x, y)/\\partial(u, v)} = \\dfrac{(u - v)^2}{4uv}$."
+  ]}
+  answer="$\\dfrac{(u - v)^2}{4uv}$"
+/>
+
+<StepRevealExample
+  title="Example 67 (§1.23)"
+  source="H. K. Dass, Ch. 1, Example 67 (U.P. I Sem., Winter 2002)"
+  problem="If $u = xyz$, $v = x^2 + y^2 + z^2$, $w = x + y + z$, find $J = \\dfrac{\\partial(x, y, z)}{\\partial(u, v, w)}$."
+  steps={[
+    "First evaluate $J' = \\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = \\begin{vmatrix} yz & zx & xy \\\\ 2x & 2y & 2z \\\\ 1 & 1 & 1 \\end{vmatrix}$.",
+    "Expand along row 1 (factoring $2$ from row 2): $J' = 2[yz(y - z) - zx(x - z) + xy(x - y)]$.",
+    "Group terms: $J' = 2[x^2(y - z) - x(y^2 - z^2) + yz(y - z)] = 2(y - z)[x^2 - x(y + z) + yz] = 2(y - z)(x - y)(x - z)$.",
+    "Rewrite cyclically: $J' = -2(x - y)(y - z)(z - x)$.",
+    "Using $JJ' = 1$: $J = \\dfrac{\\partial(x, y, z)}{\\partial(u, v, w)} = \\dfrac{-1}{2(x - y)(y - z)(z - x)}$."
+  ]}
+  answer="$\\dfrac{-1}{2(x - y)(y - z)(z - x)}$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.11"
+  source="H. K. Dass, Ch. 1, Exercise 1.11"
+  items={[
+    { q: "Given $u = x^2 - y^2$, $v = 2xy$, calculate $\\dfrac{\\partial(x, y)}{\\partial(u, v)}$.", a: "$\\dfrac{1}{4(x^2 + y^2)}$" },
+    { q: "If $x = uv$, $y = \\dfrac{u + v}{u - v}$, find $\\dfrac{\\partial(u, v)}{\\partial(x, y)}$.", a: "$\\dfrac{(u - v)^2}{4uv}$" },
+    { q: "If $x = r\\sin\\theta\\cos\\varphi$, $y = r\\sin\\theta\\sin\\varphi$, $z = r\\cos\\theta$, find $\\dfrac{\\partial(r, \\theta, \\varphi)}{\\partial(x, y, z)}$.", a: "$\\dfrac{1}{r^2\\sin\\theta}$" },
+    { q: "Verify $JJ' = 1$ if $x = uv$, $y = \\dfrac{u}{v}$.", a: "$\\dfrac{\\partial(x, y)}{\\partial(u, v)} = -\\dfrac{2u}{v}$ and $\\dfrac{\\partial(u, v)}{\\partial(x, y)} = -\\dfrac{v}{2u}$, so $JJ' = 1$." },
+    { q: "Verify $JJ' = 1$ if $x = e^v\\sec u$, $y = e^v\\tan u$.", a: "$\\dfrac{\\partial(x, y)}{\\partial(u, v)} = -e^{2v}\\sec u$ and $\\dfrac{\\partial(u, v)}{\\partial(x, y)} = -\\dfrac{e^{-2v}}{\\sec u}$, so $JJ' = 1$." }
+  ]}
+/>
+
+#### (2) Second Property: Chain Rule for Jacobians
+
+If $u, v$ are functions of $r, s$ and $r, s$ are functions of $x, y$, multiplying the two determinants $\dfrac{\partial(u, v)}{\partial(r, s)}$ and $\dfrac{\partial(r, s)}{\partial(x, y)}$ produces entries like $\dfrac{\partial u}{\partial r}\dfrac{\partial r}{\partial x} + \dfrac{\partial u}{\partial s}\dfrac{\partial s}{\partial x} = \dfrac{\partial u}{\partial x}$, which reconstructs $\dfrac{\partial(u, v)}{\partial(x, y)}$ entry by entry.
+
+<RuleBox kind="theorem" title="§1.23 Second property of Jacobians (Chain Rule)">
+
+If $u, v$ depend on $r, s$ and $r, s$ depend on $x, y$:
+
+$$\frac{\partial(u, v)}{\partial(x, y)} = \frac{\partial(u, v)}{\partial(r, s)} \times \frac{\partial(r, s)}{\partial(x, y)}.$$
+
+Similarly, for three variables:
+
+$$\frac{\partial(u, v, w)}{\partial(x, y, z)} = \frac{\partial(u, v, w)}{\partial(r, s, t)} \times \frac{\partial(r, s, t)}{\partial(x, y, z)}.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 68 (§1.23)"
+  source="H. K. Dass, Ch. 1, Example 68"
+  problem="Find the value of the Jacobian $\\dfrac{\\partial(u, v)}{\\partial(r, \\theta)}$, where $u = x^2 - y^2$, $v = 2xy$, and $x = r\\cos\\theta$, $y = r\\sin\\theta$."
+  steps={[
+    "Compute $\\dfrac{\\partial(u, v)}{\\partial(x, y)} = \\begin{vmatrix} 2x & -2y \\\\ 2y & 2x \\end{vmatrix} = 4(x^2 + y^2) = 4r^2$.",
+    "Compute $\\dfrac{\\partial(x, y)}{\\partial(r, \\theta)} = \\begin{vmatrix} \\cos\\theta & -r\\sin\\theta \\\\ \\sin\\theta & r\\cos\\theta \\end{vmatrix} = r(\\cos^2\\theta + \\sin^2\\theta) = r$.",
+    "Apply the chain rule: $\\dfrac{\\partial(u, v)}{\\partial(r, \\theta)} = \\dfrac{\\partial(u, v)}{\\partial(x, y)} \\times \\dfrac{\\partial(x, y)}{\\partial(r, \\theta)} = 4r^2 \\cdot r = 4r^3$."
+  ]}
+  answer="$4r^3$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.12"
+  source="H. K. Dass, Ch. 1, Exercise 1.12"
+  items={[
+    { q: "If $u = e^x\\cos y$, $v = e^x\\sin y$, where $x = lr + sm$, $y = mr - sl$, verify $\\dfrac{\\partial(u, v)}{\\partial(x, y)}\\times\\dfrac{\\partial(x, y)}{\\partial(r, s)} = \\dfrac{\\partial(u, v)}{\\partial(r, s)}$.", a: "Both sides equal $-e^{2x}(l^2 + m^2)$ (or with $s$-order, $e^{2x}(-l^2 - m^2)$)." },
+    { q: "If $u = x(1 - r^2)^{-1/2}$, $v = y(1 - r^2)^{-1/2}$, $w = z(1 - r^2)^{-1/2}$ where $r^2 = x^2 + y^2 + z^2$, show that $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = (1 - r^2)^{-5/2}$.", a: "$(1 - r^2)^{-5/2}$" },
+    { q: "If $u = x + y + z$, $u^2 v = y + z$, $u^3 w = z$, show that $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = u^{-5}$.", a: "Put $r = x+y+z$, $s = y+z$, $t = z$; then $\\dfrac{\\partial(r,s,t)}{\\partial(x,y,z)} = 1$ and $\\dfrac{\\partial(r,s,t)}{\\partial(u,v,w)} = u^5$, giving $u^{-5}$." },
+    { q: "If $u = x + y + z$, $uv = y + z$, $uvw = z$, evaluate $\\dfrac{\\partial(x, y, z)}{\\partial(u, v, w)}$.", a: "$u^2 v$" }
+  ]}
+/>
+
+#### (3) Third Property: Functional Dependence
+
+Suppose three functions $u, v, w$ of $x, y, z$ are **not independent** — that is, they satisfy a non-trivial relation $f(u, v, w) = 0$ free of $x, y, z$. Differentiating $f(u, v, w) = 0$ partially with respect to $x, y, z$ gives three homogeneous linear equations in $\dfrac{\partial f}{\partial u}, \dfrac{\partial f}{\partial v}, \dfrac{\partial f}{\partial w}$:
+
+$$\frac{\partial f}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f}{\partial v}\frac{\partial v}{\partial x} + \frac{\partial f}{\partial w}\frac{\partial w}{\partial x} = 0,$$
+$$\frac{\partial f}{\partial u}\frac{\partial u}{\partial y} + \frac{\partial f}{\partial v}\frac{\partial v}{\partial y} + \frac{\partial f}{\partial w}\frac{\partial w}{\partial y} = 0,$$
+$$\frac{\partial f}{\partial u}\frac{\partial u}{\partial z} + \frac{\partial f}{\partial v}\frac{\partial v}{\partial z} + \frac{\partial f}{\partial w}\frac{\partial w}{\partial z} = 0.$$
+
+For a non-trivial solution $\left(\dfrac{\partial f}{\partial u}, \dfrac{\partial f}{\partial v}, \dfrac{\partial f}{\partial w}\right) \neq (0, 0, 0)$, the coefficient determinant must vanish. Transposing rows and columns leaves the determinant unchanged, so $\dfrac{\partial(u, v, w)}{\partial(x, y, z)} = 0$.
+
+<RuleBox kind="theorem" title="§1.23 Third property of Jacobians (Functional dependence)">
+
+**Necessary and sufficient condition:** The functions $u, v, w$ of $x, y, z$ (or $u, v$ of $x, y$) are **functionally dependent** — connected by a relation $f(u, v, w) = 0$ (or $f(u, v) = 0$) independent of $x, y, z$ — if and only if their Jacobian vanishes identically:
+
+$$\frac{\partial(u, v, w)}{\partial(x, y, z)} = 0 \qquad \left(\text{or } \frac{\partial(u, v)}{\partial(x, y)} = 0\right).$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 69 (§1.23)"
+  source="H. K. Dass, Ch. 1, Example 69"
+  problem="If $u = xy + yz + zx$, $v = x^2 + y^2 + z^2$, and $w = x + y + z$, determine whether there is a functional relationship between $u, v, w$ and if so, find it."
+  steps={[
+    "Compute the Jacobian: $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = \\begin{vmatrix} y + z & z + x & x + y \\\\ 2x & 2y & 2z \\\\ 1 & 1 & 1 \\end{vmatrix} = 2\\begin{vmatrix} y + z & z + x & x + y \\\\ x & y & z \\\\ 1 & 1 & 1 \\end{vmatrix}$.",
+    "Apply the row operation $R_1 \\to R_1 + R_2$: $= 2\\begin{vmatrix} x+y+z & x+y+z & x+y+z \\\\ x & y & z \\\\ 1 & 1 & 1 \\end{vmatrix} = 2(x + y + z)\\begin{vmatrix} 1 & 1 & 1 \\\\ x & y & z \\\\ 1 & 1 & 1 \\end{vmatrix} = 0$ (since $R_1 = R_3$).",
+    "Since the Jacobian is $0$, a functional relationship exists between $u, v, w$.",
+    "To find it, square $w$: $w^2 = (x + y + z)^2 = x^2 + y^2 + z^2 + 2(xy + yz + zx) = v + 2u$.",
+    "Hence the required relationship is $w^2 - v - 2u = 0$."
+  ]}
+  answer="Functionally dependent; $w^2 - v - 2u = 0$"
+/>
+
+<StepRevealExample
+  title="Example 70 (§1.23)"
+  source="H. K. Dass, Ch. 1, Example 70"
+  problem="Verify whether $u = \\dfrac{x + y}{1 - xy}$ and $v = \\tan^{-1}x + \\tan^{-1}y$ are functionally dependent, and if so, find the relation between them."
+  steps={[
+    "Compute the partial derivatives: $\\dfrac{\\partial u}{\\partial x} = \\dfrac{1 + y^2}{(1 - xy)^2}$, $\\dfrac{\\partial u}{\\partial y} = \\dfrac{1 + x^2}{(1 - xy)^2}$, $\\dfrac{\\partial v}{\\partial x} = \\dfrac{1}{1 + x^2}$, $\\dfrac{\\partial v}{\\partial y} = \\dfrac{1}{1 + y^2}$.",
+    "Evaluate the Jacobian: $\\dfrac{\\partial(u, v)}{\\partial(x, y)} = \\begin{vmatrix} \\frac{1+y^2}{(1-xy)^2} & \\frac{1+x^2}{(1-xy)^2} \\\\ \\frac{1}{1+x^2} & \\frac{1}{1+y^2} \\end{vmatrix} = \\dfrac{1}{(1 - xy)^2} - \\dfrac{1}{(1 - xy)^2} = 0$.",
+    "Therefore $u$ and $v$ are functionally related.",
+    "By the inverse tangent addition identity, $v = \\tan^{-1}x + \\tan^{-1}y = \\tan^{-1}\\left(\\dfrac{x + y}{1 - xy}\\right) = \\tan^{-1}u$, so $u = \\tan v$."
+  ]}
+  answer="Functionally dependent; $u = \\tan v$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.13"
+  source="H. K. Dass, Ch. 1, Exercise 1.13"
+  items={[
+    { q: "Verify whether $u = \\dfrac{x - y}{x + y}$ and $v = \\dfrac{x + y}{x}$ are functionally dependent, and if so, find the relation between them.", a: "Yes; $u = \\dfrac{2 - v}{v}$" },
+    { q: "Determine functional dependence and find the relation between $u = \\dfrac{x - y}{x + y}$ and $v = \\dfrac{xy}{(x + y)^2}$.", a: "Dependent; $4v = 1 - u^2$" },
+    { q: "Are $u = x + y - z$, $v = x - y + z$, $w = x^2 + y^2 + z^2 - 2yz$ functionally dependent? If so, find a relation between them.", a: "Yes; $u^2 + v^2 = 2w$" },
+    { q: "If $u = x + y + z$, $v = x^2 + y^2 + z^2$, $w = x^3 + y^3 + z^3 - 3xyz$, prove that $u, v, w$ are not independent and find the relation between them.", a: "$2w = u(3v - u^2)$" },
+    { q: "Are $u = \\dfrac{x - y}{x + z}$ and $v = \\dfrac{x + z}{y + z}$ functionally dependent? If so, find the relation between them.", a: "Yes; $v = \\dfrac{1}{1 - u}$" },
+    { q: "If $u = \\dfrac{x + y}{z}$, $v = \\dfrac{y + z}{x}$, $w = \\dfrac{y(x + y + z)}{xz}$, show that $u, v, w$ are not independent and find the relation between them.", a: "$uv - w = 1$" }
+  ]}
+/>
+
+### 1.24 Jacobian of Implicit Functions
+
+Often $u, v$ are not given explicitly in terms of $x, y$, but instead satisfy two implicit equations:
+
+$$f_1(x, y, u, v) = 0, \qquad f_2(x, y, u, v) = 0.$$
+
+Differentiating both equations partially with respect to $x$ and $y$ gives four relations:
+
+$$\frac{\partial f_1}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f_1}{\partial v}\frac{\partial v}{\partial x} = -\frac{\partial f_1}{\partial x}, \qquad \frac{\partial f_1}{\partial u}\frac{\partial u}{\partial y} + \frac{\partial f_1}{\partial v}\frac{\partial v}{\partial y} = -\frac{\partial f_1}{\partial y},$$
+$$\frac{\partial f_2}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f_2}{\partial v}\frac{\partial v}{\partial x} = -\frac{\partial f_2}{\partial x}, \qquad \frac{\partial f_2}{\partial u}\frac{\partial u}{\partial y} + \frac{\partial f_2}{\partial v}\frac{\partial v}{\partial y} = -\frac{\partial f_2}{\partial y}.$$
+
+Multiplying $\dfrac{\partial(f_1, f_2)}{\partial(u, v)}$ by $\dfrac{\partial(u, v)}{\partial(x, y)}$ yields
+
+$$\frac{\partial(f_1, f_2)}{\partial(u, v)} \times \frac{\partial(u, v)}{\partial(x, y)} = \begin{vmatrix} -\dfrac{\partial f_1}{\partial x} & -\dfrac{\partial f_1}{\partial y} \\[8pt] -\dfrac{\partial f_2}{\partial x} & -\dfrac{\partial f_2}{\partial y} \end{vmatrix} = (-1)^2\frac{\partial(f_1, f_2)}{\partial(x, y)}.$$
+
+<RuleBox kind="formula" title="§1.24 Jacobian of implicit functions">
+
+For $n$ implicit equations $f_1(x_1,\dots,x_n, u_1,\dots,u_n) = 0, \dots, f_n(x_1,\dots,x_n, u_1,\dots,u_n) = 0$:
+
+$$\frac{\partial(u_1, u_2, \dots, u_n)}{\partial(x_1, x_2, \dots, x_n)} = (-1)^n \frac{\partial(f_1, f_2, \dots, f_n)/\partial(x_1, x_2, \dots, x_n)}{\partial(f_1, f_2, \dots, f_n)/\partial(u_1, u_2, \dots, u_n)}.$$
+
+In particular:
+- For $n = 2$: $\;(-1)^2 = +1$, so $\;\dfrac{\partial(u, v)}{\partial(x, y)} = +\dfrac{\partial(f_1, f_2)/\partial(x, y)}{\partial(f_1, f_2)/\partial(u, v)}$.
+- For $n = 3$: $\;(-1)^3 = -1$, so $\;\dfrac{\partial(u, v, w)}{\partial(x, y, z)} = -\dfrac{\partial(f_1, f_2, f_3)/\partial(x, y, z)}{\partial(f_1, f_2, f_3)/\partial(u, v, w)}$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 71 (§1.24)"
+  source="H. K. Dass, Ch. 1, Example 71"
+  problem="If $x^2 + y^2 + u^2 - v^2 = 0$ and $uv + xy = 0$, prove that $\\dfrac{\\partial(u, v)}{\\partial(x, y)} = \\dfrac{x^2 - y^2}{u^2 + v^2}$."
+  steps={[
+    "Define $f_1 = x^2 + y^2 + u^2 - v^2$ and $f_2 = uv + xy$.",
+    "Compute $\\dfrac{\\partial(f_1, f_2)}{\\partial(x, y)} = \\begin{vmatrix} 2x & 2y \\\\ y & x \\end{vmatrix} = 2(x^2 - y^2)$.",
+    "Compute $\\dfrac{\\partial(f_1, f_2)}{\\partial(u, v)} = \\begin{vmatrix} 2u & -2v \\\\ v & u \\end{vmatrix} = 2(u^2 + v^2)$.",
+    "Apply the implicit Jacobian formula for $n = 2$: $\\dfrac{\\partial(u, v)}{\\partial(x, y)} = (-1)^2\\dfrac{\\partial(f_1, f_2)/\\partial(x, y)}{\\partial(f_1, f_2)/\\partial(u, v)} = \\dfrac{2(x^2 - y^2)}{2(u^2 + v^2)} = \\dfrac{x^2 - y^2}{u^2 + v^2}$. Proved."
+  ]}
+  answer="$\\dfrac{x^2 - y^2}{u^2 + v^2}$"
+/>
+
+<StepRevealExample
+  title="Example 72 (§1.24)"
+  source="H. K. Dass, Ch. 1, Example 72"
+  problem="If $u^3 + v + w = x + y^2 + z^2$, $u + v^3 + w = x^2 + y + z^2$, $u + v + w^3 = x^2 + y^2 + z$, prove that $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = \\dfrac{1 - 4(xy + yz + zx) + 16xyz}{2 - 3(u^2 + v^2 + w^2) + 27u^2 v^2 w^2}$."
+  steps={[
+    "Set $f_1 = u^3 + v + w - x - y^2 - z^2$, $f_2 = u + v^3 + w - x^2 - y - z^2$, $f_3 = u + v + w^3 - x^2 - y^2 - z$.",
+    "Evaluate $\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(x, y, z)} = \\begin{vmatrix} -1 & -2y & -2z \\\\ -2x & -1 & -2z \\\\ -2x & -2y & -1 \\end{vmatrix} = -1(1 - 4yz) + 2y(2x - 4xz) - 2z(4xy - 2x) = -1 + 4(xy + yz + zx) - 16xyz$.",
+    "Evaluate $\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(u, v, w)} = \\begin{vmatrix} 3u^2 & 1 & 1 \\\\ 1 & 3v^2 & 1 \\\\ 1 & 1 & 3w^2 \\end{vmatrix} = 3u^2(9v^2 w^2 - 1) - 1(3w^2 - 1) + 1(1 - 3v^2) = 2 - 3(u^2 + v^2 + w^2) + 27u^2 v^2 w^2$.",
+    "Apply the formula with $(-1)^3 = -1$: $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = -\\dfrac{-1 + 4(xy + yz + zx) - 16xyz}{2 - 3(u^2 + v^2 + w^2) + 27u^2 v^2 w^2} = \\dfrac{1 - 4(xy + yz + zx) + 16xyz}{2 - 3(u^2 + v^2 + w^2) + 27u^2 v^2 w^2}$. Proved."
+  ]}
+  answer="Proved."
+/>
+
+<StepRevealExample
+  title="Example 73 (§1.24)"
+  source="H. K. Dass, Ch. 1, Example 73"
+  problem="If $x + y + z = u$, $y + z = uv$, $z = uvw$, show that $\\dfrac{\\partial(x, y, z)}{\\partial(u, v, w)} = u^2 v$."
+  steps={[
+    "Set $f_1 = x + y + z - u$, $f_2 = y + z - uv$, $f_3 = z - uvw$.",
+    "$\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(x, y, z)} = \\begin{vmatrix} 1 & 1 & 1 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 1 \\end{vmatrix} = 1$.",
+    "$\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(u, v, w)} = \\begin{vmatrix} -1 & 0 & 0 \\\\ -v & -u & 0 \\\\ -vw & -uw & -uv \\end{vmatrix} = (-1)(-u)(-uv) = -u^2 v$.",
+    "By the implicit Jacobian formula ($n = 3$): $\\dfrac{\\partial(x, y, z)}{\\partial(u, v, w)} = (-1)^3\\dfrac{\\partial(f_1, f_2, f_3)/\\partial(u, v, w)}{\\partial(f_1, f_2, f_3)/\\partial(x, y, z)} = -\\dfrac{-u^2 v}{1} = u^2 v$. Proved."
+  ]}
+  answer="$u^2 v$"
+/>
+
+<StepRevealExample
+  title="Example 74 (§1.24)"
+  source="H. K. Dass, Ch. 1, Example 74 (U.P. I Sem. Jan 2011; Winter 2001)"
+  problem="If $u, v, w$ are the roots of the equation $(\\lambda - x)^3 + (\\lambda - y)^3 + (\\lambda - z)^3 = 0$ in $\\lambda$, find $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)}$."
+  steps={[
+    "Expand the cubic in $\\lambda$: $3\\lambda^3 - 3(x + y + z)\\lambda^2 + 3(x^2 + y^2 + z^2)\\lambda - (x^3 + y^3 + z^3) = 0$.",
+    "By Vieta's formulas for roots $u, v, w$: $u + v + w = x + y + z$, $uv + vw + wu = x^2 + y^2 + z^2$, and $uvw = \\dfrac{1}{3}(x^3 + y^3 + z^3)$.",
+    "Write $f_1 = u + v + w - x - y - z$, $f_2 = uv + vw + wu - x^2 - y^2 - z^2$, $f_3 = uvw - \\dfrac{1}{3}(x^3 + y^3 + z^3)$.",
+    "$\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(x, y, z)} = \\begin{vmatrix} -1 & -1 & -1 \\\\ -2x & -2y & -2z \\\\ -x^2 & -y^2 & -z^2 \\end{vmatrix} = (-1)(-2)(-1)\\begin{vmatrix} 1 & 1 & 1 \\\\ x & y & z \\\\ x^2 & y^2 & z^2 \\end{vmatrix} = -2(x - y)(y - z)(z - x)$.",
+    "$\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(u, v, w)} = \\begin{vmatrix} 1 & 1 & 1 \\\\ v+w & u+w & u+v \\\\ vw & wu & uv \\end{vmatrix}$. Applying $C_1 \\to C_1 - C_2$, $C_2 \\to C_2 - C_3$ gives $(v - u)(w - v)(u - w) = -(u - v)(v - w)(w - u)$.",
+    "Finally, $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = (-1)^3\\dfrac{-2(x - y)(y - z)(z - x)}{-(u - v)(v - w)(w - u)} = -\\dfrac{2(x - y)(y - z)(z - x)}{(u - v)(v - w)(w - u)}$."
+  ]}
+  answer="$-\\dfrac{2(x - y)(y - z)(z - x)}{(u - v)(v - w)(w - u)}$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.14"
+  source="H. K. Dass, Ch. 1, Exercise 1.14"
+  items={[
+    { q: "If $u^3 + v^3 + w^3 = x + y + z$, $u^2 + v^2 + w^2 = x^3 + y^3 + z^3$, $u + v + w = x^2 + y^2 + z^2$, show that $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = \\dfrac{(x - y)(y - z)(z - x)}{(u - v)(v - w)(w - u)}$.", a: "$\\dfrac{(x - y)(y - z)(z - x)}{(u - v)(v - w)(w - u)}$" },
+    { q: "If $u = \\dfrac{x}{\\sqrt{1 - r^2}}$, $v = \\dfrac{y}{\\sqrt{1 - r^2}}$, $w = \\dfrac{z}{\\sqrt{1 - r^2}}$ where $r^2 = x^2 + y^2 + z^2$, show that $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)} = \\dfrac{1}{(1 - r^2)^{5/2}}$.", a: "$\\dfrac{1}{(1 - r^2)^{5/2}}$" },
+    { q: "If $u_1 = x_1 + x_2 + x_3 + x_4$, $u_1 u_2 = x_2 + x_3 + x_4$, $u_1 u_2 u_3 = x_3 + x_4$, $u_1 u_2 u_3 u_4 = x_4$, show that $\\dfrac{\\partial(x_1, x_2, x_3, x_4)}{\\partial(u_1, u_2, u_3, u_4)} = u_1^3 u_2^2 u_3$.", a: "$u_1^3 u_2^2 u_3$" },
+    { q: "If $u, v, w$ are the roots of the equation in $\\lambda$, $\\dfrac{x}{a + \\lambda} + \\dfrac{y}{b + \\lambda} + \\dfrac{z}{c + \\lambda} = 1$, find $\\dfrac{\\partial(x, y, z)}{\\partial(u, v, w)}$.", a: "$\\dfrac{(u - v)(v - w)(w - u)}{(a - b)(b - c)(c - a)}$" }
+  ]}
+/>
+
+### 1.25 Partial Derivatives of Implicit Functions by Jacobian
+
+When $u, v$ are defined implicitly as functions of $x, y$ by $f_1(x, y, u, v) = 0$ and $f_2(x, y, u, v) = 0$, differentiating both equations with respect to $x$ (holding $y$ constant) gives a $2\times 2$ linear system in $\dfrac{\partial u}{\partial x}$ and $\dfrac{\partial v}{\partial x}$:
+
+$$\frac{\partial f_1}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f_1}{\partial v}\frac{\partial v}{\partial x} + \frac{\partial f_1}{\partial x} = 0,$$
+$$\frac{\partial f_2}{\partial u}\frac{\partial u}{\partial x} + \frac{\partial f_2}{\partial v}\frac{\partial v}{\partial x} + \frac{\partial f_2}{\partial x} = 0.$$
+
+Solving by cross-multiplication (Cramer's rule) expresses each partial derivative cleanly as a ratio of two Jacobians.
+
+<RuleBox kind="formula" title="§1.25 Implicit partial derivatives via Jacobians">
+
+For $f_1(x, y, u, v) = 0$, $f_2(x, y, u, v) = 0$ (treating $u, v$ as dependent on $x, y$):
+
+$$\frac{\partial u}{\partial x} = -\frac{\partial(f_1, f_2)/\partial(x, v)}{\partial(f_1, f_2)/\partial(u, v)}, \qquad \frac{\partial v}{\partial x} = -\frac{\partial(f_1, f_2)/\partial(u, x)}{\partial(f_1, f_2)/\partial(u, v)} = \frac{\partial(f_1, f_2)/\partial(x, u)}{\partial(f_1, f_2)/\partial(v, u)}.$$
+
+For three implicit equations $f_1 = 0, f_2 = 0, f_3 = 0$ defining $x, y, z$ in terms of $u, v, w$:
+
+$$\frac{\partial x}{\partial u} = -\frac{\partial(f_1, f_2, f_3)/\partial(u, y, z)}{\partial(f_1, f_2, f_3)/\partial(x, y, z)}, \qquad \frac{\partial y}{\partial u} = -\frac{\partial(f_1, f_2, f_3)/\partial(x, u, z)}{\partial(f_1, f_2, f_3)/\partial(x, y, z)}, \qquad \frac{\partial z}{\partial u} = -\frac{\partial(f_1, f_2, f_3)/\partial(x, y, u)}{\partial(f_1, f_2, f_3)/\partial(x, y, z)}.$$
+
+**Memory rule (Dass §1.25):** First write the Jacobian of all equations with respect to the **dependent variables** in the denominator; then form the numerator by replacing the differentiated dependent variable (e.g. $x$) with the independent variable (e.g. $u$), and attach a minus sign.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 75 (§1.25)"
+  source="H. K. Dass, Ch. 1, Example 75"
+  problem="Use Jacobians to find $\\dfrac{\\partial u}{\\partial x}$ (holding $y$ constant) if $u^2 + xv^2 - xy = 0$ and $u^2 + xyv + v^2 = 0$."
+  steps={[
+    "Set $f_1 = u^2 + xv^2 - xy = 0$ and $f_2 = u^2 + xyv + v^2 = 0$.",
+    "Denominator Jacobian (w.r.t. dependent variables $u, v$): $\\dfrac{\\partial(f_1, f_2)}{\\partial(u, v)} = \\begin{vmatrix} 2u & 2xv \\\\ 2u & xy + 2v \\end{vmatrix} = 2u(xy + 2v) - 2u(2xv) = 2uxy + 4uv - 4uxv$.",
+    "Numerator Jacobian (replace $u$ by $x$): $\\dfrac{\\partial(f_1, f_2)}{\\partial(x, v)} = \\begin{vmatrix} v^2 - y & 2xv \\\\ yv & xy + 2v \\end{vmatrix} = (v^2 - y)(xy + 2v) - 2xv(yv) = xyv^2 + 2v^3 - xy^2 - 2yv - 2xyv^2 = -xyv^2 + 2v^3 - xy^2 - 2yv$.",
+    "Apply $\\dfrac{\\partial u}{\\partial x} = -\\dfrac{\\partial(f_1, f_2)/\\partial(x, v)}{\\partial(f_1, f_2)/\\partial(u, v)} = \\dfrac{xyv^2 - 2v^3 + xy^2 + 2yv}{2uxy + 4uv - 4uxv}$."
+  ]}
+  answer="$\\dfrac{xyv^2 - 2v^3 + xy^2 + 2yv}{2uxy + 4uv - 4uxv}$"
+/>
+
+<StepRevealExample
+  title="Example 76 (§1.25)"
+  source="H. K. Dass, Ch. 1, Example 76"
+  problem="If $u = x + y^2$, $v = y + z^2$, $w = z + x^2$, prove that (i) $\\dfrac{\\partial x}{\\partial u} = \\dfrac{1}{1 + 8xyz}$, and (ii) also find $\\dfrac{\\partial^2 x}{\\partial u^2}$."
+  steps={[
+    "Define $f_1 = u - x - y^2 = 0$, $f_2 = v - y - z^2 = 0$, $f_3 = w - z - x^2 = 0$.",
+    "(i) Compute $\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(u, y, z)} = \\begin{vmatrix} 1 & -2y & 0 \\\\ 0 & -1 & -2z \\\\ 0 & 0 & -1 \\end{vmatrix} = 1$, and $\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(x, y, z)} = \\begin{vmatrix} -1 & -2y & 0 \\\\ 0 & -1 & -2z \\\\ -2x & 0 & -1 \\end{vmatrix} = -1(1) + 2y(-4xz) = -1 - 8xyz$.",
+    "Therefore $\\dfrac{\\partial x}{\\partial u} = -\\dfrac{\\partial(f_1, f_2, f_3)/\\partial(u, y, z)}{\\partial(f_1, f_2, f_3)/\\partial(x, y, z)} = -\\dfrac{1}{-1 - 8xyz} = \\dfrac{1}{1 + 8xyz}$. Proved.",
+    "(ii) Differentiate again with respect to $u$: $\\dfrac{\\partial^2 x}{\\partial u^2} = \\dfrac{-8}{(1 + 8xyz)^2}\\left[yz\\dfrac{\\partial x}{\\partial u} + zx\\dfrac{\\partial y}{\\partial u} + xy\\dfrac{\\partial z}{\\partial u}\\right]$ ... (1).",
+    "Find $\\dfrac{\\partial y}{\\partial u}$ and $\\dfrac{\\partial z}{\\partial u}$ by the same Jacobian rule: $\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(x, u, z)} = \\begin{vmatrix} -1 & 1 & 0 \\\\ 0 & 0 & -2z \\\\ -2x & 0 & -1 \\end{vmatrix} = 4zx$, so $\\dfrac{\\partial y}{\\partial u} = \\dfrac{4zx}{1 + 8xyz}$; and $\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(x, y, u)} = \\begin{vmatrix} -1 & -2y & 1 \\\\ 0 & -1 & 0 \\\\ -2x & 0 & 0 \\end{vmatrix} = -2x$, so $\\dfrac{\\partial z}{\\partial u} = \\dfrac{-2x}{1 + 8xyz}$.",
+    "Substitute into (1): $\\dfrac{\\partial^2 x}{\\partial u^2} = \\dfrac{-8}{(1 + 8xyz)^2}\\left[\\dfrac{yz + 4z^2 x^2 - 2x^2 y}{1 + 8xyz}\\right] = \\dfrac{-8(yz + 4z^2 x^2 - 2x^2 y)}{(1 + 8xyz)^3}$."
+  ]}
+  answer="(i) $\\dfrac{1}{1 + 8xyz}$; (ii) $\\dfrac{-8(yz + 4z^2 x^2 - 2x^2 y)}{(1 + 8xyz)^3}$"
+/>
+
+<StepRevealExample
+  title="Example 77 (§1.25)"
+  source="H. K. Dass, Ch. 1, Example 77"
+  problem="Given $x = u + v + w$, $y = u^2 + v^2 + w^2$, $z = u^3 + v^3 + w^3$, show that $\\dfrac{\\partial u}{\\partial x} = \\dfrac{vw}{(u - v)(u - w)}$."
+  steps={[
+    "Set $f_1 = u + v + w - x = 0$, $f_2 = u^2 + v^2 + w^2 - y = 0$, $f_3 = u^3 + v^3 + w^3 - z = 0$.",
+    "Use $\\dfrac{\\partial u}{\\partial x} = -\\dfrac{\\partial(f_1, f_2, f_3)/\\partial(x, v, w)}{\\partial(f_1, f_2, f_3)/\\partial(u, v, w)}$ ... (1).",
+    "Numerator: $\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(x, v, w)} = \\begin{vmatrix} -1 & 1 & 1 \\\\ 0 & 2v & 2w \\\\ 0 & 3v^2 & 3w^2 \\end{vmatrix} = (-1)(6vw)(w - v) = 6vw(v - w)$ ... (2).",
+    "Denominator: $\\dfrac{\\partial(f_1, f_2, f_3)}{\\partial(u, v, w)} = \\begin{vmatrix} 1 & 1 & 1 \\\\ 2u & 2v & 2w \\\\ 3u^2 & 3v^2 & 3w^2 \\end{vmatrix} = 6(v - u)(w - u)(w - v)$ ... (3).",
+    "Substitute (2) and (3) into (1): $\\dfrac{\\partial u}{\\partial x} = -\\dfrac{6vw(v - w)}{6(v - u)(w - u)(w - v)} = \\dfrac{vw}{(u - v)(u - w)}$. Proved."
+  ]}
+  answer="$\\dfrac{vw}{(u - v)(u - w)}$"
+/>
+
+<ExerciseSet
+  title="Exercise 1.15"
+  source="H. K. Dass, Ch. 1, Exercise 1.15"
+  items={[
+    { q: "If $u^2 + xv^2 - uxy = 0$ and $v^2 - xy^2 + 2uv + u^2 = 0$, find $\\dfrac{\\partial u}{\\partial x}$.", a: "$-\\dfrac{(v^2 - uy)(u + v) + xvy^2}{(u + v)(2u - xy - 2xv)}$" },
+    { q: "If $x = u + e^{-v}\\sin u$ and $y = v + e^{-v}\\cos u$, find $\\dfrac{\\partial u}{\\partial y}$ and $\\dfrac{\\partial v}{\\partial x}$.", a: "$\\dfrac{\\partial u}{\\partial y} = \\dfrac{\\partial v}{\\partial x} = \\dfrac{e^{-v}\\sin u}{1 - e^{-2v}}$" },
+    { q: "If $x = u^2 - v^2$ and $y = 2uv$, find $\\dfrac{\\partial u}{\\partial x},\\;\\dfrac{\\partial u}{\\partial y},\\;\\dfrac{\\partial v}{\\partial x},\\;\\dfrac{\\partial v}{\\partial y}$ and $\\dfrac{\\partial(u, v)}{\\partial(x, y)}$.", a: "$\\dfrac{u}{2(u^2 + v^2)},\\;\\dfrac{v}{2(u^2 + v^2)},\\;\\dfrac{-v}{2(u^2 + v^2)},\\;\\dfrac{u}{2(u^2 + v^2)},\\;\\dfrac{1}{4(u^2 + v^2)}$" }
+  ]}
+/>
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Pitfall 1: Treating polar or transformed operators like constants when taking second derivatives">
+
+When transforming $\dfrac{\partial^2 u}{\partial x^2}$ using $\dfrac{\partial}{\partial x} = \cos\theta\dfrac{\partial}{\partial r} - \dfrac{\sin\theta}{r}\dfrac{\partial}{\partial\theta}$, you **must** apply the product rule to $\cos\theta$, $\dfrac{\sin\theta}{r}$, and $\dfrac{1}{r}$ when differentiating a second time. Dropping the derivative of $1/r$ or $\sin\theta$ loses the $\dfrac{1}{r}\dfrac{\partial u}{\partial r}$ term in Laplace's equation.
+
+</Callout>
+
+<Callout variant="warning" title="Pitfall 2: Subtracting percentage errors when asked for the maximum possible error">
+
+For $T = 2\pi\sqrt{l/g}$, logarithmic differentiation gives $\dfrac{\delta T}{T} = \dfrac{1}{2}\dfrac{\delta l}{l} - \dfrac{1}{2}\dfrac{\delta g}{g}$. If the problem gives *specific signed changes* (e.g. $E$ increased by $3\%$ and $R$ decreased by $2\%$), keep the exact signs. If it asks for the **maximum possible error** (e.g. errors up to $1\%$ in $l$ and $2\%$ in $g$), take absolute values so the errors add: $\dfrac{1}{2}(1\% + 2\%) = 1.5\%$, **not** $\dfrac{1}{2}(1\% - 2\%)$.
+
+</Callout>
+
+<Callout variant="warning" title="Pitfall 3: Assuming ∂u/∂x = 1 / (∂x/∂u) in multivariable systems">
+
+In single-variable calculus $\dfrac{du}{dx} = \left(\dfrac{dx}{du}\right)^{-1}$, but for two or more variables $\dfrac{\partial u}{\partial x} \neq \left(\dfrac{\partial x}{\partial u}\right)^{-1}$ because different variables are held constant! For example, in polar co-ordinates $\dfrac{\partial x}{\partial r} = \cos\theta$ while $\dfrac{\partial r}{\partial x} = \cos\theta \neq \sec\theta$. Always use §1.18 (simultaneous differentiation) or §1.25 (ratio of Jacobians).
+
+</Callout>
+
+<Callout variant="warning" title="Pitfall 4: Forgetting the (−1)ⁿ factor in implicit Jacobians or swapping variable order">
+
+In §1.24 the formula is $\dfrac{\partial(u_1,\dots,u_n)}{\partial(x_1,\dots,x_n)} = (-1)^n \dfrac{\partial(f_1,\dots,f_n)/\partial(x_1,\dots,x_n)}{\partial(f_1,\dots,f_n)/\partial(u_1,\dots,u_n)}$ — the sign is $+$ for $n = 2$ and $-$ for $n = 3$. In §1.25 every single-variable implicit partial derivative carries a single minus sign, **provided** you replace the dependent variable in its exact column slot (e.g. replacing $v$ by $x$ in $(u, v)$ gives $-\dfrac{\partial(f_1,f_2)/\partial(u,x)}{\partial(f_1,f_2)/\partial(u,v)}$; swapping $(u, x)$ to $(x, u)$ flips the sign).
+
+</Callout>
+
+## Summary of Formulas
+
+<RuleBox kind="formula" title="Key Formulas — H. K. Dass, Ch. 1 (§1.12–1.25)">
+
+**1. Total differential & chain rules (§1.13–1.16):**
+
+$$dz = \frac{\partial f}{\partial x}\,dx + \frac{\partial f}{\partial y}\,dy, \qquad \frac{dz}{dt} = \frac{\partial z}{\partial x}\frac{dx}{dt} + \frac{\partial z}{\partial y}\frac{dy}{dt}$$
+
+$$\frac{\partial z}{\partial u} = \frac{\partial f}{\partial x}\frac{\partial x}{\partial u} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial u}, \qquad \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \frac{\partial^2 u}{\partial r^2} + \frac{1}{r}\frac{\partial u}{\partial r} + \frac{1}{r^2}\frac{\partial^2 u}{\partial\theta^2}$$
+
+**2. Implicit differentiation (§1.17):**
+
+$$\frac{dy}{dx} = -\frac{f_x}{f_y} = -\frac{p}{q}, \qquad \frac{d^2 y}{dx^2} = -\frac{q^2 r - 2pqs + p^2 t}{q^3}$$
+
+**3. Tangent plane & normal line to $F(x, y, z) = 0$ at $(x_1, y_1, z_1)$ (§1.20):**
+
+$$(x - x_1)F_x + (y - y_1)F_y + (z - z_1)F_z = 0, \qquad \frac{x - x_1}{F_x} = \frac{y - y_1}{F_y} = \frac{z - z_1}{F_z}$$
+
+**4. Error determination (§1.21):**
+
+$$\delta u \approx \frac{\partial u}{\partial x}\,\delta x + \frac{\partial u}{\partial y}\,\delta y + \dots, \qquad \text{Relative error} = \frac{\delta u}{u}, \qquad \text{Percentage error} = 100\frac{\delta u}{u}$$
+
+**5. Jacobians & properties (§1.22–1.23):**
+
+$$\frac{\partial(u, v)}{\partial(x, y)} = \begin{vmatrix} u_x & u_y \\ v_x & v_y \end{vmatrix}, \qquad \frac{\partial(u, v)}{\partial(x, y)}\cdot\frac{\partial(x, y)}{\partial(u, v)} = 1, \qquad \frac{\partial(u, v)}{\partial(x, y)} = \frac{\partial(u, v)}{\partial(r, s)}\cdot\frac{\partial(r, s)}{\partial(x, y)}$$
+
+$$\text{Functional dependence } f(u, v, w) = 0 \iff \frac{\partial(u, v, w)}{\partial(x, y, z)} = 0$$
+
+**6. Implicit Jacobians & implicit partial derivatives (§1.24–1.25):**
+
+$$\frac{\partial(u_1,\dots,u_n)}{\partial(x_1,\dots,x_n)} = (-1)^n \frac{\partial(f_1,\dots,f_n)/\partial(x_1,\dots,x_n)}{\partial(f_1,\dots,f_n)/\partial(u_1,\dots,u_n)}, \qquad \frac{\partial u}{\partial x} = -\frac{\partial(f_1, f_2)/\partial(x, v)}{\partial(f_1, f_2)/\partial(u, v)}$$
+
+</RuleBox>

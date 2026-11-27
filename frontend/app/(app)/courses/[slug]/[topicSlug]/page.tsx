@@ -13,13 +13,41 @@ import remarkMath from "remark-math";
 import {
   Callout,
   DiagramFigure,
+  ExerciseSet,
+  RuleBox,
   StepRevealExample,
   TopicActionBar,
 } from "@/components/mdx/topic-components";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/cn";
 import { TEXTBOOKS } from "@/lib/config";
-import { getCourseManifest, getTopicDocument, listAllTopicParams } from "@/lib/content";
+import {
+  getCourseManifest,
+  getTopicDocument,
+  headingId,
+  listAllTopicParams,
+  listTopicHeadings,
+} from "@/lib/content";
+
+function headingText(node: React.ReactNode): string {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(headingText).join("");
+  if (typeof node === "object" && "props" in node) {
+    const props = (node as React.ReactElement<{ className?: string; children?: React.ReactNode }>).props;
+    if (props.className?.includes("katex")) return "";
+    return headingText(props.children);
+  }
+  return "";
+}
+
+function H2({ children }: { children?: React.ReactNode }) {
+  return <h2 id={headingId(headingText(children))}>{children}</h2>;
+}
+
+function H3({ children }: { children?: React.ReactNode }) {
+  return <h3 id={headingId(headingText(children))}>{children}</h3>;
+}
 
 export function generateStaticParams() {
   return listAllTopicParams();
@@ -49,6 +77,7 @@ export default async function TopicReaderPage({
   const wordCount = content.split(/\s+/).filter(Boolean).length;
   const readMins = Math.max(5, Math.round(wordCount / 145));
   const folioNumber = String(frontmatter.order).padStart(2, "0");
+  const headings = listTopicHeadings(content);
   const totalFolios = String(Math.max(1, topicList.length)).padStart(2, "0");
 
   return (
@@ -108,7 +137,7 @@ export default async function TopicReaderPage({
                       isCurrent ? "text-[var(--accent)]" : "text-[var(--text-muted)]"
                     )}
                   >
-                    0{i + 1}
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="max-w-[155px] truncate sm:max-w-[185px]">{t.title}</span>
                 </Link>
@@ -189,6 +218,25 @@ export default async function TopicReaderPage({
 
           {/* Main Ruled Reading Column to the right of the vertical margin rule */}
           <div className="notebook-margin-line min-w-0 flex-1 px-4 py-5 sm:px-9 sm:py-9">
+            {headings.filter((h) => h.level === 3).length >= 4 && (
+              <details className="mb-6 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)]/80 p-3.5 sm:p-4">
+                <summary className="cursor-pointer font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
+                  In this folio · {headings.filter((h) => h.level === 3).length} sections
+                </summary>
+                <ol className="mt-3 grid gap-1 text-xs sm:grid-cols-2">
+                  {headings.map((h) => (
+                    <li key={h.id} className={h.level === 2 ? "sm:col-span-2 mt-1.5 font-bold" : "pl-2"}>
+                      <a
+                        href={`#${h.id}`}
+                        className="inline-flex min-h-[28px] items-center text-[var(--text-secondary)] hover:text-[var(--accent)]"
+                      >
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </details>
+            )}
             <div className="prose-study notebook-prose">
               <MDXRemote
                 source={content}
@@ -196,6 +244,10 @@ export default async function TopicReaderPage({
                   DiagramFigure,
                   StepRevealExample,
                   Callout,
+                  RuleBox,
+                  ExerciseSet,
+                  h2: H2,
+                  h3: H3,
                 }}
                 options={{
                   blockJS: false,

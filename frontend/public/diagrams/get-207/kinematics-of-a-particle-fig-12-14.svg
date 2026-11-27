@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 250" role="img" aria-label="Example 12.7: a-t graph (10 then -2 m/s2), v-t graph (peak 100 m/s at 10 s, zero at 60 s), s-t graph (500 m at 10 s, 3000 m at 60 s)">
+  <rect width="720" height="250" rx="12" fill="#FFFFFF"/>
+  <line x1="50.0" y1="175.0" x2="221.0" y2="175.0" stroke="#141413" stroke-width="1.6"/>
+  <polygon points="228.0,175.0 221.0,178.5 221.0,171.5" fill="#141413"/>
+  <line x1="50.0" y1="205.0" x2="50.0" y2="54.0" stroke="#141413" stroke-width="1.6"/>
+  <polygon points="50.0,47.0 53.5,54.0 46.5,54.0" fill="#141413"/>
+  <text x="234.0" y="179.0" font-family="system-ui,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#141413" font-style="italic">t (s)</text>
+  <text x="50.0" y="41.0" font-family="system-ui,sans-serif" font-size="13" font-weight="400" text-anchor="middle" fill="#141413" font-style="italic">a (m/s²)</text>
+  <line x1="78.3" y1="172.0" x2="78.3" y2="178.0" stroke="#141413" stroke-width="1.2"/>
+  <text x="78.3" y="192.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#6B7280">10</text>
+  <line x1="220.0" y1="172.0" x2="220.0" y2="178.0" stroke="#141413" stroke-width="1.2"/>
+  <text x="220.0" y="192.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#6B7280">60</text>
+  <line x1="47.0" y1="75.0" x2="53.0" y2="75.0" stroke="#141413" stroke-width="1.2"/>
+  <text x="43.0" y="79.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#6B7280">10</text>
+  <line x1="47.0" y1="195.0" x2="53.0" y2="195.0" stroke="#141413" stroke-width="1.2"/>
+  <text x="43.0" y="199.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#6B7280">-2</text>
+  <path d="M50.0,75.0 L78.3,75.0" fill="none" stroke="#0F766E" stroke-width="2.6"/>
+  <path d="M78.3,195.0 L220.0,195.0" fill="none" stroke="#0F766E" stroke-width="2.6"/>
+  <text x="60.0" y="80.0" font-family="system-ui,sans-serif" font-size="12" font-weight="700" text-anchor="start" fill="#EA580C">A₁</text>
+  <text x="130.0" y="190.0" font-family="system-ui,sans-serif" font-size="12" font-weight="700" text-anchor="start" fill="#EA580C">A₂</text>
+  <line x1="290.0" y1="205.0" x2="461.0" y2="205.0" stroke="#141413" stroke-width="1.6"/>
+  <polygon points="468.0,205.0 461.0,208.5 461.0,201.5" fill="#141413"/>
+  <line x1="290.0" y1="205.0" x2="290.0" y2="54.0" stroke="#141413" stroke-width="1.6"/>
+  <polygon points="290.0,47.0 293.5,54.0 286.5,54.0" fill="#141413"/>
+  <text x="474.0" y="209.0" font-family="system-ui,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#141413" font-style="italic">t (s)</text>
+  <text x="290.0" y="41.0" font-family="system-ui,sans-serif" font-size="13" font-weight="400" text-anchor="middle" fill="#141413" font-style="italic">v (m/s)</text>
+  <line x1="318.3" y1="202.0" x2="318.3" y2="208.0" stroke="#141413" stroke-width="1.2"/>
+  <text x="318.3" y="222.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#6B7280">10</text>
+  <line x1="460.0" y1="202.0" x2="460.0" y2="208.0" stroke="#141413" stroke-width="1.2"/>
+  <text x="460.0" y="222.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#6B7280">60</text>
+  <line x1="287.0" y1="68.6" x2="293.0" y2="68.6" stroke="#141413" stroke-width="1.2"/>
+  <text x="283.0" y="72.6" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#6B7280">100</text>
+  <path d="M290.0,205.0 L318.3,68.6 L460.0,205.0" fill="none" stroke="#0F766E" stroke-width="2.6"/>
+  <text x="300.0" y="150.0" font-family="system-ui,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#0F766E">v = 10t</text>
+  <text x="400.0" y="120.0" font-family="system-ui,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#0F766E">v = −2t + 120</text>
+  <line x1="530.0" y1="205.0" x2="701.0" y2="205.0" stroke="#141413" stroke-width="1.6"/>
+  <polygon points="708.0,205.0 701.0,208.5 701.0,201.5" fill="#141413"/>
+  <line x1="530.0" y1="205.0" x2="530.0" y2="54.0" stroke="#141413" stroke-width="1.6"/>
+  <polygon points="530.0,47.0 533.5,54.0 526.5,54.0" fill="#141413"/>
+  <text x="714.0" y="209.0" font-family="system-ui,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#141413" font-style="italic">t (s)</text>
+  <text x="530.0" y="41.0" font-family="system-ui,sans-serif" font-size="13" font-weight="400" text-anchor="middle" fill="#141413" font-style="italic">s (m)</text>
+  <line x1="558.3" y1="202.0" x2="558.3" y2="208.0" stroke="#141413" stroke-width="1.2"/>
+  <text x="558.3" y="222.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#6B7280">10</text>
+  <line x1="700.0" y1="202.0" x2="700.0" y2="208.0" stroke="#141413" stroke-width="1.2"/>
+  <text x="700.0" y="222.0" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#6B7280">60</text>
+  <line x1="527.0" y1="181.6" x2="533.0" y2="181.6" stroke="#141413" stroke-width="1.2"/>
+  <text x="523.0" y="185.6" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#6B7280">500</text>
+  <line x1="527.0" y1="64.4" x2="533.0" y2="64.4" stroke="#141413" stroke-width="1.2"/>
+  <text x="523.0" y="68.4" font-family="system-ui,sans-serif" font-size="11" font-weight="400" text-anchor="end" fill="#6B7280">3000</text>
+  <path d="M530.0,205.0 L532.8,204.8 L535.7,204.1 L538.5,202.9 L541.3,201.2 L544.2,199.1 L547.0,196.6 L549.8,193.5 L552.7,190.0 L555.5,186.0 L558.3,181.6 L558.3,181.6 L564.0,172.4 L569.7,163.6 L575.3,155.1 L581.0,147.1 L586.7,139.4 L592.3,132.1 L598.0,125.1 L603.7,118.6 L609.3,112.4 L615.0,106.6 L620.7,101.1 L626.3,96.1 L632.0,91.4 L637.7,87.1 L643.3,83.1 L649.0,79.6 L654.7,76.4 L660.3,73.6 L666.0,71.1 L671.7,69.1 L677.3,67.4 L683.0,66.1 L688.7,65.1 L694.3,64.6 L700.0,64.4" fill="none" stroke="#0F766E" stroke-width="2.6"/>
+  <text x="20.0" y="24.0" font-family="system-ui,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#141413">Fig. 12–14 (redrawn): Example 12.7</text>
+</svg>

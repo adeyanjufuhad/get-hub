@@ -160,10 +160,10 @@ export function PrescribedTextbooks() {
                     Study Folios →
                   </Link>
                   <Link
-                    href={book.readUrl || "/library"}
+                    href="/tests"
                     className="pressable inline-flex min-h-[42px] items-center justify-center rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 text-xs font-semibold text-[var(--text-primary)]"
                   >
-                    Course PDFs
+                    Practice Tests
                   </Link>
                 </div>
               </article>

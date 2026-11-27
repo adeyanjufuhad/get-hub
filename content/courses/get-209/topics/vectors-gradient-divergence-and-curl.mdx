@@ -1,0 +1,1126 @@
+---
+title: "Vectors: Products, Differentiation, Gradient, Divergence & Curl"
+order: 7
+topicId: "22222222-2222-4222-8222-222222290007"
+courseCode: "GET 209"
+courseSlug: "get-209"
+ccmasRef: "Vector algebra; vector differentiation; gradient, directional derivative, divergence and curl"
+textbookRef: "H. K. Dass · Ch. 5, §5.1–5.32"
+outcomes:
+  - "Resolve vectors into rectangular components $\\hat{i},\\hat{j},\\hat{k}$, compute unit vectors, position vectors and section-ratio divisions."
+  - "Compute dot products, cross products, work done, moments of forces, angular velocity relations, and scalar/vector triple and quadruple products."
+  - "Test coplanarity of vectors or four points and calculate volumes of parallelepipeds and tetrahedra."
+  - "Differentiate vector functions of a scalar variable to find tangent vectors, velocity, acceleration and tangential acceleration."
+  - "Compute the gradient $\\nabla\\phi$, unit normal to a surface, directional derivatives, greatest rate of increase, and angle between intersecting surfaces."
+  - "Evaluate divergence ($\\nabla\\cdot\\vec{F}$) and curl ($\\nabla\\times\\vec{F}$), test whether fields are solenoidal or irrotational, determine scalar potentials, and prove standard vector differential identities."
+status: "published"
+isFree: true
+---
+
+## Overview
+
+Engineering quantities such as displacement, velocity, acceleration, force, electric field and fluid velocity possess both magnitude and direction. Chapter 5 of H. K. Dass builds the complete vector toolkit used across mechanics, electromagnetism and fluid flow: first **vector algebra** (§5.1–§5.21 — addition, rectangular resolution, dot and cross products, triple and quadruple products), then **vector differentiation** of functions of a single scalar parameter (§5.22–§5.24 — tangents, velocity and acceleration), and finally **vector differential calculus** using the operator $\nabla$ (§5.25–§5.32 — gradient, level surfaces, directional derivatives, divergence, solenoidal fields, curl, irrotational fields, scalar potentials and vector identities). Every section below follows Dass's exact numbering from §5.1 to §5.32, together with his solved examples and end-of-section exercises.
+
+### 5.1 Vectors
+
+Physical quantities fall into two classes: **scalars**, specified completely by a single numerical magnitude (such as mass, length, temperature or time), and **vectors**, which require both a magnitude and a direction in space.
+
+<RuleBox kind="definition" title="§5.1 Vector quantity">
+
+A **vector** is a quantity having both **magnitude** and **direction**, such as force, velocity, acceleration or displacement. Geometrically, a vector $\vec{a} = \overrightarrow{OA}$ is represented by a directed line segment whose length equals its magnitude $|\vec{a}|$ and whose arrow indicates its direction.
+
+</RuleBox>
+
+### 5.2 Addition of Vectors
+
+To add two vectors $\vec{a}$ and $\vec{b}$, place the tail of $\vec{b}$ at the head of $\vec{a}$. The directed segment drawn from the tail of $\vec{a}$ to the head of $\vec{b}$ represents their sum (the **triangle law of vector addition**).
+
+<RuleBox kind="definition" title="§5.2 Triangle law of addition of vectors">
+
+If $\overrightarrow{OA} = \vec{a}$ and $\overrightarrow{AB} = \vec{b}$, then the vector $\overrightarrow{OB}$ is the sum of $\vec{a}$ and $\vec{b}$:
+
+$$\overrightarrow{OA} + \overrightarrow{AB} = \overrightarrow{OB}, \qquad \text{i.e., } \vec{a} + \vec{b} = \overrightarrow{OB}.$$
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-addition.svg" caption="H. K. Dass Fig. 5.2 (redrawn) — Addition of vectors by the triangle law: OA + AB = OB." />
+
+### 5.3 Rectangular Resolution of a Vector
+
+Let $OX$, $OY$ and $OZ$ be three mutually perpendicular coordinate axes, and let $\hat{i}$, $\hat{j}$ and $\hat{k}$ denote unit vectors along the positive $x$-, $y$- and $z$-directions respectively. If a point $P$ has coordinates $(x,y,z)$, drop a perpendicular $PF$ onto the $XY$-plane so $F=(x,y,0)$, and draw $FA \perp OX$ and $FB \perp OY$. Then $\overrightarrow{OA}=x\hat{i}$, $\overrightarrow{OB}=y\hat{j}$ and $\overrightarrow{OC}=z\hat{k}$. Applying the triangle law twice gives
+
+$$\overrightarrow{OP} = \overrightarrow{OF} + \overrightarrow{FP} = (\overrightarrow{OA} + \overrightarrow{AF}) + \overrightarrow{FP} = \overrightarrow{OA} + \overrightarrow{OB} + \overrightarrow{OC}.$$
+
+By the Pythagorean theorem, $OP^2 = OF^2 + FP^2 = OA^2 + AF^2 + FP^2 = x^2 + y^2 + z^2$.
+
+<RuleBox kind="formula" title="§5.3 Rectangular components and magnitude of a vector">
+
+For a point $P(x,y,z)$ with position vector $\vec{r} = \overrightarrow{OP}$:
+
+$$\vec{r} = x\hat{i} + y\hat{j} + z\hat{k}, \qquad |\vec{r}| = \sqrt{x^2 + y^2 + z^2}.$$
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-resolution.svg" caption="H. K. Dass Fig. 5.3 (redrawn) — Rectangular resolution of OP = r into x i + y j + z k." />
+
+### 5.4 Unit Vector
+
+A **unit vector** has magnitude $1$. Dividing any non-zero vector by its own magnitude produces the unit vector pointing in the same direction.
+
+<RuleBox kind="formula" title="§5.4 Unit vector in the direction of a given vector">
+
+For a non-zero vector $\vec{r} = x\hat{i} + y\hat{j} + z\hat{k}$, the unit vector along $\vec{r}$ is
+
+$$\hat{r} = \frac{\vec{r}}{|\vec{r}|} = \frac{x\hat{i} + y\hat{j} + z\hat{k}}{\sqrt{x^2 + y^2 + z^2}}.$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 1 (§5.4)"
+  source="H. K. Dass, Ch. 5, Example 1 (Nagpur University, Winter 2001)"
+  figure="/diagrams/get-209/vectors-gradient-divergence-and-curl-example-1-unit-sum.svg"
+  problem="If $\\vec{a}$ and $\\vec{b}$ be two unit vectors and $\\alpha$ be the angle between them, then find the value of $\\alpha$ such that $\\vec{a} + \\vec{b}$ is a unit vector."
+  steps={[
+    "Let $\\overrightarrow{OA} = \\vec{a}$ and $\\overrightarrow{AB} = \\vec{b}$ be unit vectors, with $\\alpha$ denoting the angle between the directions of $\\vec{a}$ and $\\vec{b}$ (the exterior angle at vertex $A$ when $\\vec{a}$ is extended).",
+    "By the triangle law, $\\overrightarrow{OB} = \\vec{c} = \\vec{a} + \\vec{b}$. Since $\\vec{a}$, $\\vec{b}$ and $\\vec{a} + \\vec{b}$ are all unit vectors, $|\\overrightarrow{OA}| = 1$, $|\\overrightarrow{AB}| = 1$ and $|\\overrightarrow{OB}| = 1$.",
+    "Therefore $\\triangle OAB$ is an equilateral triangle, so each interior angle of $\\triangle OAB$ equals $\\dfrac{\\pi}{3}$.",
+    "The angle between $\\vec{a}$ and $\\vec{b}$ is the supplement of interior $\\angle OAB$: $\\alpha = \\pi - \\dfrac{\\pi}{3} = \\dfrac{2\\pi}{3}$."
+  ]}
+  answer="$\\alpha = \\dfrac{2\\pi}{3}$"
+/>
+
+### 5.5 Position Vector of a Point
+
+The **position vector** of a point $A$ relative to a fixed origin $O$ is the vector $\overrightarrow{OA}$, which uniquely locates $A$ in space. If $A$ and $B$ have position vectors $\vec{a} = \overrightarrow{OA}$ and $\vec{b} = \overrightarrow{OB}$, then by the triangle law $\overrightarrow{OA} + \overrightarrow{AB} = \overrightarrow{OB}$, so $\overrightarrow{AB} = \overrightarrow{OB} - \overrightarrow{OA}$.
+
+<RuleBox kind="formula" title="§5.5 Displacement vector between two points">
+
+If the position vectors of $A$ and $B$ are $\vec{a}$ and $\vec{b}$, then
+
+$$\overrightarrow{AB} = \vec{b} - \vec{a} = (\text{Position vector of } B) - (\text{Position vector of } A).$$
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-position-vectors.svg" caption="H. K. Dass §5.5 (redrawn) — Vector AB expressed as the difference of position vectors b − a." />
+
+<StepRevealExample
+  title="Example 2 (§5.5)"
+  source="H. K. Dass, Ch. 5, Example 2"
+  problem="If $A$ and $B$ are $(3, 4, 5)$ and $(6, 8, 9)$, find $\\overrightarrow{AB}$."
+  steps={[
+    "Write the position vectors of $A$ and $B$ relative to the origin: $\\overrightarrow{OA} = 3\\hat{i} + 4\\hat{j} + 5\\hat{k}$ and $\\overrightarrow{OB} = 6\\hat{i} + 8\\hat{j} + 9\\hat{k}$.",
+    "Apply $\\overrightarrow{AB} = \\overrightarrow{OB} - \\overrightarrow{OA} = (6\\hat{i} + 8\\hat{j} + 9\\hat{k}) - (3\\hat{i} + 4\\hat{j} + 5\\hat{k})$.",
+    "Subtract componentwise to get $\\overrightarrow{AB} = 3\\hat{i} + 4\\hat{j} + 4\\hat{k}$."
+  ]}
+  answer="$3\\hat{i} + 4\\hat{j} + 4\\hat{k}$"
+/>
+
+### 5.6 Ratio Formula
+
+Suppose a point $C$ divides the line segment $AB$ internally in the ratio $m : n$, where $A$ and $B$ have position vectors $\vec{a}$ and $\vec{b}$ relative to origin $O$. Because $AC = \dfrac{m}{m+n}AB$ along the same direction, we have
+
+$$\overrightarrow{OC} = \overrightarrow{OA} + \overrightarrow{AC} = \vec{a} + \frac{m}{m+n}(\vec{b} - \vec{a}) = \frac{m\vec{b} + n\vec{a}}{m+n}.$$
+
+<RuleBox kind="formula" title="§5.6 Section (ratio) formula and mid-point corollary">
+
+If $C$ divides the join of $A(\vec{a})$ and $B(\vec{b})$ internally in the ratio $m : n$, then
+
+$$\overrightarrow{OC} = \frac{m\vec{b} + n\vec{a}}{m + n}.$$
+
+**Corollary:** Setting $m = n = 1$ gives the position vector of the mid-point of $AB$:
+
+$$\overrightarrow{OC} = \frac{\vec{a} + \vec{b}}{2}.$$
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-ratio-formula.svg" caption="H. K. Dass §5.6 (redrawn) — Point C dividing segment AB internally in the ratio m : n." />
+
+### 5.7 Product of Two Vectors
+
+Two vectors can be multiplied in two fundamentally different ways: one yields a scalar (a pure number), written $\vec{a} \cdot \vec{b}$ and called the **scalar (or dot) product**, and the other yields a vector, written $\vec{a} \times \vec{b}$ and called the **vector (or cross) product**.
+
+### 5.8 Scalar, or Dot Product
+
+<RuleBox kind="definition" title="§5.8 Scalar (dot) product of two vectors">
+
+The **scalar (or dot) product** of two vectors $\vec{a}$ and $\vec{b}$ inclined at an angle $\theta$ is the scalar
+
+$$\vec{a} \cdot \vec{b} = |\vec{a}|\,|\vec{b}|\cos\theta.$$
+
+- **Commutativity:** $\vec{b}\cdot\vec{a} = |\vec{b}||\vec{a}|\cos(-\theta) = |\vec{a}||\vec{b}|\cos\theta = \vec{a}\cdot\vec{b}$.
+- **Geometrical interpretation:** If $\overrightarrow{OA} = \vec{a}$, $\overrightarrow{OB} = \vec{b}$ and $BN \perp OA$, then $\cos\theta = \dfrac{ON}{OB}$, so $\vec{a}\cdot\vec{b} = (OA)(ON) = (\text{length of }\vec{a})(\text{projection of }\vec{b}\text{ along }\vec{a})$.
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-dot-product.svg" caption="H. K. Dass §5.8 (redrawn) — Geometrical meaning of the dot product: a · b = (OA)(ON)." />
+
+### 5.9 Useful Results
+
+Since $\hat{i}$, $\hat{j}$ and $\hat{k}$ are mutually perpendicular unit vectors ($\cos 0^\circ = 1$, $\cos 90^\circ = 0$), the dot product obeys simple algebraic rules in component form.
+
+<RuleBox kind="formula" title="§5.9 Dot product identities and orthogonality test">
+
+$$\hat{i}\cdot\hat{i} = \hat{j}\cdot\hat{j} = \hat{k}\cdot\hat{k} = 1, \qquad \hat{i}\cdot\hat{j} = \hat{j}\cdot\hat{k} = \hat{k}\cdot\hat{i} = 0.$$
+
+Consequently, if $\vec{a} = a_1\hat{i} + a_2\hat{j} + a_3\hat{k}$ and $\vec{b} = b_1\hat{i} + b_2\hat{j} + b_3\hat{k}$, then
+
+$$\vec{a}\cdot\vec{b} = a_1 b_1 + a_2 b_2 + a_3 b_3.$$
+
+**Perpendicularity condition:** Two non-zero vectors $\vec{a}$ and $\vec{b}$ are **perpendicular (orthogonal)** if and only if $\vec{a}\cdot\vec{b} = 0$.
+
+</RuleBox>
+
+### 5.10 Work Done as a Scalar Product
+
+When a constant force $\vec{F}$ acts on a particle and moves it along a straight displacement $\overrightarrow{AB}$ inclined at angle $\theta$ to $\vec{F}$, only the component $F\cos\theta$ along $\overrightarrow{AB}$ performs work.
+
+<RuleBox kind="formula" title="§5.10 Work done by a constant force">
+
+$$\text{Work done} = (F\cos\theta)\cdot AB = \vec{F}\cdot\overrightarrow{AB} = \text{Force}\cdot\text{Displacement}.$$
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-work-done.svg" caption="H. K. Dass §5.10 (redrawn) — Work done by force F through displacement AB is F · AB." />
+
+### 5.11 Vector Product or Cross Product
+
+<RuleBox kind="definition" title="§5.11 Vector (cross) product and unit-vector rules">
+
+The **vector (or cross) product** $\vec{a}\times\vec{b}$ of two vectors $\vec{a}$ and $\vec{b}$ is a vector defined by:
+
+1. **Magnitude:** $|\vec{a}\times\vec{b}| = |\vec{a}|\,|\vec{b}|\sin\theta$, where $\theta$ is the angle between $\vec{a}$ and $\vec{b}$.
+2. **Direction:** Perpendicular to both $\vec{a}$ and $\vec{b}$, forming a **right-handed system** $(\vec{a},\vec{b},\hat{\eta})$.
+
+Writing $\hat{\eta}$ for the unit vector perpendicular to both $\vec{a}$ and $\vec{b}$ in the right-handed sense:
+
+$$\vec{a}\times\vec{b} = |\vec{a}|\,|\vec{b}|\sin\theta\,\hat{\eta}, \qquad \vec{b}\times\vec{a} = -(\vec{a}\times\vec{b}).$$
+
+**Useful results for $\hat{i},\hat{j},\hat{k}$:**
+
+$$\hat{i}\times\hat{i} = \hat{j}\times\hat{j} = \hat{k}\times\hat{k} = \vec{0},$$
+
+$$\hat{i}\times\hat{j} = -\hat{j}\times\hat{i} = \hat{k}, \qquad \hat{j}\times\hat{k} = -\hat{k}\times\hat{j} = \hat{i}, \qquad \hat{k}\times\hat{i} = -\hat{i}\times\hat{k} = \hat{j}.$$
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-cross-product.svg" caption="H. K. Dass §5.11 (redrawn) — Right-handed cross product a × b = |a||b| sin θ η." />
+
+### 5.12 Vector Product Expressed as a Determinant
+
+Let $\vec{a} = a_1\hat{i} + a_2\hat{j} + a_3\hat{k}$ and $\vec{b} = b_1\hat{i} + b_2\hat{j} + b_3\hat{k}$. Expanding $(a_1\hat{i}+a_2\hat{j}+a_3\hat{k})\times(b_1\hat{i}+b_2\hat{j}+b_3\hat{k})$ term by term and applying the unit-vector cross product identities gives
+
+$$\vec{a}\times\vec{b} = (a_2 b_3 - a_3 b_2)\hat{i} - (a_1 b_3 - a_3 b_1)\hat{j} + (a_1 b_2 - a_2 b_1)\hat{k}.$$
+
+This expansion matches a $3\times 3$ determinant along its first row.
+
+<RuleBox kind="formula" title="§5.12 Determinant form of the cross product">
+
+$$\vec{a}\times\vec{b} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \end{vmatrix} = (a_2 b_3 - a_3 b_2)\hat{i} - (a_1 b_3 - a_3 b_1)\hat{j} + (a_1 b_2 - a_2 b_1)\hat{k}.$$
+
+</RuleBox>
+
+### 5.13 Area of Parallelogram
+
+If $\vec{a}$ and $\vec{b}$ represent two adjacent sides of a parallelogram inclined at angle $\theta$, the altitude is $|\vec{b}|\sin\theta$, so the **vector area** of the parallelogram is $\vec{a}\times\vec{b}$ and its scalar area is $|\vec{a}\times\vec{b}|$. (Accordingly, the area of the triangle with adjacent sides $\vec{a}$ and $\vec{b}$ is $\frac{1}{2}|\vec{a}\times\vec{b}|$.)
+
+<StepRevealExample
+  title="Example 3 (§5.13)"
+  source="H. K. Dass, Ch. 5, Example 3"
+  problem="Find the area of a parallelogram whose adjacent sides are $\\hat{i} - 2\\hat{j} + 3\\hat{k}$ and $2\\hat{i} + \\hat{j} - 4\\hat{k}$."
+  steps={[
+    "Compute the vector area of the parallelogram via the cross product: $\\vec{a}\\times\\vec{b} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ 1 & -2 & 3 \\\\ 2 & 1 & -4 \\end{vmatrix}$.",
+    "Expand along the first row: $[(-2)(-4) - (3)(1)]\\hat{i} - [(1)(-4) - (3)(2)]\\hat{j} + [(1)(1) - (-2)(2)]\\hat{k} = (8-3)\\hat{i} - (-4-6)\\hat{j} + (1+4)\\hat{k} = 5\\hat{i} + 10\\hat{j} + 5\\hat{k}$.",
+    "Take the magnitude to obtain the area: $|\\vec{a}\\times\\vec{b}| = \\sqrt{5^2 + 10^2 + 5^2} = \\sqrt{25 + 100 + 25} = \\sqrt{150} = 5\\sqrt{6}$."
+  ]}
+  answer="$5\\sqrt{6}$"
+/>
+
+### 5.14 Moment of a Force
+
+Let a force $\vec{F} = \overrightarrow{PQ}$ act at a point $P$ whose position vector from a fixed origin $O$ is $\vec{r} = \overrightarrow{OP}$, and let $ON$ be the perpendicular from $O$ onto the line of action of $\vec{F}$. Then $ON = OP\sin\theta$, so the turning moment about $O$ is $(PQ)(ON)\hat{\eta} = (OP)(PQ)\sin\theta\,\hat{\eta} = \overrightarrow{OP}\times\overrightarrow{PQ}$.
+
+<RuleBox kind="formula" title="§5.14 Moment of a force about O">
+
+$$\vec{M} = \vec{r}\times\vec{F},$$
+
+where $\vec{r} = \overrightarrow{OP}$ is the position vector from $O$ to any point $P$ on the line of action of $\vec{F}$.
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-moment-of-force.svg" caption="H. K. Dass §5.14 (redrawn) — Moment of force F about O: M = r × F with magnitude F · ON." />
+
+### 5.15 Angular Velocity
+
+Consider a rigid body rotating about a fixed axis $OA$ with angular velocity vector $\vec{\omega}$ (magnitude $\omega$ rad/s, directed along the rotation axis $OA$). For any particle $P$ on the body at position vector $\vec{r} = \overrightarrow{OP}$ making angle $\theta$ with $OA$, the circular orbit radius is $AP = r\sin\theta$, so the speed of $P$ is $\omega\cdot AP = \omega r\sin\theta$ directed perpendicular to both $\vec{\omega}$ and $\vec{r}$.
+
+<RuleBox kind="formula" title="§5.15 Linear velocity in rigid-body rotation">
+
+$$\vec{V} = \vec{\omega}\times\vec{r}.$$
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-angular-velocity.svg" caption="H. K. Dass §5.15 (redrawn) — Linear velocity V = ω × r of a point P on a rotating rigid body." />
+
+### 5.16 Scalar Triple Product
+
+Given three vectors $\vec{a} = a_1\hat{i}+a_2\hat{j}+a_3\hat{k}$, $\vec{b} = b_1\hat{i}+b_2\hat{j}+b_3\hat{k}$ and $\vec{c} = c_1\hat{i}+c_2\hat{j}+c_3\hat{k}$, the scalar $\vec{a}\cdot(\vec{b}\times\vec{c})$ is called their **scalar triple product** (or **box product**) and is denoted by $[\vec{a}\;\vec{b}\;\vec{c}]$. Taking the dot product of $\vec{a}$ with $\vec{b}\times\vec{c} = (b_2 c_3 - b_3 c_2)\hat{i} + (b_3 c_1 - b_1 c_3)\hat{j} + (b_1 c_2 - b_2 c_1)\hat{k}$ yields a $3\times 3$ determinant.
+
+<RuleBox kind="formula" title="§5.16 Scalar triple product and its properties">
+
+$$[\vec{a}\;\vec{b}\;\vec{c}] = \vec{a}\cdot(\vec{b}\times\vec{c}) = \begin{vmatrix} a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3 \end{vmatrix}.$$
+
+- **Cyclic invariance:** $\vec{a}\cdot(\vec{b}\times\vec{c}) = \vec{b}\cdot(\vec{c}\times\vec{a}) = \vec{c}\cdot(\vec{a}\times\vec{b})$.
+- **Reversing cyclic order changes the sign:** $[\vec{a}\;\vec{c}\;\vec{b}] = -[\vec{a}\;\vec{b}\;\vec{c}]$.
+- **Dot and cross may be interchanged:** $\vec{a}\cdot(\vec{b}\times\vec{c}) = (\vec{a}\times\vec{b})\cdot\vec{c}$.
+- **Repeated vector gives zero:** $[\vec{a}\;\vec{a}\;\vec{c}] = 0$ (two identical rows in the determinant).
+- Expressions like $\vec{a}\times(\vec{b}\cdot\vec{c})$ or $(\vec{a}\cdot\vec{b})\times\vec{c}$ are **meaningless** because the cross product requires two vectors.
+
+</RuleBox>
+
+### 5.17 Geometrical Interpretation
+
+Let $\vec{a}$, $\vec{b}$ and $\vec{c}$ be three coterminous edges of a parallelepiped meeting at $O$. The base $OBDC$ spanned by $\vec{b}$ and $\vec{c}$ has vector area $\vec{b}\times\vec{c} = (\text{Area of }\|gm\,OBDC)\hat{\eta}$, where $\hat{\eta}$ is unit normal to the base. Dotting with $\vec{a}$ multiplies the base area by the perpendicular height $\vec{a}\cdot\hat{\eta}$ between the parallel faces $OBDC$ and $AEFG$.
+
+<RuleBox kind="theorem" title="§5.17 Volumes of parallelepiped and tetrahedron; coplanarity test">
+
+1. **Volume of parallelepiped** with coterminous edges $\vec{a},\vec{b},\vec{c}$:
+
+$$V_{\text{parallelepiped}} = \big|\vec{a}\cdot(\vec{b}\times\vec{c})\big| = \big|[\vec{a}\;\vec{b}\;\vec{c}]\big|.$$
+
+2. **Coplanarity condition:** Three non-zero vectors $\vec{a},\vec{b},\vec{c}$ are **coplanar** (linearly dependent) if and only if
+
+$$[\vec{a}\;\vec{b}\;\vec{c}] = \vec{a}\cdot(\vec{b}\times\vec{c}) = 0.$$
+
+3. **Volume of tetrahedron** with coterminous edges $\vec{a},\vec{b},\vec{c}$ (or vertices $A,B,C,D$ with edges $\overrightarrow{AB},\overrightarrow{AC},\overrightarrow{AD}$):
+
+$$V_{\text{tetrahedron}} = \frac{1}{6}\big|[\vec{a}\;\vec{b}\;\vec{c}]\big|.$$
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-parallelepiped.svg" caption="H. K. Dass §5.17 (redrawn) — Volume of the parallelepiped spanned by coterminous edges a, b, c." />
+
+<StepRevealExample
+  title="Example 4 (§5.17)"
+  source="H. K. Dass, Ch. 5, Example 4"
+  problem="Find the volume of the parallelepiped if $\\vec{a} = -3\\hat{i} + 7\\hat{j} + 5\\hat{k}$, $\\vec{b} = -3\\hat{i} + 7\\hat{j} - 3\\hat{k}$, and $\\vec{c} = 7\\hat{i} - 5\\hat{j} - 3\\hat{k}$ are the three coterminous edges of the parallelepiped."
+  steps={[
+    "Set up the scalar triple product determinant: $\\vec{a}\\cdot(\\vec{b}\\times\\vec{c}) = \\begin{vmatrix} -3 & 7 & 5 \\\\ -3 & 7 & -3 \\\\ 7 & -5 & -3 \\end{vmatrix}$.",
+    "Expand along the first row: $-3[7(-3) - (-3)(-5)] - 7[(-3)(-3) - (-3)(7)] + 5[(-3)(-5) - 7(7)]$.",
+    "Simplify each bracket: $-3(-21 - 15) - 7(9 + 21) + 5(15 - 49) = -3(-36) - 7(30) + 5(-34) = 108 - 210 - 170 = -272$.",
+    "Volume is non-negative, so taking the absolute value gives $V = 272$ cubic units."
+  ]}
+  answer="$272$ cubic units"
+/>
+
+<StepRevealExample
+  title="Example 5 (§5.17)"
+  source="H. K. Dass, Ch. 5, Example 5"
+  problem="Show that the volume of the tetrahedron having $\\vec{A}+\\vec{B}$, $\\vec{B}+\\vec{C}$, $\\vec{C}+\\vec{A}$ as concurrent edges is twice the volume of the tetrahedron having $\\vec{A}, \\vec{B}, \\vec{C}$ as concurrent edges."
+  steps={[
+    "Write the volume of the tetrahedron: $V = \\dfrac{1}{6}(\\vec{A}+\\vec{B})\\cdot\\big[(\\vec{B}+\\vec{C})\\times(\\vec{C}+\\vec{A})\\big]$.",
+    "Expand the cross product using $\\vec{C}\\times\\vec{C} = \\vec{0}$: $(\\vec{B}+\\vec{C})\\times(\\vec{C}+\\vec{A}) = \\vec{B}\\times\\vec{C} + \\vec{B}\\times\\vec{A} + \\vec{C}\\times\\vec{A}$.",
+    "Distribute the dot product: $V = \\dfrac{1}{6}\\big[\\vec{A}\\cdot(\\vec{B}\\times\\vec{C}) + \\vec{A}\\cdot(\\vec{B}\\times\\vec{A}) + \\vec{A}\\cdot(\\vec{C}\\times\\vec{A}) + \\vec{B}\\cdot(\\vec{B}\\times\\vec{C}) + \\vec{B}\\cdot(\\vec{B}\\times\\vec{A}) + \\vec{B}\\cdot(\\vec{C}\\times\\vec{A})\\big]$.",
+    "Every scalar triple product with a repeated vector vanishes, leaving $V = \\dfrac{1}{6}\\big[\\vec{A}\\cdot(\\vec{B}\\times\\vec{C}) + \\vec{B}\\cdot(\\vec{C}\\times\\vec{A})\\big]$.",
+    "By cyclic invariance $\\vec{B}\\cdot(\\vec{C}\\times\\vec{A}) = \\vec{A}\\cdot(\\vec{B}\\times\\vec{C})$, so $V = \\dfrac{2}{6}[\\vec{A}\\;\\vec{B}\\;\\vec{C}] = 2\\times\\dfrac{1}{6}[\\vec{A}\\;\\vec{B}\\;\\vec{C}]$, which is twice the volume of the tetrahedron on $\\vec{A},\\vec{B},\\vec{C}$."
+  ]}
+  answer="Proved: $[\\vec{A}+\\vec{B},\\;\\vec{B}+\\vec{C},\\;\\vec{C}+\\vec{A}] = 2[\\vec{A}\\;\\vec{B}\\;\\vec{C}]$."
+/>
+
+<ExerciseSet
+  title="Exercise 5.1"
+  source="H. K. Dass, Ch. 5"
+  items={[
+    { q: "Find the volume of the parallelepiped with adjacent sides $\\overrightarrow{OA} = 3\\hat{i} - \\hat{j}$, $\\overrightarrow{OB} = \\hat{j} + 2\\hat{k}$, and $\\overrightarrow{OC} = \\hat{i} + 5\\hat{j} + 4\\hat{k}$ extending from the origin $O$.", a: "$20$" },
+    { q: "Find the volume of the tetrahedron whose vertices are the points $A(2,-1,-3)$, $B(4,1,3)$, $C(3,2,-1)$ and $D(1,4,2)$.", a: "$7\\dfrac{1}{3}$ (i.e. $\\dfrac{22}{3}$)" },
+    { q: "Choose $y$ in order that the vectors $\\vec{a} = 7\\hat{i} + y\\hat{j} + \\hat{k}$, $\\vec{b} = 3\\hat{i} + 2\\hat{j} + \\hat{k}$, $\\vec{c} = 5\\hat{i} + 3\\hat{j} + \\hat{k}$ are linearly dependent.", a: "$y = 4$" },
+    { q: "Prove that $[\\vec{a}+\\vec{b},\\;\\vec{b}+\\vec{c},\\;\\vec{c}+\\vec{a}] = 2[\\vec{a}\\;\\vec{b}\\;\\vec{c}]$.", a: "Expand $(\\vec{a}+\\vec{b})\\cdot\\big[(\\vec{b}+\\vec{c})\\times(\\vec{c}+\\vec{a})\\big]$; repeated-vector terms vanish and cyclic symmetry combines the two remaining terms into $2[\\vec{a}\\;\\vec{b}\\;\\vec{c}]$." }
+  ]}
+/>
+
+### 5.18 Coplanarity Questions
+
+Four points $A, B, C, D$ lie in a single plane if and only if the three coterminous edge vectors $\overrightarrow{AB}, \overrightarrow{AC}, \overrightarrow{AD}$ are coplanar, meaning the tetrahedron $ABCD$ has zero volume: $[\overrightarrow{AB}\;\;\overrightarrow{AC}\;\;\overrightarrow{AD}] = 0$.
+
+<StepRevealExample
+  title="Example 6 (§5.18)"
+  source="H. K. Dass, Ch. 5, Example 6 (Nagpur University, Summer 2004, 2003, 2002)"
+  problem="Find the volume of the tetrahedron having vertices $(-\\hat{j}-\\hat{k})$, $(4\\hat{i}+5\\hat{j}+q\\hat{k})$, $(3\\hat{i}+9\\hat{j}+4\\hat{k})$ and $4(-\\hat{i}+\\hat{j}+\\hat{k})$. Also find the value of $q$ for which these four points are coplanar."
+  steps={[
+    "Label the position vectors $\\vec{A} = -\\hat{j}-\\hat{k}$, $\\vec{B} = 4\\hat{i}+5\\hat{j}+q\\hat{k}$, $\\vec{C} = 3\\hat{i}+9\\hat{j}+4\\hat{k}$, $\\vec{D} = -4\\hat{i}+4\\hat{j}+4\\hat{k}$.",
+    "Form three coterminous edge vectors from $A$: $\\overrightarrow{AB} = \\vec{B}-\\vec{A} = 4\\hat{i}+6\\hat{j}+(q+1)\\hat{k}$, $\\overrightarrow{AC} = \\vec{C}-\\vec{A} = 3\\hat{i}+10\\hat{j}+5\\hat{k}$, and $\\overrightarrow{AD} = \\vec{D}-\\vec{A} = -4\\hat{i}+5\\hat{j}+5\\hat{k}$.",
+    "Compute the volume: $V = \\dfrac{1}{6}\\begin{vmatrix} 4 & 6 & q+1 \\\\ 3 & 10 & 5 \\\\ -4 & 5 & 5 \\end{vmatrix} = \\dfrac{1}{6}\\big[4(50-25) - 6(15+20) + (q+1)(15+40)\\big]$.",
+    "Simplify: $V = \\dfrac{1}{6}[100 - 210 + 55(q+1)] = \\dfrac{1}{6}(-55 + 55q) = \\dfrac{55}{6}(q-1)$ (magnitude $\\dfrac{55}{6}|q-1|$).",
+    "For the four points $A,B,C,D$ to be coplanar, $V = 0 \\implies \\dfrac{55}{6}(q-1) = 0 \\implies q = 1$."
+  ]}
+  answer="Volume $= \\dfrac{55}{6}|q-1|$; coplanar when $q = 1$"
+/>
+
+<StepRevealExample
+  title="Example 7 (§5.18)"
+  source="H. K. Dass, Ch. 5, Example 7 (Nagpur University, Summer 2005)"
+  problem="If four points whose position vectors are $\\vec{a}, \\vec{b}, \\vec{c}, \\vec{d}$ are coplanar, show that $[\\vec{a}\\;\\vec{b}\\;\\vec{c}] = [\\vec{a}\\;\\vec{b}\\;\\vec{d}] + [\\vec{a}\\;\\vec{d}\\;\\vec{c}] + [\\vec{d}\\;\\vec{b}\\;\\vec{c}]$."
+  steps={[
+    "Form the three coterminous edge vectors meeting at $D$: $\\overrightarrow{AD} = \\vec{d}-\\vec{a}$, $\\overrightarrow{BD} = \\vec{d}-\\vec{b}$ and $\\overrightarrow{CD} = \\vec{d}-\\vec{c}$.",
+    "Coplanarity requires $\\overrightarrow{AD}\\cdot(\\overrightarrow{BD}\\times\\overrightarrow{CD}) = 0$, i.e. $(\\vec{d}-\\vec{a})\\cdot\\big[(\\vec{d}-\\vec{b})\\times(\\vec{d}-\\vec{c})\\big] = 0$.",
+    "Expand the cross product (using $\\vec{d}\\times\\vec{d} = \\vec{0}$): $(\\vec{d}-\\vec{a})\\cdot[-\\vec{d}\\times\\vec{c} - \\vec{b}\\times\\vec{d} + \\vec{b}\\times\\vec{c}] = 0$.",
+    "Distribute the dot product and drop every term with repeated $\\vec{d}$: $[\\vec{d}\\;\\vec{b}\\;\\vec{c}] + [\\vec{a}\\;\\vec{d}\\;\\vec{c}] + [\\vec{a}\\;\\vec{b}\\;\\vec{d}] - [\\vec{a}\\;\\vec{b}\\;\\vec{c}] = 0$.",
+    "Rearranging yields $[\\vec{a}\\;\\vec{b}\\;\\vec{c}] = [\\vec{a}\\;\\vec{b}\\;\\vec{d}] + [\\vec{a}\\;\\vec{d}\\;\\vec{c}] + [\\vec{d}\\;\\vec{b}\\;\\vec{c}]$."
+  ]}
+  answer="Proved."
+/>
+
+<ExerciseSet
+  title="Exercise 5.2"
+  source="H. K. Dass, Ch. 5"
+  items={[
+    { q: "Determine $\\lambda$ such that $\\vec{a} = \\hat{i}+\\hat{j}+\\hat{k}$, $\\vec{b} = 2\\hat{i}-4\\hat{k}$, and $\\vec{c} = \\hat{i}+\\lambda\\hat{j}+3\\hat{k}$ are coplanar.", a: "$\\lambda = \\dfrac{5}{3}$" },
+    { q: "Show that the four points $-6\\hat{i}+3\\hat{j}+2\\hat{k}$, $3\\hat{i}-2\\hat{j}+4\\hat{k}$, $5\\hat{i}+7\\hat{j}+3\\hat{k}$ and $-13\\hat{i}+17\\hat{j}-\\hat{k}$ are coplanar.", a: "Form $\\overrightarrow{AB}=(9,-5,2)$, $\\overrightarrow{AC}=(11,4,1)$, $\\overrightarrow{AD}=(-7,14,-3)$; their determinant evaluates to $0$." },
+    { q: "Find the constant $a$ such that the vectors $2\\hat{i}-\\hat{j}+\\hat{k}$, $\\hat{i}+2\\hat{j}-3\\hat{k}$, and $3\\hat{i}+a\\hat{j}+5\\hat{k}$ are coplanar.", a: "$a = -4$" },
+    { q: "Prove that the four points $4\\hat{i}+5\\hat{j}+\\hat{k}$, $-(\\hat{j}+\\hat{k})$, $3\\hat{i}+9\\hat{j}+4\\hat{k}$, $4(-\\hat{i}+\\hat{j}+\\hat{k})$ are coplanar.", a: "This is Example 6 with $q=1$, giving volume $\\dfrac{55}{6}(1-1) = 0$." }
+  ]}
+/>
+
+### 5.19 Vector Product of Three Vectors
+
+The **vector triple product** $\vec{a}\times(\vec{b}\times\vec{c})$ produces a vector perpendicular to $\vec{b}\times\vec{c}$, hence lying in the plane spanned by $\vec{b}$ and $\vec{c}$. Expanding in rectangular components $\vec{a}=(a_1,a_2,a_3)$, $\vec{b}=(b_1,b_2,b_3)$, $\vec{c}=(c_1,c_2,c_3)$ gives the fundamental **BAC − CAB** rule:
+
+$$\vec{a}\times(\vec{b}\times\vec{c}) = (a_1 c_1 + a_2 c_2 + a_3 c_3)\vec{b} - (a_1 b_1 + a_2 b_2 + a_3 b_3)\vec{c} = (\vec{a}\cdot\vec{c})\vec{b} - (\vec{a}\cdot\vec{b})\vec{c}.$$
+
+<RuleBox kind="formula" title="§5.19 Vector triple product (BAC − CAB rule)">
+
+$$\vec{a}\times(\vec{b}\times\vec{c}) = (\vec{a}\cdot\vec{c})\vec{b} - (\vec{a}\cdot\vec{b})\vec{c}$$
+
+$$(\vec{a}\times\vec{b})\times\vec{c} = (\vec{a}\cdot\vec{c})\vec{b} - (\vec{b}\cdot\vec{c})\vec{a}$$
+
+Notice that the vector triple product is **not associative**: in general, $\vec{a}\times(\vec{b}\times\vec{c}) \neq (\vec{a}\times\vec{b})\times\vec{c}$. The rule is always **(outer $\cdot$ far) middle − (outer $\cdot$ near) far**.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 8 (§5.19)"
+  source="H. K. Dass, Ch. 5, Example 8 (Nagpur University, Winter 2008)"
+  problem="Prove Jacobi's identity: $\\vec{a}\\times(\\vec{b}\\times\\vec{c}) + \\vec{b}\\times(\\vec{c}\\times\\vec{a}) + \\vec{c}\\times(\\vec{a}\\times\\vec{b}) = \\vec{0}$."
+  steps={[
+    "Apply the vector triple product formula to each of the three terms:",
+    "$\\vec{a}\\times(\\vec{b}\\times\\vec{c}) = (\\vec{a}\\cdot\\vec{c})\\vec{b} - (\\vec{a}\\cdot\\vec{b})\\vec{c}$,",
+    "$\\vec{b}\\times(\\vec{c}\\times\\vec{a}) = (\\vec{b}\\cdot\\vec{a})\\vec{c} - (\\vec{b}\\cdot\\vec{c})\\vec{a}$,",
+    "$\\vec{c}\\times(\\vec{a}\\times\\vec{b}) = (\\vec{c}\\cdot\\vec{b})\\vec{a} - (\\vec{c}\\cdot\\vec{a})\\vec{b}$.",
+    "Sum the three equations and use commutativity of the dot product ($\\vec{b}\\cdot\\vec{a} = \\vec{a}\\cdot\\vec{b}$, etc.): every pair of terms cancels identically to give $\\vec{0}$."
+  ]}
+  answer="Proved."
+/>
+
+<StepRevealExample
+  title="Example 9 (§5.19)"
+  source="H. K. Dass, Ch. 5, Example 9 (Nagpur University, Winter 2003)"
+  problem="Prove that $\\hat{i}\\times(\\vec{a}\\times\\hat{i}) + \\hat{j}\\times(\\vec{a}\\times\\hat{j}) + \\hat{k}\\times(\\vec{a}\\times\\hat{k}) = 2\\vec{a}$."
+  steps={[
+    "Let $\\vec{a} = a_1\\hat{i} + a_2\\hat{j} + a_3\\hat{k}$.",
+    "Evaluate the first term: $\\hat{i}\\times(\\vec{a}\\times\\hat{i}) = (\\hat{i}\\cdot\\hat{i})\\vec{a} - (\\hat{i}\\cdot\\vec{a})\\hat{i} = \\vec{a} - a_1\\hat{i}$ (equivalently, $\\vec{a}\\times\\hat{i} = -a_2\\hat{k} + a_3\\hat{j}$, and crossing on the left with $\\hat{i}$ yields $a_2\\hat{j} + a_3\\hat{k}$).",
+    "Similarly, $\\hat{j}\\times(\\vec{a}\\times\\hat{j}) = \\vec{a} - a_2\\hat{j} = a_1\\hat{i} + a_3\\hat{k}$, and $\\hat{k}\\times(\\vec{a}\\times\\hat{k}) = \\vec{a} - a_3\\hat{k} = a_1\\hat{i} + a_2\\hat{j}$.",
+    "Add all three terms: $3\\vec{a} - (a_1\\hat{i} + a_2\\hat{j} + a_3\\hat{k}) = 3\\vec{a} - \\vec{a} = 2\\vec{a}$."
+  ]}
+  answer="Proved."
+/>
+
+<ExerciseSet
+  title="Exercise 5.3"
+  source="H. K. Dass, Ch. 5"
+  items={[
+    { q: "Show that $\\vec{a}\\times(\\vec{b}\\times\\vec{a}) = (\\vec{a}\\times\\vec{b})\\times\\vec{a}$.", a: "LHS $= (\\vec{a}\\cdot\\vec{a})\\vec{b} - (\\vec{a}\\cdot\\vec{b})\\vec{a}$; RHS $= (\\vec{a}\\cdot\\vec{a})\\vec{b} - (\\vec{b}\\cdot\\vec{a})\\vec{a} =$ LHS." }
+  ]}
+/>
+
+### 5.20 Scalar Product of Four Vectors
+
+To simplify $(\vec{a}\times\vec{b})\cdot(\vec{c}\times\vec{d})$, set $\vec{r} = \vec{c}\times\vec{d}$. Interchanging the dot and cross in the scalar triple product $(\vec{a}\times\vec{b})\cdot\vec{r}$ gives
+
+$$(\vec{a}\times\vec{b})\cdot(\vec{c}\times\vec{d}) = \vec{a}\cdot(\vec{b}\times\vec{r}) = \vec{a}\cdot\big[\vec{b}\times(\vec{c}\times\vec{d})\big] = \vec{a}\cdot\big[(\vec{b}\cdot\vec{d})\vec{c} - (\vec{b}\cdot\vec{c})\vec{d}\big] = (\vec{a}\cdot\vec{c})(\vec{b}\cdot\vec{d}) - (\vec{a}\cdot\vec{d})(\vec{b}\cdot\vec{c}).$$
+
+<RuleBox kind="formula" title="§5.20 Lagrange's identity (scalar product of four vectors)">
+
+$$(\vec{a}\times\vec{b})\cdot(\vec{c}\times\vec{d}) = (\vec{a}\cdot\vec{c})(\vec{b}\cdot\vec{d}) - (\vec{a}\cdot\vec{d})(\vec{b}\cdot\vec{c}) = \begin{vmatrix} \vec{a}\cdot\vec{c} & \vec{a}\cdot\vec{d} \\ \vec{b}\cdot\vec{c} & \vec{b}\cdot\vec{d} \end{vmatrix}.$$
+
+</RuleBox>
+
+<ExerciseSet
+  title="Exercise 5.4"
+  source="H. K. Dass, Ch. 5"
+  items={[
+    { q: "If $\\vec{a} = 2\\hat{i}+3\\hat{j}-\\hat{k}$, $\\vec{b} = -\\hat{i}+2\\hat{j}-4\\hat{k}$, $\\vec{c} = \\hat{i}+\\hat{j}+\\hat{k}$, find $(\\vec{a}\\times\\vec{b})\\cdot(\\vec{a}\\times\\vec{c})$.", a: "$-74$" },
+    { q: "Prove that $(\\vec{a}\\times\\vec{b})\\cdot(\\vec{a}\\times\\vec{c}) = a^2(\\vec{b}\\cdot\\vec{c}) - (\\vec{a}\\cdot\\vec{b})(\\vec{a}\\cdot\\vec{c})$.", a: "Apply §5.20 with $\\vec{c}\\to\\vec{a}$ and $\\vec{d}\\to\\vec{c}$: $(\\vec{a}\\cdot\\vec{a})(\\vec{b}\\cdot\\vec{c}) - (\\vec{a}\\cdot\\vec{c})(\\vec{b}\\cdot\\vec{a}) = a^2(\\vec{b}\\cdot\\vec{c}) - (\\vec{a}\\cdot\\vec{b})(\\vec{a}\\cdot\\vec{c})$." }
+  ]}
+/>
+
+### 5.21 Vector Product of Four Vectors
+
+The vector product $(\vec{a}\times\vec{b})\times(\vec{c}\times\vec{d})$ can be expanded in two equivalent ways:
+
+1. Setting $\vec{r} = \vec{a}\times\vec{b}$ gives $\vec{r}\times(\vec{c}\times\vec{d}) = (\vec{r}\cdot\vec{d})\vec{c} - (\vec{r}\cdot\vec{c})\vec{d} = [\vec{a}\;\vec{b}\;\vec{d}]\vec{c} - [\vec{a}\;\vec{b}\;\vec{c}]\vec{d}$, showing the result lies in the plane of $\vec{c}$ and $\vec{d}$.
+2. Setting $\vec{s} = \vec{c}\times\vec{d}$ gives $(\vec{a}\times\vec{b})\times\vec{s} = -\vec{s}\times(\vec{a}\times\vec{b}) = [\vec{a}\;\vec{c}\;\vec{d}]\vec{b} - [\vec{b}\;\vec{c}\;\vec{d}]\vec{a}$, showing it also lies in the plane of $\vec{a}$ and $\vec{b}$.
+
+<RuleBox kind="formula" title="§5.21 Vector product of four vectors and geometrical meaning">
+
+$$(\vec{a}\times\vec{b})\times(\vec{c}\times\vec{d}) = [\vec{a}\;\vec{b}\;\vec{d}]\vec{c} - [\vec{a}\;\vec{b}\;\vec{c}]\vec{d} = [\vec{a}\;\vec{c}\;\vec{d}]\vec{b} - [\vec{b}\;\vec{c}\;\vec{d}]\vec{a}.$$
+
+**Geometrical interpretation:** Since $(\vec{a}\times\vec{b})\times(\vec{c}\times\vec{d})$ lies simultaneously in the plane of $\vec{a},\vec{b}$ and in the plane of $\vec{c},\vec{d}$, it is parallel to the **line of intersection** of those two planes.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 11 (§5.21)"
+  source="H. K. Dass, Ch. 5, Example 11"
+  problem="Show that $(\\vec{B}\\times\\vec{C})\\times(\\vec{A}\\times\\vec{D}) + (\\vec{C}\\times\\vec{A})\\times(\\vec{B}\\times\\vec{D}) + (\\vec{A}\\times\\vec{B})\\times(\\vec{C}\\times\\vec{D}) = -2[\\vec{A}\\;\\vec{B}\\;\\vec{C}]\\vec{D}$."
+  steps={[
+    "Expand the first two terms using the first form of §5.21 (expressing in terms of the second pair) and the third term using the second form (expressing in terms of the first pair):",
+    "$(\\vec{B}\\times\\vec{C})\\times(\\vec{A}\\times\\vec{D}) = [\\vec{B}\\;\\vec{C}\\;\\vec{D}]\\vec{A} - [\\vec{B}\\;\\vec{C}\\;\\vec{A}]\\vec{D}$,",
+    "$(\\vec{C}\\times\\vec{A})\\times(\\vec{B}\\times\\vec{D}) = [\\vec{C}\\;\\vec{A}\\;\\vec{D}]\\vec{B} - [\\vec{C}\\;\\vec{A}\\;\\vec{B}]\\vec{D}$,",
+    "$(\\vec{A}\\times\\vec{B})\\times(\\vec{C}\\times\\vec{D}) = -[\\vec{B}\\;\\vec{C}\\;\\vec{D}]\\vec{A} + [\\vec{A}\\;\\vec{C}\\;\\vec{D}]\\vec{B}$.",
+    "Sum the three expressions. Note that $[\\vec{C}\\;\\vec{A}\\;\\vec{D}] = -[\\vec{A}\\;\\vec{C}\\;\\vec{D}]$, so both the $\\vec{A}$ and $\\vec{B}$ terms cancel completely.",
+    "Since $[\\vec{B}\\;\\vec{C}\\;\\vec{A}] = [\\vec{C}\\;\\vec{A}\\;\\vec{B}] = [\\vec{A}\\;\\vec{B}\\;\\vec{C}]$, the remaining $\\vec{D}$ terms combine to $-2[\\vec{A}\\;\\vec{B}\\;\\vec{C}]\\vec{D}$."
+  ]}
+  answer="Proved."
+/>
+
+<ExerciseSet
+  title="Exercise 5.5"
+  source="H. K. Dass, Ch. 5"
+  items={[
+    { q: "Show that $(\\vec{b}\\times\\vec{c})\\times(\\vec{c}\\times\\vec{a}) = \\vec{c}[\\vec{a}\\;\\vec{b}\\;\\vec{c}]$.", a: "By §5.21: $[\\vec{b}\\;\\vec{c}\\;\\vec{a}]\\vec{c} - [\\vec{b}\\;\\vec{c}\\;\\vec{c}]\\vec{a} = [\\vec{a}\\;\\vec{b}\\;\\vec{c}]\\vec{c} - \\vec{0}$." },
+    { q: "Show that $[\\vec{b}\\times\\vec{c},\\;\\vec{c}\\times\\vec{a},\\;\\vec{a}\\times\\vec{b}] = [\\vec{a}\\;\\vec{b}\\;\\vec{c}]^2$.", a: "Using Q1, $(\\vec{b}\\times\\vec{c})\\cdot\\big[(\\vec{c}\\times\\vec{a})\\times(\\vec{a}\\times\\vec{b})\\big] = (\\vec{b}\\times\\vec{c})\\cdot\\big(\\vec{a}[\\vec{a}\\;\\vec{b}\\;\\vec{c}]\\big) = [\\vec{a}\\;\\vec{b}\\;\\vec{c}]^2$." },
+    { q: "Show that $2a^2 = |\\vec{a}\\times\\hat{i}|^2 + |\\vec{a}\\times\\hat{j}|^2 + |\\vec{a}\\times\\hat{k}|^2$.", a: "For $\\vec{a}=a_1\\hat{i}+a_2\\hat{j}+a_3\\hat{k}$, the sum is $(a_2^2+a_3^2)+(a_1^2+a_3^2)+(a_1^2+a_2^2)=2(a_1^2+a_2^2+a_3^2)=2a^2$." },
+    { q: "Show that $\\big[(\\vec{a}\\times\\vec{b})\\times(\\vec{a}\\times\\vec{c})\\big]\\cdot\\vec{d} = (\\vec{a}\\cdot\\vec{d})[\\vec{a}\\;\\vec{b}\\;\\vec{c}]$.", a: "Since $(\\vec{a}\\times\\vec{b})\\times(\\vec{a}\\times\\vec{c}) = [\\vec{a}\\;\\vec{b}\\;\\vec{c}]\\vec{a}$, dotting with $\\vec{d}$ yields $(\\vec{a}\\cdot\\vec{d})[\\vec{a}\\;\\vec{b}\\;\\vec{c}]$." }
+  ]}
+/>
+
+### 5.22 Vector Function
+
+When the components of a vector depend on a single scalar variable $t$ (typically time or arc length), the vector is called a **vector function** of $t$, written $\vec{r} = \vec{r}(t)$ or
+
+$$\vec{f}(t) = f_1(t)\hat{i} + f_2(t)\hat{j} + f_3(t)\hat{k}.$$
+
+As $t$ varies, the tip of the position vector $\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j} + z(t)\hat{k}$ traces a space curve.
+
+### 5.23 Differentiation of Vectors
+
+Let $P$ be the position of a moving particle at time $t$ with $\overrightarrow{OP} = \vec{r}$, and let $Q$ be its position at time $t + \delta t$ with $\overrightarrow{OQ} = \vec{r} + \delta\vec{r}$. The chord displacement is $\overrightarrow{PQ} = \delta\vec{r}$. As $\delta t \to 0$, $Q$ approaches $P$ along the curve and the direction of $\dfrac{\delta\vec{r}}{\delta t}$ approaches the tangent to the path at $P$.
+
+<RuleBox kind="definition" title="§5.23 Derivative, velocity and acceleration of a vector function">
+
+$$\frac{d\vec{r}}{dt} = \lim_{\delta t \to 0}\frac{\delta\vec{r}}{\delta t} = \frac{dx}{dt}\hat{i} + \frac{dy}{dt}\hat{j} + \frac{dz}{dt}\hat{k}.$$
+
+- $\vec{v} = \dfrac{d\vec{r}}{dt}$ gives the **velocity** of the particle at $P$, directed along the **tangent** to the curve.
+- $\hat{T} = \dfrac{\vec{v}}{|\vec{v}|}$ is the **unit tangent vector** to the curve.
+- $\vec{a} = \dfrac{d^2\vec{r}}{dt^2}$ gives the **acceleration** of the particle, and its tangential component is $a_t = \vec{a}\cdot\hat{T}$.
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-vector-derivative.svg" caption="H. K. Dass §5.23 (redrawn) — As δt → 0, chord δr/δt becomes the tangent velocity vector dr/dt at P." />
+
+### 5.24 Formulae of Differentiation
+
+Differentiating sums, scalar multiples, dot products, cross products and triple products follows product-rule patterns identical to scalar calculus, with one crucial rule: **never change the order of vectors in a cross product**.
+
+<RuleBox kind="formula" title="§5.24 Vector differentiation rules">
+
+For differentiable vector functions $\vec{F}, \vec{G}, \vec{a}, \vec{b}, \vec{c}$ and scalar function $\phi$ of $t$:
+
+1. $\dfrac{d}{dt}(\vec{F} + \vec{G}) = \dfrac{d\vec{F}}{dt} + \dfrac{d\vec{G}}{dt}$
+2. $\dfrac{d}{dt}(\vec{F}\phi) = \dfrac{d\vec{F}}{dt}\phi + \vec{F}\dfrac{d\phi}{dt}$
+3. $\dfrac{d}{dt}(\vec{F}\cdot\vec{G}) = \vec{F}\cdot\dfrac{d\vec{G}}{dt} + \dfrac{d\vec{F}}{dt}\cdot\vec{G}$
+4. $\dfrac{d}{dt}(\vec{F}\times\vec{G}) = \vec{F}\times\dfrac{d\vec{G}}{dt} + \dfrac{d\vec{F}}{dt}\times\vec{G}$ (preserve order of $\vec{F}$ and $\vec{G}$)
+5. $\dfrac{d}{dt}[\vec{a}\;\vec{b}\;\vec{c}] = \left[\dfrac{d\vec{a}}{dt}\;\vec{b}\;\vec{c}\right] + \left[\vec{a}\;\dfrac{d\vec{b}}{dt}\;\vec{c}\right] + \left[\vec{a}\;\vec{b}\;\dfrac{d\vec{c}}{dt}\right]$
+6. $\dfrac{d}{dt}\big[\vec{a}\times(\vec{b}\times\vec{c})\big] = \dfrac{d\vec{a}}{dt}\times(\vec{b}\times\vec{c}) + \vec{a}\times\left(\dfrac{d\vec{b}}{dt}\times\vec{c}\right) + \vec{a}\times\left(\vec{b}\times\dfrac{d\vec{c}}{dt}\right)$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 12 (§5.24)"
+  source="H. K. Dass, Ch. 5, Example 12 (Nagpur University, Summer 2005)"
+  problem="A particle moves along the curve $\\vec{r} = (t^3 - 4t)\\hat{i} + (t^2 + 4t)\\hat{j} + (8t^2 - 3t^3)\\hat{k}$, where $t$ is the time. Find the magnitude of the tangential component of its acceleration at $t = 2$."
+  steps={[
+    "Differentiate $\\vec{r}$ with respect to $t$ to get velocity: $\\vec{v} = \\dfrac{d\\vec{r}}{dt} = (3t^2 - 4)\\hat{i} + (2t + 4)\\hat{j} + (16t - 9t^2)\\hat{k}$.",
+    "Evaluate velocity at $t = 2$: $\\vec{v} = (12-4)\\hat{i} + (4+4)\\hat{j} + (32-36)\\hat{k} = 8\\hat{i} + 8\\hat{j} - 4\\hat{k}$.",
+    "Differentiate again for acceleration: $\\vec{a} = \\dfrac{d^2\\vec{r}}{dt^2} = 6t\\hat{i} + 2\\hat{j} + (16 - 18t)\\hat{k}$. At $t = 2$: $\\vec{a} = 12\\hat{i} + 2\\hat{j} - 20\\hat{k}$.",
+    "Since velocity is directed along the tangent, the unit tangent vector at $t = 2$ is $\\hat{T} = \\dfrac{\\vec{v}}{|\\vec{v}|} = \\dfrac{8\\hat{i}+8\\hat{j}-4\\hat{k}}{\\sqrt{64+64+16}} = \\dfrac{8\\hat{i}+8\\hat{j}-4\\hat{k}}{12} = \\dfrac{2\\hat{i}+2\\hat{j}-\\hat{k}}{3}$.",
+    "Project $\\vec{a}$ onto $\\hat{T}$: $a_t = \\vec{a}\\cdot\\hat{T} = (12\\hat{i} + 2\\hat{j} - 20\\hat{k})\\cdot\\dfrac{2\\hat{i}+2\\hat{j}-\\hat{k}}{3} = \\dfrac{24 + 4 + 20}{3} = \\dfrac{48}{3} = 16$."
+  ]}
+  answer="$16$"
+/>
+
+<StepRevealExample
+  title="Example 13 (§5.24)"
+  source="H. K. Dass, Ch. 5, Example 13 (M.U. 2009)"
+  problem="If $\\dfrac{d\\vec{a}}{dt} = \\vec{u}\\times\\vec{a}$ and $\\dfrac{d\\vec{b}}{dt} = \\vec{u}\\times\\vec{b}$, then prove that $\\dfrac{d}{dt}[\\vec{a}\\times\\vec{b}] = \\vec{u}\\times(\\vec{a}\\times\\vec{b})$."
+  steps={[
+    "Apply rule (4) of §5.24: $\\dfrac{d}{dt}(\\vec{a}\\times\\vec{b}) = \\vec{a}\\times\\dfrac{d\\vec{b}}{dt} + \\dfrac{d\\vec{a}}{dt}\\times\\vec{b} = \\vec{a}\\times(\\vec{u}\\times\\vec{b}) + (\\vec{u}\\times\\vec{a})\\times\\vec{b}$.",
+    "Rewrite the second term using anti-commutativity: $(\\vec{u}\\times\\vec{a})\\times\\vec{b} = -\\vec{b}\\times(\\vec{u}\\times\\vec{a})$.",
+    "Expand both vector triple products via §5.19: $\\vec{a}\\times(\\vec{u}\\times\\vec{b}) - \\vec{b}\\times(\\vec{u}\\times\\vec{a}) = \\big[(\\vec{a}\\cdot\\vec{b})\\vec{u} - (\\vec{a}\\cdot\\vec{u})\\vec{b}\\big] - \\big[(\\vec{b}\\cdot\\vec{a})\\vec{u} - (\\vec{b}\\cdot\\vec{u})\\vec{a}\\big]$.",
+    "Cancel $(\\vec{a}\\cdot\\vec{b})\\vec{u}$ against $-(\\vec{b}\\cdot\\vec{a})\\vec{u}$, leaving $(\\vec{u}\\cdot\\vec{b})\\vec{a} - (\\vec{u}\\cdot\\vec{a})\\vec{b} = \\vec{u}\\times(\\vec{a}\\times\\vec{b})$."
+  ]}
+  answer="Proved."
+/>
+
+<StepRevealExample
+  title="Example 14 (§5.24)"
+  source="H. K. Dass, Ch. 5, Example 14 (M.D.U. Dec. 2009)"
+  problem="Find the angle between the surfaces $x^2 + y^2 + z^2 = 9$ and $z = x^2 + y^2 - 3$ at the point $(2, -1, 2)$."
+  steps={[
+    "Write the two surfaces as level sets $\\phi_1 = x^2 + y^2 + z^2 - 9 = 0$ and $\\phi_2 = z - x^2 - y^2 + 3 = 0$.",
+    "Normal to surface (1): $\\vec{n}_1 = \\nabla\\phi_1 = 2x\\hat{i} + 2y\\hat{j} + 2z\\hat{k}$. At $(2,-1,2)$, $\\vec{n}_1 = 4\\hat{i} - 2\\hat{j} + 4\\hat{k}$, with $|\\vec{n}_1| = \\sqrt{16+4+16} = 6$.",
+    "Normal to surface (2): $\\vec{n}_2 = \\nabla\\phi_2 = -2x\\hat{i} - 2y\\hat{j} + \\hat{k}$. At $(2,-1,2)$, $\\vec{n}_2 = -4\\hat{i} + 2\\hat{j} + \\hat{k}$, with $|\\vec{n}_2| = \\sqrt{16+4+1} = \\sqrt{21}$.",
+    "Compute the angle $\\theta$ between the normals: $\\cos\\theta = \\dfrac{\\vec{n}_1\\cdot\\vec{n}_2}{|\\vec{n}_1||\\vec{n}_2|} = \\dfrac{-16 - 4 + 4}{6\\sqrt{21}} = \\dfrac{-16}{6\\sqrt{21}} = \\dfrac{-8}{3\\sqrt{21}}$.",
+    "Hence $\\theta = \\cos^{-1}\\!\\left(\\dfrac{-8}{3\\sqrt{21}}\\right)$ (acute angle $\\cos^{-1}\\!\\left(\\dfrac{8}{3\\sqrt{21}}\\right)$, as in Example 23)."
+  ]}
+  answer="$\\cos^{-1}\\!\\left(\\dfrac{-8}{3\\sqrt{21}}\\right)$ (acute angle $\\cos^{-1}\\!\\left(\\dfrac{8}{3\\sqrt{21}}\\right)$)"
+/>
+
+<ExerciseSet
+  title="Exercise 5.6"
+  source="H. K. Dass, Ch. 5"
+  items={[
+    { q: "The coordinates of a moving particle are given by $x = 4t - \\dfrac{t^2}{2}$ and $y = 3 + 6t - \\dfrac{t^3}{6}$. Find the magnitudes of the velocity and acceleration of the particle when $t = 2$ secs.", a: "$4.47,\\; 2.24$ (exact: $2\\sqrt{5},\\; \\sqrt{5}$)" },
+    { q: "A particle moves along the curve $x = 2t^2$, $y = t^2 - 4t$ and $z = 3t - 5$, where $t$ is the time. Find the components of its velocity and acceleration at time $t = 1$ in the direction $\\hat{i} - 3\\hat{j} + 2\\hat{k}$.", a: "$\\dfrac{8\\sqrt{14}}{7},\\; -\\dfrac{\\sqrt{14}}{7}$" },
+    { q: "Find the angle between the tangents to the curve $\\vec{r} = t^2\\hat{i} + 2t\\hat{j} - t^3\\hat{k}$ at the points $t = \\pm 1$.", a: "$\\cos^{-1}\\!\\left(\\dfrac{9}{17}\\right)$" },
+    { q: "If the surface $5x^2 - 2byz = 9x$ is orthogonal to the surface $4x^2 y + z^3 = 4$ at the point $(1, -1, 2)$, find $b$.", a: "$b = 1$" }
+  ]}
+/>
+
+### 5.25 Scalar and Vector Point Functions
+
+A variable quantity whose value at each point $P(x,y,z)$ in a region $R$ of space depends on the position of $P$ is called a **point function** (or **field**).
+
+<RuleBox kind="definition" title="§5.25 Scalar point function, vector point function, and operator del (∇)">
+
+- **Scalar point function (scalar field):** Assigns a unique scalar $\phi(x,y,z)$ to each point $P(x,y,z)\in R$ — e.g., temperature distribution, fluid density, or gravitational potential.
+- **Vector point function (vector field):** Assigns a unique vector $\vec{F}(x,y,z)$ to each point $P(x,y,z)\in R$ — e.g., velocity of a moving fluid or gravitational/electric force field.
+- **Vector differential operator Del ($\nabla$, read "del" or "nabla"):**
+
+$$\nabla = \hat{i}\frac{\partial}{\partial x} + \hat{j}\frac{\partial}{\partial y} + \hat{k}\frac{\partial}{\partial z}.$$
+
+</RuleBox>
+
+### 5.26 Gradient of a Scalar Function
+
+Applying the operator $\nabla$ to a differentiable scalar point function $\phi(x,y,z)$ produces a vector point function called the **gradient** of $\phi$.
+
+<RuleBox kind="definition" title="§5.26 Gradient of a scalar field">
+
+$$\operatorname{grad}\phi = \nabla\phi = \left(\hat{i}\frac{\partial}{\partial x} + \hat{j}\frac{\partial}{\partial y} + \hat{k}\frac{\partial}{\partial z}\right)\phi = \hat{i}\frac{\partial\phi}{\partial x} + \hat{j}\frac{\partial\phi}{\partial y} + \hat{k}\frac{\partial\phi}{\partial z}.$$
+
+Note that $\phi$ is a scalar field, while $\nabla\phi$ is a **vector** field.
+
+</RuleBox>
+
+### 5.27 Geometrical Meaning of Gradient, Normal
+
+A surface $\phi(x,y,z) = c$ (constant) on which $\phi$ takes the same value at every point is called a **level surface** (for example, an equipotential or isothermal surface). Two distinct level surfaces cannot intersect.
+
+Consider a point $P$ on the level surface $\phi = c$ with position vector $\vec{r}$, and a nearby point $Q$ at $\vec{r} + d\vec{r}$. Then
+
+$$\nabla\phi\cdot d\vec{r} = \left(\hat{i}\frac{\partial\phi}{\partial x} + \hat{j}\frac{\partial\phi}{\partial y} + \hat{k}\frac{\partial\phi}{\partial z}\right)\cdot(\hat{i}\,dx + \hat{j}\,dy + \hat{k}\,dz) = \frac{\partial\phi}{\partial x}\,dx + \frac{\partial\phi}{\partial y}\,dy + \frac{\partial\phi}{\partial z}\,dz = d\phi.$$
+
+If $Q$ lies on the *same* level surface $\phi = c$, then $d\phi = 0$, so $\nabla\phi\cdot d\vec{r} = 0$ for every tangent displacement $d\vec{r}$ on the surface. Therefore $\nabla\phi$ is **perpendicular (normal)** to the level surface $\phi(x,y,z) = c$.
+
+Writing $\nabla\phi = |\nabla\phi|\hat{N}$ where $\hat{N}$ is the unit normal, and letting $\delta n = \hat{N}\cdot\delta\vec{r}$ be the perpendicular distance between the adjacent level surfaces $\phi$ and $\phi + \delta\phi$, we obtain
+
+$$\frac{\partial\phi}{\partial n} = \lim_{\delta n \to 0}\frac{\delta\phi}{\delta n} = \lim_{\delta n \to 0}\frac{|\nabla\phi|\hat{N}\cdot\delta\vec{r}}{\delta n} = |\nabla\phi|.$$
+
+<RuleBox kind="theorem" title="§5.27 Geometrical meaning of grad φ">
+
+1. $\nabla\phi$ is a vector **normal to the level surface** $\phi(x,y,z) = c$ at every point where $\nabla\phi \neq \vec{0}$.
+2. Its magnitude $|\nabla\phi| = \dfrac{\partial\phi}{\partial n}$ equals the **maximum rate of change** of $\phi$ with respect to distance (the rate of change along the normal).
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-gradient-level-surfaces.svg" caption="H. K. Dass §5.27 (redrawn) — Adjacent level surfaces φ = c and φ + dφ showing ∇φ normal to the surface." />
+
+### 5.28 Normal and Directional Derivative
+
+Let $\hat{N}'$ be a unit vector along an arbitrary direction $PQ$ making angle $\theta$ with the unit normal $\hat{N}$. Since $\delta n = \delta r\cos\theta = (\hat{N}\cdot\hat{N}')\delta r$, the rate of change of $\phi$ along $PQ$ is
+
+$$\frac{\partial\phi}{\partial r} = \lim_{\delta r\to 0}\frac{\delta\phi}{\delta r} = (\hat{N}\cdot\hat{N}')\frac{\partial\phi}{\partial n} = \hat{N}'\cdot(\hat{N}|\nabla\phi|) = \hat{N}'\cdot\nabla\phi = |\nabla\phi|\cos\theta \le |\nabla\phi|.$$
+
+<RuleBox kind="working-rule" title="§5.28 Unit normal, directional derivative and angle between surfaces">
+
+1. **Unit normal vector** to the surface $\phi(x,y,z) = c$ at point $P$:
+
+$$\hat{N} = \frac{\nabla\phi}{|\nabla\phi|}\bigg|_P.$$
+
+2. **Directional derivative** of $\phi$ at $P$ in the direction of a vector $\vec{d}$:
+
+$$D_{\hat{d}}\phi = \nabla\phi\cdot\hat{d} = \nabla\phi\cdot\frac{\vec{d}}{|\vec{d}|}.$$
+
+3. **Greatest rate of increase** of $\phi$ at $P$ occurs in the direction of $\nabla\phi$ and has magnitude $|\nabla\phi|$.
+4. **Angle $\theta$ between two intersecting surfaces** $\phi_1(x,y,z) = c_1$ and $\phi_2(x,y,z) = c_2$ at a common point $P$ is the angle between their normals $\nabla\phi_1$ and $\nabla\phi_2$:
+
+$$\cos\theta = \frac{\nabla\phi_1\cdot\nabla\phi_2}{|\nabla\phi_1|\,|\nabla\phi_2|}.$$
+
+The two surfaces intersect **orthogonally** if and only if $\nabla\phi_1\cdot\nabla\phi_2 = 0$ at $P$.
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-directional-derivative.svg" caption="H. K. Dass §5.28 (redrawn) — Directional derivative along PQ equals the projection N′ · ∇φ = |∇φ| cos θ." />
+
+<StepRevealExample
+  title="Example 15 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 15 (Gujarat, I Semester, Jan. 2009)"
+  figure="/diagrams/get-209/vectors-gradient-divergence-and-curl-example-15-fields.svg"
+  problem="For the vector fields (i) $\\vec{A} = m\\hat{i}$ and (ii) $\\vec{A} = m\\vec{r}$ (with $m=1$ illustrated), find $\\nabla\\cdot\\vec{A}$ and $\\nabla\\times\\vec{A}$, and interpret the sketches."
+  steps={[
+    "(i) For the uniform constant vector field $\\vec{A} = m\\hat{i}$ (parallel arrows of constant length $m$ along $+x$): $\\nabla\\cdot(m\\hat{i}) = \\dfrac{\\partial m}{\\partial x} = 0$, and $\\nabla\\times(m\\hat{i}) = \\vec{0}$.",
+    "(ii) For the radial vector field $\\vec{A} = m\\vec{r} = m(x\\hat{i} + y\\hat{j} + z\\hat{k})$ (arrows pointing radially outward from $O$): $\\nabla\\cdot(m\\vec{r}) = m\\left(\\dfrac{\\partial x}{\\partial x} + \\dfrac{\\partial y}{\\partial y} + \\dfrac{\\partial z}{\\partial z}\\right) = 3m$. For $m = 1$, $\\nabla\\cdot\\vec{r} = 3$, a constant scalar plotted at $3$ on the number line.",
+    "Evaluate the curl of $\\vec{r} = x\\hat{i}+y\\hat{j}+z\\hat{k}$: $\\nabla\\times\\vec{r} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ \\partial/\\partial x & \\partial/\\partial y & \\partial/\\partial z \\\\ x & y & z \\end{vmatrix} = (0-0)\\hat{i} - (0-0)\\hat{j} + (0-0)\\hat{k} = \\vec{0}$ (so $\\nabla\\times(m\\vec{r}) = \\vec{0}$)."
+  ]}
+  answer="(i) $\\nabla\\cdot\\vec{A} = 0,\\; \\nabla\\times\\vec{A} = \\vec{0}$; (ii) $\\nabla\\cdot(m\\vec{r}) = 3m$ ($3$ for $m=1$), $\\nabla\\times(m\\vec{r}) = \\vec{0}$"
+/>
+
+<StepRevealExample
+  title="Example 16 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 16 (AMIETE, June 2009; U.P., I Sem., Dec. 2006)"
+  problem="If $\\phi = 3x^2 y - y^3 z^2$, find $\\operatorname{grad}\\phi$ at the point $(1, -2, -1)$."
+  steps={[
+    "Compute each partial derivative: $\\dfrac{\\partial\\phi}{\\partial x} = 6xy$, $\\dfrac{\\partial\\phi}{\\partial y} = 3x^2 - 3y^2 z^2$, and $\\dfrac{\\partial\\phi}{\\partial z} = -2y^3 z$.",
+    "Form the gradient: $\\nabla\\phi = (6xy)\\hat{i} + (3x^2 - 3y^2 z^2)\\hat{j} + (-2y^3 z)\\hat{k}$.",
+    "Substitute $x = 1, y = -2, z = -1$: $\\nabla\\phi|_{(1,-2,-1)} = 6(1)(-2)\\hat{i} + \\big[3(1) - 3(4)(1)\\big]\\hat{j} + \\big[-2(-8)(-1)\\big]\\hat{k} = -12\\hat{i} - 9\\hat{j} - 16\\hat{k}$."
+  ]}
+  answer="$-12\\hat{i} - 9\\hat{j} - 16\\hat{k}$"
+/>
+
+<StepRevealExample
+  title="Example 17 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 17 (U.P., I Semester, 2001)"
+  problem="If $u = x + y + z$, $v = x^2 + y^2 + z^2$, $w = yz + zx + xy$, prove that $\\operatorname{grad} u$, $\\operatorname{grad} v$ and $\\operatorname{grad} w$ are coplanar vectors."
+  steps={[
+    "Compute the three gradients: $\\nabla u = \\hat{i} + \\hat{j} + \\hat{k}$, $\\nabla v = 2x\\hat{i} + 2y\\hat{j} + 2z\\hat{k}$, and $\\nabla w = (y+z)\\hat{i} + (z+x)\\hat{j} + (x+y)\\hat{k}$.",
+    "Form their scalar triple product: $[\\nabla u,\\; \\nabla v,\\; \\nabla w] = \\begin{vmatrix} 1 & 1 & 1 \\\\ 2x & 2y & 2z \\\\ y+z & z+x & x+y \\end{vmatrix} = 2\\begin{vmatrix} 1 & 1 & 1 \\\\ x & y & z \\\\ y+z & z+x & x+y \\end{vmatrix}$.",
+    "Apply the row operation $R_2 \\to R_2 + R_3$: every entry in row 2 becomes $x+y+z$.",
+    "Factor out $(x+y+z)$ from row 2 to obtain $2(x+y+z)\\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & 1 & 1 \\\\ y+z & z+x & x+y \\end{vmatrix} = 0$, since rows 1 and 2 are identical. Hence the three gradient vectors are coplanar."
+  ]}
+  answer="Proved."
+/>
+
+<StepRevealExample
+  title="Example 18 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 18 (Nagpur University, Summer 2005)"
+  problem="Find the directional derivative of $x^2 y^2 z^2$ at the point $(1, 1, -1)$ in the direction of the tangent to the curve $x = e^t$, $y = \\sin 2t + 1$, $z = 1 - \\cos t$ at $t = 0$."
+  steps={[
+    "Let $\\phi = x^2 y^2 z^2$. Then $\\nabla\\phi = 2xy^2 z^2\\hat{i} + 2x^2 y z^2\\hat{j} + 2x^2 y^2 z\\hat{k}$.",
+    "Evaluate $\\nabla\\phi$ at $(1,1,-1)$: $\\nabla\\phi = 2\\hat{i} + 2\\hat{j} - 2\\hat{k}$.",
+    "Differentiate the curve $\\vec{r}(t) = e^t\\hat{i} + (\\sin 2t + 1)\\hat{j} + (1 - \\cos t)\\hat{k}$ to find the tangent vector: $\\vec{T} = \\dfrac{d\\vec{r}}{dt} = e^t\\hat{i} + 2\\cos 2t\\,\\hat{j} + \\sin t\\,\\hat{k}$.",
+    "At $t = 0$: $\\vec{T} = \\hat{i} + 2\\hat{j}$, so the unit tangent vector is $\\hat{T} = \\dfrac{\\hat{i} + 2\\hat{j}}{\\sqrt{1+4}} = \\dfrac{\\hat{i} + 2\\hat{j}}{\\sqrt{5}}$.",
+    "Directional derivative $= \\nabla\\phi\\cdot\\hat{T} = (2\\hat{i} + 2\\hat{j} - 2\\hat{k})\\cdot\\dfrac{\\hat{i} + 2\\hat{j}}{\\sqrt{5}} = \\dfrac{2 + 4 + 0}{\\sqrt{5}} = \\dfrac{6}{\\sqrt{5}}$."
+  ]}
+  answer="$\\dfrac{6}{\\sqrt{5}}$"
+/>
+
+<StepRevealExample
+  title="Example 19 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 19 (M.U. 2008)"
+  problem="Find the unit normal to the surface $xy^3 z^2 = 4$ at $(-1, -1, 2)$."
+  steps={[
+    "Set $\\phi(x,y,z) = xy^3 z^2$. Its gradient is $\\nabla\\phi = y^3 z^2\\hat{i} + 3xy^2 z^2\\hat{j} + 2xy^3 z\\hat{k}$.",
+    "Evaluate at $(-1,-1,2)$: $\\nabla\\phi = (-1)(4)\\hat{i} + 3(-1)(1)(4)\\hat{j} + 2(-1)(-1)(2)\\hat{k} = -4\\hat{i} - 12\\hat{j} + 4\\hat{k}$.",
+    "Normalize: $|\\nabla\\phi| = \\sqrt{16 + 144 + 16} = \\sqrt{176} = 4\\sqrt{11}$, so $\\hat{N} = \\dfrac{-4\\hat{i} - 12\\hat{j} + 4\\hat{k}}{4\\sqrt{11}} = -\\dfrac{1}{\\sqrt{11}}(\\hat{i} + 3\\hat{j} - \\hat{k})$."
+  ]}
+  answer="$-\\dfrac{1}{\\sqrt{11}}(\\hat{i} + 3\\hat{j} - \\hat{k})$"
+/>
+
+<StepRevealExample
+  title="Example 21 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 21 (M.D.U. Dec. 2009; Nagpur University, Summer 2002)"
+  problem="Find the constants $m$ and $n$ such that the surface $mx^2 - 2nyz = (m + 4)x$ will be orthogonal to the surface $4x^2 y + z^3 = 4$ at the point $(1, -1, 2)$."
+  steps={[
+    "First, since $P(1,-1,2)$ lies on the surface $mx^2 - 2nyz = (m+4)x$, substitute $(1,-1,2)$: $m(1) - 2n(-1)(2) = m + 4 \\implies m + 4n = m + 4 \\implies n = 1$.",
+    "With $n = 1$, write $\\phi_1 = mx^2 - 2yz - (m+4)x$ and $\\phi_2 = 4x^2 y + z^3 - 4$.",
+    "Compute $\\nabla\\phi_1 = (2mx - m - 4)\\hat{i} - 2z\\hat{j} - 2y\\hat{k}$. At $(1,-1,2)$: $\\nabla\\phi_1 = (m-4)\\hat{i} - 4\\hat{j} + 2\\hat{k}$.",
+    "Compute $\\nabla\\phi_2 = 8xy\\hat{i} + 4x^2\\hat{j} + 3z^2\\hat{k}$. At $(1,-1,2)$: $\\nabla\\phi_2 = -8\\hat{i} + 4\\hat{j} + 12\\hat{k}$.",
+    "Orthogonality requires $\\nabla\\phi_1\\cdot\\nabla\\phi_2 = 0$: $-8(m-4) - 16 + 24 = 0 \\implies -8(m-4) + 8 = 0 \\implies m - 4 = 1 \\implies m = 5$."
+  ]}
+  answer="$m = 5,\\; n = 1$"
+/>
+
+<StepRevealExample
+  title="Example 26 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 26 (Uttarakhand, I Semester, Dec. 2006)"
+  problem="Find the directional derivative of $\\phi(x,y,z) = x^2 yz + 4xz^2$ at $(1, -2, 1)$ in the direction of $2\\hat{i} - \\hat{j} - 2\\hat{k}$. Find the greatest rate of increase of $\\phi$."
+  steps={[
+    "Compute $\\nabla\\phi = (2xyz + 4z^2)\\hat{i} + (x^2 z)\\hat{j} + (x^2 y + 8xz)\\hat{k}$.",
+    "Evaluate at $(1,-2,1)$: $\\nabla\\phi = (-4 + 4)\\hat{i} + (1)\\hat{j} + (-2 + 8)\\hat{k} = \\hat{j} + 6\\hat{k}$.",
+    "Find the unit vector along $2\\hat{i} - \\hat{j} - 2\\hat{k}$: $\\hat{a} = \\dfrac{2\\hat{i} - \\hat{j} - 2\\hat{k}}{\\sqrt{4 + 1 + 4}} = \\dfrac{1}{3}(2\\hat{i} - \\hat{j} - 2\\hat{k})$.",
+    "Directional derivative $= \\nabla\\phi\\cdot\\hat{a} = (\\hat{j} + 6\\hat{k})\\cdot\\dfrac{1}{3}(2\\hat{i} - \\hat{j} - 2\\hat{k}) = \\dfrac{0 - 1 - 12}{3} = -\\dfrac{13}{3}$.",
+    "Greatest rate of increase of $\\phi$ at $(1,-2,1)$ is $|\\nabla\\phi| = \\sqrt{1^2 + 6^2} = \\sqrt{37}$."
+  ]}
+  answer="Directional derivative $= -\\dfrac{13}{3}$; greatest rate of increase $= \\sqrt{37}$"
+/>
+
+<StepRevealExample
+  title="Example 28 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 28 (A.M.I.E.T.E., Winter 2002)"
+  figure="/diagrams/get-209/vectors-gradient-divergence-and-curl-example-28-direction.svg"
+  problem="For the function $\\phi(x,y) = \\dfrac{x}{x^2 + y^2}$, find the magnitude of the directional derivative along a line making an angle $30^\\circ$ with the positive $x$-axis at $(0, 2)$."
+  steps={[
+    "Compute the partial derivatives using the quotient rule: $\\dfrac{\\partial\\phi}{\\partial x} = \\dfrac{(x^2+y^2)(1) - x(2x)}{(x^2+y^2)^2} = \\dfrac{y^2 - x^2}{(x^2+y^2)^2}$ and $\\dfrac{\\partial\\phi}{\\partial y} = \\dfrac{-2xy}{(x^2+y^2)^2}$.",
+    "Evaluate $\\nabla\\phi$ at $(0, 2)$: $\\nabla\\phi = \\dfrac{4 - 0}{(0+4)^2}\\hat{i} - \\dfrac{0}{16}\\hat{j} = \\dfrac{1}{4}\\hat{i}$.",
+    "Form the unit vector along a line at $30^\\circ$ to the positive $x$-axis: $\\hat{d} = \\cos 30^\\circ\\,\\hat{i} + \\sin 30^\\circ\\,\\hat{j} = \\dfrac{\\sqrt{3}}{2}\\hat{i} + \\dfrac{1}{2}\\hat{j}$.",
+    "Take the dot product: $D_{\\hat{d}}\\phi = \\left(\\dfrac{1}{4}\\hat{i}\\right)\\cdot\\left(\\dfrac{\\sqrt{3}}{2}\\hat{i} + \\dfrac{1}{2}\\hat{j}\\right) = \\dfrac{\\sqrt{3}}{8}$."
+  ]}
+  answer="$\\dfrac{\\sqrt{3}}{8}$"
+/>
+
+<StepRevealExample
+  title="Example 32 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 32 (Nagpur University, Summer 2002)"
+  problem="If $\\vec{r} = x\\hat{i} + y\\hat{j} + z\\hat{k}$ and $r = |\\vec{r}|$, show that (i) $\\operatorname{grad} r = \\dfrac{\\vec{r}}{r}$ and (ii) $\\operatorname{grad}\\!\\left(\\dfrac{1}{r}\\right) = -\\dfrac{\\vec{r}}{r^3}$."
+  steps={[
+    "From $r^2 = x^2 + y^2 + z^2$, differentiate partially with respect to $x$: $2r\\dfrac{\\partial r}{\\partial x} = 2x \\implies \\dfrac{\\partial r}{\\partial x} = \\dfrac{x}{r}$. Similarly, $\\dfrac{\\partial r}{\\partial y} = \\dfrac{y}{r}$ and $\\dfrac{\\partial r}{\\partial z} = \\dfrac{z}{r}$.",
+    "(i) Therefore $\\nabla r = \\hat{i}\\dfrac{\\partial r}{\\partial x} + \\hat{j}\\dfrac{\\partial r}{\\partial y} + \\hat{k}\\dfrac{\\partial r}{\\partial z} = \\hat{i}\\dfrac{x}{r} + \\hat{j}\\dfrac{y}{r} + \\hat{k}\\dfrac{z}{r} = \\dfrac{\\vec{r}}{r}$.",
+    "(ii) By the chain rule, $\\dfrac{\\partial}{\\partial x}\\!\\left(\\dfrac{1}{r}\\right) = -\\dfrac{1}{r^2}\\dfrac{\\partial r}{\\partial x} = -\\dfrac{x}{r^3}$, and similarly for $y$ and $z$.",
+    "Hence $\\nabla\\!\\left(\\dfrac{1}{r}\\right) = -\\dfrac{x\\hat{i} + y\\hat{j} + z\\hat{k}}{r^3} = -\\dfrac{\\vec{r}}{r^3}$."
+  ]}
+  answer="Proved."
+/>
+
+<StepRevealExample
+  title="Example 33 (§5.28)"
+  source="H. K. Dass, Ch. 5, Example 33 (K. University, Dec. 2008)"
+  problem="Prove that $\\nabla^2 f(r) = f''(r) + \\dfrac{2}{r}f'(r)$, where $r = \\sqrt{x^2 + y^2 + z^2}$."
+  steps={[
+    "First find $\\nabla f(r)$ using $\\dfrac{\\partial r}{\\partial x} = \\dfrac{x}{r}$ etc.: $\\nabla f(r) = f'(r)\\left(\\hat{i}\\dfrac{x}{r} + \\hat{j}\\dfrac{y}{r} + \\hat{k}\\dfrac{z}{r}\\right) = f'(r)\\dfrac{\\vec{r}}{r}$.",
+    "Apply $\\nabla^2 f(r) = \\nabla\\cdot[\\nabla f(r)] = \\dfrac{\\partial}{\\partial x}\\!\\left(f'(r)\\dfrac{x}{r}\\right) + \\dfrac{\\partial}{\\partial y}\\!\\left(f'(r)\\dfrac{y}{r}\\right) + \\dfrac{\\partial}{\\partial z}\\!\\left(f'(r)\\dfrac{z}{r}\\right)$.",
+    "Differentiate the $x$-term: $\\dfrac{\\partial}{\\partial x}\\!\\left(f'(r)\\dfrac{x}{r}\\right) = f''(r)\\dfrac{\\partial r}{\\partial x}\\cdot\\dfrac{x}{r} + f'(r)\\dfrac{r(1) - x(x/r)}{r^2} = f''(r)\\dfrac{x^2}{r^2} + f'(r)\\dfrac{r^2 - x^2}{r^3}$.",
+    "By symmetry, add the corresponding $y$- and $z$-terms: $\\nabla^2 f(r) = f''(r)\\dfrac{x^2 + y^2 + z^2}{r^2} + f'(r)\\dfrac{3r^2 - (x^2 + y^2 + z^2)}{r^3}$.",
+    "Substitute $x^2 + y^2 + z^2 = r^2$: $\\nabla^2 f(r) = f''(r)\\dfrac{r^2}{r^2} + f'(r)\\dfrac{2r^2}{r^3} = f''(r) + \\dfrac{2}{r}f'(r)$."
+  ]}
+  answer="Proved."
+/>
+
+<ExerciseSet
+  title="Exercise 5.7"
+  source="H. K. Dass, Ch. 5"
+  items={[
+    { q: "Evaluate $\\operatorname{grad}\\phi$ if $\\phi = \\log(x^2 + y^2 + z^2)$.", a: "$\\dfrac{2(x\\hat{i} + y\\hat{j} + z\\hat{k})}{x^2 + y^2 + z^2}$" },
+    { q: "Find a unit normal vector to the surface $x^2 + y^2 + z^2 = 5$ at the point $(0, 1, 2)$.", a: "$\\dfrac{1}{\\sqrt{5}}(\\hat{j} + 2\\hat{k})$" },
+    { q: "Calculate the directional derivative of $\\phi(x,y,z) = xy^2 + yz^3$ at $(1, -1, 1)$ in the direction $(3, 1, -1)$.", a: "$\\dfrac{5}{\\sqrt{11}}$" },
+    { q: "Find the unit direction in which the directional derivative of $f(x,y) = \\dfrac{x^2 - y^2}{xy}$ at $(1, 1)$ is zero.", a: "$\\dfrac{\\hat{i} + \\hat{j}}{\\sqrt{2}}$" },
+    { q: "Find the directional derivative of $\\phi(x,y,z) = xyz$ in the direction of the outer normal to the surface $z = xy$ at the point $(3, 1, 3)$.", a: "$\\dfrac{27}{\\sqrt{11}}$" },
+    { q: "The temperature in space is given by $T(x,y,z) = x^2 + y^2 - z$. A mosquito at $(1, 1, 2)$ desires to fly in such a direction that it will get warm as soon as possible. In what unit direction should it move?", a: "$\\dfrac{1}{3}(2\\hat{i} + 2\\hat{j} - \\hat{k})$" },
+    { q: "Find a unit vector normal to the surface $x^2 y + 2xz = 4$ at the point $(2, -2, 3)$.", a: "$\\dfrac{1}{3}(-\\hat{i} + 2\\hat{j} + 2\\hat{k})$" },
+    { q: "What is the greatest rate of increase of the function $u = xyz^2$ at the point $(1, 0, 3)$?", a: "$9$" },
+    { q: "Find the values of $\\lambda$ and $\\mu$ so that the surfaces $\\lambda x^2 - \\mu yz = (\\lambda + 2)x$ and $4x^2 y + z^3 = 4$ intersect orthogonally at $(1, -1, 2)$.", a: "$\\lambda = \\dfrac{9}{2},\\; \\mu = 1$" },
+    { q: "The position vector of a particle at time $t$ is $\\vec{R} = \\cos(t-1)\\hat{i} + \\sinh(t-1)\\hat{j} + at^2\\hat{k}$. If at $t = 1$ the acceleration is perpendicular to its position vector, find the positive value of $a$.", a: "$a = \\dfrac{1}{\\sqrt{2}}$" }
+  ]}
+/>
+
+### 5.29 Divergence of a Vector Function
+
+Taking the formal scalar (dot) product of the vector differential operator $\nabla$ with a differentiable vector field $\vec{F}$ produces a scalar field called the **divergence** of $\vec{F}$.
+
+<RuleBox kind="definition" title="§5.29 Divergence of a vector field">
+
+For $\vec{F} = F_1\hat{i} + F_2\hat{j} + F_3\hat{k}$,
+
+$$\operatorname{div}\vec{F} = \nabla\cdot\vec{F} = \left(\hat{i}\frac{\partial}{\partial x} + \hat{j}\frac{\partial}{\partial y} + \hat{k}\frac{\partial}{\partial z}\right)\cdot(F_1\hat{i} + F_2\hat{j} + F_3\hat{k}) = \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z}.$$
+
+Observe that $\operatorname{div}\vec{F}$ is a **scalar** function.
+
+</RuleBox>
+
+### 5.30 Physical Interpretation of Divergence
+
+Consider fluid flowing with velocity field $\vec{V} = V_x\hat{i} + V_y\hat{j} + V_z\hat{k}$ through an infinitesimal rectangular parallelepiped of edges $dx, dy, dz$ parallel to the coordinate axes. Assuming constant unit density:
+
+- Fluid entering through face $ABCD$ (area $dy\,dz$) per unit time $= V_x\,dy\,dz$.
+- Fluid leaving through opposite face $PQRS$ (at $x + dx$) per unit time $= \left(V_x + \dfrac{\partial V_x}{\partial x}\,dx\right)dy\,dz$.
+- Net outflow (rate of loss of fluid) along the $x$-direction $= \dfrac{\partial V_x}{\partial x}\,dx\,dy\,dz$.
+
+Adding the identical contributions along the $y$- and $z$-axes and dividing by the element volume $dx\,dy\,dz$ gives the **rate of net outflow of fluid per unit volume**:
+
+$$\frac{\partial V_x}{\partial x} + \frac{\partial V_y}{\partial y} + \frac{\partial V_z}{\partial z} = \nabla\cdot\vec{V} = \operatorname{div}\vec{V}.$$
+
+<RuleBox kind="theorem" title="§5.30 Solenoidal vector field and equation of continuity">
+
+- **Physical meaning:** $\operatorname{div}\vec{V}$ measures the net outward flux (loss of fluid) per unit volume per unit time at a point.
+- **Solenoidal vector field:** A vector field $\vec{V}$ is called **solenoidal** if
+
+$$\operatorname{div}\vec{V} = \nabla\cdot\vec{V} = 0.$$
+
+For an **incompressible** fluid with no sources or sinks, there can be no net gain or loss in the volume element, yielding $\nabla\cdot\vec{V} = 0$, the **equation of continuity** (conservation of mass).
+
+</RuleBox>
+
+<DiagramFigure src="/diagrams/get-209/vectors-gradient-divergence-and-curl-divergence-element.svg" caption="H. K. Dass §5.30 (redrawn) — Fluid flow through an infinitesimal rectangular element dx dy dz." />
+
+<StepRevealExample
+  title="Example 34 (§5.30)"
+  source="H. K. Dass, Ch. 5, Example 34 (U.P., I Semester, Winter 2000)"
+  problem="If $\\vec{v} = \\dfrac{x\\hat{i} + y\\hat{j} + z\\hat{k}}{\\sqrt{x^2 + y^2 + z^2}}$, find $\\operatorname{div}\\vec{v}$."
+  steps={[
+    "Write $r = (x^2 + y^2 + z^2)^{1/2}$, so $\\vec{v} = \\dfrac{x}{r}\\hat{i} + \\dfrac{y}{r}\\hat{j} + \\dfrac{z}{r}\\hat{k}$.",
+    "Differentiate the $x$-component: $\\dfrac{\\partial}{\\partial x}\\!\\left(\\dfrac{x}{(x^2+y^2+z^2)^{1/2}}\\right) = \\dfrac{(x^2+y^2+z^2)^{1/2} - x\\cdot\\tfrac{1}{2}(x^2+y^2+z^2)^{-1/2}(2x)}{x^2+y^2+z^2} = \\dfrac{y^2 + z^2}{(x^2+y^2+z^2)^{3/2}}$.",
+    "By symmetry, the $y$- and $z$-derivatives are $\\dfrac{x^2 + z^2}{(x^2+y^2+z^2)^{3/2}}$ and $\\dfrac{x^2 + y^2}{(x^2+y^2+z^2)^{3/2}}$.",
+    "Sum all three terms: $\\operatorname{div}\\vec{v} = \\dfrac{2(x^2 + y^2 + z^2)}{(x^2+y^2+z^2)^{3/2}} = \\dfrac{2}{\\sqrt{x^2 + y^2 + z^2}} = \\dfrac{2}{r}$."
+  ]}
+  answer="$\\dfrac{2}{\\sqrt{x^2 + y^2 + z^2}}$"
+/>
+
+<StepRevealExample
+  title="Example 36 (§5.30)"
+  source="H. K. Dass, Ch. 5, Example 36"
+  problem="Find the value of $n$ for which the vector $\\vec{F} = r^n\\vec{r}$ is solenoidal, where $\\vec{r} = x\\hat{i} + y\\hat{j} + z\\hat{k}$ and $r = |\\vec{r}|$."
+  steps={[
+    "Write $\\vec{F} = (x^2 + y^2 + z^2)^{n/2}(x\\hat{i} + y\\hat{j} + z\\hat{k})$.",
+    "Differentiate the $x$-component: $\\dfrac{\\partial}{\\partial x}\\big[r^n x\\big] = r^n + x\\cdot nr^{n-1}\\dfrac{\\partial r}{\\partial x} = r^n + n r^{n-2} x^2$.",
+    "Similarly, the $y$- and $z$-derivatives give $r^n + n r^{n-2} y^2$ and $r^n + n r^{n-2} z^2$.",
+    "Add the three partial derivatives: $\\nabla\\cdot(r^n\\vec{r}) = 3r^n + n r^{n-2}(x^2 + y^2 + z^2) = 3r^n + n r^n = (n + 3)r^n$.",
+    "For $\\vec{F}$ to be solenoidal, $(n + 3)r^n = 0$ identically $\\implies n + 3 = 0 \\implies n = -3$."
+  ]}
+  answer="$n = -3$"
+/>
+
+<StepRevealExample
+  title="Example 39 (§5.30)"
+  source="H. K. Dass, Ch. 5, Example 39"
+  problem="Find the directional derivative of $\\operatorname{div}(\\vec{u})$ at the point $(1, 2, 2)$ in the direction of the outer normal to the sphere $x^2 + y^2 + z^2 = 9$ for $\\vec{u} = x^4\\hat{i} + y^4\\hat{j} + z^4\\hat{k}$."
+  steps={[
+    "First compute the scalar field $\\phi = \\operatorname{div}(\\vec{u}) = \\dfrac{\\partial(x^4)}{\\partial x} + \\dfrac{\\partial(y^4)}{\\partial y} + \\dfrac{\\partial(z^4)}{\\partial z} = 4x^3 + 4y^3 + 4z^3$.",
+    "Find $\\nabla\\phi = 12x^2\\hat{i} + 12y^2\\hat{j} + 12z^2\\hat{k}$. At $(1,2,2)$: $\\nabla\\phi = 12\\hat{i} + 48\\hat{j} + 48\\hat{k}$.",
+    "Find the outer normal to the sphere $S = x^2 + y^2 + z^2 - 9 = 0$: $\\nabla S = 2x\\hat{i} + 2y\\hat{j} + 2z\\hat{k}$. At $(1,2,2)$: $\\nabla S = 2\\hat{i} + 4\\hat{j} + 4\\hat{k}$.",
+    "Unit outer normal: $\\hat{N} = \\dfrac{2\\hat{i} + 4\\hat{j} + 4\\hat{k}}{\\sqrt{4 + 16 + 16}} = \\dfrac{2\\hat{i} + 4\\hat{j} + 4\\hat{k}}{6}$.",
+    "Directional derivative $= \\nabla\\phi\\cdot\\hat{N} = (12\\hat{i} + 48\\hat{j} + 48\\hat{k})\\cdot\\dfrac{2\\hat{i} + 4\\hat{j} + 4\\hat{k}}{6} = \\dfrac{24 + 192 + 192}{6} = \\dfrac{408}{6} = 68$."
+  ]}
+  answer="$68$"
+/>
+
+<StepRevealExample
+  title="Example 40 (§5.30)"
+  source="H. K. Dass, Ch. 5, Example 40 (U.P., I Semester, Dec. 2004, Winter 2002)"
+  problem="Show that $\\operatorname{div}(\\operatorname{grad} r^n) = n(n + 1)r^{n-2}$, where $r = \\sqrt{x^2 + y^2 + z^2}$. Hence show that $\\nabla^2\\!\\left(\\dfrac{1}{r}\\right) = 0$."
+  steps={[
+    "Compute $\\operatorname{grad}(r^n) = n r^{n-1}\\nabla r = n r^{n-1}\\dfrac{\\vec{r}}{r} = n r^{n-2}(x\\hat{i} + y\\hat{j} + z\\hat{k})$.",
+    "Take the divergence: $\\operatorname{div}(n r^{n-2}\\vec{r}) = \\dfrac{\\partial}{\\partial x}(n r^{n-2} x) + \\dfrac{\\partial}{\\partial y}(n r^{n-2} y) + \\dfrac{\\partial}{\\partial z}(n r^{n-2} z)$.",
+    "Expand the $x$-derivative: $n r^{n-2} + n(n-2)r^{n-3} x\\dfrac{x}{r} = n r^{n-2} + n(n-2)r^{n-4} x^2$.",
+    "Add the $x$-, $y$- and $z$-terms: $3n r^{n-2} + n(n-2)r^{n-4}(x^2 + y^2 + z^2) = 3n r^{n-2} + n(n-2)r^{n-2} = n(n + 1)r^{n-2}$.",
+    "Put $n = -1$: $\\nabla^2\\!\\left(\\dfrac{1}{r}\\right) = \\operatorname{div}(\\operatorname{grad} r^{-1}) = (-1)(-1 + 1)r^{-3} = 0$."
+  ]}
+  answer="Proved: $\\nabla^2(r^n) = n(n+1)r^{n-2}$ and $\\nabla^2(1/r) = 0$."
+/>
+
+<ExerciseSet
+  title="Exercise 5.8"
+  source="H. K. Dass, Ch. 5"
+  items={[
+    { q: "If $\\vec{r} = x\\hat{i} + y\\hat{j} + z\\hat{k}$ and $r = |\\vec{r}|$, find $\\operatorname{div}\\!\\left(\\dfrac{\\vec{r}}{r^2}\\right)$ (Dass p. 402 practice problem).", a: "$\\dfrac{1}{r^2}$" },
+    { q: "If $\\vec{r} = x\\hat{i} + y\\hat{j} + z\\hat{k}$ and $r = |\\vec{r}|$, show that (i) $\\operatorname{div}\\!\\left(\\dfrac{\\vec{r}}{r^3}\\right) = 0$ and (ii) $\\operatorname{div}(r\\phi) = 3\\phi + \\vec{r}\\cdot\\operatorname{grad}\\phi$ (for $\\vec{r}\\phi$).", a: "(i) Put $n=-3$ in $\\nabla\\cdot(r^n\\vec{r})=(n+3)r^n=0$; (ii) apply $\\nabla\\cdot(\\phi\\vec{r}) = \\phi(\\nabla\\cdot\\vec{r}) + \\vec{r}\\cdot\\nabla\\phi = 3\\phi + \\vec{r}\\cdot\\nabla\\phi$." },
+    { q: "Show that the vector $\\vec{V} = (x + 3y)\\hat{i} + (y - 3z)\\hat{j} + (x - 2z)\\hat{k}$ is solenoidal.", a: "$\\nabla\\cdot\\vec{V} = 1 + 1 - 2 = 0$, hence solenoidal." },
+    { q: "Prove that $\\nabla\\cdot(\\phi\\vec{F}) = (\\nabla\\phi)\\cdot\\vec{F} + \\phi(\\nabla\\cdot\\vec{F})$.", a: "Expand $\\sum \\dfrac{\\partial}{\\partial x}(\\phi F_1) = \\sum \\left(\\dfrac{\\partial\\phi}{\\partial x}F_1 + \\phi\\dfrac{\\partial F_1}{\\partial x}\\right) = (\\nabla\\phi)\\cdot\\vec{F} + \\phi(\\nabla\\cdot\\vec{F})$." },
+    { q: "Prove that $\\operatorname{div}(f\\nabla g) - \\operatorname{div}(g\\nabla f) = f\\nabla^2 g - g\\nabla^2 f$.", a: "Since $\\operatorname{div}(f\\nabla g) = f\\nabla^2 g + \\nabla f\\cdot\\nabla g$ and $\\operatorname{div}(g\\nabla f) = g\\nabla^2 f + \\nabla g\\cdot\\nabla f$, subtracting cancels $\\nabla f\\cdot\\nabla g$." }
+  ]}
+/>
+
+### 5.31 Curl
+
+Taking the formal cross product of $\nabla$ with a differentiable vector field $\vec{F}$ yields a new vector field called the **curl** (or **rotation**) of $\vec{F}$.
+
+<RuleBox kind="definition" title="§5.31 Curl of a vector field">
+
+For $\vec{F} = F_1\hat{i} + F_2\hat{j} + F_3\hat{k}$,
+
+$$\operatorname{curl}\vec{F} = \nabla\times\vec{F} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z} \\ F_1 & F_2 & F_3 \end{vmatrix} = \left(\frac{\partial F_3}{\partial y} - \frac{\partial F_2}{\partial z}\right)\hat{i} - \left(\frac{\partial F_3}{\partial x} - \frac{\partial F_1}{\partial z}\right)\hat{j} + \left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right)\hat{k}.$$
+
+Unlike divergence, $\operatorname{curl}\vec{F}$ is a **vector** quantity.
+
+</RuleBox>
+
+### 5.32 Physical Meaning of Curl
+
+Consider a rigid body rotating with constant angular velocity $\vec{\omega} = \omega_1\hat{i} + \omega_2\hat{j} + \omega_3\hat{k}$. By §5.15, the linear velocity at $\vec{r} = x\hat{i} + y\hat{j} + z\hat{k}$ is
+
+$$\vec{V} = \vec{\omega}\times\vec{r} = (\omega_2 z - \omega_3 y)\hat{i} + (\omega_3 x - \omega_1 z)\hat{j} + (\omega_1 y - \omega_2 x)\hat{k}.$$
+
+Taking the curl of $\vec{V}$ yields
+
+$$\operatorname{curl}\vec{V} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z} \\ \omega_2 z - \omega_3 y & \omega_3 x - \omega_1 z & \omega_1 y - \omega_2 x \end{vmatrix} = (\omega_1 + \omega_1)\hat{i} - (-\omega_2 - \omega_2)\hat{j} + (\omega_3 + \omega_3)\hat{k} = 2\vec{\omega}.$$
+
+Thus the curl of a velocity field equals **twice the local angular velocity**, directly capturing the rotational tendency of the field.
+
+<RuleBox kind="theorem" title="§5.32 Irrotational (conservative) fields, scalar potential & vector identities">
+
+1. **Physical meaning of curl:** For rigid-body rotation $\vec{V} = \vec{\omega}\times\vec{r}$, $\operatorname{curl}\vec{V} = 2\vec{\omega}$.
+2. **Irrotational / conservative field:** A vector field $\vec{F}$ is **irrotational** (or **conservative** for a force field) if
+
+$$\operatorname{curl}\vec{F} = \nabla\times\vec{F} = \vec{0}.$$
+
+3. **Scalar potential $\phi$:** Every irrotational field on a simply connected domain can be written as $\vec{F} = \nabla\phi$. To find $\phi$, integrate the exact total differential:
+
+$$d\phi = \nabla\phi\cdot d\vec{r} = \vec{F}\cdot d\vec{r} = F_1\,dx + F_2\,dy + F_3\,dz.$$
+
+4. **Fundamental second-order and product identities:**
+   - $\operatorname{curl}(\operatorname{grad}\phi) = \nabla\times(\nabla\phi) = \vec{0}$ (every gradient field is irrotational).
+   - $\operatorname{div}(\operatorname{curl}\vec{V}) = \nabla\cdot(\nabla\times\vec{V}) = 0$ (every curl field is solenoidal).
+   - $\operatorname{div}(\phi\vec{V}) = \phi(\operatorname{div}\vec{V}) + (\operatorname{grad}\phi)\cdot\vec{V}$.
+   - $\operatorname{curl}(\phi\vec{V}) = (\operatorname{grad}\phi)\times\vec{V} + \phi(\operatorname{curl}\vec{V})$.
+   - $\operatorname{div}(\vec{U}\times\vec{V}) = \vec{V}\cdot\operatorname{curl}\vec{U} - \vec{U}\cdot\operatorname{curl}\vec{V}$.
+   - $\operatorname{curl}(\operatorname{curl}\vec{F}) = \operatorname{grad}(\operatorname{div}\vec{F}) - \nabla^2\vec{F}$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Example 41 (§5.32)"
+  source="H. K. Dass, Ch. 5, Example 41 (Nagpur University, Summer 2003)"
+  problem="Find the divergence and curl of $\\vec{v} = (xyz)\\hat{i} + (3x^2 y)\\hat{j} + (xz^2 - y^2 z)\\hat{k}$ at $(2, -1, 1)$."
+  steps={[
+    "Compute divergence: $\\operatorname{div}\\vec{v} = \\dfrac{\\partial(xyz)}{\\partial x} + \\dfrac{\\partial(3x^2 y)}{\\partial y} + \\dfrac{\\partial(xz^2 - y^2 z)}{\\partial z} = yz + 3x^2 + 2xz - y^2$.",
+    "Evaluate at $(2, -1, 1)$: $\\operatorname{div}\\vec{v} = (-1)(1) + 3(4) + 2(2)(1) - (-1)^2 = -1 + 12 + 4 - 1 = 14$.",
+    "Compute curl: $\\operatorname{curl}\\vec{v} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ \\partial/\\partial x & \\partial/\\partial y & \\partial/\\partial z \\\\ xyz & 3x^2 y & xz^2 - y^2 z \\end{vmatrix} = (-2yz - 0)\\hat{i} - (z^2 - xy)\\hat{j} + (6xy - xz)\\hat{k}$.",
+    "Simplify: $\\operatorname{curl}\\vec{v} = -2yz\\hat{i} + (xy - z^2)\\hat{j} + (6xy - xz)\\hat{k}$.",
+    "Evaluate at $(2, -1, 1)$: $-2(-1)(1)\\hat{i} + \\big[(2)(-1) - 1\\big]\\hat{j} + \\big[6(2)(-1) - 2(1)\\big]\\hat{k} = 2\\hat{i} - 3\\hat{j} - 14\\hat{k}$."
+  ]}
+  answer="$\\operatorname{div}\\vec{v} = 14$; $\\operatorname{curl}\\vec{v} = 2\\hat{i} - 3\\hat{j} - 14\\hat{k}$"
+/>
+
+<StepRevealExample
+  title="Example 43 (§5.32)"
+  source="H. K. Dass, Ch. 5, Example 43 (U.P., I Sem., Dec. 2008)"
+  problem="Prove that $\\vec{F} = (y^2 - z^2 + 3yz - 2x)\\hat{i} + (3xz + 2xy)\\hat{j} + (3xy - 2xz + 2z)\\hat{k}$ is both solenoidal and irrotational."
+  steps={[
+    "Test for solenoidal ($\\nabla\\cdot\\vec{F} = 0$): $\\dfrac{\\partial F_1}{\\partial x} + \\dfrac{\\partial F_2}{\\partial y} + \\dfrac{\\partial F_3}{\\partial z} = (-2) + (2x) + (-2x + 2) = 0$. Hence $\\vec{F}$ is solenoidal.",
+    "Test for irrotational ($\\nabla\\times\\vec{F} = \\vec{0}$): compute each component of the curl determinant:",
+    "$\\hat{i}$-component: $\\dfrac{\\partial F_3}{\\partial y} - \\dfrac{\\partial F_2}{\\partial z} = 3x - 3x = 0$.",
+    "$\\hat{j}$-component: $-\\left(\\dfrac{\\partial F_3}{\\partial x} - \\dfrac{\\partial F_1}{\\partial z}\\right) = -\\big[(3y - 2z) - (-2z + 3y)\\big] = 0$.",
+    "$\\hat{k}$-component: $\\dfrac{\\partial F_2}{\\partial x} - \\dfrac{\\partial F_1}{\\partial y} = (3z + 2y) - (2y + 3z) = 0$.",
+    "Since $\\nabla\\times\\vec{F} = \\vec{0}$, $\\vec{F}$ is also irrotational."
+  ]}
+  answer="Proved: both solenoidal and irrotational."
+/>
+
+<StepRevealExample
+  title="Example 45 (§5.32)"
+  source="H. K. Dass, Ch. 5, Example 45 (U.P., I Semester, Dec. 2009)"
+  problem="If a vector field is given by $\\vec{F} = (x^2 - y^2 + x)\\hat{i} - (2xy + y)\\hat{j}$, is this field irrotational? If so, find its scalar potential."
+  steps={[
+    "Compute $\\operatorname{curl}\\vec{F} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ \\partial/\\partial x & \\partial/\\partial y & \\partial/\\partial z \\\\ x^2 - y^2 + x & -(2xy + y) & 0 \\end{vmatrix} = 0\\hat{i} - 0\\hat{j} + (-2y - (-2y))\\hat{k} = \\vec{0}$. Thus $\\vec{F}$ is irrotational.",
+    "Write $\\vec{F} = \\nabla\\phi$, so $d\\phi = \\vec{F}\\cdot d\\vec{r} = (x^2 - y^2 + x)\\,dx - (2xy + y)\\,dy$.",
+    "Group exact differentials: $d\\phi = x^2\\,dx + x\\,dx - y\\,dy - (y^2\\,dx + 2xy\\,dy) = x^2\\,dx + x\\,dx - y\\,dy - d(xy^2)$.",
+    "Integrate term by term: $\\phi = \\dfrac{x^3}{3} + \\dfrac{x^2}{2} - \\dfrac{y^2}{2} - xy^2 + c$."
+  ]}
+  answer="Irrotational; $\\phi = \\dfrac{x^3}{3} + \\dfrac{x^2}{2} - \\dfrac{y^2}{2} - xy^2 + c$"
+/>
+
+<StepRevealExample
+  title="Example 52 (§5.32)"
+  source="H. K. Dass, Ch. 5, Example 52 (Nagpur University, Summer 2008, 2001; U.P., I Sem., Dec. 2005, 2001)"
+  problem="Show that the vector field $\\vec{F} = \\dfrac{\\vec{r}}{|\\vec{r}|^3}$ is irrotational as well as solenoidal (for $r \\neq 0$). Find the scalar potential."
+  steps={[
+    "Write $\\vec{F} = \\dfrac{x\\hat{i} + y\\hat{j} + z\\hat{k}}{(x^2 + y^2 + z^2)^{3/2}}$.",
+    "For the $\\hat{i}$-component of $\\nabla\\times\\vec{F}$: $\\dfrac{\\partial}{\\partial y}\\!\\left(\\dfrac{z}{r^3}\\right) - \\dfrac{\\partial}{\\partial z}\\!\\left(\\dfrac{y}{r^3}\\right) = -\\dfrac{3yz}{r^5} - \\left(-\\dfrac{3yz}{r^5}\\right) = 0$. By symmetry, the $\\hat{j}$- and $\\hat{k}$-components also vanish, so $\\nabla\\times\\vec{F} = \\vec{0}$ (irrotational).",
+    "Find the scalar potential from $d\\phi = \\vec{F}\\cdot d\\vec{r} = \\dfrac{x\\,dx + y\\,dy + z\\,dz}{(x^2 + y^2 + z^2)^{3/2}} = \\dfrac{1}{2}\\dfrac{d(x^2 + y^2 + z^2)}{(x^2 + y^2 + z^2)^{3/2}}$.",
+    "Integrate: $\\phi = \\dfrac{1}{2}\\left(-2(x^2 + y^2 + z^2)^{-1/2}\\right) = -\\dfrac{1}{r}$ (plus an arbitrary constant).",
+    "For divergence: $\\dfrac{\\partial}{\\partial x}\\!\\left(\\dfrac{x}{r^3}\\right) = \\dfrac{r^3 - x\\cdot 3r^2(x/r)}{r^6} = \\dfrac{r^2 - 3x^2}{r^5}$. Summing over $x,y,z$ gives $\\nabla\\cdot\\vec{F} = \\dfrac{3r^2 - 3(x^2 + y^2 + z^2)}{r^5} = 0$, so $\\vec{F}$ is solenoidal."
+  ]}
+  answer="Irrotational and solenoidal; $\\phi = -\\dfrac{1}{|\\vec{r}|} + c$"
+/>
+
+<StepRevealExample
+  title="Example 54 (§5.32)"
+  source="H. K. Dass, Ch. 5, Example 54 (Nagpur University, Summer 2005, Winter 2000; R.G.P.V., Bhopal 2009)"
+  problem="Find the constants $a, b, c$ so that $\\vec{F} = (x + 2y + az)\\hat{i} + (bx - 3y - z)\\hat{j} + (4x + cy + 2z)\\hat{k}$ is irrotational, and hence find a function $\\phi$ such that $\\vec{F} = \\nabla\\phi$."
+  steps={[
+    "Compute $\\nabla\\times\\vec{F} = \\begin{vmatrix} \\hat{i} & \\hat{j} & \\hat{k} \\\\ \\partial/\\partial x & \\partial/\\partial y & \\partial/\\partial z \\\\ x+2y+az & bx-3y-z & 4x+cy+2z \\end{vmatrix} = (c + 1)\\hat{i} - (4 - a)\\hat{j} + (b - 2)\\hat{k}$.",
+    "Set $\\nabla\\times\\vec{F} = \\vec{0}$: $c + 1 = 0 \\implies c = -1$; $4 - a = 0 \\implies a = 4$; $b - 2 = 0 \\implies b = 2$.",
+    "Substitute back: $\\vec{F} = (x + 2y + 4z)\\hat{i} + (2x - 3y - z)\\hat{j} + (4x - y + 2z)\\hat{k}$.",
+    "Form $d\\phi = \\vec{F}\\cdot d\\vec{r} = x\\,dx - 3y\\,dy + 2z\\,dz + 2(y\\,dx + x\\,dy) + 4(z\\,dx + x\\,dz) - (z\\,dy + y\\,dz)$.",
+    "Integrate directly: $\\phi = \\dfrac{x^2}{2} - \\dfrac{3y^2}{2} + z^2 + 2xy + 4zx - yz + C$."
+  ]}
+  answer="$a = 4,\\; b = 2,\\; c = -1$; $\\phi = \\dfrac{x^2}{2} - \\dfrac{3y^2}{2} + z^2 + 2xy + 4zx - yz + C$"
+/>
+
+<StepRevealExample
+  title="Example 57 (§5.32)"
+  source="H. K. Dass, Ch. 5, Example 57 (M.U. 2003, 2005)"
+  problem="Suppose $\\vec{U}$ and $\\vec{V}$ are continuously differentiable vector fields. Prove that $\\operatorname{div}(\\vec{U}\\times\\vec{V}) = \\vec{V}\\cdot\\operatorname{curl}\\vec{U} - \\vec{U}\\cdot\\operatorname{curl}\\vec{V}$."
+  steps={[
+    "Write $\\vec{U} = u_1\\hat{i} + u_2\\hat{j} + u_3\\hat{k}$ and $\\vec{V} = v_1\\hat{i} + v_2\\hat{j} + v_3\\hat{k}$, so $\\vec{U}\\times\\vec{V} = (u_2 v_3 - u_3 v_2)\\hat{i} + (u_3 v_1 - u_1 v_3)\\hat{j} + (u_1 v_2 - u_2 v_1)\\hat{k}$.",
+    "Take the divergence and expand using the product rule: $\\operatorname{div}(\\vec{U}\\times\\vec{V}) = \\dfrac{\\partial}{\\partial x}(u_2 v_3 - u_3 v_2) + \\dfrac{\\partial}{\\partial y}(u_3 v_1 - u_1 v_3) + \\dfrac{\\partial}{\\partial z}(u_1 v_2 - u_2 v_1)$.",
+    "Group terms multiplying $v_1, v_2, v_3$ together and terms multiplying $u_1, u_2, u_3$ together:",
+    "$v_1\\!\\left(\\dfrac{\\partial u_3}{\\partial y} - \\dfrac{\\partial u_2}{\\partial z}\\right) + v_2\\!\\left(\\dfrac{\\partial u_1}{\\partial z} - \\dfrac{\\partial u_3}{\\partial x}\\right) + v_3\\!\\left(\\dfrac{\\partial u_2}{\\partial x} - \\dfrac{\\partial u_1}{\\partial y}\\right) - u_1\\!\\left(\\dfrac{\\partial v_3}{\\partial y} - \\dfrac{\\partial v_2}{\\partial z}\\right) - u_2\\!\\left(\\dfrac{\\partial v_1}{\\partial z} - \\dfrac{\\partial v_3}{\\partial x}\\right) - u_3\\!\\left(\\dfrac{\\partial v_2}{\\partial x} - \\dfrac{\\partial v_1}{\\partial y}\\right)$.",
+    "Recognize the two dot products: $\\vec{V}\\cdot(\\nabla\\times\\vec{U}) - \\vec{U}\\cdot(\\nabla\\times\\vec{V}) = \\vec{V}\\cdot\\operatorname{curl}\\vec{U} - \\vec{U}\\cdot\\operatorname{curl}\\vec{V}$."
+  ]}
+  answer="Proved."
+/>
+
+<StepRevealExample
+  title="Example 59 (§5.32)"
+  source="H. K. Dass, Ch. 5, Example 59 (Nagpur University, Summer 2004; AMIETE, Sem. II, June 2010)"
+  problem="Prove that for every twice continuously differentiable vector field $\\vec{V}$, $\\operatorname{div}(\\operatorname{curl}\\vec{V}) = 0$."
+  steps={[
+    "Let $\\vec{V} = V_1\\hat{i} + V_2\\hat{j} + V_3\\hat{k}$. Then $\\operatorname{curl}\\vec{V} = \\left(\\dfrac{\\partial V_3}{\\partial y} - \\dfrac{\\partial V_2}{\\partial z}\\right)\\hat{i} - \\left(\\dfrac{\\partial V_3}{\\partial x} - \\dfrac{\\partial V_1}{\\partial z}\\right)\\hat{j} + \\left(\\dfrac{\\partial V_2}{\\partial x} - \\dfrac{\\partial V_1}{\\partial y}\\right)\\hat{k}$.",
+    "Take the divergence: $\\nabla\\cdot(\\nabla\\times\\vec{V}) = \\dfrac{\\partial}{\\partial x}\\!\\left(\\dfrac{\\partial V_3}{\\partial y} - \\dfrac{\\partial V_2}{\\partial z}\\right) - \\dfrac{\\partial}{\\partial y}\\!\\left(\\dfrac{\\partial V_3}{\\partial x} - \\dfrac{\\partial V_1}{\\partial z}\\right) + \\dfrac{\\partial}{\\partial z}\\!\\left(\\dfrac{\\partial V_2}{\\partial x} - \\dfrac{\\partial V_1}{\\partial y}\\right)$.",
+    "Regroup by component: $\\left(\\dfrac{\\partial^2 V_1}{\\partial y\\,\\partial z} - \\dfrac{\\partial^2 V_1}{\\partial z\\,\\partial y}\\right) + \\left(\\dfrac{\\partial^2 V_2}{\\partial z\\,\\partial x} - \\dfrac{\\partial^2 V_2}{\\partial x\\,\\partial z}\\right) + \\left(\\dfrac{\\partial^2 V_3}{\\partial x\\,\\partial y} - \\dfrac{\\partial^2 V_3}{\\partial y\\,\\partial x}\\right) = 0$ by equality of mixed second partial derivatives."
+  ]}
+  answer="Proved: $\\nabla\\cdot(\\nabla\\times\\vec{V}) = 0$."
+/>
+
+<StepRevealExample
+  title="Example 64 (§5.32)"
+  source="H. K. Dass, Ch. 5, Example 64 (M.D.U., Dec. 2009)"
+  problem="For a solenoidal vector field $\\vec{F}$, show that $\\operatorname{curl}\\operatorname{curl}\\operatorname{curl}\\operatorname{curl}\\vec{F} = \\nabla^4\\vec{F}$."
+  steps={[
+    "Since $\\vec{F}$ is solenoidal, $\\operatorname{div}\\vec{F} = \\nabla\\cdot\\vec{F} = 0$.",
+    "Apply the identity $\\operatorname{curl}(\\operatorname{curl}\\vec{F}) = \\operatorname{grad}(\\operatorname{div}\\vec{F}) - \\nabla^2\\vec{F}$. Because $\\operatorname{div}\\vec{F} = 0$, this reduces to $\\operatorname{curl}(\\operatorname{curl}\\vec{F}) = -\\nabla^2\\vec{F}$.",
+    "Apply $\\operatorname{curl}\\operatorname{curl}$ a second time: $\\operatorname{curl}\\operatorname{curl}\\operatorname{curl}\\operatorname{curl}\\vec{F} = \\operatorname{curl}\\operatorname{curl}(-\\nabla^2\\vec{F}) = -\\big[\\operatorname{grad}(\\operatorname{div}(\\nabla^2\\vec{F})) - \\nabla^2(\\nabla^2\\vec{F})\\big]$.",
+    "Since $\\nabla\\cdot(\\nabla^2\\vec{F}) = \\nabla^2(\\nabla\\cdot\\vec{F}) = \\nabla^2(0) = 0$, the gradient term vanishes and we obtain $\\nabla^4\\vec{F}$."
+  ]}
+  answer="Proved."
+/>
+
+<ExerciseSet
+  title="Exercise 5.9"
+  source="H. K. Dass, Ch. 5"
+  items={[
+    { q: "Find the divergence and curl of the vector field $\\vec{V} = (x^2 - y^2)\\hat{i} + 2xy\\hat{j} + (y^2 - xy)\\hat{k}$.", a: "$\\operatorname{div}\\vec{V} = 4x$, $\\operatorname{curl}\\vec{V} = (2y - x)\\hat{i} + y\\hat{j} + 4y\\hat{k}$" },
+    { q: "If $\\vec{a}$ is a constant vector and $\\vec{r} = x\\hat{i} + y\\hat{j} + z\\hat{k}$, prove that (i) $\\nabla(\\vec{a}\\cdot\\vec{r}) = \\vec{a}$, (ii) $\\operatorname{div}(\\vec{r}\\times\\vec{a}) = 0$, and (iii) $\\operatorname{curl}(\\vec{r}\\times\\vec{a}) = -2\\vec{a}$.", a: "Expand $\\vec{a}\\cdot\\vec{r} = a_1 x + a_2 y + a_3 z$ and $\\vec{r}\\times\\vec{a}$ in components and apply $\\nabla$, $\\nabla\\cdot$, $\\nabla\\times$ directly." },
+    { q: "If $\\vec{F} = (x + y + 1)\\hat{i} + \\hat{j} - (x + y)\\hat{k}$, show that $\\vec{F}\\cdot\\operatorname{curl}\\vec{F} = 0$.", a: "$\\operatorname{curl}\\vec{F} = -\\hat{i} + \\hat{j} - \\hat{k}$; dotting with $\\vec{F}$ gives $-(x+y+1) + 1 + (x+y) = 0$." },
+    { q: "Evaluate $\\operatorname{div}(\\vec{A}\\times\\vec{r})$ if $\\operatorname{curl}\\vec{A} = \\vec{0}$.", a: "$0$ (since $\\operatorname{div}(\\vec{A}\\times\\vec{r}) = \\vec{r}\\cdot\\operatorname{curl}\\vec{A} - \\vec{A}\\cdot\\operatorname{curl}\\vec{r} = 0 - 0 = 0$)" },
+    { q: "Find $\\operatorname{div}\\vec{F}$ and $\\operatorname{curl}\\vec{F}$ where $\\vec{F} = \\operatorname{grad}(x^3 + y^3 + z^3 - 3xyz)$.", a: "$\\operatorname{div}\\vec{F} = 6(x + y + z)$, $\\operatorname{curl}\\vec{F} = \\vec{0}$" },
+    { q: "Find values of $a, b, c$ for which $\\vec{v} = (x + y + az)\\hat{i} + (bx + 3y - z)\\hat{j} + (3x + cy + z)\\hat{k}$ is irrotational.", a: "$a = 3,\\; b = 1,\\; c = -1$" },
+    { q: "The magnitude of the normal vector $\\nabla\\phi$ to the surface $x^2 + 2y^2 + z^2 = 7$ at $(1, -1, 2)$ is:", a: "$6$" },
+    { q: "The directional derivative of $\\phi = xyz$ at $(1, 1, 1)$ in the direction $\\hat{i}$ is:", a: "$1$" },
+    { q: "If $\\vec{r} = x\\hat{i} + y\\hat{j} + z\\hat{k}$ and $r = |\\vec{r}|$, evaluate $\\nabla(\\log r)$ and $\\operatorname{div}\\vec{r}$.", a: "$\\nabla(\\log r) = \\dfrac{\\vec{r}}{r^2}$; $\\operatorname{div}\\vec{r} = 3$" },
+    { q: "If $\\vec{V} = xy^2\\hat{i} + 2yx^2 z\\hat{j} - 3yz^2\\hat{k}$, find $\\operatorname{curl}\\vec{V}$ at $(1, -1, 1)$.", a: "$-(\\hat{i} + 2\\hat{k})$" }
+  ]}
+/>
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Frequent mistakes in GET 209 vector calculus exams">
+
+- **Forgetting to normalize the direction vector:** In directional derivatives $D_{\hat{d}}\phi = \nabla\phi\cdot\hat{d}$, you **must** divide the given direction vector $\vec{d}$ by $|\vec{d}|$ before taking the dot product. Dotting with an unnormalized $\vec{d}$ multiplies the answer by $|\vec{d}|$.
+- **Middle-term minus sign in determinants:** Both $\vec{a}\times\vec{b}$ and $\nabla\times\vec{F}$ have a **minus** sign on the $\hat{j}$-cofactor: $-\left(\dfrac{\partial F_3}{\partial x} - \dfrac{\partial F_1}{\partial z}\right)\hat{j} = \left(\dfrac{\partial F_1}{\partial z} - \dfrac{\partial F_3}{\partial x}\right)\hat{j}$.
+- **Confusing solenoidal and irrotational:** **Solenoidal** means $\nabla\cdot\vec{F} = 0$ (scalar condition, zero net outflow); **irrotational / conservative** means $\nabla\times\vec{F} = \vec{0}$ (three component equations, zero rotation, scalar potential $\phi$ exists).
+- **Reversing vector order in cross-product differentiation:** In $\dfrac{d}{dt}(\vec{F}\times\vec{G}) = \vec{F}\times\dfrac{d\vec{G}}{dt} + \dfrac{d\vec{F}}{dt}\times\vec{G}$, never write $\vec{G}\times\dfrac{d\vec{F}}{dt}$ without flipping the sign.
+- **Omitting the chain-rule factor for $r$:** When differentiating functions of $r = \sqrt{x^2+y^2+z^2}$, always use $\dfrac{\partial r}{\partial x} = \dfrac{x}{r}$, $\dfrac{\partial r}{\partial y} = \dfrac{y}{r}$, $\dfrac{\partial r}{\partial z} = \dfrac{z}{r}$.
+
+</Callout>
+
+## Summary of Formulas
+
+<RuleBox kind="formula" title="Chapter 5 (§5.1–§5.32) — Master Formula Sheet">
+
+- **Components, magnitude & unit vector (§5.3–§5.4):** $\vec{r} = x\hat{i} + y\hat{j} + z\hat{k}$, $|\vec{r}| = \sqrt{x^2+y^2+z^2}$, $\hat{r} = \dfrac{\vec{r}}{|\vec{r}|}$.
+- **Position & ratio formulae (§5.5–§5.6):** $\overrightarrow{AB} = \vec{b} - \vec{a}$; $\overrightarrow{OC} = \dfrac{m\vec{b} + n\vec{a}}{m + n}$.
+- **Dot & cross products (§5.8–§5.15):** $\vec{a}\cdot\vec{b} = |\vec{a}||\vec{b}|\cos\theta = a_1 b_1 + a_2 b_2 + a_3 b_3$; $W = \vec{F}\cdot\overrightarrow{AB}$; $|\vec{a}\times\vec{b}| = |\vec{a}||\vec{b}|\sin\theta$ (area of parallelogram); $\vec{M} = \vec{r}\times\vec{F}$; $\vec{V} = \vec{\omega}\times\vec{r}$.
+- **Triple & quadruple products (§5.16–§5.21):**
+  - $[\vec{a}\;\vec{b}\;\vec{c}] = \vec{a}\cdot(\vec{b}\times\vec{c}) = V_{\text{parallelepiped}}$; $V_{\text{tetrahedron}} = \frac{1}{6}|[\vec{a}\;\vec{b}\;\vec{c}]|$; coplanar $\iff [\vec{a}\;\vec{b}\;\vec{c}] = 0$.
+  - $\vec{a}\times(\vec{b}\times\vec{c}) = (\vec{a}\cdot\vec{c})\vec{b} - (\vec{a}\cdot\vec{b})\vec{c}$.
+  - $(\vec{a}\times\vec{b})\cdot(\vec{c}\times\vec{d}) = (\vec{a}\cdot\vec{c})(\vec{b}\cdot\vec{d}) - (\vec{a}\cdot\vec{d})(\vec{b}\cdot\vec{c})$.
+  - $(\vec{a}\times\vec{b})\times(\vec{c}\times\vec{d}) = [\vec{a}\;\vec{b}\;\vec{d}]\vec{c} - [\vec{a}\;\vec{b}\;\vec{c}]\vec{d}$.
+- **Vector differentiation (§5.22–§5.24):** $\vec{v} = \dfrac{d\vec{r}}{dt}$, $\vec{a} = \dfrac{d^2\vec{r}}{dt^2}$, $\hat{T} = \dfrac{\vec{v}}{|\vec{v}|}$, $a_t = \vec{a}\cdot\hat{T}$.
+- **Gradient, normal & directional derivative (§5.25–§5.28):** $\nabla\phi = \hat{i}\dfrac{\partial\phi}{\partial x} + \hat{j}\dfrac{\partial\phi}{\partial y} + \hat{k}\dfrac{\partial\phi}{\partial z}$; $\hat{N} = \dfrac{\nabla\phi}{|\nabla\phi|}$; $D_{\hat{d}}\phi = \nabla\phi\cdot\hat{d}$; max rate $= |\nabla\phi|$; $\cos\theta = \dfrac{\nabla\phi_1\cdot\nabla\phi_2}{|\nabla\phi_1||\nabla\phi_2|}$.
+- **Divergence & curl (§5.29–§5.32):**
+  - $\operatorname{div}\vec{F} = \nabla\cdot\vec{F} = \dfrac{\partial F_1}{\partial x} + \dfrac{\partial F_2}{\partial y} + \dfrac{\partial F_3}{\partial z}$; solenoidal $\iff \nabla\cdot\vec{F} = 0$.
+  - $\operatorname{curl}\vec{F} = \nabla\times\vec{F}$; $\operatorname{curl}(\vec{\omega}\times\vec{r}) = 2\vec{\omega}$; irrotational $\iff \nabla\times\vec{F} = \vec{0} \iff \vec{F} = \nabla\phi$.
+  - Radial results: $\nabla r = \dfrac{\vec{r}}{r}$, $\nabla(r^n) = n r^{n-2}\vec{r}$, $\nabla\cdot(r^n\vec{r}) = (n+3)r^n$, $\nabla^2(r^n) = n(n+1)r^{n-2}$, $\nabla^2 f(r) = f''(r) + \dfrac{2}{r}f'(r)$.
+  - Key identities: $\nabla\times(\nabla\phi) = \vec{0}$, $\nabla\cdot(\nabla\times\vec{V}) = 0$, $\nabla\cdot(\vec{U}\times\vec{V}) = \vec{V}\cdot(\nabla\times\vec{U}) - \vec{U}\cdot(\nabla\times\vec{V})$, $\nabla\times(\nabla\times\vec{F}) = \nabla(\nabla\cdot\vec{F}) - \nabla^2\vec{F}$.
+
+</RuleBox>

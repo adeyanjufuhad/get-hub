@@ -105,9 +105,11 @@ func NewRouter(cfg config.Config, pool *pgxpool.Pool, logger *slog.Logger) http.
 
 			r.Get("/dashboard", dashboardH.Get)
 
-			// Notes library (login required: files are for registered students)
-			r.Get("/library", libraryH.List)
-			r.With(downloadLimiter.Middleware).Get("/library/{materialId}/download", libraryH.DownloadLink)
+			// Raw-materials library: disabled unless LIBRARY_ENABLED=true.
+			if cfg.LibraryEnabled {
+				r.Get("/library", libraryH.List)
+				r.With(downloadLimiter.Middleware).Get("/library/{materialId}/download", libraryH.DownloadLink)
+			}
 
 			// Topic progress & practice (gated through single access.CanAccess middleware)
 			r.With(access.RequireItemAccess(policy, coursesH.TopicAccessLoader)).

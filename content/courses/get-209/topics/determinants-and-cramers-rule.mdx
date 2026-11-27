@@ -5,7 +5,6 @@ topicId: "22222222-2222-4222-8222-222222290005"
 courseCode: "GET 209"
 courseSlug: "get-209"
 ccmasRef: "Determinants; minors and cofactors; Cramer's rule"
-textbookRef: "H. K. Dass · Ch. 4, §4.1–4.17"
 outcomes:
   - "Evaluate second-, third-, and higher-order determinants by cofactor expansion, Sarrus' rule, pivotal condensation, and Laplace's method."
   - "Simplify, factor, and solve determinantal equations using the six fundamental properties of determinants and the factor theorem."
@@ -18,7 +17,7 @@ isFree: true
 
 ## Overview
 
-Determinants turn linear elimination problems into compact scalar invariants. Whenever an engineer balances forces in a truss, solves mesh currents in a circuit, or tests whether three coordinate points lie on one straight line, a square array of coefficients governs whether a unique solution exists. This folio covers the complete determinant framework of Chapter 4 (§4.1–4.17): elementary expansions, minors and cofactors, Sarrus' rule, algebraic properties, factor theorem, pivotal condensation, special symmetry classes, Laplace expansion, coordinate geometry applications, Cramer's rule, determinant multiplication, and consistency criteria.
+Determinants turn linear elimination problems into compact scalar invariants. Whenever an engineer balances forces in a truss, solves mesh currents in a circuit, or tests whether three coordinate points lie on one straight line, a square array of coefficients governs whether a unique solution exists. This folio covers the complete determinant framework for this course: elementary expansions, minors and cofactors, Sarrus' rule, algebraic properties, factor theorem, pivotal condensation, special symmetry classes, Laplace expansion, coordinate geometry applications, Cramer's rule, determinant multiplication, and consistency criteria.
 
 ### 4.1 Introduction
 
@@ -28,26 +27,31 @@ Solving coupled linear equations sits at the core of engineering analysis. Rathe
 
 Start with two homogeneous linear equations in a single unknown $x$:
 
-$$a_1 x + b_1 = 0, \qquad a_2 x + b_2 = 0.$$
+$$
+a_1 x + b_1 = 0, \qquad a_2 x + b_2 = 0.
+$$
 
 Solving the first gives $x = -\dfrac{b_1}{a_1}$ (for $a_1 \neq 0$). Substituting into the second yields the compatibility condition (eliminant):
 
-$$a_1 b_2 - a_2 b_1 = 0.$$
+$$
+a_1 b_2 - a_2 b_1 = 0.
+$$
 
 Suppressing $x$ and enclosing the two rows $(a_1, b_1)$ and $(a_2, b_2)$ between vertical bars produces a **second-order determinant**. Each entry $a_1, b_1, a_2, b_2$ is called an **element** (or constituent).
 
-<RuleBox kind="definition" title="§4.2 Second-order determinant">
+<RuleBox kind="definition" title="Second-order determinant">
 
-$$\Delta = \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} = a_1 b_2 - a_2 b_1$$
+$$
+\Delta = \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} = a_1 b_2 - a_2 b_1
+$$
 
 Multiply along the main diagonal (top-left to bottom-right) with a $+$ sign, then subtract the product along the secondary diagonal (top-right to bottom-left).
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 1 (§4.2)"
-  source="H. K. Dass, Ch. 4, Example 1"
-  problem="Evaluate the second-order determinant $\\begin{vmatrix} 3 & 2 \\\\ 6 & 7 \\end{vmatrix}$."
+  title="Example 1"
+  problem="Evaluate the second-order determinant $\begin{vmatrix} 3 & 2 \\ 6 & 7 \end{vmatrix}$."
   steps={[
     "Form the leading-diagonal product: $3 \\times 7 = 21$.",
     "Form the off-diagonal product: $2 \\times 6 = 12$.",
@@ -57,8 +61,7 @@ Multiply along the main diagonal (top-left to bottom-right) with a $+$ sign, the
 />
 
 <ExerciseSet
-  title="Exercise 4.1"
-  source="H. K. Dass, Ch. 4, Exercise 4.1"
+  title="Practice Set"
   items={[
     { q: "Expand $\\begin{vmatrix} 4 & 6 \\\\ 2 & 5 \\end{vmatrix}$.", a: "$8$" },
     { q: "Expand $\\begin{vmatrix} -3 & 7 \\\\ 2 & 4 \\end{vmatrix}$.", a: "$-26$" },
@@ -71,21 +74,29 @@ Multiply along the main diagonal (top-left to bottom-right) with a $+$ sign, the
 
 Now take three homogeneous linear equations in $x, y, z$:
 
-$$a_1 x + b_1 y + c_1 z = 0, \qquad a_2 x + b_2 y + c_2 z = 0, \qquad a_3 x + b_3 y + c_3 z = 0.$$
+$$
+a_1 x + b_1 y + c_1 z = 0, \qquad a_2 x + b_2 y + c_2 z = 0, \qquad a_3 x + b_3 y + c_3 z = 0.
+$$
 
 Applying cross-multiplication to the second and third equations gives
 
-$$\frac{x}{b_2 c_3 - b_3 c_2} = \frac{y}{a_3 c_2 - a_2 c_3} = \frac{z}{a_2 b_3 - a_3 b_2} = k.$$
+$$
+\frac{x}{b_2 c_3 - b_3 c_2} = \frac{y}{a_3 c_2 - a_2 c_3} = \frac{z}{a_2 b_3 - a_3 b_2} = k.
+$$
 
 Substituting $x, y, z$ in terms of $k$ into the first equation and dividing out $k \neq 0$ produces the eliminant:
 
-$$a_1(b_2 c_3 - b_3 c_2) - b_1(a_2 c_3 - a_3 c_2) + c_1(a_2 b_3 - a_3 b_2) = 0.$$
+$$
+a_1(b_2 c_3 - b_3 c_2) - b_1(a_2 c_3 - a_3 c_2) + c_1(a_2 b_3 - a_3 b_2) = 0.
+$$
 
 Writing the coefficient array between vertical bars defines the **third-order determinant** and its standard first-row expansion.
 
-<RuleBox kind="formula" title="§4.3 Expansion of a third-order determinant">
+<RuleBox kind="formula" title="Expansion of a third-order determinant">
 
-$$\begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix} = a_1 \begin{vmatrix} b_2 & c_2 \\ b_3 & c_3 \end{vmatrix} - b_1 \begin{vmatrix} a_2 & c_2 \\ a_3 & c_3 \end{vmatrix} + c_1 \begin{vmatrix} a_2 & b_2 \\ a_3 & b_3 \end{vmatrix}$$
+$$
+\begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix} = a_1 \begin{vmatrix} b_2 & c_2 \\ b_3 & c_3 \end{vmatrix} - b_1 \begin{vmatrix} a_2 & c_2 \\ a_3 & c_3 \end{vmatrix} + c_1 \begin{vmatrix} a_2 & b_2 \\ a_3 & b_3 \end{vmatrix}
+$$
 
 </RuleBox>
 
@@ -93,12 +104,14 @@ $$\begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vma
 
 Every element in an $n \times n$ determinant sits at the intersection of one row and one column. Removing both that row and that column leaves a sub-determinant of order $n - 1$.
 
-<RuleBox kind="definition" title="§4.4 Minor of an element">
+<RuleBox kind="definition" title="Minor of an element">
 
 The **minor** $M_{rc}$ of the element in row $r$ and column $c$ is the determinant formed by deleting the $r$th row and the $c$th column.
 
 For the first row of a $3 \times 3$ determinant:
-$$M_{11} = \begin{vmatrix} b_2 & c_2 \\ b_3 & c_3 \end{vmatrix}, \qquad M_{12} = \begin{vmatrix} a_2 & c_2 \\ a_3 & c_3 \end{vmatrix}, \qquad M_{13} = \begin{vmatrix} a_2 & b_2 \\ a_3 & b_3 \end{vmatrix}.$$
+$$
+M_{11} = \begin{vmatrix} b_2 & c_2 \\ b_3 & c_3 \end{vmatrix}, \qquad M_{12} = \begin{vmatrix} a_2 & c_2 \\ a_3 & c_3 \end{vmatrix}, \qquad M_{13} = \begin{vmatrix} a_2 & b_2 \\ a_3 & b_3 \end{vmatrix}.
+$$
 
 </RuleBox>
 
@@ -106,35 +119,37 @@ $$M_{11} = \begin{vmatrix} b_2 & c_2 \\ b_3 & c_3 \end{vmatrix}, \qquad M_{12} =
 
 Attaching a position-dependent sign to a minor turns the alternating signs of expansion into a uniform summation rule.
 
-<RuleBox kind="definition" title="§4.5 Cofactor and expansion along any row or column">
+<RuleBox kind="definition" title="Cofactor and expansion along any row or column">
 
 The **cofactor** $A_{rc}$ of the element in row $r$ and column $c$ is:
 
-$$A_{rc} = (-1)^{r+c} M_{rc}$$
+$$
+A_{rc} = (-1)^{r+c} M_{rc}
+$$
 
 A determinant equals the sum of the products of the elements of **any single row or column** with their corresponding cofactors:
 
-$$\Delta = \sum_{c=1}^{n} a_{rc} A_{rc} = \sum_{r=1}^{n} a_{rc} A_{rc}.$$
+$$
+\Delta = \sum_{c=1}^{n} a_{rc} A_{rc} = \sum_{r=1}^{n} a_{rc} A_{rc}.
+$$
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 2 (§4.5)"
-  source="H. K. Dass, Ch. 4, Example 2"
-  problem="Determine all minors and cofactors of $\\Delta = \\begin{vmatrix} 1 & 3 & -2 \\\\ 4 & -5 & 6 \\\\ 3 & 5 & 2 \\end{vmatrix}$, and evaluate $\\Delta$."
+  title="Example 2"
+  problem="Determine all minors and cofactors of $\Delta = \begin{vmatrix} 1 & 3 & -2 \\ 4 & -5 & 6 \\ 3 & 5 & 2 \end{vmatrix}$, and evaluate $\Delta$."
   steps={[
     "Row 1 minors and cofactors: $M_{11} = \\begin{vmatrix} -5 & 6 \\\\ 5 & 2 \\end{vmatrix} = -10 - 30 = -40 \\implies A_{11} = (+1)(-40) = -40$; $M_{12} = \\begin{vmatrix} 4 & 6 \\\\ 3 & 2 \\end{vmatrix} = 8 - 18 = -10 \\implies A_{12} = (-1)(-10) = 10$; $M_{13} = \\begin{vmatrix} 4 & -5 \\\\ 3 & 5 \\end{vmatrix} = 20 + 15 = 35 \\implies A_{13} = (+1)(35) = 35$.",
     "Row 2 minors and cofactors: $M_{21} = \\begin{vmatrix} 3 & -2 \\\\ 5 & 2 \\end{vmatrix} = 6 + 10 = 16 \\implies A_{21} = -16$; $M_{22} = \\begin{vmatrix} 1 & -2 \\\\ 3 & 2 \\end{vmatrix} = 2 + 6 = 8 \\implies A_{22} = 8$; $M_{23} = \\begin{vmatrix} 1 & 3 \\\\ 3 & 5 \\end{vmatrix} = 5 - 9 = -4 \\implies A_{23} = 4$.",
     "Row 3 minors and cofactors: $M_{31} = \\begin{vmatrix} 3 & -2 \\\\ -5 & 6 \\end{vmatrix} = 18 - 10 = 8 \\implies A_{31} = 8$; $M_{32} = \\begin{vmatrix} 1 & -2 \\\\ 4 & 6 \\end{vmatrix} = 6 + 8 = 14 \\implies A_{32} = -14$; $M_{33} = \\begin{vmatrix} 1 & 3 \\\\ 4 & -5 \\end{vmatrix} = -5 - 12 = -17 \\implies A_{33} = -17$.",
     "Expand along Row 1: $\\Delta = (1)A_{11} + (3)A_{12} + (-2)A_{13} = 1(-40) + 3(10) + (-2)(35) = -40 + 30 - 70 = -80$."
   ]}
-  answer="$\\Delta = -80$"
+  answer="$\Delta = -80$"
 />
 
 <StepRevealExample
-  title="Example 5 (§4.5)"
-  source="H. K. Dass, Ch. 4, Example 5"
-  problem="Evaluate $\\Delta = \\begin{vmatrix} 1 & 0 & 4 \\\\ 3 & 5 & -1 \\\\ 0 & 1 & 2 \\end{vmatrix}$ (i) along the second row, and (ii) along the third column."
+  title="Example 5"
+  problem="Evaluate $\Delta = \begin{vmatrix} 1 & 0 & 4 \\ 3 & 5 & -1 \\ 0 & 1 & 2 \end{vmatrix}$ (i) along the second row, and (ii) along the third column."
   steps={[
     "(i) Expand along Row 2 with signs $(-, +, -)$: $\\Delta = -3\\begin{vmatrix} 0 & 4 \\\\ 1 & 2 \\end{vmatrix} + 5\\begin{vmatrix} 1 & 4 \\\\ 0 & 2 \\end{vmatrix} - (-1)\\begin{vmatrix} 1 & 0 \\\\ 0 & 1 \\end{vmatrix}$.",
     "Compute each $2\\times 2$ minor: $\\Delta = -3(0 - 4) + 5(2 - 0) + 1(1 - 0) = 12 + 10 + 1 = 23$.",
@@ -145,9 +160,8 @@ $$\Delta = \sum_{c=1}^{n} a_{rc} A_{rc} = \sum_{r=1}^{n} a_{rc} A_{rc}.$$
 />
 
 <StepRevealExample
-  title="Example 6 (§4.5)"
-  source="H. K. Dass, Ch. 4, Example 6"
-  problem="Expand the fourth-order determinant $\\Delta = \\begin{vmatrix} 0 & 1 & 2 & 3 \\\\ 1 & 0 & 2 & 0 \\\\ 2 & 0 & 1 & 3 \\\\ 1 & 2 & 1 & 0 \\end{vmatrix}$."
+  title="Example 6"
+  problem="Expand the fourth-order determinant $\Delta = \begin{vmatrix} 0 & 1 & 2 & 3 \\ 1 & 0 & 2 & 0 \\ 2 & 0 & 1 & 3 \\ 1 & 2 & 1 & 0 \end{vmatrix}$."
   steps={[
     "Expand along Row 1 using alternating signs $(+, -, +, -)$: $\\Delta = 0 - 1\\begin{vmatrix} 1 & 2 & 0 \\\\ 2 & 1 & 3 \\\\ 1 & 1 & 0 \\end{vmatrix} + 2\\begin{vmatrix} 1 & 0 & 0 \\\\ 2 & 0 & 3 \\\\ 1 & 2 & 0 \\end{vmatrix} - 3\\begin{vmatrix} 1 & 0 & 2 \\\\ 2 & 0 & 1 \\\\ 1 & 2 & 1 \\end{vmatrix}$.",
     "First $3\\times 3$ minor: $1(0 - 3) - 2(0 - 3) + 0 = -3 + 6 = 3$.",
@@ -159,8 +173,7 @@ $$\Delta = \sum_{c=1}^{n} a_{rc} A_{rc} = \sum_{r=1}^{n} a_{rc} A_{rc}.$$
 />
 
 <ExerciseSet
-  title="Exercise 4.2"
-  source="H. K. Dass, Ch. 4, Exercise 4.2"
+  title="Practice Set"
   items={[
     { q: "Find all minors, cofactors, and the value of $\\begin{vmatrix} -2 & 3 \\\\ 4 & -9 \\end{vmatrix}$.", a: "$M_{11}=-9,\\; M_{12}=4,\\; M_{21}=3,\\; M_{22}=-2$; $A_{11}=-9,\\; A_{12}=-4,\\; A_{21}=-3,\\; A_{22}=-2$; $|A|=6$" },
     { q: "Evaluate $\\begin{vmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{vmatrix}$.", a: "$1$" },
@@ -177,7 +190,7 @@ $$\Delta = \sum_{c=1}^{n} a_{rc} A_{rc} = \sum_{r=1}^{n} a_{rc} A_{rc}.$$
 
 For quick hand evaluation of a $3 \times 3$ determinant without forming $2 \times 2$ minors, Sarrus' mnemonic repeats the first two columns to the right of the third column and sums diagonal triple products.
 
-<RuleBox kind="working-rule" title="§4.6 Rule of Sarrus (order 3 only)">
+<RuleBox kind="working-rule" title="Rule of Sarrus (order 3 only)">
 
 Write columns $C_1$ and $C_2$ again to the right of $C_3$:
 1. Multiply along the **three downward-right diagonals** and attach $+$ signs: $a_1 b_2 c_3 + b_1 c_2 a_3 + c_1 a_2 b_3$.
@@ -190,13 +203,12 @@ Write columns $C_1$ and $C_2$ again to the right of $C_3$:
 
 <DiagramFigure
   src="/diagrams/get-209/determinants-and-cramers-rule-sarrus-rule.png"
-  caption="H. K. Dass §4.6 — Rule of Sarrus for a third-order determinant: downward-right diagonals are added (+) and downward-left diagonals are subtracted (−)."
+  caption="Rule of Sarrus for a third-order determinant: downward-right diagonals are added (+) and downward-left diagonals are subtracted (−)."
 />
 
 <StepRevealExample
-  title="Example 7 (§4.6)"
-  source="H. K. Dass, Ch. 4, Example 7"
-  problem="Evaluate $\\Delta = \\begin{vmatrix} 2 & 3 & 4 \\\\ 1 & 5 & 3 \\\\ 3 & 0 & 5 \\end{vmatrix}$ by the Rule of Sarrus."
+  title="Example 7"
+  problem="Evaluate $\Delta = \begin{vmatrix} 2 & 3 & 4 \\ 1 & 5 & 3 \\ 3 & 0 & 5 \end{vmatrix}$ by the Rule of Sarrus."
   steps={[
     "Append columns 1 and 2 to the right: rows become $(2, 3, 4, 2, 3)$, $(1, 5, 3, 1, 5)$, and $(3, 0, 5, 3, 0)$.",
     "Positive (downward-right) diagonal products: $(2)(5)(5) + (3)(3)(3) + (4)(1)(0) = 50 + 27 + 0 = 77$.",
@@ -207,8 +219,7 @@ Write columns $C_1$ and $C_2$ again to the right of $C_3$:
 />
 
 <ExerciseSet
-  title="Exercise 4.3"
-  source="H. K. Dass, Ch. 4, Exercise 4.3"
+  title="Practice Set"
   items={[
     { q: "Expand $\\begin{vmatrix} 3 & 2 & -4 \\\\ 5 & 1 & -1 \\\\ -2 & 6 & 7 \\end{vmatrix}$ by Rule of Sarrus.", a: "$-155$" },
     { q: "Expand $\\begin{vmatrix} 1 & 4 & 2 \\\\ 2 & 5 & 3 \\\\ 3 & 6 & 4 \\end{vmatrix}$ by Rule of Sarrus.", a: "$0$" },
@@ -221,7 +232,7 @@ Write columns $C_1$ and $C_2$ again to the right of $C_3$:
 
 Direct cofactor expansion becomes tedious for symbolic or large numerical determinants. Six algebraic properties let us create zeros, extract factors, and evaluate determinants cleanly without heavy arithmetic.
 
-<RuleBox kind="theorem" title="§4.7 Six fundamental properties of determinants">
+<RuleBox kind="theorem" title="Six fundamental properties of determinants">
 
 Let $\Delta$ be an $n$th-order determinant.
 
@@ -232,14 +243,15 @@ Let $\Delta$ be an $n$th-order determinant.
 - **Property (v) — Row/column replacement:** Adding any constant multiple of one row (or column) to another row (or column) leaves the determinant unchanged: e.g., $R_i \to R_i + k R_j$ ($i \neq j$) keeps $\Delta' = \Delta$.
 - **Property (vi) — Additivity along one line:** If every entry in one row (or column) is an algebraic sum of $m$ terms, the determinant splits into the sum of $m$ determinants sharing all remaining rows (or columns):
 
-$$\begin{vmatrix} a_1 + p_1 + q_1 & b_1 & c_1 \\ a_2 + p_2 + q_2 & b_2 & c_2 \\ a_3 + p_3 + q_3 & b_3 & c_3 \end{vmatrix} = \begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix} + \begin{vmatrix} p_1 & b_1 & c_1 \\ p_2 & b_2 & c_2 \\ p_3 & b_3 & c_3 \end{vmatrix} + \begin{vmatrix} q_1 & b_1 & c_1 \\ q_2 & b_2 & c_2 \\ q_3 & b_3 & c_3 \end{vmatrix}.$$
+$$
+\begin{vmatrix} a_1 + p_1 + q_1 & b_1 & c_1 \\ a_2 + p_2 + q_2 & b_2 & c_2 \\ a_3 + p_3 + q_3 & b_3 & c_3 \end{vmatrix} = \begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix} + \begin{vmatrix} p_1 & b_1 & c_1 \\ p_2 & b_2 & c_2 \\ p_3 & b_3 & c_3 \end{vmatrix} + \begin{vmatrix} q_1 & b_1 & c_1 \\ q_2 & b_2 & c_2 \\ q_3 & b_3 & c_3 \end{vmatrix}.
+$$
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 8 (§4.7)"
-  source="H. K. Dass, Ch. 4, Example 8"
-  problem="Using determinant properties, prove that $\\begin{vmatrix} a^2 & a & bc \\\\ b^2 & b & ca \\\\ c^2 & c & ab \\end{vmatrix} = -\\begin{vmatrix} 1 & 1 & 1 \\\\ a^2 & b^2 & c^2 \\\\ a^3 & b^3 & c^3 \\end{vmatrix}$."
+  title="Example 8"
+  problem="Using determinant properties, prove that $\begin{vmatrix} a^2 & a & bc \\ b^2 & b & ca \\ c^2 & c & ab \end{vmatrix} = -\begin{vmatrix} 1 & 1 & 1 \\ a^2 & b^2 & c^2 \\ a^3 & b^3 & c^3 \end{vmatrix}$."
   steps={[
     "Multiply $R_1, R_2, R_3$ by $a, b, c$ respectively and compensate by dividing outside by $abc$ (Property iv): $\\Delta = \\dfrac{1}{abc}\\begin{vmatrix} a^3 & a^2 & abc \\\\ b^3 & b^2 & abc \\\\ c^3 & c^2 & abc \\end{vmatrix}$.",
     "Factor $abc$ out of $C_3$: $\\Delta = \\dfrac{abc}{abc}\\begin{vmatrix} a^3 & a^2 & 1 \\\\ b^3 & b^2 & 1 \\\\ c^3 & c^2 & 1 \\end{vmatrix} = \\begin{vmatrix} a^3 & a^2 & 1 \\\\ b^3 & b^2 & 1 \\\\ c^3 & c^2 & 1 \\end{vmatrix}$.",
@@ -250,9 +262,8 @@ $$\begin{vmatrix} a_1 + p_1 + q_1 & b_1 & c_1 \\ a_2 + p_2 + q_2 & b_2 & c_2 \\ 
 />
 
 <StepRevealExample
-  title="Example 11 (§4.7)"
-  source="H. K. Dass, Ch. 4, Example 11"
-  problem="Evaluate $\\Delta = \\begin{vmatrix} 9 & 9 & 12 \\\\ 1 & 3 & -4 \\\\ 1 & 9 & 12 \\end{vmatrix}$ using determinant properties."
+  title="Example 11"
+  problem="Evaluate $\Delta = \begin{vmatrix} 9 & 9 & 12 \\ 1 & 3 & -4 \\ 1 & 9 & 12 \end{vmatrix}$ using determinant properties."
   steps={[
     "Create zeros in Column 3 via $R_1 \\to R_1 + 3R_2$ and $R_3 \\to R_3 + 3R_2$: $\\Delta = \\begin{vmatrix} 12 & 18 & 0 \\\\ 1 & 3 & -4 \\\\ 4 & 18 & 0 \\end{vmatrix}$.",
     "Factor $6$ from $R_1$ and $2$ from $R_3$ (Property iv): $\\Delta = (6)(2)\\begin{vmatrix} 2 & 3 & 0 \\\\ 1 & 3 & -4 \\\\ 2 & 9 & 0 \\end{vmatrix}$.",
@@ -262,22 +273,20 @@ $$\begin{vmatrix} a_1 + p_1 + q_1 & b_1 & c_1 \\ a_2 + p_2 + q_2 & b_2 & c_2 \\ 
 />
 
 <StepRevealExample
-  title="Example 15 (§4.7)"
-  source="H. K. Dass, Ch. 4, Example 15"
-  problem="Solve the determinantal equation $\\begin{vmatrix} 2x - 1 & x + 7 & x + 4 \\\\ x & 6 & 2 \\\\ x - 1 & x + 1 & 3 \\end{vmatrix} = 0$."
+  title="Example 15"
+  problem="Solve the determinantal equation $\begin{vmatrix} 2x - 1 & x + 7 & x + 4 \\ x & 6 & 2 \\ x - 1 & x + 1 & 3 \end{vmatrix} = 0$."
   steps={[
     "Apply $R_1 \\to R_1 - (R_2 + R_3)$ to create two zeros in the first row: $(2x-1) - (2x-1) = 0$, $(x+7) - (x+7) = 0$, and $(x+4) - 5 = x - 1$.",
     "The equation becomes $\\begin{vmatrix} 0 & 0 & x - 1 \\\\ x & 6 & 2 \\\\ x - 1 & x + 1 & 3 \\end{vmatrix} = 0$.",
     "Expand along $R_1$: $(x - 1)\\begin{vmatrix} x & 6 \\\\ x - 1 & x + 1 \\end{vmatrix} = 0 \\implies (x - 1)(x^2 + x - 6x + 6) = 0$.",
     "Factor the quadratic: $(x - 1)(x^2 - 5x + 6) = (x - 1)(x - 2)(x - 3) = 0$, giving $x = 1, 2, 3$."
   ]}
-  answer="$x = 1,\\; 2,\\; 3$"
+  answer="$x = 1,\; 2,\; 3$"
 />
 
 <StepRevealExample
-  title="Example 32 (§4.7)"
-  source="H. K. Dass, Ch. 4, Example 32"
-  problem="If $a, b, c$ are distinct and $\\begin{vmatrix} a & a^2 & a^3 - 1 \\\\ b & b^2 & b^3 - 1 \\\\ c & c^2 & c^3 - 1 \\end{vmatrix} = 0$, show that $abc = 1$."
+  title="Example 32"
+  problem="If $a, b, c$ are distinct and $\begin{vmatrix} a & a^2 & a^3 - 1 \\ b & b^2 & b^3 - 1 \\ c & c^2 & c^3 - 1 \end{vmatrix} = 0$, show that $abc = 1$."
   steps={[
     "Split Column 3 by Property (vi): $\\begin{vmatrix} a & a^2 & a^3 \\\\ b & b^2 & b^3 \\\\ c & c^2 & c^3 \\end{vmatrix} + \\begin{vmatrix} a & a^2 & -1 \\\\ b & b^2 & -1 \\\\ c & c^2 & -1 \\end{vmatrix} = 0$.",
     "Factor $a, b, c$ from rows 1, 2, 3 of the first determinant and $-1$ from Column 3 of the second: $abc\\begin{vmatrix} 1 & a & a^2 \\\\ 1 & b & b^2 \\\\ 1 & c & c^2 \\end{vmatrix} - \\begin{vmatrix} a & a^2 & 1 \\\\ b & b^2 & 1 \\\\ c & c^2 & 1 \\end{vmatrix} = 0$.",
@@ -288,21 +297,19 @@ $$\begin{vmatrix} a_1 + p_1 + q_1 & b_1 & c_1 \\ a_2 + p_2 + q_2 & b_2 & c_2 \\ 
 />
 
 <StepRevealExample
-  title="Example 39 (§4.7)"
-  source="H. K. Dass, Ch. 4, Example 39"
-  problem="Using determinant properties, prove that $\\begin{vmatrix} 1 + a & 1 & 1 \\\\ 1 & 1 + b & 1 \\\\ 1 & 1 & 1 + c \\end{vmatrix} = abc\\left(1 + \\dfrac{1}{a} + \\dfrac{1}{b} + \\dfrac{1}{c}\\right)$."
+  title="Example 39"
+  problem="Using determinant properties, prove that $\begin{vmatrix} 1 + a & 1 & 1 \\ 1 & 1 + b & 1 \\ 1 & 1 & 1 + c \end{vmatrix} = abc\left(1 + \dfrac{1}{a} + \dfrac{1}{b} + \dfrac{1}{c}\right)$."
   steps={[
     "Factor $a, b, c$ out of $R_1, R_2, R_3$ respectively (for $a,b,c \\neq 0$): $\\Delta = abc\\begin{vmatrix} 1 + \\frac{1}{a} & \\frac{1}{a} & \\frac{1}{a} \\\\ \\frac{1}{b} & 1 + \\frac{1}{b} & \\frac{1}{b} \\\\ \\frac{1}{c} & \\frac{1}{c} & 1 + \\frac{1}{c} \\end{vmatrix}$.",
     "Apply $R_1 \\to R_1 + R_2 + R_3$: every element of $R_1$ becomes $1 + \\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c}$.",
     "Factor $\\left(1 + \\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c}\\right)$ from $R_1$: $\\Delta = abc\\left(1 + \\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c}\\right)\\begin{vmatrix} 1 & 1 & 1 \\\\ \\frac{1}{b} & 1 + \\frac{1}{b} & \\frac{1}{b} \\\\ \\frac{1}{c} & \\frac{1}{c} & 1 + \\frac{1}{c} \\end{vmatrix}$.",
     "Apply $C_2 \\to C_2 - C_1$ and $C_3 \\to C_3 - C_1$ to get $\\begin{vmatrix} 1 & 0 & 0 \\\\ \\frac{1}{b} & 1 & 0 \\\\ \\frac{1}{c} & 0 & 1 \\end{vmatrix} = 1$, yielding $\\Delta = abc\\left(1 + \\dfrac{1}{a} + \\dfrac{1}{b} + \\dfrac{1}{c}\\right)$."
   ]}
-  answer="$abc\\left(1 + \\dfrac{1}{a} + \\dfrac{1}{b} + \\dfrac{1}{c}\\right)$"
+  answer="$abc\left(1 + \dfrac{1}{a} + \dfrac{1}{b} + \dfrac{1}{c}\right)$"
 />
 
 <ExerciseSet
-  title="Exercise 4.4"
-  source="H. K. Dass, Ch. 4, Exercise 4.4"
+  title="Practice Set"
   items={[
     { q: "Evaluate $\\begin{vmatrix} 1 & 3 & 7 \\\\ 4 & 9 & 1 \\\\ 2 & 7 & 6 \\end{vmatrix}$ using determinant properties.", a: "$51$" },
     { q: "Prove that $\\begin{vmatrix} x & a & a \\\\ a & x & a \\\\ a & a & x \\end{vmatrix} = (x + 2a)(x - a)^2$.", a: "Apply $C_1 \\to C_1 + C_2 + C_3$, extract $(x+2a)$, then $R_2 \\to R_2 - R_1$ and $R_3 \\to R_3 - R_1$." },
@@ -316,7 +323,7 @@ $$\begin{vmatrix} a_1 + p_1 + q_1 & b_1 & c_1 \\ a_2 + p_2 + q_2 & b_2 & c_2 \\ 
 
 When entries of a determinant are polynomials in variables such as $x, y, z$, the expanded determinant is itself a polynomial. Property (iii) combines directly with the algebraic factor theorem to factor symmetric determinants almost effortlessly.
 
-<RuleBox kind="theorem" title="§4.8 Factor theorem for determinants">
+<RuleBox kind="theorem" title="Factor theorem for determinants">
 
 If the entries of $\Delta(x)$ are polynomials in $x$ and substituting $x = a$ causes two rows (or two columns) to become identical—so $\Delta(a) = 0$—then $(x - a)$ is a factor of $\Delta(x)$.
 
@@ -329,9 +336,8 @@ If the entries of $\Delta(x)$ are polynomials in $x$ and substituting $x = a$ ca
 </RuleBox>
 
 <StepRevealExample
-  title="Example 41 (§4.8)"
-  source="H. K. Dass, Ch. 4, Example 41"
-  problem="Use the factor theorem to prove that $\\begin{vmatrix} 1 & 1 & 1 \\\\ x & y & z \\\\ x^2 & y^2 & z^2 \\end{vmatrix} = (x - y)(y - z)(z - x)$."
+  title="Example 41"
+  problem="Use the factor theorem to prove that $\begin{vmatrix} 1 & 1 & 1 \\ x & y & z \\ x^2 & y^2 & z^2 \end{vmatrix} = (x - y)(y - z)(z - x)$."
   steps={[
     "Setting $x = y$ makes $C_1$ and $C_2$ identical, so $\\Delta = 0$ and $(x - y)$ is a factor. By symmetry, $(y - z)$ and $(z - x)$ are also factors.",
     "The leading-diagonal term is $(1)(y)(z^2) = yz^2$, which has total degree $3$. The product $(x - y)(y - z)(z - x)$ already has degree $3$, so $\\Delta = k(x - y)(y - z)(z - x)$ for some constant $k$.",
@@ -342,9 +348,8 @@ If the entries of $\Delta(x)$ are polynomials in $x$ and substituting $x = a$ ca
 />
 
 <StepRevealExample
-  title="Example 42 (§4.8)"
-  source="H. K. Dass, Ch. 4, Example 42"
-  problem="Factorize $\\Delta = \\begin{vmatrix} 1 & 1 & 1 \\\\ a^2 & b^2 & c^2 \\\\ a^3 & b^3 & c^3 \\end{vmatrix}$ using the factor theorem."
+  title="Example 42"
+  problem="Factorize $\Delta = \begin{vmatrix} 1 & 1 & 1 \\ a^2 & b^2 & c^2 \\ a^3 & b^3 & c^3 \end{vmatrix}$ using the factor theorem."
   steps={[
     "Substituting $a = b$, $b = c$, or $c = a$ makes two columns identical, so $(a - b)(b - c)(c - a)$ divides $\\Delta$.",
     "The leading-diagonal term is $b^2 c^3$ (degree $5$). Since $(a - b)(b - c)(c - a)$ has degree $3$, the complementary symmetric homogeneous factor of degree $2$ must have the form $k(a^2 + b^2 + c^2) + l(ab + bc + ca)$.",
@@ -355,8 +360,7 @@ If the entries of $\Delta(x)$ are polynomials in $x$ and substituting $x = a$ ca
 />
 
 <ExerciseSet
-  title="Exercise 4.5"
-  source="H. K. Dass, Ch. 4, Exercise 4.5"
+  title="Practice Set"
   items={[
     { q: "Evaluate without direct expansion: $\\begin{vmatrix} a & a^2 & 1 + a^3 \\\\ b & b^2 & 1 + b^3 \\\\ c & c^2 & 1 + c^3 \\end{vmatrix}$.", a: "$(a - b)(b - c)(c - a)(1 + abc)$" },
     { q: "Show that $\\begin{vmatrix} (a - x)^2 & (a - y)^2 & (a - z)^2 \\\\ (b - x)^2 & (b - y)^2 & (b - z)^2 \\\\ (c - x)^2 & (c - y)^2 & (c - z)^2 \\end{vmatrix} = 2(a - b)(b - c)(c - a)(x - y)(y - z)(z - x)$.", a: "Proved by factor theorem and comparing leading-diagonal coefficients." }
@@ -367,20 +371,21 @@ If the entries of $\Delta(x)$ are polynomials in $x$ and substituting $x = a$ ca
 
 Chio's pivotal condensation algorithm systematically shrinks an $n$th-order determinant to order $n - 1$ using the top-left element $a_1 \neq 0$ as a **pivot**. Subtracting $\frac{b_1}{a_1}, \frac{c_1}{a_1}, \dots$ multiples of $C_1$ from $C_2, C_3, \dots$ clears the first row except for $a_1$; factoring $\frac{1}{a_1}$ from each of the remaining $n - 1$ rows yields an $(n-1)$th-order determinant of $2 \times 2$ blocks.
 
-<RuleBox kind="formula" title="§4.9 Pivotal condensation formula">
+<RuleBox kind="formula" title="Pivotal condensation formula">
 
 For an $n$th-order determinant with nonzero leading element $a_1$:
 
-$$D = \frac{1}{(a_1)^{n-2}} \begin{vmatrix} \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} & \begin{vmatrix} a_1 & c_1 \\ a_2 & c_2 \end{vmatrix} & \cdots \\ \begin{vmatrix} a_1 & b_1 \\ a_3 & b_3 \end{vmatrix} & \begin{vmatrix} a_1 & c_1 \\ a_3 & c_3 \end{vmatrix} & \cdots \\ \vdots & \vdots & \ddots \\ \begin{vmatrix} a_1 & b_1 \\ a_n & b_n \end{vmatrix} & \begin{vmatrix} a_1 & c_1 \\ a_n & c_n \end{vmatrix} & \cdots \end{vmatrix}$$
+$$
+D = \frac{1}{(a_1)^{n-2}} \begin{vmatrix} \begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} & \begin{vmatrix} a_1 & c_1 \\ a_2 & c_2 \end{vmatrix} & \cdots \\ \begin{vmatrix} a_1 & b_1 \\ a_3 & b_3 \end{vmatrix} & \begin{vmatrix} a_1 & c_1 \\ a_3 & c_3 \end{vmatrix} & \cdots \\ \vdots & \vdots & \ddots \\ \begin{vmatrix} a_1 & b_1 \\ a_n & b_n \end{vmatrix} & \begin{vmatrix} a_1 & c_1 \\ a_n & c_n \end{vmatrix} & \cdots \end{vmatrix}
+$$
 
 Repeated condensation reduces any order down to $2 \times 2$. If $a_1 = 0$, swap two columns (or rows) first to bring a nonzero element into the pivot position, remembering to multiply by $-1$.
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 45 (§4.9)"
-  source="H. K. Dass, Ch. 4, Example 45"
-  problem="Condense to second order and evaluate: (i) $D = \\begin{vmatrix} 10 & 2 & -3 \\\\ 5 & 12 & 15 \\\\ 7 & -6 & 4 \\end{vmatrix}$, and (ii) $D = \\begin{vmatrix} 2 & 1 & 3 & 5 \\\\ 4 & -2 & 7 & 6 \\\\ -8 & 3 & 1 & 0 \\\\ 5 & 7 & 2 & -6 \\end{vmatrix}$."
+  title="Example 45"
+  problem="Condense to second order and evaluate: (i) $D = \begin{vmatrix} 10 & 2 & -3 \\ 5 & 12 & 15 \\ 7 & -6 & 4 \end{vmatrix}$, and (ii) $D = \begin{vmatrix} 2 & 1 & 3 & 5 \\ 4 & -2 & 7 & 6 \\ -8 & 3 & 1 & 0 \\ 5 & 7 & 2 & -6 \end{vmatrix}$."
   steps={[
     "(i) Pivot $a_1 = 10$ with $n = 3$, so prefactor is $\\dfrac{1}{10^{3-2}} = \\dfrac{1}{10}$: $D = \\dfrac{1}{10}\\begin{vmatrix} 10(12) - 2(5) & 10(15) - (-3)(5) \\\\ 10(-6) - 2(7) & 10(4) - (-3)(7) \\end{vmatrix} = \\dfrac{1}{10}\\begin{vmatrix} 110 & 165 \\\\ -74 & 61 \\end{vmatrix}$.",
     "Factor $55$ from Row 1: $D = \\dfrac{55}{10}\\begin{vmatrix} 2 & 3 \\\\ -74 & 61 \\end{vmatrix} = \\dfrac{11}{2}(122 + 222) = \\dfrac{11}{2}(344) = 1892$.",
@@ -392,8 +397,7 @@ Repeated condensation reduces any order down to $2 \times 2$. If $a_1 = 0$, swap
 />
 
 <ExerciseSet
-  title="Exercise 4.6"
-  source="H. K. Dass, Ch. 4, Exercise 4.6"
+  title="Practice Set"
   items={[
     { q: "Condense and evaluate $\\begin{vmatrix} 1 & 3 & 7 \\\\ 4 & 9 & 1 \\\\ 2 & 7 & 6 \\end{vmatrix}$.", a: "$51$" },
     { q: "Condense and evaluate $\\begin{vmatrix} 2 & 0 & 2 \\\\ 3 & 7 & 4 \\\\ -2 & -5 & 1 \\end{vmatrix}$.", a: "$52$" },
@@ -407,7 +411,7 @@ Repeated condensation reduces any order down to $2 \times 2$. If $a_1 = 0$, swap
 
 In any square determinant, the elements $a_{11}, a_{22}, \dots, a_{nn}$ form the **leading (principal) diagonal**.
 
-<RuleBox kind="definition" title="§4.10 Conjugate elements">
+<RuleBox kind="definition" title="Conjugate elements">
 
 Two elements that lie symmetrically opposite each other across the leading diagonal—i.e., $a_{ij}$ and $a_{ji}$ ($i \neq j$)—are called **conjugate elements**.
 
@@ -419,12 +423,16 @@ In $\begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{v
 
 Symmetry relations among diagonal and conjugate elements yield powerful shortcuts.
 
-<RuleBox kind="definition" title="§4.11 Orthosymmetric and skew-symmetric determinants">
+<RuleBox kind="definition" title="Orthosymmetric and skew-symmetric determinants">
 
 1. **Orthosymmetric determinant:** All leading-diagonal entries are identical and every pair of conjugate elements is equal ($a_{ii} = a$, $a_{ij} = a_{ji}$):
-$$\begin{vmatrix} a & h & g \\ h & a & f \\ g & f & a \end{vmatrix}.$$
+$$
+\begin{vmatrix} a & h & g \\ h & a & f \\ g & f & a \end{vmatrix}.
+$$
 2. **Skew-symmetric determinant:** Every leading-diagonal element is zero ($a_{ii} = 0$) and every off-diagonal element equals the negative of its conjugate ($a_{ij} = -a_{ji}$):
-$$\begin{vmatrix} 0 & -a & -b \\ a & 0 & -c \\ b & c & 0 \end{vmatrix}.$$
+$$
+\begin{vmatrix} 0 & -a & -b \\ a & 0 & -c \\ b & c & 0 \end{vmatrix}.
+$$
 
 **Two key properties of skew-symmetric determinants:**
 - **Property 1:** Every skew-symmetric determinant of **odd order** vanishes ($\Delta = 0$).
@@ -433,9 +441,8 @@ $$\begin{vmatrix} 0 & -a & -b \\ a & 0 & -c \\ b & c & 0 \end{vmatrix}.$$
 </RuleBox>
 
 <StepRevealExample
-  title="Example 48 (§4.11)"
-  source="H. K. Dass, Ch. 4, Example 48"
-  problem="Prove that the third-order skew-symmetric determinant $\\Delta = \\begin{vmatrix} 0 & -a & -b \\\\ a & 0 & -c \\\\ b & c & 0 \\end{vmatrix} = 0$."
+  title="Example 48"
+  problem="Prove that the third-order skew-symmetric determinant $\Delta = \begin{vmatrix} 0 & -a & -b \\ a & 0 & -c \\ b & c & 0 \end{vmatrix} = 0$."
   steps={[
     "Factor $(-1)$ out of each of the three columns (Property iv): $\\Delta = (-1)^3 \\begin{vmatrix} 0 & a & b \\\\ -a & 0 & c \\\\ -b & -c & 0 \\end{vmatrix}$.",
     "Transpose rows into columns (Property i leaves the value unchanged): $\\Delta = (-1)^3 \\begin{vmatrix} 0 & -a & -b \\\\ a & 0 & -c \\\\ b & c & 0 \\end{vmatrix} = -\\Delta$.",
@@ -445,9 +452,8 @@ $$\begin{vmatrix} 0 & -a & -b \\ a & 0 & -c \\ b & c & 0 \end{vmatrix}.$$
 />
 
 <StepRevealExample
-  title="Example 49 (§4.11)"
-  source="H. K. Dass, Ch. 4, Example 49"
-  problem="Prove that the fourth-order skew-symmetric determinant $\\Delta = \\begin{vmatrix} 0 & x & y & z \\\\ -x & 0 & c & b \\\\ -y & -c & 0 & a \\\\ -z & -b & -a & 0 \\end{vmatrix} = (ax - by + cz)^2$."
+  title="Example 49"
+  problem="Prove that the fourth-order skew-symmetric determinant $\Delta = \begin{vmatrix} 0 & x & y & z \\ -x & 0 & c & b \\ -y & -c & 0 & a \\ -z & -b & -a & 0 \end{vmatrix} = (ax - by + cz)^2$."
   steps={[
     "Multiply Column 2 by $a$ and divide outside by $a$: $\\Delta = \\dfrac{1}{a}\\begin{vmatrix} 0 & ax & y & z \\\\ -x & 0 & c & b \\\\ -y & -ac & 0 & a \\\\ -z & -ab & -a & 0 \\end{vmatrix}$.",
     "Perform $C_2 \\to C_2 - b C_3 + c C_4$ so Column 2 becomes $(ax - by + cz, 0, 0, 0)^T$: $\\Delta = \\dfrac{1}{a}\\begin{vmatrix} 0 & ax - by + cz & y & z \\\\ -x & 0 & c & b \\\\ -y & 0 & 0 & a \\\\ -z & 0 & -a & 0 \\end{vmatrix}$.",
@@ -462,7 +468,7 @@ $$\begin{vmatrix} 0 & -a & -b \\ a & 0 & -c \\ b & c & 0 \end{vmatrix}.$$
 
 Single-row cofactor expansion generalizes to expanding along a **pair of rows** simultaneously—especially effective for block-structured $4 \times 4$ determinants containing blocks of zeros.
 
-<RuleBox kind="working-rule" title="§4.12 Laplace expansion by the first two rows">
+<RuleBox kind="working-rule" title="Laplace expansion by the first two rows">
 
 For a $4 \times 4$ determinant:
 1. Form all $\binom{4}{2} = 6$ second-order minors from Rows 1 and 2 by choosing every pair of columns $(j, k)$ with $j < k$.
@@ -473,9 +479,8 @@ For a $4 \times 4$ determinant:
 </RuleBox>
 
 <StepRevealExample
-  title="Example 51 (§4.12)"
-  source="H. K. Dass, Ch. 4, Example 51"
-  problem="Use the Laplace method to expand the block-triangular determinant $\\Delta = \\begin{vmatrix} a_1 & b_1 & 0 & 0 \\\\ a_2 & b_2 & 0 & 0 \\\\ a_3 & b_3 & c_3 & d_3 \\\\ a_4 & b_4 & c_4 & d_4 \\end{vmatrix}$."
+  title="Example 51"
+  problem="Use the Laplace method to expand the block-triangular determinant $\Delta = \begin{vmatrix} a_1 & b_1 & 0 & 0 \\ a_2 & b_2 & 0 & 0 \\ a_3 & b_3 & c_3 & d_3 \\ a_4 & b_4 & c_4 & d_4 \end{vmatrix}$."
   steps={[
     "Write the six $2\\times 2$ minors from Rows 1 and 2 with their complementary minors and signs $(+, -, +, +, -, +)$ for column pairs $(1,2), (1,3), (1,4), (2,3), (2,4), (3,4)$.",
     "Every pair that includes Column 3 or Column 4 contains an entire column of zeros in the first two rows, so five of the six products vanish identically.",
@@ -488,35 +493,37 @@ For a $4 \times 4$ determinant:
 
 Determinants give compact coordinate formulas in planar geometry for both the area enclosed by three vertices and the test for collinearity.
 
-<RuleBox kind="formula" title="§4.13 Area of a triangle and collinearity condition">
+<RuleBox kind="formula" title="Area of a triangle and collinearity condition">
 
 For three points $A(x_1, y_1)$, $B(x_2, y_2)$, and $C(x_3, y_3)$ in the $xy$-plane:
 
-$$\text{Area of } \triangle ABC = \frac{1}{2} \left|\, \begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix} \,\right|$$
+$$
+\text{Area of } \triangle ABC = \frac{1}{2} \left|\, \begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix} \,\right|
+$$
 
 Always take the **absolute value** because geometric area is non-negative.
 
 **Collinearity criterion:** Three points $A, B, C$ are collinear if and only if the triangle area is zero:
 
-$$\begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix} = 0.$$
+$$
+\begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix} = 0.
+$$
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 52 (§4.13)"
-  source="H. K. Dass, Ch. 4, Example 52"
+  title="Example 52"
   problem="Using determinants, find the area of the triangle with vertices $(-3, 5)$, $(3, -6)$, and $(7, 2)$."
   steps={[
     "Set up the area determinant: $\\Delta = \\dfrac{1}{2}\\begin{vmatrix} -3 & 5 & 1 \\\\ 3 & -6 & 1 \\\\ 7 & 2 & 1 \\end{vmatrix}$.",
     "Create zeros in Column 3 via $R_1 \\to R_1 - R_2$ and $R_2 \\to R_2 - R_3$: $\\Delta = \\dfrac{1}{2}\\begin{vmatrix} -6 & 11 & 0 \\\\ -4 & -8 & 0 \\\\ 7 & 2 & 1 \\end{vmatrix}$.",
     "Expand along Column 3: $\\Delta = \\dfrac{1}{2}(1)\\begin{vmatrix} -6 & 11 \\\\ -4 & -8 \\end{vmatrix} = \\dfrac{1}{2}(48 + 44) = \\dfrac{92}{2} = 46\\text{ sq. units}$."
   ]}
-  answer="$46\\text{ sq. units}$"
+  answer="$46\text{ sq. units}$"
 />
 
 <ExerciseSet
-  title="Exercise 4.7"
-  source="H. K. Dass, Ch. 4, Exercise 4.7"
+  title="Practice Set"
   items={[
     { q: "Find the area of the triangle with vertices $(2, -7)$, $(1, 3)$, and $(10, 8)$.", a: "$\\dfrac{95}{2}$ sq. units" },
     { q: "Find the area of the triangle with vertices $(-2, 4)$, $(2, -6)$, and $(5, 4)$.", a: "$35$ sq. units" },
@@ -531,27 +538,32 @@ $$\begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix} 
 
 Consider a system of three linear equations in three unknowns $x, y, z$:
 
-$$a_1 x + b_1 y + c_1 z = d_1, \qquad a_2 x + b_2 y + c_2 z = d_2, \qquad a_3 x + b_3 y + c_3 z = d_3.$$
+$$
+a_1 x + b_1 y + c_1 z = d_1, \qquad a_2 x + b_2 y + c_2 z = d_2, \qquad a_3 x + b_3 y + c_3 z = d_3.
+$$
 
 Let $D$ denote the coefficient determinant. Multiplying Column 1 of $D$ by $x$ (Property iv) gives $x D$. Now perform $C_1 \to C_1 + y C_2 + z C_3$ (Property v); the entries of Column 1 become $a_i x + b_i y + c_i z = d_i$, which yields $x D = D_1$. Repeating the same idea on Columns 2 and 3 yields **Cramer's Rule**.
 
-<RuleBox kind="formula" title="§4.14 Cramer's Rule">
+<RuleBox kind="formula" title="Cramer's Rule">
 
 Define the coefficient determinant $D$ and the three column-replaced determinants $D_1, D_2, D_3$:
 
-$$D = \begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix}, \quad D_1 = \begin{vmatrix} d_1 & b_1 & c_1 \\ d_2 & b_2 & c_2 \\ d_3 & b_3 & c_3 \end{vmatrix}, \quad D_2 = \begin{vmatrix} a_1 & d_1 & c_1 \\ a_2 & d_2 & c_2 \\ a_3 & d_3 & c_3 \end{vmatrix}, \quad D_3 = \begin{vmatrix} a_1 & b_1 & d_1 \\ a_2 & b_2 & d_2 \\ a_3 & b_3 & d_3 \end{vmatrix}.$$
+$$
+D = \begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix}, \quad D_1 = \begin{vmatrix} d_1 & b_1 & c_1 \\ d_2 & b_2 & c_2 \\ d_3 & b_3 & c_3 \end{vmatrix}, \quad D_2 = \begin{vmatrix} a_1 & d_1 & c_1 \\ a_2 & d_2 & c_2 \\ a_3 & d_3 & c_3 \end{vmatrix}, \quad D_3 = \begin{vmatrix} a_1 & b_1 & d_1 \\ a_2 & b_2 & d_2 \\ a_3 & b_3 & d_3 \end{vmatrix}.
+$$
 
 Whenever $D \neq 0$, the unique solution is:
 
-$$x = \frac{D_1}{D}, \qquad y = \frac{D_2}{D}, \qquad z = \frac{D_3}{D}.$$
+$$
+x = \frac{D_1}{D}, \qquad y = \frac{D_2}{D}, \qquad z = \frac{D_3}{D}.
+$$
 
 The same rule holds for any $n \times n$ linear system by replacing the $j$th column of $D$ with the right-hand-side vector to form $D_j$.
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 55 (§4.14)"
-  source="H. K. Dass, Ch. 4, Example 55"
+  title="Example 55"
   problem="Solve by Cramer's rule: $5x - 7y + z = 11$, $6x - 8y - z = 15$, $3x + 2y - 6z = 7$."
   steps={[
     "Coefficient determinant: $D = \\begin{vmatrix} 5 & -7 & 1 \\\\ 6 & -8 & -1 \\\\ 3 & 2 & -6 \\end{vmatrix} = 5(48 + 2) + 7(-36 + 3) + 1(12 + 24) = 250 - 231 + 36 = 55 \\neq 0$.",
@@ -560,12 +572,11 @@ The same rule holds for any $n \times n$ linear system by replacing the $j$th co
     "Replace Column 3: $D_3 = \\begin{vmatrix} 5 & -7 & 11 \\\\ 6 & -8 & 15 \\\\ 3 & 2 & 7 \\end{vmatrix} = 5(-86) + 7(-3) + 11(36) = -430 - 21 + 396 = -55$.",
     "Divide by $D = 55$: $x = \\dfrac{55}{55} = 1$, $y = \\dfrac{-55}{55} = -1$, $z = \\dfrac{-55}{55} = -1$."
   ]}
-  answer="$x = 1,\\; y = -1,\\; z = -1$"
+  answer="$x = 1,\; y = -1,\; z = -1$"
 />
 
 <StepRevealExample
-  title="Example 59 (§4.14)"
-  source="H. K. Dass, Ch. 4, Example 59"
+  title="Example 59"
   problem="Three numbers sum to $6$. Adding the first number to twice the third gives $7$. Adding the second and third numbers to three times the first gives $12$. Find the three numbers using determinants."
   steps={[
     "Translate into linear equations: $x + y + z = 6$, $x + 0y + 2z = 7$, and $3x + y + z = 12$.",
@@ -575,12 +586,11 @@ The same rule holds for any $n \times n$ linear system by replacing the $j$th co
     "Compute $D_3 = \\begin{vmatrix} 1 & 1 & 6 \\\\ 1 & 0 & 7 \\\\ 3 & 1 & 12 \\end{vmatrix} = 1(0 - 7) - 1(12 - 21) + 6(1 - 0) = -7 + 9 + 6 = 8$.",
     "By Cramer's rule: $x = \\dfrac{12}{4} = 3$, $y = \\dfrac{4}{4} = 1$, $z = \\dfrac{8}{4} = 2$."
   ]}
-  answer="$3,\\; 1,\\; 2$"
+  answer="$3,\; 1,\; 2$"
 />
 
 <ExerciseSet
-  title="Exercise 4.8"
-  source="H. K. Dass, Ch. 4, Exercise 4.8"
+  title="Practice Set"
   items={[
     { q: "Solve using Cramer's rule: $2x + y = 1$, $x - 2y = 8$.", a: "$x = 2,\\; y = -3$" },
     { q: "Solve using Cramer's rule: $5x + 2y = 3$, $3x + 2y = 5$.", a: "$x = -1,\\; y = 4$" },
@@ -593,20 +603,21 @@ The same rule holds for any $n \times n$ linear system by replacing the $j$th co
 
 ### 4.15 Rule for Multiplication of Two Determinants
 
-Two determinants of the **same order** can be multiplied directly into a single determinant of that order. Because transposing a determinant preserves its value (Property i), row-by-row multiplication and row-by-column multiplication yield equal determinant values. Dass standardizes **row-by-row** multiplication.
+Two determinants of the **same order** can be multiplied directly into a single determinant of that order. Because transposing a determinant preserves its value (Property i), row-by-row multiplication and row-by-column multiplication yield equal determinant values. standardizes **row-by-row** multiplication.
 
-<RuleBox kind="formula" title="§4.15 Row-by-row multiplication of two third-order determinants">
+<RuleBox kind="formula" title="Row-by-row multiplication of two third-order determinants">
 
-$$\begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix} \times \begin{vmatrix} \alpha_1 & \beta_1 & \gamma_1 \\ \alpha_2 & \beta_2 & \gamma_2 \\ \alpha_3 & \beta_3 & \gamma_3 \end{vmatrix} = \begin{vmatrix} a_1\alpha_1 + b_1\beta_1 + c_1\gamma_1 & a_1\alpha_2 + b_1\beta_2 + c_1\gamma_2 & a_1\alpha_3 + b_1\beta_3 + c_1\gamma_3 \\ a_2\alpha_1 + b_2\beta_1 + c_2\gamma_1 & a_2\alpha_2 + b_2\beta_2 + c_2\gamma_2 & a_2\alpha_3 + b_2\beta_3 + c_2\gamma_3 \\ a_3\alpha_1 + b_3\beta_1 + c_3\gamma_1 & a_3\alpha_2 + b_3\beta_2 + c_3\gamma_2 & a_3\alpha_3 + b_3\beta_3 + c_3\gamma_3 \end{vmatrix}$$
+$$
+\begin{vmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{vmatrix} \times \begin{vmatrix} \alpha_1 & \beta_1 & \gamma_1 \\ \alpha_2 & \beta_2 & \gamma_2 \\ \alpha_3 & \beta_3 & \gamma_3 \end{vmatrix} = \begin{vmatrix} a_1\alpha_1 + b_1\beta_1 + c_1\gamma_1 & a_1\alpha_2 + b_1\beta_2 + c_1\gamma_2 & a_1\alpha_3 + b_1\beta_3 + c_1\gamma_3 \\ a_2\alpha_1 + b_2\beta_1 + c_2\gamma_1 & a_2\alpha_2 + b_2\beta_2 + c_2\gamma_2 & a_2\alpha_3 + b_2\beta_3 + c_2\gamma_3 \\ a_3\alpha_1 + b_3\beta_1 + c_3\gamma_1 & a_3\alpha_2 + b_3\beta_2 + c_3\gamma_2 & a_3\alpha_3 + b_3\beta_3 + c_3\gamma_3 \end{vmatrix}
+$$
 
 Entry $(i, j)$ of the product is the dot product of Row $i$ of $\Delta_1$ with Row $j$ of $\Delta_2$.
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 61 (§4.15)"
-  source="H. K. Dass, Ch. 4, Example 61"
-  problem="Show that $\\begin{vmatrix} a & b & c \\\\ b & c & a \\\\ c & a & b \\end{vmatrix} \\times \\begin{vmatrix} -a & c & b \\\\ -b & a & c \\\\ -c & b & a \\end{vmatrix} = \\begin{vmatrix} 2bc - a^2 & c^2 & b^2 \\\\ c^2 & 2ca - b^2 & a^2 \\\\ b^2 & a^2 & 2ab - c^2 \\end{vmatrix} = (a^3 + b^3 + c^3 - 3abc)^2$."
+  title="Example 61"
+  problem="Show that $\begin{vmatrix} a & b & c \\ b & c & a \\ c & a & b \end{vmatrix} \times \begin{vmatrix} -a & c & b \\ -b & a & c \\ -c & b & a \end{vmatrix} = \begin{vmatrix} 2bc - a^2 & c^2 & b^2 \\ c^2 & 2ca - b^2 & a^2 \\ b^2 & a^2 & 2ab - c^2 \end{vmatrix} = (a^3 + b^3 + c^3 - 3abc)^2$."
   steps={[
     "Apply row-by-row multiplication. Row 1 entries: $(-a^2 + bc + bc) = 2bc - a^2$, $(-ab + ab + c^2) = c^2$, $(-ac + b^2 + ac) = b^2$.",
     "Row 2 entries: $(-ab + c^2 + ab) = c^2$, $(-b^2 + ac + ac) = 2ca - b^2$, $(-bc + bc + a^2) = a^2$. Row 3 entries similarly give $b^2,\\; a^2,\\; 2ab - c^2$.",
@@ -617,9 +628,8 @@ Entry $(i, j)$ of the product is the dot product of Row $i$ of $\Delta_1$ with R
 />
 
 <StepRevealExample
-  title="Example 63 (§4.15)"
-  source="H. K. Dass, Ch. 4, Example 63"
-  problem="Prove that $\\begin{vmatrix} 1 & \\cos(\\beta - \\alpha) & \\cos(\\gamma - \\alpha) \\\\ \\cos(\\alpha - \\beta) & 1 & \\cos(\\gamma - \\beta) \\\\ \\cos(\\alpha - \\gamma) & \\cos(\\beta - \\gamma) & 1 \\end{vmatrix} = 0$."
+  title="Example 63"
+  problem="Prove that $\begin{vmatrix} 1 & \cos(\beta - \alpha) & \cos(\gamma - \alpha) \\ \cos(\alpha - \beta) & 1 & \cos(\gamma - \beta) \\ \cos(\alpha - \gamma) & \cos(\beta - \gamma) & 1 \end{vmatrix} = 0$."
   steps={[
     "Construct the determinant $P = \\begin{vmatrix} \\cos\\alpha & \\sin\\alpha & 0 \\\\ \\cos\\beta & \\sin\\beta & 0 \\\\ \\cos\\gamma & \\sin\\gamma & 0 \\end{vmatrix}$, which equals $0$ because Column 3 is all zeros.",
     "Multiply $P$ by itself row-by-row: $P \\times P = 0 \\times 0 = 0$.",
@@ -633,11 +643,13 @@ Entry $(i, j)$ of the product is the dot product of Row $i$ of $\Delta_1$ with R
 
 A **homogeneous** linear system has all right-hand constants equal to zero:
 
-$$a_{11} x + a_{12} y + a_{13} z = 0, \qquad a_{21} x + a_{22} y + a_{23} z = 0, \qquad a_{31} x + a_{32} y + a_{33} z = 0.$$
+$$
+a_{11} x + a_{12} y + a_{13} z = 0, \qquad a_{21} x + a_{22} y + a_{23} z = 0, \qquad a_{31} x + a_{32} y + a_{33} z = 0.
+$$
 
 Because $(x, y, z) = (0, 0, 0)$ always satisfies every equation, a homogeneous system is **never inconsistent**. The coefficient determinant $D$ decides whether nontrivial (non-zero) solutions exist.
 
-<RuleBox kind="theorem" title="§4.16 Consistency of homogeneous systems">
+<RuleBox kind="theorem" title="Consistency of homogeneous systems">
 
 Let $D = \det(a_{ij})$ be the coefficient determinant of a $3 \times 3$ homogeneous system:
 
@@ -647,9 +659,8 @@ Let $D = \det(a_{ij})$ be the coefficient determinant of a $3 \times 3$ homogene
 </RuleBox>
 
 <StepRevealExample
-  title="Example 65 (§4.16)"
-  source="H. K. Dass, Ch. 4, Example 65"
-  problem="Find all values of $\\lambda$ for which the homogeneous system $(\\lambda - 1)x + (3\\lambda + 1)y + 2\\lambda z = 0$, $(\\lambda - 1)x + (4\\lambda - 2)y + (\\lambda + 3)z = 0$, $2x + (3\\lambda + 1)y + 3(\\lambda - 1)z = 0$ possesses nontrivial solutions."
+  title="Example 65"
+  problem="Find all values of $\lambda$ for which the homogeneous system $(\lambda - 1)x + (3\lambda + 1)y + 2\lambda z = 0$, $(\lambda - 1)x + (4\lambda - 2)y + (\lambda + 3)z = 0$, $2x + (3\lambda + 1)y + 3(\lambda - 1)z = 0$ possesses nontrivial solutions."
   steps={[
     "For nontrivial solutions of a homogeneous system, require $D = \\begin{vmatrix} \\lambda - 1 & 3\\lambda + 1 & 2\\lambda \\\\ \\lambda - 1 & 4\\lambda - 2 & \\lambda + 3 \\\\ 2 & 3\\lambda + 1 & 3\\lambda - 3 \\end{vmatrix} = 0$.",
     "Apply $R_1 \\to R_1 - R_2$: $\\begin{vmatrix} 0 & -\\lambda + 3 & \\lambda - 3 \\\\ \\lambda - 1 & 4\\lambda - 2 & \\lambda + 3 \\\\ 2 & 3\\lambda + 1 & 3\\lambda - 3 \\end{vmatrix} = 0$.",
@@ -657,14 +668,14 @@ Let $D = \det(a_{ij})$ be the coefficient determinant of a $3 \times 3$ homogene
     "Expand along $R_1$: $(\\lambda - 3)\\big[(\\lambda - 1)(6\\lambda - 2) - 2(5\\lambda + 1)\\big] = 0 \\implies (\\lambda - 3)(6\\lambda^2 - 18\\lambda) = 0$.",
     "Factor completely: $6\\lambda(\\lambda - 3)^2 = 0$, so the distinct values are $\\lambda = 0$ and $\\lambda = 3$."
   ]}
-  answer="$\\lambda = 0,\\; 3$"
+  answer="$\lambda = 0,\; 3$"
 />
 
 ### 4.17 For a System of Three Simultaneous Linear Equations with Three Unknowns
 
 For a general **non-homogeneous** system $a_i x + b_i y + c_i z = d_i$ ($i = 1, 2, 3$), Cramer's determinants $D, D_1, D_2, D_3$ classify consistency completely.
 
-<RuleBox kind="theorem" title="§4.17 Consistency test for three non-homogeneous linear equations">
+<RuleBox kind="theorem" title="Consistency test for three non-homogeneous linear equations">
 
 1. **$D \neq 0$:** Consistent with a **unique solution** given by $x = \dfrac{D_1}{D}$, $y = \dfrac{D_2}{D}$, $z = \dfrac{D_3}{D}$.
 2. **$D = 0$ and $D_1 = D_2 = D_3 = 0$:** Consistent with **infinitely many solutions** (provided the planes are not parallel distinct planes—always verify by back-substitution when $D = 0$).
@@ -674,17 +685,16 @@ For a general **non-homogeneous** system $a_i x + b_i y + c_i z = d_i$ ($i = 1, 
 
 <DiagramFigure
   src="/diagrams/get-209/determinants-and-cramers-rule-consistency-homogeneous.png"
-  caption="H. K. Dass §4.16 — Consistency decision tree for a system of three simultaneous homogeneous linear equations."
+  caption="Consistency decision tree for a system of three simultaneous homogeneous linear equations."
 />
 
 <DiagramFigure
   src="/diagrams/get-209/determinants-and-cramers-rule-consistency-three-unknowns.png"
-  caption="H. K. Dass §4.17 — Consistency decision tree for a system of three simultaneous non-homogeneous linear equations via D, D₁, D₂, D₃."
+  caption="Consistency decision tree for a system of three simultaneous non-homogeneous linear equations via D, D₁, D₂, D₃."
 />
 
 <StepRevealExample
-  title="Example 66 (§4.17)"
-  source="H. K. Dass, Ch. 4, Example 66"
+  title="Example 66"
   problem="Test the consistency of $3x + 3y + 2z = 1$, $x + 2y = 4$, $10y + 3z = -2$, and solve if consistent."
   steps={[
     "Write explicit zero coefficients: $3x + 3y + 2z = 1$, $x + 2y + 0z = 4$, $0x + 10y + 3z = -2$.",
@@ -694,24 +704,22 @@ For a general **non-homogeneous** system $a_i x + b_i y + c_i z = d_i$ ($i = 1, 
     "Evaluate $D_3 = \\begin{vmatrix} 3 & 3 & 1 \\\\ 1 & 2 & 4 \\\\ 0 & 10 & -2 \\end{vmatrix} = 3(-44) - 3(-2) + 1(10) = -132 + 6 + 10 = -116$.",
     "By Cramer's rule: $x = \\dfrac{58}{29} = 2$, $y = \\dfrac{29}{29} = 1$, $z = \\dfrac{-116}{29} = -4$."
   ]}
-  answer="Consistent; $x = 2,\\; y = 1,\\; z = -4$"
+  answer="Consistent; $x = 2,\; y = 1,\; z = -4$"
 />
 
 <StepRevealExample
-  title="Example 67 (§4.17)"
-  source="H. K. Dass, Ch. 4, Example 67"
+  title="Example 67"
   problem="Show that the system $2x + 6y = -11$, $6x + 20y - 6z = -3$, $6y - 18z = -1$ is inconsistent."
   steps={[
     "Form the coefficient determinant: $D = \\begin{vmatrix} 2 & 6 & 0 \\\\ 6 & 20 & -6 \\\\ 0 & 6 & -18 \\end{vmatrix} = 2(-360 + 36) - 6(-108 - 0) = -648 + 648 = 0$.",
     "Compute $D_1 = \\begin{vmatrix} -11 & 6 & 0 \\\\ -3 & 20 & -6 \\\\ -1 & 6 & -18 \\end{vmatrix} = -11(-360 + 36) - 6(54 - 6) = 3564 - 288 = 3276 \\neq 0$.",
     "Because $D = 0$ while $D_1 \\neq 0$, the equations have no common solution and the system is inconsistent."
   ]}
-  answer="Inconsistent ($D = 0$, $D_1 = 3276 \\neq 0$)."
+  answer="Inconsistent ($D = 0$, $D_1 = 3276 \neq 0$)."
 />
 
 <ExerciseSet
-  title="Exercise 4.9"
-  source="H. K. Dass, Ch. 4, Exercise 4.9"
+  title="Practice Set"
   items={[
     { q: "Find the condition on $\\lambda$ for which $x + y + 4z = 1$, $x + 2y - 2z = 1$, $\\lambda x + y + z = 1$ has a unique solution.", a: "$\\lambda \\neq \\dfrac{7}{10}$" },
     { q: "For what values of $\\lambda$ and $\\mu$ does $2x + 3y + 5z = 9$, $7x + 3y - 2z = 8$, $2x + 3y + \\lambda z = \\mu$ have (i) a unique solution, (ii) no solution?", a: "(i) $\\lambda \\neq 5$; (ii) $\\lambda = 5,\\; \\mu \\neq 9$" },
@@ -724,7 +732,7 @@ For a general **non-homogeneous** system $a_i x + b_i y + c_i z = d_i$ ($i = 1, 
 
 <Callout variant="warning" title="High-frequency determinant errors to avoid">
 
-- **Applying Sarrus' rule to $4 \times 4$ determinants:** Sarrus' diagonal trick is valid *only* for $3 \times 3$ arrays. For order $n \ge 4$, use row/column operations, pivotal condensation (§4.9), or Laplace expansion (§4.12).
+- **Applying Sarrus' rule to $4 \times 4$ determinants:** Sarrus' diagonal trick is valid *only* for $3 \times 3$ arrays. For order $n \ge 4$, use row/column operations, pivotal condensation, or Laplace expansion.
 - **Factoring a scalar out of the whole determinant instead of one line:** Unlike matrices, $\det(kA) = k^n \det(A)$ for an $n \times n$ determinant because $k$ factors out of *each* of the $n$ rows separately (Property iv).
 - **Forgetting the minus sign on row/column swaps or cofactor signs:** Every single row or column exchange flips the sign of $\Delta$ (Property ii), and any entry at $(r, c)$ with $r + c$ odd carries a minus sign in $A_{rc} = (-1)^{r+c}M_{rc}$.
 - **Missing zero placeholders in Cramer's rule:** If a variable does not appear in an equation (as in Example 66), insert $0$ in the corresponding column before forming $D, D_1, D_2, D_3$.
@@ -734,7 +742,7 @@ For a general **non-homogeneous** system $a_i x + b_i y + c_i z = d_i$ ($i = 1, 
 
 ## Summary of Formulas
 
-<RuleBox kind="formula" title="Chapter 4 (§4.1–4.17) Essential Formula Sheet">
+<RuleBox kind="formula" title="Essential Formula Sheet">
 
 - **2nd-order determinant:** $\begin{vmatrix} a_1 & b_1 \\ a_2 & b_2 \end{vmatrix} = a_1 b_2 - a_2 b_1$.
 - **Cofactor:** $A_{rc} = (-1)^{r+c} M_{rc}$; expansion $\Delta = \sum_c a_{rc} A_{rc} = \sum_r a_{rc} A_{rc}$.

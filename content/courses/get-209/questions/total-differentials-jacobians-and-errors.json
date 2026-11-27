@@ -8,55 +8,110 @@
       "answer": 99,
       "tolerancePct": 1,
       "unit": "",
-      "solution": "At $u = 0, v = 0$ we get $x = 1$ and $y = -2$.\n\nCompute the partial derivatives of $w$:\n$$\\frac{\\partial w}{\\partial x} = 4(x^2 + y - 2)^3(2x) + 3(x - y + 2)^2 = 4(-3)^3(2) + 3(5)^2 = -216 + 75 = -141$$\n$$\\frac{\\partial w}{\\partial y} = 4(x^2 + y - 2)^3(1) + 3(x - y + 2)^2(-1) = -108 - 75 = -183$$\n\nFrom the substitutions, $\\dfrac{\\partial x}{\\partial v} = -2$ and $\\dfrac{\\partial y}{\\partial v} = 1$. By the chain rule (§1.15):\n$$\\frac{\\partial w}{\\partial v} = \\frac{\\partial w}{\\partial x}\\frac{\\partial x}{\\partial v} + \\frac{\\partial w}{\\partial y}\\frac{\\partial y}{\\partial v} = (-141)(-2) + (-183)(1) = 282 - 183 = 99.$$",
+      "solution": "At $u = 0, v = 0$ we get $x = 1$ and $y = -2$.\n\nCompute the partial derivatives of $w$:\n$$\\frac{\\partial w}{\\partial x} = 4(x^2 + y - 2)^3(2x) + 3(x - y + 2)^2 = 4(-3)^3(2) + 3(5)^2 = -216 + 75 = -141$$\n$$\\frac{\\partial w}{\\partial y} = 4(x^2 + y - 2)^3(1) + 3(x - y + 2)^2(-1) = -108 - 75 = -183$$\n\nFrom the substitutions, $\\dfrac{\\partial x}{\\partial v} = -2$ and $\\dfrac{\\partial y}{\\partial v} = 1$. By the chain rule:\n$$\\frac{\\partial w}{\\partial v} = \\frac{\\partial w}{\\partial x}\\frac{\\partial x}{\\partial v} + \\frac{\\partial w}{\\partial y}\\frac{\\partial y}{\\partial v} = (-141)(-2) + (-183)(1) = 282 - 183 = 99.$$",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.5, Q5",
-      "tags": ["chain-rule", "change-of-variables"]
+      "tags": [
+        "chain-rule",
+        "change-of-variables"
+      ]
     },
     {
       "key": "ex-1-5-q1-total-derivative",
       "type": "mcq",
       "prompt": "If $z = u^2 + v^2$ where $u = at^2$ and $v = 2at$, what is $\\dfrac{dz}{dt}$?",
       "options": [
-        { "label": "A", "text": "$2a^2 t(t^2 + 2)$", "correct": false },
-        { "label": "B", "text": "$4a^2 t(t^2 + 2)$", "correct": true },
-        { "label": "C", "text": "$4a^2 t(t^2 + 1)$", "correct": false },
-        { "label": "D", "text": "$4a^2(t^3 + 2)$", "correct": false }
+        {
+          "label": "A",
+          "text": "$2a^2 t(t^2 + 2)$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$4a^2 t(t^2 + 2)$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$4a^2 t(t^2 + 1)$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$4a^2(t^3 + 2)$",
+          "correct": false
+        }
       ],
-      "solution": "Using the total differential coefficient (§1.14):\n$$\\frac{dz}{dt} = \\frac{\\partial z}{\\partial u}\\frac{du}{dt} + \\frac{\\partial z}{\\partial v}\\frac{dv}{dt} = (2u)(2at) + (2v)(2a)$$\nSubstituting $u = at^2$ and $v = 2at$:\n$$\\frac{dz}{dt} = 4a^2 t^3 + 8a^2 t = 4a^2 t(t^2 + 2).$$",
+      "solution": "Using the total differential coefficient:\n$$\\frac{dz}{dt} = \\frac{\\partial z}{\\partial u}\\frac{du}{dt} + \\frac{\\partial z}{\\partial v}\\frac{dv}{dt} = (2u)(2at) + (2v)(2a)$$\nSubstituting $u = at^2$ and $v = 2at$:\n$$\\frac{dz}{dt} = 4a^2 t^3 + 8a^2 t = 4a^2 t(t^2 + 2).$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.5, Q1",
-      "tags": ["total-derivative", "chain-rule"]
+      "tags": [
+        "total-derivative",
+        "chain-rule"
+      ]
     },
     {
       "key": "ex-1-6-q2-implicit-xy",
       "type": "mcq",
       "prompt": "Using partial differentiation of an implicit function, find $\\dfrac{dy}{dx}$ when $x^y = y^x$.",
       "options": [
-        { "label": "A", "text": "$\\dfrac{y(y - x\\log y)}{x(x - y\\log x)}$", "correct": true },
-        { "label": "B", "text": "$\\dfrac{x(y - x\\log y)}{y(x - y\\log x)}$", "correct": false },
-        { "label": "C", "text": "$-\\dfrac{y(y - x\\log y)}{x(x - y\\log x)}$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{y(y + x\\log y)}{x(x + y\\log x)}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{y(y - x\\log y)}{x(x - y\\log x)}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{x(y - x\\log y)}{y(x - y\\log x)}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-\\dfrac{y(y - x\\log y)}{x(x - y\\log x)}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{y(y + x\\log y)}{x(x + y\\log x)}$",
+          "correct": false
+        }
       ],
       "solution": "Set $f(x, y) = x^y - y^x = 0$. Then\n$$\\frac{\\partial f}{\\partial x} = yx^{y-1} - y^x\\log y, \\qquad \\frac{\\partial f}{\\partial y} = x^y\\log x - xy^{x-1}.$$\nUsing $\\dfrac{dy}{dx} = -\\dfrac{f_x}{f_y}$ and replacing $y^x = x^y$:\n$$\\frac{dy}{dx} = -\\frac{x^y\\left(\\frac{y}{x} - \\log y\\right)}{x^y\\left(\\log x - \\frac{x}{y}\\right)} = \\frac{y(y - x\\log y)}{x(x - y\\log x)}.$$",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.6, Q2",
-      "tags": ["implicit-differentiation"]
+      "tags": [
+        "implicit-differentiation"
+      ]
     },
     {
       "key": "ex-1-6-q3-second-deriv-conic",
       "type": "mcq",
       "prompt": "If $ax^2 + 2hxy + by^2 = 1$, find $\\dfrac{d^2 y}{dx^2}$.",
       "options": [
-        { "label": "A", "text": "$\\dfrac{ab - h^2}{(hx + by)^3}$", "correct": false },
-        { "label": "B", "text": "$\\dfrac{h^2 - ab}{(hx + by)^3}$", "correct": true },
-        { "label": "C", "text": "$\\dfrac{h^2 - ab}{(ax + hy)^3}$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{2(h^2 - ab)}{(hx + by)^2}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{ab - h^2}{(hx + by)^3}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{h^2 - ab}{(hx + by)^3}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{h^2 - ab}{(ax + hy)^3}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{2(h^2 - ab)}{(hx + by)^2}$",
+          "correct": false
+        }
       ],
-      "solution": "Let $f(x, y) = ax^2 + 2hxy + by^2 - 1 = 0$. Then $p = 2(ax + hy)$, $q = 2(hx + by)$, $r = 2a$, $s = 2h$, $t = 2b$.\nBy §1.17:\n$$\\frac{d^2y}{dx^2} = -\\frac{q^2 r - 2pqs + p^2 t}{q^3} = -\\frac{8\\left[a(hx+by)^2 - 2h(ax+hy)(hx+by) + b(ax+hy)^2\\right]}{8(hx+by)^3}.$$\nExpanding the numerator yields $(ab - h^2)(ax^2 + 2hxy + by^2) = ab - h^2$ (since $ax^2 + 2hxy + by^2 = 1$). Including the leading minus sign gives $\\dfrac{h^2 - ab}{(hx + by)^3}$.",
+      "solution": "Let $f(x, y) = ax^2 + 2hxy + by^2 - 1 = 0$. Then $p = 2(ax + hy)$, $q = 2(hx + by)$, $r = 2a$, $s = 2h$, $t = 2b$.\nApplying the formula: $$\\frac{d^2y}{dx^2} = -\\frac{q^2 r - 2pqs + p^2 t}{q^3} = -\\frac{8\\left[a(hx+by)^2 - 2h(ax+hy)(hx+by) + b(ax+hy)^2\\right]}{8(hx+by)^3}.$$\nExpanding the numerator yields $(ab - h^2)(ax^2 + 2hxy + by^2) = ab - h^2$ (since $ax^2 + 2hxy + by^2 = 1$). Including the leading minus sign gives $\\dfrac{h^2 - ab}{(hx + by)^3}$.",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.6, Q3",
-      "tags": ["implicit-differentiation", "second-derivative"]
+      "tags": [
+        "implicit-differentiation",
+        "second-derivative"
+      ]
     },
     {
       "key": "ex-1-7-cyclic-product",
@@ -65,40 +120,77 @@
       "answer": -1,
       "tolerancePct": 1,
       "unit": "",
-      "solution": "From the implicit differentiation formula (§1.17):\n$$\\left(\\frac{\\partial x}{\\partial y}\\right)_z = -\\frac{f_y}{f_x}, \\qquad \\left(\\frac{\\partial y}{\\partial z}\\right)_x = -\\frac{f_z}{f_y}, \\qquad \\left(\\frac{\\partial z}{\\partial x}\\right)_y = -\\frac{f_x}{f_z}.$$\nMultiplying all three factors together:\n$$\\left(-\\frac{f_y}{f_x}\\right)\\left(-\\frac{f_z}{f_y}\\right)\\left(-\\frac{f_x}{f_z}\\right) = -1.$$",
+      "solution": "From the implicit differentiation formula:\n$$\\left(\\frac{\\partial x}{\\partial y}\\right)_z = -\\frac{f_y}{f_x}, \\qquad \\left(\\frac{\\partial y}{\\partial z}\\right)_x = -\\frac{f_z}{f_y}, \\qquad \\left(\\frac{\\partial z}{\\partial x}\\right)_y = -\\frac{f_x}{f_z}.$$\nMultiplying all three factors together:\n$$\\left(-\\frac{f_y}{f_x}\\right)\\left(-\\frac{f_z}{f_y}\\right)\\left(-\\frac{f_x}{f_z}\\right) = -1.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.7, Q(i)",
-      "tags": ["implicit-differentiation", "cyclic-relation"]
+      "tags": [
+        "implicit-differentiation",
+        "cyclic-relation"
+      ]
     },
     {
       "key": "ex-1-8-q1-tangent-plane",
       "type": "mcq",
       "prompt": "Find the equation of the tangent plane to the surface $xyz = 6$ at the point $(1, 2, 3)$.",
       "options": [
-        { "label": "A", "text": "$6x + 3y + 2z = 18$", "correct": true },
-        { "label": "B", "text": "$x + 2y + 3z = 14$", "correct": false },
-        { "label": "C", "text": "$6x + 3y + 2z = 6$", "correct": false },
-        { "label": "D", "text": "$3x + 2y + 6z = 25$", "correct": false }
+        {
+          "label": "A",
+          "text": "$6x + 3y + 2z = 18$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$x + 2y + 3z = 14$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$6x + 3y + 2z = 6$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$3x + 2y + 6z = 25$",
+          "correct": false
+        }
       ],
-      "solution": "Let $F(x, y, z) = xyz - 6 = 0$. Then $F_x = yz$, $F_y = zx$, $F_z = xy$.\nAt $(1, 2, 3)$: $F_x = 6$, $F_y = 3$, $F_z = 2$.\nBy §1.20, the tangent plane is\n$$6(x - 1) + 3(y - 2) + 2(z - 3) = 0 \\implies 6x + 3y + 2z = 18.$$",
+      "solution": "Let $F(x, y, z) = xyz - 6 = 0$. Then $F_x = yz$, $F_y = zx$, $F_z = xy$.\nAt $(1, 2, 3)$: $F_x = 6$, $F_y = 3$, $F_z = 2$.\nthe tangent plane is\n$$6(x - 1) + 3(y - 2) + 2(z - 3) = 0 \\implies 6x + 3y + 2z = 18.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.8, Q1",
-      "tags": ["tangent-plane"]
+      "tags": [
+        "tangent-plane"
+      ]
     },
     {
       "key": "ex-1-8-q2-normal-line",
       "type": "mcq",
       "prompt": "Which of the following is the equation of the normal line to the surface $z^2 = 4(1 + x^2 + y^2)$ at $(2, 2, 6)$?",
       "options": [
-        { "label": "A", "text": "$\\dfrac{x - 2}{4} = \\dfrac{y - 2}{4} = \\dfrac{z - 6}{3}$", "correct": false },
-        { "label": "B", "text": "$\\dfrac{x - 2}{4} = \\dfrac{y - 2}{4} = \\dfrac{z - 6}{-3}$", "correct": true },
-        { "label": "C", "text": "$\\dfrac{x - 2}{2} = \\dfrac{y - 2}{2} = \\dfrac{z - 6}{-6}$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{x + 2}{4} = \\dfrac{y + 2}{4} = \\dfrac{z + 6}{-3}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$\\dfrac{x - 2}{4} = \\dfrac{y - 2}{4} = \\dfrac{z - 6}{3}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{x - 2}{4} = \\dfrac{y - 2}{4} = \\dfrac{z - 6}{-3}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{x - 2}{2} = \\dfrac{y - 2}{2} = \\dfrac{z - 6}{-6}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{x + 2}{4} = \\dfrac{y + 2}{4} = \\dfrac{z + 6}{-3}$",
+          "correct": false
+        }
       ],
-      "solution": "Rewrite as $F(x, y, z) = 4x^2 + 4y^2 - z^2 + 4 = 0$.\nThen $F_x = 8x$, $F_y = 8y$, $F_z = -2z$. At $(2, 2, 6)$ these equal $16, 16, -12$, which are proportional to $(4, 4, -3)$.\nBy §1.20, the normal line is\n$$\\frac{x - 2}{4} = \\frac{y - 2}{4} = \\frac{z - 6}{-3}.$$",
+      "solution": "Rewrite as $F(x, y, z) = 4x^2 + 4y^2 - z^2 + 4 = 0$.\nThen $F_x = 8x$, $F_y = 8y$, $F_z = -2z$. At $(2, 2, 6)$ these equal $16, 16, -12$, which are proportional to $(4, 4, -3)$.\nthe normal line is\n$$\\frac{x - 2}{4} = \\frac{y - 2}{4} = \\frac{z - 6}{-3}.$$",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.8, Q2",
-      "tags": ["normal-line", "tangent-plane"]
+      "tags": [
+        "normal-line",
+        "tangent-plane"
+      ]
     },
     {
       "key": "ex-1-21-ex51-resistor-power",
@@ -109,8 +201,10 @@
       "unit": "%",
       "solution": "Taking logarithms: $\\log P = 2\\log E - \\log R$.\nDifferentiating and multiplying by $100$:\n$$100\\frac{\\delta P}{P} = 2\\left(100\\frac{\\delta E}{E}\\right) - \\left(100\\frac{\\delta R}{R}\\right) = 2(3) - (-2) = 8\\%.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Example 51",
-      "tags": ["error-determination", "percentage-error"]
+      "tags": [
+        "error-determination",
+        "percentage-error"
+      ]
     },
     {
       "key": "ex-1-21-ex53-pendulum-max-error",
@@ -121,8 +215,10 @@
       "unit": "%",
       "solution": "Taking logarithms: $\\log T = \\log(2\\pi) + \\dfrac{1}{2}\\log l - \\dfrac{1}{2}\\log g$.\nDifferentiating: $\\dfrac{\\delta T}{T} = \\dfrac{1}{2}\\dfrac{\\delta l}{l} - \\dfrac{1}{2}\\dfrac{\\delta g}{g}$.\nFor the **maximum possible** percentage error, add the magnitudes:\n$$\\left(100\\frac{\\delta T}{T}\\right)_{\\max} = \\frac{1}{2}(1\\% + 2\\%) = 1.5\\%.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Example 53",
-      "tags": ["error-determination", "maximum-error"]
+      "tags": [
+        "error-determination",
+        "maximum-error"
+      ]
     },
     {
       "key": "ex-1-9-q6-ship-power",
@@ -133,8 +229,10 @@
       "unit": "%",
       "solution": "Taking logarithms: $\\log P = \\log k + 3\\log V + 2\\log l$.\nDifferentiating and multiplying by $100$:\n$$100\\frac{\\delta P}{P} = 3\\left(100\\frac{\\delta V}{V}\\right) + 2\\left(100\\frac{\\delta l}{l}\\right) = 3(3) + 2(4) = 9 + 8 = 17\\%.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.9, Q6",
-      "tags": ["error-determination", "percentage-error"]
+      "tags": [
+        "error-determination",
+        "percentage-error"
+      ]
     },
     {
       "key": "ex-1-9-q7-bricks-cost",
@@ -145,8 +243,10 @@
       "unit": "₹",
       "solution": "For $V = xyz$, $\\dfrac{\\delta V}{V} = \\dfrac{\\delta x}{x} + \\dfrac{\\delta y}{y} + \\dfrac{\\delta z}{z}$. Since each linear measurement has a $1\\%$ error, $100\\dfrac{\\delta V}{V} = 1 + 1 + 1 = 3\\%$.\nThe measured volume is $V = 2 \\times 15 \\times 1.2 = 36\\,\\text{m}^3$, so $\\delta V = 0.03 \\times 36 = 1.08\\,\\text{m}^3$.\nThe error in brick count is $1.08 \\times 450 = 486$ bricks, and the cost error is\n$$486 \\times \\frac{1300}{1000} = 631.80.$$",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.9, Q7",
-      "tags": ["error-determination", "engineering-application"]
+      "tags": [
+        "error-determination",
+        "engineering-application"
+      ]
     },
     {
       "key": "ex-1-9-q11-parallel-resistance",
@@ -157,8 +257,10 @@
       "unit": "%",
       "solution": "Differentiating $\\dfrac{1}{r} = \\dfrac{1}{r_1} + \\dfrac{1}{r_2}$ gives $-\\dfrac{dr}{r^2} = -\\dfrac{dr_1}{r_1^2} - \\dfrac{dr_2}{r_2^2}$.\nMultiplying by $-100$:\n$$\\frac{1}{r}\\left(100\\frac{dr}{r}\\right) = \\frac{1}{r_1}\\left(100\\frac{dr_1}{r_1}\\right) + \\frac{1}{r_2}\\left(100\\frac{dr_2}{r_2}\\right) = 2\\left(\\frac{1}{r_1} + \\frac{1}{r_2}\\right) = 2\\left(\\frac{1}{r}\\right).$$\nCancelling $1/r$ gives $100\\dfrac{dr}{r} = 2\\%$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.9, Q11",
-      "tags": ["error-determination", "parallel-resistance"]
+      "tags": [
+        "error-determination",
+        "parallel-resistance"
+      ]
     },
     {
       "key": "ex-1-21-ex61-fifth-root-approx",
@@ -169,8 +271,10 @@
       "unit": "",
       "solution": "Let $f(x, y) = (x^2 + 2y^3)^{1/5}$ at $x = 4, y = 2$ with $\\delta x = -0.18, \\delta y = 0.1$.\nThen $f(4, 2) = (16 + 16)^{1/5} = 32^{1/5} = 2$, and\n$$f_x(4, 2) = \\frac{1}{5}(32)^{-4/5}(2\\cdot 4) = \\frac{8}{80} = 0.1, \\qquad f_y(4, 2) = \\frac{1}{5}(32)^{-4/5}(6\\cdot 4) = \\frac{24}{80} = 0.3.$$\nThus $df = 0.1(-0.18) + 0.3(0.1) = -0.018 + 0.03 = 0.012$, giving $f(3.82, 2.1) \\approx 2 + 0.012 = 2.012$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Example 61",
-      "tags": ["total-differential", "approximation"]
+      "tags": [
+        "total-differential",
+        "approximation"
+      ]
     },
     {
       "key": "ex-1-22-ex64-jacobian-ratio",
@@ -181,68 +285,141 @@
       "unit": "",
       "solution": "Forming the $3\\times 3$ Jacobian determinant and factoring $\\dfrac{1}{x_1^2}, \\dfrac{1}{x_2^2}, \\dfrac{1}{x_3^2}$ from the rows and $x_2 x_3, x_3 x_1, x_1 x_2$ from the columns gives\n$$\\frac{\\partial(y_1, y_2, y_3)}{\\partial(x_1, x_2, x_3)} = \\frac{x_1^2 x_2^2 x_3^2}{x_1^2 x_2^2 x_3^2}\\begin{vmatrix} -1 & 1 & 1 \\\\ 1 & -1 & 1 \\\\ 1 & 1 & -1 \\end{vmatrix} = -1(1 - 1) - 1(-1 - 1) + 1(1 + 1) = 4.$$",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Example 64",
-      "tags": ["jacobian"]
+      "tags": [
+        "jacobian"
+      ]
     },
     {
       "key": "ex-1-10-q3-symmetric-jacobian",
       "type": "mcq",
       "prompt": "If $u = xyz$, $v = xy + yz + zx$, and $w = x + y + z$, compute $\\dfrac{\\partial(u, v, w)}{\\partial(x, y, z)}$.",
       "options": [
-        { "label": "A", "text": "$(x - y)(y - z)(z - x)$", "correct": true },
-        { "label": "B", "text": "$-(x - y)(y - z)(z - x)$", "correct": false },
-        { "label": "C", "text": "$2(x - y)(y - z)(z - x)$", "correct": false },
-        { "label": "D", "text": "$0$", "correct": false }
+        {
+          "label": "A",
+          "text": "$(x - y)(y - z)(z - x)$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$-(x - y)(y - z)(z - x)$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$2(x - y)(y - z)(z - x)$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$0$",
+          "correct": false
+        }
       ],
       "solution": "The Jacobian determinant is\n$$\\frac{\\partial(u, v, w)}{\\partial(x, y, z)} = \\begin{vmatrix} yz & zx & xy \\\\ y + z & z + x & x + y \\\\ 1 & 1 & 1 \\end{vmatrix}.$$\nApplying $C_1 \\to C_1 - C_2$ and $C_2 \\to C_2 - C_3$:\n$$\\begin{vmatrix} z(y - x) & x(z - y) & xy \\\\ y - x & z - y & x + y \\\\ 0 & 0 & 1 \\end{vmatrix} = (y - x)(z - y)(z - x) = (x - y)(y - z)(z - x).$$",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.10, Q3",
-      "tags": ["jacobian", "determinant"]
+      "tags": [
+        "jacobian",
+        "determinant"
+      ]
     },
     {
       "key": "ex-1-11-q1-inverse-jacobian",
       "type": "mcq",
       "prompt": "Given $u = x^2 - y^2$ and $v = 2xy$, calculate $\\dfrac{\\partial(x, y)}{\\partial(u, v)}$ using the first property of Jacobians.",
       "options": [
-        { "label": "A", "text": "$4(x^2 + y^2)$", "correct": false },
-        { "label": "B", "text": "$\\dfrac{1}{4(x^2 + y^2)}$", "correct": true },
-        { "label": "C", "text": "$\\dfrac{1}{4(x^2 - y^2)}$", "correct": false },
-        { "label": "D", "text": "$\\dfrac{1}{2(x^2 + y^2)}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$4(x^2 + y^2)$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{1}{4(x^2 + y^2)}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{1}{4(x^2 - y^2)}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{1}{2(x^2 + y^2)}$",
+          "correct": false
+        }
       ],
-      "solution": "First evaluate $J = \\dfrac{\\partial(u, v)}{\\partial(x, y)} = \\begin{vmatrix} 2x & -2y \\\\ 2y & 2x \\end{vmatrix} = 4(x^2 + y^2)$.\nBy the reciprocal property $JJ' = 1$ (§1.23):\n$$\\frac{\\partial(x, y)}{\\partial(u, v)} = \\frac{1}{J} = \\frac{1}{4(x^2 + y^2)}.$$",
+      "solution": "First evaluate $J = \\dfrac{\\partial(u, v)}{\\partial(x, y)} = \\begin{vmatrix} 2x & -2y \\\\ 2y & 2x \\end{vmatrix} = 4(x^2 + y^2)$.\nBy the reciprocal property $JJ' = 1$:\n$$\\frac{\\partial(x, y)}{\\partial(u, v)} = \\frac{1}{J} = \\frac{1}{4(x^2 + y^2)}.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.11, Q1",
-      "tags": ["jacobian", "jacobian-properties"]
+      "tags": [
+        "jacobian",
+        "jacobian-properties"
+      ]
     },
     {
       "key": "ex-1-13-q2-functional-dependence",
       "type": "mcq",
       "prompt": "The functions $u = \\dfrac{x - y}{x + y}$ and $v = \\dfrac{xy}{(x + y)^2}$ are functionally dependent because $\\dfrac{\\partial(u, v)}{\\partial(x, y)} = 0$. What is the functional relation connecting $u$ and $v$?",
       "options": [
-        { "label": "A", "text": "$4v = 1 + u^2$", "correct": false },
-        { "label": "B", "text": "$4v = 1 - u^2$", "correct": true },
-        { "label": "C", "text": "$2v = 1 - u^2$", "correct": false },
-        { "label": "D", "text": "$v = 1 - 4u^2$", "correct": false }
+        {
+          "label": "A",
+          "text": "$4v = 1 + u^2$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$4v = 1 - u^2$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$2v = 1 - u^2$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$v = 1 - 4u^2$",
+          "correct": false
+        }
       ],
       "solution": "Compute $1 - u^2$:\n$$1 - u^2 = 1 - \\frac{(x - y)^2}{(x + y)^2} = \\frac{(x + y)^2 - (x - y)^2}{(x + y)^2} = \\frac{4xy}{(x + y)^2} = 4v.$$\nHence the relation is $4v = 1 - u^2$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.13, Q2",
-      "tags": ["functional-dependence", "jacobian"]
+      "tags": [
+        "functional-dependence",
+        "jacobian"
+      ]
     },
     {
       "key": "ex-1-14-q4-implicit-jacobian",
       "type": "mcq",
       "prompt": "If $u_1 = x_1 + x_2 + x_3 + x_4$, $u_1 u_2 = x_2 + x_3 + x_4$, $u_1 u_2 u_3 = x_3 + x_4$, and $u_1 u_2 u_3 u_4 = x_4$, find $\\dfrac{\\partial(x_1, x_2, x_3, x_4)}{\\partial(u_1, u_2, u_3, u_4)}$.",
       "options": [
-        { "label": "A", "text": "$u_1^3 u_2^2 u_3$", "correct": true },
-        { "label": "B", "text": "$u_1^4 u_2^3 u_3^2 u_4$", "correct": false },
-        { "label": "C", "text": "$-u_1^3 u_2^2 u_3$", "correct": false },
-        { "label": "D", "text": "$u_1^2 u_2 u_3$", "correct": false }
+        {
+          "label": "A",
+          "text": "$u_1^3 u_2^2 u_3$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$u_1^4 u_2^3 u_3^2 u_4$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-u_1^3 u_2^2 u_3$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$u_1^2 u_2 u_3$",
+          "correct": false
+        }
       ],
-      "solution": "Write $f_1 = x_1 + x_2 + x_3 + x_4 - u_1 = 0$, $f_2 = x_2 + x_3 + x_4 - u_1 u_2 = 0$, $f_3 = x_3 + x_4 - u_1 u_2 u_3 = 0$, $f_4 = x_4 - u_1 u_2 u_3 u_4 = 0$.\nThe Jacobian $\\dfrac{\\partial(f_1, f_2, f_3, f_4)}{\\partial(x_1, x_2, x_3, x_4)}$ is upper-triangular with all $1$'s on the diagonal, so its determinant is $1$.\nThe Jacobian $\\dfrac{\\partial(f_1, f_2, f_3, f_4)}{\\partial(u_1, u_2, u_3, u_4)}$ is lower-triangular with diagonal entries $-1, -u_1, -u_1 u_2, -u_1 u_2 u_3$, so its determinant is $(-1)^4 u_1^3 u_2^2 u_3 = u_1^3 u_2^2 u_3$.\nBy §1.24 with $n = 4$ ($ (-1)^4 = +1 $):\n$$\\frac{\\partial(x_1, x_2, x_3, x_4)}{\\partial(u_1, u_2, u_3, u_4)} = (-1)^4 \\frac{u_1^3 u_2^2 u_3}{1} = u_1^3 u_2^2 u_3.$$",
+      "solution": "Write $f_1 = x_1 + x_2 + x_3 + x_4 - u_1 = 0$, $f_2 = x_2 + x_3 + x_4 - u_1 u_2 = 0$, $f_3 = x_3 + x_4 - u_1 u_2 u_3 = 0$, $f_4 = x_4 - u_1 u_2 u_3 u_4 = 0$.\nThe Jacobian $\\dfrac{\\partial(f_1, f_2, f_3, f_4)}{\\partial(x_1, x_2, x_3, x_4)}$ is upper-triangular with all $1$'s on the diagonal, so its determinant is $1$.\nThe Jacobian $\\dfrac{\\partial(f_1, f_2, f_3, f_4)}{\\partial(u_1, u_2, u_3, u_4)}$ is lower-triangular with diagonal entries $-1, -u_1, -u_1 u_2, -u_1 u_2 u_3$, so its determinant is $(-1)^4 u_1^3 u_2^2 u_3 = u_1^3 u_2^2 u_3$.\nby the theorem above with $n = 4$ ($ (-1)^4 = +1 $):\n$$\\frac{\\partial(x_1, x_2, x_3, x_4)}{\\partial(u_1, u_2, u_3, u_4)} = (-1)^4 \\frac{u_1^3 u_2^2 u_3}{1} = u_1^3 u_2^2 u_3.$$",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.14, Q4",
-      "tags": ["implicit-jacobian", "jacobian"]
+      "tags": [
+        "implicit-jacobian",
+        "jacobian"
+      ]
     }
   ]
 }

@@ -9,23 +9,28 @@
       "answer": 6.07,
       "tolerancePct": 1,
       "unit": "kN",
-      "solution": "Weights: $W_C = W_D = (350)(9.81) = 3433.5\\,\\text{N}$ and $W_G = (1400)(9.81) = 13\\,734\\,\\text{N}$. Taking moments about the front axle $B$ (distance $3.0\\,\\text{m}$ from $A$, $1.2\\,\\text{m}$ from $G$, $2.05\\,\\text{m}$ from $D$, and $3.75\\,\\text{m}$ from $C$):\\n\\n$$\\sum M_B = 0: \\quad -2R_A(3.0) + 13\\,734(1.2) + 3433.5(2.05) + 3433.5(3.75) = 0$$\\n\\n$$6 R_A = 16\\,480.8 + 7038.7 + 12\\,875.6 = 36\\,395.1\\,\\text{N}\\cdot\\text{m} \\implies R_A = 6066\\,\\text{N} = 6.07\\,\\text{kN}\\uparrow.$$",
+      "solution": "Weights: $W_C = W_D = (350)(9.81) = 3433.5\\,\\text{N}$ and $W_G = (1400)(9.81) = 13\\,734\\,\\text{N}$. Taking moments about the front axle $B$ (distance $3.0\\,\\text{m}$ from $A$, $1.2\\,\\text{m}$ from $G$, $2.05\\,\\text{m}$ from $D$, and $3.75\\,\\text{m}$ from $C$):\n\n$$\\sum M_B = 0: \\quad -2R_A(3.0) + 13\\,734(1.2) + 3433.5(2.05) + 3433.5(3.75) = 0$$\n\n$$6 R_A = 16\\,480.8 + 7038.7 + 12\\,875.6 = 36\\,395.1\\,\\text{N}\\cdot\\text{m} \\implies R_A = 6066\\,\\text{N} = 6.07\\,\\text{kN}\\uparrow.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.1(a)",
-      "tags": ["2d-equilibrium", "free-body-diagram", "wheel-reactions"]
+      "tags": [
+        "2d-equilibrium",
+        "free-body-diagram",
+        "wheel-reactions"
+      ]
     },
     {
       "key": "prob-4-2-truck-front-reaction",
       "type": "numeric",
-      "prompt": "In the pickup truck of Prob. 4.1 ($1400\\text{-kg}$ truck, $350\\text{-kg}$ crate at $C$), assume that crate $D$ is **removed** and that the position of crate $C$ is unchanged. Determine the reaction at **each** of the two front wheels $B$ (in $\\text{kN}$).",
+      "prompt": "In a pickup truck ($1400\\text{-kg}$ truck, $350\\text{-kg}$ crate at $C$), assume that crate $D$ is **removed** and that the position of crate $C$ is unchanged. Determine the reaction at **each** of the two front wheels $B$ (in $\\text{kN}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-1.png",
       "answer": 3.69,
       "tolerancePct": 1,
       "unit": "kN",
-      "solution": "With crate $D$ removed, $W_C = 3433.5\\,\\text{N}$ and $W_G = 13\\,734\\,\\text{N}$. Summing moments about rear axle $A$ ($G$ is $1.8\\,\\text{m}$ right of $A$, $C$ is $0.75\\,\\text{m}$ left of $A$, and $B$ is $3.0\\,\\text{m}$ right of $A$):\\n\\n$$\\sum M_A = 0: \\quad 2R_B(3.0) - 13\\,734(1.8) + 3433.5(0.75) = 0$$\\n\\n$$6 R_B = 24\\,721.2 - 2575.1 = 22\\,146.1 \\implies R_B = 3691\\,\\text{N} = 3.69\\,\\text{kN}\\uparrow.$$",
+      "solution": "With crate $D$ removed, $W_C = 3433.5\\,\\text{N}$ and $W_G = 13\\,734\\,\\text{N}$. Summing moments about rear axle $A$ ($G$ is $1.8\\,\\text{m}$ right of $A$, $C$ is $0.75\\,\\text{m}$ left of $A$, and $B$ is $3.0\\,\\text{m}$ right of $A$):\n\n$$\\sum M_A = 0: \\quad 2R_B(3.0) - 13\\,734(1.8) + 3433.5(0.75) = 0$$\n\n$$6 R_B = 24\\,721.2 - 2575.1 = 22\\,146.1 \\implies R_B = 3691\\,\\text{N} = 3.69\\,\\text{kN}\\uparrow.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.2(b)",
-      "tags": ["2d-equilibrium", "moments"]
+      "tags": [
+        "2d-equilibrium",
+        "moments"
+      ]
     },
     {
       "key": "prob-4-8-beam-cable-tension",
@@ -35,10 +40,12 @@
       "answer": 140,
       "tolerancePct": 1,
       "unit": "lb",
-      "solution": "Taking moments about pin $A$ eliminates $A_x$ and $A_y$. Distances from $A$: $15\\,\\text{lb}$ at $22\\,\\text{in.}$ left, $20\\,\\text{lb}$ at $16\\,\\text{in.}$ left, $35\\,\\text{lb}$ at $8\\,\\text{in.}$ left, $20\\,\\text{lb}$ at $A$, and $15\\,\\text{lb} + T_{BC}$ downward at $6\\,\\text{in.}$ right:\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad 15(22) + 20(16) + 35(8) - (15 + T_{BC})(6) = 0$$\\n\\n$$330 + 320 + 280 - 90 = 6 T_{BC} \\implies T_{BC} = \\frac{840}{6} = 140.0\\,\\text{lb}.$$",
+      "solution": "Taking moments about pin $A$ eliminates $A_x$ and $A_y$. Distances from $A$: $15\\,\\text{lb}$ at $22\\,\\text{in.}$ left, $20\\,\\text{lb}$ at $16\\,\\text{in.}$ left, $35\\,\\text{lb}$ at $8\\,\\text{in.}$ left, $20\\,\\text{lb}$ at $A$, and $15\\,\\text{lb} + T_{BC}$ downward at $6\\,\\text{in.}$ right:\n\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad 15(22) + 20(16) + 35(8) - (15 + T_{BC})(6) = 0$$\n\n$$330 + 320 + 280 - 90 = 6 T_{BC} \\implies T_{BC} = \\frac{840}{6} = 140.0\\,\\text{lb}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.8(b)",
-      "tags": ["2d-equilibrium", "pin-and-cable"]
+      "tags": [
+        "2d-equilibrium",
+        "pin-and-cable"
+      ]
     },
     {
       "key": "prob-4-9-beam-range-a",
@@ -46,15 +53,33 @@
       "prompt": "For the beam and loading shown (pin at $D$ and roller slot at $B$), what is the allowable range of distance $a$ for which the vertical reaction at $B$ does not exceed $100\\,\\text{lb}$ downward or $200\\,\\text{lb}$ upward?",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-9.png",
       "options": [
-        { "label": "A", "text": "$1.00\\,\\text{in.} \\le a \\le 8.00\\,\\text{in.}$", "correct": false },
-        { "label": "B", "text": "$2.00\\,\\text{in.} \\le a \\le 10.00\\,\\text{in.}$", "correct": true },
-        { "label": "C", "text": "$3.00\\,\\text{in.} \\le a \\le 12.00\\,\\text{in.}$", "correct": false },
-        { "label": "D", "text": "$4.00\\,\\text{in.} \\le a \\le 10.00\\,\\text{in.}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$1.00\\,\\text{in.} \\le a \\le 8.00\\,\\text{in.}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$2.00\\,\\text{in.} \\le a \\le 10.00\\,\\text{in.}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$3.00\\,\\text{in.} \\le a \\le 12.00\\,\\text{in.}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$4.00\\,\\text{in.} \\le a \\le 10.00\\,\\text{in.}$",
+          "correct": false
+        }
       ],
-      "solution": "Sum moments about pin $D$ ($x_D = 8\\,\\text{in.}$ from $A$, $DB = 16\\,\\text{in.}$):\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_D = 0: \\quad 300(8 - a) - 300(a - 2) - 50(4) + 16 B_y = 0 \\implies 16 B_y = 600 a - 2800.$$\\n\\nSetting $B_y = -100\\,\\text{lb}$ gives $600 a = 1200 \\implies a = 2.00\\,\\text{in.}$; setting $B_y = +200\\,\\text{lb}$ gives $600 a = 6000 \\implies a = 10.00\\,\\text{in.}$ Thus $2.00\\,\\text{in.} \\le a \\le 10.00\\,\\text{in.}$",
+      "solution": "Sum moments about pin $D$ ($x_D = 8\\,\\text{in.}$ from $A$, $DB = 16\\,\\text{in.}$):\n\n$$+\\!\\!\\circlearrowleft \\sum M_D = 0: \\quad 300(8 - a) - 300(a - 2) - 50(4) + 16 B_y = 0 \\implies 16 B_y = 600 a - 2800.$$\n\n\nSetting $B_y = -100\\,\\text{lb}$ gives $600 a = 1200 \\implies a = 2.00\\,\\text{in.}$; setting $B_y = +200\\,\\text{lb}$ gives $600 a = 6000 \\implies a = 10.00\\,\\text{in.}$ Thus $2.00\\,\\text{in.} \\le a \\le 10.00\\,\\text{in.}$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.9",
-      "tags": ["2d-equilibrium", "design-range"]
+      "tags": [
+        "2d-equilibrium",
+        "design-range"
+      ]
     },
     {
       "key": "prob-4-10-beam-max-d",
@@ -64,23 +89,27 @@
       "answer": 400,
       "tolerancePct": 1,
       "unit": "mm",
-      "solution": "Total downward load is $50 + 100 + 150 = 300\\,\\text{N}$, so $A + B_y = 300\\,\\text{N}$. For both $A \\le 180\\,\\text{N}$ and $B_y \\le 180\\,\\text{N}$, we need $120\\,\\text{N} \\le A \\le 180\\,\\text{N}$. Taking moments about $B$ ($900\\,\\text{mm}$ from the left end):\\n\\n$$50(900) + 100(450) - A(900 - d) = 0 \\implies A(900 - d) = 90\\,000\\,\\text{N}\\cdot\\text{mm}.$$\\n\\nThe largest $d$ occurs when $A$ reaches its upper limit $180\\,\\text{N}$: $900 - d = 90\\,000 / 180 = 500\\,\\text{mm} \\implies d = 400\\,\\text{mm}$.",
+      "solution": "Total downward load is $50 + 100 + 150 = 300\\,\\text{N}$, so $A + B_y = 300\\,\\text{N}$. For both $A \\le 180\\,\\text{N}$ and $B_y \\le 180\\,\\text{N}$, we need $120\\,\\text{N} \\le A \\le 180\\,\\text{N}$. Taking moments about $B$ ($900\\,\\text{mm}$ from the left end):\n\n$$50(900) + 100(450) - A(900 - d) = 0 \\implies A(900 - d) = 90\\,000\\,\\text{N}\\cdot\\text{mm}.$$\n\n\nThe largest $d$ occurs when $A$ reaches its upper limit $180\\,\\text{N}$: $900 - d = 90\\,000 / 180 = 500\\,\\text{mm} \\implies d = 400\\,\\text{mm}$.",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.10",
-      "tags": ["2d-equilibrium", "allowable-reaction"]
+      "tags": [
+        "2d-equilibrium",
+        "allowable-reaction"
+      ]
     },
     {
       "key": "prob-4-15-bracket-cable-tension",
       "type": "numeric",
       "prompt": "The bracket $BCD$ is hinged at $C$ and attached to a control cable at $B$ ($a = 0.18\\,\\text{m}$). For the loading shown, determine the tension in cable $AB$ (in $\\text{kN}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-15.png",
-      "answer": 2.0,
+      "answer": 2,
       "tolerancePct": 1,
       "unit": "kN",
-      "solution": "The cable length is $AB = \\sqrt{0.24^2 + 0.18^2} = 0.30\\,\\text{m}$, so its horizontal component is $T_x = \\frac{0.24}{0.30}T = 0.8 T$ to the left at $0.18\\,\\text{m}$ above $C$. Summing moments about hinge $C$:\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_C = 0: \\quad (0.8 T)(0.18) - 240(0.4) - 240(0.8) = 0$$\\n\\n$$0.144 T = 288 \\implies T = 2000\\,\\text{N} = 2.00\\,\\text{kN}.$$",
+      "solution": "The cable length is $AB = \\sqrt{0.24^2 + 0.18^2} = 0.30\\,\\text{m}$, so its horizontal component is $T_x = \\frac{0.24}{0.30}T = 0.8 T$ to the left at $0.18\\,\\text{m}$ above $C$. Summing moments about hinge $C$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_C = 0: \\quad (0.8 T)(0.18) - 240(0.4) - 240(0.8) = 0$$\n\n$$0.144 T = 288 \\implies T = 2000\\,\\text{N} = 2.00\\,\\text{kN}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.15(a)",
-      "tags": ["2d-equilibrium", "bracket"]
+      "tags": [
+        "2d-equilibrium",
+        "bracket"
+      ]
     },
     {
       "key": "prob-4-19-bell-crank-tension",
@@ -90,10 +119,12 @@
       "answer": 600,
       "tolerancePct": 1,
       "unit": "N",
-      "solution": "Distance $BC = \\sqrt{80^2 + 60^2} = 100\\,\\text{mm}$, and because link $AB$ is perpendicular to $BC$, its perpendicular moment arm about $C$ is $BC = 100\\,\\text{mm}$. Summing moments about $C$:\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_C = 0: \\quad (720\\,\\text{N})(100\\,\\text{mm}) - T_{DE}(120\\,\\text{mm}) = 0 \\implies T_{DE} = 600\\,\\text{N}.$$",
+      "solution": "Distance $BC = \\sqrt{80^2 + 60^2} = 100\\,\\text{mm}$, and because link $AB$ is perpendicular to $BC$, its perpendicular moment arm about $C$ is $BC = 100\\,\\text{mm}$. Summing moments about $C$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_C = 0: \\quad (720\\,\\text{N})(100\\,\\text{mm}) - T_{DE}(120\\,\\text{mm}) = 0 \\implies T_{DE} = 600\\,\\text{N}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.19(a)",
-      "tags": ["2d-equilibrium", "two-force-member"]
+      "tags": [
+        "2d-equilibrium",
+        "two-force-member"
+      ]
     },
     {
       "key": "prob-4-23-plate-roller-reaction",
@@ -103,10 +134,12 @@
       "answer": 488,
       "tolerancePct": 1,
       "unit": "N",
-      "solution": "The roller reaction $\\mathbf{B}$ acts normal to the $60^\\circ$ surface (at $30^\\circ$ above the $-x$ axis), so $B_x = -B\\cos 30^\\circ$ and $B_y = +B\\sin 30^\\circ$. Relative to $A$, $B$ is $500\\,\\text{mm}$ to the right and $h = 200\\,\\text{mm}$ below. Summing moments about $A$:\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad B\\sin 30^\\circ (500) - B\\cos 30^\\circ (200) - 150(250) = 0$$\\n\\n$$B(250 - 173.21) = 37\\,500 \\implies B = \\frac{37\\,500}{76.795} = 488\\,\\text{N}.$$",
+      "solution": "The roller reaction $\\mathbf{B}$ acts normal to the $60^\\circ$ surface (at $30^\\circ$ above the $-x$ axis), so $B_x = -B\\cos 30^\\circ$ and $B_y = +B\\sin 30^\\circ$. Relative to $A$, $B$ is $500\\,\\text{mm}$ to the right and $h = 200\\,\\text{mm}$ below. Summing moments about $A$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad B\\sin 30^\\circ (500) - B\\cos 30^\\circ (200) - 150(250) = 0$$\n\n$$B(250 - 173.21) = 37\\,500 \\implies B = \\frac{37\\,500}{76.795} = 488\\,\\text{N}.$$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.23(b)",
-      "tags": ["2d-equilibrium", "inclined-roller"]
+      "tags": [
+        "2d-equilibrium",
+        "inclined-roller"
+      ]
     },
     {
       "key": "prob-4-31-bent-lever-tension",
@@ -116,23 +149,27 @@
       "answer": 80,
       "tolerancePct": 1,
       "unit": "N",
-      "solution": "Because the cable passes over a frictionless pulley at $B$, its tension $T$ is uniform throughout $AB$ and $BD$, pulling upward at $A$ ($100\\,\\text{mm}$ left of $C$) and to the left at $D$ ($250\\,\\text{mm}$ above $C$). Taking moments about hinge $C$:\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_C = 0: \\quad T(250) - T(100) - 120(100) = 0$$\\n\\n$$150 T = 12\\,000 \\implies T = 80.0\\,\\text{N}.$$",
+      "solution": "Because the cable passes over a frictionless pulley at $B$, its tension $T$ is uniform throughout $AB$ and $BD$, pulling upward at $A$ ($100\\,\\text{mm}$ left of $C$) and to the left at $D$ ($250\\,\\text{mm}$ above $C$). Taking moments about hinge $C$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_C = 0: \\quad T(250) - T(100) - 120(100) = 0$$\n\n$$150 T = 12\\,000 \\implies T = 80.0\\,\\text{N}.$$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.31",
-      "tags": ["2d-equilibrium", "pulley"]
+      "tags": [
+        "2d-equilibrium",
+        "pulley"
+      ]
     },
     {
       "key": "prob-4-35-movable-bracket-roller",
       "type": "numeric",
       "prompt": "A movable bracket is held at rest by a vertical cable attached at $C$ and by frictionless rollers at $A$ and $B$ in a vertical guide. For the $600\\text{-N}$ vertical load shown, determine the magnitude of the horizontal reaction at roller $A$ (in $\\text{kN}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-35.png",
-      "answer": 4.0,
+      "answer": 4,
       "tolerancePct": 1,
       "unit": "kN",
-      "solution": "Vertical equilibrium gives $T = 600\\,\\text{N}$. Summing moments about roller $B$ ($475 + 75 = 550\\,\\text{mm}$ right of the $600\\text{-N}$ load, $50\\,\\text{mm}$ left of cable $C$, and $90\\,\\text{mm}$ above $A$):\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_B = 0: \\quad 600(550) + 600(50) - A(90) = 0$$\\n\\n$$90 A = 360\\,000 \\implies A = 4000\\,\\text{N} = 4.00\\,\\text{kN}\\leftarrow.$$",
+      "solution": "Vertical equilibrium gives $T = 600\\,\\text{N}$. Summing moments about roller $B$ ($475 + 75 = 550\\,\\text{mm}$ right of the $600\\text{-N}$ load, $50\\,\\text{mm}$ left of cable $C$, and $90\\,\\text{mm}$ above $A$):\n\n$$+\\!\\!\\circlearrowleft \\sum M_B = 0: \\quad 600(550) + 600(50) - A(90) = 0$$\n\n$$90 A = 360\\,000 \\implies A = 4000\\,\\text{N} = 4.00\\,\\text{kN}\\leftarrow.$$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.35(b)",
-      "tags": ["2d-equilibrium", "rollers"]
+      "tags": [
+        "2d-equilibrium",
+        "rollers"
+      ]
     },
     {
       "key": "prob-4-50-telephone-pole-moment",
@@ -142,26 +179,46 @@
       "answer": 1431,
       "tolerancePct": 1,
       "unit": "N·m",
-      "solution": "Taking moments about the base $A$ (vertical forces—the pole weight and the vertical components of $T_1, T_2$—pass through $A$):\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad (600\\cos 10^\\circ)(6) - (375\\cos 20^\\circ)(6) - M_A = 0$$\\n\\n$$M_A = 3545.3 - 2114.3 = 1431\\,\\text{N}\\cdot\\text{m}.$$",
+      "solution": "Taking moments about the base $A$ (vertical forces—the pole weight and the vertical components of $T_1, T_2$—pass through $A$):\n\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad (600\\cos 10^\\circ)(6) - (375\\cos 20^\\circ)(6) - M_A = 0$$\n\n$$M_A = 3545.3 - 2114.3 = 1431\\,\\text{N}\\cdot\\text{m}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.50",
-      "tags": ["2d-equilibrium", "fixed-support"]
+      "tags": [
+        "2d-equilibrium",
+        "fixed-support"
+      ]
     },
     {
       "key": "prob-4-59-constraint-classification",
       "type": "mcq",
-      "prompt": "In the eight rectangular plate support arrangements shown in Fig. P4.59 (each plate of mass $40\\,\\text{kg}$ in a vertical plane), which plate is **partially constrained**, **statically determinate**, and **maintains equilibrium** in the position shown?",
+      "prompt": "In the eight rectangular plate support arrangements shown in the diagram (each plate of mass $40\\,\\text{kg}$ in a vertical plane), which plate is **partially constrained**, **statically determinate**, and **maintains equilibrium** in the position shown?",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-59.png",
       "options": [
-        { "label": "A", "text": "Plate 3", "correct": false },
-        { "label": "B", "text": "Plate 4", "correct": false },
-        { "label": "C", "text": "Plate 5", "correct": true },
-        { "label": "D", "text": "Plate 7", "correct": false }
+        {
+          "label": "A",
+          "text": "Plate 3",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "Plate 4",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "Plate 5",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "Plate 7",
+          "correct": false
+        }
       ],
       "solution": "Plate 5 is supported by two vertical short links at $C$ and $D$, introducing only $2$ vertical unknown reactions ($C$ and $D$). Because $< 3$ unknowns exist, it is partially constrained (free to sway horizontally); however, because the only applied load is its vertical weight $W = 392.4\\,\\text{N}$, $\\sum F_x = 0$ is satisfied and $C = D = 196.2\\,\\text{N}$ are statically determinate. (Plate 3 has $4$ unknowns and is statically indeterminate; Plate 4 has $3$ concurrent reactions at $D$ and cannot maintain equilibrium; Plate 7 cannot resist the vertical weight.)",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.59",
-      "tags": ["constraints", "static-determinacy"]
+      "tags": [
+        "constraints",
+        "static-determinacy"
+      ]
     },
     {
       "key": "prob-4-64-tank-cable-tension",
@@ -171,10 +228,12 @@
       "answer": 289,
       "tolerancePct": 1,
       "unit": "lb",
-      "solution": "The tank radius is $R = 4\\,\\text{ft}$, and corner $A$ lies $4 - 2 = 2\\,\\text{ft}$ below the center $G$, so radius $GA$ makes $\\sin\\theta = 2/4 = 0.5 \\implies \\theta = 30^\\circ$ below the horizontal ($60^\\circ$ from the vertical). At lift-off, only three forces act: $W = 500\\,\\text{lb}$ downward at $G$, horizontal tension $T$ at the top ($6\\,\\text{ft}$ above $A$), and reaction $R_A$ at $A$. Summing moments about $A$:\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad T(6\\,\\text{ft}) - 500(4\\cos 30^\\circ\\,\\text{ft}) = 0 \\implies T = \\frac{1000\\sqrt{3}}{6} = 289\\,\\text{lb}.$$",
+      "solution": "The tank radius is $R = 4\\,\\text{ft}$, and corner $A$ lies $4 - 2 = 2\\,\\text{ft}$ below the center $G$, so radius $GA$ makes $\\sin\\theta = 2/4 = 0.5 \\implies \\theta = 30^\\circ$ below the horizontal ($60^\\circ$ from the vertical). At lift-off, only three forces act: $W = 500\\,\\text{lb}$ downward at $G$, horizontal tension $T$ at the top ($6\\,\\text{ft}$ above $A$), and reaction $R_A$ at $A$. Summing moments about $A$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad T(6\\,\\text{ft}) - 500(4\\cos 30^\\circ\\,\\text{ft}) = 0 \\implies T = \\frac{1000\\sqrt{3}}{6} = 289\\,\\text{lb}.$$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.64",
-      "tags": ["three-force-body", "moments"]
+      "tags": [
+        "three-force-body",
+        "moments"
+      ]
     },
     {
       "key": "prob-4-81-member-abc-pulley",
@@ -184,10 +243,12 @@
       "answer": 100,
       "tolerancePct": 1,
       "unit": "lb",
-      "solution": "Since $AC = 24\\,\\text{in.}$ and $AD = 7\\,\\text{in.}$, length $CD = \\sqrt{7^2 + 24^2} = 25\\,\\text{in.}$, so the vertical component of cord tension at $C$ is $\\frac{7}{25}T$ upward. At $A$, the cord pulls vertically upward with force $T$. Summing moments about pin $B$ ($12\\,\\text{in.}$ from both $A$ and $C$):\\n\\n$$+\\!\\!\\circlearrowleft \\sum M_B = 0: \\quad 72(12) - T(12) + \\left(\\frac{7}{25}T\\right)(12) = 0 \\implies \\frac{18}{25}T = 72 \\implies T = 100.0\\,\\text{lb}.$$",
+      "solution": "Since $AC = 24\\,\\text{in.}$ and $AD = 7\\,\\text{in.}$, length $CD = \\sqrt{7^2 + 24^2} = 25\\,\\text{in.}$, so the vertical component of cord tension at $C$ is $\\frac{7}{25}T$ upward. At $A$, the cord pulls vertically upward with force $T$. Summing moments about pin $B$ ($12\\,\\text{in.}$ from both $A$ and $C$):\n\n$$+\\!\\!\\circlearrowleft \\sum M_B = 0: \\quad 72(12) - T(12) + \\left(\\frac{7}{25}T\\right)(12) = 0 \\implies \\frac{18}{25}T = 72 \\implies T = 100.0\\,\\text{lb}.$$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.81",
-      "tags": ["three-force-body", "pulley"]
+      "tags": [
+        "three-force-body",
+        "pulley"
+      ]
     },
     {
       "key": "prob-4-91-lever-pulley-3d",
@@ -197,10 +258,12 @@
       "answer": 1200,
       "tolerancePct": 1,
       "unit": "N",
-      "solution": "The bearings at $C$ and $D$ lie along the $z$ axis and exert no moments about the $z$ axis. Summing moments about the $z$ axis ($r_{\\text{pulley}} = 120\\,\\text{mm}$):\\n\\n$$\\sum M_z = 0: \\quad (720\\,\\text{N})(200\\,\\text{mm}) - T(120\\,\\text{mm}) = 0 \\implies T = 1200\\,\\text{N}.$$",
+      "solution": "The bearings at $C$ and $D$ lie along the $z$ axis and exert no moments about the $z$ axis. Summing moments about the $z$ axis ($r_{\\text{pulley}} = 120\\,\\text{mm}$):\n\n$$\\sum M_z = 0: \\quad (720\\,\\text{N})(200\\,\\text{mm}) - T(120\\,\\text{mm}) = 0 \\implies T = 1200\\,\\text{N}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.91(a)",
-      "tags": ["3d-equilibrium", "bearings"]
+      "tags": [
+        "3d-equilibrium",
+        "bearings"
+      ]
     },
     {
       "key": "prob-4-108-pole-cable-tension",
@@ -210,10 +273,13 @@
       "answer": 17.5,
       "tolerancePct": 1,
       "unit": "kN",
-      "solution": "From the geometry, $B(0, 8, 0)\\,\\text{m}$, $E(7.5, 0, 6)\\,\\text{m}$, and $F(7.5, 0, -6)\\,\\text{m}$, giving cable length $BE = BF = \\sqrt{7.5^2 + (-8)^2 + 6^2} = 12.5\\,\\text{m}$. By symmetry ($\\phi = 0$), $T_{BE} = T_{BF}$. Summing moments about the $z$ axis through $A$:\\n\\n$$\\sum M_z = 0: \\quad (14\\,\\text{kN})(12\\,\\text{m}) - 2\\left(\\frac{7.5}{12.5} T_{BE}\\right)(8\\,\\text{m}) = 0$$\\n\\n$$168 = 9.6 T_{BE} \\implies T_{BE} = 17.50\\,\\text{kN}.$$",
+      "solution": "From the geometry, $B(0, 8, 0)\\,\\text{m}$, $E(7.5, 0, 6)\\,\\text{m}$, and $F(7.5, 0, -6)\\,\\text{m}$, giving cable length $BE = BF = \\sqrt{7.5^2 + (-8)^2 + 6^2} = 12.5\\,\\text{m}$. By symmetry ($\\phi = 0$), $T_{BE} = T_{BF}$. Summing moments about the $z$ axis through $A$:\n\n$$\\sum M_z = 0: \\quad (14\\,\\text{kN})(12\\,\\text{m}) - 2\\left(\\frac{7.5}{12.5} T_{BE}\\right)(8\\,\\text{m}) = 0$$\n\n$$168 = 9.6 T_{BE} \\implies T_{BE} = 17.50\\,\\text{kN}.$$",
       "difficulty": "hard",
-      "source": "Beer & Johnston 10e, Ch. 4, Prob. 4.108",
-      "tags": ["3d-equilibrium", "ball-and-socket", "cables"]
+      "tags": [
+        "3d-equilibrium",
+        "ball-and-socket",
+        "cables"
+      ]
     }
   ]
 }

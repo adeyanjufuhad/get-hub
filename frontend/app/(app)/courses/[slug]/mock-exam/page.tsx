@@ -10,12 +10,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ApiError, api } from "@/lib/api";
 import { cn } from "@/lib/cn";
-import { COURSES, TEXTBOOKS } from "@/lib/config";
+import { COURSES } from "@/lib/config";
 
 const PRESETS = [
-  { label: "Quick Quiz", q: 5, m: 8, desc: "Fast pre-lecture warm-up" },
-  { label: "Mid-Semester CBT", q: 10, m: 15, desc: "Standard OAU continuous test" },
-  { label: "Full Mock Exam", q: 15, m: 25, desc: "Comprehensive syllabus test" },
+  { label: "Quick quiz", q: 5, m: 8, desc: "Fast pre-lecture warm-up" },
+  { label: "Mid-semester CBT", q: 10, m: 15, desc: "Standard continuous assessment" },
+  { label: "Full mock exam", q: 15, m: 25, desc: "Comprehensive course test" },
 ] as const;
 
 export default function MockExamLauncherPage() {
@@ -25,7 +25,6 @@ export default function MockExamLauncherPage() {
   const { user } = useAuth();
 
   const course = COURSES.find((c) => c.slug === slug);
-  const book = TEXTBOOKS.find((b) => b.courseSlug === slug);
   const [questionCount, setQuestionCount] = useState(10);
   const [minutes, setMinutes] = useState(15);
   const [starting, setStarting] = useState(false);
@@ -43,7 +42,7 @@ export default function MockExamLauncherPage() {
       });
       router.push(`/mock-exams/${res.exam.id}`);
     } catch (err) {
-      toast.error(err instanceof ApiError ? err.message : "Could not start mock exam.");
+      toast.error(err instanceof ApiError ? err.message : "Could not start mock exam");
       setStarting(false);
     }
   }
@@ -53,16 +52,16 @@ export default function MockExamLauncherPage() {
       <div className="flex items-center justify-between gap-2">
         <Link
           href={`/courses/${slug}`}
-          className="-ml-1 inline-flex min-h-[44px] items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+          className="-ml-1 inline-flex min-h-[44px] items-center gap-1.5 px-1 text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)]"
         >
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Back to {course?.code || "course"}
         </Link>
         <Link
           href="/tests"
-          className="font-mono text-xs font-semibold text-[var(--accent)] hover:underline"
+          className="text-xs font-medium text-[var(--accent)] hover:underline"
         >
-          All tests &amp; drills →
+          All tests and drills →
         </Link>
       </div>
 
@@ -70,25 +69,20 @@ export default function MockExamLauncherPage() {
       <div className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="accent" className="font-mono">
-            {course?.code || slug.toUpperCase()} · Timed CBT Simulation
+            {course?.code || slug.toUpperCase()} · Timed mock exam
           </Badge>
-          {book && (
-            <Badge variant="neutral">
-              {book.authors.split(",")[0]} bank
-            </Badge>
-          )}
         </div>
 
-        <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
-          {course?.title || "Timed Mock Exam"}
+        <h1 className="mt-3 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+          {course?.title || "Timed mock exam"}
         </h1>
         <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
-          Randomized questions pulled across all <span translate="no">{course?.code}</span> study folios (including diagram-backed textbook problems), graded on the Go server with per-topic breakdown.
+          Randomized questions pulled across all <span translate="no">{course?.code}</span> topics, including diagram-backed calculation and multiple-choice questions, graded instantly with a per-topic breakdown.
         </p>
 
         {/* Tactile Preset Cards (rounded-[12px] concentric with parent) */}
         <div className="mt-6">
-          <p className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
+          <p className="text-xs font-medium text-[var(--text-muted)]">
             Choose an exam format
           </p>
           <div className="mt-2.5 grid gap-2.5 sm:grid-cols-3">
@@ -109,13 +103,13 @@ export default function MockExamLauncherPage() {
                       : "border-[var(--border-hairline)] bg-[var(--bg-canvas)] hover:border-[var(--border-strong)]"
                   )}
                 >
-                  <span className="text-xs font-extrabold text-[var(--text-primary)]">
+                  <span className="text-xs font-semibold text-[var(--text-primary)]">
                     {p.label}
                   </span>
-                  <span className="tabular mt-1 font-mono text-xs font-bold text-[var(--accent)]">
+                  <span className="tabular mt-1 font-mono text-xs font-medium text-[var(--accent)]">
                     {p.q} Qs · {p.m} min
                   </span>
-                  <span className="mt-1 text-[11px] text-[var(--text-secondary)]">
+                  <span className="mt-1 text-xs text-[var(--text-secondary)]">
                     {p.desc}
                   </span>
                 </button>
@@ -127,7 +121,7 @@ export default function MockExamLauncherPage() {
         {/* Fine-tune controls */}
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
           <div>
-            <label htmlFor="q-count" className="block text-xs font-semibold text-[var(--text-primary)]">
+            <label htmlFor="q-count" className="block text-xs font-medium text-[var(--text-primary)]">
               Question count
             </label>
             <select
@@ -145,7 +139,7 @@ export default function MockExamLauncherPage() {
           </div>
 
           <div>
-            <label htmlFor="duration" className="block text-xs font-semibold text-[var(--text-primary)]">
+            <label htmlFor="duration" className="block text-xs font-medium text-[var(--text-primary)]">
               Time limit
             </label>
             <select
@@ -170,7 +164,7 @@ export default function MockExamLauncherPage() {
           </li>
           <li className="flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden="true" />
-            Full step-by-step worked solutions unlock immediately upon submission.
+            Full step-by-step worked solutions unlock right after you submit.
           </li>
         </ul>
 
@@ -182,7 +176,7 @@ export default function MockExamLauncherPage() {
           onClick={handleStart}
           className="mt-6 w-full text-xs min-[380px]:text-sm"
         >
-          {starting ? "Generating CBT paper…" : `Start ${questionCount}-question exam (${minutes} min)`}
+          {starting ? "Generating exam…" : `Start ${questionCount}-question exam (${minutes} min)`}
           {!starting && <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />}
         </Button>
       </div>

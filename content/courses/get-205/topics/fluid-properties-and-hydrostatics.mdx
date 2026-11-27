@@ -5,7 +5,6 @@ topicId: "22222222-2222-4222-8222-222222220205"
 courseCode: "GET 205"
 courseSlug: "get-205"
 ccmasRef: "Fluid properties; hydrostatics, pressure measurement & forces on submerged surfaces"
-textbookRef: "Çengel · Ch. 2 (§2–9), Ch. 10 & Ch. 11 (§11–2)"
 outcomes:
   - "Calculate fluid density, specific gravity, and viscous shear stress from Newton's law of viscosity"
   - "Apply Pascal's principle and U-tube / differential manometers to determine absolute and gauge pressures"
@@ -16,33 +15,30 @@ isFree: true
 
 ## 1. Overview
 
-A **fluid** is a substance in the liquid or gas phase that deforms continuously under any applied shear stress, no matter how small. In **GET 205**, every piping, dam-gate, and pump calculation rests on two foundations from **Çengel's *Fundamentals of Thermal-Fluid Sciences***: **fluid properties** (Chapter 10) and **fluid statics & manometry** (Chapters 2 & 11).
+A **fluid** is a substance in the liquid or gas phase that deforms continuously under any applied shear stress, no matter how small. In **GET 205**, every piping, dam-gate, and pump calculation rests on two foundations : **fluid properties** and **fluid statics & manometry** (Chapters 2 & 11).
 
 ---
 
 ## 2. Key Concepts
 
-### Fundamental Fluid Properties (Çengel Ch. 10)
-
+### Fundamental Fluid Properties
 - **Density ($\rho$) & Specific Gravity ($SG$):** Mass per unit volume ($\text{kg/m}^3$), with standard water density $\rho_{\text{H}_2\text{O}} = 1000\,\text{kg/m}^3$:
   $$SG = \frac{\rho}{\rho_{\text{H}_2\text{O}}}, \qquad \gamma = \rho g \;\;(\text{N/m}^3)$$
 - **Newton's Law of Viscosity:** For laminar shear between parallel layers with velocity gradient $\frac{du}{dy}$, the shear stress $\tau$ ($\text{Pa}$ or $\text{N/m}^2$) is:
   $$\tau = \mu \frac{du}{dy}, \qquad \nu = \frac{\mu}{\rho} \;\;(\text{m}^2\text{/s})$$
   where $\mu$ is **dynamic viscosity** ($\text{kg/m}\cdot\text{s}$ or $\text{Pa}\cdot\text{s}$) and $\nu$ is **kinematic viscosity**.
 
-### Hydrostatic Pressure & Differential Manometers (Çengel §2–7 to §2–9)
-
+### Hydrostatic Pressure & Differential Manometers
 In a static incompressible fluid, pressure increases linearly with depth ($\Delta P = \rho g h$) and remains identical at all points on the same horizontal plane connected by the same continuous fluid (**Pascal's Law**). Across a horizontal flow section tapped by a differential U-tube manometer (fluid density $\rho_1$, heavy gage fluid $\rho_2$, column differential $h$):
 
 $$P_1 - P_2 = (\rho_2 - \rho_1)\,g h$$
 
 <DiagramFigure
   src="/images/textbook-figures/get-205/cengel-fig-2-49-diff-manometer.webp"
-  caption="Çengel Fig. 2–49 — Measuring the pressure drop P₁ − P₂ = (ρ₂ − ρ₁)gh across a pipe flow device by jumping horizontally from meniscus A to B."
+  caption="Measuring the pressure drop P₁ − P₂ = (ρ₂ − ρ₁)gh across a pipe flow device by jumping horizontally from meniscus A to B."
 />
 
-### Hydrostatic Forces on Submerged Plane Plates (Çengel §11–2)
-
+### Hydrostatic Forces on Submerged Plane Plates
 For a submerged rectangular plate of width $a$ and height $b$ tilted at angle $\theta$ from the horizontal with its top edge at slant distance $s$ from the free surface (surface pressure $P_0$), the resultant hydrostatic force equals the centroid pressure $P_C$ times area $A = ab$:
 
 $$F_R = P_C A = \left[P_0 + \rho g\!\left(s + \frac{b}{2}\right)\sin\theta\right]ab$$
@@ -53,15 +49,15 @@ $$y_P = s + \frac{b}{2} + \frac{b^2}{12(s + b/2)}$$
 
 <DiagramFigure
   src="/images/textbook-figures/get-205/cengel-fig-11-8-submerged-plates.webp"
-  caption="Çengel Fig. 11–8 — Linear hydrostatic pressure distributions and resultant forces FR on (a) tilted, (b) vertical, and (c) horizontal submerged rectangular plates."
+  caption="Linear hydrostatic pressure distributions and resultant forces FR on (a) tilted, (b) vertical, and (c) horizontal submerged rectangular plates."
 />
 
 ---
 
-## 3. Textbook Worked Examples
+## 3. Worked Examples
 
 <StepRevealExample
-  title="Çengel Example 2–5 — Measuring Pressure with a Manometer (Fig. 2–47)"
+  title="Measuring Pressure with a Manometer"
   problem="A manometer is used to measure the pressure in a tank. The fluid used has a specific gravity of $0.85$, and the manometer column height is $h = 55\,\text{cm}$. If the local atmospheric pressure is $P_{\text{atm}} = 96\,\text{kPa}$, determine the absolute pressure within the tank."
   steps={[
     "Convert the fluid's specific gravity to density using $\\rho_{\\text{H}_2\\text{O}} = 1000\\,\\text{kg/m}^3$: $\\rho = SG \\cdot \\rho_{\\text{H}_2\\text{O}} = 0.85 \\times 1000 = 850\\,\\text{kg/m}^3$.",
@@ -73,12 +69,12 @@ $$y_P = s + \frac{b}{2} + \frac{b^2}{12(s + b/2)}$$
 
 <DiagramFigure
   src="/images/textbook-figures/get-205/cengel-fig-11-9-car-door.webp"
-  caption="Çengel Fig. 11–9 (Schematic for Example 11–1) — Submerged car at the bottom of a lake with its 1.2 m × 1 m door 8 m below the free surface."
+  caption="Submerged car at the bottom of a lake with its 1.2 m × 1 m door 8 m below the free surface."
 />
 
 <StepRevealExample
-  title="Çengel Example 11–1 — Hydrostatic Force on the Door of a Submerged Car"
-  problem="A heavy car plunges into a lake during an accident and lands at the bottom of the lake on its wheels (Fig. 11–9). The door is $b = 1.2\,\text{m}$ high and $a = 1\,\text{m}$ wide, and the top edge of the door is $s = 8\,\text{m}$ below the free surface of the water ($\rho = 1000\,\text{kg/m}^3$). Assuming the cabin remains sealed at atmospheric pressure, determine the resultant hydrostatic force $F_R$ on the door and the depth $y_P$ of the pressure center."
+  title="Hydrostatic Force on the Door of a Submerged Car"
+  problem="A heavy car plunges into a lake during an accident and lands at the bottom of the lake on its wheels). The door is $b = 1.2\,\text{m}$ high and $a = 1\,\text{m}$ wide, and the top edge of the door is $s = 8\,\text{m}$ below the free surface of the water ($\rho = 1000\,\text{kg/m}^3$). Assuming the cabin remains sealed at atmospheric pressure, determine the resultant hydrostatic force $F_R$ on the door and the depth $y_P$ of the pressure center."
   steps={[
     "Atmospheric pressure acts both on the lake surface and inside the sealed car cabin, so $P_0$ cancels out ($P_0 = 0$).",
     "Compute the gauge pressure at the centroid (midpoint) of the vertical door, $h_C = s + b/2 = 8 + 1.2/2 = 8.6\\,\\text{m}$: $P_{\\text{ave}} = \\rho g h_C = (1000)(9.81)(8.6) = 84\\,366\\,\\text{N/m}^2 \\approx 84.4\\,\\text{kN/m}^2$.",
@@ -99,6 +95,3 @@ $$y_P = s + \frac{b}{2} + \frac{b^2}{12(s + b/2)}$$
 
 ---
 
-## 5. Textbook Reference
-
-- **Prescribed Textbook:** Y. A. Çengel, R. H. Turner & J. M. Cimbala, *Fundamentals of Thermal-Fluid Sciences*, Chapter 2 (§2–7 to §2–9), Chapter 10 (§10–3 Viscosity), and Chapter 11 (§11–1 to §11–3).

@@ -8,7 +8,7 @@ import { Stepper, type StepItem } from "@/components/reactbits/stepper";
 import { Badge } from "@/components/ui/badge";
 import { MathText } from "@/components/ui/math-text";
 import { cn } from "@/lib/cn";
-import { CCMAS_OUTLINE, COURSES, TEXTBOOKS } from "@/lib/config";
+import { CCMAS_OUTLINE, COURSES } from "@/lib/config";
 
 const DEMO_STEPS = [
   "Take moments about pin $A$ (+ anticlockwise) so $R_A$ drops out: $\\sum M_A = 0 \\implies R_B(6.0) - 120(2.0) = 0$.",
@@ -80,7 +80,7 @@ export function HeroProductPreview() {
           <div className="grid gap-4 md:grid-cols-5">
             <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-4 md:col-span-2">
               <Badge variant="accent" className="mb-2 font-mono">
-                <span translate="no">GET 207</span> · Hibbeler 14e
+                <span translate="no">GET 207</span> · Applied Mechanics
               </Badge>
               <p className="text-sm font-bold text-[var(--text-primary)]">
                 Simply Supported Beam Equilibrium
@@ -106,7 +106,7 @@ export function HeroProductPreview() {
               <div>
                 <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-2">
                   <span className="font-mono text-xs font-semibold text-[var(--text-muted)]">
-                    Lined Folio · Worked Steps
+                    Study Note · Worked Steps
                   </span>
                   <span className="tabular font-mono text-xs font-bold text-[var(--accent)]">
                     {revealed}/{DEMO_STEPS.length} shown
@@ -158,13 +158,13 @@ export function HeroProductPreview() {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
               <Badge variant="accent" className="mb-2 font-mono">
-                <span translate="no">GET 205</span> · Çengel Ch. 2
+                <span translate="no">GET 205</span> · Fluid Mechanics
               </Badge>
               <h3 className="text-base font-bold text-[var(--text-primary)]">
                 Differential U-Tube Manometry
               </h3>
               <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
-                Study folios pair lightweight vector schematics (2&nbsp;KB) with high-resolution plates cropped directly from Çengel’s Fluid Mechanics.
+                Study notes pair clear engineering diagrams with step-by-step pressure balance derivations so you can follow every problem easily.
               </p>
               <ul className="mt-3 space-y-1.5 text-xs text-[var(--text-secondary)]">
                 <li className="flex items-center gap-2">
@@ -181,7 +181,7 @@ export function HeroProductPreview() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/textbook-figures/get-205/cengel-fig-2-49-diff-manometer.webp"
-                alt="Çengel Fig. 2-49 differential manometer schematic showing fluid column heights"
+                alt="Differential manometer schematic showing fluid column heights"
                 width={520}
                 height={320}
                 loading="lazy"
@@ -196,7 +196,7 @@ export function HeroProductPreview() {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
               <Badge variant="accent" className="mb-2 font-mono">
-                <span translate="no">GET 209</span> · Stewart 7e + Go API
+                <span translate="no">GET 209</span> · Engineering Maths I
               </Badge>
               <p className="text-sm font-medium text-[var(--text-primary)]">
                 Evaluate the limit:
@@ -205,7 +205,7 @@ export function HeroProductPreview() {
                 <MathText text="$$\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$$" />
               </div>
               <p className="mt-2 text-xs leading-relaxed text-[var(--text-muted)] text-pretty">
-                Numeric and MCQ answers are verified on the Go server with ±1% engineering tolerance; worked solutions unlock only after submission.
+                Numeric and multiple-choice answers are graded instantly with ±1% engineering tolerance, and full worked solutions unlock right after you submit.
               </p>
             </div>
             <div className="flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-2">
@@ -229,7 +229,7 @@ export function HeroProductPreview() {
 
 const SAMPLE_TOPIC_SLUG: Record<string, string> = {
   "get-205": "fluid-properties-and-hydrostatics",
-  "get-207": "forces-moments-and-equilibrium",
+  "get-207": "force-vectors",
   "get-209": "limits-and-continuity",
 };
 
@@ -249,13 +249,12 @@ export function CourseCurriculumExplorer() {
   const outline = CCMAS_OUTLINE[activeCourse.slug] ?? [];
   const firstFolioSlug = SAMPLE_TOPIC_SLUG[activeCourse.slug] ?? "";
   const plateImg = COURSE_PLATE[activeCourse.slug] ?? "";
-  const matchedBook = TEXTBOOKS.find((b) => b.courseSlug === activeCourse.slug);
 
   const listItems: AnimatedListEntry[] = outline.map((title, idx) => ({
     id: `${activeCourse.slug}-${idx}`,
     title,
-    meta: `CCMAS Module 0${idx + 1} · ${activeCourse.code}`,
-    badge: idx < 3 ? `Folio 0${idx + 1}` : "Syllabus",
+    meta: `Module 0${idx + 1} · ${activeCourse.code}`,
+    badge: `Topic 0${idx + 1}`,
   }));
 
   return (
@@ -298,7 +297,7 @@ export function CourseCurriculumExplorer() {
             <Badge variant="accent" className="font-mono">
               <span translate="no">{activeCourse.code}</span>
             </Badge>
-            <Badge variant="neutral">{activeCourse.units}&nbsp;Units · NUC CCMAS 2023</Badge>
+            <Badge variant="neutral">{activeCourse.units}&nbsp;Units · OAU 200L</Badge>
           </div>
           <h3 className="mt-2.5 text-lg font-bold tracking-tight text-[var(--text-primary)] sm:text-xl">
             {activeCourse.title}
@@ -308,7 +307,7 @@ export function CourseCurriculumExplorer() {
           </p>
 
           <p className="mt-4 mb-1.5 font-mono text-[11px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-            CCMAS Syllabus ({outline.length} modules)
+            Course Outline ({outline.length} modules)
           </p>
           <AnimatedList
             items={listItems}
@@ -322,14 +321,14 @@ export function CourseCurriculumExplorer() {
               href={`/courses/${activeCourse.slug}/${firstFolioSlug}`}
               className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full bg-[var(--ink-cta)] px-5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90 min-[420px]:w-auto sm:text-sm"
             >
-              Read Folio 01
+              Read Topic 01
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
             </Link>
             <Link
               href="/signup"
               className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-5 text-xs font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] min-[420px]:w-auto sm:text-sm"
             >
-              Solve 24 course drills
+              Start practicing
             </Link>
           </div>
         </div>
@@ -338,20 +337,18 @@ export function CourseCurriculumExplorer() {
           <div>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
-                Matched Textbook Plate
+                Sample Course Diagram
               </span>
-              {matchedBook && (
-                <span className="truncate font-mono text-[11px] font-medium text-[var(--text-muted)]">
-                  {matchedBook.authors.split("&")[0]?.split(",")[0]?.trim()} · {matchedBook.edition}
-                </span>
-              )}
+              <span className="truncate font-mono text-[11px] font-medium text-[var(--text-muted)]">
+                {activeCourse.code}
+              </span>
             </div>
             {plateImg && (
               <div className="mt-3 flex h-[180px] items-center justify-center overflow-hidden rounded-xl border border-[var(--border-hairline)] bg-white p-2.5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={plateImg}
-                  alt={`${activeCourse.code} prescribed textbook diagram`}
+                  alt={`${activeCourse.code} engineering diagram`}
                   width={460}
                   height={260}
                   loading="lazy"
@@ -361,11 +358,9 @@ export function CourseCurriculumExplorer() {
               </div>
             )}
           </div>
-          {matchedBook && (
-            <p className="mt-3 text-xs leading-relaxed text-[var(--text-secondary)]">
-              <strong className="text-[var(--text-primary)]">{matchedBook.title}</strong> — chapters mapped 1-to-1 to your OAU 200L course outline.
-            </p>
-          )}
+          <p className="mt-3 text-xs leading-relaxed text-[var(--text-secondary)]">
+            <strong className="text-[var(--text-primary)]">{activeCourse.title}</strong> — structured notes, worked diagrams, and graded practice mapped to your OAU 200L course outline.
+          </p>
         </div>
       </div>
     </div>
@@ -376,17 +371,17 @@ export function StudyLoopStepper() {
   const steps: StepItem[] = [
     {
       id: "read",
-      label: "Read folio",
-      title: "Study on lined notebook folios with textbook figures",
+      label: "Read notes",
+      title: "Study on lined notebook pages with clear diagrams",
       description:
-        "Each chapter opens on ruled ivory paper with learning outcomes, KaTeX derivations, high-DPI textbook plates, and tap-to-reveal worked examples.",
+        "Each topic opens on ruled ivory paper with learning goals, clear equations, labeled engineering diagrams, and tap-to-reveal worked examples.",
       content: (
         <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--paper-bg)] p-4">
           <div className="flex items-center justify-between gap-2">
             <Badge variant="accent" className="font-mono">
-              <span translate="no">GET 205</span> · Folio 01/03
+              <span translate="no">GET 205</span> · Topic 01/03
             </Badge>
-            <span className="font-mono text-[11px] text-[var(--text-muted)]">Çengel Ch. 2 &amp; 11</span>
+            <span className="font-mono text-[11px] text-[var(--text-muted)]">Fluid Mechanics</span>
           </div>
           <p className="mt-2.5 text-sm font-bold text-[var(--text-primary)]">
             Fluid Properties, Hydrostatic Pressure &amp; Manometry
@@ -406,16 +401,16 @@ export function StudyLoopStepper() {
     },
     {
       id: "practice",
-      label: "Drill chapter",
-      title: "Check calculations against the Go grading server",
+      label: "Drill topic",
+      title: "Check your calculations with instant grading",
       description:
-        "Practice diagram-backed MCQs and numeric engineering problems with ±1% tolerance. Full worked solutions unlock right after you check your answer.",
+        "Practice diagram-backed multiple-choice and numeric engineering problems with ±1% tolerance. Full worked solutions unlock right after you check your answer.",
       content: (
         <div className="space-y-2.5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-mono font-bold text-[var(--accent)]">NUMERIC · ±1% TOLERANCE</span>
+            <span className="font-mono font-bold text-[var(--accent)]">Numeric · ±1% tolerance</span>
             <span className="inline-flex items-center gap-1 font-semibold text-[var(--success)]">
-              <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" /> Server-verified
+              <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" /> Auto-graded
             </span>
           </div>
           <p className="text-sm font-medium text-[var(--text-primary)]">
@@ -494,11 +489,11 @@ export function StudyLoopStepper() {
 const FAQS = [
   {
     q: "Will GET Hub drain campus mobile data or lag on mid-range Android phones?",
-    a: "No. Vector schematics weigh 1–3 KB, cropped textbook plates are compressed WebP, and equations render via CSS KaTeX with zero heavy video downloads.",
+    a: "No. Every diagram is lightweight, math equations render quickly right in the page, and there are no heavy videos eating your data.",
   },
   {
-    q: "Which textbooks back the notes and 72 practice questions?",
-    a: "Each course uses the single textbook matching the OAU 200L NUC CCMAS outline: Çengel & Cimbala for GET 205, Hibbeler 14th Edition for GET 207, and James Stewart 7th Edition for GET 209.",
+    q: "How are the notes and practice questions organized?",
+    a: "Every topic follows the OAU 200L Faculty of Technology course outline for GET 205, GET 207, and GET 209, pairing concise derivations and diagrams with worked examples and graded practice questions.",
   },
   {
     q: "Which OAU departments use this platform?",
@@ -506,7 +501,7 @@ const FAQS = [
   },
   {
     q: "What is inside the Part 2 PDF Library?",
-    a: "123 student-shared lecture notes, tutorial sheets, lab manuals, and past question papers across 14 Second Year courses (including MEE 203/205/206, MTH 201/202, CHE 201, CSC 201, and EEE 251–282) with exact MB sizes listed before you download.",
+    a: "123 student-shared lecture notes, tutorial sheets, lab manuals, and past question papers across 14 Second Year courses (including MEE 203/205/206, MTH 201/202, CHE 201, CSC 201, and EEE 251–282) with file sizes listed before you download.",
   },
 ];
 

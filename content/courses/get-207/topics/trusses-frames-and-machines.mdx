@@ -1,0 +1,785 @@
+---
+title: "Analysis of Structures: Trusses, Frames & Machines"
+order: 4
+topicId: "22222222-2222-4222-8222-222222270006"
+courseCode: "GET 207"
+courseSlug: "get-207"
+ccmasRef: "Analysis of plane trusses (joints and sections), frames and machines"
+outcomes:
+  - "Identify simple, compound, overrigid and nonrigid trusses using $m = 2n - 3$ and $m + r = 2n$, and classify a truss as completely, partially or improperly constrained"
+  - "Determine the force in every member of a simple truss by the method of joints, stating whether each member is in tension (T) or compression (C)"
+  - "Recognize joints under special loading conditions and spot zero-force members by inspection"
+  - "Determine the force in selected members of a truss by the method of sections, choosing moment centres that eliminate the other unknowns"
+  - "Dismember frames and machines into two-force and multiforce members and solve for support reactions, pin forces and output forces"
+status: "published"
+isFree: true
+---
+
+## Overview
+
+Earlier statics topics dealt with the equilibrium of a *single* rigid body, where every force involved was external. This topic turns to **structures made of several connected parts**. Now we must find not only the external reactions but also the **internal forces** that hold the parts together. These forces are internal to the structure as a whole, but they become *external* forces as soon as a single part is isolated in its own free-body diagram.
+
+The chapter has two halves:
+
+- **Trusses:** structures built only from straight **two-force members** pinned at their ends. We construct simple trusses, analyse them joint by joint, spot special loading conditions and zero-force members, extend the ideas to space trusses, cut trusses with sections, and examine compound trusses together with statical determinacy.
+- **Frames and machines:** structures containing at least one **multiforce member**. We analyse frames, frames that cease to be rigid when detached from their supports, and machines that transmit and modify forces.
+
+Throughout the chapter, one principle does most of the work: **Newton's third law**. The forces of action and reaction between connected bodies have the same magnitude, the same line of action and opposite sense.
+
+---
+
+### 6.1 Introduction
+
+Look at the crane of the diagram It carries a load $W$ and consists of three beams $AD$, $CF$ and $BE$ connected by frictionless pins. It is supported by a pin at $A$ and by a cable $DG$. The free-body diagram of the *whole* crane) shows only the external forces: the weight $W$, the reaction components $A_x$ and $A_y$, and the cable tension $\mathbf{T}$ at $D$. The forces holding the beams together do not appear. They only show up when the crane is **dismembered** and a free-body diagram is drawn for each part).
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-1.png"
+  caption="(a) Crane carrying load W; (b) free body of the whole crane (internal forces hidden); (c) dismembered crane showing equal and opposite internal forces at B, C and E."
+/>
+
+<RuleBox kind="theorem" title="Newton's Third Law for Connected Bodies">
+
+The force exerted at a connection by member 1 on member 2 is **equal and opposite** to the force exerted at the same point by member 2 on member 1. The two forces have the **same magnitude**, the **same line of action**, and **opposite sense**.
+
+in the diagram: the force exerted at $B$ by $BE$ on $AD$ is equal and opposite to the force exerted at $B$ by $AD$ on $BE$. Likewise the forces at $E$ between $BE$ and $CF$ are equal and opposite, and so are the components at $C$ between $CF$ and $AD$.
+
+</RuleBox>
+
+<RuleBox kind="definition" title="Three Categories of Engineering Structures">
+
+1. **Trusses:** designed to support loads; usually stationary, fully constrained structures. They consist *exclusively of straight members connected at joints located at the ends of each member*. Every truss member is therefore a **two-force member**, acted on by two equal and opposite forces directed along the member.
+2. **Frames:** also designed to support loads and usually stationary and fully constrained. However, a frame always contains **at least one multiforce member**. Such a member is acted on by three or more forces which, in general, are *not* directed along the member.
+3. **Machines:** designed to **transmit and modify forces**. They are structures containing **moving parts**, and like frames they always contain at least one multiforce member.
+
+</RuleBox>
+
+---
+
+## Trusses
+
+### 6.2 Definition of a Truss
+
+A truss consists of **straight members connected at joints**. Members are connected **at their extremities only**, so no member is continuous through a joint. in the diagram, for example, there is no member $AB$. There are instead two distinct members, $AD$ and $DB$. Most real structures are made of several trusses joined into a space framework. Each truss is designed to carry the loads acting in its own plane, so it can be treated as a two-dimensional structure.
+
+<RuleBox kind="definition" title="Idealizing Assumptions for Truss Analysis">
+
+1. **Loads applied at joints only.** Truss members are slender and can carry little lateral load. A load applied between joints, or a distributed load such as bridge traffic, is carried to the joints by a floor system of **stringers and floor beams**).
+2. **Member weights at the joints.** Half of the weight of each member is applied to each of the two joints it connects.
+3. **Pinned joints.** Real joints are welded, bolted or riveted, but the members are assumed to be **pinned together**. The forces at each end of a member therefore reduce to a **single force and no couple**.
+
+Consequently each member is a **two-force member**, and the entire truss may be treated as a **group of pins and two-force members**).
+
+</RuleBox>
+
+<RuleBox kind="definition" title="Tension and Compression">
+
+- **Tension (T):** the end forces tend to **pull the member apart**. The member pulls on the pins at its ends.
+- **Compression (C):** the end forces tend to **compress the member**. The member pushes on the pins at its ends.
+
+</RuleBox>
+
+The common bridge and roof trusses are shown in the diagram: Pratt, Howe and Fink roof trusses; Pratt, Howe, Warren, Baltimore and K-truss bridge trusses; and other types (stadium, cantilever, bascule).
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-5.png"
+  caption="Typical roof trusses (Pratt, Howe, Fink), typical bridge trusses (Pratt, Howe, Warren, Baltimore, K truss) and other types (stadium, cantilever portion, bascule)."
+/>
+
+---
+
+### 6.3 Simple Trusses
+
+The four-member truss of the diagram, pinned at $A$, $B$, $C$, $D$, **collapses** under a load at $B$. The three-member truss of the diagram deforms only slightly: its only possible deformation is small changes in member lengths. Such a truss is called **rigid**, which here means that it *will not collapse*.
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-6.png"
+  caption="(a) A four-bar truss that collapses; (b) the basic rigid triangular truss; (c) adding members BD and CD at a new joint D; (d) a simple truss built from triangle ABC by adding joints D, E, F, G."
+/>
+
+<RuleBox kind="definition" title="Simple Truss">
+
+Start from the basic triangular truss (three members, three joints, the joints not in a straight line). Then repeatedly **add two new members, attached to two existing joints and connected at one new joint**. The resulting truss is rigid and is called a **simple truss**.
+
+- A simple truss is **not necessarily made only of triangles**is simple).
+- A rigid truss is **not necessarily simple**, even if it appears to be made of triangles. The **Fink** and **Baltimore** trusses of the diagram are *not* simple. All the other trusses of the diagram are simple (for the K truss, start from one of the central triangles).
+
+</RuleBox>
+
+<RuleBox kind="theorem" title="Member–Joint Relation for a Simple Truss">
+
+The basic triangle has 3 members and 3 joints. Each step adds 2 members and 1 joint. Hence, for a simple truss with $m$ members and $n$ joints,
+
+$$
+m = 2n - 3
+$$
+
+</RuleBox>
+
+---
+
+### 6.4 Analysis of Trusses by the Method of Joints
+
+A truss is a group of pins and two-force members. When it is dismembered), each member carries two equal and opposite forces along its own axis. By Newton's third law, the member exerts equal and opposite forces on the two pins it connects. The common magnitude of these forces is called the **force in the member**, even though it is strictly a scalar. Since the line of action of every internal force is known, analysing a truss reduces to finding **the force in each member** and deciding **whether it is in tension or compression**.
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-7.png"
+  caption="(a) Free body of the truss of the diagram; (b) the truss dismembered into pins and two-force members."
+/>
+
+<RuleBox kind="theorem" title="Counting Equations for the Method of Joints">
+
+Every pin is in equilibrium, and the forces on a pin are concurrent. Each pin therefore yields **two** equations, $\sum F_x = 0$ and $\sum F_y = 0$. A truss with $n$ pins gives $2n$ equations.
+
+For a simple truss $m = 2n - 3$, so $2n = m + 3$. The pins alone can therefore supply the $m$ member forces **plus** the 3 reaction components (for example the two components of $\mathbf{R}_A$ and the reaction $\mathbf{R}_B$).
+
+The three equilibrium equations of the **whole truss** contain no new information; they are *not independent* of the pin equations. They are, however, the quickest way to find the support reactions first.
+
+</RuleBox>
+
+The procedure for the truss of the diagram runs as follows. Every pin has at least three unknown forces, so first find the reactions from the free body of the whole truss: $\mathbf{R}_A$ is vertical, and $R_A$ and $R_B$ follow. Joint $A$ now has only two unknowns, $F_{AC}$ and $F_{AD}$. These are found from a **force triangle**). $\mathbf{F}_{AC}$ points *toward* joint $A$, so member $AC$ pushes on the pin and is in **compression**. $\mathbf{F}_{AD}$ points *away* from $A$, so $AD$ pulls on the pin and is in **tension**. We then proceed to joint $D$, where only $F_{DC}$ and $F_{DB}$ remain unknown. With more than three forces at a joint it is easier to solve $\sum F_x = 0$, $\sum F_y = 0$ than to draw a polygon. At joint $C$ only $F_{CB}$ is unknown, so the second equation gives a **check**. At joint $B$ everything is known, and the closing of its force triangle is a further check.
+
+<RuleBox kind="note" title="Maxwell's Diagram">
+
+Draw each joint's force polygon with the forces placed tip to tail **in the order their lines of action are met when moving clockwise around the joint**. The polygons for all the joints can then be fitted into a **single diagram**, Maxwell's diagram), which greatly simplifies graphical truss analysis.
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Solving Problems on Your Own — Method of Joints">
+
+1. Draw the free-body diagram of the **entire truss** and find the **support reactions**.
+2. Find a joint connecting **only two members** and draw the free-body diagram of its pin.
+   - With **three forces** (two unknown and one known), draw and solve the **force triangle**.
+   - With **more than three forces**, write $\sum F_x = 0$ and $\sum F_y = 0$, **assuming the members are in tension** (forces pointing away from the joint). A **positive** answer means tension; a **negative** answer means compression.
+3. Move to a joint where only two member forces are still unknown, and repeat.
+4. Continue until every member force is known. The three equations already used for the reactions leave **three extra equations**, which serve as checks.
+5. The starting joint is not unique (Sample Prob. 6.1 can be started at $A$ or at $C$). If the analysis stalls, restart from another joint.
+
+</RuleBox>
+
+---
+
+### 6.5 Joints Under Special Loading Conditions
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-12-6-13.png"
+  caption="standard mechanics Figs. 6.12 and 6.13 — (6.12a) two collinear members plus a load P along the third member; (6.12b) the same joint with P = 0, so AC is a zero-force member; (6.13a) two collinear members; (6.13b) two non-collinear members, both zero-force."
+/>
+
+<RuleBox kind="theorem" title="Special Joint Rules">
+
+1. **Four members on two intersecting straight lines):** the pin carries two pairs of directly opposite forces, so the force polygon is a **parallelogram**. The forces in **opposite members are equal**.
+2. **Three members, two of them collinear, with load $\mathbf{P}$ along the third):** the forces in the two collinear members are **equal**, and the force in the third member **equals $P$**.
+3. **Same joint with no external load ($P = 0$, the diagram):** the third member is a **zero-force member**.
+4. **Two collinear members, no load):** the forces in the two members are **equal**.
+5. **Two non-collinear members, no load):** the pin cannot be in equilibrium unless **both forces are zero**. Both are **zero-force members**.
+
+</RuleBox>
+
+**Example — Howe truss of the diagram** The members drawn in green are zero-force members.
+
+- Joint $C$ connects three members, two of them collinear, with no load. So $BC$ is zero-force, and $F_{AC} = F_{CE}$.
+- By the same reasoning at joint $K$, $JK$ is zero-force and $F_{IK} = F_{KL}$.
+- Joint $J$ is now in the same situation, so $IJ$ is zero-force and $F_{HJ} = F_{JL}$.
+- At joint $I$ the $20\text{-kN}$ load is collinear with $HI$. Hence $F_{HI} = 20\,\text{kN}$ (T) and $F_{GI} = F_{IK}$. So $F_{GI} = F_{IK} = F_{KL}$.
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-14.png"
+  caption="Howe truss: BC, JK and IJ (green) are zero-force members; HI carries the 20-kN load in tension."
+/>
+
+<Callout variant="warning" title="Where the rules do NOT apply">
+
+The rules do **not** apply at joints $B$ and $D$ of the diagram It would be wrong to conclude that $F_{DE} = 25\,\text{kN}$ or that $F_{AB} = F_{BD}$. Those forces, and all the others, must come from the usual analysis of joints $A, B, D, E, F, G, H, L$. Until the special conditions are familiar, draw every pin's free-body diagram anyway.
+
+Zero-force members are **not useless**. They carry load under other loading conditions, they support the truss's own weight, and they keep the truss in shape.
+
+</Callout>
+
+---
+
+### 6.6 Space Trusses
+
+When straight members are joined at their ends to form a **three-dimensional** configuration, the result is a **space truss**.
+
+<RuleBox kind="definition" title="Simple Space Truss">
+
+The most elementary rigid space truss is a **tetrahedron** $ABCD$: six members and four joints, with the four joints *not lying in one plane*). Add **three members at a time** (e.g. $AE$, $BE$, $CE$), attached to three existing joints and connected at one new joint. The result is a **simple space truss**). Since the tetrahedron has 6 members and 4 joints, and each step adds 3 members and 1 joint,
+
+$$
+m = 3n - 6
+$$
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-15.png"
+  caption="(a) Basic tetrahedral space truss ABCD; (b) simple space truss formed by adding members AE, BE, CE at new joint E."
+/>
+
+<RuleBox kind="working-rule" title="Analysis of a Space Truss">
+
+- **Supports:** for complete constraint with statically determinate reactions, use a combination of balls, rollers and balls-and-sockets giving **six unknown reactions**. Find them from the six equilibrium equations of the whole truss.
+- **Joints:** each joint is assumed to be a **ball-and-socket**, so no couples act and every member is a two-force member. Each joint gives three equations: $\sum F_x = 0$, $\sum F_y = 0$, $\sum F_z = 0$.
+- **Counting:** $n$ joints give $3n$ equations. Since $m = 3n - 6$, these just suffice for the $m$ member forces plus 6 reactions.
+- To avoid simultaneous equations, take the joints in an order such that **no joint involves more than three unknown forces**.
+
+</RuleBox>
+
+#### Sample Problem 6.1 (Method of Joints)
+
+<StepRevealExample
+  title="Method of Joints"
+  figure="/diagrams/get-207/trusses-frames-and-machines-sp-6-1.png"
+  problem="Using the method of joints, determine the force in each member of the truss shown. (Loads: $2000\,\text{lb}$ down at $A$ and $1000\,\text{lb}$ down at $B$; pin support at $C$ and roller at $E$; top chord $A$–$B$–$C$ with $12\text{-ft}$ panels, bottom joints $D$ and $E$ $8\,\text{ft}$ below, $D$ being $6\,\text{ft}$ right of $A$ and $E$ being $6\,\text{ft}$ left of $C$.)"
+  steps={[
+    "**Free body: entire truss.** The reactions are $C_x$, $C_y$ at the pin $C$ and a vertical force $E$ at the roller. All the diagonals form $3$–$4$–$5$ triangles ($6\\,\\text{ft}$ horizontal, $8\\,\\text{ft}$ vertical, $10\\,\\text{ft}$ long). $+\\circlearrowleft \\sum M_C = 0$: $(2000\\,\\text{lb})(24\\,\\text{ft}) + (1000\\,\\text{lb})(12\\,\\text{ft}) - E(6\\,\\text{ft}) = 0 \\Rightarrow E = +10\\,000\\,\\text{lb}$, so $E = 10\\,000\\,\\text{lb}\\uparrow$.",
+    "$\\xrightarrow{+}\\sum F_x = 0$: $C_x = 0$. $\\;+\\!\\uparrow\\sum F_y = 0$: $-2000 - 1000 + 10\\,000 + C_y = 0 \\Rightarrow C_y = -7000\\,\\text{lb}$, so $C_y = 7000\\,\\text{lb}\\downarrow$.",
+    "**Joint A** (only two unknowns). The force triangle formed by the $2000\\text{-lb}$ load, $\\mathbf{F}_{AB}$ and $\\mathbf{F}_{AD}$ is similar to the $3$–$4$–$5$ triangle: $\\dfrac{2000\\,\\text{lb}}{4} = \\dfrac{F_{AB}}{3} = \\dfrac{F_{AD}}{5}$. Member $AB$ pulls on the joint and $AD$ pushes on it, so $F_{AB} = 1500\\,\\text{lb}\\;T$ and $F_{AD} = 2500\\,\\text{lb}\\;C$.",
+    "**Joint D.** Only $F_{DB}$ and $F_{DE}$ are unknown. The force triangle is again a $3$–$4$–$5$ triangle: $F_{DB} = F_{DA} \\Rightarrow F_{DB} = 2500\\,\\text{lb}\\;T$, and $F_{DE} = 2\\left(\\tfrac{3}{5}\\right)F_{DA} \\Rightarrow F_{DE} = 3000\\,\\text{lb}\\;C$.",
+    "**Joint B** (more than three forces). Assume $F_{BC}$ and $F_{BE}$ are tensions. $+\\!\\uparrow\\sum F_y = 0$: $-1000 - \\tfrac{4}{5}(2500) - \\tfrac{4}{5}F_{BE} = 0 \\Rightarrow F_{BE} = -3750\\,\\text{lb}$, so $F_{BE} = 3750\\,\\text{lb}\\;C$.",
+    "$\\xrightarrow{+}\\sum F_x = 0$ at $B$: $F_{BC} - 1500 - \\tfrac{3}{5}(2500) - \\tfrac{3}{5}(3750) = 0 \\Rightarrow F_{BC} = +5250\\,\\text{lb}$, so $F_{BC} = 5250\\,\\text{lb}\\;T$.",
+    "**Joint E.** Assume $F_{EC}$ acts away from the joint. $\\xrightarrow{+}\\sum F_x = 0$: $\\tfrac{3}{5}F_{EC} + 3000 + \\tfrac{3}{5}(3750) = 0 \\Rightarrow F_{EC} = -8750\\,\\text{lb}$, so $F_{EC} = 8750\\,\\text{lb}\\;C$. Check: $+\\!\\uparrow\\sum F_y = 10\\,000 - \\tfrac{4}{5}(3750) - \\tfrac{4}{5}(8750) = 10\\,000 - 3000 - 7000 = 0$ (checks).",
+    "**Joint C (checks).** $\\xrightarrow{+}\\sum F_x = -5250 + \\tfrac{3}{5}(8750) = -5250 + 5250 = 0$; $\\;+\\!\\uparrow\\sum F_y = -7000 + \\tfrac{4}{5}(8750) = -7000 + 7000 = 0$ (checks)."
+  ]}
+  answer="$F_{AB} = 1500\,\text{lb}\;T$, $F_{AD} = 2500\,\text{lb}\;C$, $F_{DB} = 2500\,\text{lb}\;T$, $F_{DE} = 3000\,\text{lb}\;C$, $F_{BE} = 3750\,\text{lb}\;C$, $F_{BC} = 5250\,\text{lb}\;T$, $F_{EC} = 8750\,\text{lb}\;C$"
+/>
+
+#### Further worked problems — Method of Joints
+
+<StepRevealExample
+  title="Three-Member Truss (worked)"
+  figure="/diagrams/get-207/trusses-frames-and-machines-p6-1.png"
+  problem="Using the method of joints, determine the force in each member of the truss shown. State whether each member is in tension or compression. ($A$ is $3\,\text{m}$ right of the line $BC$ and $4\,\text{m}$ above $B$; $B$ is $3.2\,\text{m}$ above $C$; a $48\text{-kN}$ horizontal force acts to the right at $A$; pin at $B$, roller against the vertical wall at $C$.)"
+  steps={[
+    "Place $C$ at the origin, so $B = (0,\\,3.2)$ and $A = (3,\\,7.2)\\,\\text{m}$. Lengths: $AB = \\sqrt{3^2 + 4^2} = 5\\,\\text{m}$ and $AC = \\sqrt{3^2 + 7.2^2} = 7.8\\,\\text{m}$.",
+    "**Joint A** (two unknowns; the reactions are not needed). Assume tension, so the forces point from $A$ toward $B$ and toward $C$: $\\xrightarrow{+}\\sum F_x = 0$: $48 - \\tfrac{3}{5}F_{AB} - \\tfrac{3}{7.8}F_{AC} = 0$; $\\;+\\!\\uparrow\\sum F_y = 0$: $-\\tfrac{4}{5}F_{AB} - \\tfrac{7.2}{7.8}F_{AC} = 0$.",
+    "From the second equation, $F_{AB} = -\\tfrac{5}{4}\\cdot\\tfrac{7.2}{7.8}F_{AC} = -1.1538F_{AC}$. Substituting: $48 + 0.6923F_{AC} - 0.3846F_{AC} = 0 \\Rightarrow F_{AC} = -156.0\\,\\text{kN}$, and then $F_{AB} = +180.0\\,\\text{kN}$.",
+    "**Joint C.** The roller on the vertical wall exerts only a horizontal force, so $+\\!\\uparrow\\sum F_y = 0$: $F_{BC} + \\tfrac{7.2}{7.8}F_{CA} = 0 \\Rightarrow F_{BC} = -(0.9231)(-156.0) = +144.0\\,\\text{kN}$."
+  ]}
+  answer="$F_{AB} = 180.0\,\text{kN}\;T$; $F_{AC} = 156.0\,\text{kN}\;C$; $F_{BC} = 144.0\,\text{kN}\;T$"
+/>
+
+<StepRevealExample
+  title="Cantilever Truss (worked)"
+  figure="/diagrams/get-207/trusses-frames-and-machines-p6-8.png"
+  problem="Using the method of joints, determine the force in each member of the truss shown. State whether each member is in tension or compression. (Pins at $A$ and $C$ on the wall, $0.9\,\text{m}$ apart vertically; $B$ and $D$ are $1.2\,\text{m}$ from the wall, $E$ is $2.4\,\text{m}$ from the wall at the level of $C$; $6\,\text{kN}$ down at $B$ and $3\,\text{kN}$ down at $E$.)"
+  steps={[
+    "Because this is a cantilever, start at the free end, which needs no reactions. The inclined members $BE$ and $AD$ have slope $0.9/1.2$, length $1.5\\,\\text{m}$, so $\\sin = 0.6$ and $\\cos = 0.8$.",
+    "**Joint E** (members $EB$, $ED$; load $3\\,\\text{kN}\\downarrow$). $+\\!\\uparrow\\sum F_y = 0$: $0.6F_{BE} - 3 = 0 \\Rightarrow F_{BE} = 5.00\\,\\text{kN}\\;T$. $\\;\\xrightarrow{+}\\sum F_x = 0$: $-0.8(5) - F_{DE} = 0 \\Rightarrow F_{DE} = -4.00\\,\\text{kN}$, i.e. $4.00\\,\\text{kN}\\;C$.",
+    "**Joint B** (members $BA$, $BD$, $BE$; load $6\\,\\text{kN}\\downarrow$). $\\xrightarrow{+}\\sum F_x = 0$: $-F_{AB} + 0.8(5) = 0 \\Rightarrow F_{AB} = 4.00\\,\\text{kN}\\;T$. $\\;+\\!\\uparrow\\sum F_y = 0$: $-F_{BD} - 0.6(5) - 6 = 0 \\Rightarrow F_{BD} = -9.00\\,\\text{kN}$, i.e. $9.00\\,\\text{kN}\\;C$.",
+    "**Joint D** (members $DA$, $DB$, $DC$, $DE$). $+\\!\\uparrow\\sum F_y = 0$: $0.6F_{AD} + F_{BD} = 0 \\Rightarrow 0.6F_{AD} = 9 \\Rightarrow F_{AD} = 15.00\\,\\text{kN}\\;T$.",
+    "$\\xrightarrow{+}\\sum F_x = 0$ at $D$: $-0.8F_{AD} - F_{CD} + F_{DE} = 0 \\Rightarrow -12 - F_{CD} - 4 = 0 \\Rightarrow F_{CD} = -16.00\\,\\text{kN}$, i.e. $16.00\\,\\text{kN}\\;C$."
+  ]}
+  answer="$F_{AB} = 4.00\,\text{kN}\;T$; $F_{AD} = 15.00\,\text{kN}\;T$; $F_{BD} = 9.00\,\text{kN}\;C$; $F_{BE} = 5.00\,\text{kN}\;T$; $F_{CD} = 16.00\,\text{kN}\;C$; $F_{DE} = 4.00\,\text{kN}\;C$"
+/>
+
+<ExerciseSet
+  title="Problems 6.1–6.42 — Method of Joints (selected)"
+  items={[
+    {
+      q: "Using the method of joints, determine the force in each member of the truss shown. State whether each member is in tension or compression.",
+      a: "$F_{AB} = 180.0\\,\\text{kN}\\;T$; $F_{AC} = 156.0\\,\\text{kN}\\;C$; $F_{BC} = 144.0\\,\\text{kN}\\;T$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-1.png"
+    },
+    {
+      q: "Using the method of joints, determine the force in each member of the truss shown ($84\\text{-kN}$ load at $B$). State whether each member is in tension or compression.",
+      a: "$F_{AB} = 52.0\\,\\text{kN}\\;T$; $F_{AC} = 64.0\\,\\text{kN}\\;T$; $F_{BC} = 80.0\\,\\text{kN}\\;C$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-3.png"
+    },
+    {
+      q: "Using the method of joints, determine the force in each member of the truss shown. State whether each member is in tension or compression.",
+      a: "$F_{AB} = 4.00\\,\\text{kN}\\;T$; $F_{AD} = 15.00\\,\\text{kN}\\;T$; $F_{BD} = 9.00\\,\\text{kN}\\;C$; $F_{BE} = 5.00\\,\\text{kN}\\;T$; $F_{CD} = 16.00\\,\\text{kN}\\;C$; $F_{DE} = 4.00\\,\\text{kN}\\;C$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-8.png"
+    },
+    {
+      q: "Determine the force in each member of the Pratt roof truss shown. State whether each member is in tension or compression.",
+      a: "$F_{AB} = 47.2\\,\\text{kN}\\;C$; $F_{AC} = 44.6\\,\\text{kN}\\;T$; $F_{BC} = 10.50\\,\\text{kN}\\;C$; $F_{BD} = 47.2\\,\\text{kN}\\;C$; $F_{CD} = 17.50\\,\\text{kN}\\;T$; $F_{CE} = 30.6\\,\\text{kN}\\;T$; $F_{DE} = 0$ (the rest by symmetry)",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-11.png"
+    }
+  ]}
+/>
+
+---
+
+### 6.7 Analysis of Trusses by the Method of Sections
+
+The method of joints is best when **all** member forces are wanted. When only **one member, or a very few members,** are wanted, the **method of sections** is more efficient.
+
+To find the force in member $BD$ of the diagram, we may take as a free body any *portion* of the truss, provided that the desired force is one of the external forces acting on that portion. Choose the portion so that **only three unknown forces** act on it. In practice, pass a **section** $nn$ through **three members**, one of which is the desired member. This line divides the truss into two completely separate parts while cutting no more than three members. Either part may be used as the free body.
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-16.png"
+  caption="(a) Section nn cut through members BD, BE and CE; (b) portion ABC as a free body with the three unknown member forces drawn as tensions."
+/>
+
+<RuleBox kind="working-rule" title="Choosing the Equation for Each Member">
+
+The cut-member forces $\mathbf{F}_{BD}$, $\mathbf{F}_{BE}$, $\mathbf{F}_{CE}$ are drawn **away from the free body**, i.e. assumed in tension. A **positive** answer means tension; a **negative** answer means compression.
+
+- For $F_{BD}$: write $\sum M_E = 0$ ($BE$ and $CE$ pass through $E$).
+- For $F_{CE}$: write $\sum M_B = 0$ ($BD$ and $BE$ pass through $B$).
+- For $F_{BE}$: write $\sum F_y = 0$ ($BD$ and $CE$ are horizontal, parallel to each other).
+- If only one force is found there is no independent check. If all three are found, check with the remaining equation (here $\sum F_x = 0$).
+
+A section may cut **more than three members** if an equation can be written that contains only the one desired force (Probs. 6.61–6.64).
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Solving Problems on Your Own — Method of Sections">
+
+1. Draw the free body of the **entire truss** and find the **reactions**.
+2. **Pass a section through three members**, one of which is the desired member.
+3. Draw the free-body diagram of **one** of the two portions, including the external loads on it and the forces of the cut members.
+4. Either solve all three equilibrium equations, or write **one equation** containing only the desired force:
+   - if the other two unknown forces are **parallel**, sum components **perpendicular** to them;
+   - if their lines of action **intersect at a point $H$**, sum **moments about $H$**.
+
+</RuleBox>
+
+#### Sample Problems 6.2 and 6.3 (Method of Sections)
+
+<StepRevealExample
+  title="Forces in EF and GI"
+  figure="/diagrams/get-207/trusses-frames-and-machines-sp-6-2.png"
+  problem="Determine the force in members $EF$ and $GI$ of the truss shown. (Top chord $A$–$C$–$E$–$G$–$I$–$K$, bottom chord $B$–$D$–$F$–$H$–$J$, depth $10\,\text{ft}$, panels $8\,\text{ft}$; $28\,\text{kips}$ down at $C$ and at $G$; $16\,\text{kips}$ horizontal to the right at $K$; pin at $B$, roller at $J$.)"
+  steps={[
+    "**Free body: entire truss.** $+\\circlearrowleft\\sum M_B = 0$: $-(28\\,\\text{kips})(8\\,\\text{ft}) - (28\\,\\text{kips})(24\\,\\text{ft}) - (16\\,\\text{kips})(10\\,\\text{ft}) + J(32\\,\\text{ft}) = 0 \\Rightarrow J = +33\\,\\text{kips}$, so $J = 33\\,\\text{kips}\\uparrow$.",
+    "$\\xrightarrow{+}\\sum F_x = 0$: $B_x + 16\\,\\text{kips} = 0 \\Rightarrow B_x = -16\\,\\text{kips}$, so $B_x = 16\\,\\text{kips}\\leftarrow$. $\\;+\\circlearrowleft\\sum M_J = 0$: $(28)(24) + (28)(8) - (16)(10) - B_y(32) = 0 \\Rightarrow B_y = +23\\,\\text{kips}$, so $B_y = 23\\,\\text{kips}\\uparrow$.",
+    "**Force in EF.** Pass section $nn$ through $EF$ and two other members, both horizontal. Take the **left-hand** portion as the free body. To eliminate the two horizontal forces: $+\\!\\uparrow\\sum F_y = 0$: $+23\\,\\text{kips} - 28\\,\\text{kips} - F_{EF} = 0 \\Rightarrow F_{EF} = -5\\,\\text{kips}$.",
+    "$F_{EF}$ was assumed to be a tension; the negative sign shows that member $EF$ is in **compression**: $F_{EF} = 5\\,\\text{kips}\\;C$.",
+    "**Force in GI.** Pass section $mm$ through $GI$ and two other members ($HI$ and $HJ$) which both pass through $H$. Take the **right-hand** portion as the free body: $+\\circlearrowleft\\sum M_H = 0$: $(33\\,\\text{kips})(8\\,\\text{ft}) - (16\\,\\text{kips})(10\\,\\text{ft}) + F_{GI}(10\\,\\text{ft}) = 0 \\Rightarrow F_{GI} = -10.4\\,\\text{kips}$, so $F_{GI} = 10.4\\,\\text{kips}\\;C$."
+  ]}
+  answer="$F_{EF} = 5\,\text{kips}\;C$; $F_{GI} = 10.4\,\text{kips}\;C$"
+/>
+
+<StepRevealExample
+  title="Roof Truss: FH, GH and GI"
+  figure="/diagrams/get-207/trusses-frames-and-machines-sp-6-3.png"
+  problem="Determine the force in members $FH$, $GH$, and $GI$ of the roof truss shown. (Six panels at $5\,\text{m} = 30\,\text{m}$, height $h = 8\,\text{m}$ at $F$; $1\,\text{kN}$ at each of $B, D, F, H, J$; $5\,\text{kN}$ at each of $C, E, G$; pin at $A$, roller at $L$.)"
+  steps={[
+    "**Free body: entire truss.** From the whole truss: $+\\circlearrowleft\\sum M_A = 0$ gives $L(30) = (1)(5 + 10 + 15 + 20 + 25) + (5)(5 + 10 + 15) = 225 \\Rightarrow L = 7.50\\,\\text{kN}\\uparrow$, and then $A = 20 - 7.50 = 12.50\\,\\text{kN}\\uparrow$.",
+    "Geometry: $\\tan\\alpha = \\dfrac{FG}{GL} = \\dfrac{8\\,\\text{m}}{15\\,\\text{m}} = 0.5333$, so $\\alpha = 28.07^\\circ$. The height of $H$ (above $I$) is $HI = \\tfrac{2}{3}(8\\,\\text{m}) = 5.33\\,\\text{m}$.",
+    "**Force in GI.** Section $nn$ cuts $FH$, $GH$, $GI$. Use portion $HLI$ as the free body. $FH$ and $GH$ meet at $H$: $+\\circlearrowleft\\sum M_H = 0$: $(7.50\\,\\text{kN})(10\\,\\text{m}) - (1\\,\\text{kN})(5\\,\\text{m}) - F_{GI}(5.33\\,\\text{m}) = 0 \\Rightarrow F_{GI} = +13.13\\,\\text{kN}$, so $F_{GI} = 13.13\\,\\text{kN}\\;T$.",
+    "**Force in FH.** Use $\\sum M_G = 0$, since $GH$ and $GI$ pass through $G$. Slide $\\mathbf{F}_{FH}$ along its line of action to $F$ and resolve it there. Its moment about $G$ is then $(F_{FH}\\cos\\alpha)(8\\,\\text{m})$. $+\\circlearrowleft\\sum M_G = 0$: $(7.50)(15) - (1)(10) - (1)(5) + (F_{FH}\\cos\\alpha)(8) = 0 \\Rightarrow F_{FH} = -13.81\\,\\text{kN}$, so $F_{FH} = 13.81\\,\\text{kN}\\;C$.",
+    "**Force in GH.** First, $\\tan\\beta = \\dfrac{GI}{HI} = \\dfrac{5\\,\\text{m}}{\\tfrac{2}{3}(8\\,\\text{m})} = 0.9375$, so $\\beta = 43.15^\\circ$. Resolve $\\mathbf{F}_{GH}$ into components at $G$ and take moments about $L$, where $FH$ and $GI$ meet: $+\\circlearrowleft\\sum M_L = 0$: $(1\\,\\text{kN})(10\\,\\text{m}) + (1\\,\\text{kN})(5\\,\\text{m}) + (F_{GH}\\cos\\beta)(15\\,\\text{m}) = 0 \\Rightarrow F_{GH} = -1.371\\,\\text{kN}$, so $F_{GH} = 1.371\\,\\text{kN}\\;C$."
+  ]}
+  answer="$F_{GI} = 13.13\,\text{kN}\;T$; $F_{FH} = 13.81\,\text{kN}\;C$; $F_{GH} = 1.371\,\text{kN}\;C$"
+/>
+
+#### Further worked problems — Method of Sections
+
+<StepRevealExample
+  title="Members CD and DF (worked)"
+  figure="/diagrams/get-207/trusses-frames-and-machines-p6-43.png"
+  problem="Determine the force in members $CD$ and $DF$ of the truss shown. (Four panels at $2.4\,\text{m} = 9.6\,\text{m}$, depth $1.8\,\text{m}$; $12\,\text{kN}$ down at $E$ and at $G$; pin at $B$, roller at $J$; diagonals $AD$, $CF$, $FG$, $HI$.)"
+  steps={[
+    "**Reactions.** $+\\circlearrowleft\\sum M_B = 0$: $J(9.6) - 12(4.8) - 12(7.2) = 0 \\Rightarrow J = 15\\,\\text{kN}\\uparrow$; then $B_y = 24 - 15 = 9\\,\\text{kN}\\uparrow$ ($B_x = 0$).",
+    "**Section through CE, CF, DF** (second panel); take the left portion $ABCD$. Diagonal $CF$ has length $\\sqrt{2.4^2 + 1.8^2} = 3\\,\\text{m}$, so its vertical component is $\\tfrac{1.8}{3} = 0.6$ of its force. $+\\!\\uparrow\\sum F_y = 0$: $9 - 0.6F_{CF} = 0 \\Rightarrow F_{CF} = 15\\,\\text{kN}\\;T$.",
+    "**Force in DF.** $CE$ and $CF$ meet at $C$: $+\\circlearrowleft\\sum M_C = 0$: $F_{DF}(1.8) - 9(2.4) = 0 \\Rightarrow F_{DF} = +12.00\\,\\text{kN}$, so $F_{DF} = 12.00\\,\\text{kN}\\;T$.",
+    "**Force in CD** (joint C). The joint has $CA$ and $CE$ horizontal, $CD$ vertical and $CF$ inclined downward, with no load. $+\\!\\uparrow\\sum F_y = 0$: $-F_{CD} - 0.6F_{CF} = 0 \\Rightarrow F_{CD} = -0.6(15) = -9.00\\,\\text{kN}$, so $F_{CD} = 9.00\\,\\text{kN}\\;C$."
+  ]}
+  answer="$F_{CD} = 9.00\,\text{kN}\;C$; $F_{DF} = 12.00\,\text{kN}\;T$"
+/>
+
+<StepRevealExample
+  title="Cantilever Roof Truss: CD and DF (worked)"
+  figure="/diagrams/get-207/trusses-frames-and-machines-p6-53.png"
+  problem="Determine the force in members $CD$ and $DF$ of the truss shown. (Top chord $A$–$C$–$E$–$G$–$I$ with $3\text{-m}$ panels; the bottom chord runs straight from $B$, $5\,\text{m}$ below $A$, to $I$; $10\,\text{kN}$ down at each of $C, E, G, I$.)"
+  steps={[
+    "Coordinates with $B$ at the origin: $A(0,5)$, $C(3,5)$, $E(6,5)$, $G(9,5)$, $I(12,5)$. The bottom chord $BI$ has slope $5/12$, so $D(3,\\,1.25)$, $F(6,\\,2.5)$, $H(9,\\,3.75)$. Using the right-hand portion avoids the reactions at $A$ and $B$.",
+    "**Force in DF.** Cut $CE$, $CF$, $DF$ and keep the right portion $EFGHI$. $CE$ and $CF$ pass through $C$. $\\mathbf{F}_{DF}$ (tension) acts at $F$ along $FD$ with unit vector $(-12, -5)/13$. Its moment about $C$, with $\\mathbf{r}_{CF} = (3,\\,-2.5)$, is $F_{DF}\\left[3\\left(-\\tfrac{5}{13}\\right) - (-2.5)\\left(-\\tfrac{12}{13}\\right)\\right] = -3.462F_{DF}$.",
+    "$+\\circlearrowleft\\sum M_C = 0$: $-10(3) - 10(6) - 10(9) - 3.462F_{DF} = 0 \\Rightarrow F_{DF} = -52.0\\,\\text{kN}$, so $F_{DF} = 52.0\\,\\text{kN}\\;C$.",
+    "**Force in CD.** Cut $AC$, $CD$, $DF$ and keep the portion containing $C, E, F, G, H, I$. The lines of $AC$ (top chord) and $DF$ (bottom chord) meet at $I$. $+\\circlearrowleft\\sum M_I = 0$: $10(9) + 10(6) + 10(3) + F_{CD}(9) = 0$, where $\\mathbf{F}_{CD}$ (tension) pulls $C$ downward toward $D$, $9\\,\\text{m}$ left of $I$.",
+    "$180 + 9F_{CD} = 0 \\Rightarrow F_{CD} = -20.0\\,\\text{kN}$, so $F_{CD} = 20.0\\,\\text{kN}\\;C$."
+  ]}
+  answer="$F_{CD} = 20.0\,\text{kN}\;C$; $F_{DF} = 52.0\,\text{kN}\;C$"
+/>
+
+---
+
+### 6.8 Trusses Made of Several Simple Trusses
+
+Two simple trusses $ABC$ and $DEF$ can be joined into one rigid truss either by **three bars** ($BD$, $BE$, $CE$), or by **one pin and one bar**: joints $B$ and $D$ merged into a single joint $B$, plus bar $CE$, the **Fink truss**). Neither is a simple truss, but both are rigid. This can be checked by comparing the connections with the support systems from rigid-body equilibrium. Trusses made of several simple trusses rigidly connected are called **compound trusses**.
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-17.png"
+  caption="Compound trusses: (a) simple trusses ABC and DEF connected by three bars BD, BE, CE; (b) the Fink truss, joined by a common pin B and bar CE."
+/>
+
+<RuleBox kind="theorem" title="Determinacy and Rigidity of Compound Trusses">
+
+With $m$ members, $n$ joints and $r$ unknown reaction components:
+
+- A compound truss on a **pin and roller** still satisfies $m = 2n - 3$. It is **statically determinate, rigid and completely constrained**. Its member forces are, however, best found with **sections** (e.g. a section through $BD$, $BE$, $CE$ of the diagram), not by joints, which would need many simultaneous equations.
+- **Four connecting bars**): $m > 2n - 3$. The truss is **overrigid**, one member is **redundant**, and the truss is **statically indeterminate**, since $m + 3 > 2n$.
+- **Joined by a single pin**): $m < 2n - 3$. On a pin and roller the truss is **nonrigid** and collapses. With **two pins** as supports) it becomes rigid, and the unknowns $m + 4 = 2n$.
+- **General condition:** a compound truss is statically determinate, rigid and completely constrained when
+
+$$
+m + r = 2n
+$$
+
+This condition is **necessary but not sufficient** (see above).
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Solving Problems on Your Own — Is the Truss Completely Constrained and Determinate?">
+
+1. Any **simple truss that is simply supported** is completely constrained and determinate.
+2. Otherwise count $m$, $n$ and $r$, and compare $m + r$ with $2n$:
+   - $m + r < 2n$: fewer unknowns than equations, so the truss is **partially constrained**;
+   - $m + r > 2n$: more unknowns than equations, so the truss is **indeterminate**;
+   - $m + r = 2n$: try to find all reactions and member forces. If they can all be found, the truss is **completely constrained and determinate**; if not, it is **improperly constrained**.
+
+</RuleBox>
+
+<ExerciseSet
+  title="Problems 6.43–6.74 — Method of Sections; Constraint (selected)"
+  items={[
+    {
+      q: "Determine the force in members $CD$ and $DF$ of the truss shown.",
+      a: "$F_{CD} = 9.00\\,\\text{kN}\\;C$; $F_{DF} = 12.00\\,\\text{kN}\\;T$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-43.png"
+    },
+    {
+      q: "Determine the force in members $FG$ and $FH$ of the truss shown (same truss as Prob. 6.43).",
+      a: "$F_{FG} = 5.00\\,\\text{kN}\\;T$; $F_{FH} = 20.0\\,\\text{kN}\\;T$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-43.png"
+    },
+    {
+      q: "Determine the force in members $AD$, $CD$, and $CE$ of the truss shown.",
+      a: "$F_{AD} = 13.50\\,\\text{kN}\\;C$; $F_{CD} = 0$; $F_{CE} = 56.1\\,\\text{kN}\\;T$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-49.png"
+    },
+    {
+      q: "Determine the force in members $CD$ and $DF$ of the truss shown.",
+      a: "$F_{CD} = 20.0\\,\\text{kN}\\;C$; $F_{DF} = 52.0\\,\\text{kN}\\;C$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-53.png"
+    },
+    {
+      q: "Determine the force in members $DG$ and $FI$ of the truss shown. (Hint: Use section $aa$.)",
+      a: "$F_{DG} = 3.75\\,\\text{kN}\\;T$; $F_{FI} = 3.75\\,\\text{kN}\\;C$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-63.png"
+    },
+    {
+      q: "Classify each of the structures shown as completely, partially, or improperly constrained; if completely constrained, further classify as determinate or indeterminate. (All members can act both in tension and in compression.)",
+      a: "(a) Completely constrained, determinate; (b) partially constrained; (c) improperly constrained",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-70.png"
+    }
+  ]}
+/>
+
+---
+
+## Frames and Machines
+
+### 6.9 Structures Containing Multiforce Members
+
+A truss contains only pins and straight two-force members, so every member force is known to act **along the member**. Frames and machines contain at least one **multiforce member**: a member acted on by **three or more forces**. These forces are generally *not* directed along the member. Their direction is unknown, so each is represented by **two unknown components**.
+
+<RuleBox kind="definition" title="Frames vs. Machines">
+
+- **Frames** are designed to **support loads**. They are usually stationary, fully constrained structures.
+- **Machines** are designed to **transmit and modify forces**. They may or may not be stationary, and they **always contain moving parts**.
+
+</RuleBox>
+
+---
+
+### 6.10 Analysis of a Frame
+
+Consider the crane introduced earlier. The free body of the **entire frame** gives the external forces. $\sum M_A = 0$ gives the cable tension $T$, and $\sum F_x = 0$, $\sum F_y = 0$ give $A_x$ and $A_y$.
+
+To find the internal forces, **dismember** the frame):
+
+1. **Two-force members first.** $BE$ is the only two-force member. Its end forces are directed along $BE$ and labelled $\mathbf{F}_{BE}$ and $-\mathbf{F}_{BE}$. Their sense is assumed, and the sign of $F_{BE}$ later confirms or corrects it.
+2. **Multiforce members next.** By Newton's third law, $BE$ exerts $-\mathbf{F}_{BE}$ on $AD$ at $B$ and $\mathbf{F}_{BE}$ on $CF$ at $E$. At $C$ two multiforce members meet, so neither the direction nor the magnitude is known. Show components $C_x$ (right) and $C_y$ (up) on $AD$, and $-C_x$, $-C_y$ on $CF$.
+3. **Solve.** On $CF$: $\sum M_C = 0$ gives $F_{BE}$, $\sum M_E = 0$ gives $C_y$, and $\sum F_x = 0$ gives $C_x$. **Check** with the equilibrium of $AD$.
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-20.png"
+  caption="(a) Crane frame; (b) free body of the entire frame; (c) dismembered frame: two-force member BE and multiforce members AD and CF with equal and opposite forces at B, C, E."
+/>
+
+<RuleBox kind="note" title="Pins and Sign Conventions">
+
+- A **pin** may be treated as an integral part of **one** of the members it connects. Make a clear choice of which member owns the pin when a pin connects **three or more members**, connects a **support and two or more members**, or carries an **applied load**. With multiforce members present, attach the pin to one of them (illustrated in Sample Prob. 6.6).
+- In the Sample Problems the **same symbol** is used for equal and opposite forces on different free bodies. A **positive** result means the sense assumed on the free-body diagram is correct; a **negative** result means it is wrong. The sign does *not* directly relate the sense to a coordinate axis.
+
+</RuleBox>
+
+---
+
+### 6.11 Frames Which Cease to Be Rigid When Detached from Their Supports
+
+Some frames **collapse when detached from their supports** and so cannot be treated as a single rigid body. in the diagram, members $AC$ and $CB$ carry loads $P$ and $Q$ at their midpoints, are pinned to supports at $A$ and $B$, and are joined by a pin at $C$. Detached from its supports, the frame loses its shape. It must be treated as **two distinct rigid parts**, $AC$ and $CB$.
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-21.png"
+  caption="(a) Two-member frame ACB pinned at A, B and C; (b) separate free bodies AC and CB with equal and opposite components at C; (c) free body ACB (necessary but not sufficient conditions)."
+/>
+
+<RuleBox kind="theorem" title="Counting Unknowns for a Nonrigid Frame">
+
+- Each member ($AC$, $CB$) carries **four** unknown components but gives only **three** equations. Altogether, however, there are **six** different unknowns ($A_x, A_y, B_x, B_y, C_x, C_y$) and **six** independent equations, so the frame is **statically determinate and rigid** (rigid in the sense that it keeps its shape while attached to its supports).
+- The equations of the **whole frame** $ACB$) must also hold, since the internal forces at $C$ cancel. But for a nonrigid structure they are **necessary but not sufficient**: they *cannot* determine all the reactions. You must dismember the frame **even if only the external reactions are wanted**.
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Efficient Order of Solution">
+
+1. Free body $ACB$: $\sum M_A = 0 \Rightarrow B_y$; $\;\sum M_B = 0 \Rightarrow A_y$.
+2. Free body $AC$: $\sum M_C = 0 \Rightarrow A_x$; $\;\sum F_x = 0 \Rightarrow C_x$; $\;\sum F_y = 0 \Rightarrow C_y$.
+3. Free body $ACB$: $\sum F_x = 0 \Rightarrow B_x$.
+
+</RuleBox>
+
+<RuleBox kind="definition" title="Determinacy and Rigidity of a General Structure">
+
+Draw the free body of every component part. Count the unknown reactions and internal forces, and the **independent** equilibrium equations, excluding equations for the whole structure or for groups of parts already analysed.
+
+- More unknowns than equations: **statically indeterminate**.
+- Fewer unknowns than equations: **nonrigid**.
+- Equal numbers, with all unknowns found and all equations satisfied under general loading: **statically determinate and rigid**.
+- Equal numbers, but an improper arrangement of members and supports means not all unknowns can be found: **statically indeterminate and nonrigid**.
+
+</RuleBox>
+
+#### Sample Problems 6.4–6.6 (Frames)
+
+<StepRevealExample
+  title="Frame with Link DE"
+  figure="/diagrams/get-207/trusses-frames-and-machines-sp-6-4.png"
+  problem="In the frame shown, members $ACE$ and $BCD$ are connected by a pin at $C$ and by the link $DE$. For the loading shown ($480\,\text{N}$ down on $BCD$, $100\,\text{mm}$ right of $C$), determine the force in link $DE$ and the components of the force exerted at $C$ on member $BCD$."
+  steps={[
+    "**Free body: entire frame.** The external reactions are $A_x$, $A_y$ at pin $A$ and a horizontal force $B$ at $B$: only three unknowns. $+\\!\\uparrow\\sum F_y = 0$: $A_y - 480\\,\\text{N} = 0 \\Rightarrow A_y = 480\\,\\text{N}\\uparrow$.",
+    "$+\\circlearrowleft\\sum M_A = 0$: $-(480\\,\\text{N})(100\\,\\text{mm}) + B(160\\,\\text{mm}) = 0 \\Rightarrow B = +300\\,\\text{N}$, so $B = 300\\,\\text{N}\\rightarrow$. $\\;\\xrightarrow{+}\\sum F_x = 0$: $B + A_x = 0 \\Rightarrow A_x = -300\\,\\text{N}$, so $A_x = 300\\,\\text{N}\\leftarrow$.",
+    "**Dismember.** Only two members meet at $C$, so the components at $C$ on $ACE$ and on $BCD$ are equal and opposite. Assume link $DE$ is in tension. Its slope is $\\alpha = \\tan^{-1}\\dfrac{80}{150} = 28.07^\\circ$.",
+    "**Free body: member BCD.** $+\\circlearrowleft\\sum M_C = 0$: $(F_{DE}\\sin\\alpha)(250\\,\\text{mm}) + (300\\,\\text{N})(60\\,\\text{mm}) + (480\\,\\text{N})(100\\,\\text{mm}) = 0 \\Rightarrow F_{DE} = -561\\,\\text{N}$, so $F_{DE} = 561\\,\\text{N}\\;C$.",
+    "$\\xrightarrow{+}\\sum F_x = 0$: $C_x - F_{DE}\\cos\\alpha + 300\\,\\text{N} = 0 \\Rightarrow C_x - (-561\\,\\text{N})\\cos 28.07^\\circ + 300\\,\\text{N} = 0 \\Rightarrow C_x = -795\\,\\text{N}$.",
+    "$+\\!\\uparrow\\sum F_y = 0$: $C_y - F_{DE}\\sin\\alpha - 480\\,\\text{N} = 0 \\Rightarrow C_y - (-561\\,\\text{N})\\sin 28.07^\\circ - 480\\,\\text{N} = 0 \\Rightarrow C_y = +216\\,\\text{N}$. The components on $BCD$ therefore point left and up.",
+    "**Check on member ACE:** $+\\circlearrowleft\\sum M_A = (F_{DE}\\cos\\alpha)(300) + (F_{DE}\\sin\\alpha)(100) - C_x(220) = (-561\\cos\\alpha)(300) + (-561\\sin\\alpha)(100) - (-795)(220) = 0$ (checks)."
+  ]}
+  answer="$F_{DE} = 561\,\text{N}\;C$; on $BCD$: $C_x = 795\,\text{N}\leftarrow$, $C_y = 216\,\text{N}\uparrow$"
+/>
+
+<StepRevealExample
+  title="Components on Each Member"
+  figure="/diagrams/get-207/trusses-frames-and-machines-sp-6-5.png"
+  problem="Determine the components of the forces acting on each member of the frame shown. (Members $ABE$ (vertical), $ACF$ (inclined) and $BCD$ (horizontal); $2400\,\text{N}$ down at $D$, $3.6\,\text{m}$ right of $A$; $AB = BE = 2.7\,\text{m}$; $C$ is $2.4\,\text{m}$ right of $B$ and $D$ is $1.2\,\text{m}$ right of $C$; $EF = 4.8\,\text{m}$; pin at $E$, roller at $F$.)"
+  steps={[
+    "**Free body: entire frame.** $+\\circlearrowleft\\sum M_E = 0$: $-(2400\\,\\text{N})(3.6\\,\\text{m}) + F(4.8\\,\\text{m}) = 0 \\Rightarrow F = +1800\\,\\text{N}\\uparrow$. $\\;+\\!\\uparrow\\sum F_y = 0$: $-2400 + 1800 + E_y = 0 \\Rightarrow E_y = +600\\,\\text{N}\\uparrow$. $\\;\\xrightarrow{+}\\sum F_x = 0$: $E_x = 0$.",
+    "**Dismember.** Only two members meet at each joint, so equal and opposite components are shown on each member at each joint.",
+    "**Member BCD.** $+\\circlearrowleft\\sum M_B = 0$: $-(2400\\,\\text{N})(3.6\\,\\text{m}) + C_y(2.4\\,\\text{m}) = 0 \\Rightarrow C_y = +3600\\,\\text{N}$. $\\;+\\circlearrowleft\\sum M_C = 0$: $-(2400\\,\\text{N})(1.2\\,\\text{m}) + B_y(2.4\\,\\text{m}) = 0 \\Rightarrow B_y = +1200\\,\\text{N}$. $\\;\\xrightarrow{+}\\sum F_x = 0$: $-B_x + C_x = 0$, which cannot be solved from $BCD$ alone.",
+    "**Member ABE.** $+\\circlearrowleft\\sum M_A = 0$: $B_x(2.7\\,\\text{m}) = 0 \\Rightarrow B_x = 0$. $\\;\\xrightarrow{+}\\sum F_x = 0$: $+B_x - A_x = 0 \\Rightarrow A_x = 0$. $\\;+\\!\\uparrow\\sum F_y = 0$: $-A_y + B_y + 600\\,\\text{N} = 0 \\Rightarrow -A_y + 1200 + 600 = 0 \\Rightarrow A_y = +1800\\,\\text{N}$.",
+    "**Back to BCD.** $\\xrightarrow{+}\\sum F_x = 0$: $-B_x + C_x = 0 \\Rightarrow 0 + C_x = 0 \\Rightarrow C_x = 0$.",
+    "**Check on ACF.** $+\\circlearrowleft\\sum M_C = (1800\\,\\text{N})(2.4\\,\\text{m}) - A_y(2.4\\,\\text{m}) - A_x(2.7\\,\\text{m}) = 4320 - 4320 - 0 = 0$ (checks)."
+  ]}
+  answer="$E_x = 0$, $E_y = 600\,\text{N}\uparrow$, $F = 1800\,\text{N}\uparrow$; $A_x = 0$, $A_y = 1800\,\text{N}$; $B_x = 0$, $B_y = 1200\,\text{N}$; $C_x = 0$, $C_y = 3600\,\text{N}$ (senses as assumed on the free-body diagrams)"
+/>
+
+<StepRevealExample
+  title="Frame That Is Not Rigid Without Its Supports"
+  figure="/diagrams/get-207/trusses-frames-and-machines-sp-6-6.png"
+  problem="A $600\text{-lb}$ horizontal force is applied to pin $A$ of the frame shown. Determine the forces acting on the two vertical members of the frame. (Vertical members $ACE$ and $BDF$, $6\,\text{ft}$ apart, pinned to the ground at $E$ and $F$; links $AB$ and $CD$; $A$ is $10\,\text{ft}$ and $C$ is $2.5\,\text{ft}$ above $E$; $B$ and $D$ are $7.5\,\text{ft}$ and $5\,\text{ft}$ above $F$.)"
+  steps={[
+    "**Free body: entire frame.** There are four reaction unknowns, but $E_y$ and $F_y$ can still be found. $+\\circlearrowleft\\sum M_E = 0$: $-(600\\,\\text{lb})(10\\,\\text{ft}) + F_y(6\\,\\text{ft}) = 0 \\Rightarrow F_y = +1000\\,\\text{lb}\\uparrow$. $\\;+\\!\\uparrow\\sum F_y = 0$: $E_y + F_y = 0 \\Rightarrow E_y = -1000\\,\\text{lb}$, so $E_y = 1000\\,\\text{lb}\\downarrow$.",
+    "**Members.** $E_x$ and $F_x$ cannot be found from the whole frame. Assume pin $A$ belongs to the multiforce member $ACE$, so the $600\\text{-lb}$ force acts on $ACE$. $AB$ and $CD$ are two-force members with slopes $5$:$12$:$13$.",
+    "**Member ACE.** $+\\!\\uparrow\\sum F_y = 0$: $-\\tfrac{5}{13}F_{AB} + \\tfrac{5}{13}F_{CD} - 1000\\,\\text{lb} = 0$. $\\;+\\circlearrowleft\\sum M_E = 0$: $-(600\\,\\text{lb})(10\\,\\text{ft}) - \\left(\\tfrac{12}{13}F_{AB}\\right)(10\\,\\text{ft}) - \\left(\\tfrac{12}{13}F_{CD}\\right)(2.5\\,\\text{ft}) = 0$.",
+    "Solving simultaneously: $F_{AB} = -1040\\,\\text{lb}$ and $F_{CD} = +1560\\,\\text{lb}$. The sense assumed for $F_{CD}$ was correct; the sense assumed for $F_{AB}$ was wrong.",
+    "$\\xrightarrow{+}\\sum F_x = 0$ on $ACE$: $600\\,\\text{lb} + \\tfrac{12}{13}(-1040\\,\\text{lb}) + \\tfrac{12}{13}(+1560\\,\\text{lb}) + E_x = 0 \\Rightarrow E_x = -1080\\,\\text{lb}$, so $E_x = 1080\\,\\text{lb}\\leftarrow$.",
+    "**Entire frame again.** $\\xrightarrow{+}\\sum F_x = 0$: $600\\,\\text{lb} - 1080\\,\\text{lb} + F_x = 0 \\Rightarrow F_x = +480\\,\\text{lb}\\rightarrow$.",
+    "**Check on BDF.** $+\\circlearrowleft\\sum M_B = -\\left(\\tfrac{12}{13}F_{CD}\\right)(2.5\\,\\text{ft}) + F_x(7.5\\,\\text{ft}) = -\\tfrac{12}{13}(1560)(2.5) + (480)(7.5) = -3600 + 3600 = 0$ (checks)."
+  ]}
+  answer="$F_y = 1000\,\text{lb}\uparrow$, $E_y = 1000\,\text{lb}\downarrow$; $F_{AB} = -1040\,\text{lb}$, $F_{CD} = +1560\,\text{lb}$; $E_x = 1080\,\text{lb}\leftarrow$, $F_x = 480\,\text{lb}\rightarrow$"
+/>
+
+#### Further worked problem — Frames
+
+<StepRevealExample
+  title="Bracket with Link BD (worked)"
+  figure="/diagrams/get-207/trusses-frames-and-machines-p6-76.png"
+  problem="Determine the force in member $BD$ and the components of the reaction at $C$. (Member $ABC$ hangs from pin $C$; $B$ is $450\,\text{mm}$ below $C$; $A$ is $120\,\text{mm}$ below $B$ and $135\,\text{mm}$ left of line $CB$; link $BD$ ($510\,\text{mm}$) runs to pin $D$, $240\,\text{mm}$ right of $C$; $400\,\text{N}$ down at $A$.)"
+  steps={[
+    "$BD$ is a two-force member, with length $\\sqrt{240^2 + 450^2} = 510\\,\\text{mm}$. Assume tension, so the force on $ABC$ at $B$ points toward $D$ with components $\\left(\\tfrac{240}{510}F_{BD},\\,\\tfrac{450}{510}F_{BD}\\right)$.",
+    "**Free body ABC**, moments about $C$ (origin), with $B(0,-450)$ and $A(-135,-570)$. $+\\circlearrowleft\\sum M_C = 0$: $(450)\\tfrac{240}{510}F_{BD} + (135)(400) = 0 \\Rightarrow 211.8F_{BD} = -54\\,000 \\Rightarrow F_{BD} = -255\\,\\text{N}$, so $F_{BD} = 255\\,\\text{N}\\;C$.",
+    "$\\xrightarrow{+}\\sum F_x = 0$: $C_x + \\tfrac{240}{510}(-255) = 0 \\Rightarrow C_x = +120.0\\,\\text{N}\\rightarrow$.",
+    "$+\\!\\uparrow\\sum F_y = 0$: $C_y + \\tfrac{450}{510}(-255) - 400 = 0 \\Rightarrow C_y = 400 + 225 = 625\\,\\text{N}\\uparrow$."
+  ]}
+  answer="$F_{BD} = 255\,\text{N}\;C$; $C_x = 120.0\,\text{N}\rightarrow$, $C_y = 625\,\text{N}\uparrow$"
+/>
+
+<RuleBox kind="working-rule" title="Solving Problems on Your Own — Frames">
+
+1. Draw the free body of the **entire frame** and find as many reactions as possible. (In Sample Prob. 6.6 only two of the four could be found.)
+2. **Dismember** the frame and draw a free body of each member.
+3. **Two-force members first:** apply equal and opposite forces along the member axis, assumed in tension. Give both the same name and no sign.
+4. **Multiforce members:** show all loads, reactions and connection forces.
+   - Where a multiforce member is connected to a **two-force member**, apply a force equal and opposite to the one on the two-force member, with the same name.
+   - Where two **multiforce members** are connected, use **horizontal and vertical components**. The senses on the first member are arbitrary, but the second member gets equal and opposite components with the same names.
+5. Write equilibrium equations that involve as few unknowns as possible (moments about pins), and use the remaining equations as checks.
+
+</RuleBox>
+
+<ExerciseSet
+  title="Problems 6.75–6.121 — Frames (selected)"
+  items={[
+    {
+      q: "Determine the force in member $BD$ and the components of the reaction at $C$.",
+      a: "$F_{BD} = 255\\,\\text{N}\\;C$; $C_x = 120.0\\,\\text{N}\\rightarrow$, $C_y = 625\\,\\text{N}\\uparrow$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-76.png"
+    },
+    {
+      q: "Determine the components of the reactions at $A$ and $E$ if a $750\\text{-N}$ force directed vertically downward is applied (a) at $B$, (b) at $D$.",
+      a: "(a) $A_x = 300\\,\\text{N}\\leftarrow$, $A_y = 660\\,\\text{N}\\uparrow$; $E_x = 300\\,\\text{N}\\rightarrow$, $E_y = 90.0\\,\\text{N}\\uparrow$. (b) $A_x = 300\\,\\text{N}\\leftarrow$, $A_y = 150.0\\,\\text{N}\\uparrow$; $E_x = 300\\,\\text{N}\\rightarrow$, $E_y = 600\\,\\text{N}\\uparrow$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-83.png"
+    },
+    {
+      q: "Knowing that the pulley has a radius of $0.5\\,\\text{m}$, determine the components of the reactions at $A$ and $E$.",
+      a: "$A_x = 150.0\\,\\text{N}\\leftarrow$, $A_y = 250\\,\\text{N}\\uparrow$; $E_x = 150.0\\,\\text{N}\\rightarrow$, $E_y = 450\\,\\text{N}\\uparrow$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-93.png"
+    },
+    {
+      q: "For the frame and loading shown, determine the components of all forces acting on member $ABE$.",
+      a: "$A_x = 13.00\\,\\text{kN}\\leftarrow$, $A_y = 4.00\\,\\text{kN}\\downarrow$; $B_x = 36.0\\,\\text{kN}\\rightarrow$, $B_y = 6.00\\,\\text{kN}\\uparrow$; $E_x = 23.0\\,\\text{kN}\\leftarrow$, $E_y = 2.00\\,\\text{kN}\\downarrow$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-99.png"
+    },
+    {
+      q: "The axis of the three-hinge arch $ABC$ is a parabola with vertex at $B$. Knowing that $P = 112\\,\\text{kN}$ and $Q = 140\\,\\text{kN}$, determine (a) the components of the reaction at $A$, (b) the components of the force exerted at $B$ on segment $AB$.",
+      a: "(a) $A_x = 200\\,\\text{kN}\\rightarrow$, $A_y = 122.0\\,\\text{kN}\\uparrow$; (b) $B_x = 200\\,\\text{kN}\\leftarrow$, $B_y = 10.00\\,\\text{kN}\\downarrow$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-109.png"
+    }
+  ]}
+/>
+
+---
+
+### 6.12 Machines
+
+Machines are structures designed to **transmit and modify forces**. Whatever their complexity, their purpose is to turn **input forces** into **output forces**. Take a pair of cutting pliers). Equal and opposite forces $\mathbf{P}$ and $-\mathbf{P}$ on the handles produce equal and opposite forces $\mathbf{Q}$ and $-\mathbf{Q}$ on the wire.
+
+<DiagramFigure
+  src="/diagrams/get-207/trusses-frames-and-machines-fig-6-22.png"
+  caption="Cutting pliers: input forces P and −P applied at distance a from pin A produce output forces on the wire at distance b from A."
+/>
+
+<RuleBox kind="theorem" title="Input–Output Relation for the Pliers">
+
+The pliers form a **nonrigid** structure, so one component part must be used as the free body. Taking moments about the pin $A$ for one handle:
+
+$$
+Pa = Qb \qquad\Longrightarrow\qquad Q = \frac{a}{b}\,P
+$$
+
+The same free body gives the internal pin force: $A_x = 0$ and $A_y = P + Q$.
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Analysis of a Machine">
+
+- Dismember the machine and draw the free body of each **multiforce member**, exactly as for a frame.
+- Choose free bodies that contain the **input forces** and the **reactions to the output forces**. The total number of unknown components must not exceed the number of independent equations.
+- Check beforehand whether the structure is **determinate**. There is no point discussing **rigidity**, since a machine has moving parts and is necessarily **nonrigid**.
+
+</RuleBox>
+
+#### Sample Problem 6.7 (Machine)
+
+<StepRevealExample
+  title="Hydraulic-Lift Table"
+  figure="/diagrams/get-207/trusses-frames-and-machines-sp-6-7.png"
+  problem="A hydraulic-lift table is used to raise a $1000\text{-kg}$ crate. It consists of a platform and two identical linkages on which hydraulic cylinders exert equal forces. (Only one linkage and one cylinder are shown.) Members $EDB$ and $CG$ are each of length $2a$, and member $AD$ is pinned to the midpoint of $EDB$. If the crate is placed on the table, so that half of its weight is supported by the system shown, determine the force exerted by each cylinder in raising the crate for $\theta = 60^\circ$, $a = 0.70\,\text{m}$, and $L = 3.20\,\text{m}$. Show that the result obtained is independent of the distance $d$."
+  steps={[
+    "**Plan.** The free body of the whole machine has the input $\\mathbf{F}_{DH}$, the load $\\tfrac{1}{2}W$ and reactions at $E$ and $G$: more than three unknowns. So dismember it. $AD$, $BC$ and $CG$ are two-force members. $CG$ is assumed in compression, $AD$ and $BC$ in tension.",
+    "**Free body: platform ABC.** $\\xrightarrow{+}\\sum F_x = 0$: $F_{AD}\\cos\\theta = 0 \\Rightarrow F_{AD} = 0$. $\\;+\\!\\uparrow\\sum F_y = 0$: $B + C - \\tfrac{1}{2}W = 0 \\Rightarrow B + C = \\tfrac{1}{2}W$ (1).",
+    "**Free body: roller C.** The force triangle of $\\mathbf{C}$, $\\mathbf{F}_{BC}$ and $\\mathbf{F}_{CG}$ gives $F_{BC} = C\\cot\\theta$.",
+    "**Free body: member BDE** (with $F_{AD} = 0$). Let $\\phi$ be the angle at $D$ between $DH$ and $DE$. $+\\circlearrowleft\\sum M_E = 0$: $F_{DH}\\cos(\\phi - 90^\\circ)\\,a - B(2a\\cos\\theta) - F_{BC}(2a\\sin\\theta) = 0$, i.e. $F_{DH}a\\sin\\phi - B(2a\\cos\\theta) - (C\\cot\\theta)(2a\\sin\\theta) = 0 \\Rightarrow F_{DH}\\sin\\phi - 2(B + C)\\cos\\theta = 0$.",
+    "With Eq. (1): $F_{DH} = W\\dfrac{\\cos\\theta}{\\sin\\phi}$ (2). **The result is independent of $d$.**",
+    "**Geometry of triangle EDH.** Law of sines: $\\dfrac{\\sin\\phi}{EH} = \\dfrac{\\sin\\theta}{DH} \\Rightarrow \\sin\\phi = \\dfrac{EH}{DH}\\sin\\theta$ (3). Law of cosines: $(DH)^2 = a^2 + L^2 - 2aL\\cos\\theta = (0.70)^2 + (3.20)^2 - 2(0.70)(3.20)\\cos 60^\\circ = 8.49 \\Rightarrow DH = 2.91\\,\\text{m}$.",
+    "$W = mg = (1000\\,\\text{kg})(9.81\\,\\text{m/s}^2) = 9810\\,\\text{N} = 9.81\\,\\text{kN}$. Substituting (3) into (2): $F_{DH} = W\\dfrac{DH}{EH}\\cot\\theta = (9.81\\,\\text{kN})\\dfrac{2.91\\,\\text{m}}{3.20\\,\\text{m}}\\cot 60^\\circ = 5.15\\,\\text{kN}$."
+  ]}
+  answer="$F_{DH} = 5.15\,\text{kN}$ (independent of $d$)"
+/>
+
+#### Further worked problem — Machines
+
+<StepRevealExample
+  title="Bolt Cutter (worked)"
+  figure="/diagrams/get-207/trusses-frames-and-machines-p6-148.png"
+  problem="In using the bolt cutter shown, a worker applies two $300\text{-N}$ forces to the handles. Determine the magnitude of the forces exerted by the cutter on the bolt. (Bolt at $24\,\text{mm}$ left of the link $AD$; $B$ and $E$ are $96\,\text{mm}$ right of $AD$; pivot $C$ is $12\,\text{mm}$ right of $B$; handle forces act $460\,\text{mm}$ right of $B$.)"
+  steps={[
+    "**Symmetry.** The cutter is symmetric about its horizontal centre line. At pin $C$ the upper and lower handles exert equal and opposite forces on each other, and these must also be mirror images. So the force at $C$ has **no horizontal component**. $AD$ is a two-force link (vertical).",
+    "**Upper jaw AB.** The forces on it are the bolt force $Q$ (vertical), the link force at $A$ (vertical) and the pin force at $B$. $\\sum F_x = 0$ shows that $\\mathbf{B}$ is **vertical** too.",
+    "**Upper handle BC.** $+\\circlearrowleft\\sum M_C = 0$: $(300\\,\\text{N})(460 - 12\\,\\text{mm}) - B(12\\,\\text{mm}) = 0 \\Rightarrow B = \\dfrac{300(448)}{12} = 11\\,200\\,\\text{N}$.",
+    "**Upper jaw AB.** $+\\circlearrowleft\\sum M_A = 0$: $Q(24\\,\\text{mm}) - B(96\\,\\text{mm}) = 0 \\Rightarrow Q = 4B = 4(11\\,200) = 44\\,800\\,\\text{N}$.",
+    "Overall mechanical advantage: $Q/P = 44\\,800/300 \\approx 149$. The two levers in series multiply the input force."
+  ]}
+  answer="$Q = 44.8\,\text{kN}$"
+/>
+
+<ExerciseSet
+  title="Problems 6.122–6.163 — Machines (selected)"
+  items={[
+    {
+      q: "In using the bolt cutter shown, a worker applies two $300\\text{-N}$ forces to the handles. Determine the magnitude of the forces exerted by the cutter on the bolt.",
+      a: "$44.8\\,\\text{kN}$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-148.png"
+    },
+    {
+      q: "The telescoping arm $ABC$ is used to provide an elevated platform for construction workers. The workers and the platform together have a mass of $200\\,\\text{kg}$ and have a combined center of gravity located directly above $C$. For the position when $\\theta = 20^\\circ$, determine (a) the force exerted at $B$ by the single hydraulic cylinder $BD$, (b) the force exerted on the supporting carriage at $A$.",
+      a: "(a) $9.29\\,\\text{kN}$ at $44.4^\\circ$; (b) $8.04\\,\\text{kN}$ at $34.4^\\circ$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-153.png"
+    }
+  ]}
+/>
+
+<ExerciseSet
+  title="Review Problems (selected)"
+  items={[
+    {
+      q: "Using the method of joints, determine the force in each member of the truss shown. State whether each member is in tension or compression.",
+      a: "$F_{AB} = F_{BD} = 0$; $F_{AC} = 675\\,\\text{N}\\;T$; $F_{AD} = 1125\\,\\text{N}\\;C$; $F_{CD} = 900\\,\\text{N}\\;T$; $F_{CE} = 2025\\,\\text{N}\\;T$; $F_{CF} = 2250\\,\\text{N}\\;C$; $F_{DF} = 675\\,\\text{N}\\;C$; $F_{EF} = 1800\\,\\text{N}\\;T$",
+      figure: "/diagrams/get-207/trusses-frames-and-machines-p6-164.png"
+    }
+  ]}
+/>
+
+---
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Frequent Mistakes in Trusses, Frames and Machines">
+
+1. **Losing the sign convention.** Assume every unknown member force is **tension** (arrow pointing *away* from the joint or cut). A negative answer then means **compression**. Always report the magnitude **with T or C**, never a bare negative number.
+2. **Using the joint rules where they do not apply.** A member is zero-force only at an **unloaded** joint with three members, two of them collinear, or at an unloaded joint with two non-collinear members. At joints $B$ and $D$ of the diagram the rules do *not* apply.
+3. **Cutting more than three members.** A section normally cuts **three** members with unknown forces. Cut more only when one equation, such as a moment about the intersection of all the others, isolates the desired force (Probs. 6.61–6.64).
+4. **Treating a multiforce member as a two-force member.** A member with a load between its ends, or with three or more connections (e.g. $ACE$ in Sample Prob. 6.6), has forces **not along its axis**. Use two components at each pin.
+5. **Breaking Newton's third law when dismembering.** Forces at a shared pin must be **equal and opposite** on the two members, with the same name. Writing independent unknowns on each side doubles the unknown count.
+6. **Expecting the whole-frame equations to give every reaction.** For a frame that is **not rigid without its supports**, Sample Prob. 6.6), the whole-frame equations are **necessary but not sufficient**. You must dismember it.
+7. **Forgetting where a loaded pin belongs.** When a load is applied to a pin, or a pin joins three or more members, decide which member owns the pin before writing equations (Sample Prob. 6.6 attaches pin $A$ to $ACE$).
+8. **Trusting $m + r = 2n$ alone.** Equal counts do not guarantee complete constraint. Check for **improper constraint**, e.g. support reactions that are concurrent or parallel.
+
+</Callout>
+
+---
+
+## Summary of Formulas
+
+<RuleBox kind="formula" title="Key Relations">
+
+| Context | Relation | Notes |
+|---|---|---|
+| Simple plane truss | $m = 2n - 3$ | $m$ members, $n$ joints |
+| Simple space truss | $m = 3n - 6$ | tetrahedron + 3 members per joint |
+| Plane truss determinacy | $m + r = 2n$ | necessary, not sufficient |
+| | $m + r < 2n$ | partially constrained |
+| | $m + r > 2n$ | statically indeterminate |
+| Method of joints (plane) | $\sum F_x = 0,\ \sum F_y = 0$ at each pin | 2 unknowns per joint |
+| Method of joints (space) | $\sum F_x = \sum F_y = \sum F_z = 0$ at each joint | $\le 3$ unknowns per joint |
+| Method of sections | $\sum F_x = 0,\ \sum F_y = 0,\ \sum M = 0$ on a portion | cut $\le 3$ unknown members |
+| Two-force member | equal, opposite, collinear end forces along the member | T pulls the pin, C pushes the pin |
+| Multiforce member | two components per pin; Newton's 3rd law between members | frames and machines |
+| Pliers) | $Pa = Qb$; $A_x = 0$, $A_y = P + Q$ | input $P$, output $Q$ |
+| Hydraulic-lift table (SP 6.7) | $F_{DH} = W\dfrac{\cos\theta}{\sin\phi} = W\dfrac{DH}{EH}\cot\theta$ | independent of $d$ |
+
+</RuleBox>

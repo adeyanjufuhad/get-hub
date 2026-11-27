@@ -5,7 +5,6 @@ topicId: "22222222-2222-4222-8222-222222270004"
 courseCode: "GET 207"
 courseSlug: "get-207"
 ccmasRef: "Forces as vectors; resolution and composition of forces; equilibrium of a particle"
-textbookRef: "Beer & Johnston 10e · Ch. 2"
 outcomes:
   - "Combine and resolve coplanar forces graphically and trigonometrically using the parallelogram law, triangle rule, and polygon rule"
   - "Express 2D and 3D forces in rectangular component form using unit vectors i, j, k and compute resultants by summing scalar components"
@@ -17,7 +16,7 @@ isFree: true
 
 ## Overview
 
-In **Beer & Johnston, Chapter 2 (*Statics of Particles*)**, we analyze the effect of forces acting on a **particle**—meaning any body whose size and shape do not significantly affect the solution, so all forces acting on it can be treated as concurrent at a single point of application. The chapter moves systematically from two-dimensional (**coplanar**) force systems (§2.2–2.11) to three-dimensional (**space**) force systems (§2.12–2.15), establishing both graphical/trigonometric tools and analytic unit-vector methods.
+In **Statics of Particles**, we analyze the effect of forces acting on a **particle**—meaning any body whose size and shape do not significantly affect the solution, so all forces acting on it can be treated as concurrent at a single point of application. The chapter moves systematically from two-dimensional (**coplanar**) force systems to three-dimensional (**space**) force systems, establishing both graphical/trigonometric tools and analytic unit-vector methods.
 
 ---
 
@@ -37,7 +36,7 @@ A **force** represents the action of one body on another. It is characterized by
 - **Line of action:** The infinite straight line along which the force acts, defined by the angle it forms with a fixed reference axis.
 - **Sense:** Indicated by an arrowhead; reversing the sense produces the directly opposite mechanical effect.
 
-<RuleBox kind="theorem" title="§2.2 Parallelogram Law for the Addition of Two Forces">
+<RuleBox kind="theorem" title="Parallelogram Law for the Addition of Two Forces">
 
 Two forces $\mathbf{P}$ and $\mathbf{Q}$ acting on a particle $A$ can be replaced by a single **resultant** force $\mathbf{R}$ obtained by constructing a parallelogram with $\mathbf{P}$ and $\mathbf{Q}$ as adjacent sides. The diagonal of the parallelogram passing through $A$ represents $\mathbf{R}$:
 
@@ -51,7 +50,7 @@ This law is established by experimental evidence; it cannot be proved mathematic
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-2.png"
-  caption="Beer & Johnston Fig. 2.2 — (a) Two forces P and Q acting on particle A; (b) parallelogram law construction; (c) equivalent resultant force R."
+  caption="(a) Two forces P and Q acting on particle A; (b) parallelogram law construction; (c) equivalent resultant force R."
 />
 
 ---
@@ -63,13 +62,13 @@ Physical quantities that possess **both magnitude and direction** and **obey the
 - **Notation:** In print, vectors are set in **boldface** ($\mathbf{P}$) and their magnitudes in *italics* ($P$); in handwriting, an over-arrow ($\vec{P}$) or underline ($\underline{P}$) is used.
 - **Classification of Vectors:**
   - *Fixed (bound) vector:* Has a well-defined point of application (such as a force acting on a particle) and cannot be moved without altering the problem.
-  - *Free vector:* May be moved freely in space (such as a couple vector in Ch. 3).
-  - *Sliding vector:* May be slid along its line of action (such as a force acting on a rigid body in Ch. 3).
+  - *Free vector:* May be moved freely in space (such as a couple vector).
+  - *Sliding vector:* May be slid along its line of action (such as a force acting on a rigid body).
 - **Equal and Negative Vectors:** Two vectors with the same magnitude and direction are **equal**, regardless of point of application. The **negative vector** $-\mathbf{P}$ has the same magnitude as $\mathbf{P}$ but opposite sense, so $\mathbf{P} + (-\mathbf{P}) = \mathbf{0}$.
 
 <Callout variant="info" title="Why Finite Rotations Are Not Vectors">
 
-Possessing magnitude and direction is **necessary but not sufficient** for a quantity to be a vector. Finite rotations of a rigid body (e.g., two $180^\circ$ rotations about perpendicular axes, Beer & Johnston Fig. 2.3) depend on the order of application and do not obey the parallelogram law; therefore finite rotations are **not** vectors.
+Possessing magnitude and direction is **necessary but not sufficient** for a quantity to be a vector. Finite rotations of a rigid body (e.g., two $180^\circ$ rotations about perpendicular axes, standard mechanics the diagram) depend on the order of application and do not obey the parallelogram law; therefore finite rotations are **not** vectors.
 
 </Callout>
 
@@ -85,7 +84,7 @@ $$
 
 Note carefully that the magnitude $|\mathbf{P} + \mathbf{Q}|$ is **not**, in general, equal to the scalar sum $P + Q$.
 
-<RuleBox kind="working-rule" title="§2.4 Triangle Rule, Vector Subtraction, and Polygon Rule">
+<RuleBox kind="working-rule" title="Triangle Rule, Vector Subtraction, and Polygon Rule">
 
 - **Triangle Rule:** Arrange $\mathbf{P}$ and $\mathbf{Q}$ in **tip-to-tail** fashion; the vector extending from the tail of $\mathbf{P}$ to the tip of $\mathbf{Q}$ equals $\mathbf{P} + \mathbf{Q}$ (half of the parallelogram).
 - **Vector Subtraction:** Defined as adding the negative vector:
@@ -104,12 +103,12 @@ Note carefully that the magnitude $|\mathbf{P} + \mathbf{Q}|$ is **not**, in gen
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-7-8.png"
-  caption="Beer & Johnston Figs. 2.7 and 2.8 — Triangle rule confirming commutativity P + Q = Q + P, and vector subtraction P - Q = P + (-Q)."
+  caption="standard mechanics Figs. 2.7 and 2.8 — Triangle rule confirming commutativity P + Q = Q + P, and vector subtraction P - Q = P + (-Q)."
 />
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-10.png"
-  caption="Beer & Johnston Fig. 2.10 — Polygon rule for adding coplanar vectors tip-to-tail."
+  caption="Polygon rule for adding coplanar vectors tip-to-tail."
 />
 
 ---
@@ -124,10 +123,10 @@ When several coplanar forces $\mathbf{P}, \mathbf{Q}, \mathbf{S}, \dots$ act at 
 
 Conversely, a single force $\mathbf{F}$ acting on a particle may be replaced by two or more **components** whose combined effect equals $\mathbf{F}$. While infinitely many component pairs exist, two practical cases dominate:
 
-<RuleBox kind="working-rule" title="§2.6 Two Standard Cases of Force Resolution">
+<RuleBox kind="working-rule" title="Two Standard Cases of Force Resolution">
 
-1. **One Component ($\mathbf{P}$) Is Known:** Apply the triangle rule by joining the tip of $\mathbf{P}$ to the tip of $\mathbf{F}$; the closing side gives the second component $\mathbf{Q}$ (Fig. 2.16).
-2. **Line of Action of Each Component Is Known:** Apply the parallelogram law by drawing lines through the tip of $\mathbf{F}$ parallel to the two known lines of action (Fig. 2.17). Solve the resulting force triangle graphically or via the **law of sines**.
+1. **One Component ($\mathbf{P}$) Is Known:** Apply the triangle rule by joining the tip of $\mathbf{P}$ to the tip of $\mathbf{F}$; the closing side gives the second component $\mathbf{Q}$).
+2. **Line of Action of Each Component Is Known:** Apply the parallelogram law by drawing lines through the tip of $\mathbf{F}$ parallel to the two known lines of action). Solve the resulting force triangle graphically or via the **law of sines**.
 
 When solving oblique force triangles by trigonometry:
 - Use the **law of cosines** ($R^2 = P^2 + Q^2 - 2PQ\cos B$) first when **two sides and the included angle** are known.
@@ -137,33 +136,31 @@ When solving oblique force triangles by trigonometry:
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-16-17.png"
-  caption="Beer & Johnston Figs. 2.16 and 2.17 — Resolving F when one component P is known (top) and when both lines of action are known (bottom)."
+  caption="standard mechanics Figs. 2.16 and 2.17 — Resolving F when one component P is known (top) and when both lines of action are known (bottom)."
 />
 
 <StepRevealExample
-  title="Sample Problem 2.1 — Resultant of Two Forces by Law of Cosines & Sines"
-  source="Beer & Johnston 10e, Ch. 2, Sample Problem 2.1"
+  title="Resultant of Two Forces by Law of Cosines & Sines"
   figure="/diagrams/get-207/force-vectors-sp-2-1.png"
-  problem="The two forces $\\mathbf{P}$ ($P = 40\\,\\text{N}$ at $20^\\circ$ above the horizontal) and $\\mathbf{Q}$ ($Q = 60\\,\\text{N}$ at $25^\\circ$ above $\\mathbf{P}$, i.e., $45^\\circ$ above horizontal) act on a bolt $A$. Determine their resultant $\\mathbf{R}$."
+  problem="The two forces $\mathbf{P}$ ($P = 40\,\text{N}$ at $20^\circ$ above the horizontal) and $\mathbf{Q}$ ($Q = 60\,\text{N}$ at $25^\circ$ above $\mathbf{P}$, i.e., $45^\circ$ above horizontal) act on a bolt $A$. Determine their resultant $\mathbf{R}$."
   steps={[
     "Draw the force triangle by placing $\\mathbf{P}$ and $\\mathbf{Q}$ tip-to-tail. The exterior angle at corner $B$ is $25^\\circ$, so the interior angle opposite $\\mathbf{R}$ is $B = 180^\\circ - 25^\\circ = 155^\\circ$.",
     "Since two sides ($P = 40\\,\\text{N}$, $Q = 60\\,\\text{N}$) and the included angle ($155^\\circ$) are known, apply the **law of cosines**: $R^2 = P^2 + Q^2 - 2PQ\\cos B = (40)^2 + (60)^2 - 2(40)(60)\\cos 155^\\circ = 1600 + 3600 + 4350.28 = 9550.28\\,\\text{N}^2$, giving $R = 97.73\\,\\text{N}$.",
     "Apply the **law of sines** to find angle $A$ between $\\mathbf{P}$ and $\\mathbf{R}$: $\\dfrac{\\sin A}{Q} = \\dfrac{\\sin B}{R} \\implies \\sin A = \\dfrac{(60\\,\\text{N})\\sin 155^\\circ}{97.73\\,\\text{N}} = 0.2595 \\implies A = 15.04^\\circ$.",
     "Measure the direction $\\alpha$ of $\\mathbf{R}$ from the positive horizontal axis: $\\alpha = 20^\\circ + A = 20^\\circ + 15.04^\\circ = 35.04^\\circ$. Rounding to 3 significant figures gives $R = 97.7\\,\\text{N}$ at $35.0^\\circ$ above the positive horizontal axis."
   ]}
-  answer="$\\mathbf{R} = 97.7\\,\\text{N} \\;\\measuredangle\\; 35.0^\\circ$"
+  answer="$\mathbf{R} = 97.7\,\text{N} \;\measuredangle\; 35.0^\circ$"
 />
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-sp-2-1-sol.png"
-  caption="Beer & Johnston Sample Problem 2.1 — Graphical parallelogram/triangle constructions and trigonometric triangles."
+  caption="Graphical parallelogram/triangle constructions and trigonometric triangles."
 />
 
 <StepRevealExample
-  title="Sample Problem 2.2 — Resolving a Force & Minimum Tension Condition"
-  source="Beer & Johnston 10e, Ch. 2, Sample Problem 2.2"
+  title="Resolving a Force & Minimum Tension Condition"
   figure="/diagrams/get-207/force-vectors-sp-2-2.png"
-  problem="A barge is pulled by two tugboats. If the resultant of the forces exerted by the tugboats is a $5000\\text{-lb}$ force directed along the horizontal axis of the barge, determine (a) the tension in each rope knowing that $\\alpha = 45^\\circ$, and (b) the value of $\\alpha$ for which the tension in rope 2 is minimum."
+  problem="A barge is pulled by two tugboats. If the resultant of the forces exerted by the tugboats is a $5000\text{-lb}$ force directed along the horizontal axis of the barge, determine (a) the tension in each rope knowing that $\alpha = 45^\circ$, and (b) the value of $\alpha$ for which the tension in rope 2 is minimum."
   steps={[
     "**Part (a) for $\\alpha = 45^\\circ$:** Construct the force triangle (half of the parallelogram) with horizontal resultant $R = 5000\\,\\text{lb}$, angle $30^\\circ$ adjacent to $T_1$, angle $45^\\circ$ adjacent to $T_2$, and third interior angle $180^\\circ - 30^\\circ - 45^\\circ = 105^\\circ$.",
     "Apply the **law of sines**: $\\dfrac{T_1}{\\sin 45^\\circ} = \\dfrac{T_2}{\\sin 30^\\circ} = \\dfrac{5000\\,\\text{lb}}{\\sin 105^\\circ}$.",
@@ -171,40 +168,39 @@ When solving oblique force triangles by trigonometry:
     "**Part (b) minimum $T_2$:** In the force triangle, the line of action $1\\text{-}1'$ of $\\mathbf{T}_1$ is fixed at $30^\\circ$ to the horizontal $5000\\text{-lb}$ resultant. Varying $\\alpha$ swings the direction of $\\mathbf{T}_2$ from the tip of $\\mathbf{R}$ to line $1\\text{-}1'$. The shortest segment from a point to a line is perpendicular to that line, so $T_2$ is minimum when $\\mathbf{T}_2 \\perp \\mathbf{T}_1$.",
     "From the resulting right triangle: $T_{2,\\min} = (5000\\,\\text{lb})\\sin 30^\\circ = 2500\\,\\text{lb}$, $T_1 = (5000\\,\\text{lb})\\cos 30^\\circ = 4330\\,\\text{lb}$, and $\\alpha = 90^\\circ - 30^\\circ = 60^\\circ$."
   ]}
-  answer="(a) $T_1 = 3660\\,\\text{lb},\\; T_2 = 2590\\,\\text{lb}$; (b) $\\alpha = 60^\\circ$ ($T_{2,\\min} = 2500\\,\\text{lb}$)"
+  answer="(a) $T_1 = 3660\,\text{lb},\; T_2 = 2590\,\text{lb}$; (b) $\alpha = 60^\circ$ ($T_{2,\min} = 2500\,\text{lb}$)"
 />
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-sp-2-2-sol.png"
-  caption="Beer & Johnston Sample Problem 2.2 — Force triangles for (a) alpha = 45 deg and (b) perpendicular minimum-T2 geometry."
+  caption="Force triangles for (a) alpha = 45 deg and (b) perpendicular minimum-T2 geometry."
 />
 
 <ExerciseSet
   title="Problems 2.1–2.13 — Parallelogram Law & Trigonometry"
-  source="Beer & Johnston 10e, Ch. 2 (§2.2–2.6)"
   items={[
     {
-      q: "**Prob. 2.1:** Two forces ($2\\,\\text{kN}$ at $40^\\circ$ left of downward vertical, $3\\,\\text{kN}$ at $60^\\circ$ right of downward vertical) are applied at point $B$ of beam $AB$. Determine the magnitude and direction of their resultant.",
+      q: "Two forces ($2\\,\\text{kN}$ at $40^\\circ$ left of downward vertical, $3\\,\\text{kN}$ at $60^\\circ$ right of downward vertical) are applied at point $B$ of beam $AB$. Determine the magnitude and direction of their resultant.",
       a: "$R = 3.30\\,\\text{kN}$ directed downward-right at $66.6^\\circ$ below the $+x$ axis ($23.4^\\circ$ right of downward vertical).",
       figure: "/diagrams/get-207/force-vectors-p2-1.png"
     },
     {
-      q: "**Prob. 2.5:** A stake is pulled out of the ground by two ropes ($120\\,\\text{N}$ at $25^\\circ$ left of vertical, and $\\mathbf{P}$ at $\\alpha = 30^\\circ$ right of vertical). Determine (a) the magnitude of $\\mathbf{P}$ so that the resultant is vertical, and (b) the corresponding magnitude of the resultant.",
+      q: "A stake is pulled out of the ground by two ropes ($120\\,\\text{N}$ at $25^\\circ$ left of vertical, and $\\mathbf{P}$ at $\\alpha = 30^\\circ$ right of vertical). Determine (a) the magnitude of $\\mathbf{P}$ so that the resultant is vertical, and (b) the corresponding magnitude of the resultant.",
       a: "(a) $P = 101.4\\,\\text{N}$; (b) $R = 196.6\\,\\text{N}$.",
       figure: "/diagrams/get-207/force-vectors-p2-5.png"
     },
     {
-      q: "**Prob. 2.6:** A trolley along a horizontal beam is acted upon by a $1600\\text{-N}$ force at $15^\\circ$ below the $-x$ axis and a force $\\mathbf{P}$ at $\\alpha = 25^\\circ$ right of the downward vertical. Determine (a) $P$ for a vertical resultant, and (b) the magnitude of the resultant.",
+      q: "A trolley along a horizontal beam is acted upon by a $1600\\text{-N}$ force at $15^\\circ$ below the $-x$ axis and a force $\\mathbf{P}$ at $\\alpha = 25^\\circ$ right of the downward vertical. Determine (a) $P$ for a vertical resultant, and (b) the magnitude of the resultant.",
       a: "(a) $P = 3660\\,\\text{N}$; (b) $R = 3730\\,\\text{N}$.",
       figure: "/diagrams/get-207/force-vectors-p2-6.png"
     },
     {
-      q: "**Prob. 2.8:** A telephone cable is clamped at $A$ to pole $AB$. Knowing that $T_1 = 800\\,\\text{lb}$ ($15^\\circ$ below $-x$) and $T_2$ acts at $25^\\circ$ below $+x$, determine (a) $T_2$ for a vertical resultant $\\mathbf{R}$, and (b) the magnitude of $\\mathbf{R}$.",
+      q: "A telephone cable is clamped at $A$ to pole $AB$. Knowing that $T_1 = 800\\,\\text{lb}$ ($15^\\circ$ below $-x$) and $T_2$ acts at $25^\\circ$ below $+x$, determine (a) $T_2$ for a vertical resultant $\\mathbf{R}$, and (b) the magnitude of $\\mathbf{R}$.",
       a: "(a) $T_2 = 853\\,\\text{lb}$; (b) $R = 567\\,\\text{lb}$.",
       figure: "/diagrams/get-207/force-vectors-p2-8.png"
     },
     {
-      q: "**Prob. 2.13:** A steel tank is positioned in an excavation with a $425\\text{-lb}$ force at $30^\\circ$ above $-x$ and force $\\mathbf{P}$ at angle $\\alpha$. Determine (a) the magnitude and direction of the smallest force $\\mathbf{P}$ for which the resultant $\\mathbf{R}$ is vertical, and (b) the corresponding magnitude of $\\mathbf{R}$.",
+      q: "A steel tank is positioned in an excavation with a $425\\text{-lb}$ force at $30^\\circ$ above $-x$ and force $\\mathbf{P}$ at angle $\\alpha$. Determine (a) the magnitude and direction of the smallest force $\\mathbf{P}$ for which the resultant $\\mathbf{R}$ is vertical, and (b) the corresponding magnitude of $\\mathbf{R}$.",
       a: "(a) $P = 368\\,\\text{lb}$ directed horizontally to the right ($\\alpha = 0^\\circ$); (b) $R = 213\\,\\text{lb}$.",
       figure: "/diagrams/get-207/force-vectors-p2-11.png"
     }
@@ -217,7 +213,7 @@ When solving oblique force triangles by trigonometry:
 
 In most engineering problems it is advantageous to resolve a force $\mathbf{F}$ into two **rectangular components** $\mathbf{F}_x$ and $\mathbf{F}_y$ along perpendicular $x$ and $y$ axes (either horizontal/vertical or tilted along an incline). Introducing unit vectors $\mathbf{i}$ and $\mathbf{j}$ of magnitude $1$ directed along the positive $x$ and $y$ axes:
 
-<RuleBox kind="formula" title="§2.7 Rectangular Components & Unit Vectors (2D)">
+<RuleBox kind="formula" title="Rectangular Components & Unit Vectors (2D)">
 
 $$
 \mathbf{F}_x = F_x\mathbf{i}, \qquad \mathbf{F}_y = F_y\mathbf{j} \tag{2.6}
@@ -247,38 +243,36 @@ $$
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-18.png"
-  caption="Beer & Johnston Fig. 2.18 — Resolution of force F into rectangular components Fx and Fy along x and y axes."
+  caption="Resolution of force F into rectangular components Fx and Fy along x and y axes."
 />
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-21.png"
-  caption="Beer & Johnston Fig. 2.21 — Expressing vector components in terms of unit vectors i and j."
+  caption="Expressing vector components in terms of unit vectors i and j."
 />
 
 <StepRevealExample
-  title="Example 1 (§2.7) — Rectangular Components from Angle"
-  source="Beer & Johnston 10e, Ch. 2, §2.7 Example 1"
+  title="Example 1 — Rectangular Components from Angle"
   figure="/diagrams/get-207/force-vectors-fig-2-22.png"
-  problem="A force of $800\\,\\text{N}$ is exerted on a bolt $A$ at $35^\\circ$ above the negative $x$ axis, as shown in Fig. 2.22a. Determine the horizontal and vertical components of the force."
+  problem="A force of $800\,\text{N}$ is exerted on a bolt $A$ at $35^\circ$ above the negative $x$ axis, as shown in the diagram Determine the horizontal and vertical components of the force."
   steps={[
-    "Either substitute $\\theta = 180^\\circ - 35^\\circ = 145^\\circ$ into Eqs. (2.8), or—more practically—determine the signs by inspection from Fig. 2.22b ($F_x$ points left, negative; $F_y$ points up, positive) and use the acute angle $\\alpha = 35^\\circ$.",
+    "Either substitute $\\theta = 180^\\circ - 35^\\circ = 145^\\circ$ into Eqs. (2.8), or—more practically—determine the signs by inspection from the diagram ($F_x$ points left, negative; $F_y$ points up, positive) and use the acute angle $\\alpha = 35^\\circ$.",
     "Compute scalar components: $F_x = -F\\cos 35^\\circ = -(800\\,\\text{N})\\cos 35^\\circ = -655\\,\\text{N}$, and $F_y = +F\\sin 35^\\circ = +(800\\,\\text{N})\\sin 35^\\circ = +459\\,\\text{N}$.",
     "Write the vector components $\\mathbf{F}_x = -(655\\,\\text{N})\\mathbf{i}$, $\\mathbf{F}_y = +(459\\,\\text{N})\\mathbf{j}$, and combine into $\\mathbf{F} = -(655\\,\\text{N})\\mathbf{i} + (459\\,\\text{N})\\mathbf{j}$."
   ]}
-  answer="$\\mathbf{F} = -(655\\,\\text{N})\\mathbf{i} + (459\\,\\text{N})\\mathbf{j}$"
+  answer="$\mathbf{F} = -(655\,\text{N})\mathbf{i} + (459\,\text{N})\mathbf{j}$"
 />
 
 <StepRevealExample
-  title="Example 2 (§2.7) — Rectangular Components from Geometry Proportions"
-  source="Beer & Johnston 10e, Ch. 2, §2.7 Example 2"
+  title="Example 2 — Rectangular Components from Geometry Proportions"
   figure="/diagrams/get-207/force-vectors-fig-2-23.png"
-  problem="A man pulls with a force of $300\\,\\text{N}$ on a rope attached to a building at $A$ ($8\\,\\text{m}$ horizontally to the left of $B$ and $6\\,\\text{m}$ above $B$), as shown in Fig. 2.23a. What are the horizontal and vertical components of the force exerted by the rope at point $A$?"
+  problem="A man pulls with a force of $300\,\text{N}$ on a rope attached to a building at $A$ ($8\,\text{m}$ horizontally to the left of $B$ and $6\,\text{m}$ above $B$), as shown in the diagram What are the horizontal and vertical components of the force exerted by the rope at point $A$?"
   steps={[
-    "From Fig. 2.23b, the force acting on $A$ pulls toward $B$ (downward and to the right), so $F_x = +(300\\,\\text{N})\\cos\\alpha$ and $F_y = -(300\\,\\text{N})\\sin\\alpha$.",
+    "From the diagram, the force acting on $A$ pulls toward $B$ (downward and to the right), so $F_x = +(300\\,\\text{N})\\cos\\alpha$ and $F_y = -(300\\,\\text{N})\\sin\\alpha$.",
     "Compute the rope length $AB = \\sqrt{(8\\,\\text{m})^2 + (6\\,\\text{m})^2} = 10\\,\\text{m}$. Using direct geometric ratios (without needing to evaluate $\\alpha$): $\\cos\\alpha = \\dfrac{8\\,\\text{m}}{10\\,\\text{m}} = \\dfrac{4}{5}$ and $\\sin\\alpha = \\dfrac{6\\,\\text{m}}{10\\,\\text{m}} = \\dfrac{3}{5}$.",
     "Evaluate $F_x = +(300\\,\\text{N})\\left(\\dfrac{4}{5}\\right) = +240\\,\\text{N}$ and $F_y = -(300\\,\\text{N})\\left(\\dfrac{3}{5}\\right) = -180\\,\\text{N}$, giving $\\mathbf{F} = (240\\,\\text{N})\\mathbf{i} - (180\\,\\text{N})\\mathbf{j}$."
   ]}
-  answer="$\\mathbf{F} = (240\\,\\text{N})\\mathbf{i} - (180\\,\\text{N})\\mathbf{j}$"
+  answer="$\mathbf{F} = (240\,\text{N})\mathbf{i} - (180\,\text{N})\mathbf{j}$"
 />
 
 ---
@@ -291,7 +285,7 @@ $$
 R_x\mathbf{i} + R_y\mathbf{j} = (P_x + Q_x + S_x)\mathbf{i} + (P_y + Q_y + S_y)\mathbf{j}
 $$
 
-<RuleBox kind="formula" title="§2.8 Resultant by Summing Rectangular Components">
+<RuleBox kind="formula" title="Resultant by Summing Rectangular Components">
 
 $$
 R_x = \sum F_x, \qquad R_y = \sum F_y \tag{2.13}
@@ -303,14 +297,13 @@ Then $\mathbf{R} = R_x\mathbf{i} + R_y\mathbf{j}$, with magnitude $R = \sqrt{R_x
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-25.png"
-  caption="Beer & Johnston Fig. 2.25 — Four-step graphical interpretation of summing X and Y components to obtain R."
+  caption="Four-step graphical interpretation of summing X and Y components to obtain R."
 />
 
 <StepRevealExample
-  title="Sample Problem 2.3 — Resultant of Four Forces via Component Table"
-  source="Beer & Johnston 10e, Ch. 2, Sample Problem 2.3"
+  title="Resultant of Four Forces via Component Table"
   figure="/diagrams/get-207/force-vectors-sp-2-3.png"
-  problem="Four forces act on bolt $A$: $F_1 = 150\\,\\text{N}$ at $30^\\circ$ above $+x$, $F_2 = 80\\,\\text{N}$ at $20^\\circ$ left of $+y$, $F_3 = 110\\,\\text{N}$ straight down ($-y$), and $F_4 = 100\\,\\text{N}$ at $15^\\circ$ below $+x$. Determine the resultant of the forces on the bolt."
+  problem="Four forces act on bolt $A$: $F_1 = 150\,\text{N}$ at $30^\circ$ above $+x$, $F_2 = 80\,\text{N}$ at $20^\circ$ left of $+y$, $F_3 = 110\,\text{N}$ straight down ($-y$), and $F_4 = 100\,\text{N}$ at $15^\circ$ below $+x$. Determine the resultant of the forces on the bolt."
   steps={[
     "Resolve each force into $x$ and $y$ scalar components (positive right and upward):",
     "$\\mathbf{F}_1$: $F_{1x} = +150\\cos 30^\\circ = +129.9\\,\\text{N}$, $\\;F_{1y} = +150\\sin 30^\\circ = +75.0\\,\\text{N}$.",
@@ -320,40 +313,39 @@ Then $\mathbf{R} = R_x\mathbf{i} + R_y\mathbf{j}$, with magnitude $R = \sqrt{R_x
     "Sum the columns: $R_x = \\sum F_x = 129.9 - 27.4 + 0 + 96.6 = +199.1\\,\\text{N}$ and $R_y = \\sum F_y = 75.0 + 75.2 - 110.0 - 25.9 = +14.3\\,\\text{N}$, so $\\mathbf{R} = (199.1\\,\\text{N})\\mathbf{i} + (14.3\\,\\text{N})\\mathbf{j}$.",
     "Find magnitude and angle: $\\tan\\alpha = \\dfrac{14.3}{199.1} \\implies \\alpha = 4.1^\\circ$ above $+x$, and $R = \\dfrac{14.3}{\\sin 4.1^\\circ} = 199.6\\,\\text{N}$."
   ]}
-  answer="$\\mathbf{R} = (199.1\\,\\text{N})\\mathbf{i} + (14.3\\,\\text{N})\\mathbf{j}$, or $R = 199.6\\,\\text{N} \\;\\measuredangle\\; 4.1^\\circ$"
+  answer="$\mathbf{R} = (199.1\,\text{N})\mathbf{i} + (14.3\,\text{N})\mathbf{j}$, or $R = 199.6\,\text{N} \;\measuredangle\; 4.1^\circ$"
 />
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-sp-2-3-sol.png"
-  caption="Beer & Johnston Sample Problem 2.3 — Resolution of the four forces into x and y components and assembly of resultant R."
+  caption="Resolution of the four forces into x and y components and assembly of resultant R."
 />
 
 <ExerciseSet
   title="Problems 2.21–2.36 — Rectangular Components & Summing X/Y"
-  source="Beer & Johnston 10e, Ch. 2 (§2.7–2.8)"
   items={[
     {
-      q: "**Prob. 2.21 & 2.32:** Three forces ($80\\,\\text{N}$ at $40^\\circ$ above $+x$, $120\\,\\text{N}$ at $70^\\circ$ above $+x$, $150\\,\\text{N}$ at $35^\\circ$ above $-x$) act on a bracket. Determine (a) the $x$ and $y$ components of each force, and (b) their resultant.",
+      q: "& 2.32:** Three forces ($80\\,\\text{N}$ at $40^\\circ$ above $+x$, $120\\,\\text{N}$ at $70^\\circ$ above $+x$, $150\\,\\text{N}$ at $35^\\circ$ above $-x$) act on a bracket. Determine (a) the $x$ and $y$ components of each force, and (b) their resultant.",
       a: "(a) $(80\\,\\text{N})$: $61.3\\,\\text{N},\\; 51.4\\,\\text{N}$; $(120\\,\\text{N})$: $41.0\\,\\text{N},\\; 112.8\\,\\text{N}$; $(150\\,\\text{N})$: $-122.9\\,\\text{N},\\; 86.0\\,\\text{N}$. (b) $R = 251\\,\\text{N}$ at $85.3^\\circ$ above $-x$ ($R_x = -20.6\\,\\text{N},\\; R_y = 250.2\\,\\text{N}$).",
       figure: "/diagrams/get-207/force-vectors-p2-21.png"
     },
     {
-      q: "**Prob. 2.25:** Hydraulic cylinder $BD$ exerts on member $ABC$ a force $\\mathbf{P}$ directed along line $BD$. Knowing that $\\mathbf{P}$ must have a $750\\text{-N}$ component perpendicular to member $ABC$, determine (a) the magnitude of $\\mathbf{P}$, and (b) its component parallel to $ABC$.",
+      q: "Hydraulic cylinder $BD$ exerts on member $ABC$ a force $\\mathbf{P}$ directed along line $BD$. Knowing that $\\mathbf{P}$ must have a $750\\text{-N}$ component perpendicular to member $ABC$, determine (a) the magnitude of $\\mathbf{P}$, and (b) its component parallel to $ABC$.",
       a: "(a) $P = 2190\\,\\text{N}$; (b) $P_{\\parallel} = 2060\\,\\text{N}$.",
       figure: "/diagrams/get-207/force-vectors-p2-25.png"
     },
     {
-      q: "**Prob. 2.31:** Determine the resultant of the three forces shown in Fig. P2.23 ($800\\,\\text{N}$ along $+800,+600$; $424\\,\\text{N}$ along $-560,-900$; $408\\,\\text{N}$ along $+480,-900$).",
+      q: "Determine the resultant of the three forces shown in the diagram ($800\\,\\text{N}$ along $+800,+600$; $424\\,\\text{N}$ along $-560,-900$; $408\\,\\text{N}$ along $+480,-900$).",
       a: "$R = 654\\,\\text{N}$ directed downward-right at $21.5^\\circ$ below the $+x$ axis.",
       figure: "/diagrams/get-207/force-vectors-p2-23.png"
     },
     {
-      q: "**Prob. 2.35:** Knowing that $\\alpha = 35^\\circ$, determine the resultant of the three forces acting on the collar ($200\\,\\text{N}$, $150\\,\\text{N}$, $100\\,\\text{N}$).",
+      q: "Knowing that $\\alpha = 35^\\circ$, determine the resultant of the three forces acting on the collar ($200\\,\\text{N}$, $150\\,\\text{N}$, $100\\,\\text{N}$).",
       a: "$R = 309\\,\\text{N}$ directed downward-left at $86.6^\\circ$ below the $-x$ axis.",
       figure: "/diagrams/get-207/force-vectors-p2-35.png"
     },
     {
-      q: "**Prob. 2.36:** Knowing that the tension in rope $AC$ is $365\\,\\text{N}$, determine the resultant of the three forces exerted at point $C$ of post $BC$.",
+      q: "Knowing that the tension in rope $AC$ is $365\\,\\text{N}$, determine the resultant of the three forces exerted at point $C$ of post $BC$.",
       a: "$R = 474\\,\\text{N}$ directed downward-right at $32.5^\\circ$ below the $+x$ axis.",
       figure: "/diagrams/get-207/force-vectors-p2-36.png"
     }
@@ -364,7 +356,7 @@ Then $\mathbf{R} = R_x\mathbf{i} + R_y\mathbf{j}$, with magnitude $R = \sqrt{R_x
 
 ### 2.9 Equilibrium of a Particle
 
-<RuleBox kind="definition" title="§2.9 Equilibrium of a Particle (2D)">
+<RuleBox kind="definition" title="Equilibrium of a Particle (2D)">
 
 When the resultant of all forces acting on a particle is zero, the particle is in **equilibrium**:
 
@@ -387,7 +379,7 @@ $$
 
 ### 2.10 Newton's First Law of Motion
 
-<RuleBox kind="theorem" title="§2.10 Newton's First Law of Motion">
+<RuleBox kind="theorem" title="Newton's First Law of Motion">
 
 If the resultant force acting on a particle is zero, the particle will remain at rest (if originally at rest) or will move with constant speed in a straight line (if originally in motion).
 
@@ -403,10 +395,10 @@ Engineering problems start from a **space diagram** depicting the physical struc
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-29.png"
-  caption="Beer & Johnston Fig. 2.29 — (a) Space diagram of a 75-kg crate, (b) free-body diagram of joint A, and (c) closed force triangle for three-force equilibrium."
+  caption="(a) Space diagram of a 75-kg crate, (b) free-body diagram of joint A, and (c) closed force triangle for three-force equilibrium."
 />
 
-<RuleBox kind="working-rule" title="§2.11 Strategy for 2D Particle Equilibrium (Max 2 Unknowns)">
+<RuleBox kind="working-rule" title="Strategy for 2D Particle Equilibrium (Max 2 Unknowns)">
 
 - **Case 1 (Three Coplanar Forces):** Draw a closed **force triangle** and solve graphically or by trigonometry (law of sines).
 - **Case 2 (More Than Three Forces, or Component Convenience):** Choose $x$ and $y$ axes, resolve every force into components, and solve the two scalar equations $\sum F_x = 0$ and $\sum F_y = 0$.
@@ -415,38 +407,35 @@ Engineering problems start from a **space diagram** depicting the physical struc
 </RuleBox>
 
 <StepRevealExample
-  title="Sample Problem 2.4 — Three-Force Equilibrium via Force Triangle"
-  source="Beer & Johnston 10e, Ch. 2, Sample Problem 2.4"
+  title="Three-Force Equilibrium via Force Triangle"
   figure="/diagrams/get-207/force-vectors-sp-2-4.png"
-  problem="In a ship-unloading operation, a $3500\\text{-lb}$ automobile is supported by a cable $AB$ inclined at $2^\\circ$ to the vertical. A rope $AC$ tied at $A$ is pulled at $30^\\circ$ below the horizontal to center the automobile. Determine the tension in the cable $AB$ and rope $AC$."
+  problem="In a ship-unloading operation, a $3500\text{-lb}$ automobile is supported by a cable $AB$ inclined at $2^\circ$ to the vertical. A rope $AC$ tied at $A$ is pulled at $30^\circ$ below the horizontal to center the automobile. Determine the tension in the cable $AB$ and rope $AC$."
   steps={[
     "Draw the free-body diagram of point $A$: downward weight $W = 3500\\,\\text{lb}$, tension $T_{AB}$ up-left at $2^\\circ$ from vertical, and tension $T_{AC}$ down-right at $30^\\circ$ below horizontal.",
     "Since only three forces act, construct the closed force triangle. The angle between the vertical $3500\\text{-lb}$ weight and $T_{AB}$ is $2^\\circ$. The angle between the vertical weight and $T_{AC}$ is $90^\\circ + 30^\\circ = 120^\\circ$. Thus the remaining interior angle opposite the $3500\\text{-lb}$ side is $180^\\circ - 2^\\circ - 120^\\circ = 58^\\circ$.",
     "Apply the **law of sines**: $\\dfrac{T_{AB}}{\\sin 120^\\circ} = \\dfrac{T_{AC}}{\\sin 2^\\circ} = \\dfrac{3500\\,\\text{lb}}{\\sin 58^\\circ}$.",
     "Compute $T_{AB} = 3500\\,\\dfrac{\\sin 120^\\circ}{\\sin 58^\\circ} = 3570\\,\\text{lb}$ and $T_{AC} = 3500\\,\\dfrac{\\sin 2^\\circ}{\\sin 58^\\circ} = 144\\,\\text{lb}$."
   ]}
-  answer="$T_{AB} = 3570\\,\\text{lb},\\; T_{AC} = 144\\,\\text{lb}$"
+  answer="$T_{AB} = 3570\,\text{lb},\; T_{AC} = 144\,\text{lb}$"
 />
 
 <StepRevealExample
-  title="Sample Problem 2.5 — Smallest Force F for Equilibrium on Rollers"
-  source="Beer & Johnston 10e, Ch. 2, Sample Problem 2.5"
+  title="Smallest Force F for Equilibrium on Rollers"
   figure="/diagrams/get-207/force-vectors-sp-2-5.png"
-  problem="Determine the magnitude and direction of the smallest force $\\mathbf{F}$ that will maintain a $30\\text{-kg}$ package in equilibrium on a $15^\\circ$ incline. The force $\\mathbf{P}$ exerted by the rollers on the package is perpendicular to the incline."
+  problem="Determine the magnitude and direction of the smallest force $\mathbf{F}$ that will maintain a $30\text{-kg}$ package in equilibrium on a $15^\circ$ incline. The force $\mathbf{P}$ exerted by the rollers on the package is perpendicular to the incline."
   steps={[
     "Compute the package weight: $W = mg = (30\\,\\text{kg})(9.81\\,\\text{m/s}^2) = 294\\,\\text{N}$, acting vertically downward.",
     "Draw the FBD of the package: three forces act—weight $W = 294\\,\\text{N}$ downward, normal roller reaction $\\mathbf{P}$ perpendicular to the $15^\\circ$ incline (i.e., $15^\\circ$ right of vertical along line $1\\text{-}1'$), and unknown force $\\mathbf{F}$ at angle $\\alpha$ above the horizontal.",
     "Construct the force triangle starting with the known vector $294\\,\\text{N}$ downward and drawing line $1\\text{-}1'$ for the known direction of $\\mathbf{P}$. For $\\mathbf{F}$ to close the triangle with minimum magnitude, $\\mathbf{F}$ must be perpendicular to line $1\\text{-}1'$ (i.e., parallel to the $15^\\circ$ incline).",
     "From the right triangle: $F = (294\\,\\text{N})\\sin 15^\\circ = 76.1\\,\\text{N}$, directed up the incline at $\\alpha = 15^\\circ$ above the $-x$ direction."
   ]}
-  answer="$F = 76.1\\,\\text{N}$ at $\\alpha = 15^\\circ$ (up the $15^\\circ$ incline)"
+  answer="$F = 76.1\,\text{N}$ at $\alpha = 15^\circ$ (up the $15^\circ$ incline)"
 />
 
 <StepRevealExample
-  title="Sample Problem 2.6 — Four-Force Equilibrium via X/Y Equations"
-  source="Beer & Johnston 10e, Ch. 2, Sample Problem 2.6"
+  title="Four-Force Equilibrium via X/Y Equations"
   figure="/diagrams/get-207/force-vectors-sp-2-6.png"
-  problem="A model sailboat hull is held on the centerline of a test channel by three cables. Cable $AB$ has tension $40\\,\\text{lb}$ and cable $AE$ has tension $60\\,\\text{lb}$. Using the dimensions shown ($7\\,\\text{ft}$, $1.5\\,\\text{ft}$, $4\\,\\text{ft}$, $4\\,\\text{ft}$), determine the drag force $F_D$ exerted by the flow and the tension $T_{AC}$ in cable $AC$."
+  problem="A model sailboat hull is held on the centerline of a test channel by three cables. Cable $AB$ has tension $40\,\text{lb}$ and cable $AE$ has tension $60\,\text{lb}$. Using the dimensions shown ($7\,\text{ft}$, $1.5\,\text{ft}$, $4\,\text{ft}$, $4\,\text{ft}$), determine the drag force $F_D$ exerted by the flow and the tension $T_{AC}$ in cable $AC$."
   steps={[
     "Find the angles $\\alpha$ and $\\beta$ of cables $AB$ and $AC$ with the vertical ($y$ axis): $\\tan\\alpha = \\dfrac{7\\,\\text{ft}}{4\\,\\text{ft}} = 1.75 \\implies \\alpha = 60.26^\\circ$, and $\\tan\\beta = \\dfrac{1.5\\,\\text{ft}}{4\\,\\text{ft}} = 0.375 \\implies \\beta = 20.56^\\circ$.",
     "Draw the FBD of the hull at $A$ with four forces: $\\mathbf{T}_{AB}$ up-left, $\\mathbf{T}_{AC}$ up-right, $\\mathbf{T}_{AE}$ downward, and $\\mathbf{F}_D$ horizontally to the right.",
@@ -454,35 +443,34 @@ Engineering problems start from a **space diagram** depicting the physical struc
     "Apply $\\sum F_y = 0$: $19.84 + 0.9363 T_{AC} - 60 = 0 \\implies T_{AC} = +42.9\\,\\text{lb}$.",
     "Apply $\\sum F_x = 0$: $-34.73 + 0.3512(42.9) + F_D = 0 \\implies F_D = +19.66\\,\\text{lb}$. Positive signs confirm the assumed senses."
   ]}
-  answer="$T_{AC} = 42.9\\,\\text{lb},\\; F_D = 19.66\\,\\text{lb}$"
+  answer="$T_{AC} = 42.9\,\text{lb},\; F_D = 19.66\,\text{lb}$"
 />
 
 <ExerciseSet
   title="Problems 2.43–2.53 — 2D Particle Equilibrium"
-  source="Beer & Johnston 10e, Ch. 2 (§2.9–2.11)"
   items={[
     {
-      q: "**Prob. 2.43:** Two cables are tied together at $C$ and support a $1600\\text{-kg}$ mass ($1100\\,\\text{mm}$ left, $400\\,\\text{mm}$ right, $960\\,\\text{mm}$ drop). Determine the tension (a) in cable $AC$, and (b) in cable $BC$.",
+      q: "Two cables are tied together at $C$ and support a $1600\\text{-kg}$ mass ($1100\\,\\text{mm}$ left, $400\\,\\text{mm}$ right, $960\\,\\text{mm}$ drop). Determine the tension (a) in cable $AC$, and (b) in cable $BC$.",
       a: "(a) $T_{AC} = 6.37\\,\\text{kN}$; (b) $T_{BC} = 12.47\\,\\text{kN}$.",
       figure: "/diagrams/get-207/force-vectors-p2-43.png"
     },
     {
-      q: "**Prob. 2.45:** Knowing that $\\alpha = 20^\\circ$, determine the tension (a) in cable $AC$, and (b) in rope $BC$ supporting the $1200\\text{-lb}$ load.",
+      q: "Knowing that $\\alpha = 20^\\circ$, determine the tension (a) in cable $AC$, and (b) in rope $BC$ supporting the $1200\\text{-lb}$ load.",
       a: "(a) $T_{AC} = 1244\\,\\text{lb}$; (b) $T_{BC} = 115.4\\,\\text{lb}$.",
       figure: "/diagrams/get-207/force-vectors-p2-45.png"
     },
     {
-      q: "**Prob. 2.48:** Two cables are tied together at $C$ and loaded by $P = 500\\,\\text{N}$ at $\\alpha = 60^\\circ$. Determine the tension (a) in cable $AC$, and (b) in cable $BC$.",
+      q: "Two cables are tied together at $C$ and loaded by $P = 500\\,\\text{N}$ at $\\alpha = 60^\\circ$. Determine the tension (a) in cable $AC$, and (b) in cable $BC$.",
       a: "(a) $T_{AC} = 305\\,\\text{N}$; (b) $T_{BC} = 514\\,\\text{N}$.",
       figure: "/diagrams/get-207/force-vectors-p2-48.png"
     },
     {
-      q: "**Prob. 2.49:** Two forces of magnitude $T_A = 8\\,\\text{kips}$ and $T_B = 15\\,\\text{kips}$ act on a welded connection in equilibrium. Determine the magnitudes of $T_C$ and $T_D$.",
+      q: "Two forces of magnitude $T_A = 8\\,\\text{kips}$ and $T_B = 15\\,\\text{kips}$ act on a welded connection in equilibrium. Determine the magnitudes of $T_C$ and $T_D$.",
       a: "$T_C = 5.87\\,\\text{kips},\\; T_D = 9.14\\,\\text{kips}$.",
       figure: "/diagrams/get-207/force-vectors-p2-49.png"
     },
     {
-      q: "**Prob. 2.53:** A sailor ($W = 900\\,\\text{N}$) is suspended from a pulley rolling freely on cable $ACB$ ($\alpha = 30^\\circ$, $\\beta = 10^\\circ$) and pulled by cable $CD$ (along the $30^\\circ$ line). Determine the tension (a) in support cable $ACB$, and (b) in traction cable $CD$.",
+      q: "A sailor ($W = 900\\,\\text{N}$) is suspended from a pulley rolling freely on cable $ACB$ ($\\alpha = 30^\\circ$, $\\beta = 10^\\circ$) and pulled by cable $CD$ (along the $30^\\circ$ line). Determine the tension (a) in support cable $ACB$, and (b) in traction cable $CD$.",
       a: "(a) $T_{ACB} = 1213\\,\\text{N}$; (b) $T_{CD} = 166.3\\,\\text{N}$.",
       figure: "/diagrams/get-207/force-vectors-p2-53.png"
     }
@@ -496,7 +484,7 @@ Engineering problems start from a **space diagram** depicting the physical struc
 In three dimensions, a force $\mathbf{F}$ acting at origin $O$ is resolved into three mutually perpendicular components $\mathbf{F}_x, \mathbf{F}_y, \mathbf{F}_z$ along the $x, y, z$ axes (with right-handed unit vectors $\mathbf{i}, \mathbf{j}, \mathbf{k}$).
 
 Two equivalent ways define $\mathbf{F}$ in space:
-1. **Using elevation angle $\theta_y$ and azimuth angle $\phi$ (Fig. 2.30):** First project $\mathbf{F}$ onto the vertical $y$ axis and horizontal $xz$ plane:
+1. **Using elevation angle $\theta_y$ and azimuth angle $\phi$):** First project $\mathbf{F}$ onto the vertical $y$ axis and horizontal $xz$ plane:
    $$
    F_y = F\cos\theta_y, \qquad F_h = F\sin\theta_y \tag{2.16}
    $$
@@ -504,9 +492,9 @@ Two equivalent ways define $\mathbf{F}$ in space:
    $$
    F_x = F_h\cos\phi = F\sin\theta_y\cos\phi, \qquad F_z = F_h\sin\phi = F\sin\theta_y\sin\phi \tag{2.17}
    $$
-2. **Using coordinate angles $\theta_x, \theta_y, \theta_z$ (Fig. 2.31):** Measured from the **positive** $x, y, z$ axes ($0^\circ \le \theta_x, \theta_y, \theta_z \le 180^\circ$). An acute angle ($< 90^\circ$) gives a positive component; an obtuse angle ($> 90^\circ$) gives a negative component.
+2. **Using coordinate angles $\theta_x, \theta_y, \theta_z$):** Measured from the **positive** $x, y, z$ axes ($0^\circ \le \theta_x, \theta_y, \theta_z \le 180^\circ$). An acute angle ($< 90^\circ$) gives a positive component; an obtuse angle ($> 90^\circ$) gives a negative component.
 
-<RuleBox kind="formula" title="§2.12 3D Rectangular Components & Direction Cosines">
+<RuleBox kind="formula" title="3D Rectangular Components & Direction Cosines">
 
 $$
 F = \sqrt{F_x^2 + F_y^2 + F_z^2} \tag{2.18}
@@ -536,12 +524,12 @@ $$
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-30.png"
-  caption="Beer & Johnston Fig. 2.30 — Sequential resolution of 3D force F into vertical component Fy and horizontal component Fh, then Fx and Fz."
+  caption="Sequential resolution of 3D force F into vertical component Fy and horizontal component Fh, then Fx and Fz."
 />
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-31.png"
-  caption="Beer & Johnston Fig. 2.31 — Force box showing the three coordinate angles theta_x, theta_y, theta_z."
+  caption="Force box showing the three coordinate angles theta_x, theta_y, theta_z."
 />
 
 ---
@@ -550,7 +538,7 @@ $$
 
 When the line of action of a force $\mathbf{F}$ passes from point $M(x_1, y_1, z_1)$ toward point $N(x_2, y_2, z_2)$ (same sense as $\mathbf{F}$), form the displacement vector $\overrightarrow{MN}$ and normalize it to obtain the unit vector $\boldsymbol{\lambda}$.
 
-<RuleBox kind="formula" title="§2.13 Unit Vector from Two Points M → N">
+<RuleBox kind="formula" title="Unit Vector from Two Points M → N">
 
 $$
 \overrightarrow{MN} = d_x\mathbf{i} + d_y\mathbf{j} + d_z\mathbf{k}, \qquad d_x = x_2 - x_1,\; d_y = y_2 - y_1,\; d_z = z_2 - z_1 \tag{2.26}
@@ -576,21 +564,20 @@ $$
 
 <DiagramFigure
   src="/diagrams/get-207/force-vectors-fig-2-34.png"
-  caption="Beer & Johnston Fig. 2.34 — Force F directed from M(x1, y1, z1) toward N(x2, y2, z2) with unit vector lambda."
+  caption="Force F directed from M(x1, y1, z1) toward N(x2, y2, z2) with unit vector lambda."
 />
 
 <StepRevealExample
-  title="Sample Problem 2.7 — 3D Force Components & Direction Angles from Two Points"
-  source="Beer & Johnston 10e, Ch. 2, Sample Problem 2.7"
+  title="3D Force Components & Direction Angles from Two Points"
   figure="/diagrams/get-207/force-vectors-sp-2-7.png"
-  problem="A tower guy wire is anchored by a bolt at $A$ ($+40\\,\\text{m}$ in $x$, $+30\\,\\text{m}$ in $z$ from tower base $O$). The top of the tower $B$ is $80\\,\\text{m}$ directly above $O$. If the tension in the wire is $2500\\,\\text{N}$, determine (a) the components $F_x, F_y, F_z$ of the force acting on the bolt at $A$, and (b) the angles $\\theta_x, \\theta_y, \\theta_z$."
+  problem="A tower guy wire is anchored by a bolt at $A$ ($+40\,\text{m}$ in $x$, $+30\,\text{m}$ in $z$ from tower base $O$). The top of the tower $B$ is $80\,\text{m}$ directly above $O$. If the tension in the wire is $2500\,\text{N}$, determine (a) the components $F_x, F_y, F_z$ of the force acting on the bolt at $A$, and (b) the angles $\theta_x, \theta_y, \theta_z$."
   steps={[
     "The force exerted by the wire on bolt $A$ acts **from $A$ toward $B$**. Using the coordinate axes at the tower base $O$ ($+x$ right, $+y$ up, $+z$ forward-left), moving from $A$ to $B$ gives $d_x = -40\\,\\text{m}$, $d_y = +80\\,\\text{m}$, and $d_z = +30\\,\\text{m}$.",
     "Thus $\\overrightarrow{AB} = -(40\\,\\text{m})\\mathbf{i} + (80\\,\\text{m})\\mathbf{j} + (30\\,\\text{m})\\mathbf{k}$, with distance $AB = d = \\sqrt{(-40)^2 + 80^2 + 30^2} = \\sqrt{8900} = 94.3\\,\\text{m}$.",
     "Form $\\mathbf{F} = F\\boldsymbol{\\lambda} = \\dfrac{2500\\,\\text{N}}{94.3\\,\\text{m}}\\left[-(40\\,\\text{m})\\mathbf{i} + (80\\,\\text{m})\\mathbf{j} + (30\\,\\text{m})\\mathbf{k}\\right] = -(1060\\,\\text{N})\\mathbf{i} + (2120\\,\\text{N})\\mathbf{j} + (795\\,\\text{N})\\mathbf{k}$.",
     "Compute direction angles via Eqs. (2.25): $\\cos\\theta_x = \\dfrac{-1060}{2500} \\implies \\theta_x = 115.1^\\circ$; $\\cos\\theta_y = \\dfrac{+2120}{2500} \\implies \\theta_y = 32.0^\\circ$; $\\cos\\theta_z = \\dfrac{+795}{2500} \\implies \\theta_z = 71.5^\\circ$."
   ]}
-  answer="(a) $F_x = -1060\\,\\text{N},\\; F_y = +2120\\,\\text{N},\\; F_z = +795\\,\\text{N}$; (b) $\\theta_x = 115.1^\\circ,\\; \\theta_y = 32.0^\\circ,\\; \\theta_z = 71.5^\\circ$"
+  answer="(a) $F_x = -1060\,\text{N},\; F_y = +2120\,\text{N},\; F_z = +795\,\text{N}$; (b) $\theta_x = 115.1^\circ,\; \theta_y = 32.0^\circ,\; \theta_z = 71.5^\circ$"
 />
 
 ---
@@ -599,7 +586,7 @@ $$
 
 For concurrent forces in 3D space, graphical and trigonometric methods are generally impractical. Instead, resolve every force into $x, y, z$ rectangular components and sum them algebraically:
 
-<RuleBox kind="formula" title="§2.14 Resultant of Concurrent Forces in Space">
+<RuleBox kind="formula" title="Resultant of Concurrent Forces in Space">
 
 $$
 R_x = \sum F_x, \qquad R_y = \sum F_y, \qquad R_z = \sum F_z \tag{2.31}
@@ -616,10 +603,9 @@ $$
 </RuleBox>
 
 <StepRevealExample
-  title="Sample Problem 2.8 — Resultant of Two 3D Cable Forces"
-  source="Beer & Johnston 10e, Ch. 2, Sample Problem 2.8"
+  title="Resultant of Two 3D Cable Forces"
   figure="/diagrams/get-207/force-vectors-sp-2-8.png"
-  problem="A wall section of precast concrete is held by two cables attached to stake $A$. Knowing that the tension is $840\\,\\text{lb}$ in cable $AB$ and $1200\\,\\text{lb}$ in cable $AC$, determine the magnitude and direction of the resultant exerted on stake $A$."
+  problem="A wall section of precast concrete is held by two cables attached to stake $A$. Knowing that the tension is $840\,\text{lb}$ in cable $AB$ and $1200\,\text{lb}$ in cable $AC$, determine the magnitude and direction of the resultant exerted on stake $A$."
   steps={[
     "From stake $A$ toward $B$ and $C$: $\\overrightarrow{AB} = -(16\\,\\text{ft})\\mathbf{i} + (8\\,\\text{ft})\\mathbf{j} + (11\\,\\text{ft})\\mathbf{k}$ with $AB = \\sqrt{16^2+8^2+11^2} = 21\\,\\text{ft}$, and $\\overrightarrow{AC} = -(16\\,\\text{ft})\\mathbf{i} + (8\\,\\text{ft})\\mathbf{j} - (16\\,\\text{ft})\\mathbf{k}$ with $AC = \\sqrt{16^2+8^2+16^2} = 24\\,\\text{ft}$.",
     "Compute $\\mathbf{T}_{AB} = \\dfrac{840\\,\\text{lb}}{21\\,\\text{ft}}(-16\\mathbf{i} + 8\\mathbf{j} + 11\\mathbf{k}) = (-640\\,\\text{lb})\\mathbf{i} + (320\\,\\text{lb})\\mathbf{j} + (440\\,\\text{lb})\\mathbf{k}$.",
@@ -627,30 +613,29 @@ $$
     "Add vector components: $\\mathbf{R} = \\mathbf{T}_{AB} + \\mathbf{T}_{AC} = -(1440\\,\\text{lb})\\mathbf{i} + (720\\,\\text{lb})\\mathbf{j} - (360\\,\\text{lb})\\mathbf{k}$.",
     "Magnitude $R = \\sqrt{(-1440)^2 + 720^2 + (-360)^2} = 1650\\,\\text{lb}$. Direction cosines: $\\cos\\theta_x = \\dfrac{-1440}{1650} \\implies \\theta_x = 150.8^\\circ$; $\\cos\\theta_y = \\dfrac{720}{1650} \\implies \\theta_y = 64.1^\\circ$; $\\cos\\theta_z = \\dfrac{-360}{1650} \\implies \\theta_z = 102.6^\\circ$."
   ]}
-  answer="$R = 1650\\,\\text{lb};\\; \\theta_x = 150.8^\\circ,\\; \\theta_y = 64.1^\\circ,\\; \\theta_z = 102.6^\\circ$"
+  answer="$R = 1650\,\text{lb};\; \theta_x = 150.8^\circ,\; \theta_y = 64.1^\circ,\; \theta_z = 102.6^\circ$"
 />
 
 <ExerciseSet
   title="Problems 2.71–2.89 — Forces in Space"
-  source="Beer & Johnston 10e, Ch. 2 (§2.12–2.14)"
   items={[
     {
-      q: "**Prob. 2.71:** Determine (a) the $x, y, z$ components of the $900\\text{-N}$ force ($65^\\circ$ above horizontal plane, in a vertical plane $20^\\circ$ from $+z$ toward $-x$), and (b) its direction angles $\\theta_x, \\theta_y, \\theta_z$.",
+      q: "Determine (a) the $x, y, z$ components of the $900\\text{-N}$ force ($65^\\circ$ above horizontal plane, in a vertical plane $20^\\circ$ from $+z$ toward $-x$), and (b) its direction angles $\\theta_x, \\theta_y, \\theta_z$.",
       a: "(a) $F_x = -130.1\\,\\text{N},\\; F_y = +816\\,\\text{N},\\; F_z = +357\\,\\text{N}$; (b) $\\theta_x = 98.3^\\circ,\\; \\theta_y = 25.0^\\circ,\\; \\theta_z = 66.6^\\circ$.",
       figure: "/diagrams/get-207/force-vectors-p2-71.png"
     },
     {
-      q: "**Prob. 2.75:** Cable $AB$ is $65\\,\\text{ft}$ long (tower height $56\\,\\text{ft}$, ground plane angle $20^\\circ$ from $+x$ toward $-z$), and its tension is $3900\\,\\text{lb}$. Determine (a) the $x, y, z$ components of the force exerted by the cable on anchor $B$, and (b) $\\theta_x, \\theta_y, \\theta_z$.",
+      q: "Cable $AB$ is $65\\,\\text{ft}$ long (tower height $56\\,\\text{ft}$, ground plane angle $20^\\circ$ from $+x$ toward $-z$), and its tension is $3900\\,\\text{lb}$. Determine (a) the $x, y, z$ components of the force exerted by the cable on anchor $B$, and (b) $\\theta_x, \\theta_y, \\theta_z$.",
       a: "(a) $F_x = -1861\\,\\text{lb},\\; F_y = +3360\\,\\text{lb},\\; F_z = +677\\,\\text{lb}$; (b) $\\theta_x = 118.5^\\circ,\\; \\theta_y = 30.5^\\circ,\\; \\theta_z = 80.0^\\circ$.",
       figure: "/diagrams/get-207/force-vectors-p2-75.png"
     },
     {
-      q: "**Prob. 2.87:** Knowing that the tension in cable $AB$ is $1425\\,\\text{N}$, determine the $x, y, z$ components of the force exerted on the plate at $B$.",
+      q: "Knowing that the tension in cable $AB$ is $1425\\,\\text{N}$, determine the $x, y, z$ components of the force exerted on the plate at $B$.",
       a: "$F_x = -1125\\,\\text{N},\\; F_y = +750\\,\\text{N},\\; F_z = +450\\,\\text{N}$.",
       figure: "/diagrams/get-207/force-vectors-p2-87.png"
     },
     {
-      q: "**Prob. 2.89:** Frame $ABC$ is supported in part by cable $DBE$ passing through a frictionless ring at $B$. Knowing that the cable tension is $385\\,\\text{N}$, determine the components of the force exerted by the cable on support $D$.",
+      q: "Frame $ABC$ is supported in part by cable $DBE$ passing through a frictionless ring at $B$. Knowing that the cable tension is $385\\,\\text{N}$, determine the components of the force exerted by the cable on support $D$.",
       a: "$F_x = +240\\,\\text{N},\\; F_y = -255\\,\\text{N},\\; F_z = +160.0\\,\\text{N}$.",
       figure: "/diagrams/get-207/force-vectors-p2-89.png"
     }
@@ -663,7 +648,7 @@ $$
 
 A particle in 3D space is in equilibrium when the resultant of all forces acting on it is zero ($\sum\mathbf{F} = \mathbf{0}$), giving three independent scalar equilibrium equations:
 
-<RuleBox kind="formula" title="§2.15 Equations of Equilibrium in Space (Max 3 Unknowns)">
+<RuleBox kind="formula" title="Equations of Equilibrium in Space (Max 3 Unknowns)">
 
 $$
 \sum F_x = 0, \qquad \sum F_y = 0, \qquad \sum F_z = 0 \tag{2.34}
@@ -674,10 +659,9 @@ These three scalar equations can be solved for **at most three unknowns**—typi
 </RuleBox>
 
 <StepRevealExample
-  title="Sample Problem 2.9 — 3D Equilibrium of a 200-kg Cylinder"
-  source="Beer & Johnston 10e, Ch. 2, Sample Problem 2.9"
+  title="3D Equilibrium of a 200-kg Cylinder"
   figure="/diagrams/get-207/force-vectors-sp-2-9.png"
-  problem="A $200\\text{-kg}$ cylinder hangs from two cables $AB$ and $AC$ attached to the top of a vertical wall. A horizontal force $\\mathbf{P}$ perpendicular to the wall holds the cylinder in position ($A$ is $1.2\\,\\text{m}$ from the wall and $10\\,\\text{m}$ below $BC$; $B$ and $C$ are $8\\,\\text{m}$ and $10\\,\\text{m}$ from the $y$ axis along $+z$ and $-z$). Determine $P$, $T_{AB}$, and $T_{AC}$."
+  problem="A $200\text{-kg}$ cylinder hangs from two cables $AB$ and $AC$ attached to the top of a vertical wall. A horizontal force $\mathbf{P}$ perpendicular to the wall holds the cylinder in position ($A$ is $1.2\,\text{m}$ from the wall and $10\,\text{m}$ below $BC$; $B$ and $C$ are $8\,\text{m}$ and $10\,\text{m}$ from the $y$ axis along $+z$ and $-z$). Determine $P$, $T_{AB}$, and $T_{AC}$."
   steps={[
     "Draw the FBD of point $A$: $\\mathbf{P} = P\\mathbf{i}$, weight $\\mathbf{W} = -(200\\,\\text{kg})(9.81\\,\\text{m/s}^2)\\mathbf{j} = -(1962\\,\\text{N})\\mathbf{j}$, and cable tensions $\\mathbf{T}_{AB}$ and $\\mathbf{T}_{AC}$.",
     "Find unit vector along $AB$: $\\overrightarrow{AB} = -1.2\\mathbf{i} + 10\\mathbf{j} + 8\\mathbf{k}\\,\\text{m}$, $AB = \\sqrt{1.2^2+10^2+8^2} = 12.862\\,\\text{m}$, so $\\boldsymbol{\\lambda}_{AB} = -0.09330\\mathbf{i} + 0.7775\\mathbf{j} + 0.6220\\mathbf{k}$ and $\\mathbf{T}_{AB} = T_{AB}\\boldsymbol{\\lambda}_{AB}$.",
@@ -686,14 +670,13 @@ These three scalar equations can be solved for **at most three unknowns**—typi
     "$\\sum F_x = -0.09330 T_{AB} - 0.08455 T_{AC} + P = 0$; $\\;\\sum F_y = 0.7775 T_{AB} + 0.7046 T_{AC} - 1962 = 0$; $\\;\\sum F_z = 0.6220 T_{AB} - 0.7046 T_{AC} = 0$.",
     "From $\\sum F_z = 0$, $0.7046 T_{AC} = 0.6220 T_{AB}$. Substitute into $\\sum F_y = 0$: $(0.7775 + 0.6220) T_{AB} = 1962 \\implies T_{AB} = 1402\\,\\text{N}$, then $T_{AC} = 1238\\,\\text{N}$, and from $\\sum F_x = 0$, $P = 235\\,\\text{N}$."
   ]}
-  answer="$P = 235\\,\\text{N},\\; T_{AB} = 1402\\,\\text{N},\\; T_{AC} = 1238\\,\\text{N}$"
+  answer="$P = 235\,\text{N},\; T_{AB} = 1402\,\text{N},\; T_{AC} = 1238\,\text{N}$"
 />
 
 <StepRevealExample
-  title="Worked Problem 2.121 (§2.15) — Frictionless Ring in 3D Space"
-  source="Beer & Johnston 10e, Ch. 2, Problem 2.121"
+  title="Frictionless Ring in 3D Space"
   figure="/diagrams/get-207/force-vectors-p2-121.png"
-  problem="Cable $BAC$ passes through a frictionless ring $A$ and is attached to supports $B(-17.5, 0, 0)\\,\\text{in.}$ and $C(0, 0, 25)\\,\\text{in.}$, while cables $AD$ and $AE$ are tied to $A(0, -60, 0)\\,\\text{in.}$ and attached to $D(80, 0, 0)\\,\\text{in.}$ and $E(0, 0, -45)\\,\\text{in.}$ Knowing that a $200\\text{-lb}$ vertical downward load $P$ acts at $A$, determine the tension in each of the three cables."
+  problem="Cable $BAC$ passes through a frictionless ring $A$ and is attached to supports $B(-17.5, 0, 0)\,\text{in.}$ and $C(0, 0, 25)\,\text{in.}$, while cables $AD$ and $AE$ are tied to $A(0, -60, 0)\,\text{in.}$ and attached to $D(80, 0, 0)\,\text{in.}$ and $E(0, 0, -45)\,\text{in.}$ Knowing that a $200\text{-lb}$ vertical downward load $P$ acts at $A$, determine the tension in each of the three cables."
   steps={[
     "Because cable $BAC$ passes over a **frictionless ring** at $A$, its tension has the same magnitude $T_{BAC}$ in both segments $AB$ and $AC$.",
     "Compute position vectors and lengths from $A(0,-60,0)$: $\\overrightarrow{AB} = -17.5\\mathbf{i} + 60\\mathbf{j}\\,\\text{in.}$ ($d_{AB} = 62.5\\,\\text{in.}$); $\\overrightarrow{AC} = 60\\mathbf{j} + 25\\mathbf{k}\\,\\text{in.}$ ($d_{AC} = 65\\,\\text{in.}$); $\\overrightarrow{AD} = 80\\mathbf{i} + 60\\mathbf{j}\\,\\text{in.}$ ($d_{AD} = 100\\,\\text{in.}$); $\\overrightarrow{AE} = 60\\mathbf{j} - 45\\mathbf{k}\\,\\text{in.}$ ($d_{AE} = 75\\,\\text{in.}$).",
@@ -702,40 +685,39 @@ These three scalar equations can be solved for **at most three unknowns**—typi
     "$\\sum F_x = -0.2800 T_{BAC} + 0.80 T_{AD} = 0 \\implies T_{AD} = 0.3500 T_{BAC}$; $\\;\\sum F_z = 0.3846 T_{BAC} - 0.60 T_{AE} = 0 \\implies T_{AE} = 0.6410 T_{BAC}$.",
     "Substitute into $\\sum F_y = 0$: $[1.8831 + 0.60(0.3500) + 0.80(0.6410)] T_{BAC} = 200 \\implies 2.6059 T_{BAC} = 200 \\implies T_{BAC} = 76.7\\,\\text{lb}$, $T_{AD} = 26.9\\,\\text{lb}$, and $T_{AE} = 49.2\\,\\text{lb}$."
   ]}
-  answer="$T_{BAC} = 76.7\\,\\text{lb},\\; T_{AD} = 26.9\\,\\text{lb},\\; T_{AE} = 49.2\\,\\text{lb}$"
+  answer="$T_{BAC} = 76.7\,\text{lb},\; T_{AD} = 26.9\,\text{lb},\; T_{AE} = 49.2\,\text{lb}$"
 />
 
 <ExerciseSet
   title="Problems 2.101–2.131 — 3D Equilibrium & Review Problems"
-  source="Beer & Johnston 10e, Ch. 2 (§2.15 & Review)"
   items={[
     {
-      q: "**Prob. 2.101:** Three cables tether a balloon at $A(0, 5.60, 0)\\,\\text{m}$ to anchors $B(-4.20, 0, 0)$, $C(2.40, 0, 4.20)$, and $D(0, 0, -3.30)\\,\\text{m}$. Knowing the tension in cable $AD$ is $481\\,\\text{N}$, determine the vertical force $P$ exerted by the balloon at $A$.",
+      q: "Three cables tether a balloon at $A(0, 5.60, 0)\\,\\text{m}$ to anchors $B(-4.20, 0, 0)$, $C(2.40, 0, 4.20)$, and $D(0, 0, -3.30)\\,\\text{m}$. Knowing the tension in cable $AD$ is $481\\,\\text{N}$, determine the vertical force $P$ exerted by the balloon at $A$.",
       a: "$P = 926\\,\\text{N}$ upward.",
       figure: "/diagrams/get-207/force-vectors-p2-101.png"
     },
     {
-      q: "**Prob. 2.103:** A crate is supported by three cables as shown. Determine the weight of the crate knowing that the tension in cable $AB$ is $750\\,\\text{lb}$.",
+      q: "A crate is supported by three cables as shown. Determine the weight of the crate knowing that the tension in cable $AB$ is $750\\,\\text{lb}$.",
       a: "$W = 2100\\,\\text{lb}$.",
       figure: "/diagrams/get-207/force-vectors-p2-103.png"
     },
     {
-      q: "**Prob. 2.106:** For the same three-cable suspension of Fig. P2.103, determine the tension in each cable when the crate weighs $1600\\,\\text{lb}$.",
+      q: "For the same three-cable suspension of the diagram, determine the tension in each cable when the crate weighs $1600\\,\\text{lb}$.",
       a: "$T_{AB} = 571\\,\\text{lb},\\; T_{AC} = 830\\,\\text{lb},\\; T_{AD} = 528\\,\\text{lb}$.",
       figure: "/diagrams/get-207/force-vectors-p2-103.png"
     },
     {
-      q: "**Prob. 2.125:** Collars $A$ and $B$ are connected by a $525\\text{-mm}$ wire and slide freely on frictionless rods ($A$ on $y$ axis, $B$ on line $x=200\\,\\text{mm}$ parallel to $z$). If $\\mathbf{P} = (341\\,\\text{N})\\mathbf{j}$ acts on $A$ when $y = 155\\,\\text{mm}$, determine (a) the wire tension, and (b) the force $Q$ along $+z$ on collar $B$.",
+      q: "Collars $A$ and $B$ are connected by a $525\\text{-mm}$ wire and slide freely on frictionless rods ($A$ on $y$ axis, $B$ on line $x=200\\,\\text{mm}$ parallel to $z$). If $\\mathbf{P} = (341\\,\\text{N})\\mathbf{j}$ acts on $A$ when $y = 155\\,\\text{mm}$, determine (a) the wire tension, and (b) the force $Q$ along $+z$ on collar $B$.",
       a: "(a) $T = 1155\\,\\text{N}$; (b) $Q = 1012\\,\\text{N}$.",
       figure: "/diagrams/get-207/force-vectors-p2-125.png"
     },
     {
-      q: "**Prob. 2.127 (Review):** Two structural members $A$ ($15\\,\\text{kN}$ compression) and $B$ ($10\\,\\text{kN}$ compression) are bolted to a bracket as shown. Determine by trigonometry the magnitude and direction of the resultant force applied to the bracket.",
+      q: "(Review):** Two structural members $A$ ($15\\,\\text{kN}$ compression) and $B$ ($10\\,\\text{kN}$ compression) are bolted to a bracket as shown. Determine by trigonometry the magnitude and direction of the resultant force applied to the bracket.",
       a: "$R = 21.8\\,\\text{kN}$ directed downward-right at $73.4^\\circ$ below $+x$.",
       figure: "/diagrams/get-207/force-vectors-p2-127.png"
     },
     {
-      q: "**Prob. 2.131 (Review):** A welded connection is in equilibrium under four forces. Knowing $F_A = 8\\,\\text{kN}$ and $F_B = 16\\,\\text{kN}$ along the $4:3:5$ line, determine the magnitudes of $F_C$ and $F_D$.",
+      q: "(Review):** A welded connection is in equilibrium under four forces. Knowing $F_A = 8\\,\\text{kN}$ and $F_B = 16\\,\\text{kN}$ along the $4:3:5$ line, determine the magnitudes of $F_C$ and $F_D$.",
       a: "$F_C = 6.40\\,\\text{kN},\\; F_D = 4.80\\,\\text{kN}$.",
       figure: "/diagrams/get-207/force-vectors-p2-131.png"
     }
@@ -746,12 +728,12 @@ These three scalar equations can be solved for **at most three unknowns**—typi
 
 ## Common Exam Pitfalls
 
-<Callout variant="warning" title="Five Frequent Errors in Chapter 2 Statics of Particles">
+<Callout variant="warning" title="Five Frequent Errors in Statics of Particles">
 
 1. **Wrong sense of the displacement vector $\overrightarrow{MN}$ in 3D:** Always form $\overrightarrow{MN} = (x_2 - x_1)\mathbf{i} + (y_2 - y_1)\mathbf{j} + (z_2 - z_1)\mathbf{k}$ from the **point of application** toward the point the force pulls or pushes *toward*. Reversing $M$ and $N$ flips all three component signs!
 2. **Confusing azimuth/elevation angles ($\theta_y, \phi$) with direction angles ($\theta_x, \theta_y, \theta_z$):** Only angles measured directly from the positive $x, y, z$ axes to the force vector itself satisfy $\cos^2\theta_x + \cos^2\theta_y + \cos^2\theta_z = 1$. If an angle lies in a tilted or horizontal plane (like $\phi$), project through $F_h = F\sin\theta_y$ first.
-3. **Forgetting mass-to-weight conversion in SI:** A $75\\text{-kg}$ crate has weight $W = mg = 75(9.81) = 736\\,\\text{N}$, whereas a $3500\\text{-lb}$ automobile is already given as a force (weight).
-4. **Assuming perpendicular construction lines for oblique components:** In §2.6, to resolve $\mathbf{F}$ along two non-perpendicular lines of action, draw lines through the tip of $\mathbf{F}$ **parallel** (not perpendicular!) to the two lines of action.
+3. **Forgetting mass-to-weight conversion in SI:** A $75\text{-kg}$ crate has weight $W = mg = 75(9.81) = 736\,\text{N}$, whereas a $3500\text{-lb}$ automobile is already given as a force (weight).
+4. **Assuming perpendicular construction lines for oblique components:** To resolve $\mathbf{F}$ along two non-perpendicular lines of action, draw lines through the tip of $\mathbf{F}$ **parallel** (not perpendicular!) to the two lines of action.
 5. **Assuming different tensions on each side of a frictionless pulley or ring:** When a continuous cable passes over a frictionless pulley or through a frictionless ring (e.g., Probs. 2.53, 2.89, 2.121), the scalar tension $T$ is the **same** in both segments, though their unit vectors $\boldsymbol{\lambda}_1$ and $\boldsymbol{\lambda}_2$ differ.
 
 </Callout>
@@ -760,7 +742,7 @@ These three scalar equations can be solved for **at most three unknowns**—typi
 
 ## Summary of Formulas
 
-<RuleBox kind="formula" title="Beer & Johnston 10e Ch. 2 — Complete Formula Reference">
+<RuleBox kind="formula" title="Complete Formula Reference">
 
 - **Parallelogram & Triangle Laws (2D):** $\mathbf{R} = \mathbf{P} + \mathbf{Q}$; Law of cosines: $R^2 = P^2 + Q^2 - 2PQ\cos B$; Law of sines: $\dfrac{P}{\sin\alpha} = \dfrac{Q}{\sin\beta} = \dfrac{R}{\sin\gamma}$.
 - **2D Rectangular Components & Resultant:**

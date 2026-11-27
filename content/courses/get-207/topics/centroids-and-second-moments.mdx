@@ -1,90 +1,807 @@
 ---
-title: "Centroids, First & Second Moments of Area"
-order: 3
+title: "Distributed Forces: Centroids, Centers of Gravity & Moments of Inertia"
+order: 6
 topicId: "22222222-2222-4222-8222-222222270003"
 courseCode: "GET 207"
 courseSlug: "get-207"
-ccmasRef: "Centroids, first & second moments of area"
-textbookRef: "Hibbeler 14e · Ch. 9 (§9.2) & Ch. 10 (§10.1–10.4)"
+ccmasRef: "Centroids, first and second moments of area; moments of inertia"
 outcomes:
-  - "Locate the centroid (x̄, ȳ) of composite T-beams, channels, and cutout plates by algebraic summation"
-  - "Apply the Parallel-Axis Theorem I = Ī + Ad² to rectangles, circles, and structural sections"
-  - "Subtract void/hole contributions cleanly when computing composite moments of inertia"
+  - "Locate the center of gravity of flat plates and wires and the centroid of plane areas and lines using first moments and symmetry"
+  - "Find the centroid of composite plates and wires by tabulating areas, centroid coordinates and first moments (holes entered as negative areas)"
+  - "Determine centroids of areas and lines bounded by analytical curves by single integration with strip or sector elements"
+  - "Apply the theorems of Pappus-Guldinus to surfaces and bodies of revolution, and replace distributed beam loads by an equivalent concentrated load"
+  - "Compute rectangular and polar moments of inertia and radii of gyration of areas by direct integration"
+  - "Use the parallel-axis theorem to find moments of inertia of composite areas, including built-up rolled-steel sections"
 status: "published"
 isFree: true
 ---
 
-## 1. Overview
+## Overview
 
-In structural mechanics, the **centroid** $(\bar{x}, \bar{y})$ locates the geometric center where distributed forces concentrate, while the **area moment of inertia** ($I_x, I_y$) governs resistance to beam bending and column buckling. **Hibbeler Chapters 9 and 10** reduce every flanged steel beam or perforated plate to simple rectangles and circles combined via the **Parallel-Axis Theorem**.
+Until now the attraction of the earth on a rigid body has been represented by one force $\mathbf{W}$ acting at the **center of gravity**. In reality the earth pulls on every particle of the body, so gravity is a *distributed* force. This first part shows that all of these elemental weights can be replaced by a single equivalent force $\mathbf{W}$, and develops the tools for locating its point of application. For two-dimensional bodies (flat plates and wires) this leads to the purely geometric ideas of the **centroid of an area or a line** and the **first moment** of an area or a line about an axis. The same centroid ideas give the areas and volumes of surfaces and bodies of revolution (**theorems of Pappus-Guldinus**) and allow a distributed load on a beam to be replaced by a single concentrated load.
 
----
+The second part of this topic considers distributed forces whose magnitudes grow *linearly* with distance from an axis — the internal forces in a beam in pure bending, or water pressure on a submerged gate. Their moment involves the integral $\int y^2\,dA$, the **second moment**, or **moment of inertia**, of the area. We define rectangular and polar moments of inertia, compute them by integration, introduce the **radius of gyration**, prove the **parallel-axis theorem**, and use it to handle **composite areas** such as built-up steel beams.
 
-## 2. Key Concepts
 
-### Composite Area Centroids (Hibbeler §9.2)
-
-Subdivide a cross-section into standard parts (using negative area $A_i < 0$ for holes/cutouts):
-
-$$\bar{x} = \frac{\sum \tilde{x}_i A_i}{\sum A_i}, \qquad \bar{y} = \frac{\sum \tilde{y}_i A_i}{\sum A_i}$$
-
-### Parallel-Axis Theorem & Composite Inertia (Hibbeler §10.2 & §10.4)
-
-If $\bar{I}_{x'}$ is the moment of inertia of sub-area $A$ about its **own centroidal axis** $x'$, its moment of inertia about any parallel axis $x$ at perpendicular distance $d_y$ is:
-
-$$I_x = \bar{I}_{x'} + A d_y^2, \qquad k_x = \sqrt{\frac{I_x}{A}}$$
-
-- **Rectangle ($b \times h$):** $\bar{I}_{x'} = \dfrac{1}{12} b h^3$
-- **Circle (radius $r$):** $\bar{I}_{x'} = \dfrac{1}{4}\pi r^4$
-- **Right Triangle ($b \times h$):** $\bar{I}_{x'} = \dfrac{1}{36} b h^3$
-
-<DiagramFigure
-  src="/images/textbook-figures/get-207/hibbeler-fig-10-8-cutout.webp"
-  caption="Hibbeler Fig. 10–8 (Example 10.4) — Computing Ix about the base axis by subtracting a circular cutout (r = 25 mm) from a 100 mm × 150 mm rectangle."
-/>
-
-<DiagramFigure
-  src="/images/textbook-figures/get-207/hibbeler-f10-8-tbeam-moi.webp"
-  caption="Hibbeler Ch. 10, Prob. F10–8 — Inverted wooden T-beam cross-section requiring centroid ȳ first before applying the Parallel-Axis Theorem about centroidal axis x'."
-/>
 
 ---
 
-## 3. Textbook Worked Examples
+## Part A — Centroids and Centers of Gravity (Areas and Lines)
+
+### 5.1 Introduction
+
+The earth acts on each particle of a rigid body, so its action is really a very large number of small, practically parallel forces distributed over the whole body. Because these forces are parallel, they can be replaced by a **single equivalent force** $\mathbf{W}$, the weight, applied at a unique point called the **center of gravity** $G$. The first part of the chapter deals with two-dimensional bodies — flat plates and wires lying in a plane — and introduces two closely linked geometric concepts: the **centroid** of an area or a line, and the **first moment** of an area or a line with respect to an axis. Centroids are then used to compute areas and volumes of revolution and to simplify the analysis of beams under distributed loads.
+
+---
+
+### 5.2 Center of Gravity of a Two-Dimensional Body
+
+Consider a flat horizontal plate divided into $n$ small elements with coordinates $(x_1, y_1), (x_2, y_2), \ldots$ and weights $\Delta W_1, \Delta W_2, \ldots, \Delta W_n$. These elemental weights are parallel (all directed toward the earth's center, which is effectively at infinity), so their resultant is a single force in the same direction whose magnitude is the sum of their magnitudes. The coordinates $\bar{x}, \bar{y}$ of the point $G$ where $\mathbf{W}$ must act follow by requiring that the moments of $\mathbf{W}$ about the $y$ and $x$ axes equal the sums of the moments of the elemental weights.
+
+<RuleBox kind="definition" title="Center of gravity of a plate or wire">
+
+Summing forces and moments of the elemental weights:
+
+$$
+\sum F_z:\quad W = \Delta W_1 + \Delta W_2 + \cdots + \Delta W_n
+$$
+
+$$
+\sum M_y:\quad \bar{x}\,W = x_1\,\Delta W_1 + x_2\,\Delta W_2 + \cdots + x_n\,\Delta W_n
+$$
+
+$$
+\sum M_x:\quad \bar{y}\,W = y_1\,\Delta W_1 + y_2\,\Delta W_2 + \cdots + y_n\,\Delta W_n \tag{5.1}
+$$
+
+Letting the number of elements grow without bound while each element shrinks, we obtain in the limit
+
+$$
+W = \int dW \qquad \bar{x}\,W = \int x\,dW \qquad \bar{y}\,W = \int y\,dW \tag{5.2}
+$$
+
+These equations define the weight $W$ and the center of gravity $G(\bar{x}, \bar{y})$ of a flat plate; the same equations hold for a wire lying in the $xy$ plane. The center of gravity of a wire is usually **not located on the wire**.
+
+</RuleBox>
+
+---
+
+### 5.3 Centroids of Areas and Lines
+
+For a **homogeneous plate of uniform thickness**, the weight of an element is $\Delta W = \gamma t\,\Delta A$ and the total weight is $W = \gamma t A$, where $\gamma$ is the specific weight (weight per unit volume), $t$ the thickness and $A$ the area. (In SI units a material is usually characterized by its density $\rho$, and $\gamma = \rho g$ with $g = 9.81\,\text{m/s}^2$.) Substituting into Eqs. (5.1) and dividing by $\gamma t$, the weights cancel and only geometry remains.
+
+<RuleBox kind="definition" title="Centroid of an area and of a line">
+
+**Area.** The centroid $C(\bar{x}, \bar{y})$ of an area $A$ is defined by
+
+$$
+\bar{x}A = \int x\,dA \qquad \bar{y}A = \int y\,dA \tag{5.3}
+$$
+
+For a homogeneous plate of uniform thickness, the center of gravity coincides with the centroid of its area. If the plate is not homogeneous, Eqs. (5.3) no longer give the center of gravity, but they still define the centroid of the area.
+
+**Line.** For a homogeneous wire of uniform cross section, $\Delta W = \gamma a\,\Delta L$ ($a$ = cross-sectional area of the wire, $\Delta L$ = length of the element), and the center of gravity coincides with the centroid $C$ of the line $L$ defining the shape of the wire:
+
+$$
+\bar{x}L = \int x\,dL \qquad \bar{y}L = \int y\,dL \tag{5.4}
+$$
+
+</RuleBox>
+
+---
+
+### 5.4 First Moments of Areas and Lines
+
+<RuleBox kind="definition" title="First moments of an area">
+
+The integral $\int x\,dA$ is the **first moment of the area $A$ with respect to the $y$ axis**, $Q_y$; the integral $\int y\,dA$ is the **first moment with respect to the $x$ axis**, $Q_x$:
+
+$$
+Q_y = \int x\,dA \qquad Q_x = \int y\,dA \tag{5.5}
+$$
+
+Comparing with Eqs. (5.3), the first moments equal the area times the centroid coordinates:
+
+$$
+Q_y = \bar{x}A \qquad Q_x = \bar{y}A \tag{5.6}
+$$
+
+Analogous relations define the first moments of a line, $Q_y = \bar{x}L$ and $Q_x = \bar{y}L$.
+
+</RuleBox>
+
+Consequences of Eqs. (5.6):
+
+- The centroid coordinates are the first moments divided by the area.
+- If the centroid lies **on** a coordinate axis, the first moment about that axis is **zero**; conversely, a zero first moment means the centroid lies on that axis. First moments of areas are also used in mechanics of materials to find shearing stresses in beams.
+
+<RuleBox kind="theorem" title="Symmetry properties">
+
+- An area $A$ is **symmetric with respect to an axis** $BB'$ if for every point $P$ there is a point $P'$ of the area such that $PP'$ is perpendicular to $BB'$ and bisected by it. Then the first moment about $BB'$ is zero and **the centroid lies on the axis of symmetry**. (For an area symmetric about the $y$ axis, each $dA$ at $x$ is paired with $dA'$ at $-x$, so $Q_y = 0$ and $\bar{x} = 0$.)
+- If an area or line has **two axes of symmetry**, its centroid is at their **intersection** — so the centroids of circles, ellipses, squares, rectangles, equilateral triangles, the circumference of a circle, the perimeter of a square, etc., are found at once.
+- An area is **symmetric with respect to a center** $O$ if each $dA$ at $(x, y)$ has a matching $dA'$ at $(-x, -y)$. Then $Q_x = Q_y = 0$ and the centroid coincides with $O$.
+- A figure with a center of symmetry need not have an axis of symmetry, and a figure with two axes of symmetry need not have a center of symmetry; but if the two axes are **at right angles**, their intersection **is** a center of symmetry.
+
+</RuleBox>
+
+The centroids of common areas and lines (standard geometry tables) are the building blocks for everything that follows. Memorize the triangle ($\bar{y} = h/3$), the quarter- and semicircular area ($4r/3\pi$), the semiparabolic area and parabolic spandrel, the circular sector ($2r\sin\alpha/3\alpha$), and the arcs ($2r/\pi$ and $r\sin\alpha/\alpha$).
+
+<DiagramFigure
+  src="/diagrams/get-207/centroids-and-second-moments-ref-centroids-areas-lines.png"
+  caption="standard mechanics Figs. 5.8A and 5.8B (endpaper version) — Centroids of common shapes of areas and lines."
+/>
+
+---
+
+### 5.5 Composite Plates and Wires
+
+A flat plate can often be divided into rectangles, triangles and the other common shapes of the diagram The moment of the weight of the whole plate about the $y$ axis equals the sum of the moments of the weights of its parts, and similarly about the $x$ axis.
+
+<RuleBox kind="formula" title="Composite plates, areas and lines">
+
+**Center of gravity of a composite plate:**
+
+$$
+\bar{X}\,\Sigma W = \Sigma \bar{x}\,W \qquad \bar{Y}\,\Sigma W = \Sigma \bar{y}\,W \tag{5.7}
+$$
+
+**Centroid of a composite area** (homogeneous plate of uniform thickness):
+
+$$
+Q_y = \bar{X}\,\Sigma A = \Sigma \bar{x}A \qquad Q_x = \bar{Y}\,\Sigma A = \Sigma \bar{y}A \tag{5.8}
+$$
+
+**Centroid of a composite line** (homogeneous wire): $\bar{X}\,\Sigma L = \Sigma \bar{x}L$, $\;\bar{Y}\,\Sigma L = \Sigma \bar{y}L$.
+
+**Sign rules.** First moments, like moments of forces, can be positive or negative: a part whose centroid lies to the left of the $y$ axis has a negative $\bar{x}A$. The **area of a hole is entered as negative**.
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Tabular procedure (Sample Problems 5.1 and 5.2)">
+
+1. Choose coordinate axes and split the figure into common shapes; mark removed parts (holes, cut-outs) as negative areas.
+2. Build a table with columns: component, $A$ (or $L$), $\bar{x}$, $\bar{y}$, $\bar{x}A$, $\bar{y}A$. Take each $\bar{x}, \bar{y}$ from the diagram *with the correct sign*.
+3. Sum the columns: $\Sigma A$, $\Sigma \bar{x}A$, $\Sigma \bar{y}A$. These sums are the first moments $Q_y$ and $Q_x$ of the composite area.
+4. Solve $\bar{X} = \Sigma\bar{x}A/\Sigma A$, $\;\bar{Y} = \Sigma\bar{y}A/\Sigma A$.
+5. For a wire, use lengths $L$ instead of areas — and remember the wire's centroid need not lie on the wire.
+
+</RuleBox>
 
 <StepRevealExample
-  title="Hibbeler Example 10.4 — Perforated Plate Moment of Inertia (Fig. 10–8)"
-  problem="Determine the moment of inertia of the shaded plate shown in Fig. 10–8a ($100\,\text{mm}$ wide $\times 150\,\text{mm}$ tall with a central circular hole of radius $r = 25\,\text{mm}$ located $75\,\text{mm}$ above the bottom $x$-axis) about the base $x$-axis."
+  title="First moments and centroid of a plane area"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-5-1.png"
+  problem="For the plane area shown, determine (a) the first moments with respect to the $x$ and $y$ axes, (b) the location of the centroid. (Rectangle $120\,\text{mm} \times 80\,\text{mm}$ above the $x$ axis, a triangle of base $120\,\text{mm}$ and height $60\,\text{mm}$ below it, a semicircle of radius $r_1 = 60\,\text{mm}$ on top of the rectangle, and a circular hole of radius $r_2 = 40\,\text{mm}$ centered $80\,\text{mm}$ above the $x$ axis.)"
   steps={[
-    "Decompose into **Rectangle minus Circle** (Fig. 10–8b). Both shapes have their centroids at distance $d_y = 75\\,\\text{mm}$ above the $x$-axis.",
-    "Solid rectangle ($b = 100\\,\\text{mm}, h = 150\\,\\text{mm}$): $(I_x)_{\\text{rect}} = \\frac{1}{12}(100)(150)^3 + (100)(150)(75)^2 = 28.125 \\times 10^6 + 84.375 \\times 10^6 = 112.5 \\times 10^6\\,\\text{mm}^4$.",
-    "Circular cutout ($r = 25\\,\\text{mm}$): $(I_x)_{\\text{circle}} = \\frac{1}{4}\\pi(25)^4 + \\pi(25)^2(75)^2 = 0.3068 \\times 10^6 + 11.0447 \\times 10^6 = 11.4 \\times 10^6\\,\\text{mm}^4$.",
-    "Subtract the hole from the solid plate: $I_x = 112.5 \\times 10^6 - 11.4 \\times 10^6 = 101 \\times 10^6\\,\\text{mm}^4$."
+    "**Components.** The area = rectangle + triangle + semicircle $-$ circle. With the axes shown, the triangle's centroid has a negative $\\bar{y}$, and the circle's area is entered as negative.",
+    "Rectangle: $A = (120)(80) = 9.6\\times10^3\\,\\text{mm}^2$, $\\bar{x} = 60$, $\\bar{y} = 40\\,\\text{mm}$; $\\bar{x}A = +576\\times10^3$, $\\bar{y}A = +384\\times10^3\\,\\text{mm}^3$.",
+    "Triangle: $A = \\tfrac{1}{2}(120)(60) = 3.6\\times10^3\\,\\text{mm}^2$, $\\bar{x} = 40$, $\\bar{y} = -20\\,\\text{mm}$; $\\bar{x}A = +144\\times10^3$, $\\bar{y}A = -72\\times10^3\\,\\text{mm}^3$.",
+    "Semicircle: $A = \\tfrac{1}{2}\\pi(60)^2 = 5.655\\times10^3\\,\\text{mm}^2$, $\\bar{x} = 60$, $\\bar{y} = 80 + \\dfrac{4r_1}{3\\pi} = 80 + 25.46 = 105.46\\,\\text{mm}$; $\\bar{x}A = +339.3\\times10^3$, $\\bar{y}A = +596.4\\times10^3\\,\\text{mm}^3$.",
+    "Circle: $A = -\\pi(40)^2 = -5.027\\times10^3\\,\\text{mm}^2$, $\\bar{x} = 60$, $\\bar{y} = 80\\,\\text{mm}$; $\\bar{x}A = -301.6\\times10^3$, $\\bar{y}A = -402.2\\times10^3\\,\\text{mm}^3$.",
+    "Totals: $\\Sigma A = 13.828\\times10^3\\,\\text{mm}^2$, $\\Sigma\\bar{x}A = +757.7\\times10^3\\,\\text{mm}^3$, $\\Sigma\\bar{y}A = +506.2\\times10^3\\,\\text{mm}^3$.",
+    "**(a) First moments** (Eqs. 5.8): $Q_x = \\Sigma\\bar{y}A = 506.2\\times10^3\\,\\text{mm}^3$, $Q_y = \\Sigma\\bar{x}A = 757.7\\times10^3\\,\\text{mm}^3$.",
+    "**(b) Centroid:** $\\bar{X}(13.828\\times10^3) = 757.7\\times10^3 \\Rightarrow \\bar{X} = 54.8\\,\\text{mm}$; $\\bar{Y}(13.828\\times10^3) = 506.2\\times10^3 \\Rightarrow \\bar{Y} = 36.6\\,\\text{mm}$."
+  ]}
+  answer="$Q_x = 506\times10^3\,\text{mm}^3$, $Q_y = 758\times10^3\,\text{mm}^3$; $\bar{X} = 54.8\,\text{mm}$, $\bar{Y} = 36.6\,\text{mm}$"
+/>
+
+<StepRevealExample
+  title="Center of gravity of a bent wire"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-5-2.png"
+  problem="The figure shown is made from a piece of thin, homogeneous wire bent into a right triangle $ABC$ with $AB = 24\,\text{in.}$ (horizontal), $CA = 10\,\text{in.}$ (vertical) and $BC = 26\,\text{in.}$ Determine the location of its center of gravity."
+  steps={[
+    "Because the wire is homogeneous, its center of gravity coincides with the centroid of the line. Place the origin at $A$, with $x$ along $AB$ and $y$ along $AC$.",
+    "Segment $AB$: $L = 24\\,\\text{in.}$, $\\bar{x} = 12$, $\\bar{y} = 0$; $\\bar{x}L = 288$, $\\bar{y}L = 0\\,\\text{in}^2$.",
+    "Segment $BC$ (midpoint of the hypotenuse): $L = 26\\,\\text{in.}$, $\\bar{x} = 12$, $\\bar{y} = 5$; $\\bar{x}L = 312$, $\\bar{y}L = 130\\,\\text{in}^2$.",
+    "Segment $CA$: $L = 10\\,\\text{in.}$, $\\bar{x} = 0$, $\\bar{y} = 5$; $\\bar{x}L = 0$, $\\bar{y}L = 50\\,\\text{in}^2$.",
+    "Totals: $\\Sigma L = 60\\,\\text{in.}$, $\\Sigma\\bar{x}L = 600\\,\\text{in}^2$, $\\Sigma\\bar{y}L = 180\\,\\text{in}^2$.",
+    "$\\bar{X}\\Sigma L = \\Sigma\\bar{x}L$: $\\bar{X}(60) = 600 \\Rightarrow \\bar{X} = 10\\,\\text{in.}$; $\\;\\bar{Y}\\Sigma L = \\Sigma\\bar{y}L$: $\\bar{Y}(60) = 180 \\Rightarrow \\bar{Y} = 3\\,\\text{in.}$ (Note that $G$ is not on the wire.)"
+  ]}
+  answer="$\bar{X} = 10\,\text{in.}$, $\bar{Y} = 3\,\text{in.}$"
+/>
+
+<StepRevealExample
+  title="Reactions on a semicircular rod"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-5-3.png"
+  problem="A uniform semicircular rod of weight $W$ and radius $r$ is attached to a pin at $A$ and rests against a frictionless surface at $B$. Determine the reactions at $A$ and $B$."
+  steps={[
+    "**Free-body diagram.** The forces on the rod are its weight $\\mathbf{W}$ applied at the center of gravity $G$, a pin reaction at $A$ with components $A_x$, $A_y$, and a horizontal reaction $\\mathbf{B}$ at the frictionless surface. From the diagram, the centroid of a semicircular arc is at distance $2r/\\pi$ from the diameter $AB$; $A$ and $B$ are $2r$ apart vertically.",
+    "$+\\circlearrowleft\\sum M_A = 0$: $\\;B(2r) - W\\left(\\dfrac{2r}{\\pi}\\right) = 0 \\Rightarrow B = +\\dfrac{W}{\\pi}$, i.e. $\\mathbf{B} = \\dfrac{W}{\\pi}\\rightarrow$.",
+    "$\\xrightarrow{+}\\sum F_x = 0$: $\\;A_x + B = 0 \\Rightarrow A_x = -\\dfrac{W}{\\pi}$, i.e. $\\mathbf{A}_x = \\dfrac{W}{\\pi}\\leftarrow$.",
+    "$+\\uparrow\\sum F_y = 0$: $\\;A_y - W = 0 \\Rightarrow \\mathbf{A}_y = W\\uparrow$.",
+    "Combine the components at $A$: $A = \\left[W^2 + \\left(\\dfrac{W}{\\pi}\\right)^2\\right]^{1/2} = W\\left(1 + \\dfrac{1}{\\pi^2}\\right)^{1/2}$, and $\\tan\\alpha = \\dfrac{W}{W/\\pi} = \\pi \\Rightarrow \\alpha = \\tan^{-1}\\pi = 72.3^\\circ$.",
+    "Numerically: $\\mathbf{A} = 1.049W$ directed up and to the left at $72.3^\\circ$ with the horizontal; $\\mathbf{B} = 0.318W\\rightarrow$."
+  ]}
+  answer="$\mathbf{A} = 1.049W$ at $72.3^\circ$ (up and to the left), $\mathbf{B} = 0.318W\rightarrow$"
+/>
+
+<ExerciseSet
+  title="Composite Areas (Probs. 5.1–5.14)"
+  items={[
+    { q: "Locate the centroid of the plane area shown (a vertical $1\\text{-in.} \\times 8\\text{-in.}$ bar along the $y$ axis with a $1\\text{-in.}$-thick horizontal arm reaching $4\\,\\text{in.}$ from the $y$ axis, its lower edge $2\\,\\text{in.}$ above the $x$ axis).", a: "$\\bar{X} = 1.045\\,\\text{in.}$, $\\bar{Y} = 3.59\\,\\text{in.}$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-1.png" },
+    { q: "Locate the centroid of the triangular area shown.", a: "$\\bar{X} = 36.0\\,\\text{mm}$, $\\bar{Y} = 48.0\\,\\text{mm}$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-2.png" },
+    { q: "Locate the centroid of the plane area shown.", a: "$\\bar{X} = 19.27\\,\\text{mm}$, $\\bar{Y} = 26.6\\,\\text{mm}$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-3.png" },
+    { q: "Locate the centroid of the $14\\text{-in.} \\times 20\\text{-in.}$ rectangular plate with a circular hole of radius $4\\,\\text{in.}$ shown.", a: "$\\bar{X} = 7.22\\,\\text{in.}$, $\\bar{Y} = 9.56\\,\\text{in.}$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-6.png" },
+    { q: "Locate the centroid of the semicircular ring shown ($r_1 = 8\\,\\text{in.}$, $r_2 = 12\\,\\text{in.}$).", a: "$\\bar{X} = 0$, $\\bar{Y} = 6.45\\,\\text{in.}$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-10.png" },
+    { q: "Locate the centroid of the area between the parabola $x = ky^2$ and the straight line shown ($a = 8\\,\\text{in.}$, $b = 4\\,\\text{in.}$).", a: "$\\bar{X} = 3.20\\,\\text{in.}$, $\\bar{Y} = 2.00\\,\\text{in.}$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-14.png" }
   ]}
 />
 
+---
+
+### 5.6 Determination of Centroids by Integration
+
+For an area bounded by analytical curves, the centroid is found from the integrals of Eqs. (5.3). With $dA = dx\,dy$ (or $dA = r\,dr\,d\theta$ in polar coordinates) a double integration is needed, but in most cases a **single integration** suffices if $dA$ is chosen as a **thin strip** (rectangle) or a **thin sector** (pie-shaped element). The centroid of a thin rectangle is at its center; the centroid of a thin sector is at $\tfrac{2}{3}r$ from its vertex, as for a triangle.
+
+<RuleBox kind="formula" title="Centroids by single integration">
+
+With $(\bar{x}_{el}, \bar{y}_{el})$ the centroid of the element $dA$:
+
+$$
+Q_y = \bar{x}A = \int \bar{x}_{el}\,dA \qquad Q_x = \bar{y}A = \int \bar{y}_{el}\,dA \tag{5.9}
+$$
+
+(The area $A$ itself can be computed from the same elements, $A = \int dA$.)
+
+the diagram elements, expressed through a point $P(x, y)$ on the bounding curve:
+
+- (a) **Vertical strip:** $\bar{x}_{el} = x$, $\;\bar{y}_{el} = y/2$, $\;dA = y\,dx$
+- (b) **Horizontal strip:** $\bar{x}_{el} = \dfrac{a + x}{2}$, $\;\bar{y}_{el} = y$, $\;dA = (a - x)\,dy$
+- (c) **Sector** (curve given in polar form $r(\theta)$): $\bar{x}_{el} = \tfrac{2r}{3}\cos\theta$, $\;\bar{y}_{el} = \tfrac{2r}{3}\sin\theta$, $\;dA = \tfrac{1}{2}r^2\,d\theta$
+
+**Lines.** For a line defined by an equation, evaluate Eqs. (5.4), $\bar{x}L = \int x\,dL$, $\bar{y}L = \int y\,dL$, with
+
+$$
+dL = \sqrt{1 + \left(\frac{dy}{dx}\right)^2}\,dx \qquad dL = \sqrt{1 + \left(\frac{dx}{dy}\right)^2}\,dy \qquad dL = \sqrt{r^2 + \left(\frac{dr}{d\theta}\right)^2}\,d\theta
+$$
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/centroids-and-second-moments-fig-5-12.png"
+  caption="Centroids and areas of differential elements: (a) vertical strip, (b) horizontal strip, (c) sector."
+/>
+
+The coordinates of the element's centroid and its area must be written in terms of a point **on the bounding curve**; the equation of the curve is then used to express one coordinate in terms of the other, reducing the problem to one integration.
+
 <StepRevealExample
-  title="Hibbeler Fundamental Problem F10–8 — Inverted T-Beam Centroidal Ix'"
-  problem="For the T-beam cross-section in Prob. F10–8 (bottom flange $150\,\text{mm} \times 30\,\text{mm}$, vertical web $30\,\text{mm} \times 150\,\text{mm}$), locate the centroid height $\bar{y}$ from the bottom and compute the moment of inertia $I_{x'}$ about the centroidal $x'$-axis."
+  title="Centroid of a parabolic spandrel by integration"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-5-4.png"
+  problem="Determine by direct integration the location of the centroid of a parabolic spandrel bounded by the curve $y = kx^2$, the $x$ axis and the line $x = a$ (height $b$ at $x = a$)."
   steps={[
-    "Sub-areas & local centroids from the bottom edge: Flange (1) has $A_1 = 150(30) = 4500\\,\\text{mm}^2, \\tilde{y}_1 = 15\\,\\text{mm}$; Web (2) has $A_2 = 30(150) = 4500\\,\\text{mm}^2, \\tilde{y}_2 = 30 + 75 = 105\\,\\text{mm}$.",
-    "Compute composite centroid $\\bar{y}$: $\\bar{y} = \\frac{15(4500) + 105(4500)}{4500 + 4500} = \\frac{15 + 105}{2} = 60\\,\\text{mm}$.",
-    "Flange parallel-axis contribution ($d_1 = 60 - 15 = 45\\,\\text{mm}$): $I_{x'1} = \\frac{1}{12}(150)(30)^3 + 4500(45)^2 = 0.3375 \\times 10^6 + 9.1125 \\times 10^6 = 9.45 \\times 10^6\\,\\text{mm}^4$.",
-    "Web parallel-axis contribution ($d_2 = 105 - 60 = 45\\,\\text{mm}$): $I_{x'2} = \\frac{1}{12}(30)(150)^3 + 4500(45)^2 = 8.4375 \\times 10^6 + 9.1125 \\times 10^6 = 17.55 \\times 10^6\\,\\text{mm}^4$.",
-    "Sum both parts: $I_{x'} = (9.45 + 17.55) \\times 10^6 = 27.0 \\times 10^6\\,\\text{mm}^4$."
+    "**Constant $k$.** Substituting $x = a$, $y = b$: $b = ka^2 \\Rightarrow k = b/a^2$. So $y = \\dfrac{b}{a^2}x^2$ or $x = \\dfrac{a}{b^{1/2}}y^{1/2}$.",
+    "**Vertical element**, $dA = y\\,dx$: $A = \\int y\\,dx = \\int_0^a \\dfrac{b}{a^2}x^2\\,dx = \\left[\\dfrac{b}{a^2}\\dfrac{x^3}{3}\\right]_0^a = \\dfrac{ab}{3}$.",
+    "First moment about $y$, with $\\bar{x}_{el} = x$: $Q_y = \\int xy\\,dx = \\int_0^a x\\left(\\dfrac{b}{a^2}x^2\\right)dx = \\left[\\dfrac{b}{a^2}\\dfrac{x^4}{4}\\right]_0^a = \\dfrac{a^2b}{4}$.",
+    "Since $Q_y = \\bar{x}A$: $\\;\\bar{x}\\dfrac{ab}{3} = \\dfrac{a^2b}{4} \\Rightarrow \\bar{x} = \\tfrac{3}{4}a$.",
+    "First moment about $x$, with $\\bar{y}_{el} = y/2$: $Q_x = \\int \\dfrac{y}{2}y\\,dx = \\int_0^a \\dfrac{1}{2}\\left(\\dfrac{b}{a^2}x^2\\right)^2dx = \\left[\\dfrac{b^2}{2a^4}\\dfrac{x^5}{5}\\right]_0^a = \\dfrac{ab^2}{10}$.",
+    "Since $Q_x = \\bar{y}A$: $\\;\\bar{y}\\dfrac{ab}{3} = \\dfrac{ab^2}{10} \\Rightarrow \\bar{y} = \\tfrac{3}{10}b$.",
+    "**Check with a horizontal element**, $dA = (a - x)\\,dy$, $\\bar{x}_{el} = (a + x)/2$, $\\bar{y}_{el} = y$: $Q_y = \\int_0^b \\dfrac{a^2 - x^2}{2}dy = \\dfrac{1}{2}\\int_0^b \\left(a^2 - \\dfrac{a^2}{b}y\\right)dy = \\dfrac{a^2b}{4}$ and $Q_x = \\int_0^b y\\left(a - \\dfrac{a}{b^{1/2}}y^{1/2}\\right)dy = \\int_0^b\\left(ay - \\dfrac{a}{b^{1/2}}y^{3/2}\\right)dy = \\dfrac{ab^2}{10}$ — the same first moments, hence the same centroid."
+  ]}
+  answer="$\bar{x} = \tfrac{3}{4}a$, $\;\bar{y} = \tfrac{3}{10}b$"
+/>
+
+<StepRevealExample
+  title="Centroid of an arc of circle"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-5-5.png"
+  problem="Determine the location of the centroid of the arc of circle of radius $r$ shown, which subtends an angle $2\alpha$ symmetric about the $x$ axis at its center $O$."
+  steps={[
+    "The arc is symmetric with respect to the $x$ axis, so $\\bar{y} = 0$.",
+    "Choose the differential element $dL = r\\,d\\theta$ at angle $\\theta$, whose abscissa is $x = r\\cos\\theta$. Length: $L = \\int dL = \\int_{-\\alpha}^{\\alpha} r\\,d\\theta = r\\int_{-\\alpha}^{\\alpha}d\\theta = 2r\\alpha$.",
+    "First moment about the $y$ axis: $Q_y = \\int x\\,dL = \\int_{-\\alpha}^{\\alpha}(r\\cos\\theta)(r\\,d\\theta) = r^2\\int_{-\\alpha}^{\\alpha}\\cos\\theta\\,d\\theta = r^2[\\sin\\theta]_{-\\alpha}^{\\alpha} = 2r^2\\sin\\alpha$.",
+    "Since $Q_y = \\bar{x}L$: $\\;\\bar{x}(2r\\alpha) = 2r^2\\sin\\alpha \\Rightarrow \\bar{x} = \\dfrac{r\\sin\\alpha}{\\alpha}$. (For $\\alpha = \\pi/2$ this gives $2r/\\pi$, the semicircular arc of the diagram)"
+  ]}
+  answer="$\bar{x} = \dfrac{r\sin\alpha}{\alpha}$, $\;\bar{y} = 0$"
+/>
+
+<ExerciseSet
+  title="Centroids by Direct Integration (Probs. 5.34–5.38)"
+  items={[
+    { q: "Determine by direct integration the centroid of the triangular area shown. Express your answer in terms of $a$ and $h$.", a: "$\\bar{x} = a/3$, $\\;\\bar{y} = 2h/3$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-34.png" },
+    { q: "Determine by direct integration the centroid of the area between $y = mx$ and $y = kx^2$ shown. Express your answer in terms of $a$ and $h$.", a: "$\\bar{x} = a/2$, $\\;\\bar{y} = 2h/5$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-36.png" },
+    { q: "Determine by direct integration the centroid of the area shown, bounded by the quarter ellipse $x^2/a^2 + y^2/b^2 = 1$ and the lines $x = a$, $y = b$.", a: "$\\bar{x} = \\dfrac{2a}{3(4 - \\pi)}$, $\\;\\bar{y} = \\dfrac{2b}{3(4 - \\pi)}$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-38.png" }
   ]}
 />
 
 ---
 
-## 4. Common Exam Pitfalls
+### 5.7 Theorems of Pappus-Guldinus
 
-<Callout variant="warning" title="Subtract BOTH terms for cutouts!">
-When subtracting a hole in Parallel-Axis problems (like Example 10.4), you must subtract the **entire** shifted quantity $\bigl(\bar{I}_{\text{hole}} + A_{\text{hole}} d^2\bigr)$—students frequently subtract $\bar{I}_{\text{hole}}$ and accidentally *add* $A_{\text{hole}} d^2$!
+These theorems (Pappus, 3rd century A.D.; restated by Guldinus, 1577–1643) deal with **surfaces of revolution** — generated by rotating a plane curve about a fixed axis (a sphere from a semicircular arc, a cone from a straight line, a torus from a circle not intersecting the axis) — and **bodies of revolution**, generated by rotating a plane area about a fixed axis.
+
+<RuleBox kind="theorem" title="Theorems of Pappus-Guldinus">
+
+**Theorem I.** The area of a surface of revolution is equal to the length of the generating curve times the distance traveled by the centroid of the curve while the surface is being generated:
+
+$$
+A = 2\pi\bar{y}L \tag{5.10}
+$$
+
+*Proof.* An element $dL$ revolved about the $x$ axis generates $dA = 2\pi y\,dL$; hence $A = \int 2\pi y\,dL = 2\pi\bar{y}L$, since $\int y\,dL = \bar{y}L$.
+
+**Theorem II.** The volume of a body of revolution is equal to the generating area times the distance traveled by the centroid of the area while the body is being generated:
+
+$$
+V = 2\pi\bar{y}A \tag{5.11}
+$$
+
+*Proof.* $dV = 2\pi y\,dA$, so $V = \int 2\pi y\,dA = 2\pi\bar{y}A$.
+
+**Restrictions.** The generating curve must **not cross** the axis of rotation (the two parts would generate areas of opposite sign), and the axis must **not intersect** the generating area. For less than a full revolution, replace $2\pi$ by the angle of rotation.
+
+</RuleBox>
+
+The theorems give areas and volumes of revolution directly, and conversely give the centroid of a plane curve or area when the surface area or volume it generates is known.
+
+<StepRevealExample
+  title="Area of a surface of revolution"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-5-6.png"
+  problem="Determine the area of the surface of revolution shown, which is obtained by rotating a quarter-circular arc of radius $r$ about a vertical axis. (In the figure, the lower end of the arc and the vertical radius through its center are both at distance $2r$ from the axis of rotation.)"
+  steps={[
+    "By Theorem I, the area generated equals the length of the arc times the distance traveled by its centroid.",
+    "Length of the quarter-circular arc: $L = \\dfrac{\\pi r}{2}$.",
+    "From the diagram, the centroid of a quarter-circular arc lies $2r/\\pi$ from each bounding radius. Its distance from the axis of rotation is therefore $\\bar{x} = 2r - \\dfrac{2r}{\\pi} = 2r\\left(1 - \\dfrac{1}{\\pi}\\right)$.",
+    "$A = 2\\pi\\bar{x}L = 2\\pi\\left[2r\\left(1 - \\dfrac{1}{\\pi}\\right)\\right]\\left(\\dfrac{\\pi r}{2}\\right) = 2\\pi r^2(\\pi - 1)$."
+  ]}
+  answer="$A = 2\pi r^2(\pi - 1)$"
+/>
+
+<StepRevealExample
+  title="Mass of a pulley rim by Pappus-Guldinus"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-5-7.png"
+  problem="The outside diameter of a pulley is $0.8\,\text{m}$, and the cross section of its rim is as shown ($100\,\text{mm}$ wide by $50\,\text{mm}$ deep overall, with a $60\,\text{mm} \times 30\,\text{mm}$ groove centered in the inner face, leaving $20\text{-mm}$ walls and a $20\text{-mm}$ outer band). Knowing that the pulley is made of steel and that the density of steel is $\rho = 7.85\times10^3\,\text{kg/m}^3$, determine the mass and the weight of the rim."
+  steps={[
+    "By Theorem II, the volume equals the cross-sectional area times the distance traveled by its centroid in one revolution. It is easier to treat the section as rectangle I (positive) minus rectangle II (negative).",
+    "Rectangle I: $A = 100 \\times 50 = +5000\\,\\text{mm}^2$, centroid at $\\bar{y} = 400 - 25 = 375\\,\\text{mm}$ from the axis; distance traveled $2\\pi(375) = 2356\\,\\text{mm}$; volume $(5000)(2356) = 11.78\\times10^6\\,\\text{mm}^3$.",
+    "Rectangle II: $A = -(60)(30) = -1800\\,\\text{mm}^2$, $\\bar{y} = 400 - 20 - 15 = 365\\,\\text{mm}$; distance $2\\pi(365) = 2293\\,\\text{mm}$; volume $(-1800)(2293) = -4.13\\times10^6\\,\\text{mm}^3$.",
+    "Volume of rim: $V = 11.78\\times10^6 - 4.13\\times10^6 = 7.65\\times10^6\\,\\text{mm}^3$. Since $1\\,\\text{mm}^3 = 10^{-9}\\,\\text{m}^3$, $V = 7.65\\times10^{-3}\\,\\text{m}^3$.",
+    "$m = \\rho V = (7.85\\times10^3\\,\\text{kg/m}^3)(7.65\\times10^{-3}\\,\\text{m}^3) = 60.0\\,\\text{kg}$.",
+    "$W = mg = (60.0\\,\\text{kg})(9.81\\,\\text{m/s}^2) = 589\\,\\text{N}$."
+  ]}
+  answer="$m = 60.0\,\text{kg}$, $\;W = 589\,\text{N}$"
+/>
+
+<StepRevealExample
+  title="Centroids of a semicircle and a semicircular arc by Pappus-Guldinus"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-5-8.png"
+  problem="Using the theorems of Pappus-Guldinus, determine (a) the centroid of a semicircular area, (b) the centroid of a semicircular arc. Recall that the volume and the surface area of a sphere are $\tfrac{4}{3}\pi r^3$ and $4\pi r^2$, respectively."
+  steps={[
+    "**(a)** A sphere is generated by revolving a semicircular area $A = \\pi r^2/2$ about its diameter (the $x$ axis). By Theorem II: $V = 2\\pi\\bar{y}A$.",
+    "$\\tfrac{4}{3}\\pi r^3 = 2\\pi\\bar{y}\\left(\\tfrac{1}{2}\\pi r^2\\right) \\Rightarrow \\bar{y} = \\dfrac{4r}{3\\pi}$.",
+    "**(b)** The surface of the sphere is generated by revolving the semicircular arc $L = \\pi r$ about the same axis. By Theorem I: $A = 2\\pi\\bar{y}L$.",
+    "$4\\pi r^2 = 2\\pi\\bar{y}(\\pi r) \\Rightarrow \\bar{y} = \\dfrac{2r}{\\pi}$."
+  ]}
+  answer="(a) $\bar{y} = \dfrac{4r}{3\pi}$; (b) $\bar{y} = \dfrac{2r}{\pi}$"
+/>
+
+<ExerciseSet
+  title="Problem — Pappus-Guldinus"
+  items={[
+    { q: "A $\\tfrac{3}{4}\\text{-in.}$-diameter hole is drilled in a piece of $1\\text{-in.}$-thick steel; the hole is then countersunk ($90^\\circ$, top diameter $1\\tfrac{1}{4}\\,\\text{in.}$) as shown. Determine the volume of steel removed during the countersinking process.", a: "$0.0900\\,\\text{in}^3$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-62.png" }
+  ]}
+/>
+
+---
+
+### 5.8 Distributed Loads on Beams
+
+A beam may carry a **distributed load** — the weight of materials it supports, or wind or hydrostatic pressure — described by the load per unit length $w$ (N/m or lb/ft). The force on an element of length $dx$ is $dW = w\,dx$, which is numerically the element of area $dA$ under the load curve.
+
+<RuleBox kind="theorem" title="Equivalent concentrated load">
+
+The total load is
+
+$$
+W = \int_0^L w\,dx \qquad\text{i.e.}\qquad W = \int dA = A
+$$
+
+the **area under the load curve**. The point of application $P$ of the equivalent concentrated load follows from moments about $O$:
+
+$$
+(OP)W = \int x\,dW \quad\Longrightarrow\quad (OP)A = \int_0^L x\,dA \tag{5.12}
+$$
+
+The integral is the first moment of the load area about the $w$ axis, $\bar{x}A$; hence $OP = \bar{x}$, the distance to the **centroid $C$ of the area under the load curve** (not the centroid of the beam).
+
+**Statement.** A distributed load on a beam can be replaced by a concentrated load whose magnitude equals the area under the load curve and whose line of action passes through the centroid of that area. This equivalence holds **only for external forces** — use it to find reactions, but not internal forces or deflections.
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/centroids-and-second-moments-fig-5-17.png"
+  caption="(a) A distributed load w on beam OB; (b) the equivalent concentrated load W = A acting through the centroid C of the load area."
+/>
+
+In practice the load area is split into rectangles and triangles (or parabolic shapes from the diagram), each replaced by its own resultant at its own centroid.
+
+<StepRevealExample
+  title="Equivalent load and reactions for a trapezoidal load"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-5-9.png"
+  problem="A beam $AB$ of span $L = 6\,\text{m}$, supported by a roller at $A$ and a pin at $B$, supports a distributed load varying linearly from $w_A = 1500\,\text{N/m}$ at $A$ to $w_B = 4500\,\text{N/m}$ at $B$. (a) Determine the equivalent concentrated load. (b) Determine the reactions at the supports."
+  steps={[
+    "**(a)** Convert the loads to $\\text{kN/m}$ and divide the trapezoidal load area into two triangles: triangle I with height $1.5\\,\\text{kN/m}$ at $A$, and triangle II with height $4.5\\,\\text{kN/m}$ at $B$.",
+    "Triangle I: $A = \\tfrac{1}{2}(6)(1.5) = 4.5\\,\\text{kN}$, $\\bar{x} = 2\\,\\text{m}$, $\\bar{x}A = 9\\,\\text{kN}\\cdot\\text{m}$. Triangle II: $A = \\tfrac{1}{2}(6)(4.5) = 13.5\\,\\text{kN}$, $\\bar{x} = 4\\,\\text{m}$, $\\bar{x}A = 54\\,\\text{kN}\\cdot\\text{m}$.",
+    "$\\Sigma A = 18.0\\,\\text{kN}$, $\\Sigma\\bar{x}A = 63\\,\\text{kN}\\cdot\\text{m}$. $\\;\\bar{X}\\Sigma A = \\Sigma\\bar{x}A$: $\\bar{X}(18\\,\\text{kN}) = 63\\,\\text{kN}\\cdot\\text{m} \\Rightarrow \\bar{X} = 3.5\\,\\text{m}$.",
+    "Equivalent concentrated load: $\\mathbf{W} = 18\\,\\text{kN}\\downarrow$, acting $3.5\\,\\text{m}$ to the right of $A$.",
+    "**(b)** Free body of the beam: vertical reaction $\\mathbf{A}$ at the roller; components $B_x$, $B_y$ at the pin; triangle loads $4.5\\,\\text{kN}$ at $2\\,\\text{m}$ and $13.5\\,\\text{kN}$ at $4\\,\\text{m}$ from $A$.",
+    "$\\xrightarrow{+}\\sum F_x = 0$: $B_x = 0$.",
+    "$+\\circlearrowleft\\sum M_A = 0$: $-(4.5\\,\\text{kN})(2\\,\\text{m}) - (13.5\\,\\text{kN})(4\\,\\text{m}) + B_y(6\\,\\text{m}) = 0 \\Rightarrow B_y = 10.5\\,\\text{kN}\\uparrow$.",
+    "$+\\circlearrowleft\\sum M_B = 0$: $+(4.5\\,\\text{kN})(4\\,\\text{m}) + (13.5\\,\\text{kN})(2\\,\\text{m}) - A(6\\,\\text{m}) = 0 \\Rightarrow A = 7.5\\,\\text{kN}\\uparrow$.",
+    "**Alternative:** replace the whole load by its resultant $18\\,\\text{kN}$ at $3.5\\,\\text{m}$ and write $\\sum F_x = 0$, $\\sum M_A = 0$, $\\sum M_B = 0$: $B_y(6) = 18(3.5) \\Rightarrow B_y = 10.5\\,\\text{kN}$; $A(6) = 18(2.5) \\Rightarrow A = 7.5\\,\\text{kN}$ — the same results."
+  ]}
+  answer="(a) $\mathbf{W} = 18\,\text{kN}\downarrow$ at $3.5\,\text{m}$ right of $A$; (b) $\mathbf{A} = 7.5\,\text{kN}\uparrow$, $B_x = 0$, $\mathbf{B}_y = 10.5\,\text{kN}\uparrow$"
+/>
+
+<ExerciseSet
+  title="Distributed Loads on Beams (Probs. 5.66 and 5.68)"
+  items={[
+    { q: "For the beam and loading shown (a parabolic load from $2000\\,\\text{N/m}$ at $A$ to $900\\,\\text{N/m}$ at $B$, vertex at $B$, span $6\\,\\text{m}$, pin at $A$ and roller at $B$), determine (a) the magnitude and location of the resultant of the distributed load, (b) the reactions at the beam supports.", a: "(a) $R = 7.60\\,\\text{kN}\\downarrow$, $\\bar{x} = 2.57\\,\\text{m}$ from $A$; (b) $A = 4.35\\,\\text{kN}\\uparrow$, $B = 3.25\\,\\text{kN}\\uparrow$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-66.png" },
+    { q: "Determine the reactions at the beam supports for the given loading (linearly varying load from $400\\,\\text{N/m}$ upward to $900\\,\\text{N/m}$ downward over the $1.5\\text{-m}$ middle portion of a $2.5\\text{-m}$ beam).", a: "$A = 105.0\\,\\text{N}\\uparrow$, $B = 270\\,\\text{N}\\uparrow$", figure: "/diagrams/get-207/centroids-and-second-moments-p5-68.png" }
+  ]}
+/>
+
+---
+
+## Part B — Distributed Forces — Moments of Inertia of Areas
+
+### 9.1 Introduction
+
+In the first part of this topic, distributed forces were proportional to the elemental areas or volumes, and their resultant involved the **first moment** of the area. The second part considers distributed forces whose magnitudes depend not only on the elements of area but also **vary linearly with the distance** of each element from a given axis. The moment of such forces about the axis involves an integral of the form $\int (\text{distance})^2\,dA$, called the **second moment**, or **moment of inertia**, of the area. The chapter first treats moments of inertia of areas, then moments of inertia of masses, which belong to dynamics.
+
+---
+
+### 9.2 Second Moment, or Moment of Inertia, of an Area
+
+**Beam in pure bending.** A beam of uniform section subjected to equal and opposite couples at its ends develops internal forces $\Delta F = ky\,\Delta A$ that vary linearly with the distance $y$ from the **neutral axis** (the $x$ axis through the centroid of the section). Their resultant is
+
+$$
+R = \int ky\,dA = k\int y\,dA
+$$
+
+which is $k$ times the first moment $Q_x = \bar{y}A$; since the centroid lies on the $x$ axis, $R = 0$ and the forces reduce to a couple. The moment of that couple (the bending moment) is
+
+$$
+M = \int ky^2\,dA = k\int y^2\,dA
+$$
+
+The integral $\int y^2\,dA$ is the **second moment**, or **moment of inertia**, $I_x$ of the section about the $x$ axis. Because $y^2\,dA$ is positive whatever the sign of $y$, **$I_x$ is always positive**.
+
+<DiagramFigure
+  src="/diagrams/get-207/centroids-and-second-moments-fig-9-3.png"
+  caption="(a) element dA = dx dy; (b) horizontal strip used for I_x; (c) vertical strip used for I_y."
+/>
+
+**Submerged gate.** For a vertical circular gate under water, the pressure at depth $y$ is $p = \gamma y$, so $\Delta F = \gamma y\,\Delta A$. The resultant is $R = \gamma\int y\,dA$ (a first moment), and its moment about the line of intersection of the gate plane with the water surface (the $x$ axis) is $M_x = \gamma\int y^2\,dA$ — again the moment of inertia $I_x$ of the gate's area.
+
+(Footnote in the syllabus: *second moment* is the more proper term, since *moment of inertia* should logically be reserved for integrals of mass; engineering practice uses *moment of inertia* for both.)
+
+---
+
+### 9.3 Determination of the Moment of Inertia of an Area by Integration
+
+<RuleBox kind="definition" title="Rectangular moments of inertia">
+
+$$
+I_x = \int y^2\,dA \qquad I_y = \int x^2\,dA \tag{9.1}
+$$
+
+These **rectangular moments of inertia** are evaluated most easily by choosing $dA$ as a thin strip **parallel** to one of the axes:
+
+- For $I_x$, take a strip **parallel to the $x$ axis**, so every point of the strip is at the same distance $y$: $dI_x = y^2\,dA$).
+- For $I_y$, take a strip **parallel to the $y$ axis**: $dI_y = x^2\,dA$).
+
+</RuleBox>
+
+<RuleBox kind="formula" title="Rectangle about its base, and using one strip for both axes">
+
+**Rectangle of base $b$ and height $h$ about its base** (strips parallel to $x$, $dA = b\,dy$, $dI_x = y^2 b\,dy$):
+
+$$
+I_x = \int_0^h b y^2\,dy = \tfrac{1}{3}bh^3 \tag{9.2}
+$$
+
+**Same elemental strip for $I_x$ and $I_y$.** Applying (9.2) to a vertical strip of width $dx$ and height $y$ (set $b = dx$, $h = y$):
+
+$$
+dI_x = \tfrac{1}{3}y^3\,dx \qquad dI_y = x^2\,dA = x^2y\,dx
+$$
+
+so one vertical element gives both $I_x$ and $I_y$).
+
+</RuleBox>
+
+---
+
+### 9.4 Polar Moment of Inertia
+
+<RuleBox kind="definition" title="Polar moment of inertia">
+
+The **polar moment of inertia** of an area $A$ with respect to the "pole" $O$ is
+
+$$
+J_O = \int r^2\,dA \tag{9.3}
+$$
+
+where $r$ is the distance from $O$ to the element $dA$. It is important in the torsion of cylindrical shafts and the rotation of slabs. Since $r^2 = x^2 + y^2$,
+
+$$
+J_O = \int r^2\,dA = \int (x^2 + y^2)\,dA = \int y^2\,dA + \int x^2\,dA
+$$
+
+$$
+J_O = I_x + I_y \tag{9.4}
+$$
+
+</RuleBox>
+
+For an area with circular symmetry, $J_O$ is found by one integration with an annular element; otherwise it is usually easier to compute $I_x$ and $I_y$ first and add them.
+
+---
+
+### 9.5 Radius of Gyration of an Area
+
+Imagine the area $A$ concentrated into a thin strip parallel to the $x$ axis. For it to have the same moment of inertia $I_x$, the strip must lie at a distance $k_x$ from the axis.
+
+<RuleBox kind="definition" title="Radii of gyration">
+
+$$
+I_x = k_x^2 A \qquad k_x = \sqrt{\frac{I_x}{A}} \tag{9.5}
+$$
+
+$$
+I_y = k_y^2 A \qquad k_y = \sqrt{\frac{I_y}{A}} \tag{9.6}
+$$
+
+$$
+J_O = k_O^2 A \qquad k_O = \sqrt{\frac{J_O}{A}} \tag{9.7}
+$$
+
+Rewriting Eq. (9.4) with radii of gyration:
+
+$$
+k_O^2 = k_x^2 + k_y^2 \tag{9.8}
+$$
+
+</RuleBox>
+
+**Example.** For a rectangle of base $b$ and height $h$, the radius of gyration about its base is, from (9.5) and (9.2),
+
+$$
+k_x^2 = \frac{I_x}{A} = \frac{\tfrac{1}{3}bh^3}{bh} = \frac{h^2}{3} \qquad k_x = \frac{h}{\sqrt{3}}
+$$
+
+This must **not** be confused with the centroid ordinate $\bar{y} = h/2$: $k_x$ depends on the *second* moment, $\bar{y}$ on the *first* moment of the area. Note also that $k_x$ is measured in the $y$ direction and $k_y$ in the $x$ direction.
+
+<StepRevealExample
+  title="Moment of inertia of a triangle about its base"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-9-1.png"
+  problem="Determine the moment of inertia of a triangle with respect to its base."
+  steps={[
+    "Draw a triangle of base $b$ and height $h$ with the $x$ axis along the base. Choose as $dA$ a strip parallel to the $x$ axis, of length $l$ and width $dy$, at height $y$. All points of the strip are at distance $y$ from the axis: $dI_x = y^2\\,dA$, $\\;dA = l\\,dy$.",
+    "Similar triangles: $\\dfrac{l}{b} = \\dfrac{h - y}{h} \\Rightarrow l = b\\dfrac{h - y}{h}$, $\\;dA = b\\dfrac{h - y}{h}dy$.",
+    "Integrate from $y = 0$ to $y = h$: $I_x = \\int y^2\\,dA = \\int_0^h y^2 b\\dfrac{h - y}{h}dy = \\dfrac{b}{h}\\int_0^h (hy^2 - y^3)\\,dy$.",
+    "$I_x = \\dfrac{b}{h}\\left[h\\dfrac{y^3}{3} - \\dfrac{y^4}{4}\\right]_0^h = \\dfrac{b}{h}\\left(\\dfrac{h^4}{3} - \\dfrac{h^4}{4}\\right) = \\dfrac{bh^3}{12}$."
+  ]}
+  answer="$I_x = \dfrac{bh^3}{12}$"
+/>
+
+<StepRevealExample
+  title="Polar moment of inertia of a circle"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-9-2.png"
+  problem="(a) Determine the centroidal polar moment of inertia of a circular area by direct integration. (b) Using the result of part a, determine the moment of inertia of a circular area with respect to a diameter."
+  steps={[
+    "**(a)** Choose an annular differential element of radius $u$ and width $du$. All of its points are at the same distance $u$ from the origin: $dJ_O = u^2\\,dA$, $\\;dA = 2\\pi u\\,du$.",
+    "$J_O = \\int dJ_O = \\int_0^r u^2(2\\pi u\\,du) = 2\\pi\\int_0^r u^3\\,du = 2\\pi\\dfrac{r^4}{4} = \\dfrac{\\pi}{2}r^4$.",
+    "**(b)** By symmetry of the circular area, $I_x = I_y$. Then, from Eq. (9.4), $J_O = I_x + I_y = 2I_x$.",
+    "$\\dfrac{\\pi}{2}r^4 = 2I_x \\Rightarrow I_{\\text{diameter}} = I_x = \\dfrac{\\pi}{4}r^4$."
+  ]}
+  answer="(a) $J_O = \dfrac{\pi}{2}r^4$; (b) $I_{\text{diameter}} = \dfrac{\pi}{4}r^4$"
+/>
+
+<StepRevealExample
+  title="Moments of inertia and radii of gyration of a parabolic spandrel"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-9-3.png"
+  problem="(a) Determine the moment of inertia of the shaded area shown (the parabolic spandrel under $y = kx^2$, of base $a$ and height $b$) with respect to each of the coordinate axes. (Properties of this area were considered in Sample Prob. 5.4.) (b) Using the results of part a, determine the radius of gyration of the shaded area with respect to each of the coordinate axes."
+  steps={[
+    "From the earlier worked example, $y = \\dfrac{b}{a^2}x^2$ and $A = \\tfrac{1}{3}ab$.",
+    "**$I_x$.** Use a vertical element. Its points are *not* all at the same distance from the $x$ axis, so treat it as a thin rectangle (Eq. 9.2): $dI_x = \\tfrac{1}{3}y^3\\,dx = \\dfrac{1}{3}\\left(\\dfrac{b}{a^2}x^2\\right)^3dx = \\dfrac{1}{3}\\dfrac{b^3}{a^6}x^6\\,dx$.",
+    "$I_x = \\int dI_x = \\int_0^a \\dfrac{1}{3}\\dfrac{b^3}{a^6}x^6\\,dx = \\left[\\dfrac{1}{3}\\dfrac{b^3}{a^6}\\dfrac{x^7}{7}\\right]_0^a = \\dfrac{ab^3}{21}$.",
+    "**$I_y$.** The same vertical element: all of its points are at distance $x$ from the $y$ axis, so $dI_y = x^2\\,dA = x^2(y\\,dx) = x^2\\left(\\dfrac{b}{a^2}x^2\\right)dx = \\dfrac{b}{a^2}x^4\\,dx$.",
+    "$I_y = \\int_0^a \\dfrac{b}{a^2}x^4\\,dx = \\left[\\dfrac{b}{a^2}\\dfrac{x^5}{5}\\right]_0^a = \\dfrac{a^3b}{5}$.",
+    "**Radii of gyration.** $k_x^2 = \\dfrac{I_x}{A} = \\dfrac{ab^3/21}{ab/3} = \\dfrac{b^2}{7} \\Rightarrow k_x = \\sqrt{\\tfrac{1}{7}}\\,b$.",
+    "$k_y^2 = \\dfrac{I_y}{A} = \\dfrac{a^3b/5}{ab/3} = \\tfrac{3}{5}a^2 \\Rightarrow k_y = \\sqrt{\\tfrac{3}{5}}\\,a$."
+  ]}
+  answer="$I_x = \dfrac{ab^3}{21}$, $I_y = \dfrac{a^3b}{5}$; $k_x = \sqrt{1/7}\,b = 0.378b$, $k_y = \sqrt{3/5}\,a = 0.775a$"
+/>
+
+<ExerciseSet
+  title="Moments of Inertia by Integration (Probs. 9.1–9.21)"
+  items={[
+    { q: "Determine by direct integration the moment of inertia of the shaded area (heights $h_1$ at $x = 0$ and $h_2$ at $x = a$, straight top edge) with respect to the $y$ axis.", a: "$I_y = \\dfrac{a^3(h_1 + 3h_2)}{12}$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-1.png" },
+    { q: "Determine by direct integration the moment of inertia of the area under $y = kx^{1/3}$ shown with respect to the $y$ axis.", a: "$I_y = \\dfrac{3a^3b}{10}$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-2.png" },
+    { q: "Determine by direct integration the moment of inertia of the area of the diagram ($y = kx^{1/3}$) with respect to the $x$ axis.", a: "$I_x = \\dfrac{ab^3}{6}$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-2.png" },
+    { q: "Determine the moment of inertia and the radius of gyration of the shaded area between $y_1 = k_1x^2$ and $y_2 = k_2x^{1/2}$ with respect to the $x$ axis.", a: "$I_x = \\dfrac{3ab^3}{35}$; $k_x = b\\sqrt{9/35}$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-15.png" },
+    { q: "For the parabolic spandrel above, determine the moment of inertia and the radius of gyration with respect to the $y$ axis.", a: "$I_y = \\dfrac{3a^3b}{35}$; $k_y = a\\sqrt{9/35}$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-15.png" },
+    { q: "Determine the polar moment of inertia and the polar radius of gyration of the trapezoidal area shown with respect to point $P$ (top width $2a$, bottom width $a$, height $a$; $P$ at the midpoint of the bottom edge).", a: "$J_P = \\dfrac{43a^4}{48}$; $k_P = 0.773a$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-21.png" }
+  ]}
+/>
+
+---
+
+### 9.6 Parallel-Axis Theorem
+
+Let $I$ be the moment of inertia of an area $A$ about an axis $AA'$, and draw through the centroid $C$ a parallel axis $BB'$ — a **centroidal axis**. If $y'$ is the distance of $dA$ from $BB'$ and $d$ the distance between the axes, then $y = y' + d$ and
+
+$$
+I = \int y^2\,dA = \int (y' + d)^2\,dA = \int y'^2\,dA + 2d\int y'\,dA + d^2\int dA
+$$
+
+The first integral is the centroidal moment of inertia $\bar{I}$; the second is the first moment of $A$ about $BB'$, which is **zero** because $C$ lies on $BB'$; the last integral is $A$.
+
+<DiagramFigure
+  src="/diagrams/get-207/centroids-and-second-moments-fig-9-9.png"
+  caption="Axis AA' and the parallel centroidal axis BB' at distance d."
+/>
+
+<RuleBox kind="theorem" title="Parallel-axis theorem">
+
+$$
+I = \bar{I} + Ad^2 \tag{9.9}
+$$
+
+The moment of inertia about any axis $AA'$ equals the moment of inertia about the **parallel centroidal axis** $BB'$ plus the area times the square of the distance between the two axes. In terms of radii of gyration ($I = k^2A$, $\bar{I} = \bar{k}^2A$):
+
+$$
+k^2 = \bar{k}^2 + d^2 \tag{9.10}
+$$
+
+For polar moments, with $d$ the distance between the pole $O$ and the centroid $C$:
+
+$$
+J_O = \bar{J}_C + Ad^2 \qquad\text{or}\qquad k_O^2 = \bar{k}_C^2 + d^2 \tag{9.11}
+$$
+
+**Caution:** one of the two parallel axes must pass through the centroid. $Ad^2$ is **added** when transferring *from* a centroidal axis and **subtracted** when transferring *to* a centroidal axis; the moment of inertia is always smallest about a centroidal axis.
+
+</RuleBox>
+
+**Example 1 — circle about a tangent.** From the standard result, $\bar{I} = \tfrac{1}{4}\pi r^4$. For the tangent $T$ at distance $d = r$:
+
+$$
+I_T = \bar{I} + Ad^2 = \tfrac{1}{4}\pi r^4 + (\pi r^2)r^2 = \tfrac{5}{4}\pi r^4
+$$
+
+<DiagramFigure
+  src="/diagrams/get-207/centroids-and-second-moments-fig-9-10.png"
+  caption="Circle and a tangent T at distance d = r from the centroid."
+/>
+
+**Example 2 — centroidal moment of inertia of a triangle.** From the standard result, $I_{AA'} = \tfrac{1}{12}bh^3$ about the base. The centroidal axis $BB'$ is at $d = \tfrac{1}{3}h$:
+
+$$
+\bar{I}_{BB'} = I_{AA'} - Ad^2 = \tfrac{1}{12}bh^3 - \tfrac{1}{2}bh\left(\tfrac{1}{3}h\right)^2 = \tfrac{1}{36}bh^3
+$$
+
+Here $Ad^2$ was **subtracted** because we transferred *to* the centroidal axis. About the line $DD'$ through the vertex ($d' = \tfrac{2}{3}h$):
+
+$$
+I_{DD'} = \bar{I}_{BB'} + Ad'^2 = \tfrac{1}{36}bh^3 + \tfrac{1}{2}bh\left(\tfrac{2}{3}h\right)^2 = \tfrac{1}{4}bh^3
+$$
+
+$I_{DD'}$ could **not** have been obtained directly from $I_{AA'}$, since neither $AA'$ nor $DD'$ passes through the centroid.
+
+<DiagramFigure
+  src="/diagrams/get-207/centroids-and-second-moments-fig-9-11.png"
+  caption="Triangle with base AA', centroidal axis BB' (d = h/3) and vertex line DD' (d' = 2h/3)."
+/>
+
+---
+
+### 9.7 Moments of Inertia of Composite Areas
+
+A composite area $A$ made of parts $A_1, A_2, A_3, \ldots$ has, about a given axis, a moment of inertia equal to the **sum of the moments of inertia of the parts about that same axis** (the integral over $A$ splits into integrals over the parts). The common shapes of the diagram supply the centroidal values; the parallel-axis theorem transfers each to the desired axis. Properties of rolled-steel shapes (W, S, C shapes and angles) are tabulated in the diagram
+
+<RuleBox kind="working-rule" title="Composite-area procedure (Sample Problems 9.4 and 9.5)">
+
+1. Divide the area into common shapes) and rolled sections); a hole or cut-out is a part whose moment of inertia is **subtracted**.
+2. If the required axis is centroidal for the composite, first locate the composite centroid $\bar{Y} = \Sigma\bar{y}A/\Sigma A$ (methods of Chap. 5).
+3. For each part, take its own centroidal $\bar{I}$ and add $Ad^2$, with $d$ = distance from the part's centroid to the required axis.
+4. Add (or subtract, for holes) the transferred values.
+5. The radius of gyration of a composite area is **not** the sum of the parts' radii of gyration: compute $k = \sqrt{I/A}$ from the composite $I$ and total $A$.
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/centroids-and-second-moments-ref-moments-of-inertia.png"
+  caption="Moments of inertia of common geometric shapes."
+/>
+
+<StepRevealExample
+  title="W14 × 38 beam strengthened by a cover plate"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-9-4.png"
+  problem="The strength of a W14 × 38 rolled-steel beam is increased by attaching a $9 \times \tfrac{3}{4}\text{-in.}$ plate to its upper flange as shown. Determine the moment of inertia and the radius of gyration of the composite section with respect to an axis which is parallel to the plate and passes through the centroid $C$ of the section."
+  steps={[
+    "Place the origin $O$ at the centroid of the wide-flange shape. From the diagram, W14 × 38: $A = 11.2\\,\\text{in}^2$, depth $14.1\\,\\text{in.}$, $\\bar{I}_x = 385\\,\\text{in}^4$.",
+    "Plate: $A = (9\\,\\text{in.})(0.75\\,\\text{in.}) = 6.75\\,\\text{in}^2$; $\\bar{y} = \\tfrac{1}{2}(14.1) + \\tfrac{1}{2}(0.75) = 7.425\\,\\text{in.}$",
+    "Centroid of the composite: $\\Sigma A = 6.75 + 11.2 = 17.95\\,\\text{in}^2$, $\\Sigma\\bar{y}A = (6.75)(7.425) + 0 = 50.12\\,\\text{in}^3$. $\\;\\bar{Y}(17.95) = 50.12 \\Rightarrow \\bar{Y} = 2.792\\,\\text{in.}$",
+    "The $x'$ axis through $C$ is centroidal for the composite section but not for either part, so use the parallel-axis theorem for each. Wide-flange shape: $I_{x'} = \\bar{I}_x + A\\bar{Y}^2 = 385 + (11.2)(2.792)^2 = 472.3\\,\\text{in}^4$.",
+    "Plate: $I_{x'} = \\bar{I}_x + Ad^2 = \\left(\\tfrac{1}{12}\\right)(9)\\left(\\tfrac{3}{4}\\right)^3 + (6.75)(7.425 - 2.792)^2 = 145.2\\,\\text{in}^4$.",
+    "Composite: $I_{x'} = 472.3 + 145.2 = 617.5\\,\\text{in}^4 \\approx 618\\,\\text{in}^4$.",
+    "Radius of gyration: $k_{x'}^2 = \\dfrac{I_{x'}}{A} = \\dfrac{617.5\\,\\text{in}^4}{17.95\\,\\text{in}^2} \\Rightarrow k_{x'} = 5.87\\,\\text{in.}$"
+  ]}
+  answer="$\bar{I}_{x'} = 618\,\text{in}^4$, $\;k_{x'} = 5.87\,\text{in.}$"
+/>
+
+<StepRevealExample
+  title="Rectangle with a semicircular cut-out"
+  figure="/diagrams/get-207/centroids-and-second-moments-sp-9-5.png"
+  problem="Determine the moment of inertia of the shaded area with respect to the $x$ axis. (A $240\text{-mm} \times 120\text{-mm}$ rectangle with its base on the $x$ axis, from whose top edge a half circle of radius $r = 90\,\text{mm}$ has been removed.)"
+  steps={[
+    "The area is a rectangle minus a half circle; compute the two moments of inertia about the $x$ axis separately.",
+    "**Rectangle**): $I_x = \\tfrac{1}{3}bh^3 = \\tfrac{1}{3}(240\\,\\text{mm})(120\\,\\text{mm})^3 = 138.2\\times10^6\\,\\text{mm}^4$.",
+    "**Half circle — centroid.** From the diagram, the centroid $C$ is below the diameter $AA'$ by $a = \\dfrac{4r}{3\\pi} = \\dfrac{(4)(90)}{3\\pi} = 38.2\\,\\text{mm}$. Its distance from the $x$ axis: $b = 120 - a = 120 - 38.2 = 81.8\\,\\text{mm}$.",
+    "From the diagram, about the diameter: $I_{AA'} = \\tfrac{1}{8}\\pi r^4 = \\tfrac{1}{8}\\pi(90)^4 = 25.76\\times10^6\\,\\text{mm}^4$; area $A = \\tfrac{1}{2}\\pi r^2 = \\tfrac{1}{2}\\pi(90)^2 = 12.72\\times10^3\\,\\text{mm}^2$.",
+    "Parallel-axis theorem to the centroidal axis $x'$: $I_{AA'} = \\bar{I}_{x'} + Aa^2 \\Rightarrow 25.76\\times10^6 = \\bar{I}_{x'} + (12.72\\times10^3)(38.2)^2 \\Rightarrow \\bar{I}_{x'} = 7.20\\times10^6\\,\\text{mm}^4$.",
+    "Parallel-axis theorem again, to the $x$ axis: $I_x = \\bar{I}_{x'} + Ab^2 = 7.20\\times10^6 + (12.72\\times10^3)(81.8)^2 = 92.3\\times10^6\\,\\text{mm}^4$.",
+    "**Given area:** $I_x = 138.2\\times10^6 - 92.3\\times10^6 = 45.9\\times10^6\\,\\text{mm}^4$."
+  ]}
+  answer="$I_x = 45.9\times10^6\,\text{mm}^4$"
+/>
+
+<ExerciseSet
+  title="Parallel-Axis Theorem and Composite Areas (Probs. 9.31–9.43)"
+  items={[
+    { q: "Determine the moment of inertia and the radius of gyration of the shaded area with respect to the $x$ axis.", a: "$I_x = 390\\times10^3\\,\\text{mm}^4$; $k_x = 21.9\\,\\text{mm}$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-31.png" },
+    { q: "Determine the moment of inertia and the radius of gyration of the shaded area with respect to the $x$ axis.", a: "$I_x = 46.0\\,\\text{in}^4$; $k_x = 1.599\\,\\text{in.}$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-32.png" },
+    { q: "Determine the moment of inertia and the radius of gyration of the shaded area of the diagram with respect to the $y$ axis.", a: "$I_y = 64.3\\times10^3\\,\\text{mm}^4$; $k_y = 8.87\\,\\text{mm}$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-31.png" },
+    { q: "Determine the moment of inertia and the radius of gyration of the shaded area of the diagram with respect to the $y$ axis.", a: "$I_y = 46.5\\,\\text{in}^4$; $k_y = 1.607\\,\\text{in.}$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-32.png" },
+    { q: "Determine the moments of inertia $\\bar{I}_x$ and $\\bar{I}_y$ of the area shown with respect to centroidal axes respectively parallel and perpendicular to side $AB$.", a: "$\\bar{I}_x = 1.874\\times10^6\\,\\text{mm}^4$; $\\bar{I}_y = 5.82\\times10^6\\,\\text{mm}^4$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-41.png" },
+    { q: "Determine the moments of inertia $\\bar{I}_x$ and $\\bar{I}_y$ of the area shown with respect to centroidal axes respectively parallel and perpendicular to side $AB$.", a: "$\\bar{I}_x = 191.3\\,\\text{in}^4$; $\\bar{I}_y = 75.2\\,\\text{in}^4$", figure: "/diagrams/get-207/centroids-and-second-moments-p9-43.png" }
+  ]}
+/>
+
+---
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Frequent mistakes with centroids and moments of inertia">
+
+1. **Forgetting signs in composite tables.** A part whose centroid is left of the $y$ axis (or below the $x$ axis) has a negative first moment — the triangle in Sample Prob. 5.1 has $\bar{y} = -20\,\text{mm}$. A hole is a **negative area**.
+2. **Measuring $4r/3\pi$ from the wrong line.** The centroid distance of a semicircle or quarter circle is measured from the **diameter / straight edges**, not from the curved edge or the axis you happen to be using (Sample Probs. 5.1 and 9.5).
+3. **Using the area centroid for a wire.** A wire's centroid comes from the *line* table: semicircular arc $2r/\pi$, not $4r/3\pi$ (Sample Probs. 5.3 and 5.8).
+4. **Wrong strip centroid in integration.** For a vertical strip $\bar{y}_{el} = y/2$, not $y$; for a horizontal strip $\bar{x}_{el} = (a + x)/2$. Always express $\bar{x}_{el}$, $\bar{y}_{el}$ and $dA$ through a point on the bounding curve.
+5. **Pappus with the wrong distance.** Use the distance from the **axis of rotation** to the centroid ($\bar{x} = 2r - 2r/\pi$ in Sample Prob. 5.6), and never let the axis cut the generating curve or area.
+6. **Equivalent load used for internal forces.** The resultant of a distributed load acts at the centroid of the *load area*; it gives correct support reactions but not shear, bending moment or deflection.
+7. **$I_x = \tfrac{1}{3}y^3\,dx$ vs $y^2\,dA$.** For a strip *perpendicular* to the axis, the points are not at one distance — use $dI_x = \tfrac{1}{3}y^3\,dx$, not $y^2(y\,dx)$.
+8. **Parallel-axis misuse.** $I = \bar{I} + Ad^2$ needs one axis through the **centroid**; subtract $Ad^2$ when moving *to* the centroid; you cannot jump between two non-centroidal axes directly (triangle base $\to$ vertex line).
+9. **Adding radii of gyration.** For a composite area, compute $I$ and $A$ first, then $k = \sqrt{I/A}$; $k$ is not $\bar{y}$ either ($h/\sqrt{3}$ vs $h/2$ for a rectangle).
+10. **Units.** First moments are length$^3$, moments of inertia length$^4$; a term that is not length$^4$ signals an error.
+
 </Callout>
 
 ---
 
-## 5. Textbook Reference
+## Summary of Formulas
 
-- **Prescribed Textbook:** R. C. Hibbeler, *Engineering Mechanics: Statics & Dynamics* (14th Ed.), Chapter 9 (§9.2, pp. 488–493) & Chapter 10 (§10.1–10.4, pp. 529–543).
+<RuleBox kind="formula" title="Centroids and centers of gravity (areas and lines)">
+
+- Center of gravity: $W = \int dW$, $\;\bar{x}W = \int x\,dW$, $\;\bar{y}W = \int y\,dW$ (5.2)
+- Centroid of area: $\bar{x}A = \int x\,dA$, $\;\bar{y}A = \int y\,dA$ (5.3); of line: $\bar{x}L = \int x\,dL$, $\;\bar{y}L = \int y\,dL$ (5.4)
+- First moments: $Q_y = \int x\,dA = \bar{x}A$, $\;Q_x = \int y\,dA = \bar{y}A$ (5.5, 5.6)
+- Composite: $\bar{X}\Sigma W = \Sigma\bar{x}W$ (5.7); $\;Q_y = \bar{X}\Sigma A = \Sigma\bar{x}A$, $\;Q_x = \bar{Y}\Sigma A = \Sigma\bar{y}A$ (5.8)
+- By integration: $\bar{x}A = \int\bar{x}_{el}\,dA$, $\;\bar{y}A = \int\bar{y}_{el}\,dA$ (5.9); $\;dL = \sqrt{1 + (dy/dx)^2}\,dx$
+- Pappus-Guldinus: $A = 2\pi\bar{y}L$ (5.10), $\;V = 2\pi\bar{y}A$ (5.11)
+- Distributed beam load: $W = \int_0^L w\,dx = A$, acting at $\bar{x}$ of the load area: $(OP)A = \int_0^L x\,dA$ (5.12)
+- Key centroids: triangle $h/3$; semicircular/quarter-circular area $4r/3\pi$; parabolic spandrel $(3a/4, 3h/10)$, area $ah/3$; circular sector $2r\sin\alpha/3\alpha$; arc $r\sin\alpha/\alpha$; semicircular arc $2r/\pi$
+
+</RuleBox>
+
+<RuleBox kind="formula" title="Moments of inertia of areas">
+
+- Rectangular: $I_x = \int y^2\,dA$, $\;I_y = \int x^2\,dA$ (9.1); rectangle about base $I_x = \tfrac{1}{3}bh^3$ (9.2)
+- Strip for both: $dI_x = \tfrac{1}{3}y^3\,dx$, $\;dI_y = x^2y\,dx$
+- Polar: $J_O = \int r^2\,dA$ (9.3), $\;J_O = I_x + I_y$ (9.4)
+- Radii of gyration: $k_x = \sqrt{I_x/A}$, $k_y = \sqrt{I_y/A}$, $k_O = \sqrt{J_O/A}$ (9.5–9.7); $\;k_O^2 = k_x^2 + k_y^2$ (9.8)
+- Parallel-axis: $I = \bar{I} + Ad^2$ (9.9), $\;k^2 = \bar{k}^2 + d^2$ (9.10), $\;J_O = \bar{J}_C + Ad^2$ (9.11)
+- the diagram: rectangle $\bar{I}_{x'} = \tfrac{1}{12}bh^3$, $J_C = \tfrac{1}{12}bh(b^2 + h^2)$; triangle $\bar{I}_{x'} = \tfrac{1}{36}bh^3$, $I_x = \tfrac{1}{12}bh^3$ (base); circle $\bar{I}_x = \bar{I}_y = \tfrac{1}{4}\pi r^4$, $J_O = \tfrac{1}{2}\pi r^4$; semicircle $I_x = I_y = \tfrac{1}{8}\pi r^4$, $J_O = \tfrac{1}{4}\pi r^4$; quarter circle $I_x = I_y = \tfrac{1}{16}\pi r^4$, $J_O = \tfrac{1}{8}\pi r^4$; ellipse $\bar{I}_x = \tfrac{1}{4}\pi ab^3$, $\bar{I}_y = \tfrac{1}{4}\pi a^3b$, $J_O = \tfrac{1}{4}\pi ab(a^2 + b^2)$
+- Parabolic spandrel ($y = kx^2$): $I_x = ab^3/21$, $\;I_y = a^3b/5$
+
+</RuleBox>

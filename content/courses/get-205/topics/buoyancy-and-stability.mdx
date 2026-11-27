@@ -5,7 +5,6 @@ topicId: "22222222-2222-4222-8222-222222250002"
 courseCode: "GET 205"
 courseSlug: "get-205"
 ccmasRef: "Buoyancy, Archimedes' principle & stability of floating and submerged bodies"
-textbookRef: "Çengel · Ch. 11 (§11–4 Buoyancy & Stability)"
 outcomes:
   - "Compute upward buoyant force FB and rope tension loss for submerged concrete/metal structures"
   - "Determine floating draft depth and specific gravity from displaced fluid volume ratios"
@@ -16,14 +15,13 @@ isFree: true
 
 ## 1. Overview
 
-Objects feel lighter in water because fluid pressure increases with depth, pushing upward harder on the bottom of a submerged body than downward on its top. In **Çengel Chapter 11 (§11–4)**, this net upward **buoyant force** governs underwater crane loads, hydrometer calibration, and whether a floating pontoon or ship rights itself or capsizes when tilted by waves.
+Objects feel lighter in water because fluid pressure increases with depth, pushing upward harder on the bottom of a submerged body than downward on its top. In hydrostatics, this net upward **buoyant force** governs underwater crane loads, hydrometer calibration, and whether a floating pontoon or ship rights itself or capsizes when tilted by waves.
 
 ---
 
 ## 2. Key Concepts
 
-### Archimedes' Principle (Çengel §11–4)
-
+### Archimedes' Principle
 The buoyant force $F_B$ acting on a body immersed in a fluid of density $\rho_f$ equals the weight of the fluid displaced by the body, acting upward through the **center of buoyancy $B$** (the centroid of the displaced volume $V_{\text{sub}}$):
 
 $$F_B = \rho_f \, g \, V_{\text{sub}}$$
@@ -34,7 +32,7 @@ $$\frac{V_{\text{sub}}}{V} = \frac{\rho_{\text{body}}}{\rho_f}$$
 
 <DiagramFigure
   src="/images/textbook-figures/get-205/cengel-fig-11-19-seawater-block.webp"
-  caption="Çengel Fig. 11–19 (Schematic for Example 11–4) — Free-body comparison of a rectangular concrete block suspended in air versus completely immersed in seawater."
+  caption="Free-body comparison of a rectangular concrete block suspended in air versus completely immersed in seawater."
 />
 
 ### Rotational Stability & Metacentric Height $GM$
@@ -49,16 +47,16 @@ $$BM = \frac{I_{\min}}{V_{\text{sub}}}, \qquad GM = BM - BG$$
 
 <DiagramFigure
   src="/images/textbook-figures/get-205/cengel-fig-11-24-floating-stability.webp"
-  caption="Çengel Fig. 11–24 — A floating vessel remains stable even with G above B provided the shifted buoyant force through B' intersects the centerline at metacenter M above G (GM > 0)."
+  caption="A floating vessel remains stable even with G above B provided the shifted buoyant force through B' intersects the centerline at metacenter M above G (GM > 0)."
 />
 
 ---
 
-## 3. Textbook Worked Examples
+## 3. Worked Examples
 
 <StepRevealExample
-  title="Çengel Example 11–4 — Weight Loss of an Object in Seawater (Fig. 11–19)"
-  problem="A crane is used to lower weights into the sea ($\rho_f = 1025\,\text{kg/m}^3$) for an underwater construction project (Fig. 11–19). Determine the tension in the rope of the crane due to a rectangular $0.4\,\text{m} \times 0.4\,\text{m} \times 3\,\text{m}$ concrete block ($\rho_{\text{concrete}} = 2300\,\text{kg/m}^3$) when it is (a) suspended in the air and (b) completely immersed in seawater."
+  title="Weight Loss of an Object in Seawater"
+  problem="A crane is used to lower weights into the sea ($\rho_f = 1025\,\text{kg/m}^3$) for an underwater construction project). Determine the tension in the rope of the crane due to a rectangular $0.4\,\text{m} \times 0.4\,\text{m} \times 3\,\text{m}$ concrete block ($\rho_{\text{concrete}} = 2300\,\text{kg/m}^3$) when it is (a) suspended in the air and (b) completely immersed in seawater."
   steps={[
     "Compute the volume of the rectangular concrete block: $V = (0.4\\,\\text{m})(0.4\\,\\text{m})(3\\,\\text{m}) = 0.48\\,\\text{m}^3$.",
     "(a) Suspended in air (neglecting air buoyancy), rope tension equals true weight $W$: $F_{T,\\text{air}} = W = \\rho_{\\text{concrete}} g V = (2300)(9.81)(0.48) = 10\\,830\\,\\text{N} \\approx 10.8\\,\\text{kN}$.",
@@ -68,7 +66,7 @@ $$BM = \frac{I_{\min}}{V_{\text{sub}}}, \qquad GM = BM - BG$$
 />
 
 <StepRevealExample
-  title="Çengel Example 11–3(b) — Lead Ballast Mass in a Floating Hydrometer"
+  title="Lead Ballast Mass in a Floating Hydrometer"
   problem="A cylindrical glass hydrometer of outer diameter $D = 1\,\text{cm}$ ($R = 0.005\,\text{m}$) and length $20\,\text{cm}$ is weighted with lead at its bottom. Disregarding the mass of the thin glass tube, determine the mass of lead (in grams) needed so the hydrometer floats halfway submerged ($h_{\text{sub}} = 10\,\text{cm} = 0.10\,\text{m}$) in pure water ($\rho_w = 1000\,\text{kg/m}^3$)."
   steps={[
     "For static floating equilibrium, weight $W = mg$ equals the buoyant force $F_B = \\rho_w g V_{\\text{sub}}$, so $m = \\rho_w V_{\\text{sub}}$.",
@@ -88,6 +86,3 @@ $$BM = \frac{I_{\min}}{V_{\text{sub}}}, \qquad GM = BM - BG$$
 
 ---
 
-## 5. Textbook Reference
-
-- **Prescribed Textbook:** Y. A. Çengel, R. H. Turner & J. M. Cimbala, *Fundamentals of Thermal-Fluid Sciences*, Chapter 11 (§11–4 Buoyancy and Stability, pp. 496–502).

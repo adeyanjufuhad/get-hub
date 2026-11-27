@@ -114,9 +114,9 @@ export default function MockExamRunnerPage() {
       setExam(res.exam);
       setReviews(res.reviews);
       setBreakdown(res.topic_breakdown);
-      toast.success("Mock exam graded!");
+      toast.success("Mock exam graded");
     } catch (err) {
-      toast.error(err instanceof ApiError ? err.message : "Could not submit mock exam.");
+      toast.error(err instanceof ApiError ? err.message : "Could not submit mock exam");
     } finally {
       setSubmitting(false);
     }
@@ -153,14 +153,14 @@ export default function MockExamRunnerPage() {
   }, [loading, reviews, exam, remaining, handleSubmit]);
 
   if (authLoading || loading) {
-    return <div className="h-96 animate-pulse rounded-[24px] bg-[var(--bg-surface)]" />;
+    return <div className="h-96 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]" />;
   }
 
   if (!exam) {
     return (
       <div className="rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6">
-        <p className="font-bold">Mock exam not found.</p>
-        <Link href="/dashboard" className="mt-2 inline-block text-sm font-semibold text-[var(--accent)]">
+        <p className="font-semibold">Mock exam not found</p>
+        <Link href="/dashboard" className="mt-2 inline-block text-sm font-medium text-[var(--accent)]">
           Back to dashboard
         </Link>
       </div>
@@ -180,28 +180,28 @@ export default function MockExamRunnerPage() {
           <div className="flex flex-col-reverse items-start justify-between gap-5 sm:flex-row sm:items-center sm:gap-6">
             <div className="w-full sm:w-auto">
               <Badge variant="accent" className="font-mono">
-                {course?.code} · Mock Exam Graded
+                {course?.code} · Mock exam graded
               </Badge>
-              <h1 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+              <h1 className="tabular mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
                 You scored {score} / {total}
               </h1>
               <p className="mt-1 text-sm text-[var(--text-secondary)]">
                 {pct >= 70
-                  ? "Solid performance! Keep sharpening your speed."
-                  : "Good run — review the missed steps below and drill weak topics."}
+                  ? "Solid performance. Keep sharpening your speed."
+                  : "Review the missed steps below and practice the weaker topics."}
               </p>
               <div className="mt-4 grid grid-cols-1 gap-2 min-[380px]:grid-cols-2 sm:flex sm:flex-wrap">
                 {course && (
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] bg-[var(--ink-cta)] px-5 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] bg-[var(--ink-cta)] px-5 text-sm font-medium text-[var(--ink-cta-text)] hover:opacity-90"
                   >
                     Retake new mock
                   </Link>
                 )}
                 <Link
                   href="/progress"
-                  className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] px-5 text-sm font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
+                  className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] px-5 text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
                 >
                   View progress
                 </Link>
@@ -215,11 +215,11 @@ export default function MockExamRunnerPage() {
           {/* Score Breakdown By Topic */}
           {breakdown.length > 0 && (
             <div className="mt-6 border-t border-[var(--border-hairline)] pt-5">
-              <h2 className="text-sm font-bold text-[var(--text-primary)]">Score breakdown by topic</h2>
+              <h2 className="text-sm font-semibold text-[var(--text-primary)]">Score breakdown by topic</h2>
               <div className="mt-3 space-y-3">
                 {breakdown.map((b) => (
                   <div key={b.topic_id} className="rounded-[12px] bg-[var(--bg-canvas)] p-3.5">
-                    <div className="flex items-center justify-between text-xs font-semibold">
+                    <div className="flex items-center justify-between text-xs font-medium">
                       <span className="text-[var(--text-primary)]">{b.topic_title}</span>
                       <span className="tabular font-mono text-[var(--text-secondary)]">
                         {b.correct}/{b.total} ({b.accuracy_pct}%)
@@ -243,7 +243,7 @@ export default function MockExamRunnerPage() {
 
         {/* Question-by-question solutions */}
         <section className="space-y-4">
-          <h2 className="text-lg font-extrabold tracking-tight">Full Solutions Review</h2>
+          <h2 className="text-lg font-semibold tracking-tight">Full solutions review</h2>
           {reviews.map((rev, idx) => (
             <article
               key={rev.question.id}

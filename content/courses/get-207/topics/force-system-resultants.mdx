@@ -5,7 +5,6 @@ topicId: "22222222-2222-4222-8222-222222220207"
 courseCode: "GET 207"
 courseSlug: "get-207"
 ccmasRef: "Moments and couples; equivalent force systems"
-textbookRef: "Beer & Johnston 10e · Ch. 3"
 outcomes:
   - "Apply the principle of transmissibility and vector cross products to compute the moment of a force about a point in 2D and 3D"
   - "Use Varignon's theorem, scalar dot products, and mixed triple products to find angles, force projections, and moments about an arbitrary axis"
@@ -17,7 +16,7 @@ isFree: true
 
 ## Overview
 
-In particle statics (Chapter 2), every force acting on a body was assumed to pass through a single point. Real engineering members—beams, brackets, shafts, trusses, and hulls—have finite size, so forces act at different points and tend not only to translate the body but also to rotate it. In **Beer, Johnston, Mazurek & Cornwell (*Vector Mechanics for Engineers: Statics and Dynamics*, 10th Edition), Chapter 3**, we treat bodies as **rigid** and develop the vector tools—cross products, moments about points and axes, couples, and equivalent (equipollent) force-couple systems—needed to simplify any system of forces without changing its external mechanical effect.
+In particle statics, every force acting on a body was assumed to pass through a single point. Real engineering members—beams, brackets, shafts, trusses, and hulls—have finite size, so forces act at different points and tend not only to translate the body but also to rotate it. In this topic, we treat bodies as **rigid** and develop the vector tools—cross products, moments about points and axes, couples, and equivalent (equipollent) force-couple systems—needed to simplify any system of forces without changing its external mechanical effect.
 
 ---
 
@@ -26,9 +25,9 @@ In particle statics (Chapter 2), every force acting on a body was assumed to pas
 A **rigid body** is an idealized assembly of particles whose mutual distances remain fixed under load. Although real structural materials experience small elastic deformations, those deformations ordinarily have negligible influence on overall equilibrium or rigid-body motion and are deferred to mechanics of materials.
 
 Because forces on a rigid body act at distinct points, studying their external effect requires three core concepts:
-1. **Moment of a force about a point** (§3.6) and **about an axis** (§3.11), evaluated using vector and scalar products.
-2. **Couples** (§3.12)—pairs of equal, parallel, opposite forces producing pure rotation.
-3. **Equivalent force-couple systems** (§3.16–3.21), which allow any force system to be replaced by one resultant force at a chosen reference point plus one resultant couple, and in special cases reduced further to a single resultant force or a wrench.
+1. **Moment of a force about a point** and **about an axis**, evaluated using vector and scalar products.
+2. **Couples**—pairs of equal, parallel, opposite forces producing pure rotation.
+3. **Equivalent force-couple systems**, which allow any force system to be replaced by one resultant force at a chosen reference point plus one resultant couple, and in special cases reduced further to a single resultant force or a wrench.
 
 ---
 
@@ -36,7 +35,7 @@ Because forces on a rigid body act at distinct points, studying their external e
 
 Forces acting on a rigid body fall into two distinct categories:
 
-<RuleBox kind="definition" title="§3.2 External vs. Internal Forces">
+<RuleBox kind="definition" title="External vs. Internal Forces">
 
 1. **External forces** represent the actions exerted on the rigid body by other bodies (such as gravitational weight $\mathbf{W}$, applied cable pulls $\mathbf{F}$, and ground or support reactions $\mathbf{R}_1, \mathbf{R}_2$). They completely govern the external behavior—whether the body remains at rest or accelerates in **translation**, **rotation**, or both.
 2. **Internal forces** are the mutual forces binding the particles of a rigid body together, or holding sub-components together within a composite structure. Because internal forces occur in equal, opposite, collinear pairs inside the isolated body, they do not appear in rigid-body force-system reductions and are analyzed separately in Chapters 6 and 7.
@@ -49,7 +48,7 @@ Forces acting on a rigid body fall into two distinct categories:
 
 Unlike forces on a single particle (which are **bound vectors** with a fixed point of application), forces acting on a rigid body behave as **sliding vectors** because they may be shifted along their line of action without altering external equilibrium or motion.
 
-<RuleBox kind="theorem" title="§3.3 Principle of Transmissibility">
+<RuleBox kind="theorem" title="Principle of Transmissibility">
 
 The conditions of equilibrium or motion of a rigid body remain unchanged if a force $\mathbf{F}$ acting at a given point is replaced by a force $\mathbf{F}'$ of the same magnitude and same direction acting at another point, provided both forces share the **same line of action**. Such forces $\mathbf{F}$ and $\mathbf{F}'$ are **equivalent** with respect to the rigid body's external behavior.
 
@@ -67,14 +66,16 @@ While sliding a force along its line of action leaves external motion and suppor
 
 To express rotational tendencies cleanly in three dimensions, we introduce the **vector product** (or **cross product**) of two vectors $\mathbf{P}$ and $\mathbf{Q}$.
 
-<RuleBox kind="definition" title="§3.4 Vector Product (Cross Product) V = P × Q">
+<RuleBox kind="definition" title="Vector Product (Cross Product) V = P × Q">
 
 The vector product $\mathbf{V} = \mathbf{P} \times \mathbf{Q}$ is the unique vector satisfying three conditions:
 
 1. **Line of action:** $\mathbf{V}$ is perpendicular to the plane containing $\mathbf{P}$ and $\mathbf{Q}$.
 2. **Magnitude:** With $\theta \le 180^\circ$ denoting the angle between $\mathbf{P}$ and $\mathbf{Q}$ when drawn from a common origin,
 
-$$V = PQ \sin\theta \tag{3.1}$$
+$$
+V = PQ \sin\theta \tag{3.1}
+$$
 
 3. **Direction (Right-Hand Rule):** Curl the fingers of your right hand in the sense of the rotation through $\theta$ that aligns $\mathbf{P}$ with $\mathbf{Q}$; your extended thumb points in the direction of $\mathbf{V}$. Thus $\mathbf{P}, \mathbf{Q}, \mathbf{V}$ (in that order) form a **right-handed triad**.
 
@@ -82,7 +83,7 @@ $$V = PQ \sin\theta \tag{3.1}$$
 
 <DiagramFigure
   src="/diagrams/get-207/force-system-resultants-fig-3-6-vector-product.png"
-  caption="Beer & Johnston Fig. 3.6 — (a) Cross product V = P × Q perpendicular to the plane of P and Q; (b) right-hand rule."
+  caption="(a) Cross product V = P × Q perpendicular to the plane of P and Q; (b) right-hand rule."
 />
 
 Geometrically, $|\mathbf{P} \times \mathbf{Q}| = PQ\sin\theta$ equals the area of the parallelogram spanned by $\mathbf{P}$ and $\mathbf{Q}$. Consequently, sliding the tip of $\mathbf{Q}$ parallel to $\mathbf{P}$ leaves the cross product unchanged ($\mathbf{P} \times \mathbf{Q} = \mathbf{P} \times \mathbf{Q}'$), and when $\mathbf{P}$ and $\mathbf{Q}$ are parallel or antiparallel ($\theta = 0^\circ$ or $180^\circ$), $\mathbf{P} \times \mathbf{Q} = \mathbf{0}$.
@@ -98,21 +99,31 @@ Geometrically, $|\mathbf{P} \times \mathbf{Q}| = PQ\sin\theta$ equals the area o
 
 Because the Cartesian unit vectors $\mathbf{i}, \mathbf{j}, \mathbf{k}$ form a right-handed orthogonal triad, their pairwise cross products follow the cyclic rule (counterclockwise around $\mathbf{i} \to \mathbf{j} \to \mathbf{k}$ is positive, clockwise is negative):
 
-<RuleBox kind="formula" title="§3.5 Unit-Vector Cross Products & Determinant Form">
+<RuleBox kind="formula" title="Unit-Vector Cross Products & Determinant Form">
 
-$$\mathbf{i} \times \mathbf{i} = \mathbf{0}, \qquad \mathbf{j} \times \mathbf{j} = \mathbf{0}, \qquad \mathbf{k} \times \mathbf{k} = \mathbf{0}$$
+$$
+\mathbf{i} \times \mathbf{i} = \mathbf{0}, \qquad \mathbf{j} \times \mathbf{j} = \mathbf{0}, \qquad \mathbf{k} \times \mathbf{k} = \mathbf{0}
+$$
 
-$$\mathbf{i} \times \mathbf{j} = \mathbf{k}, \qquad \mathbf{j} \times \mathbf{k} = \mathbf{i}, \qquad \mathbf{k} \times \mathbf{i} = \mathbf{j} \tag{3.7}$$
+$$
+\mathbf{i} \times \mathbf{j} = \mathbf{k}, \qquad \mathbf{j} \times \mathbf{k} = \mathbf{i}, \qquad \mathbf{k} \times \mathbf{i} = \mathbf{j} \tag{3.7}
+$$
 
-$$\mathbf{j} \times \mathbf{i} = -\mathbf{k}, \qquad \mathbf{k} \times \mathbf{j} = -\mathbf{i}, \qquad \mathbf{i} \times \mathbf{k} = -\mathbf{j}$$
+$$
+\mathbf{j} \times \mathbf{i} = -\mathbf{k}, \qquad \mathbf{k} \times \mathbf{j} = -\mathbf{i}, \qquad \mathbf{i} \times \mathbf{k} = -\mathbf{j}
+$$
 
 Expanding $\mathbf{V} = (P_x\mathbf{i} + P_y\mathbf{j} + P_z\mathbf{k}) \times (Q_x\mathbf{i} + Q_y\mathbf{j} + Q_z\mathbf{k})$ by distributivity gives:
 
-$$\mathbf{V} = (P_y Q_z - P_z Q_y)\mathbf{i} + (P_z Q_x - P_x Q_z)\mathbf{j} + (P_x Q_y - P_y Q_x)\mathbf{k} \tag{3.8}$$
+$$
+\mathbf{V} = (P_y Q_z - P_z Q_y)\mathbf{i} + (P_z Q_x - P_x Q_z)\mathbf{j} + (P_x Q_y - P_y Q_x)\mathbf{k} \tag{3.8}
+$$
 
 Equivalently, in compact $3\times 3$ determinant form:
 
-$$\mathbf{V} = \mathbf{P} \times \mathbf{Q} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ P_x & P_y & P_z \\ Q_x & Q_y & Q_z \end{vmatrix} \tag{3.10}$$
+$$
+\mathbf{V} = \mathbf{P} \times \mathbf{Q} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ P_x & P_y & P_z \\ Q_x & Q_y & Q_z \end{vmatrix} \tag{3.10}
+$$
 
 </RuleBox>
 
@@ -122,15 +133,19 @@ $$\mathbf{V} = \mathbf{P} \times \mathbf{Q} = \begin{vmatrix} \mathbf{i} & \math
 
 Consider a force $\mathbf{F}$ applied at point $A$, whose position relative to a fixed reference point $O$ is given by the position vector $\mathbf{r} = \overrightarrow{OA}$.
 
-<RuleBox kind="definition" title="§3.6 Moment of a Force about Point O">
+<RuleBox kind="definition" title="Moment of a Force about Point O">
 
 The **moment of $\mathbf{F}$ about $O$** is the vector product:
 
-$$\mathbf{M}_O = \mathbf{r} \times \mathbf{F} \tag{3.11}$$
+$$
+\mathbf{M}_O = \mathbf{r} \times \mathbf{F} \tag{3.11}
+$$
 
 Its magnitude is
 
-$$M_O = r F \sin\theta = F d \tag{3.12}$$
+$$
+M_O = r F \sin\theta = F d \tag{3.12}
+$$
 
 where $d = r\sin\theta$ is the **perpendicular distance** (moment arm) from $O$ to the line of action of $\mathbf{F}$. By the right-hand rule, $\mathbf{M}_O$ is perpendicular to the plane of $\mathbf{r}$ and $\mathbf{F}$ and points along the axis about which $\mathbf{F}$ tends to rotate the body (counterclockwise as seen from the tip of $\mathbf{M}_O$). Units are $\text{N}\cdot\text{m}$ in SI and $\text{lb}\cdot\text{ft}$ or $\text{lb}\cdot\text{in.}$ in U.S. customary units.
 
@@ -138,12 +153,14 @@ where $d = r\sin\theta$ is the **perpendicular distance** (moment arm) from $O$ 
 
 <DiagramFigure
   src="/diagrams/get-207/force-system-resultants-fig-3-12-moment-point.png"
-  caption="Beer & Johnston Fig. 3.12 — Moment M_O = r × F of a force about point O and its sense by the right-hand rule."
+  caption="Moment M_O = r × F of a force about point O and its sense by the right-hand rule."
 />
 
 Restating the principle of transmissibility in terms of moments: two forces $\mathbf{F}$ and $\mathbf{F}'$ are equivalent on a rigid body if and only if they have the same magnitude, same direction, and equal moments about a reference point $O$:
 
-$$\mathbf{F} = \mathbf{F}' \quad \text{and} \quad \mathbf{M}_O = \mathbf{M}'_O \tag{3.13}$$
+$$
+\mathbf{F} = \mathbf{F}' \quad \text{and} \quad \mathbf{M}_O = \mathbf{M}'_O \tag{3.13}
+$$
 
 **Two-Dimensional Problems:** When all forces lie in the $xy$ plane (the plane of the page), $\mathbf{M}_O$ is always perpendicular to the plane. A counterclockwise tendency ($\circlearrowleft$, pointing out of the page along $+z$) is taken as positive ($M_O = +Fd$), while a clockwise tendency ($\circlearrowright$, pointing into the page along $-z$) is negative ($M_O = -Fd$).
 
@@ -153,11 +170,13 @@ $$\mathbf{F} = \mathbf{F}' \quad \text{and} \quad \mathbf{M}_O = \mathbf{M}'_O \
 
 Because cross products distribute over vector addition, the moment of the sum of concurrent forces equals the sum of their individual moments.
 
-<RuleBox kind="theorem" title="§3.7 Varignon's Theorem">
+<RuleBox kind="theorem" title="Varignon's Theorem">
 
 If concurrent forces $\mathbf{F}_1, \mathbf{F}_2, \dots$ act at the same point $A$ (with position vector $\mathbf{r}$ from $O$), then:
 
-$$\mathbf{r} \times (\mathbf{F}_1 + \mathbf{F}_2 + \cdots) = \mathbf{r} \times \mathbf{F}_1 + \mathbf{r} \times \mathbf{F}_2 + \cdots \tag{3.14}$$
+$$
+\mathbf{r} \times (\mathbf{F}_1 + \mathbf{F}_2 + \cdots) = \mathbf{r} \times \mathbf{F}_1 + \mathbf{r} \times \mathbf{F}_2 + \cdots \tag{3.14}
+$$
 
 That is, the moment about a point $O$ of the resultant of several concurrent forces equals the sum of the moments of the individual forces about $O$. In practice, we resolve a single force $\mathbf{F}$ into convenient components (rectangular or along/perpendicular to $\mathbf{r}$) and sum their moments algebraically or vectorially.
 
@@ -169,27 +188,34 @@ That is, the moment about a point $O$ of the resultant of several concurrent for
 
 Resolving $\mathbf{r} = x\mathbf{i} + y\mathbf{j} + z\mathbf{k}$ and $\mathbf{F} = F_x\mathbf{i} + F_y\mathbf{j} + F_z\mathbf{k}$ gives the rectangular components of $\mathbf{M}_O = M_x\mathbf{i} + M_y\mathbf{j} + M_z\mathbf{k}$:
 
-<RuleBox kind="formula" title="§3.8 Rectangular Components & Moment about Arbitrary Point B">
+<RuleBox kind="formula" title="Rectangular Components & Moment about Arbitrary Point B">
 
 About the origin $O$:
 
-$$M_x = y F_z - z F_y, \qquad M_y = z F_x - x F_z, \qquad M_z = x F_y - y F_x \tag{3.18}$$
+$$
+M_x = y F_z - z F_y, \qquad M_y = z F_x - x F_z, \qquad M_z = x F_y - y F_x \tag{3.18}
+$$
 
-$$\mathbf{M}_O = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ x & y & z \\ F_x & F_y & F_z \end{vmatrix} \tag{3.19}$$
+$$
+\mathbf{M}_O = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ x & y & z \\ F_x & F_y & F_z \end{vmatrix} \tag{3.19}
+$$
 
 About an arbitrary point $B(x_B, y_B, z_B)$, replace $\mathbf{r}$ with the relative position vector $\mathbf{r}_{A/B} = \mathbf{r}_A - \mathbf{r}_B$ drawn **from $B$ to $A$**:
 
-$$\mathbf{M}_B = \mathbf{r}_{A/B} \times \mathbf{F} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ x_A - x_B & y_A - y_B & z_A - z_B \\ F_x & F_y & F_z \end{vmatrix} \tag{3.20,\;3.21}$$
+$$
+\mathbf{M}_B = \mathbf{r}_{A/B} \times \mathbf{F} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ x_A - x_B & y_A - y_B & z_A - z_B \\ F_x & F_y & F_z \end{vmatrix} \tag{3.20,\;3.21}
+$$
 
 In 2D ($z_{A/B} = 0$, $F_z = 0$), $\mathbf{M}_B = M_B\mathbf{k}$ reduces to the scalar:
 
-$$M_B = (x_A - x_B)F_y - (y_A - y_B)F_x \tag{3.23}$$
+$$
+M_B = (x_A - x_B)F_y - (y_A - y_B)F_x \tag{3.23}
+$$
 
 </RuleBox>
 
 <StepRevealExample
-  title="Sample Problem 3.1 — Moment of a Force in 2D (Moment Arm Method)"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.1"
+  title="Moment of a Force in 2D (Moment Arm Method)"
   figure="/diagrams/get-207/force-system-resultants-sp-3-1.png"
   problem="A $100\text{-lb}$ vertical downward force is applied at end $A$ of a $24\text{-in.}$ lever attached to a shaft at $O$ and inclined at $60^\circ$ above the horizontal. Determine (a) the moment of the $100\text{-lb}$ force about $O$; (b) the horizontal force applied at $A$ creating the same moment about $O$; (c) the smallest force applied at $A$ creating the same moment about $O$; (d) how far from $O$ along the lever a $240\text{-lb}$ vertical downward force must act to create the same moment about $O$; (e) whether any of the forces in parts (b), (c), and (d) is equivalent to the original force."
   steps={[
@@ -199,12 +225,11 @@ $$M_B = (x_A - x_B)F_y - (y_A - y_B)F_x \tag{3.23}$$
     "**(d) $240\\text{-lb}$ vertical force:** From $M_O = Fd$, $1200 = 240 d \\implies d = 5\\,\\text{in.}$ Since $OB\\cos 60^\\circ = d$, we get $OB = 5 / \\cos 60^\\circ = 10\\,\\text{in.}$",
     "**(e) Equivalence check:** **None** of the forces in (b), (c), or (d) is equivalent to the original $100\\text{-lb}$ force. Although each produces the same moment about $O$, each has different $x$ and $y$ force components and thus fails Eq. (3.13)."
   ]}
-  answer="(a) $1200\\,\\text{lb}\\cdot\\text{in.}$ cw; (b) $57.7\\,\\text{lb}\\;\\rightarrow$; (c) $50\\,\\text{lb}$ at $30^\\circ$ below $+x$; (d) $OB = 10\\,\\text{in.}$; (e) None"
+  answer="(a) $1200\,\text{lb}\cdot\text{in.}$ cw; (b) $57.7\,\text{lb}\;\rightarrow$; (c) $50\,\text{lb}$ at $30^\circ$ below $+x$; (d) $OB = 10\,\text{in.}$; (e) None"
 />
 
 <StepRevealExample
-  title="Sample Problem 3.2 — Moment via Rectangular Cross Product"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.2"
+  title="Moment via Rectangular Cross Product"
   figure="/diagrams/get-207/force-system-resultants-sp-3-2.png"
   problem="An $800\text{-N}$ force acts at corner $A$ of a bracket at $60^\circ$ above the $+x$ axis (up and right). Point $A$ is $160\text{ mm}$ above and $200\text{ mm}$ to the left of point $B$. Determine the moment of the force about $B$."
   steps={[
@@ -213,12 +238,11 @@ $$M_B = (x_A - x_B)F_y - (y_A - y_B)F_x \tag{3.23}$$
     "Evaluate $\\mathbf{M}_B = \\mathbf{r}_{A/B} \\times \\mathbf{F} = [-(0.2\\,\\text{m})\\mathbf{i} + (0.16\\,\\text{m})\\mathbf{j}] \\times [(400\\,\\text{N})\\mathbf{i} + (693\\,\\text{N})\\mathbf{j}]$.",
     "Using $\\mathbf{i}\\times\\mathbf{j} = \\mathbf{k}$ and $\\mathbf{j}\\times\\mathbf{i} = -\\mathbf{k}$: $\\mathbf{M}_B = -(0.2)(693)\\mathbf{k} - (0.16)(400)\\mathbf{k} = -(138.6 + 64.0)\\mathbf{k} = -(202.6\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$, so $M_B = 203\\,\\text{N}\\cdot\\text{m}$ clockwise (into the page)."
   ]}
-  answer="$M_B = 203\\,\\text{N}\\cdot\\text{m}$ clockwise ($-(202.6\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$)"
+  answer="$M_B = 203\,\text{N}\cdot\text{m}$ clockwise ($-(202.6\,\text{N}\cdot\text{m})\mathbf{k}$)"
 />
 
 <StepRevealExample
-  title="Sample Problem 3.3 — Moment by Non-Rectangular Resolution"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.3"
+  title="Moment by Non-Rectangular Resolution"
   figure="/diagrams/get-207/force-system-resultants-sp-3-3.png"
   problem="A $30\text{-lb}$ force acts at end $A$ of a $3\text{-ft}$ lever $OA$ inclined at $50^\circ$ to the horizontal. The line of action of the force makes a $20^\circ$ angle above line $OA$ (extended). Determine the moment of the force about $O$."
   steps={[
@@ -227,31 +251,29 @@ $$M_B = (x_A - x_B)F_y - (y_A - y_B)F_x \tag{3.23}$$
     "The perpendicular component has magnitude $Q = (30\\,\\text{lb})\\sin 20^\\circ = 10.26\\,\\text{lb}$ and tends to rotate the lever clockwise about $O$.",
     "Compute the scalar moment: $M_O = -Q(3\\,\\text{ft}) = -(10.26\\,\\text{lb})(3\\,\\text{ft}) = -30.8\\,\\text{lb}\\cdot\\text{ft}$, i.e., $30.8\\,\\text{lb}\\cdot\\text{ft}$ clockwise."
   ]}
-  answer="$M_O = 30.8\\,\\text{lb}\\cdot\\text{ft}$ clockwise"
+  answer="$M_O = 30.8\,\text{lb}\cdot\text{ft}$ clockwise"
 />
 
 <StepRevealExample
-  title="Sample Problem 3.4 — Moment of a 3D Force about a Point"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.4"
+  title="Moment of a 3D Force about a Point"
   figure="/diagrams/get-207/force-system-resultants-sp-3-4.png"
-  problem="A rectangular plate ($300\\text{ mm}$ wide along $x$ and $320\\text{ mm}$ deep along $z$) is supported by brackets at $A(0, 0, 0.24\\text{ m})$ and $B$ and by a wire $CD$ connecting corner $C(0.30\\text{ m}, 0, 0.32\\text{ m})$ to anchor $D(0, 0.24\\text{ m}, 0)$ on the wall. Knowing that the tension in the wire is $200\\text{ N}$, determine the moment about $A$ of the force exerted by the wire on point $C$."
+  problem="A rectangular plate ($300\text{ mm}$ wide along $x$ and $320\text{ mm}$ deep along $z$) is supported by brackets at $A(0, 0, 0.24\text{ m})$ and $B$ and by a wire $CD$ connecting corner $C(0.30\text{ m}, 0, 0.32\text{ m})$ to anchor $D(0, 0.24\text{ m}, 0)$ on the wall. Knowing that the tension in the wire is $200\text{ N}$, determine the moment about $A$ of the force exerted by the wire on point $C$."
   steps={[
     "Form the position vector from $A$ to $C$: $\\mathbf{r}_{C/A} = \\overrightarrow{AC} = (0.3\\,\\text{m})\\mathbf{i} + (0.08\\,\\text{m})\\mathbf{k}$.",
     "Compute the wire vector from $C$ to $D$ and its length: $\\overrightarrow{CD} = -(0.3\\,\\text{m})\\mathbf{i} + (0.24\\,\\text{m})\\mathbf{j} - (0.32\\,\\text{m})\\mathbf{k}$, so $CD = \\sqrt{(-0.3)^2 + 0.24^2 + (-0.32)^2} = 0.50\\,\\text{m}$.",
     "Express the force $\\mathbf{F}$ in Cartesian form: $\\mathbf{F} = 200\\,\\text{N}\\,\\frac{\\overrightarrow{CD}}{CD} = \\frac{200}{0.50}(-0.3\\mathbf{i} + 0.24\\mathbf{j} - 0.32\\mathbf{k}) = -(120\\,\\text{N})\\mathbf{i} + (96\\,\\text{N})\\mathbf{j} - (128\\,\\text{N})\\mathbf{k}$.",
     "Evaluate $\\mathbf{M}_A = \\mathbf{r}_{C/A} \\times \\mathbf{F}$ via determinant: $\\mathbf{M}_A = \\begin{vmatrix} \\mathbf{i} & \\mathbf{j} & \\mathbf{k} \\\\ 0.3 & 0 & 0.08 \\\\ -120 & 96 & -128 \\end{vmatrix} = -(7.68\\,\\text{N}\\cdot\\text{m})\\mathbf{i} + (28.8\\,\\text{N}\\cdot\\text{m})\\mathbf{j} + (28.8\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$."
   ]}
-  answer="$\\mathbf{M}_A = -(7.68\\,\\text{N}\\cdot\\text{m})\\mathbf{i} + (28.8\\,\\text{N}\\cdot\\text{m})\\mathbf{j} + (28.8\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$"
+  answer="$\mathbf{M}_A = -(7.68\,\text{N}\cdot\text{m})\mathbf{i} + (28.8\,\text{N}\cdot\text{m})\mathbf{j} + (28.8\,\text{N}\cdot\text{m})\mathbf{k}$"
 />
 
 <ExerciseSet
   title="Problems 3.1–3.34 (Moments about a Point & Cross Products)"
-  source="Beer & Johnston 10e, Ch. 3 (§3.1–3.8)"
   items={[
-    { q: "Prob. 3.1: A $20\\text{-lb}$ force is applied to control rod $AB$ (length $9\\text{ in.}$, inclined at $65^\\circ$ above horizontal at $B$, with $\\alpha = 25^\\circ$ between the horizontal at $A$ and the force). Determine the moment of the force about point $B$ by resolving the force into horizontal and vertical components.", a: "$115.7\\,\\text{lb}\\cdot\\text{in.}$ clockwise", figure: "/diagrams/get-207/force-system-resultants-p3-1.png" },
-    { q: "Prob. 3.6: A $300\\text{-N}$ force $P$ is applied at point $A$ of the bell crank shown. (a) Compute the moment of $P$ about $O$ by resolving it into horizontal and vertical components. (b) Using part (a), determine the perpendicular distance from $O$ to the line of action of $P$.", a: "(a) $20.5\\,\\text{N}\\cdot\\text{m}$ counterclockwise; (b) $68.4\\,\\text{mm}$", figure: "/diagrams/get-207/force-system-resultants-p3-6.png" },
-    { q: "Prob. 3.17: A plane contains vectors $\\mathbf{A}$ and $\\mathbf{B}$. Determine the unit vector normal to the plane when $\\mathbf{A}$ and $\\mathbf{B}$ are (a) $\\mathbf{i} + 2\\mathbf{j} - 5\\mathbf{k}$ and $4\\mathbf{i} - 7\\mathbf{j} - 5\\mathbf{k}$, (b) $3\\mathbf{i} - 3\\mathbf{j} + 2\\mathbf{k}$ and $-2\\mathbf{i} + 6\\mathbf{j} - 4\\mathbf{k}$.", a: "(a) $(-3\\mathbf{i} - \\mathbf{j} - \\mathbf{k})/\\sqrt{11}$; (b) $(2\\mathbf{j} + 3\\mathbf{k})/\\sqrt{13}$" },
-    { q: "Prob. 3.24: A precast concrete wall section is temporarily held by two cables. Knowing that the tension in cable $BD$ is $900\\text{ N}$, determine the moment about point $O$ of the force exerted by the cable at $B$.", a: "$(1200\\,\\text{N}\\cdot\\text{m})\\mathbf{i} - (1500\\,\\text{N}\\cdot\\text{m})\\mathbf{j} - (900\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$", figure: "/diagrams/get-207/force-system-resultants-p3-24.png" }
+    { q: "A $20\\text{-lb}$ force is applied to control rod $AB$ (length $9\\text{ in.}$, inclined at $65^\\circ$ above horizontal at $B$, with $\\alpha = 25^\\circ$ between the horizontal at $A$ and the force). Determine the moment of the force about point $B$ by resolving the force into horizontal and vertical components.", a: "$115.7\\,\\text{lb}\\cdot\\text{in.}$ clockwise", figure: "/diagrams/get-207/force-system-resultants-p3-1.png" },
+    { q: "A $300\\text{-N}$ force $P$ is applied at point $A$ of the bell crank shown. (a) Compute the moment of $P$ about $O$ by resolving it into horizontal and vertical components. (b) Using part (a), determine the perpendicular distance from $O$ to the line of action of $P$.", a: "(a) $20.5\\,\\text{N}\\cdot\\text{m}$ counterclockwise; (b) $68.4\\,\\text{mm}$", figure: "/diagrams/get-207/force-system-resultants-p3-6.png" },
+    { q: "A plane contains vectors $\\mathbf{A}$ and $\\mathbf{B}$. Determine the unit vector normal to the plane when $\\mathbf{A}$ and $\\mathbf{B}$ are (a) $\\mathbf{i} + 2\\mathbf{j} - 5\\mathbf{k}$ and $4\\mathbf{i} - 7\\mathbf{j} - 5\\mathbf{k}$, (b) $3\\mathbf{i} - 3\\mathbf{j} + 2\\mathbf{k}$ and $-2\\mathbf{i} + 6\\mathbf{j} - 4\\mathbf{k}$.", a: "(a) $(-3\\mathbf{i} - \\mathbf{j} - \\mathbf{k})/\\sqrt{11}$; (b) $(2\\mathbf{j} + 3\\mathbf{k})/\\sqrt{13}$" },
+    { q: "A precast concrete wall section is temporarily held by two cables. Knowing that the tension in cable $BD$ is $900\\text{ N}$, determine the moment about point $O$ of the force exerted by the cable at $B$.", a: "$(1200\\,\\text{N}\\cdot\\text{m})\\mathbf{i} - (1500\\,\\text{N}\\cdot\\text{m})\\mathbf{j} - (900\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$", figure: "/diagrams/get-207/force-system-resultants-p3-24.png" }
   ]}
 />
 
@@ -261,23 +283,31 @@ $$M_B = (x_A - x_B)F_y - (y_A - y_B)F_x \tag{3.23}$$
 
 To project a force or moment onto a specified axis and to determine angles between spatial lines, we use the **scalar product** (or **dot product**).
 
-<RuleBox kind="definition" title="§3.9 Scalar Product (Dot Product) P · Q">
+<RuleBox kind="definition" title="Scalar Product (Dot Product) P · Q">
 
 The scalar product of $\mathbf{P}$ and $\mathbf{Q}$ forming an angle $\theta$ is the scalar:
 
-$$\mathbf{P} \cdot \mathbf{Q} = P Q \cos\theta \tag{3.24}$$
+$$
+\mathbf{P} \cdot \mathbf{Q} = P Q \cos\theta \tag{3.24}
+$$
 
 It is **commutative** ($\mathbf{P} \cdot \mathbf{Q} = \mathbf{Q} \cdot \mathbf{P}$) and **distributive** ($\mathbf{P} \cdot (\mathbf{Q}_1 + \mathbf{Q}_2) = \mathbf{P} \cdot \mathbf{Q}_1 + \mathbf{P} \cdot \mathbf{Q}_2$). Because $\mathbf{i} \cdot \mathbf{i} = \mathbf{j} \cdot \mathbf{j} = \mathbf{k} \cdot \mathbf{k} = 1$ and $\mathbf{i} \cdot \mathbf{j} = \mathbf{j} \cdot \mathbf{k} = \mathbf{k} \cdot \mathbf{i} = 0$, the component formula is:
 
-$$\mathbf{P} \cdot \mathbf{Q} = P_x Q_x + P_y Q_y + P_z Q_z \tag{3.30}$$
+$$
+\mathbf{P} \cdot \mathbf{Q} = P_x Q_x + P_y Q_y + P_z Q_z \tag{3.30}
+$$
 
 </RuleBox>
 
 Two direct engineering applications follow immediately:
 1. **Angle $\theta$ between two vectors:**
-   $$\cos\theta = \frac{P_x Q_x + P_y Q_y + P_z Q_z}{P Q} \tag{3.32}$$
+   $$
+   \cos\theta = \frac{P_x Q_x + P_y Q_y + P_z Q_z}{P Q} \tag{3.32}
+   $$
 2. **Scalar projection $P_{OL}$ of $\mathbf{P}$ onto a directed axis $OL$ (unit vector $\boldsymbol{\lambda} = \cos\theta_x\mathbf{i} + \cos\theta_y\mathbf{j} + \cos\theta_z\mathbf{k}$):**
-   $$P_{OL} = P \cos\theta = \mathbf{P} \cdot \boldsymbol{\lambda} = P_x \cos\theta_x + P_y \cos\theta_y + P_z \cos\theta_z \tag{3.36,\;3.37}$$
+   $$
+   P_{OL} = P \cos\theta = \mathbf{P} \cdot \boldsymbol{\lambda} = P_x \cos\theta_x + P_y \cos\theta_y + P_z \cos\theta_z \tag{3.36,\;3.37}
+   $$
 
 ---
 
@@ -285,13 +315,17 @@ Two direct engineering applications follow immediately:
 
 Combining a dot product and a cross product yields the **mixed triple product** (scalar triple product) $\mathbf{S} \cdot (\mathbf{P} \times \mathbf{Q})$.
 
-<RuleBox kind="formula" title="§3.10 Mixed Triple Product & Determinant">
+<RuleBox kind="formula" title="Mixed Triple Product & Determinant">
 
-$$\mathbf{S} \cdot (\mathbf{P} \times \mathbf{Q}) = \begin{vmatrix} S_x & S_y & S_z \\ P_x & P_y & P_z \\ Q_x & Q_y & Q_z \end{vmatrix} \tag{3.41}$$
+$$
+\mathbf{S} \cdot (\mathbf{P} \times \mathbf{Q}) = \begin{vmatrix} S_x & S_y & S_z \\ P_x & P_y & P_z \\ Q_x & Q_y & Q_z \end{vmatrix} \tag{3.41}
+$$
 
 - **Geometric meaning:** $|\mathbf{S} \cdot (\mathbf{P} \times \mathbf{Q})|$ equals the **volume of the parallelepiped** with coterminous edges $\mathbf{S}, \mathbf{P}, \mathbf{Q}$. It is positive if $(\mathbf{S}, \mathbf{P}, \mathbf{Q})$ form a right-handed triad, negative if left-handed, and **zero if and only if the three vectors are coplanar**.
 - **Circular permutation invariance:**
-  $$\mathbf{S} \cdot (\mathbf{P} \times \mathbf{Q}) = \mathbf{P} \cdot (\mathbf{Q} \times \mathbf{S}) = \mathbf{Q} \cdot (\mathbf{S} \times \mathbf{P}) = -\mathbf{S} \cdot (\mathbf{Q} \times \mathbf{P}) \tag{3.39}$$
+  $$
+  \mathbf{S} \cdot (\mathbf{P} \times \mathbf{Q}) = \mathbf{P} \cdot (\mathbf{Q} \times \mathbf{S}) = \mathbf{Q} \cdot (\mathbf{S} \times \mathbf{P}) = -\mathbf{S} \cdot (\mathbf{Q} \times \mathbf{P}) \tag{3.39}
+  $$
 
 </RuleBox>
 
@@ -301,15 +335,19 @@ $$\mathbf{S} \cdot (\mathbf{P} \times \mathbf{Q}) = \begin{vmatrix} S_x & S_y & 
 
 Suppose a force $\mathbf{F}$ acts at point $A$ on a rigid body constrained to rotate about a fixed axis $OL$ with unit vector $\boldsymbol{\lambda}$.
 
-<RuleBox kind="definition" title="§3.11 Moment of F about Axis OL or Axis BL">
+<RuleBox kind="definition" title="Moment of F about Axis OL or Axis BL">
 
 The **moment $M_{OL}$ of $\mathbf{F}$ about axis $OL$** (passing through $O$) is the orthogonal projection of $\mathbf{M}_O = \mathbf{r} \times \mathbf{F}$ onto $OL$:
 
-$$M_{OL} = \boldsymbol{\lambda} \cdot \mathbf{M}_O = \boldsymbol{\lambda} \cdot (\mathbf{r} \times \mathbf{F}) = \begin{vmatrix} \lambda_x & \lambda_y & \lambda_z \\ x & y & z \\ F_x & F_y & F_z \end{vmatrix} \tag{3.42,\;3.43}$$
+$$
+M_{OL} = \boldsymbol{\lambda} \cdot \mathbf{M}_O = \boldsymbol{\lambda} \cdot (\mathbf{r} \times \mathbf{F}) = \begin{vmatrix} \lambda_x & \lambda_y & \lambda_z \\ x & y & z \\ F_x & F_y & F_z \end{vmatrix} \tag{3.42,\;3.43}
+$$
 
 More generally, for an arbitrary axis $BL$ **not** passing through the origin, choose any point $B$ on the axis and draw $\mathbf{r}_{A/B} = \mathbf{r}_A - \mathbf{r}_B$ from $B$ to any point $A$ on the line of action of $\mathbf{F}$:
 
-$$M_{BL} = \boldsymbol{\lambda} \cdot \mathbf{M}_B = \boldsymbol{\lambda} \cdot (\mathbf{r}_{A/B} \times \mathbf{F}) = \begin{vmatrix} \lambda_x & \lambda_y & \lambda_z \\ x_{A/B} & y_{A/B} & z_{A/B} \\ F_x & F_y & F_z \end{vmatrix} \tag{3.45,\;3.46}$$
+$$
+M_{BL} = \boldsymbol{\lambda} \cdot \mathbf{M}_B = \boldsymbol{\lambda} \cdot (\mathbf{r}_{A/B} \times \mathbf{F}) = \begin{vmatrix} \lambda_x & \lambda_y & \lambda_z \\ x_{A/B} & y_{A/B} & z_{A/B} \\ F_x & F_y & F_z \end{vmatrix} \tag{3.45,\;3.46}
+$$
 
 The result is completely independent of which point $B$ on the axis and which point $A$ on the line of action of $\mathbf{F}$ are selected.
 
@@ -317,33 +355,31 @@ The result is completely independent of which point $B$ on the axis and which po
 
 <DiagramFigure
   src="/diagrams/get-207/force-system-resultants-fig-3-27-moment-axis.png"
-  caption="Beer & Johnston Fig. 3.27 — Moment M_OL of force F about axis OL as the projection OC of M_O onto OL."
+  caption="Moment M_OL of force F about axis OL as the projection OC of M_O onto OL."
 />
 
 Note that choosing $\boldsymbol{\lambda} = \mathbf{i}, \mathbf{j}, \mathbf{k}$ recovers $M_x, M_y, M_z$ (Eq. 3.18), confirming that $M_x, M_y, M_z$ measure the tendency of $\mathbf{F}$ to rotate the body about the $x, y, z$ axes respectively.
 
 <StepRevealExample
-  title="Sample Problem 3.5 — Moment about a Point, Edge, Diagonal, and Skew Distance"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.5"
+  title="Moment about a Point, Edge, Diagonal, and Skew Distance"
   figure="/diagrams/get-207/force-system-resultants-sp-3-5.png"
-  problem="A cube of side $a$ is acted upon by a force $\\mathbf{P}$ directed along face diagonal $FC$ (from $F(a, 0, a)$ to $C(a, a, 0)$, with $O$ at the origin, $A(0, a, a)$, $B(a, a, a)$, $G(a, 0, 0)$). Determine the moment of $\\mathbf{P}$ (a) about $A$, (b) about edge $AB$, (c) about cube diagonal $AG$. (d) Using part (c), find the perpendicular distance between skew lines $AG$ and $FC$."
+  problem="A cube of side $a$ is acted upon by a force $\mathbf{P}$ directed along face diagonal $FC$ (from $F(a, 0, a)$ to $C(a, a, 0)$, with $O$ at the origin, $A(0, a, a)$, $B(a, a, a)$, $G(a, 0, 0)$). Determine the moment of $\mathbf{P}$ (a) about $A$, (b) about edge $AB$, (c) about cube diagonal $AG$. (d) Using part (c), find the perpendicular distance between skew lines $AG$ and $FC$."
   steps={[
     "**(a) Moment about $A$:** Draw $\\mathbf{r}_{F/A} = \\overrightarrow{AF} = a\\mathbf{i} - a\\mathbf{j} = a(\\mathbf{i} - \\mathbf{j})$. Since $\\mathbf{P}$ points along $\\overrightarrow{FC}$ (in the $+y$ and $-z$ directions at $45^\\circ$), $\\mathbf{P} = \\frac{P}{\\sqrt{2}}(\\mathbf{j} - \\mathbf{k})$. Therefore $\\mathbf{M}_A = \\mathbf{r}_{F/A} \\times \\mathbf{P} = a(\\mathbf{i}-\\mathbf{j}) \\times \\frac{P}{\\sqrt{2}}(\\mathbf{j}-\\mathbf{k}) = \\frac{aP}{\\sqrt{2}}(\\mathbf{i} + \\mathbf{j} + \\mathbf{k})$.",
     "**(b) Moment about edge $AB$:** Since $AB$ runs along $+\\mathbf{i}$, project $\\mathbf{M}_A$ onto $\\mathbf{i}$: $M_{AB} = \\mathbf{i} \\cdot \\mathbf{M}_A = \\frac{aP}{\\sqrt{2}}$.",
     "**(c) Moment about diagonal $AG$:** The unit vector along $\\overrightarrow{AG} = a\\mathbf{i} - a\\mathbf{j} - a\\mathbf{k}$ is $\\boldsymbol{\\lambda} = \\frac{1}{\\sqrt{3}}(\\mathbf{i} - \\mathbf{j} - \\mathbf{k})$. Projecting $\\mathbf{M}_A$ onto $\\boldsymbol{\\lambda}$ gives $M_{AG} = \\boldsymbol{\\lambda} \\cdot \\mathbf{M}_A = \\frac{aP}{\\sqrt{6}}(1 - 1 - 1) = -\\frac{aP}{\\sqrt{6}}$ (equivalently via the $3\\times 3$ determinant of $\\boldsymbol{\\lambda}$, $\\mathbf{r}_{F/A}$, and $\\mathbf{P}$).",
     "**(d) Perpendicular distance between $AG$ and $FC$:** Check $\\mathbf{P} \\cdot \\boldsymbol{\\lambda} = \\frac{P}{\\sqrt{6}}(0 - 1 + 1) = 0$, so $\\mathbf{P} \\perp AG$. Thus $|M_{AG}| = P d = \\frac{aP}{\\sqrt{6}} \\implies d = \\frac{a}{\\sqrt{6}}$."
   ]}
-  answer="(a) $\\frac{aP}{\\sqrt{2}}(\\mathbf{i}+\\mathbf{j}+\\mathbf{k})$; (b) $\\frac{aP}{\\sqrt{2}}$; (c) $-\\frac{aP}{\\sqrt{6}}$; (d) $d = \\frac{a}{\\sqrt{6}}$"
+  answer="(a) $\frac{aP}{\sqrt{2}}(\mathbf{i}+\mathbf{j}+\mathbf{k})$; (b) $\frac{aP}{\sqrt{2}}$; (c) $-\frac{aP}{\sqrt{6}}$; (d) $d = \frac{a}{\sqrt{6}}$"
 />
 
 <ExerciseSet
   title="Problems 3.35–3.69 (Dot Product, Triple Product & Moment about an Axis)"
-  source="Beer & Johnston 10e, Ch. 3 (§3.9–3.11)"
   items={[
-    { q: "Prob. 3.35: Given $\\mathbf{P} = 3\\mathbf{i} - \\mathbf{j} + 2\\mathbf{k}$, $\\mathbf{Q} = 4\\mathbf{i} + 5\\mathbf{j} - 3\\mathbf{k}$, and $\\mathbf{S} = -2\\mathbf{i} + 3\\mathbf{j} - \\mathbf{k}$, compute $\\mathbf{P}\\cdot\\mathbf{Q}$, $\\mathbf{P}\\cdot\\mathbf{S}$, and $\\mathbf{Q}\\cdot\\mathbf{S}$.", a: "$\\mathbf{P}\\cdot\\mathbf{Q} = 1$, $\\mathbf{P}\\cdot\\mathbf{S} = -11$, $\\mathbf{Q}\\cdot\\mathbf{S} = 10$" },
-    { q: "Prob. 3.37: Consider the volleyball net shown. Determine the angle formed by guy wires $AB$ and $AC$.", a: "$43.6^\\circ$", figure: "/diagrams/get-207/force-system-resultants-p3-37.png" },
-    { q: "Prob. 3.47: Knowing that the tension in cable $AB$ is $570\\text{ N}$, determine the moment about each of the coordinate axes of the force exerted on the plate at $B$.", a: "$M_x = 0$, $M_y = -162.0\\,\\text{N}\\cdot\\text{m}$, $M_z = 270\\,\\text{N}\\cdot\\text{m}$", figure: "/diagrams/get-207/force-system-resultants-p3-47.png" },
-    { q: "Prob. 3.55: Triangular plate $ABC$ is supported by ball-and-socket joints at $B$ and $D$ and cables $AE$ and $CF$. If the force exerted by cable $AE$ at $A$ is $55\\text{ N}$, determine the moment of that force about the line joining $D$ and $B$.", a: "$2.28\\,\\text{N}\\cdot\\text{m}$", figure: "/diagrams/get-207/force-system-resultants-p3-55.png" }
+    { q: "Given $\\mathbf{P} = 3\\mathbf{i} - \\mathbf{j} + 2\\mathbf{k}$, $\\mathbf{Q} = 4\\mathbf{i} + 5\\mathbf{j} - 3\\mathbf{k}$, and $\\mathbf{S} = -2\\mathbf{i} + 3\\mathbf{j} - \\mathbf{k}$, compute $\\mathbf{P}\\cdot\\mathbf{Q}$, $\\mathbf{P}\\cdot\\mathbf{S}$, and $\\mathbf{Q}\\cdot\\mathbf{S}$.", a: "$\\mathbf{P}\\cdot\\mathbf{Q} = 1$, $\\mathbf{P}\\cdot\\mathbf{S} = -11$, $\\mathbf{Q}\\cdot\\mathbf{S} = 10$" },
+    { q: "Consider the volleyball net shown. Determine the angle formed by guy wires $AB$ and $AC$.", a: "$43.6^\\circ$", figure: "/diagrams/get-207/force-system-resultants-p3-37.png" },
+    { q: "Knowing that the tension in cable $AB$ is $570\\text{ N}$, determine the moment about each of the coordinate axes of the force exerted on the plate at $B$.", a: "$M_x = 0$, $M_y = -162.0\\,\\text{N}\\cdot\\text{m}$, $M_z = 270\\,\\text{N}\\cdot\\text{m}$", figure: "/diagrams/get-207/force-system-resultants-p3-47.png" },
+    { q: "Triangular plate $ABC$ is supported by ball-and-socket joints at $B$ and $D$ and cables $AE$ and $CF$. If the force exerted by cable $AE$ at $A$ is $55\\text{ N}$, determine the moment of that force about the line joining $D$ and $B$.", a: "$2.28\\,\\text{N}\\cdot\\text{m}$", figure: "/diagrams/get-207/force-system-resultants-p3-55.png" }
   ]}
 />
 
@@ -353,15 +389,19 @@ Note that choosing $\boldsymbol{\lambda} = \mathbf{i}, \mathbf{j}, \mathbf{k}$ r
 
 Two forces $\mathbf{F}$ and $-\mathbf{F}$ having the **same magnitude**, **parallel lines of action**, and **opposite sense** constitute a **couple**.
 
-<RuleBox kind="definition" title="§3.12 Couple Moment M = r × F">
+<RuleBox kind="definition" title="Couple Moment M = r × F">
 
 Although the resultant force of a couple is zero ($\mathbf{F} + (-\mathbf{F}) = \mathbf{0}$), the sum of the moments of the two forces about any origin $O$ is independent of $O$:
 
-$$\mathbf{r}_A \times \mathbf{F} + \mathbf{r}_B \times (-\mathbf{F}) = (\mathbf{r}_A - \mathbf{r}_B) \times \mathbf{F} = \mathbf{r} \times \mathbf{F}$$
+$$
+\mathbf{r}_A \times \mathbf{F} + \mathbf{r}_B \times (-\mathbf{F}) = (\mathbf{r}_A - \mathbf{r}_B) \times \mathbf{F} = \mathbf{r} \times \mathbf{F}
+$$
 
 Thus the **moment of the couple** is:
 
-$$\mathbf{M} = \mathbf{r} \times \mathbf{F}, \qquad M = r F \sin\theta = F d \tag{3.47,\;3.48}$$
+$$
+\mathbf{M} = \mathbf{r} \times \mathbf{F}, \qquad M = r F \sin\theta = F d \tag{3.47,\;3.48}
+$$
 
 where $\mathbf{r}$ connects any point on the line of action of $-\mathbf{F}$ to any point on the line of action of $\mathbf{F}$, and $d$ is the perpendicular distance between the two lines of action. Because $\mathbf{M}$ does not depend on $O$, **a couple moment is a free vector** that can be applied at any point on the rigid body.
 
@@ -369,20 +409,22 @@ where $\mathbf{r}$ connects any point on the line of action of $-\mathbf{F}$ to 
 
 <DiagramFigure
   src="/diagrams/get-207/force-system-resultants-fig-3-31-couple.png"
-  caption="Beer & Johnston Fig. 3.31 — The moment M = r × F of a couple depends only on r = r_A − r_B and F, making M a free vector."
+  caption="The moment M = r × F of a couple depends only on r = r_A − r_B and F, making M a free vector."
 />
 
 ---
 
 ### 3.13 Equivalent Couples
 
-Using the parallelogram law and principle of transmissibility, Beer & Johnston prove a fundamental equivalence property:
+Using the parallelogram law and principle of transmissibility, standard mechanics prove a fundamental equivalence property:
 
-<RuleBox kind="theorem" title="§3.13 Condition for Equivalent Couples">
+<RuleBox kind="theorem" title="Condition for Equivalent Couples">
 
 Two couples—whether acting in the same plane or in parallel planes—are **equivalent** (produce the identical rotational effect on a rigid body) if and only if they have the **same couple moment $\mathbf{M}$**:
 
-$$F_1 d_1 = F_2 d_2 \tag{3.49}$$
+$$
+F_1 d_1 = F_2 d_2 \tag{3.49}
+$$
 
 with parallel planes of action and the same rotational sense. Neither the individual force magnitudes nor the exact points of application matter—only the moment vector $\mathbf{M}$ matters.
 
@@ -394,7 +436,9 @@ with parallel planes of action and the same rotational sense. Neither the indivi
 
 Consider two couples acting in intersecting planes $P_1$ and $P_2$ with couple moments $\mathbf{M}_1$ and $\mathbf{M}_2$. Transforming both couples onto the same segment $\mathbf{r}$ along the intersection of $P_1$ and $P_2$ and adding forces by Varignon's theorem yields a single resultant couple whose moment is:
 
-$$\mathbf{M} = \mathbf{M}_1 + \mathbf{M}_2 \tag{3.50}$$
+$$
+\mathbf{M} = \mathbf{M}_1 + \mathbf{M}_2 \tag{3.50}
+$$
 
 That is, **couples add vectorially** by summing their moment vectors.
 
@@ -402,7 +446,7 @@ That is, **couples add vectorially** by summing their moment vectors.
 
 ### 3.15 Couples Can Be Represented by Vectors
 
-Because two couples with equal moments are equivalent and couples obey vector addition, any couple can be completely represented by a **couple vector** $\mathbf{M}$ (a free vector perpendicular to the plane of the couple, denoted with a curl arrow in Beer & Johnston's diagrams to distinguish it from force vectors). Like any vector, a couple vector $\mathbf{M}$ may be placed at the origin $O$ and resolved into Cartesian components $\mathbf{M}_x, \mathbf{M}_y, \mathbf{M}_z$ representing couples in the $yz, zx,$ and $xy$ planes respectively.
+Because two couples with equal moments are equivalent and couples obey vector addition, any couple can be completely represented by a **couple vector** $\mathbf{M}$ (a free vector perpendicular to the plane of the couple, denoted with a curl arrow in standard mechanics's diagrams to distinguish it from force vectors). Like any vector, a couple vector $\mathbf{M}$ may be placed at the origin $O$ and resolved into Cartesian components $\mathbf{M}_x, \mathbf{M}_y, \mathbf{M}_z$ representing couples in the $yz, zx,$ and $xy$ planes respectively.
 
 ---
 
@@ -410,55 +454,54 @@ Because two couples with equal moments are equivalent and couples obey vector ad
 
 Suppose a force $\mathbf{F}$ acts at point $A$ (position vector $\mathbf{r}$ from $O$) and we wish to shift its point of application to $O$, which is *not* on the line of action of $\mathbf{F}$. Attaching $+\mathbf{F}$ and $-\mathbf{F}$ at $O$ leaves the system unchanged; the $+\mathbf{F}$ at $O$ remains, while the original $\mathbf{F}$ at $A$ and $-\mathbf{F}$ at $O$ form a couple of moment $\mathbf{M}_O = \mathbf{r} \times \mathbf{F}$.
 
-<RuleBox kind="working-rule" title="§3.16 Force-Couple Transformation">
+<RuleBox kind="working-rule" title="Force-Couple Transformation">
 
 1. **Moving a force $\mathbf{F}$ from $A$ to an arbitrary point $O$:** Place $\mathbf{F}$ at $O$ and add a couple vector $\mathbf{M}_O = \mathbf{r} \times \mathbf{F}$ (where $\mathbf{r} = \overrightarrow{OA}$). Notice $\mathbf{M}_O$ is always **perpendicular** to $\mathbf{F}$.
 2. **Transferring a force-couple system from $O$ to another point $O'$ (with $\mathbf{s} = \overrightarrow{O'O}$):**
-   $$\mathbf{M}_{O'} = \mathbf{M}_O + \mathbf{s} \times \mathbf{F} \tag{3.51}$$
+   $$
+   \mathbf{M}_{O'} = \mathbf{M}_O + \mathbf{s} \times \mathbf{F} \tag{3.51}
+   $$
 3. **Converse reduction:** Any force-couple system $(\mathbf{F}, \mathbf{M}_O)$ in which $\mathbf{F} \perp \mathbf{M}_O$ can be replaced by a **single equivalent force** $\mathbf{F}$ moved in the plane perpendicular to $\mathbf{M}_O$ to a line of action at perpendicular distance $d = M_O / F$ from $O$ such that $\mathbf{r} \times \mathbf{F} = \mathbf{M}_O$.
 
 </RuleBox>
 
 <DiagramFigure
   src="/diagrams/get-207/force-system-resultants-fig-3-39-force-couple.png"
-  caption="Beer & Johnston Fig. 3.39 — Replacing a force F at A with an equivalent force-couple system (F, M_O = r × F) at O."
+  caption="Replacing a force F at A with an equivalent force-couple system (F, M_O = r × F) at O."
 />
 
 <StepRevealExample
-  title="Sample Problem 3.6 — Equivalent Single Couple in 3D"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.6"
+  title="Equivalent Single Couple in 3D"
   figure="/diagrams/get-207/force-system-resultants-sp-3-6.png"
-  problem="A piping assembly carries two couples: two $30\text{-lb}$ forces parallel to the $z$ axis separated vertically by $18\text{ in.}$ ($9\text{ in.}$ above and $9\text{ in.}$ below $A$ along the $y$ axis, with the upper force in $-z$ and lower in $+z$), and two $20\text{-lb}$ forces parallel to the $x$ axis, one at $E$ ($12\text{ in.}$ along $-z$ from $A$) pointing in $-x$ and one at $D$ ($9\text{ in.}$ below $A$ along $-y$) pointing in $+x$. Determine the components of the single equivalent couple $\\mathbf{M}$."
+  problem="A piping assembly carries two couples: two $30\text{-lb}$ forces parallel to the $z$ axis separated vertically by $18\text{ in.}$ ($9\text{ in.}$ above and $9\text{ in.}$ below $A$ along the $y$ axis, with the upper force in $-z$ and lower in $+z$), and two $20\text{-lb}$ forces parallel to the $x$ axis, one at $E$ ($12\text{ in.}$ along $-z$ from $A$) pointing in $-x$ and one at $D$ ($9\text{ in.}$ below $A$ along $-y$) pointing in $+x$. Determine the components of the single equivalent couple $\mathbf{M}$."
   steps={[
     "Attach two equal and opposite $20\\text{-lb}$ forces along $x$ at $A$ to split the $20\\text{-lb}$ couple into two orthogonal couples: one in the $zx$ plane (arm $12\\text{ in.}$) and one parallel to the $xy$ plane (arm $9\\text{ in.}$).",
     "Compute the three couple-vector components along the coordinate axes using the right-hand rule: $M_x = -(30\\,\\text{lb})(18\\,\\text{in.}) = -540\\,\\text{lb}\\cdot\\text{in.}$, $M_y = +(20\\,\\text{lb})(12\\,\\text{in.}) = +240\\,\\text{lb}\\cdot\\text{in.}$, $M_z = +(20\\,\\text{lb})(9\\,\\text{in.}) = +180\\,\\text{lb}\\cdot\\text{in.}$",
     "Combine into vector form: $\\mathbf{M} = -(540\\,\\text{lb}\\cdot\\text{in.})\\mathbf{i} + (240\\,\\text{lb}\\cdot\\text{in.})\\mathbf{j} + (180\\,\\text{lb}\\cdot\\text{in.})\\mathbf{k}$. (Alternative check via $\\mathbf{M}_D = \\sum \\mathbf{r}_{/D}\\times\\mathbf{F}$ yields the exact same vector.)"
   ]}
-  answer="$\\mathbf{M} = -(540\\,\\text{lb}\\cdot\\text{in.})\\mathbf{i} + (240\\,\\text{lb}\\cdot\\text{in.})\\mathbf{j} + (180\\,\\text{lb}\\cdot\\text{in.})\\mathbf{k}$"
+  answer="$\mathbf{M} = -(540\,\text{lb}\cdot\text{in.})\mathbf{i} + (240\,\text{lb}\cdot\text{in.})\mathbf{j} + (180\,\text{lb}\cdot\text{in.})\mathbf{k}$"
 />
 
 <StepRevealExample
-  title="Sample Problem 3.7 — Reducing a Force and Couple to a Single Force"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.7"
+  title="Reducing a Force and Couple to a Single Force"
   figure="/diagrams/get-207/force-system-resultants-sp-3-7.png"
-  problem="A lever inclined at $60^\\circ$ above $+x$ is subjected to a $400\\text{-N}$ downward force at $B$ ($OB = 300\\text{ mm}$, $150\\text{ mm}$ horizontally right of $O$) and a couple formed by two horizontal $200\\text{-N}$ forces separated vertically by $120\\text{ mm}$ ($60\\text{ mm}$ radius pulley at $O$, top force right, bottom force left). Replace the couple and force with an equivalent single force applied to the lever and find its distance $OC$ from shaft $O$."
+  problem="A lever inclined at $60^\circ$ above $+x$ is subjected to a $400\text{-N}$ downward force at $B$ ($OB = 300\text{ mm}$, $150\text{ mm}$ horizontally right of $O$) and a couple formed by two horizontal $200\text{-N}$ forces separated vertically by $120\text{ mm}$ ($60\text{ mm}$ radius pulley at $O$, top force right, bottom force left). Replace the couple and force with an equivalent single force applied to the lever and find its distance $OC$ from shaft $O$."
   steps={[
     "Move $\\mathbf{F} = -(400\\,\\text{N})\\mathbf{j}$ from $B$ to $O$ and add its moment about $O$: $\\mathbf{M}_O = \\overrightarrow{OB} \\times \\mathbf{F} = [(0.150\\,\\text{m})\\mathbf{i} + (0.260\\,\\text{m})\\mathbf{j}] \\times (-400\\,\\text{N})\\mathbf{j} = -(60\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$.",
     "Add the $200\\text{-N}$ pulley couple of moment $-(200\\,\\text{N})(0.120\\,\\text{m})\\mathbf{k} = -(24\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$ to get total couple moment $-(84\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$ at $O$.",
     "Eliminate the couple by applying $\\mathbf{F} = -(400\\,\\text{N})\\mathbf{j}$ at point $C$ along the lever so that $\\overrightarrow{OC} \\times \\mathbf{F} = -(84\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$: $[(OC)\\cos 60^\\circ\\mathbf{i} + (OC)\\sin 60^\\circ\\mathbf{j}] \\times (-400\\mathbf{j}) = -(OC)\\cos 60^\\circ (400)\\mathbf{k} = -84\\mathbf{k}$.",
     "Solve for $OC$: $(OC)\\cos 60^\\circ = 84/400 = 0.210\\,\\text{m} = 210\\,\\text{mm} \\implies OC = 420\\,\\text{mm}$."
   ]}
-  answer="$F = 400\\,\\text{N}\\;\\downarrow$ at $OC = 420\\,\\text{mm}$ along the lever"
+  answer="$F = 400\,\text{N}\;\downarrow$ at $OC = 420\,\text{mm}$ along the lever"
 />
 
 <ExerciseSet
   title="Problems 3.70–3.99 (Couples & Force-Couple Resolution)"
-  source="Beer & Johnston 10e, Ch. 3 (§3.12–3.16)"
   items={[
-    { q: "Prob. 3.70: A parallelogram plate is acted upon by two couples ($21\\text{-lb}$ horizontal forces $16\\text{ in.}$ apart, and $12\\text{-lb}$ forces along $AD$ and $BC$). Determine (a) the moment of the $21\\text{-lb}$ couple, (b) the perpendicular distance between the $12\\text{-lb}$ forces if the resultant couple is zero, (c) the angle $\\alpha$ if the resultant couple is $72\\,\\text{lb}\\cdot\\text{in.}$ clockwise and $d = 42\\text{ in.}$", a: "(a) $336\\,\\text{lb}\\cdot\\text{in.}$ ccw; (b) $28.0\\text{ in.}$; (c) $54.0^\\circ$", figure: "/diagrams/get-207/force-system-resultants-p3-70.png" },
-    { q: "Prob. 3.76: Replace the two couples shown ($50\\text{-N}$ forces on the $120\\times 120\\text{ mm}$ inclined face diagonal and $12.5\\text{-N}$ forces along $x$ separated vertically by $144\\text{ mm}$) with a single equivalent couple, specifying its magnitude and direction cosines.", a: "$M = 3.22\\,\\text{N}\\cdot\\text{m}$; $\\theta_x = 90.0^\\circ$, $\\theta_y = 53.1^\\circ$, $\\theta_z = 36.9^\\circ$", figure: "/diagrams/get-207/force-system-resultants-p3-76.png" },
-    { q: "Prob. 3.81: A $260\\text{-lb}$ force is applied at $A$ to the rolled-steel section shown (along line $AB$, $2.5\\text{ in.}$ horizontal by $6\\text{ in.}$ vertical; $C$ is $4\\text{ in.}$ below the top flange). Replace that force with an equivalent force-couple system at center $C$.", a: "$F = 260\\,\\text{lb}$ at $67.4^\\circ$ down-left; $M_C = 200\\,\\text{lb}\\cdot\\text{in.}$ clockwise", figure: "/diagrams/get-207/force-system-resultants-p3-81.png" },
-    { q: "Prob. 3.96: An eccentric, compressive $1220\\text{-N}$ force $\\mathbf{P}$ is applied at corner $A$ ($y = -100\\text{ mm}$, $z = +60\\text{ mm}$ relative to $G$) of a cantilever beam. Replace $\\mathbf{P}$ with an equivalent force-couple system at centroid $G$.", a: "$\\mathbf{F} = -(1220\\,\\text{N})\\mathbf{i}$, $\\mathbf{M}_G = (73.2\\,\\text{N}\\cdot\\text{m})\\mathbf{j} - (122\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$", figure: "/diagrams/get-207/force-system-resultants-p3-96.png" }
+    { q: "A parallelogram plate is acted upon by two couples ($21\\text{-lb}$ horizontal forces $16\\text{ in.}$ apart, and $12\\text{-lb}$ forces along $AD$ and $BC$). Determine (a) the moment of the $21\\text{-lb}$ couple, (b) the perpendicular distance between the $12\\text{-lb}$ forces if the resultant couple is zero, (c) the angle $\\alpha$ if the resultant couple is $72\\,\\text{lb}\\cdot\\text{in.}$ clockwise and $d = 42\\text{ in.}$", a: "(a) $336\\,\\text{lb}\\cdot\\text{in.}$ ccw; (b) $28.0\\text{ in.}$; (c) $54.0^\\circ$", figure: "/diagrams/get-207/force-system-resultants-p3-70.png" },
+    { q: "Replace the two couples shown ($50\\text{-N}$ forces on the $120\\times 120\\text{ mm}$ inclined face diagonal and $12.5\\text{-N}$ forces along $x$ separated vertically by $144\\text{ mm}$) with a single equivalent couple, specifying its magnitude and direction cosines.", a: "$M = 3.22\\,\\text{N}\\cdot\\text{m}$; $\\theta_x = 90.0^\\circ$, $\\theta_y = 53.1^\\circ$, $\\theta_z = 36.9^\\circ$", figure: "/diagrams/get-207/force-system-resultants-p3-76.png" },
+    { q: "A $260\\text{-lb}$ force is applied at $A$ to the rolled-steel section shown (along line $AB$, $2.5\\text{ in.}$ horizontal by $6\\text{ in.}$ vertical; $C$ is $4\\text{ in.}$ below the top flange). Replace that force with an equivalent force-couple system at center $C$.", a: "$F = 260\\,\\text{lb}$ at $67.4^\\circ$ down-left; $M_C = 200\\,\\text{lb}\\cdot\\text{in.}$ clockwise", figure: "/diagrams/get-207/force-system-resultants-p3-81.png" },
+    { q: "An eccentric, compressive $1220\\text{-N}$ force $\\mathbf{P}$ is applied at corner $A$ ($y = -100\\text{ mm}$, $z = +60\\text{ mm}$ relative to $G$) of a cantilever beam. Replace $\\mathbf{P}$ with an equivalent force-couple system at centroid $G$.", a: "$\\mathbf{F} = -(1220\\,\\text{N})\\mathbf{i}$, $\\mathbf{M}_G = (73.2\\,\\text{N}\\cdot\\text{m})\\mathbf{j} - (122\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$", figure: "/diagrams/get-207/force-system-resultants-p3-96.png" }
   ]}
 />
 
@@ -468,19 +511,25 @@ Suppose a force $\mathbf{F}$ acts at point $A$ (position vector $\mathbf{r}$ fro
 
 Any arbitrary system of forces $\mathbf{F}_1, \mathbf{F}_2, \mathbf{F}_3, \dots$ acting at points $A_1, A_2, A_3, \dots$ (position vectors $\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3, \dots$ from a chosen base point $O$) can be moved to $O$ one force at a time by adding the corresponding couples $\mathbf{M}_i = \mathbf{r}_i \times \mathbf{F}_i$. Adding all concurrent forces at $O$ and adding all couple vectors gives the general reduction theorem:
 
-<RuleBox kind="theorem" title="§3.17 Equivalent Force-Couple System at Point O">
+<RuleBox kind="theorem" title="Equivalent Force-Couple System at Point O">
 
 Any system of forces acting on a rigid body can be reduced to a single resultant force $\mathbf{R}$ acting at $O$ and a single resultant couple vector $\mathbf{M}_O^R$:
 
-$$\mathbf{R} = \sum \mathbf{F}, \qquad \mathbf{M}_O^R = \sum \mathbf{M}_O = \sum (\mathbf{r} \times \mathbf{F}) \tag{3.52}$$
+$$
+\mathbf{R} = \sum \mathbf{F}, \qquad \mathbf{M}_O^R = \sum \mathbf{M}_O = \sum (\mathbf{r} \times \mathbf{F}) \tag{3.52}
+$$
 
 In rectangular components:
 
-$$\mathbf{R} = R_x\mathbf{i} + R_y\mathbf{j} + R_z\mathbf{k}, \qquad \mathbf{M}_O^R = M_x^R\mathbf{i} + M_y^R\mathbf{j} + M_z^R\mathbf{k} \tag{3.56}$$
+$$
+\mathbf{R} = R_x\mathbf{i} + R_y\mathbf{j} + R_z\mathbf{k}, \qquad \mathbf{M}_O^R = M_x^R\mathbf{i} + M_y^R\mathbf{j} + M_z^R\mathbf{k} \tag{3.56}
+$$
 
 To transfer the force-couple system from $O$ to another point $O'$ (with $\mathbf{s} = \overrightarrow{O'O}$):
 
-$$\mathbf{M}_{O'}^R = \mathbf{M}_O^R + \mathbf{s} \times \mathbf{R} \tag{3.53}$$
+$$
+\mathbf{M}_{O'}^R = \mathbf{M}_O^R + \mathbf{s} \times \mathbf{R} \tag{3.53}
+$$
 
 while $\mathbf{R}$ remains unchanged. Note that in general 3D systems, $\mathbf{R}$ and $\mathbf{M}_O^R$ are **not** mutually perpendicular.
 
@@ -488,7 +537,7 @@ while $\mathbf{R}$ remains unchanged. Note that in general 3D systems, $\mathbf{
 
 <DiagramFigure
   src="/diagrams/get-207/force-system-resultants-fig-3-41-reduction.png"
-  caption="Beer & Johnston Fig. 3.41 — Reducing a general force system (a) via individual force-couple moves (b) to one resultant force R and one resultant couple M_O^R at O (c)."
+  caption="Reducing a general force system (a) via individual force-couple moves (b) to one resultant force R and one resultant couple M_O^R at O (c)."
 />
 
 ---
@@ -497,17 +546,23 @@ while $\mathbf{R}$ remains unchanged. Note that in general 3D systems, $\mathbf{
 
 Because the external effect of any force system on a rigid body is completely determined by its force-couple system at a given point $O$, two systems of forces are equivalent if and only if they reduce to the same force-couple system at $O$:
 
-<RuleBox kind="theorem" title="§3.18 Necessary & Sufficient Conditions for Equivalence">
+<RuleBox kind="theorem" title="Necessary & Sufficient Conditions for Equivalence">
 
 Two systems of forces $\mathbf{F}_1, \mathbf{F}_2, \dots$ and $\mathbf{F}'_1, \mathbf{F}'_2, \dots$ acting on the same rigid body are **equivalent** if and only if:
 
-$$\sum \mathbf{F} = \sum \mathbf{F}' \quad \text{and} \quad \sum \mathbf{M}_O = \sum \mathbf{M}'_O \tag{3.57}$$
+$$
+\sum \mathbf{F} = \sum \mathbf{F}' \quad \text{and} \quad \sum \mathbf{M}_O = \sum \mathbf{M}'_O \tag{3.57}
+$$
 
 Equivalently, in six scalar equations:
 
-$$\sum F_x = \sum F'_x, \quad \sum F_y = \sum F'_y, \quad \sum F_z = \sum F'_z$$
+$$
+\sum F_x = \sum F'_x, \quad \sum F_y = \sum F'_y, \quad \sum F_z = \sum F'_z
+$$
 
-$$\sum M_x = \sum M'_x, \quad \sum M_y = \sum M'_y, \quad \sum M_z = \sum M'_z \tag{3.58}$$
+$$
+\sum M_x = \sum M'_x, \quad \sum M_y = \sum M'_y, \quad \sum M_z = \sum M'_z \tag{3.58}
+$$
 
 Establishing $\sum \mathbf{M}_O = \sum \mathbf{M}'_O$ about **one** point $O$ guarantees equality about every other point provided $\sum \mathbf{F} = \sum \mathbf{F}'$.
 
@@ -527,14 +582,18 @@ When can the force-couple system $(\mathbf{R}, \mathbf{M}_O^R)$ be simplified ev
 - If $\mathbf{R} = \mathbf{0}$ and $\mathbf{M}_O^R \neq \mathbf{0}$, the system reduces to a **single resultant couple** $\mathbf{M}_O^R$.
 - If $\mathbf{R} \neq \mathbf{0}$ and $\mathbf{R} \perp \mathbf{M}_O^R$ (i.e., $\mathbf{R} \cdot \mathbf{M}_O^R = 0$), the system reduces to a **single resultant force** $\mathbf{R}$ placed along a specific line of action satisfying $\mathbf{r} \times \mathbf{R} = \mathbf{M}_O^R$.
 
-<RuleBox kind="working-rule" title="§3.20 Three Important Cases Reducible to a Single Force">
+<RuleBox kind="working-rule" title="Three Important Cases Reducible to a Single Force">
 
 1. **Concurrent forces:** All forces meet at one point, so $\mathbf{M}_O^R = \mathbf{0}$ about that point and the system reduces directly to $\mathbf{R} = \sum \mathbf{F}$ at the point of concurrency.
 2. **Coplanar forces (in the $xy$ plane):** $\mathbf{R} = R_x\mathbf{i} + R_y\mathbf{j}$ lies in the plane while $\mathbf{M}_O^R = M_z^R\mathbf{k}$ is perpendicular to it ($R_x = \sum F_x,\; R_y = \sum F_y,\; M_z^R = \sum M_O$, Eq. 3.59). The line of action of the single resultant $\mathbf{R}$ satisfies:
-   $$x R_y - y R_x = M_O^R$$
+   $$
+   x R_y - y R_x = M_O^R
+   $$
    giving $x$-intercept $x = M_O^R / R_y$ and $y$-intercept $y = -M_O^R / R_x$ (perpendicular distance $d = M_O^R / R$ from $O$).
 3. **Parallel forces (e.g., parallel to the $y$ axis):** $\mathbf{R} = R_y\mathbf{j}$ where $R_y = \sum F_y$, while $\mathbf{M}_O^R = M_x^R\mathbf{i} + M_z^R\mathbf{k}$ lies in the $zx$ plane (Eq. 3.60). Moving $\mathbf{R}$ to $(x, 0, z)$ so $\mathbf{r}\times\mathbf{R} = \mathbf{M}_O^R$ yields:
-   $$-z R_y = M_x^R, \qquad x R_y = M_z^R$$
+   $$
+   -z R_y = M_x^R, \qquad x R_y = M_z^R
+   $$
 
 </RuleBox>
 
@@ -544,24 +603,27 @@ When can the force-couple system $(\mathbf{R}, \mathbf{M}_O^R)$ be simplified ev
 
 In the most general 3D case, $\mathbf{R} \neq \mathbf{0}$, $\mathbf{M}_O^R \neq \mathbf{0}$, and $\mathbf{R}$ is **not** perpendicular to $\mathbf{M}_O^R$. Resolve $\mathbf{M}_O^R$ into a component $\mathbf{M}_1$ parallel to $\mathbf{R}$ and a component $\mathbf{M}_2$ perpendicular to $\mathbf{R}$. Then $\mathbf{R}$ and $\mathbf{M}_2$ reduce to a single force $\mathbf{R}$ shifted to a new line of action (the **axis of the wrench**), leaving the collinear pair $(\mathbf{R}, \mathbf{M}_1)$—a push-and-twist combination called a **wrench**.
 
-<RuleBox kind="formula" title="§3.21 Wrench Equations (Pitch & Axis)">
+<RuleBox kind="formula" title="Wrench Equations (Pitch & Axis)">
 
-$$\mathbf{M}_1 = p \mathbf{R}, \qquad p = \frac{M_1}{R} = \frac{\mathbf{R} \cdot \mathbf{M}_O^R}{R^2} \tag{3.61,\;3.62}$$
+$$
+\mathbf{M}_1 = p \mathbf{R}, \qquad p = \frac{M_1}{R} = \frac{\mathbf{R} \cdot \mathbf{M}_O^R}{R^2} \tag{3.61,\;3.62}
+$$
 
 where $p$ is the **pitch** of the wrench (with units of length, positive if $\mathbf{M}_1$ has the same sense as $\mathbf{R}$, negative if opposite; $p$ is invariant with respect to the choice of $O$). An arbitrary point $P$ with position vector $\mathbf{r}$ on the **axis of the wrench** satisfies:
 
-$$\mathbf{M}_1 + \mathbf{r} \times \mathbf{R} = \mathbf{M}_O^R \quad \Longleftrightarrow \quad p\mathbf{R} + \mathbf{r} \times \mathbf{R} = \mathbf{M}_O^R \tag{3.63,\;3.64}$$
+$$
+\mathbf{M}_1 + \mathbf{r} \times \mathbf{R} = \mathbf{M}_O^R \quad \Longleftrightarrow \quad p\mathbf{R} + \mathbf{r} \times \mathbf{R} = \mathbf{M}_O^R \tag{3.63,\;3.64}
+$$
 
 </RuleBox>
 
 <DiagramFigure
   src="/diagrams/get-207/force-system-resultants-fig-3-46-wrench.png"
-  caption="Beer & Johnston Fig. 3.46 — Resolving M_O^R into M_1 || R and M_2 ⊥ R to reduce a general 3D system to a wrench (R, M_1) along a shifted axis."
+  caption="Resolving M_O^R into M_1 || R and M_2 ⊥ R to reduce a general 3D system to a wrench (R, M_1) along a shifted axis."
 />
 
 <StepRevealExample
-  title="Sample Problem 3.8 — Equivalent Force-Couple System & Resultant on a Beam"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.8"
+  title="Equivalent Force-Couple System & Resultant on a Beam"
   figure="/diagrams/get-207/force-system-resultants-sp-3-8.png"
   problem="A $4.80\text{-m}$-long beam $AB$ carries four vertical forces: $150\text{ N}\uparrow$ at $A$ ($x=0$), $600\text{ N}\downarrow$ at $x=1.6\text{ m}$, $100\text{ N}\uparrow$ at $x=2.8\text{ m}$, and $250\text{ N}\downarrow$ at $B$ ($x=4.8\text{ m}$). (Support reactions are excluded.) Reduce the system to (a) an equivalent force-couple system at $A$, (b) an equivalent force-couple system at $B$, (c) a single resultant force."
   steps={[
@@ -569,40 +631,37 @@ $$\mathbf{M}_1 + \mathbf{r} \times \mathbf{R} = \mathbf{M}_O^R \quad \Longleftri
     "**(b) Force-couple system at $B$:** $\\mathbf{R}$ is unchanged ($600\\,\\text{N}\\downarrow$). Transfer the moment using $\\overrightarrow{BA} = -(4.8\\,\\text{m})\\mathbf{i}$: $\\mathbf{M}_B^R = \\mathbf{M}_A^R + \\overrightarrow{BA} \\times \\mathbf{R} = -1880\\mathbf{k} + (-4.8\\mathbf{i})\\times(-600\\mathbf{j}) = (-1880 + 2880)\\mathbf{k} = +(1000\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$ ($1000\\,\\text{N}\\cdot\\text{m}$ ccw).",
     "**(c) Single resultant force:** Place $\\mathbf{R} = -600\\mathbf{j}$ at $x\\mathbf{i}$ from $A$ so that $(x\\mathbf{i}) \\times (-600\\mathbf{j}) = -1880\\mathbf{k} \\implies -600x = -1880 \\implies x = 3.13\\,\\text{m}$ to the right of $A$."
   ]}
-  answer="(a) $R = 600\\,\\text{N}\\downarrow,\\; M_A^R = 1880\\,\\text{N}\\cdot\\text{m}$ cw; (b) $R = 600\\,\\text{N}\\downarrow,\\; M_B^R = 1000\\,\\text{N}\\cdot\\text{m}$ ccw; (c) $R = 600\\,\\text{N}\\downarrow$ at $x = 3.13\\,\\text{m}$"
+  answer="(a) $R = 600\,\text{N}\downarrow,\; M_A^R = 1880\,\text{N}\cdot\text{m}$ cw; (b) $R = 600\,\text{N}\downarrow,\; M_B^R = 1000\,\text{N}\cdot\text{m}$ ccw; (c) $R = 600\,\text{N}\downarrow$ at $x = 3.13\,\text{m}$"
 />
 
 <StepRevealExample
-  title="Sample Problem 3.9 — Coplanar Reduction of Four Tugboat Forces"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.9"
+  title="Coplanar Reduction of Four Tugboat Forces"
   figure="/diagrams/get-207/force-system-resultants-sp-3-9.png"
-  problem="Four tugboats each exert a $5000\text{-lb}$ ($5\text{-kip}$) force on an ocean liner relative to foremast $O$: $\\mathbf{F}_1$ at $(-90, 50)\text{ ft}$ directed $60^\\circ$ below $+x$; $\\mathbf{F}_2$ at $(100, 70)\text{ ft}$ along a $3$–$4$–$5$ slope down-right; $\\mathbf{F}_3$ at $(400, 70)\text{ ft}$ vertically downward; $\\mathbf{F}_4$ at $(300, -70)\text{ ft}$ directed $45^\\circ$ above $+x$. Find (a) the equivalent force-couple system at $O$, and (b) the $x$-coordinate along the hull upper edge ($y = 70\text{ ft}$) where a single tugboat should push."
+  problem="Four tugboats each exert a $5000\text{-lb}$ ($5\text{-kip}$) force on an ocean liner relative to foremast $O$: $\mathbf{F}_1$ at $(-90, 50)\text{ ft}$ directed $60^\circ$ below $+x$; $\mathbf{F}_2$ at $(100, 70)\text{ ft}$ along a $3$–$4$–$5$ slope down-right; $\mathbf{F}_3$ at $(400, 70)\text{ ft}$ vertically downward; $\mathbf{F}_4$ at $(300, -70)\text{ ft}$ directed $45^\circ$ above $+x$. Find (a) the equivalent force-couple system at $O$, and (b) the $x$-coordinate along the hull upper edge ($y = 70\text{ ft}$) where a single tugboat should push."
   steps={[
     "Resolve each $5\\text{-kip}$ force into $(F_x, F_y)$ in kips: $\\mathbf{F}_1 = 2.50\\mathbf{i} - 4.33\\mathbf{j}$, $\\mathbf{F}_2 = 3.00\\mathbf{i} - 4.00\\mathbf{j}$, $\\mathbf{F}_3 = -5.00\\mathbf{j}$, $\\mathbf{F}_4 = 3.54\\mathbf{i} + 3.54\\mathbf{j}$.",
     "Sum forces: $\\mathbf{R} = \\sum\\mathbf{F} = (9.04\\,\\text{kips})\\mathbf{i} - (9.79\\,\\text{kips})\\mathbf{j}$, so $R = \\sqrt{9.04^2 + (-9.79)^2} = 13.33\\,\\text{kips}$ at $47.3^\\circ$ below $+x$.",
     "Sum moments about $O$: $\\mathbf{M}_O^R = \\sum (\\mathbf{r}\\times\\mathbf{F}) = [(-90)(-4.33)-(50)(2.50) + (100)(-4.00)-(70)(3.00) + (400)(-5.00) + (300)(3.54)-(-70)(3.54)]\\mathbf{k} = -(1035\\,\\text{kip}\\cdot\\text{ft})\\mathbf{k}$ ($1035\\,\\text{kip}\\cdot\\text{ft}$ cw).",
     "**(b) Single tugboat at $A(x, 70\\,\\text{ft})$:** Set $(x\\mathbf{i} + 70\\mathbf{j}) \\times (9.04\\mathbf{i} - 9.79\\mathbf{j}) = -1035\\mathbf{k} \\implies -9.79x - 633 = -1035 \\implies x = 41.1\\,\\text{ft}$."
   ]}
-  answer="(a) $R = 13.33\\,\\text{kips}$ at $47.3^\\circ$ below $+x$, $M_O^R = 1035\\,\\text{kip}\\cdot\\text{ft}$ cw; (b) $x = 41.1\\,\\text{ft}$"
+  answer="(a) $R = 13.33\,\text{kips}$ at $47.3^\circ$ below $+x$, $M_O^R = 1035\,\text{kip}\cdot\text{ft}$ cw; (b) $x = 41.1\,\text{ft}$"
 />
 
 <StepRevealExample
-  title="Sample Problem 3.10 — 3D Force-Couple System on a Bracket"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.10"
+  title="3D Force-Couple System on a Bracket"
   figure="/diagrams/get-207/force-system-resultants-sp-3-10.png"
-  problem="Three cables exert forces on a bracket: $700\text{ N}$ at $B$ directed toward $E(150\text{ mm}, -50\text{ mm}, 100\text{ mm})$, $1000\text{ N}$ at $C$ ($45^\\circ$ above horizontal and $45^\\circ$ behind $xy$ plane toward $+x, -z$), and $1200\text{ N}$ at $D$ (in the $xy$ plane at $60^\\circ$ above $+x$). Replace the three forces with an equivalent force-couple system at $A$."
+  problem="Three cables exert forces on a bracket: $700\text{ N}$ at $B$ directed toward $E(150\text{ mm}, -50\text{ mm}, 100\text{ mm})$, $1000\text{ N}$ at $C$ ($45^\circ$ above horizontal and $45^\circ$ behind $xy$ plane toward $+x, -z$), and $1200\text{ N}$ at $D$ (in the $xy$ plane at $60^\circ$ above $+x$). Replace the three forces with an equivalent force-couple system at $A$."
   steps={[
     "Determine relative position vectors from $A$ (in meters) and force vectors (in newtons): $\\mathbf{r}_{B/A} = 0.075\\mathbf{i} + 0.050\\mathbf{k}$ with $\\mathbf{F}_B = 700\\,\\frac{75\\mathbf{i}-150\\mathbf{j}+50\\mathbf{k}}{175} = 300\\mathbf{i} - 600\\mathbf{j} + 200\\mathbf{k}$; $\\mathbf{r}_{C/A} = 0.075\\mathbf{i} - 0.050\\mathbf{k}$ with $\\mathbf{F}_C = 707\\mathbf{i} - 707\\mathbf{k}$; $\\mathbf{r}_{D/A} = 0.100\\mathbf{i} - 0.100\\mathbf{j}$ with $\\mathbf{F}_D = 600\\mathbf{i} + 1039\\mathbf{j}$.",
     "Sum forces: $\\mathbf{R} = \\sum\\mathbf{F} = (1607\\,\\text{N})\\mathbf{i} + (439\\,\\text{N})\\mathbf{j} - (507\\,\\text{N})\\mathbf{k}$.",
     "Compute each moment about $A$ by determinant: $\\mathbf{r}_{B/A}\\times\\mathbf{F}_B = 30\\mathbf{i} - 45\\mathbf{k}$, $\\mathbf{r}_{C/A}\\times\\mathbf{F}_C = 17.68\\mathbf{j}$, $\\mathbf{r}_{D/A}\\times\\mathbf{F}_D = 163.9\\mathbf{k}$.",
     "Sum moments: $\\mathbf{M}_A^R = (30\\,\\text{N}\\cdot\\text{m})\\mathbf{i} + (17.68\\,\\text{N}\\cdot\\text{m})\\mathbf{j} + (118.9\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$."
   ]}
-  answer="$\\mathbf{R} = (1607\\,\\text{N})\\mathbf{i} + (439\\,\\text{N})\\mathbf{j} - (507\\,\\text{N})\\mathbf{k}$; $\\mathbf{M}_A^R = (30\\,\\text{N}\\cdot\\text{m})\\mathbf{i} + (17.68\\,\\text{N}\\cdot\\text{m})\\mathbf{j} + (118.9\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$"
+  answer="$\mathbf{R} = (1607\,\text{N})\mathbf{i} + (439\,\text{N})\mathbf{j} - (507\,\text{N})\mathbf{k}$; $\mathbf{M}_A^R = (30\,\text{N}\cdot\text{m})\mathbf{i} + (17.68\,\text{N}\cdot\text{m})\mathbf{j} + (118.9\,\text{N}\cdot\text{m})\mathbf{k}$"
 />
 
 <StepRevealExample
-  title="Sample Problem 3.11 — Resultant of Parallel Column Loads on a Foundation Mat"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.11"
+  title="Resultant of Parallel Column Loads on a Foundation Mat"
   figure="/diagrams/get-207/force-system-resultants-sp-3-11.png"
   problem="A $10\text{ ft}\times 10\text{ ft}$ square foundation mat carries four downward column loads: $40\text{ kips}$ at $O(0,0,0)$, $12\text{ kips}$ at $C(10,0,0)\text{ ft}$, $8\text{ kips}$ at $(10,0,5)\text{ ft}$, and $20\text{ kips}$ at $(4,0,10)\text{ ft}$. Determine the magnitude and coordinates $(x, z)$ of the single resultant load."
   steps={[
@@ -611,31 +670,29 @@ $$\mathbf{M}_1 + \mathbf{r} \times \mathbf{R} = \mathbf{M}_O^R \quad \Longleftri
     "Since $\\mathbf{R} \\perp \\mathbf{M}_O^R$, reduce to a single force $\\mathbf{R}$ at $(x, 0, z)$: $(x\\mathbf{i}+z\\mathbf{k}) \\times (-80\\mathbf{j}) = -80x\\mathbf{k} + 80z\\mathbf{i} = 240\\mathbf{i} - 280\\mathbf{k}$.",
     "Equate components: $-80x = -280 \\implies x = 3.50\\,\\text{ft}$, and $80z = 240 \\implies z = 3.00\\,\\text{ft}$."
   ]}
-  answer="$R = 80\\,\\text{kips}\\downarrow$ at $x = 3.50\\,\\text{ft},\\; z = 3.00\\,\\text{ft}$"
+  answer="$R = 80\,\text{kips}\downarrow$ at $x = 3.50\,\text{ft},\; z = 3.00\,\text{ft}$"
 />
 
 <StepRevealExample
-  title="Sample Problem 3.12 — Reducing Two 3D Forces to an Equivalent Wrench"
-  source="Beer & Johnston 10e, Ch. 3, Sample Problem 3.12"
+  title="Reducing Two 3D Forces to an Equivalent Wrench"
   figure="/diagrams/get-207/force-system-resultants-sp-3-12.png"
-  problem="Two forces of equal magnitude $P$ act on a cube of side $a$: $\\mathbf{F}_1 = P\\mathbf{i}$ at $E(a, a, 0)$ and $\\mathbf{F}_2 = P\\mathbf{j}$ at $D(0, a, a)$. Replace the two forces with an equivalent wrench and determine (a) the magnitude and direction cosines of $\\mathbf{R}$, (b) the pitch $p$, and (c) the point where the wrench axis intersects the $yz$ plane."
+  problem="Two forces of equal magnitude $P$ act on a cube of side $a$: $\mathbf{F}_1 = P\mathbf{i}$ at $E(a, a, 0)$ and $\mathbf{F}_2 = P\mathbf{j}$ at $D(0, a, a)$. Replace the two forces with an equivalent wrench and determine (a) the magnitude and direction cosines of $\mathbf{R}$, (b) the pitch $p$, and (c) the point where the wrench axis intersects the $yz$ plane."
   steps={[
     "Reduce to $O$: $\\mathbf{R} = P\\mathbf{i} + P\\mathbf{j} = P(\\mathbf{i} + \\mathbf{j})$, and $\\mathbf{M}_O^R = (a\\mathbf{i}+a\\mathbf{j})\\times P\\mathbf{i} + (a\\mathbf{j}+a\\mathbf{k})\\times P\\mathbf{j} = -Pa\\mathbf{k} - Pa\\mathbf{i} = -Pa(\\mathbf{i} + \\mathbf{k})$.",
     "**(a) Resultant force:** $R = P\\sqrt{2}$, lying in the $xy$ plane with $\\theta_x = \\theta_y = 45^\\circ,\\; \\theta_z = 90^\\circ$.",
     "**(b) Pitch:** $p = \\frac{\\mathbf{R}\\cdot\\mathbf{M}_O^R}{R^2} = \\frac{P(\\mathbf{i}+\\mathbf{j}) \\cdot (-Pa)(\\mathbf{i}+\\mathbf{k})}{2P^2} = -\\frac{a}{2}$.",
     "**(c) Intersection with $yz$ plane:** Here $\\mathbf{M}_1 = p\\mathbf{R} = -\\frac{Pa}{2}(\\mathbf{i}+\\mathbf{j})$ and $\\mathbf{r} = y\\mathbf{j} + z\\mathbf{k}$. From $\\mathbf{M}_1 + \\mathbf{r}\\times\\mathbf{R} = \\mathbf{M}_O^R$: $-\\frac{Pa}{2}(\\mathbf{i}+\\mathbf{j}) + (y\\mathbf{j}+z\\mathbf{k})\\times P(\\mathbf{i}+\\mathbf{j}) = -Pa(\\mathbf{i}+\\mathbf{k})$, which expands to $(-\\frac{Pa}{2}-Pz)\\mathbf{i} + (-\\frac{Pa}{2}+Pz)\\mathbf{j} - Py\\mathbf{k} = -Pa\\mathbf{i} - Pa\\mathbf{k}$. Equating $\\mathbf{k}$ and $\\mathbf{j}$ terms gives $y = a$ and $z = a/2$."
   ]}
-  answer="(a) $R = P\\sqrt{2},\\; \\theta_x = \\theta_y = 45^\\circ,\\; \\theta_z = 90^\\circ$; (b) $p = -a/2$; (c) $y = a,\\; z = a/2$"
+  answer="(a) $R = P\sqrt{2},\; \theta_x = \theta_y = 45^\circ,\; \theta_z = 90^\circ$; (b) $p = -a/2$; (c) $y = a,\; z = a/2$"
 />
 
 <ExerciseSet
   title="Problems 3.101–3.146 (Reduction of Force Systems & Wrenches)"
-  source="Beer & Johnston 10e, Ch. 3 (§3.17–3.21)"
   items={[
-    { q: "Prob. 3.107: Two children sitting at ends $A$ and $B$ of a seesaw ($6\\text{ ft}$ each side of pivot $C$) weigh $84\\text{ lb}$ and $64\\text{ lb}$. Where should a third child sit so the resultant passes through $C$ if she weighs (a) $60\\text{ lb}$, (b) $52\\text{ lb}$?", a: "(a) $2.00\\text{ ft}$ to the right of $C$; (b) $2.31\\text{ ft}$ to the right of $C$", figure: "/diagrams/get-207/force-system-resultants-p3-107.png" },
-    { q: "Prob. 3.121: Four forces are applied to machine component $ABDE$ as shown ($50\\text{ N}\\downarrow$ and $300\\text{ N}$ along $-x$ at $B$, $250\\text{ N}$ along $-z$ at $D$, $120\\text{ N}$ along $-x$ at $E$). Replace them with an equivalent force-couple system at $A$.", a: "$\\mathbf{R} = -(420\\,\\text{N})\\mathbf{i} - (50.0\\,\\text{N})\\mathbf{j} - (250\\,\\text{N})\\mathbf{k}$; $\\mathbf{M}_A^R = (30.8\\,\\text{N}\\cdot\\text{m})\\mathbf{j} - (22.0\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$", figure: "/diagrams/get-207/force-system-resultants-p3-121.png" },
-    { q: "Prob. 3.127: Three children stand on a $5\\times 5\\text{-m}$ raft with weights $375\\text{ N}$ at $A$, $260\\text{ N}$ at $B$, and $400\\text{ N}$ at $C$. Find the magnitude and point of application of the resultant weight.", a: "$1035\\,\\text{N}$; $2.57\\text{ m}$ from $OG$ and $3.05\\text{ m}$ from $OE$", figure: "/diagrams/get-207/force-system-resultants-p3-127.png" },
-    { q: "Prob. 3.137: Two bolts at $A$ and $B$ are tightened by applying the forces and couples shown ($80\\text{ N}$ and $32\\text{ N}\\cdot\\text{m}$ along $-z$ at $A$; $84\\text{ N}$ and $30\\text{ N}\\cdot\\text{m}$ along $-y$ at $B$). Replace the two wrenches with a single equivalent wrench and find (a) $\\mathbf{R}$, (b) pitch $p$, and (c) where the wrench axis intersects the $xz$ plane.", a: "(a) $-(84.0\\,\\text{N})\\mathbf{j} - (80.0\\,\\text{N})\\mathbf{k}$; (b) $0.477\\text{ m}$; (c) $x = 0.526\\text{ m},\\; y = 0,\\; z = -0.1857\\text{ m}$", figure: "/diagrams/get-207/force-system-resultants-p3-137.png" }
+    { q: "Two children sitting at ends $A$ and $B$ of a seesaw ($6\\text{ ft}$ each side of pivot $C$) weigh $84\\text{ lb}$ and $64\\text{ lb}$. Where should a third child sit so the resultant passes through $C$ if she weighs (a) $60\\text{ lb}$, (b) $52\\text{ lb}$?", a: "(a) $2.00\\text{ ft}$ to the right of $C$; (b) $2.31\\text{ ft}$ to the right of $C$", figure: "/diagrams/get-207/force-system-resultants-p3-107.png" },
+    { q: "Four forces are applied to machine component $ABDE$ as shown ($50\\text{ N}\\downarrow$ and $300\\text{ N}$ along $-x$ at $B$, $250\\text{ N}$ along $-z$ at $D$, $120\\text{ N}$ along $-x$ at $E$). Replace them with an equivalent force-couple system at $A$.", a: "$\\mathbf{R} = -(420\\,\\text{N})\\mathbf{i} - (50.0\\,\\text{N})\\mathbf{j} - (250\\,\\text{N})\\mathbf{k}$; $\\mathbf{M}_A^R = (30.8\\,\\text{N}\\cdot\\text{m})\\mathbf{j} - (22.0\\,\\text{N}\\cdot\\text{m})\\mathbf{k}$", figure: "/diagrams/get-207/force-system-resultants-p3-121.png" },
+    { q: "Three children stand on a $5\\times 5\\text{-m}$ raft with weights $375\\text{ N}$ at $A$, $260\\text{ N}$ at $B$, and $400\\text{ N}$ at $C$. Find the magnitude and point of application of the resultant weight.", a: "$1035\\,\\text{N}$; $2.57\\text{ m}$ from $OG$ and $3.05\\text{ m}$ from $OE$", figure: "/diagrams/get-207/force-system-resultants-p3-127.png" },
+    { q: "Two bolts at $A$ and $B$ are tightened by applying the forces and couples shown ($80\\text{ N}$ and $32\\text{ N}\\cdot\\text{m}$ along $-z$ at $A$; $84\\text{ N}$ and $30\\text{ N}\\cdot\\text{m}$ along $-y$ at $B$). Replace the two wrenches with a single equivalent wrench and find (a) $\\mathbf{R}$, (b) pitch $p$, and (c) where the wrench axis intersects the $xz$ plane.", a: "(a) $-(84.0\\,\\text{N})\\mathbf{j} - (80.0\\,\\text{N})\\mathbf{k}$; (b) $0.477\\text{ m}$; (c) $x = 0.526\\text{ m},\\; y = 0,\\; z = -0.1857\\text{ m}$", figure: "/diagrams/get-207/force-system-resultants-p3-137.png" }
   ]}
 />
 
@@ -643,7 +700,7 @@ $$\mathbf{M}_1 + \mathbf{r} \times \mathbf{R} = \mathbf{M}_O^R \quad \Longleftri
 
 ## Common Exam Pitfalls
 
-<Callout variant="warning" title="Five frequent mistakes in Beer & Johnston Ch. 3 exams">
+<Callout variant="warning" title="Five frequent mistakes exams">
 
 - **Reversing the cross product order:** Always compute $\mathbf{M}_B = \mathbf{r}_{A/B} \times \mathbf{F}$ with $\mathbf{r}_{A/B} = \mathbf{r}_A - \mathbf{r}_B$ directed **from the moment center $B$ to the point of application $A$**. Using $\mathbf{F} \times \mathbf{r}$ or $\mathbf{r}_B - \mathbf{r}_A$ flips every sign!
 - **Forgetting to normalize the axis vector in $M_{BL}$:** In $M_{BL} = \boldsymbol{\lambda} \cdot (\mathbf{r}_{A/B} \times \mathbf{F})$, the first row of the determinant must be the **unit** vector $\boldsymbol{\lambda} = \overrightarrow{BL}/BL$, not the raw unnormalized vector $\overrightarrow{BL}$.
@@ -657,7 +714,7 @@ $$\mathbf{M}_1 + \mathbf{r} \times \mathbf{R} = \mathbf{M}_O^R \quad \Longleftri
 
 ## Summary of Formulas
 
-<RuleBox kind="formula" title="Chapter 3 Key Equations (Beer & Johnston 10e)">
+<RuleBox kind="formula" title="Key Equations">
 
 - **Vector product:** $\mathbf{V} = \mathbf{P} \times \mathbf{Q}$, $V = PQ\sin\theta$, $\mathbf{Q}\times\mathbf{P} = -(\mathbf{P}\times\mathbf{Q})$
 - **Moment about point $O$ or $B$:** $\mathbf{M}_O = \mathbf{r} \times \mathbf{F}$, $M_O = Fd$, $\mathbf{M}_B = (\mathbf{r}_A - \mathbf{r}_B) \times \mathbf{F}$

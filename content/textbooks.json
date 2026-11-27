@@ -1,125 +1,66 @@
 {
-  "textbooks": [
-    {
-      "id": "get-205-cengel",
-      "courseCode": "GET 205",
-      "courseSlug": "get-205",
-      "title": "Fundamentals of Thermal-Fluid Sciences (Part 2: Fluid Mechanics)",
-      "authors": "Yunus A. Çengel, Robert H. Turner & John M. Cimbala",
-      "edition": "SI Units Edition",
-      "role": "Course Outline Match",
-      "coverImage": "/images/textbooks/get-205-cengel.webp",
-      "bestFor": "Selected after inspecting your local textbooks — covers 100% of the OAU GET 205 CCMAS syllabus in one text: manometry, fluid properties, submerged plane & curved surfaces, buoyancy & metacentric stability, continuity, Bernoulli, momentum, and pipe flow meters.",
-      "chapters": [
-        "Ch. 2 (§2–7 to §2–9): Hydrostatic Pressure, Pascal's Law & Manometers",
-        "Ch. 10: Fluid Properties — Density, Specific Gravity, Viscosity & Surface Tension",
-        "Ch. 11: Fluid Statics — Submerged Plane/Curved Gates, Buoyancy & Stability (GM)",
-        "Ch. 12 & Ch. 13: Continuity, Bernoulli's Equation, Pitot Tubes & Momentum",
-        "Ch. 14: Pipe Head Losses, Venturi & Orifice Flow Meters"
-      ],
-      "readUrl": ""
-    },
-    {
-      "id": "get-207-beer-johnston",
-      "courseCode": "GET 207",
-      "courseSlug": "get-207",
-      "title": "Vector Mechanics for Engineers: Statics & Dynamics",
-      "authors": "Ferdinand P. Beer, E. Russell Johnston Jr., David F. Mazurek & Phillip J. Cornwell",
-      "edition": "10th Edition",
-      "role": "Prescribed Textbook",
-      "coverImage": "/images/textbooks/get-207-beer-johnston.png",
-      "bestFor": "Matches the OAU MEE 205 / GET 207 work plan chapter-for-chapter across both Statics (Ch. 2–9) and Particle Dynamics (Ch. 11–13) with full-color Free-Body Diagrams, Sample Problems, and verified answers.",
-      "chapters": [
-        "Ch. 2–3: Statics of Particles, Equivalent Force Systems, Moments & Couples",
-        "Ch. 4 & 6: Rigid-Body Equilibrium, Trusses, Frames & Machines",
-        "Ch. 5 & 9: Distributed Forces, Centroids, Centers of Gravity & Moments of Inertia",
-        "Ch. 8: Dry Friction, Wedges, Square-Threaded Screws & Belt Friction",
-        "Ch. 11–13: Particle Kinematics, Newton's Second Law, Work-Energy & Impulse-Momentum"
-      ],
-      "readUrl": ""
-    },
-    {
-      "id": "get-209-hkdass",
-      "courseCode": "GET 209",
-      "courseSlug": "get-209",
-      "title": "Advanced Engineering Mathematics",
-      "authors": "H. K. Dass",
-      "edition": "S. Chand (21st Revised Edition)",
-      "role": "Prescribed Textbook",
-      "coverImage": "/images/textbooks/get-209-hkdass.webp",
-      "bestFor": "The single source for every GET 209 folio: limits and continuity, partial and total differentiation, Jacobians and errors, first-order differential equations, determinants, matrices and vector calculus, with the book's own solved examples and exercises.",
-      "chapters": [
-        "Ch. 1 (§1.1–1.11): Limits, Continuity, Partial Derivatives & Euler's Theorem",
-        "Ch. 1 (§1.12–1.25): Total Derivatives, Change of Variables, Errors & Jacobians",
-        "Ch. 3 (§3.1–3.12): First-Order Differential Equations",
-        "Ch. 4 (§4.1–4.44): Determinants, Matrices, Rank & Linear Systems",
-        "Ch. 5 (§5.1–5.32): Vector Algebra, Gradient, Divergence & Curl"
-      ],
-      "readUrl": ""
-    }
-  ],
   "drills": [
     {
-      "id": "drill-205-cengel-ex-2-5",
+      "id": "drill-205-manometer",
       "courseCode": "GET 205",
       "courseSlug": "get-205",
       "topicId": "22222222-2222-4222-8222-222222220205",
-      "textbookRef": "Çengel · Ch. 2, Example 2–5 (Fig. 2–47)",
+      "topicLabel": "Hydrostatic Pressure & Manometry",
       "difficulty": "Easy",
       "title": "Tank Absolute Pressure via Manometer (SG = 0.85, h = 55 cm)",
       "preview": "A manometer with fluid SG = 0.85 shows column height h = 55 cm on a gas tank where Patm = 96 kPa. Determine the absolute pressure in the tank.",
       "figureImage": "/images/textbook-figures/get-205/cengel-fig-2-47-manometer.webp"
     },
     {
-      "id": "drill-205-cengel-ex-11-1",
+      "id": "drill-205-submerged-door",
       "courseCode": "GET 205",
       "courseSlug": "get-205",
       "topicId": "22222222-2222-4222-8222-222222220205",
-      "textbookRef": "Çengel · Ch. 11, Example 11–1 (Fig. 11–9)",
+      "topicLabel": "Submerged Plane Surfaces",
       "difficulty": "Medium",
       "title": "Hydrostatic Force & Pressure Center on a Submerged Car Door",
       "preview": "A car lands at the bottom of a lake with the top edge of its 1.2 m × 1.0 m vertical door 8 m below the free surface. Find FR and yP.",
       "figureImage": "/images/textbook-figures/get-205/cengel-fig-11-9-car-door.webp"
     },
     {
-      "id": "drill-205-cengel-ex-12-6",
+      "id": "drill-205-pitot-tube",
       "courseCode": "GET 205",
       "courseSlug": "get-205",
       "topicId": "22222222-2222-4222-8222-222222250003",
-      "textbookRef": "Çengel · Ch. 12, Example 12–6 (Fig. 12–27)",
+      "topicLabel": "Bernoulli's Equation & Flow Measurement",
       "difficulty": "Medium",
       "title": "Centerline Water Pipe Velocity from Piezometer & Pitot Tube",
       "preview": "A piezometer and Pitot tube tapped into a horizontal water pipe read h₁ = 3 cm, h₂ = 7 cm, and excess stagnation rise h₃ = 12 cm. Find V₁.",
       "figureImage": "/images/textbook-figures/get-205/cengel-fig-12-27-pitot-tube.webp"
     },
     {
-      "id": "drill-207-hibbeler-f5-2",
+      "id": "drill-207-beam-reactions",
       "courseCode": "GET 207",
       "courseSlug": "get-207",
       "topicId": "22222222-2222-4222-8222-222222220207",
-      "textbookRef": "Hibbeler 14e · Ch. 5, Prob. F5–2",
+      "topicLabel": "Rigid-Body Equilibrium",
       "difficulty": "Medium",
       "title": "Pin-and-Strut Supported Cantilever Beam Reactions",
       "preview": "Determine the horizontal and vertical components of reaction at pin A and the force in two-force strut CD under the 4 kN tip load.",
       "figureImage": "/images/textbook-figures/get-207/hibbeler-f5-2-beam.webp"
     },
     {
-      "id": "drill-207-hibbeler-f8-2",
+      "id": "drill-207-leaning-rod",
       "courseCode": "GET 207",
       "courseSlug": "get-207",
       "topicId": "22222222-2222-4222-8222-222222270002",
-      "textbookRef": "Hibbeler 14e · Ch. 8, Prob. F8–2",
+      "topicLabel": "Dry Friction & Inclines",
       "difficulty": "Medium",
       "title": "Minimum Horizontal Force P to Prevent Leaning 30-kg Rod Sliding",
       "preview": "Rod AB (30 kg) leans on a 3–4–5 geometry against a rough vertical wall at A (μs = 0.2) and smooth floor at B. Find minimum P.",
       "figureImage": "/images/textbook-figures/get-207/hibbeler-f8-2-ladder.webp"
     },
     {
-      "id": "drill-207-hibbeler-f10-8",
+      "id": "drill-207-tbeam-moi",
       "courseCode": "GET 207",
       "courseSlug": "get-207",
       "topicId": "22222222-2222-4222-8222-222222270003",
-      "textbookRef": "Hibbeler 14e · Ch. 10, Prob. F10–8",
+      "topicLabel": "Centroids & Moments of Inertia",
       "difficulty": "Hard",
       "title": "Centroidal Moment of Inertia Ix' of an Inverted T-Beam",
       "preview": "Locate centroid ȳ = 60 mm and compute Ix' about the centroidal horizontal axis for the 150 mm × 30 mm flange and 30 mm × 150 mm web.",

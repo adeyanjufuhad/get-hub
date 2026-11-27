@@ -5,7 +5,6 @@ topicId: "22222222-2222-4222-8222-222222290003"
 courseCode: "GET 209"
 courseSlug: "get-209"
 ccmasRef: "Partial derivatives; higher-order partial derivatives; Euler's theorem"
-textbookRef: "H. K. Dass · Ch. 1, §1.7–1.11"
 outcomes:
   - "Compute first-order partial derivatives $\\dfrac{\\partial z}{\\partial x}$ and $\\dfrac{\\partial z}{\\partial y}$ using the limit definition and ordinary differentiation rules with other variables held constant."
   - "Evaluate higher-order and mixed partial derivatives, verify $\\dfrac{\\partial^2 z}{\\partial y\\,\\partial x}=\\dfrac{\\partial^2 z}{\\partial x\\,\\partial y}$, and check solutions of standard PDEs such as the wave, heat and Laplace equations."
@@ -20,7 +19,7 @@ isFree: true
 
 Engineering fields such as temperature distribution $T(x, y, t)$, wave displacement $y(x, t)$, and potential fields $v(x, y, z)$ depend on **two or more independent variables**. To measure how such a quantity responds when **only one independent variable changes** while every other variable is held fixed, we use **partial differentiation**.
 
-Following **H. K. Dass, *Advanced Engineering Mathematics*, Chapter 1 (§1.7–1.11)**, this folio develops first-order partial derivatives (§1.7), higher-order and mixed partial derivatives (§1.8), the crucial convention for which variable is kept constant (§1.9), homogeneous functions (§1.10), and **Euler's theorem** together with its first- and second-order deductions (§1.11). Every theorem, worked example (Examples 7–29) and exercise set (Exercises 1.3 and 1.4) follows Dass's exact numbering and answers.
+This topic develops first-order partial derivatives, higher-order and mixed partial derivatives, the crucial convention for which variable is kept constant, homogeneous functions, and **Euler's theorem** together with its first- and second-order deductions follows 's exact numbering and answers.
 
 ---
 
@@ -28,23 +27,29 @@ Following **H. K. Dass, *Advanced Engineering Mathematics*, Chapter 1 (§1.7–1
 
 Consider a function $z = f(x, y)$ of two independent variables $x$ and $y$. If $y$ is held fixed at a constant value and only $x$ varies, then $z$ behaves as a function of the single variable $x$. Differentiating $z$ with respect to $x$ under this condition produces the **partial derivative** (or partial differential co-efficient) of $z$ with respect to $x$. In practice, all standard rules of ordinary differentiation apply unchanged—we simply treat every independent variable other than the differentiating variable as a constant.
 
-<RuleBox kind="definition" title="§1.7 First-order partial derivatives of z = f(x, y)">
+<RuleBox kind="definition" title="First-order partial derivatives of z = f(x, y)">
 
 The **partial derivative of $z$ with respect to $x$** (keeping $y$ constant), denoted by $\dfrac{\partial z}{\partial x}$, $\dfrac{\partial f}{\partial x}$, or $f_x(x, y)$, is defined by
 
-$$\frac{\partial z}{\partial x} = \lim_{\delta x \to 0} \frac{f(x + \delta x,\, y) - f(x, y)}{\delta x}.$$
+$$
+\frac{\partial z}{\partial x} = \lim_{\delta x \to 0} \frac{f(x + \delta x,\, y) - f(x, y)}{\delta x}.
+$$
 
 Similarly, the **partial derivative of $z$ with respect to $y$** (keeping $x$ constant), denoted by $\dfrac{\partial z}{\partial y}$, $\dfrac{\partial f}{\partial y}$, or $f_y(x, y)$, is defined by
 
-$$\frac{\partial z}{\partial y} = \lim_{\delta y \to 0} \frac{f(x,\, y + \delta y) - f(x, y)}{\delta y}.$$
+$$
+\frac{\partial z}{\partial y} = \lim_{\delta y \to 0} \frac{f(x,\, y + \delta y) - f(x, y)}{\delta y}.
+$$
 
 </RuleBox>
 
-<RuleBox kind="formula" title="§1.7 Standard Monge notation for partial derivatives">
+<RuleBox kind="formula" title="Standard Monge notation for partial derivatives">
 
 In engineering mathematics and partial differential equations, the first- and second-order partial derivatives of $z = f(x, y)$ are frequently written in compact notation:
 
-$$\frac{\partial z}{\partial x} = p, \qquad \frac{\partial z}{\partial y} = q, \qquad \frac{\partial^2 z}{\partial x^2} = r, \qquad \frac{\partial^2 z}{\partial x\,\partial y} = s, \qquad \frac{\partial^2 z}{\partial y^2} = t.$$
+$$
+\frac{\partial z}{\partial x} = p, \qquad \frac{\partial z}{\partial y} = q, \qquad \frac{\partial^2 z}{\partial x^2} = r, \qquad \frac{\partial^2 z}{\partial x\,\partial y} = s, \qquad \frac{\partial^2 z}{\partial y^2} = t.
+$$
 
 </RuleBox>
 
@@ -52,13 +57,12 @@ Geometrically, the equation $z = f(x, y)$ represents a surface $S$ in three-dime
 
 <DiagramFigure
   src="/diagrams/get-209/partial-differentiation-and-eulers-theorem-geometric-interpretation.png"
-  caption="H. K. Dass §1.19 — Geometrical interpretation of ∂z/∂x and ∂z/∂y: vertical plane y = k cutting the surface z = f(x, y) along curve APB through P(x, k, z)."
+  caption="Geometrical interpretation of ∂z/∂x and ∂z/∂y: vertical plane y = k cutting the surface z = f(x, y) along curve APB through P(x, k, z)."
 />
 
 <StepRevealExample
-  title="Example 7 (§1.7)"
-  source="H. K. Dass, Ch. 1, Example 7"
-  problem="If $u = \\sin^{-1}\\left(\\dfrac{x}{y}\\right) + \\tan^{-1}\\left(\\dfrac{y}{x}\\right)$, then find the value of $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y}$."
+  title="Example 7"
+  problem="If $u = \sin^{-1}\left(\dfrac{x}{y}\right) + \tan^{-1}\left(\dfrac{y}{x}\right)$, then find the value of $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y}$."
   steps={[
     "Differentiate $u$ partially with respect to $x$ (treating $y$ as constant): $\\dfrac{\\partial u}{\\partial x} = \\dfrac{1}{\\sqrt{1 - (x/y)^2}} \\cdot \\dfrac{1}{y} + \\dfrac{1}{1 + (y/x)^2}\\left(-\\dfrac{y}{x^2}\\right) = \\dfrac{1}{\\sqrt{y^2 - x^2}} - \\dfrac{y}{x^2 + y^2}$.",
     "Multiply through by $x$: $x\\dfrac{\\partial u}{\\partial x} = \\dfrac{x}{\\sqrt{y^2 - x^2}} - \\dfrac{xy}{x^2 + y^2}$ ... (1).",
@@ -66,26 +70,24 @@ Geometrically, the equation $z = f(x, y)$ represents a surface $S$ in three-dime
     "Multiply through by $y$: $y\\dfrac{\\partial u}{\\partial y} = -\\dfrac{x}{\\sqrt{y^2 - x^2}} + \\dfrac{xy}{x^2 + y^2}$ ... (2).",
     "Add (1) and (2): every term cancels identically, giving $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = 0$."
   ]}
-  answer="$x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = 0$"
+  answer="$x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} = 0$"
 />
 
 <StepRevealExample
-  title="Example 8 (§1.7)"
-  source="H. K. Dass, Ch. 1, Example 8"
-  problem="Find $\\dfrac{\\partial u}{\\partial r}$ and $\\dfrac{\\partial u}{\\partial \\theta}$ if $u = e^{r\\cos\\theta}\\cos(r\\sin\\theta)$."
+  title="Example 8"
+  problem="Find $\dfrac{\partial u}{\partial r}$ and $\dfrac{\partial u}{\partial \theta}$ if $u = e^{r\cos\theta}\cos(r\sin\theta)$."
   steps={[
     "To find $\\dfrac{\\partial u}{\\partial r}$, hold $\\theta$ constant and apply the product rule: $\\dfrac{\\partial u}{\\partial r} = e^{r\\cos\\theta}[-\\sin(r\\sin\\theta)\\cdot\\sin\\theta] + [\\cos\\theta\\,e^{r\\cos\\theta}]\\cos(r\\sin\\theta)$.",
     "Factor out $e^{r\\cos\\theta}$ and apply the compound-angle identity $\\cos A\\cos B - \\sin A\\sin B = \\cos(A+B)$: $\\dfrac{\\partial u}{\\partial r} = e^{r\\cos\\theta}[\\cos(r\\sin\\theta)\\cos\\theta - \\sin(r\\sin\\theta)\\sin\\theta] = e^{r\\cos\\theta}\\cos(r\\sin\\theta + \\theta)$.",
     "To find $\\dfrac{\\partial u}{\\partial \\theta}$, hold $r$ constant and apply the product rule: $\\dfrac{\\partial u}{\\partial \\theta} = e^{r\\cos\\theta}[-\\sin(r\\sin\\theta)\\cdot r\\cos\\theta] + [-r\\sin\\theta\\,e^{r\\cos\\theta}]\\cos(r\\sin\\theta)$.",
     "Factor out $-r\\,e^{r\\cos\\theta}$ and apply $\\sin A\\cos B + \\cos A\\sin B = \\sin(A+B)$: $\\dfrac{\\partial u}{\\partial \\theta} = -r\\,e^{r\\cos\\theta}[\\sin(r\\sin\\theta)\\cos\\theta + \\cos(r\\sin\\theta)\\sin\\theta] = -r\\,e^{r\\cos\\theta}\\sin(r\\sin\\theta + \\theta)$."
   ]}
-  answer="$\\dfrac{\\partial u}{\\partial r} = e^{r\\cos\\theta}\\cos(r\\sin\\theta + \\theta), \\qquad \\dfrac{\\partial u}{\\partial \\theta} = -r\\,e^{r\\cos\\theta}\\sin(r\\sin\\theta + \\theta)$"
+  answer="$\dfrac{\partial u}{\partial r} = e^{r\cos\theta}\cos(r\sin\theta + \theta), \qquad \dfrac{\partial u}{\partial \theta} = -r\,e^{r\cos\theta}\sin(r\sin\theta + \theta)$"
 />
 
 <StepRevealExample
-  title="Example 9 (§1.7)"
-  source="H. K. Dass, Ch. 1, Example 9"
-  problem="If $u = (1 - 2xy + y^2)^{-1/2}$, prove that $x\\dfrac{\\partial u}{\\partial x} - y\\dfrac{\\partial u}{\\partial y} = y^2 u^3$."
+  title="Example 9"
+  problem="If $u = (1 - 2xy + y^2)^{-1/2}$, prove that $x\dfrac{\partial u}{\partial x} - y\dfrac{\partial u}{\partial y} = y^2 u^3$."
   steps={[
     "Let $u = (1 - 2xy + y^2)^{-1/2}$ ... (1). Differentiate (1) partially with respect to $x$: $\\dfrac{\\partial u}{\\partial x} = -\\dfrac{1}{2}(1 - 2xy + y^2)^{-3/2}(-2y) = y(1 - 2xy + y^2)^{-3/2}$.",
     "Multiply by $x$: $x\\dfrac{\\partial u}{\\partial x} = xy(1 - 2xy + y^2)^{-3/2}$ ... (2).",
@@ -93,13 +95,12 @@ Geometrically, the equation $z = f(x, y)$ represents a surface $S$ in three-dime
     "Multiply by $y$: $y\\dfrac{\\partial u}{\\partial y} = (xy - y^2)(1 - 2xy + y^2)^{-3/2}$ ... (3).",
     "Subtract (3) from (2): $x\\dfrac{\\partial u}{\\partial x} - y\\dfrac{\\partial u}{\\partial y} = [xy - (xy - y^2)](1 - 2xy + y^2)^{-3/2} = y^2(1 - 2xy + y^2)^{-3/2} = y^2 u^3$."
   ]}
-  answer="Proved: $x\\dfrac{\\partial u}{\\partial x} - y\\dfrac{\\partial u}{\\partial y} = y^2 u^3$."
+  answer="Proved: $x\dfrac{\partial u}{\partial x} - y\dfrac{\partial u}{\partial y} = y^2 u^3$."
 />
 
 <StepRevealExample
-  title="Example 10 (§1.7)"
-  source="H. K. Dass, Ch. 1, Example 10 (A.M.I.E.T.E., Summer 2004)"
-  problem="If $z = e^{ax + by} f(ax - by)$, prove that $b\\dfrac{\\partial z}{\\partial x} + a\\dfrac{\\partial z}{\\partial y} = 2abz$."
+  title="Example 10"
+  problem="If $z = e^{ax + by} f(ax - by)$, prove that $b\dfrac{\partial z}{\partial x} + a\dfrac{\partial z}{\partial y} = 2abz$."
   steps={[
     "Write $z = e^{ax+by} f(ax-by)$ ... (1). Differentiate (1) partially with respect to $x$ using the product rule: $\\dfrac{\\partial z}{\\partial x} = a\\,e^{ax+by} f(ax-by) + e^{ax+by} \\cdot a\\,f'(ax-by)$.",
     "Multiply by $b$: $b\\dfrac{\\partial z}{\\partial x} = ab\\,e^{ax+by} f(ax-by) + ab\\,e^{ax+by} f'(ax-by)$ ... (2).",
@@ -107,7 +108,7 @@ Geometrically, the equation $z = f(x, y)$ represents a surface $S$ in three-dime
     "Multiply by $a$: $a\\dfrac{\\partial z}{\\partial y} = ab\\,e^{ax+by} f(ax-by) - ab\\,e^{ax+by} f'(ax-by)$ ... (3).",
     "Add (2) and (3): the $f'(ax-by)$ terms cancel, leaving $b\\dfrac{\\partial z}{\\partial x} + a\\dfrac{\\partial z}{\\partial y} = 2ab\\,e^{ax+by} f(ax-by) = 2abz$."
   ]}
-  answer="Proved: $b\\dfrac{\\partial z}{\\partial x} + a\\dfrac{\\partial z}{\\partial y} = 2abz$."
+  answer="Proved: $b\dfrac{\partial z}{\partial x} + a\dfrac{\partial z}{\partial y} = 2abz$."
 />
 
 ---
@@ -116,49 +117,52 @@ Geometrically, the equation $z = f(x, y)$ represents a surface $S$ in three-dime
 
 Because the first-order partial derivatives $\dfrac{\partial z}{\partial x}$ and $\dfrac{\partial z}{\partial y}$ are themselves functions of $x$ and $y$, they can be differentiated partially again with respect to $x$ or $y$ to produce second-, third-, and higher-order partial derivatives.
 
-<RuleBox kind="definition" title="§1.8 Second-order partial derivatives and symmetry of mixed partials">
+<RuleBox kind="definition" title="Second-order partial derivatives and symmetry of mixed partials">
 
 For $z = f(x, y)$, the four second-order partial derivatives are defined symbolically as:
 
-$$\frac{\partial}{\partial x}\!\left(\frac{\partial z}{\partial x}\right) = \frac{\partial^2 z}{\partial x^2} = \frac{\partial^2 f}{\partial x^2} = f_{xx}, \qquad \frac{\partial}{\partial y}\!\left(\frac{\partial z}{\partial y}\right) = \frac{\partial^2 z}{\partial y^2} = \frac{\partial^2 f}{\partial y^2} = f_{yy},$$
+$$
+\frac{\partial}{\partial x}\!\left(\frac{\partial z}{\partial x}\right) = \frac{\partial^2 z}{\partial x^2} = \frac{\partial^2 f}{\partial x^2} = f_{xx}, \qquad \frac{\partial}{\partial y}\!\left(\frac{\partial z}{\partial y}\right) = \frac{\partial^2 z}{\partial y^2} = \frac{\partial^2 f}{\partial y^2} = f_{yy},
+$$
 
-$$\frac{\partial}{\partial y}\!\left(\frac{\partial z}{\partial x}\right) = \frac{\partial^2 z}{\partial y\,\partial x} = \frac{\partial^2 f}{\partial y\,\partial x} = f_{yx}, \qquad \frac{\partial}{\partial x}\!\left(\frac{\partial z}{\partial y}\right) = \frac{\partial^2 z}{\partial x\,\partial y} = \frac{\partial^2 f}{\partial x\,\partial y} = f_{xy}.$$
+$$
+\frac{\partial}{\partial y}\!\left(\frac{\partial z}{\partial x}\right) = \frac{\partial^2 z}{\partial y\,\partial x} = \frac{\partial^2 f}{\partial y\,\partial x} = f_{yx}, \qquad \frac{\partial}{\partial x}\!\left(\frac{\partial z}{\partial y}\right) = \frac{\partial^2 z}{\partial x\,\partial y} = \frac{\partial^2 f}{\partial x\,\partial y} = f_{xy}.
+$$
 
 **Commutativity Note:** For all smooth engineering functions (where the mixed partial derivatives are continuous), the order of differentiation does not affect the result:
 
-$$\frac{\partial^2 z}{\partial y\,\partial x} = \frac{\partial^2 z}{\partial x\,\partial y}.$$
+$$
+\frac{\partial^2 z}{\partial y\,\partial x} = \frac{\partial^2 z}{\partial x\,\partial y}.
+$$
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 11 (§1.8)"
-  source="H. K. Dass, Ch. 1, Example 11 (U.P., I Sem., Jan 2011; A.M.I.E., Summer 2000)"
-  problem="Prove that $y = f(x + at) + g(x - at)$ satisfies $\\dfrac{\\partial^2 y}{\\partial t^2} = a^2\\left(\\dfrac{\\partial^2 y}{\\partial x^2}\\right)$, where $f$ and $g$ are assumed to be at least twice differentiable and $a$ is any constant."
+  title="Example 11"
+  problem="Prove that $y = f(x + at) + g(x - at)$ satisfies $\dfrac{\partial^2 y}{\partial t^2} = a^2\left(\dfrac{\partial^2 y}{\partial x^2}\right)$, where $f$ and $g$ are assumed to be at least twice differentiable and $a$ is any constant."
   steps={[
     "Let $y = f(x + at) + g(x - at)$ ... (1). Differentiate (1) partially with respect to $x$: $\\dfrac{\\partial y}{\\partial x} = f'(x + at) + g'(x - at)$.",
     "Differentiate again partially with respect to $x$: $\\dfrac{\\partial^2 y}{\\partial x^2} = f''(x + at) + g''(x - at)$.",
     "Differentiate (1) partially with respect to $t$: $\\dfrac{\\partial y}{\\partial t} = f'(x + at)\\cdot a + g'(x - at)\\cdot(-a)$.",
     "Differentiate again partially with respect to $t$: $\\dfrac{\\partial^2 y}{\\partial t^2} = a^2 f''(x + at) + (-a)^2 g''(x - at) = a^2[f''(x + at) + g''(x - at)] = a^2\\dfrac{\\partial^2 y}{\\partial x^2}$."
   ]}
-  answer="Proved: $\\dfrac{\\partial^2 y}{\\partial t^2} = a^2\\dfrac{\\partial^2 y}{\\partial x^2}$ (the one-dimensional wave equation)."
+  answer="Proved: $\dfrac{\partial^2 y}{\partial t^2} = a^2\dfrac{\partial^2 y}{\partial x^2}$ (the one-dimensional wave equation)."
 />
 
 <StepRevealExample
-  title="Example 12 (§1.8)"
-  source="H. K. Dass, Ch. 1, Example 12 (U.P., I Semester Comp. 2002)"
-  problem="If $z = x^2 \\tan^{-1}\\left(\\dfrac{y}{x}\\right) - y^2 \\tan^{-1}\\left(\\dfrac{x}{y}\\right)$, prove that $\\dfrac{\\partial^2 z}{\\partial y\\,\\partial x} = \\dfrac{x^2 - y^2}{x^2 + y^2}$."
+  title="Example 12"
+  problem="If $z = x^2 \tan^{-1}\left(\dfrac{y}{x}\right) - y^2 \tan^{-1}\left(\dfrac{x}{y}\right)$, prove that $\dfrac{\partial^2 z}{\partial y\,\partial x} = \dfrac{x^2 - y^2}{x^2 + y^2}$."
   steps={[
     "Differentiate $z$ partially with respect to $x$: $\\dfrac{\\partial z}{\\partial x} = 2x\\tan^{-1}\\left(\\dfrac{y}{x}\\right) + x^2\\dfrac{1}{1 + (y/x)^2}\\left(-\\dfrac{y}{x^2}\\right) - y^2\\dfrac{1}{1 + (x/y)^2}\\left(\\dfrac{1}{y}\\right)$.",
     "Simplify the two rational terms: $\\dfrac{\\partial z}{\\partial x} = 2x\\tan^{-1}\\left(\\dfrac{y}{x}\\right) - \\dfrac{x^2 y}{x^2 + y^2} - \\dfrac{y^3}{x^2 + y^2} = 2x\\tan^{-1}\\left(\\dfrac{y}{x}\\right) - y\\dfrac{x^2 + y^2}{x^2 + y^2} = 2x\\tan^{-1}\\left(\\dfrac{y}{x}\\right) - y$.",
     "Now differentiate partially with respect to $y$: $\\dfrac{\\partial^2 z}{\\partial y\\,\\partial x} = 2x\\cdot\\dfrac{1}{1 + (y/x)^2}\\left(\\dfrac{1}{x}\\right) - 1 = \\dfrac{2x^2}{x^2 + y^2} - 1 = \\dfrac{2x^2 - (x^2 + y^2)}{x^2 + y^2} = \\dfrac{x^2 - y^2}{x^2 + y^2}$."
   ]}
-  answer="Proved: $\\dfrac{\\partial^2 z}{\\partial y\\,\\partial x} = \\dfrac{x^2 - y^2}{x^2 + y^2}$."
+  answer="Proved: $\dfrac{\partial^2 z}{\partial y\,\partial x} = \dfrac{x^2 - y^2}{x^2 + y^2}$."
 />
 
 <StepRevealExample
-  title="Example 13 (§1.8)"
-  source="H. K. Dass, Ch. 1, Example 13 (A.M.I.E., Winter 2000)"
-  problem="If $u = e^{xyz}$, find the value of $\\dfrac{\\partial^3 u}{\\partial x\\,\\partial y\\,\\partial z}$."
+  title="Example 13"
+  problem="If $u = e^{xyz}$, find the value of $\dfrac{\partial^3 u}{\partial x\,\partial y\,\partial z}$."
   steps={[
     "First differentiate partially with respect to $z$: $\\dfrac{\\partial u}{\\partial z} = e^{xyz}(xy)$.",
     "Next differentiate partially with respect to $y$ by the product rule: $\\dfrac{\\partial^2 u}{\\partial y\\,\\partial z} = e^{xyz}(x) + e^{xyz}(xz)(xy) = e^{xyz}(x + x^2 yz)$.",
@@ -169,9 +173,8 @@ $$\frac{\partial^2 z}{\partial y\,\partial x} = \frac{\partial^2 z}{\partial x\,
 />
 
 <StepRevealExample
-  title="Example 14 (§1.8)"
-  source="H. K. Dass, Ch. 1, Example 14"
-  problem="If $v = (x^2 + y^2 + z^2)^{m/2}$, then find the value of $m$ ($m \\neq 0$) which will make $\\dfrac{\\partial^2 v}{\\partial x^2} + \\dfrac{\\partial^2 v}{\\partial y^2} + \\dfrac{\\partial^2 v}{\\partial z^2} = 0$."
+  title="Example 14"
+  problem="If $v = (x^2 + y^2 + z^2)^{m/2}$, then find the value of $m$ ($m \neq 0$) which will make $\dfrac{\partial^2 v}{\partial x^2} + \dfrac{\partial^2 v}{\partial y^2} + \dfrac{\partial^2 v}{\partial z^2} = 0$."
   steps={[
     "Differentiate $v = (x^2 + y^2 + z^2)^{m/2}$ partially with respect to $x$: $\\dfrac{\\partial v}{\\partial x} = \\dfrac{m}{2}(x^2 + y^2 + z^2)^{\\frac{m}{2}-1}(2x) = m x (x^2 + y^2 + z^2)^{\\frac{m}{2}-1}$.",
     "Differentiate again with respect to $x$: $\\dfrac{\\partial^2 v}{\\partial x^2} = m\\left(\\dfrac{m}{2}-1\\right)x(x^2+y^2+z^2)^{\\frac{m}{2}-2}(2x) + m(x^2+y^2+z^2)^{\\frac{m}{2}-1} = m(x^2+y^2+z^2)^{\\frac{m}{2}-2}[(m-2)x^2 + x^2 + y^2 + z^2]$ ... (1).",
@@ -183,9 +186,8 @@ $$\frac{\partial^2 z}{\partial y\,\partial x} = \frac{\partial^2 z}{\partial x\,
 />
 
 <StepRevealExample
-  title="Example 15 (§1.8)"
-  source="H. K. Dass, Ch. 1, Example 15"
-  problem="If $u = (1 - 2xy + y^2)^{-1/2}$, prove that $\\dfrac{\\partial}{\\partial x}\\left((1 - x^2)\\dfrac{\\partial u}{\\partial x}\\right) + \\dfrac{\\partial}{\\partial y}\\left(y^2\\dfrac{\\partial u}{\\partial y}\\right) = 0$."
+  title="Example 15"
+  problem="If $u = (1 - 2xy + y^2)^{-1/2}$, prove that $\dfrac{\partial}{\partial x}\left((1 - x^2)\dfrac{\partial u}{\partial x}\right) + \dfrac{\partial}{\partial y}\left(y^2\dfrac{\partial u}{\partial y}\right) = 0$."
   steps={[
     "From $u = (1 - 2xy + y^2)^{-1/2}$, compute $\\dfrac{\\partial u}{\\partial x} = \\dfrac{y}{(1 - 2xy + y^2)^{3/2}}$, so $(1 - x^2)\\dfrac{\\partial u}{\\partial x} = \\dfrac{(1 - x^2)y}{(1 - 2xy + y^2)^{3/2}}$.",
     "Differentiate partially with respect to $x$ by the quotient rule and cancel $(1 - 2xy + y^2)^{1/2}$ from numerator and denominator: $\\dfrac{\\partial}{\\partial x}\\left((1 - x^2)\\dfrac{\\partial u}{\\partial x}\\right) = \\dfrac{(1 - 2xy + y^2)(-2xy) + 3(1 - x^2)y^2}{(1 - 2xy + y^2)^{5/2}} = \\dfrac{x^2 y^2 - 2xy^3 - 2xy + 3y^2}{(1 - 2xy + y^2)^{5/2}}$ ... (2).",
@@ -193,13 +195,12 @@ $$\frac{\partial^2 z}{\partial y\,\partial x} = \frac{\partial^2 z}{\partial x\,
     "Differentiate partially with respect to $y$ by the quotient rule and cancel $(1 - 2xy + y^2)^{1/2}$: $\\dfrac{\\partial}{\\partial y}\\left(y^2\\dfrac{\\partial u}{\\partial y}\\right) = \\dfrac{(1 - 2xy + y^2)(2xy - 3y^2) + 3(xy^2 - y^3)(x - y)}{(1 - 2xy + y^2)^{5/2}} = \\dfrac{-x^2 y^2 + 2xy^3 + 2xy - 3y^2}{(1 - 2xy + y^2)^{5/2}}$ ... (3).",
     "Add (2) and (3): the numerators are exact negatives of one another, so the sum is $0$."
   ]}
-  answer="Proved: $\\dfrac{\\partial}{\\partial x}\\left((1 - x^2)\\dfrac{\\partial u}{\\partial x}\\right) + \\dfrac{\\partial}{\\partial y}\\left(y^2\\dfrac{\\partial u}{\\partial y}\\right) = 0$."
+  answer="Proved: $\dfrac{\partial}{\partial x}\left((1 - x^2)\dfrac{\partial u}{\partial x}\right) + \dfrac{\partial}{\partial y}\left(y^2\dfrac{\partial u}{\partial y}\right) = 0$."
 />
 
 <StepRevealExample
-  title="Example 16 (§1.8)"
-  source="H. K. Dass, Ch. 1, Example 16"
-  problem="Prove that if $f(x, y) = \\dfrac{1}{\\sqrt{y}} e^{-\\frac{(x-a)^2}{4y}}$, then $f_{xy}(x, y) = f_{yx}(x, y)$."
+  title="Example 16"
+  problem="Prove that if $f(x, y) = \dfrac{1}{\sqrt{y}} e^{-\frac{(x-a)^2}{4y}}$, then $f_{xy}(x, y) = f_{yx}(x, y)$."
   steps={[
     "Differentiate $f(x, y)$ partially with respect to $x$: $f_x(x, y) = \\dfrac{1}{\\sqrt{y}} \\cdot \\dfrac{-2(x-a)}{4y} e^{-\\frac{(x-a)^2}{4y}} = \\dfrac{-(x-a)}{2y^{3/2}} e^{-\\frac{(x-a)^2}{4y}}$.",
     "Differentiate $f_x$ partially with respect to $y$ by the product rule: $f_{yx}(x, y) = \\dfrac{3(x-a)}{4y^{5/2}} e^{-\\frac{(x-a)^2}{4y}} - \\dfrac{(x-a)^3}{8y^{7/2}} e^{-\\frac{(x-a)^2}{4y}} = \\dfrac{(x-a)}{8y^{7/2}} e^{-\\frac{(x-a)^2}{4y}}[6y - (x-a)^2]$ ... (2).",
@@ -207,13 +208,12 @@ $$\frac{\partial^2 z}{\partial y\,\partial x} = \frac{\partial^2 z}{\partial x\,
     "Differentiate $f_y$ partially with respect to $x$: $f_{xy}(x, y) = \\dfrac{(x-a)}{4y^{5/2}} e^{-\\frac{(x-a)^2}{4y}} + \\dfrac{(x-a)}{2y^{5/2}} e^{-\\frac{(x-a)^2}{4y}} - \\dfrac{(x-a)^3}{8y^{7/2}} e^{-\\frac{(x-a)^2}{4y}} = \\dfrac{(x-a)}{8y^{7/2}} e^{-\\frac{(x-a)^2}{4y}}[2y + 4y - (x-a)^2] = \\dfrac{(x-a)}{8y^{7/2}} e^{-\\frac{(x-a)^2}{4y}}[6y - (x-a)^2]$ ... (3).",
     "Comparing (2) and (3) confirms $f_{xy}(x, y) = f_{yx}(x, y)$."
   ]}
-  answer="Proved: $f_{xy}(x, y) = f_{yx}(x, y) = \\dfrac{(x-a)}{8y^{7/2}} e^{-\\frac{(x-a)^2}{4y}}[6y - (x-a)^2]$."
+  answer="Proved: $f_{xy}(x, y) = f_{yx}(x, y) = \dfrac{(x-a)}{8y^{7/2}} e^{-\frac{(x-a)^2}{4y}}[6y - (x-a)^2]$."
 />
 
 <StepRevealExample
-  title="Example 17 (§1.8)"
-  source="H. K. Dass, Ch. 1, Example 17"
-  problem="If $u = x^y$, show that $\\dfrac{\\partial^3 u}{\\partial x^2\\,\\partial y} = \\dfrac{\\partial^3 u}{\\partial x\\,\\partial y\\,\\partial x}$."
+  title="Example 17"
+  problem="If $u = x^y$, show that $\dfrac{\partial^3 u}{\partial x^2\,\partial y} = \dfrac{\partial^3 u}{\partial x\,\partial y\,\partial x}$."
   steps={[
     "Take natural logarithms: $\\log u = y\\log x$. Differentiating partially gives $\\dfrac{\\partial u}{\\partial x} = \\dfrac{uy}{x}$ and $\\dfrac{\\partial u}{\\partial y} = u\\log x$.",
     "Differentiate $\\dfrac{\\partial u}{\\partial x} = \\dfrac{uy}{x}$ with respect to $y$: $\\dfrac{\\partial^2 u}{\\partial y\\,\\partial x} = \\dfrac{1}{x}\\left(u + y\\dfrac{\\partial u}{\\partial y}\\right) = \\dfrac{u}{x} + \\dfrac{uy\\log x}{x}$.",
@@ -221,20 +221,19 @@ $$\frac{\partial^2 z}{\partial y\,\partial x} = \frac{\partial^2 z}{\partial x\,
     "Now start from $\\dfrac{\\partial u}{\\partial y} = u\\log x$. Differentiate with respect to $x$: $\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} = \\dfrac{u}{x} + \\log x\\dfrac{\\partial u}{\\partial x} = \\dfrac{u}{x} + \\dfrac{uy\\log x}{x}$.",
     "Differentiate again with respect to $x$ to get $\\dfrac{\\partial^3 u}{\\partial x^2\\,\\partial y} = -\\dfrac{u}{x^2} + \\dfrac{2uy}{x^2} + \\dfrac{uy^2\\log x}{x^2} - \\dfrac{uy\\log x}{x^2}$ ... (2). Expressions (1) and (2) match identically."
   ]}
-  answer="Proved: $\\dfrac{\\partial^3 u}{\\partial x^2\\,\\partial y} = \\dfrac{\\partial^3 u}{\\partial x\\,\\partial y\\,\\partial x}$."
+  answer="Proved: $\dfrac{\partial^3 u}{\partial x^2\,\partial y} = \dfrac{\partial^3 u}{\partial x\,\partial y\,\partial x}$."
 />
 
 <StepRevealExample
-  title="Example 18 (§1.8)"
-  source="H. K. Dass, Ch. 1, Example 18 (U.P., I Semester, Winter 2003)"
-  problem="If $u = \\log(x^3 + y^3 + z^3 - 3xyz)$, show that $\\left(\\dfrac{\\partial}{\\partial x} + \\dfrac{\\partial}{\\partial y} + \\dfrac{\\partial}{\\partial z}\\right)^2 u = -\\dfrac{9}{(x + y + z)^2}$."
+  title="Example 18"
+  problem="If $u = \log(x^3 + y^3 + z^3 - 3xyz)$, show that $\left(\dfrac{\partial}{\partial x} + \dfrac{\partial}{\partial y} + \dfrac{\partial}{\partial z}\right)^2 u = -\dfrac{9}{(x + y + z)^2}$."
   steps={[
     "Differentiate $u = \\log(x^3 + y^3 + z^3 - 3xyz)$ partially with respect to $x$, $y$, and $z$: $\\dfrac{\\partial u}{\\partial x} = \\dfrac{3x^2 - 3yz}{x^3 + y^3 + z^3 - 3xyz}$, $\\dfrac{\\partial u}{\\partial y} = \\dfrac{3y^2 - 3zx}{x^3 + y^3 + z^3 - 3xyz}$, $\\dfrac{\\partial u}{\\partial z} = \\dfrac{3z^2 - 3xy}{x^3 + y^3 + z^3 - 3xyz}$.",
     "Add the three partial derivatives and use the algebraic factorization $x^3 + y^3 + z^3 - 3xyz = (x + y + z)(x^2 + y^2 + z^2 - xy - yz - zx)$: $\\dfrac{\\partial u}{\\partial x} + \\dfrac{\\partial u}{\\partial y} + \\dfrac{\\partial u}{\\partial z} = \\dfrac{3(x^2 + y^2 + z^2 - xy - yz - zx)}{(x+y+z)(x^2 + y^2 + z^2 - xy - yz - zx)} = \\dfrac{3}{x + y + z}$.",
     "Apply the operator $\\left(\\dfrac{\\partial}{\\partial x} + \\dfrac{\\partial}{\\partial y} + \\dfrac{\\partial}{\\partial z}\\right)$ a second time: $\\left(\\dfrac{\\partial}{\\partial x} + \\dfrac{\\partial}{\\partial y} + \\dfrac{\\partial}{\\partial z}\\right)^2 u = \\left(\\dfrac{\\partial}{\\partial x} + \\dfrac{\\partial}{\\partial y} + \\dfrac{\\partial}{\\partial z}\\right)\\left(\\dfrac{3}{x+y+z}\\right)$.",
     "Evaluate each term: $-3(x+y+z)^{-2} - 3(x+y+z)^{-2} - 3(x+y+z)^{-2} = -\\dfrac{9}{(x + y + z)^2}$."
   ]}
-  answer="Proved: $\\left(\\dfrac{\\partial}{\\partial x} + \\dfrac{\\partial}{\\partial y} + \\dfrac{\\partial}{\\partial z}\\right)^2 u = -\\dfrac{9}{(x + y + z)^2}$."
+  answer="Proved: $\left(\dfrac{\partial}{\partial x} + \dfrac{\partial}{\partial y} + \dfrac{\partial}{\partial z}\right)^2 u = -\dfrac{9}{(x + y + z)^2}$."
 />
 
 ---
@@ -250,7 +249,7 @@ Consider the two ways to express $r$ in terms of $x$:
 
 The two results ($\sec\theta$ versus $\cos\theta$) differ because holding $\theta$ fixed moves the point along a radial ray, whereas holding $y$ fixed moves the point horizontally.
 
-<RuleBox kind="working-rule" title="§1.9 Subscript convention for held variables">
+<RuleBox kind="working-rule" title="Subscript convention for held variables">
 
 To eliminate ambiguity when multiple coordinate systems appear:
 
@@ -258,26 +257,26 @@ To eliminate ambiguity when multiple coordinate systems appear:
 2. $\left(\dfrac{\partial r}{\partial x}\right)_y$ denotes the partial derivative of $r$ with respect to $x$, **keeping $y$ constant** (so $\left(\dfrac{\partial r}{\partial x}\right)_y = \cos\theta$).
 3. **Default convention** when no subscript is written: variables are paired by their natural coordinate set—$(x, y)$ together and $(r, \theta)$ together:
 
-$$\frac{\partial}{\partial x} \text{ means } \left(\frac{\partial}{\partial x}\right)_y, \qquad \frac{\partial}{\partial y} \text{ means } \left(\frac{\partial}{\partial y}\right)_x, \qquad \frac{\partial}{\partial r} \text{ means } \left(\frac{\partial}{\partial r}\right)_\theta, \qquad \frac{\partial}{\partial \theta} \text{ means } \left(\frac{\partial}{\partial \theta}\right)_r.$$
+$$
+\frac{\partial}{\partial x} \text{ means } \left(\frac{\partial}{\partial x}\right)_y, \qquad \frac{\partial}{\partial y} \text{ means } \left(\frac{\partial}{\partial y}\right)_x, \qquad \frac{\partial}{\partial r} \text{ means } \left(\frac{\partial}{\partial r}\right)_\theta, \qquad \frac{\partial}{\partial \theta} \text{ means } \left(\frac{\partial}{\partial \theta}\right)_r.
+$$
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 19 (§1.9)"
-  source="H. K. Dass, Ch. 1, Example 19"
-  problem="If $x = r\\cos\\theta$, $y = r\\sin\\theta$, find (i) $\\left(\\dfrac{\\partial x}{\\partial r}\\right)_\\theta$, (ii) $\\left(\\dfrac{\\partial y}{\\partial \\theta}\\right)_r$, (iii) $\\left(\\dfrac{\\partial r}{\\partial x}\\right)_y$, and (iv) $\\left(\\dfrac{\\partial \\theta}{\\partial y}\\right)_x$."
+  title="Example 19"
+  problem="If $x = r\cos\theta$, $y = r\sin\theta$, find (i) $\left(\dfrac{\partial x}{\partial r}\right)_\theta$, (ii) $\left(\dfrac{\partial y}{\partial \theta}\right)_r$, (iii) $\left(\dfrac{\partial r}{\partial x}\right)_y$, and (iv) $\left(\dfrac{\partial \theta}{\partial y}\right)_x$."
   steps={[
     "(i) $\\left(\\dfrac{\\partial x}{\\partial r}\\right)_\\theta$ means differentiate $x$ with respect to $r$, keeping $\\theta$ constant. From $x = r\\cos\\theta$, we get $\\left(\\dfrac{\\partial x}{\\partial r}\\right)_\\theta = \\cos\\theta$.",
     "(ii) $\\left(\\dfrac{\\partial y}{\\partial \\theta}\\right)_r$ means differentiate $y$ with respect to $\\theta$, keeping $r$ constant. From $y = r\\sin\\theta$, we get $\\left(\\dfrac{\\partial y}{\\partial \\theta}\\right)_r = r\\cos\\theta$.",
     "(iii) For $\\left(\\dfrac{\\partial r}{\\partial x}\\right)_y$, first express $r$ in terms of $x$ and $y$: $r = \\sqrt{x^2 + y^2}$. Differentiating with respect to $x$ ($y$ constant) gives $\\left(\\dfrac{\\partial r}{\\partial x}\\right)_y = \\dfrac{1}{2}\\cdot\\dfrac{2x}{\\sqrt{x^2 + y^2}} = \\dfrac{x}{\\sqrt{x^2 + y^2}}$.",
     "(iv) For $\\left(\\dfrac{\\partial \\theta}{\\partial y}\\right)_x$, first express $\\theta$ in terms of $x$ and $y$: $\\theta = \\tan^{-1}\\left(\\dfrac{y}{x}\\right)$. Differentiating with respect to $y$ ($x$ constant) gives $\\left(\\dfrac{\\partial \\theta}{\\partial y}\\right)_x = \\dfrac{1}{1 + (y/x)^2}\\cdot\\dfrac{1}{x} = \\dfrac{x}{x^2 + y^2}$."
   ]}
-  answer="(i) $\\cos\\theta$, (ii) $r\\cos\\theta$, (iii) $\\dfrac{x}{\\sqrt{x^2 + y^2}}$, (iv) $\\dfrac{x}{x^2 + y^2}$"
+  answer="(i) $\cos\theta$, (ii) $r\cos\theta$, (iii) $\dfrac{x}{\sqrt{x^2 + y^2}}$, (iv) $\dfrac{x}{x^2 + y^2}$"
 />
 
 <ExerciseSet
-  title="Exercise 1.3"
-  source="H. K. Dass, Ch. 1, Exercise 1.3"
+  title="Practice Set"
   items={[
     { q: "If $z^3 - 3yz - 3x = 0$, show that $z\\dfrac{\\partial z}{\\partial x} = \\dfrac{\\partial z}{\\partial y}$ and $z\\left[\\dfrac{\\partial^2 z}{\\partial x\\,\\partial y} + \\left(\\dfrac{\\partial z}{\\partial x}\\right)^2\\right] = \\dfrac{\\partial^2 z}{\\partial y^2}$.", a: "Differentiate implicitly: $\\dfrac{\\partial z}{\\partial x} = \\dfrac{1}{z^2 - y}$ and $\\dfrac{\\partial z}{\\partial y} = \\dfrac{z}{z^2 - y} = z\\dfrac{\\partial z}{\\partial x}$; differentiate this identity w.r.t. $y$ to get the second result." },
     { q: "If $z(z^2 + 3x) + 3y = 0$, prove that $\\dfrac{\\partial^2 z}{\\partial x^2} + \\dfrac{\\partial^2 z}{\\partial y^2} = \\dfrac{2z(x - 1)}{(z^2 + x)^3}$.", a: "Use $z_x = -\\dfrac{z}{z^2+x}$, $z_y = -\\dfrac{1}{z^2+x}$, then differentiate once more w.r.t. $x$ and $y$ and add." },
@@ -297,7 +296,7 @@ $$\frac{\partial}{\partial x} \text{ means } \left(\frac{\partial}{\partial x}\r
     { q: "If $x = \\dfrac{r}{2}(e^\\theta + e^{-\\theta})$, $y = \\dfrac{r}{2}(e^\\theta - e^{-\\theta})$, prove that $\\dfrac{\\partial x}{\\partial r} = \\dfrac{\\partial r}{\\partial x}$.", a: "$x = r\\cosh\\theta$ gives $(\\partial x/\\partial r)_\\theta = \\cosh\\theta$, while $x^2 - y^2 = r^2$ gives $(\\partial r/\\partial x)_y = x/r = \\cosh\\theta$." },
     { q: "If $u(x, t) = a\\,e^{-gx}\\sin(nt - gx)$ satisfies $\\dfrac{\\partial u}{\\partial t} = a^2\\dfrac{\\partial^2 u}{\\partial x^2}$, show that $ag = \\sqrt{\\dfrac{n}{2}}$.", a: "$u_t = a n e^{-gx}\\cos(nt-gx)$ and $u_{xx} = 2a g^2 e^{-gx}\\cos(nt-gx)$, so $n = 2a^2 g^2 \\implies ag = \\sqrt{n/2}$." },
     { q: "If $u = \\log(\\tan x + \\tan y)$, prove that $\\sin 2x\\dfrac{\\partial u}{\\partial x} + \\sin 2y\\dfrac{\\partial u}{\\partial y} = 2$.", a: "$\\sin 2x\\,\\sec^2 x + \\sin 2y\\,\\sec^2 y = 2\\tan x + 2\\tan y$, which cancels the denominator $\\tan x + \\tan y$ leaving $2$." },
-    { q: "If $u = e^{xyz} f\\left(\\dfrac{xz}{y}\\right)$, prove that (i) $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = 2xyzu$, (ii) $y\\dfrac{\\partial u}{\\partial y} + z\\dfrac{\\partial u}{\\partial z} = 2xyzu$, and deduce that $x\\dfrac{\\partial^2 u}{\\partial z\\,\\partial x} = y\\dfrac{\\partial^2 u}{\\partial z\\,\\partial y}$. (A.M.I.E., Summer 2001)", a: "The $f'$ terms cancel in both $x u_x + y u_y$ and $y u_y + z u_z$, giving $2xyzu$; equate the two relations and differentiate w.r.t. $z$." }
+    { q: "If $u = e^{xyz} f\\left(\\dfrac{xz}{y}\\right)$, prove that (i) $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = 2xyzu$, (ii) $y\\dfrac{\\partial u}{\\partial y} + z\\dfrac{\\partial u}{\\partial z} = 2xyzu$, and deduce that $x\\dfrac{\\partial^2 u}{\\partial z\\,\\partial x} = y\\dfrac{\\partial^2 u}{\\partial z\\,\\partial y}$.", a: "The $f'$ terms cancel in both $x u_x + y u_y$ and $y u_y + z u_z$, giving $2xyzu$; equate the two relations and differentiate w.r.t. $z$." }
   ]}
 />
 
@@ -307,21 +306,25 @@ $$\frac{\partial}{\partial x} \text{ means } \left(\frac{\partial}{\partial x}\r
 
 Before stating Euler's theorem, we formalize what it means for a function of two or more variables to be **homogeneous**. Intuitively, a polynomial in $x$ and $y$ is homogeneous of degree (or order) $n$ if every single term has the exact same total degree $n$.
 
-<RuleBox kind="definition" title="§1.10 Homogeneous function of order (degree) n">
+<RuleBox kind="definition" title="Homogeneous function of order (degree) n">
 
 A polynomial function $f(x, y)$ is a **homogeneous function of order $n$** if the degree of every term in $x$ and $y$ equals $n$:
 
-$$f(x, y) = a_0 x^n + a_1 x^{n-1} y + a_2 x^{n-2} y^2 + \dots + a_{n-1} x y^{n-1} + a_n y^n.$$
+$$
+f(x, y) = a_0 x^n + a_1 x^{n-1} y + a_2 x^{n-2} y^2 + \dots + a_{n-1} x y^{n-1} + a_n y^n.
+$$
 
 Factoring out $x^n$ yields the general form valid for **any** real degree $n$ (positive, negative, zero, or fractional):
 
-$$f(x, y) = x^n \left[ a_0 + a_1\left(\frac{y}{x}\right) + a_2\left(\frac{y}{x}\right)^2 + \dots + a_n\left(\frac{y}{x}\right)^n \right] = x^n \varphi\!\left(\frac{y}{x}\right).$$
+$$
+f(x, y) = x^n \left[ a_0 + a_1\left(\frac{y}{x}\right) + a_2\left(\frac{y}{x}\right)^2 + \dots + a_n\left(\frac{y}{x}\right)^n \right] = x^n \varphi\!\left(\frac{y}{x}\right).
+$$
 
 Equivalently, $f(tx, ty) = t^n f(x, y)$ for a scaling parameter $t > 0$. For three variables, $u(x, y, z) = x^n \varphi\!\left(\dfrac{y}{x}, \dfrac{z}{x}\right)$.
 
 </RuleBox>
 
-Dass highlights three diagnostic cases to fix the idea:
+ highlights three diagnostic cases to fix the idea:
 
 1. $x^3\left[1 + \dfrac{y}{x} + 3\left(\dfrac{y}{x}\right)^2 + 5\left(\dfrac{y}{x}\right)^3\right]$ is a homogeneous function of **order $3$**.
 2. $\dfrac{\sqrt{x} + \sqrt{y}}{x^2 + y^2} = \dfrac{\sqrt{x}\left[1 + \sqrt{\dfrac{y}{x}}\right]}{x^2\left[1 + \left(\dfrac{y}{x}\right)^2\right]} = x^{-3/2} \cdot \dfrac{1 + \sqrt{y/x}}{1 + (y/x)^2}$ is a homogeneous function of **order $-3/2$**.
@@ -333,92 +336,111 @@ Dass highlights three diagnostic cases to fix the idea:
 
 Euler's theorem provides an immediate algebraic shortcut linking the first-order partial derivatives of any homogeneous function to the function itself—often eliminating pages of quotient-rule differentiation.
 
-<RuleBox kind="theorem" title="§1.11 Euler's Theorem on Homogeneous Functions (U.P., I Semester, Dec. 2006)">
+<RuleBox kind="theorem" title="Euler's Theorem on Homogeneous Functions">
 
 **Statement.** If $z$ is a homogeneous function of $x$ and $y$ of order (degree) $n$, then
 
-$$x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = n z.$$
+$$
+x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = n z.
+$$
 
 **Extension to three variables.** If $u$ is a homogeneous function of $x, y, z$ of degree $n$, then
 
-$$x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} + z\frac{\partial u}{\partial z} = n u.$$
+$$
+x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} + z\frac{\partial u}{\partial z} = n u.
+$$
 
 </RuleBox>
 
 **Proof (two variables).** Since $z$ is homogeneous of order $n$ in $x$ and $y$, we can write
 
-$$z = x^n f\!\left(\frac{y}{x}\right). \tag{1}$$
+$$
+z = x^n f\!\left(\frac{y}{x}\right). \tag{1}
+$$
 
 Differentiating (1) partially with respect to $x$ by the product and chain rules:
 
-$$\frac{\partial z}{\partial x} = n x^{n-1} f\!\left(\frac{y}{x}\right) + x^n f'\!\left(\frac{y}{x}\right)\!\left(-\frac{y}{x^2}\right) = n x^{n-1} f\!\left(\frac{y}{x}\right) - x^{n-2} y\, f'\!\left(\frac{y}{x}\right).$$
+$$
+\frac{\partial z}{\partial x} = n x^{n-1} f\!\left(\frac{y}{x}\right) + x^n f'\!\left(\frac{y}{x}\right)\!\left(-\frac{y}{x^2}\right) = n x^{n-1} f\!\left(\frac{y}{x}\right) - x^{n-2} y\, f'\!\left(\frac{y}{x}\right).
+$$
 
 Multiplying both sides by $x$:
 
-$$x\frac{\partial z}{\partial x} = n x^n f\!\left(\frac{y}{x}\right) - x^{n-1} y\, f'\!\left(\frac{y}{x}\right). \tag{2}$$
+$$
+x\frac{\partial z}{\partial x} = n x^n f\!\left(\frac{y}{x}\right) - x^{n-1} y\, f'\!\left(\frac{y}{x}\right). \tag{2}
+$$
 
 Now differentiating (1) partially with respect to $y$:
 
-$$\frac{\partial z}{\partial y} = x^n f'\!\left(\frac{y}{x}\right) \cdot \frac{1}{x} = x^{n-1} f'\!\left(\frac{y}{x}\right).$$
+$$
+\frac{\partial z}{\partial y} = x^n f'\!\left(\frac{y}{x}\right) \cdot \frac{1}{x} = x^{n-1} f'\!\left(\frac{y}{x}\right).
+$$
 
 Multiplying both sides by $y$:
 
-$$y\frac{\partial z}{\partial y} = x^{n-1} y\, f'\!\left(\frac{y}{x}\right). \tag{3}$$
+$$
+y\frac{\partial z}{\partial y} = x^{n-1} y\, f'\!\left(\frac{y}{x}\right). \tag{3}
+$$
 
 Adding (2) and (3), the $f'(y/x)$ terms cancel identically:
 
-$$x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = n x^n f\!\left(\frac{y}{x}\right) = n z. \qquad \blacksquare$$
+$$
+x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = n x^n f\!\left(\frac{y}{x}\right) = n z. \qquad \blacksquare
+$$
 
 #### I. Deduction from Euler's Theorem
 
 In many university exam problems, the given function $u$ is *not* homogeneous itself (for instance, $u = \sin^{-1}(\dots)$, $u = \tan^{-1}(\dots)$, or $u = \log(\dots)$), yet applying an invertible function $z = f(u)$ reveals a homogeneous expression of degree $n$.
 
-<RuleBox kind="theorem" title="§1.11 Deduction I from Euler's Theorem (Nagpur University, Winter 2003)">
+<RuleBox kind="theorem" title="Deduction I from Euler's Theorem">
 
 If $z$ is a homogeneous function of $x, y$ of degree $n$ and $z = f(u)$, then
 
-$$x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = n\frac{f(u)}{f'(u)}.$$
+$$
+x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = n\frac{f(u)}{f'(u)}.
+$$
 
 **Three-variable form:** If $v = f(u)$ is a homogeneous function of $x, y, z$ of degree $n$, then
 
-$$x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} + z\frac{\partial u}{\partial z} = n\frac{f(u)}{f'(u)}.$$
+$$
+x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} + z\frac{\partial u}{\partial z} = n\frac{f(u)}{f'(u)}.
+$$
 
 </RuleBox>
 
 **Proof.** Since $z$ is homogeneous of degree $n$, Euler's theorem gives $x\dfrac{\partial z}{\partial x} + y\dfrac{\partial z}{\partial y} = nz$. Substituting $z = f(u)$, $\dfrac{\partial z}{\partial x} = f'(u)\dfrac{\partial u}{\partial x}$, and $\dfrac{\partial z}{\partial y} = f'(u)\dfrac{\partial u}{\partial y}$ yields
 
-$$x f'(u)\frac{\partial u}{\partial x} + y f'(u)\frac{\partial u}{\partial y} = n f(u) \implies x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = n\frac{f(u)}{f'(u)}. \qquad \blacksquare$$
+$$
+x f'(u)\frac{\partial u}{\partial x} + y f'(u)\frac{\partial u}{\partial y} = n f(u) \implies x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = n\frac{f(u)}{f'(u)}. \qquad \blacksquare
+$$
 
 <StepRevealExample
-  title="Example 20 (§1.11)"
-  source="H. K. Dass, Ch. 1, Example 20 (U.P., I Semester, Dec. 2009)"
-  problem="Verify Euler's theorem for $z = \\dfrac{x^{1/3} + y^{1/3}}{x^{1/2} + y^{1/2}}$."
+  title="Example 20"
+  problem="Verify Euler's theorem for $z = \dfrac{x^{1/3} + y^{1/3}}{x^{1/2} + y^{1/2}}$."
   steps={[
     "Factor out leading powers of $x$: $z = \\dfrac{x^{1/3}[1 + (y/x)^{1/3}]}{x^{1/2}[1 + (y/x)^{1/2}]} = x^{-1/6}\\varphi\\left(\\dfrac{y}{x}\\right)$. Thus $z$ is homogeneous of degree $n = -\\dfrac{1}{6}$, so Euler's theorem predicts $x\\dfrac{\\partial z}{\\partial x} + y\\dfrac{\\partial z}{\\partial y} = -\\dfrac{1}{6}z$ ... (2).",
     "Differentiate directly w.r.t. $x$ by the quotient rule and multiply by $x$: $x\\dfrac{\\partial z}{\\partial x} = \\dfrac{\\frac{1}{3}x^{5/6} + \\frac{1}{3}x^{1/3}y^{1/2} - \\frac{1}{2}x^{5/6} - \\frac{1}{2}x^{1/2}y^{1/3}}{(x^{1/2} + y^{1/2})^2}$ ... (3).",
     "By symmetry in $x$ and $y$, $y\\dfrac{\\partial z}{\\partial y} = \\dfrac{\\frac{1}{3}x^{1/2}y^{1/3} + \\frac{1}{3}y^{5/6} - \\frac{1}{2}x^{1/3}y^{1/2} - \\frac{1}{2}y^{5/6}}{(x^{1/2} + y^{1/2})^2}$ ... (4).",
     "Add (3) and (4): every coefficient simplifies to $\\frac{1}{3} - \\frac{1}{2} = -\\frac{1}{6}$, giving $x\\dfrac{\\partial z}{\\partial x} + y\\dfrac{\\partial z}{\\partial y} = \\dfrac{-\\frac{1}{6}[x^{5/6} + y^{5/6} + x^{1/3}y^{1/2} + x^{1/2}y^{1/3}]}{(x^{1/2} + y^{1/2})^2} = \\dfrac{-\\frac{1}{6}(x^{1/2} + y^{1/2})(x^{1/3} + y^{1/3})}{(x^{1/2} + y^{1/2})^2} = -\\dfrac{1}{6}\\dfrac{x^{1/3} + y^{1/3}}{x^{1/2} + y^{1/2}} = -\\dfrac{1}{6}z$."
   ]}
-  answer="Verified: $x\\dfrac{\\partial z}{\\partial x} + y\\dfrac{\\partial z}{\\partial y} = -\\dfrac{1}{6}z$."
+  answer="Verified: $x\dfrac{\partial z}{\partial x} + y\dfrac{\partial z}{\partial y} = -\dfrac{1}{6}z$."
 />
 
 <StepRevealExample
-  title="Example 21 (§1.11)"
-  source="H. K. Dass, Ch. 1, Example 21 (U.P., I Semester, Dec. 2009)"
-  problem="If $u = \\cos^{-1}\\left(\\dfrac{x + y}{\\sqrt{x} + \\sqrt{y}}\\right)$, show that $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + \\dfrac{1}{2}\\cot u = 0$."
+  title="Example 21"
+  problem="If $u = \cos^{-1}\left(\dfrac{x + y}{\sqrt{x} + \sqrt{y}}\right)$, show that $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} + \dfrac{1}{2}\cot u = 0$."
   steps={[
     "$u$ is not homogeneous, so set $z = \\cos u = \\dfrac{x + y}{\\sqrt{x} + \\sqrt{y}} = \\dfrac{x(1 + y/x)}{\\sqrt{x}(1 + \\sqrt{y/x})} = x^{1/2}\\varphi\\left(\\dfrac{y}{x}\\right)$.",
     "Thus $z = \\cos u$ is homogeneous of degree $n = \\dfrac{1}{2}$. By Euler's theorem, $x\\dfrac{\\partial z}{\\partial x} + y\\dfrac{\\partial z}{\\partial y} = \\dfrac{1}{2}z$.",
     "Using $\\dfrac{\\partial z}{\\partial x} = (-\\sin u)\\dfrac{\\partial u}{\\partial x}$ and $\\dfrac{\\partial z}{\\partial y} = (-\\sin u)\\dfrac{\\partial u}{\\partial y}$, we obtain $(-\\sin u)\\left(x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y}\\right) = \\dfrac{1}{2}\\cos u$.",
     "Dividing by $-\\sin u$ gives $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = -\\dfrac{1}{2}\\cot u \\implies x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + \\dfrac{1}{2}\\cot u = 0$."
   ]}
-  answer="Proved: $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + \\dfrac{1}{2}\\cot u = 0$."
+  answer="Proved: $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} + \dfrac{1}{2}\cot u = 0$."
 />
 
 <StepRevealExample
-  title="Example 22 (§1.11)"
-  source="H. K. Dass, Ch. 1, Example 22 (U.P., I Sem., Winter 2003)"
-  problem="If $u = \\sin^{-1}\\left[\\dfrac{x + 2y + 3z}{\\sqrt{x^8 + y^8 + z^8}}\\right]$, show that $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + z\\dfrac{\\partial u}{\\partial z} + 3\\tan u = 0$."
+  title="Example 22"
+  problem="If $u = \sin^{-1}\left[\dfrac{x + 2y + 3z}{\sqrt{x^8 + y^8 + z^8}}\right]$, show that $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} + z\dfrac{\partial u}{\partial z} + 3\tan u = 0$."
   steps={[
     "$u$ is not homogeneous, so write $v = \\sin u = \\dfrac{x + 2y + 3z}{\\sqrt{x^8 + y^8 + z^8}}$.",
     "Check the degree of $v$: the numerator has degree $1$ and the denominator $\\sqrt{x^8 + y^8 + z^8}$ has degree $\\frac{8}{2} = 4$, so $v$ is homogeneous in $(x, y, z)$ of degree $n = 1 - 4 = -3$.",
@@ -426,37 +448,34 @@ $$x f'(u)\frac{\partial u}{\partial x} + y f'(u)\frac{\partial u}{\partial y} = 
     "Substituting $\\dfrac{\\partial v}{\\partial u} = \\cos u$ gives $\\cos u\\left(x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + z\\dfrac{\\partial u}{\\partial z}\\right) = -3\\sin u$.",
     "Dividing by $\\cos u$: $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + z\\dfrac{\\partial u}{\\partial z} = -3\\tan u \\implies x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + z\\dfrac{\\partial u}{\\partial z} + 3\\tan u = 0$."
   ]}
-  answer="Proved: $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + z\\dfrac{\\partial u}{\\partial z} + 3\\tan u = 0$."
+  answer="Proved: $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} + z\dfrac{\partial u}{\partial z} + 3\tan u = 0$."
 />
 
 <StepRevealExample
-  title="Example 23 (§1.11)"
-  source="H. K. Dass, Ch. 1, Example 23 (Nagpur University, Summer 2008; Uttarakhand, I Semester 2008)"
-  problem="If $u = \\log_e\\left(\\dfrac{x^4 + y^4}{x + y}\\right)$, show that $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = 3$."
+  title="Example 23"
+  problem="If $u = \log_e\left(\dfrac{x^4 + y^4}{x + y}\right)$, show that $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} = 3$."
   steps={[
     "Exponentiate to obtain a homogeneous expression: $z = e^u = \\dfrac{x^4 + y^4}{x + y} = \\dfrac{x^4[1 + (y/x)^4]}{x[1 + y/x]} = x^3\\varphi\\left(\\dfrac{y}{x}\\right)$.",
     "Thus $z = f(u) = e^u$ is homogeneous of degree $n = 3$, with $f'(u) = e^u$.",
     "By Euler's Deduction I: $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = n\\dfrac{f(u)}{f'(u)} = 3\\cdot\\dfrac{e^u}{e^u} = 3$."
   ]}
-  answer="Proved: $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = 3$."
+  answer="Proved: $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} = 3$."
 />
 
 <StepRevealExample
-  title="Example 24 (§1.11)"
-  source="H. K. Dass, Ch. 1, Example 24 (A.M.I.E., Summer 2004)"
-  problem="If $f(x, y) = \\dfrac{1}{x^2} + \\dfrac{1}{xy} + \\dfrac{\\log x - \\log y}{x^2 + y^2}$, prove that $x\\dfrac{\\partial f}{\\partial x} + y\\dfrac{\\partial f}{\\partial y} + 2f = 0$."
+  title="Example 24"
+  problem="If $f(x, y) = \dfrac{1}{x^2} + \dfrac{1}{xy} + \dfrac{\log x - \log y}{x^2 + y^2}$, prove that $x\dfrac{\partial f}{\partial x} + y\dfrac{\partial f}{\partial y} + 2f = 0$."
   steps={[
     "Rewrite $\\log x - \\log y = -\\log\\left(\\dfrac{y}{x}\\right)$ and factor $x^{-2}$ out of every term: $f(x, y) = \\dfrac{1}{x^2}\\left[1 + \\dfrac{1}{y/x} - \\dfrac{\\log(y/x)}{1 + (y/x)^2}\\right] = x^{-2}\\varphi\\left(\\dfrac{y}{x}\\right)$.",
     "Hence $f(x, y)$ is homogeneous of degree $n = -2$.",
     "By Euler's theorem, $x\\dfrac{\\partial f}{\\partial x} + y\\dfrac{\\partial f}{\\partial y} = -2f \\implies x\\dfrac{\\partial f}{\\partial x} + y\\dfrac{\\partial f}{\\partial y} + 2f = 0$."
   ]}
-  answer="Proved: $x\\dfrac{\\partial f}{\\partial x} + y\\dfrac{\\partial f}{\\partial y} + 2f = 0$."
+  answer="Proved: $x\dfrac{\partial f}{\partial x} + y\dfrac{\partial f}{\partial y} + 2f = 0$."
 />
 
 <StepRevealExample
-  title="Example 25 (§1.11) — Second-Order Euler Identities"
-  source="H. K. Dass, Ch. 1, Example 25 (Uttarakhand, I Semester, Dec. 2006)"
-  problem="If $z$ is a homogeneous function of degree $n$, show that (i) $x\\dfrac{\\partial^2 z}{\\partial x^2} + y\\dfrac{\\partial^2 z}{\\partial x\\,\\partial y} = (n - 1)\\dfrac{\\partial z}{\\partial x}$, (ii) $x\\dfrac{\\partial^2 z}{\\partial x\\,\\partial y} + y\\dfrac{\\partial^2 z}{\\partial y^2} = (n - 1)\\dfrac{\\partial z}{\\partial y}$, and (iii) $x^2\\dfrac{\\partial^2 z}{\\partial x^2} + 2xy\\dfrac{\\partial^2 z}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 z}{\\partial y^2} = n(n - 1)z$."
+  title="Example 25 — Second-Order Euler Identities"
+  problem="If $z$ is a homogeneous function of degree $n$, show that (i) $x\dfrac{\partial^2 z}{\partial x^2} + y\dfrac{\partial^2 z}{\partial x\,\partial y} = (n - 1)\dfrac{\partial z}{\partial x}$, (ii) $x\dfrac{\partial^2 z}{\partial x\,\partial y} + y\dfrac{\partial^2 z}{\partial y^2} = (n - 1)\dfrac{\partial z}{\partial y}$, and (iii) $x^2\dfrac{\partial^2 z}{\partial x^2} + 2xy\dfrac{\partial^2 z}{\partial x\,\partial y} + y^2\dfrac{\partial^2 z}{\partial y^2} = n(n - 1)z$."
   steps={[
     "Start from Euler's theorem: $x\\dfrac{\\partial z}{\\partial x} + y\\dfrac{\\partial z}{\\partial y} = nz$ ... (1).",
     "(i) Differentiate (1) partially with respect to $x$: $\\dfrac{\\partial z}{\\partial x} + x\\dfrac{\\partial^2 z}{\\partial x^2} + y\\dfrac{\\partial^2 z}{\\partial x\\,\\partial y} = n\\dfrac{\\partial z}{\\partial x}$. Transposing $\\dfrac{\\partial z}{\\partial x}$ gives $x\\dfrac{\\partial^2 z}{\\partial x^2} + y\\dfrac{\\partial^2 z}{\\partial x\\,\\partial y} = (n - 1)\\dfrac{\\partial z}{\\partial x}$ ... (2).",
@@ -467,12 +486,11 @@ $$x f'(u)\frac{\partial u}{\partial x} + y f'(u)\frac{\partial u}{\partial y} = 
 />
 
 <StepRevealExample
-  title="Example 26 (§1.11)"
-  source="H. K. Dass, Ch. 1, Example 26 (A.M.I.E.T.E., Winter 2000)"
-  problem="If $f(x, y)$ and $\\phi(x, y)$ are homogeneous functions of $x, y$ of degree $p$ and $q$ respectively and $u = f(x, y) + \\phi(x, y)$, show that $f(x, y) = \\dfrac{1}{p(p - q)}\\left[x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2}\\right] - \\dfrac{q - 1}{p(p - q)}\\left[x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y}\\right]$."
+  title="Example 26"
+  problem="If $f(x, y)$ and $\phi(x, y)$ are homogeneous functions of $x, y$ of degree $p$ and $q$ respectively and $u = f(x, y) + \phi(x, y)$, show that $f(x, y) = \dfrac{1}{p(p - q)}\left[x^2\dfrac{\partial^2 u}{\partial x^2} + 2xy\dfrac{\partial^2 u}{\partial x\,\partial y} + y^2\dfrac{\partial^2 u}{\partial y^2}\right] - \dfrac{q - 1}{p(p - q)}\left[x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y}\right]$."
   steps={[
     "Apply Euler's first-order theorem to $f$ (degree $p$) and $\\phi$ (degree $q$): $x f_x + y f_y = pf$ and $x\\phi_x + y\\phi_y = q\\phi$. Adding gives $x u_x + y u_y = pf + q\\phi$ ... (3).",
-    "Apply the second-order Euler identity (Example 25) to $f$ and $\\phi$ and add: $x^2 u_{xx} + 2xy u_{xy} + y^2 u_{yy} = p(p - 1)f + q(q - 1)\\phi$ ... (4).",
+    "Apply the second-order Euler identity to $f$ and $\\phi$ and add: $x^2 u_{xx} + 2xy u_{xy} + y^2 u_{yy} = p(p - 1)f + q(q - 1)\\phi$ ... (4).",
     "Divide (4) by $p(p - q)$ and subtract $\\dfrac{q - 1}{p(p - q)}$ times (3): $\\text{R.H.S.} = \\dfrac{1}{p(p - q)}[p(p - 1)f + q(q - 1)\\phi - (q - 1)(pf + q\\phi)]$.",
     "Expand the numerator: $(p^2 - p - pq + p)f + (q^2 - q - q^2 + q)\\phi = (p^2 - pq)f = p(p - q)f$. Dividing by $p(p - q)$ leaves $f(x, y)$."
   ]}
@@ -480,9 +498,8 @@ $$x f'(u)\frac{\partial u}{\partial x} + y f'(u)\frac{\partial u}{\partial y} = 
 />
 
 <StepRevealExample
-  title="Example 27 (§1.11)"
-  source="H. K. Dass, Ch. 1, Example 27 (Nagpur University, Summer 2003)"
-  problem="If $z = x^n f\\left(\\dfrac{y}{x}\\right) + y^{-n}\\phi\\left(\\dfrac{x}{y}\\right)$, then prove that $x^2\\dfrac{\\partial^2 z}{\\partial x^2} + 2xy\\dfrac{\\partial^2 z}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 z}{\\partial y^2} + x\\dfrac{\\partial z}{\\partial x} + y\\dfrac{\\partial z}{\\partial y} = n^2 z$."
+  title="Example 27"
+  problem="If $z = x^n f\left(\dfrac{y}{x}\right) + y^{-n}\phi\left(\dfrac{x}{y}\right)$, then prove that $x^2\dfrac{\partial^2 z}{\partial x^2} + 2xy\dfrac{\partial^2 z}{\partial x\,\partial y} + y^2\dfrac{\partial^2 z}{\partial y^2} + x\dfrac{\partial z}{\partial x} + y\dfrac{\partial z}{\partial y} = n^2 z$."
   steps={[
     "Write $z = u + v$, where $u = x^n f(y/x)$ is homogeneous of degree $n$, and $v = y^{-n}\\phi(x/y)$ is homogeneous of degree $-n$.",
     "For $u$ (degree $n$): $x u_x + y u_y = nu$ ... (2), and $x^2 u_{xx} + 2xy u_{xy} + y^2 u_{yy} = n(n - 1)u$ ... (3).",
@@ -490,75 +507,82 @@ $$x f'(u)\frac{\partial u}{\partial x} + y f'(u)\frac{\partial u}{\partial y} = 
     "Add (2) and (4): $x z_x + y z_y = nu - nv$ ... (6). Add (3) and (5): $x^2 z_{xx} + 2xy z_{xy} + y^2 z_{yy} = n(n - 1)u + n(n + 1)v$ ... (7).",
     "Add (6) and (7): $n(n - 1)u + n(n + 1)v + nu - nv = nu(n - 1 + 1) + nv(n + 1 - 1) = n^2 u + n^2 v = n^2(u + v) = n^2 z$."
   ]}
-  answer="Proved: $x^2\\dfrac{\\partial^2 z}{\\partial x^2} + 2xy\\dfrac{\\partial^2 z}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 z}{\\partial y^2} + x\\dfrac{\\partial z}{\\partial x} + y\\dfrac{\\partial z}{\\partial y} = n^2 z$."
+  answer="Proved: $x^2\dfrac{\partial^2 z}{\partial x^2} + 2xy\dfrac{\partial^2 z}{\partial x\,\partial y} + y^2\dfrac{\partial^2 z}{\partial y^2} + x\dfrac{\partial z}{\partial x} + y\dfrac{\partial z}{\partial y} = n^2 z$."
 />
 
 #### II. Second-Order Deduction from Euler's Theorem
 
 When $z = f(u)$ is homogeneous of degree $n$, Deduction I yields $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} = g(u)$, where $g(u) = n\dfrac{f(u)}{f'(u)}$. Differentiating that identity produces the second-order composite formula—one of the highest-frequency formulas in GET 209 examinations.
 
-<RuleBox kind="theorem" title="§1.11 Deduction II from Euler's Theorem (Nagpur University, Winter 2003)">
+<RuleBox kind="theorem" title="Deduction II from Euler's Theorem">
 
 If $z = f(u)$ is a homogeneous function of $x, y$ of degree $n$ and $g(u) = n\dfrac{f(u)}{f'(u)}$ (so that $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} = g(u)$), then
 
-$$x^2\frac{\partial^2 u}{\partial x^2} + 2xy\frac{\partial^2 u}{\partial x\,\partial y} + y^2\frac{\partial^2 u}{\partial y^2} = g(u)\,[g'(u) - 1].$$
+$$
+x^2\frac{\partial^2 u}{\partial x^2} + 2xy\frac{\partial^2 u}{\partial x\,\partial y} + y^2\frac{\partial^2 u}{\partial y^2} = g(u)\,[g'(u) - 1].
+$$
 
 </RuleBox>
 
 **Proof.** Starting from Deduction I,
 
-$$x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = g(u). \tag{1}$$
+$$
+x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = g(u). \tag{1}
+$$
 
 Differentiating (1) partially with respect to $x$:
 
-$$\left(x\frac{\partial^2 u}{\partial x^2} + \frac{\partial u}{\partial x}\right) + y\frac{\partial^2 u}{\partial x\,\partial y} = g'(u)\frac{\partial u}{\partial x} \implies x\frac{\partial^2 u}{\partial x^2} + y\frac{\partial^2 u}{\partial x\,\partial y} = [g'(u) - 1]\frac{\partial u}{\partial x}. \tag{2}$$
+$$
+\left(x\frac{\partial^2 u}{\partial x^2} + \frac{\partial u}{\partial x}\right) + y\frac{\partial^2 u}{\partial x\,\partial y} = g'(u)\frac{\partial u}{\partial x} \implies x\frac{\partial^2 u}{\partial x^2} + y\frac{\partial^2 u}{\partial x\,\partial y} = [g'(u) - 1]\frac{\partial u}{\partial x}. \tag{2}
+$$
 
 Similarly, differentiating (1) partially with respect to $y$:
 
-$$x\frac{\partial^2 u}{\partial y\,\partial x} + y\frac{\partial^2 u}{\partial y^2} = [g'(u) - 1]\frac{\partial u}{\partial y}. \tag{3}$$
+$$
+x\frac{\partial^2 u}{\partial y\,\partial x} + y\frac{\partial^2 u}{\partial y^2} = [g'(u) - 1]\frac{\partial u}{\partial y}. \tag{3}
+$$
 
 Multiplying (2) by $x$, multiplying (3) by $y$, and adding (using $\dfrac{\partial^2 u}{\partial y\,\partial x} = \dfrac{\partial^2 u}{\partial x\,\partial y}$):
 
-$$x^2\frac{\partial^2 u}{\partial x^2} + 2xy\frac{\partial^2 u}{\partial x\,\partial y} + y^2\frac{\partial^2 u}{\partial y^2} = [g'(u) - 1]\!\left(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y}\right) = g(u)\,[g'(u) - 1]. \qquad \blacksquare$$
+$$
+x^2\frac{\partial^2 u}{\partial x^2} + 2xy\frac{\partial^2 u}{\partial x\,\partial y} + y^2\frac{\partial^2 u}{\partial y^2} = [g'(u) - 1]\!\left(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y}\right) = g(u)\,[g'(u) - 1]. \qquad \blacksquare
+$$
 
 <StepRevealExample
-  title="Example 28 (§1.11)"
-  source="H. K. Dass, Ch. 1, Example 28 (A.M.I.E., Winter 2001; M.U. 2009; Nagpur University, 2002)"
-  problem="If $u = \\tan^{-1}\\left(\\dfrac{x^3 + y^3}{x - y}\\right)$, prove that (i) $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = \\sin 2u$, and (ii) $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2} = 2\\cos 3u\\,\\sin u$."
+  title="Example 28"
+  problem="If $u = \tan^{-1}\left(\dfrac{x^3 + y^3}{x - y}\right)$, prove that (i) $x\dfrac{\partial u}{\partial x} + y\dfrac{\partial u}{\partial y} = \sin 2u$, and (ii) $x^2\dfrac{\partial^2 u}{\partial x^2} + 2xy\dfrac{\partial^2 u}{\partial x\,\partial y} + y^2\dfrac{\partial^2 u}{\partial y^2} = 2\cos 3u\,\sin u$."
   steps={[
     "Write $z = \\tan u = \\dfrac{x^3 + y^3}{x - y} = \\dfrac{x^3[1 + (y/x)^3]}{x[1 - (y/x)]} = x^2\\varphi\\left(\\dfrac{y}{x}\\right)$. So $z = f(u) = \\tan u$ is homogeneous of order $n = 2$.",
     "(i) By Deduction I with $f(u) = \\tan u$ and $f'(u) = \\sec^2 u$: $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = n\\dfrac{f(u)}{f'(u)} = \\dfrac{2\\tan u}{\\sec^2 u} = 2\\sin u\\cos u = \\sin 2u$.",
     "(ii) Set $g(u) = \\sin 2u$, so $g'(u) = 2\\cos 2u$. Apply Deduction II: $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2} = g(u)[g'(u) - 1] = \\sin 2u(2\\cos 2u - 1)$.",
     "Expand and use the sum-to-product identity $\\sin A - \\sin B = 2\\cos\\left(\\dfrac{A+B}{2}\\right)\\sin\\left(\\dfrac{A-B}{2}\\right)$: $2\\sin 2u\\cos 2u - \\sin 2u = \\sin 4u - \\sin 2u = 2\\cos 3u\\,\\sin u$."
   ]}
-  answer="Both (i) $\\sin 2u$ and (ii) $2\\cos 3u\\,\\sin u$ are proved."
+  answer="Both (i) $\sin 2u$ and (ii) $2\cos 3u\,\sin u$ are proved."
 />
 
 <StepRevealExample
-  title="Example 29 (§1.11)"
-  source="H. K. Dass, Ch. 1, Example 29"
-  problem="If $u = \\sin^{-1}\\left[\\dfrac{x + y}{\\sqrt{x} + \\sqrt{y}}\\right]$, prove that $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2} = \\dfrac{-\\sin u\\,\\cos 2u}{4\\cos^3 u}$."
+  title="Example 29"
+  problem="If $u = \sin^{-1}\left[\dfrac{x + y}{\sqrt{x} + \sqrt{y}}\right]$, prove that $x^2\dfrac{\partial^2 u}{\partial x^2} + 2xy\dfrac{\partial^2 u}{\partial x\,\partial y} + y^2\dfrac{\partial^2 u}{\partial y^2} = \dfrac{-\sin u\,\cos 2u}{4\cos^3 u}$."
   steps={[
     "Let $z = \\sin u = \\dfrac{x + y}{\\sqrt{x} + \\sqrt{y}} = \\dfrac{x(1 + y/x)}{\\sqrt{x}(1 + \\sqrt{y/x})} = x^{1/2}\\varphi\\left(\\dfrac{y}{x}\\right)$. Thus $z = f(u) = \\sin u$ is homogeneous of degree $n = \\dfrac{1}{2}$.",
     "By Deduction I: $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = \\dfrac{1}{2}\\dfrac{\\sin u}{\\cos u} = \\dfrac{1}{2}\\tan u$.",
     "Set $g(u) = \\dfrac{1}{2}\\tan u$, so $g'(u) = \\dfrac{1}{2}\\sec^2 u$. By Deduction II: $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2} = \\dfrac{1}{2}\\tan u\\left(\\dfrac{1}{2}\\sec^2 u - 1\\right)$.",
     "Rewrite in sines and cosines: $\\dfrac{1}{4}\\dfrac{\\sin u}{\\cos u}\\left(\\dfrac{1}{\\cos^2 u} - 2\\right) = \\dfrac{1}{4}\\dfrac{\\sin u}{\\cos^3 u}(1 - 2\\cos^2 u) = \\dfrac{-\\sin u\\,\\cos 2u}{4\\cos^3 u}$ (using $\\cos 2u = 2\\cos^2 u - 1$)."
   ]}
-  answer="Proved: $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2} = \\dfrac{-\\sin u\\,\\cos 2u}{4\\cos^3 u}$."
+  answer="Proved: $x^2\dfrac{\partial^2 u}{\partial x^2} + 2xy\dfrac{\partial^2 u}{\partial x\,\partial y} + y^2\dfrac{\partial^2 u}{\partial y^2} = \dfrac{-\sin u\,\cos 2u}{4\cos^3 u}$."
 />
 
 <ExerciseSet
-  title="Exercise 1.4"
-  source="H. K. Dass, Ch. 1, Exercise 1.4"
+  title="Practice Set"
   items={[
     { q: "Verify Euler's theorem in case (i) $f(x, y) = ax^2 + 2hxy + by^2$, (ii) $u = (\\sqrt{x} + \\sqrt{y})(x^n + y^n)$.", a: "(i) Homogeneous of degree $2$: $x f_x + y f_y = 2f$. (ii) Homogeneous of degree $n + \\dfrac{1}{2}$: $x u_x + y u_y = \\left(n + \\dfrac{1}{2}\\right)u$." },
     { q: "If $v = \\dfrac{x^3 y^3}{x^3 + y^3}$, show that $x\\dfrac{\\partial v}{\\partial x} + y\\dfrac{\\partial v}{\\partial y} = 3v$.", a: "Numerator degree $6$, denominator degree $3 \\implies v$ is homogeneous of degree $6 - 3 = 3$; Euler's theorem gives $3v$." },
     { q: "If $u = \\log\\dfrac{x^3 + y^3}{x^2 + y^2}$, prove that $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = 1$.", a: "$z = e^u$ is homogeneous of degree $3 - 2 = 1$; Deduction I gives $1\\cdot\\dfrac{e^u}{e^u} = 1$." },
     { q: "If $z = \\dfrac{x^2 + y^2}{\\sqrt{x + y}}$, prove that $x\\dfrac{\\partial z}{\\partial x} + y\\dfrac{\\partial z}{\\partial y} = \\dfrac{3}{2}z$.", a: "$z$ is homogeneous of degree $2 - \\dfrac{1}{2} = \\dfrac{3}{2}$; Euler's theorem gives $\\dfrac{3}{2}z$." },
-    { q: "If $f(x, y) = x^4 y^2 \\sin^{-1}\\left(\\dfrac{y}{x}\\right)$, then find the value of $x\\dfrac{\\partial f}{\\partial x} + y\\dfrac{\\partial f}{\\partial y}$. (A.M.I.E.T.E., Winter 2001)", a: "$6\\,f(x, y)$" },
+    { q: "If $f(x, y) = x^4 y^2 \\sin^{-1}\\left(\\dfrac{y}{x}\\right)$, then find the value of $x\\dfrac{\\partial f}{\\partial x} + y\\dfrac{\\partial f}{\\partial y}$.", a: "$6\\,f(x, y)$" },
     { q: "If $u = \\sin^{-1}\\dfrac{\\sqrt{x} - \\sqrt{y}}{\\sqrt{x} + \\sqrt{y}}$, show that $\\dfrac{\\partial u}{\\partial x} = -\\dfrac{y}{x}\\dfrac{\\partial u}{\\partial y}$.", a: "$u$ is homogeneous of degree $0$, so $x u_x + y u_y = 0 \\implies u_x = -\\dfrac{y}{x}u_y$." },
-    { q: "If $u = \\sec^{-1}\\left(\\dfrac{x^3 - y^3}{x + y}\\right)$, show that $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = 2\\cot u$, then evaluate $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2}$. (A.M.I.E.T.E., Winter 2001)", a: "$-2\\cot u\\,(2\\operatorname{cosec}^2 u + 1)$" },
-    { q: "If $x = e^u \\tan v$, $y = e^u \\sec v$, find the value of $\\left(x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y}\\right)\\left(x\\dfrac{\\partial v}{\\partial x} + y\\dfrac{\\partial v}{\\partial y}\\right)$. (A.M.I.E., Summer 2001)", a: "$0$ (since $e^{2u} = y^2 - x^2$ gives $x u_x + y u_y = 1$, and $\\sin v = x/y$ has degree $0$, giving $x v_x + y v_y = 0$)." },
+    { q: "If $u = \\sec^{-1}\\left(\\dfrac{x^3 - y^3}{x + y}\\right)$, show that $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = 2\\cot u$, then evaluate $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2}$.", a: "$-2\\cot u\\,(2\\operatorname{cosec}^2 u + 1)$" },
+    { q: "If $x = e^u \\tan v$, $y = e^u \\sec v$, find the value of $\\left(x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y}\\right)\\left(x\\dfrac{\\partial v}{\\partial x} + y\\dfrac{\\partial v}{\\partial y}\\right)$.", a: "$0$ (since $e^{2u} = y^2 - x^2$ gives $x u_x + y u_y = 1$, and $\\sin v = x/y$ has degree $0$, giving $x v_x + y v_y = 0$)." },
     { q: "If $u = \\sin^{-1}\\left[\\dfrac{x^{1/4} + y^{1/4}}{x^{1/6} + y^{1/6}}\\right]$, prove that $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2} = \\dfrac{1}{144}\\tan u\\,[\\tan^2 u - 11]$.", a: "$\\sin u$ has degree $\\dfrac{1}{4} - \\dfrac{1}{6} = \\dfrac{1}{12}$, so $g(u) = \\dfrac{1}{12}\\tan u$, and $g(u)[g'(u) - 1] = \\dfrac{1}{144}\\tan u\\,(\\sec^2 u - 12) = \\dfrac{1}{144}\\tan u\\,(\\tan^2 u - 11)$." },
     { q: "If $u = \\tan^{-1}\\left(\\dfrac{y^2}{x}\\right)$, find (i) $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y}$, and (ii) $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2}$.", a: "(i) $\\dfrac{xy^2}{x^2 + y^4}$, (ii) $\\dfrac{-2xy^6}{(x^2 + y^4)^2}$" },
     { q: "If $u = \\tan^{-1}\\dfrac{\\sqrt{x^3 + y^3}}{\\sqrt{x} + \\sqrt{y}}$, find the value of $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2}$.", a: "$-2\\sin^3 u\\cos u$" },
@@ -567,7 +591,7 @@ $$x^2\frac{\partial^2 u}{\partial x^2} + 2xy\frac{\partial^2 u}{\partial x\,\par
     { q: "Verify Euler's theorem on homogeneous function when $f(x, y, z) = 3x^2 yz + 5xy^2 z + 4z^4$.", a: "$f$ is homogeneous of degree $4$; direct differentiation verifies $x f_x + y f_y + z f_z = 4 f(x, y, z)$." },
     { q: "If $u = x\\phi\\left(\\dfrac{y}{x}\\right) + \\psi\\left(\\dfrac{y}{x}\\right)$, prove by Euler's theorem that $x^2\\dfrac{\\partial^2 u}{\\partial x^2} + 2xy\\dfrac{\\partial^2 u}{\\partial x\\,\\partial y} + y^2\\dfrac{\\partial^2 u}{\\partial y^2} = 0$.", a: "Split $u = u_1 + u_2$ with degrees $1$ and $0$; $1(1-1)u_1 + 0(0-1)u_2 = 0$." },
     { q: "Given $F(u) = V(x, y, z)$ where $V$ is a homogeneous function of $x, y, z$ of degree $n$, prove that $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + z\\dfrac{\\partial u}{\\partial z} = n\\dfrac{F(u)}{F'(u)}$.", a: "Apply 3-variable Euler's theorem to $V$ and substitute $V_x = F'(u)u_x$, $V_y = F'(u)u_y$, $V_z = F'(u)u_z$." },
-    { q: "State and prove Euler's theorem, and verify for $u = \\dfrac{x}{y} + \\dfrac{y}{z} + \\dfrac{z}{x}$. (A.M.I.E., Summer 2000)", a: "$u$ is homogeneous of degree $0$; direct computation gives $x u_x + y u_y + z u_z = 0$." },
+    { q: "State and prove Euler's theorem, and verify for $u = \\dfrac{x}{y} + \\dfrac{y}{z} + \\dfrac{z}{x}$.", a: "$u$ is homogeneous of degree $0$; direct computation gives $x u_x + y u_y + z u_z = 0$." },
     { q: "If $u = \\dfrac{x^2 y^2 z^2}{x^2 + y^2 + z^2} + \\cos\\left(\\dfrac{xy + yz}{x^2 + y^2 + z^2}\\right)$, show that $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} + z\\dfrac{\\partial u}{\\partial z} = \\dfrac{4 x^2 y^2 z^2}{x^2 + y^2 + z^2}$.", a: "Split $u = u_1 + u_2$: $u_1$ has degree $6 - 2 = 4$ and $u_2$ has degree $0$, so the Euler sum equals $4u_1 + 0 = \\dfrac{4x^2 y^2 z^2}{x^2 + y^2 + z^2}$." }
   ]}
 />
@@ -576,9 +600,9 @@ $$x^2\frac{\partial^2 u}{\partial x^2} + 2xy\frac{\partial^2 u}{\partial x\,\par
 
 ## Common Exam Pitfalls
 
-<Callout variant="warning" title="Key mistakes to avoid in §1.7–1.11">
+<Callout variant="warning" title="Key mistakes to avoid">
 
-- **Assuming $\left(\dfrac{\partial r}{\partial x}\right)_\theta = \left(\dfrac{\partial r}{\partial x}\right)_y$:** Never invert a partial derivative blindly as if it were an ordinary derivative! For polar coordinates, $\left(\dfrac{\partial x}{\partial r}\right)_\theta = \cos\theta$, so $\left(\dfrac{\partial r}{\partial x}\right)_\theta = \sec\theta$, whereas $\left(\dfrac{\partial r}{\partial x}\right)_y = \cos\theta$. Always check which variable is held constant (§1.9).
+- **Assuming $\left(\dfrac{\partial r}{\partial x}\right)_\theta = \left(\dfrac{\partial r}{\partial x}\right)_y$:** Never invert a partial derivative blindly as if it were an ordinary derivative! For polar coordinates, $\left(\dfrac{\partial x}{\partial r}\right)_\theta = \cos\theta$, so $\left(\dfrac{\partial r}{\partial x}\right)_\theta = \sec\theta$, whereas $\left(\dfrac{\partial r}{\partial x}\right)_y = \cos\theta$. Always check which variable is held constant.
 - **Applying Euler's theorem directly to a non-homogeneous composite function:** Expressions like $u = \sin^{-1}\!\left(\dfrac{x+y}{\sqrt{x}+\sqrt{y}}\right)$ or $u = \log\!\left(\dfrac{x^4+y^4}{x+y}\right)$ are **not** homogeneous. Always invert first to $z = f(u) = \sin u$ or $z = e^u$, find the degree $n$ of $z$, and then use **Deduction I** ($n\dfrac{f(u)}{f'(u)}$) and **Deduction II** ($g(u)[g'(u)-1]$).
 - **Forgetting to split sums of different degrees:** A function like $u = f(y/x) + \sqrt{x^2+y^2}$ or $z = x^n f(y/x) + y^{-n}\phi(x/y)$ is *not* a single homogeneous function—split it into $u_1 + u_2$ of separate degrees $n_1, n_2$ and apply Euler's theorem to each part independently (Examples 26 & 27).
 - **Forgetting the $-1$ inside Deduction II:** The second-order composite identity is $g(u)[g'(u) - 1]$, **not** $g(u)g'(u)$. When $z$ itself is homogeneous of degree $n$, $g(z) = nz$, so $g(z)[g'(z) - 1] = nz(n - 1) = n(n - 1)z$, which immediately recovers Example 25(iii).
@@ -589,22 +613,34 @@ $$x^2\frac{\partial^2 u}{\partial x^2} + 2xy\frac{\partial^2 u}{\partial x\,\par
 
 ## Summary of Formulas
 
-<RuleBox kind="formula" title="Master formula sheet — H. K. Dass, Ch. 1 (§1.7–1.11)">
+<RuleBox kind="formula" title="Master formula sheet">
 
-- **First-order partial derivatives (§1.7):**
-  $$\frac{\partial z}{\partial x} = \lim_{\delta x \to 0}\frac{f(x+\delta x, y) - f(x, y)}{\delta x}, \qquad \frac{\partial z}{\partial y} = \lim_{\delta y \to 0}\frac{f(x, y+\delta y) - f(x, y)}{\delta y}$$
-- **Monge notation (§1.7):** $p = z_x$, $q = z_y$, $r = z_{xx}$, $s = z_{xy}$, $t = z_{yy}$.
-- **Mixed partial symmetry (§1.8):** $\dfrac{\partial^2 z}{\partial y\,\partial x} = \dfrac{\partial^2 z}{\partial x\,\partial y}$.
-- **Polar coordinate derivatives (§1.9):** For $x = r\cos\theta$, $y = r\sin\theta$,
-  $$\left(\frac{\partial x}{\partial r}\right)_\theta = \cos\theta, \qquad \left(\frac{\partial r}{\partial x}\right)_\theta = \sec\theta, \qquad \left(\frac{\partial r}{\partial x}\right)_y = \frac{x}{r} = \cos\theta, \qquad \left(\frac{\partial \theta}{\partial y}\right)_x = \frac{x}{x^2 + y^2}.$$
-- **Homogeneous function of degree $n$ (§1.10):** $f(x, y) = x^n \varphi\!\left(\dfrac{y}{x}\right)$ (or $f(tx, ty) = t^n f(x, y)$).
-- **Euler's Theorem (§1.11):**
-  $$x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = n z \qquad \text{(and } x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} + z\frac{\partial u}{\partial z} = nu \text{ in 3 variables)}$$
-- **Second-order Euler identity (§1.11, Ex. 25):**
-  $$x^2\frac{\partial^2 z}{\partial x^2} + 2xy\frac{\partial^2 z}{\partial x\,\partial y} + y^2\frac{\partial^2 z}{\partial y^2} = n(n - 1) z$$
-- **Deduction I for $z = f(u)$ homogeneous of degree $n$ (§1.11):**
-  $$x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = n\frac{f(u)}{f'(u)} = g(u)$$
-- **Deduction II for $z = f(u)$ homogeneous of degree $n$ (§1.11):**
-  $$x^2\frac{\partial^2 u}{\partial x^2} + 2xy\frac{\partial^2 u}{\partial x\,\partial y} + y^2\frac{\partial^2 u}{\partial y^2} = g(u)\,[g'(u) - 1]$$
+- **First-order partial derivatives:**
+  $$
+  \frac{\partial z}{\partial x} = \lim_{\delta x \to 0}\frac{f(x+\delta x, y) - f(x, y)}{\delta x}, \qquad \frac{\partial z}{\partial y} = \lim_{\delta y \to 0}\frac{f(x, y+\delta y) - f(x, y)}{\delta y}
+  $$
+- **Monge notation:** $p = z_x$, $q = z_y$, $r = z_{xx}$, $s = z_{xy}$, $t = z_{yy}$.
+- **Mixed partial symmetry:** $\dfrac{\partial^2 z}{\partial y\,\partial x} = \dfrac{\partial^2 z}{\partial x\,\partial y}$.
+- **Polar coordinate derivatives:** For $x = r\cos\theta$, $y = r\sin\theta$,
+  $$
+  \left(\frac{\partial x}{\partial r}\right)_\theta = \cos\theta, \qquad \left(\frac{\partial r}{\partial x}\right)_\theta = \sec\theta, \qquad \left(\frac{\partial r}{\partial x}\right)_y = \frac{x}{r} = \cos\theta, \qquad \left(\frac{\partial \theta}{\partial y}\right)_x = \frac{x}{x^2 + y^2}.
+  $$
+- **Homogeneous function of degree $n$:** $f(x, y) = x^n \varphi\!\left(\dfrac{y}{x}\right)$ (or $f(tx, ty) = t^n f(x, y)$).
+- **Euler's Theorem:**
+  $$
+  x\frac{\partial z}{\partial x} + y\frac{\partial z}{\partial y} = n z \qquad \text{(and } x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} + z\frac{\partial u}{\partial z} = nu \text{ in 3 variables)}
+  $$
+- **Second-order Euler identity:**
+  $$
+  x^2\frac{\partial^2 z}{\partial x^2} + 2xy\frac{\partial^2 z}{\partial x\,\partial y} + y^2\frac{\partial^2 z}{\partial y^2} = n(n - 1) z
+  $$
+- **Deduction I for $z = f(u)$ homogeneous of degree $n$:**
+  $$
+  x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = n\frac{f(u)}{f'(u)} = g(u)
+  $$
+- **Deduction II for $z = f(u)$ homogeneous of degree $n$:**
+  $$
+  x^2\frac{\partial^2 u}{\partial x^2} + 2xy\frac{\partial^2 u}{\partial x\,\partial y} + y^2\frac{\partial^2 u}{\partial y^2} = g(u)\,[g'(u) - 1]
+  $$
 
 </RuleBox>

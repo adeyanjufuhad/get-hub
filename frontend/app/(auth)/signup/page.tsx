@@ -37,14 +37,14 @@ export default function SignupPage() {
         level: DEFAULT_STUDY_LEVEL,
       });
       setUser(user);
-      toast.success(`Welcome to ${APP_NAME}, ${user.full_name.split(" ")[0]}!`);
+      toast.success("Account created");
       router.push("/dashboard");
     } catch (err) {
       if (err instanceof ApiError) {
         if (err.fields) setFieldErrors(err.fields);
         toast.error(err.message);
       } else {
-        toast.error("Could not connect to server. Check your connection.");
+        toast.error("Could not connect to server");
       }
     } finally {
       setSubmitting(false);
@@ -59,14 +59,14 @@ export default function SignupPage() {
       <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-md outline-none">
         <Link href="/" className="mb-5 inline-flex items-center gap-2.5 sm:mb-6">
           <BrandLogo size="md" />
-          <span translate="no" className="text-base font-extrabold tracking-tight">
+          <span translate="no" className="text-base font-semibold tracking-tight">
             {APP_NAME}
           </span>
         </Link>
 
         {/* Concentric card: Outer 28px (12+16) mobile / 32px (12+20) sm -> inner inputs & buttons 12px */}
         <div className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5">
-          <h1 className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl">
+          <h1 className="text-xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-2xl">
             Create your student account
           </h1>
           <p className="mt-1.5 text-sm text-[var(--text-secondary)]">

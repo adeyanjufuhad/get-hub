@@ -1,0 +1,300 @@
+{
+  "topicSlug": "trusses-frames-and-machines",
+  "questions": [
+    {
+      "key": "prob-6-3-member-bc",
+      "type": "numeric",
+      "prompt": "Using the method of joints, determine the force in member $BC$ of the truss shown ($84\\text{-kN}$ load at $B$; pin at $A$, roller against the wall at $C$). Give the magnitude in $\\text{kN}$ and state whether the member is in tension (T) or compression (C).",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-3.png",
+      "answer": 80,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "Geometry: $B(0,\\,4)$, $A(3,\\,5.25)$, $C(3,\\,0)\\,\\text{m}$. Then $BA = \\sqrt{3^2 + 1.25^2} = 3.25\\,\\text{m}$ and $BC = \\sqrt{3^2 + 4^2} = 5\\,\\text{m}$.\n\n**Joint B** (assume both members in tension, forces pointing away from $B$):\n\n$$\\xrightarrow{+}\\sum F_x = 0:\\quad \\tfrac{3}{3.25}F_{AB} + \\tfrac{3}{5}F_{BC} = 0 \\;\\Rightarrow\\; F_{AB} = -0.65F_{BC}$$\n\n$$+\\!\\uparrow\\sum F_y = 0:\\quad \\tfrac{1.25}{3.25}F_{AB} - \\tfrac{4}{5}F_{BC} - 84 = 0$$\n\nSubstituting: $-0.25F_{BC} - 0.80F_{BC} = 84 \\Rightarrow F_{BC} = -80.0\\,\\text{kN}$.\n\nThe negative sign means member $BC$ pushes on the joint: $F_{BC} = 80.0\\,\\text{kN}\\;C$. (Also $F_{AB} = 52.0\\,\\text{kN}\\;T$, and from joint $C$, $F_{AC} = 64.0\\,\\text{kN}\\;T$.)",
+      "difficulty": "easy",
+      "tags": [
+        "method-of-joints",
+        "tension-compression"
+      ]
+    },
+    {
+      "key": "prob-6-11-pratt-member-ab",
+      "type": "numeric",
+      "prompt": "Determine the force in member $AB$ of the Pratt roof truss shown ($5.7\\,\\text{kN}$ at $A$ and $H$, $10.5\\,\\text{kN}$ at $B$ and $F$, $9.6\\,\\text{kN}$ at $D$; pin at $A$, roller at $H$; rise $2.4\\,\\text{m}$). Give the magnitude in $\\text{kN}$ and state T or C.",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-11.png",
+      "answer": 47.2,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "**Reactions.** Total load $= 2(5.7) + 2(10.5) + 9.6 = 42.0\\,\\text{kN}$. By symmetry $A_y = H = 21.0\\,\\text{kN}\\uparrow$.\n\n**Geometry.** The rafter $ABD$ rises $2.4\\,\\text{m}$ over $7.0\\,\\text{m}$. For $AB$ (horizontal run $3.8\\,\\text{m}$, rise $3.8(2.4/7) = 1.303\\,\\text{m}$, length $4.017\\,\\text{m}$): $\\sin = 0.3244$, $\\cos = 0.9459$.\n\n**Joint A.** The net upward force from the support and the joint load is $21.0 - 5.7 = 15.3\\,\\text{kN}$.\n\n$$+\\!\\uparrow\\sum F_y = 0:\\quad 15.3 + 0.3244F_{AB} = 0 \\;\\Rightarrow\\; F_{AB} = -47.2\\,\\text{kN}$$\n\n$$\\xrightarrow{+}\\sum F_x = 0:\\quad F_{AC} + 0.9459(-47.2) = 0 \\;\\Rightarrow\\; F_{AC} = 44.6\\,\\text{kN}\\;T$$\n\nSo $F_{AB} = 47.2\\,\\text{kN}\\;C$.",
+      "difficulty": "medium",
+      "tags": [
+        "method-of-joints",
+        "roof-truss"
+      ]
+    },
+    {
+      "key": "prob-6-11-pratt-member-cd",
+      "type": "numeric",
+      "prompt": "For the Pratt roof truss shown, determine the force in the diagonal member $CD$. Give the magnitude in $\\text{kN}$ and state T or C.",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-11.png",
+      "answer": 17.5,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "**Joint B.** Members $AB$ and $BD$ are collinear. The only other forces are the $10.5\\text{-kN}$ load and member $BC$, both vertical. Summing components perpendicular to $ABD$ shows that $BC$ must balance the load: $F_{BC} = 10.50\\,\\text{kN}\\;C$, and $F_{BD} = F_{AB} = 47.2\\,\\text{kN}\\;C$.\n\n**Joint C** (members $CA$, $CB$, $CD$, $CE$; no load). Diagonal $CD$ runs $3.2\\,\\text{m}$ across and $2.4\\,\\text{m}$ up (length $4.0\\,\\text{m}$), so it has components $(0.8,\\,0.6)$.\n\n$$+\\!\\uparrow\\sum F_y = 0:\\quad F_{BC} + 0.6F_{CD} = 0 \\;\\Rightarrow\\; -10.5 + 0.6F_{CD} = 0 \\;\\Rightarrow\\; F_{CD} = +17.50\\,\\text{kN}$$\n\nSo $F_{CD} = 17.50\\,\\text{kN}\\;T$. (Then $\\sum F_x = 0$ gives $F_{CE} = 44.6 - 0.8(17.5) = 30.6\\,\\text{kN}\\;T$, and joint $E$ shows $DE$ is a zero-force member.)",
+      "difficulty": "medium",
+      "tags": [
+        "method-of-joints",
+        "roof-truss"
+      ]
+    },
+    {
+      "key": "prob-6-164-member-cf",
+      "type": "numeric",
+      "prompt": "Using the method of joints, determine the force in member $CF$ of the truss shown ($900\\,\\text{N}$ horizontal loads at $A$ and $C$; pin at $E$, roller at $F$). Give the magnitude in $\\text{N}$ and state T or C.",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-164.png",
+      "answer": 2250,
+      "tolerancePct": 1,
+      "unit": "N",
+      "solution": "Diagonals $AD$ and $CF$ span $3\\,\\text{m}$ horizontally and $2.25\\,\\text{m}$ vertically, so they have length $3.75\\,\\text{m}$ and direction cosines $0.8$, $0.6$.\n\n**Joint A** (members $AC$, $AD$; load $900\\,\\text{N}\\rightarrow$):\n\n$$\\xrightarrow{+}\\sum F_x = 0:\\; 900 + 0.8F_{AD} = 0 \\Rightarrow F_{AD} = -1125\\,\\text{N};\\qquad +\\!\\uparrow\\sum F_y = 0:\\; -F_{AC} - 0.6(-1125) = 0 \\Rightarrow F_{AC} = 675\\,\\text{N}\\;T$$\n\n**Joint D:** $\\sum F_x = 0 \\Rightarrow F_{CD} = -0.8F_{AD} = 900\\,\\text{N}\\;T$.\n\n**Joint C** (members $CA$, $CD$, $CE$, $CF$; load $900\\,\\text{N}\\rightarrow$):\n\n$$\\xrightarrow{+}\\sum F_x = 0:\\quad 900 + F_{CD} + 0.8F_{CF} = 0 \\;\\Rightarrow\\; 900 + 900 + 0.8F_{CF} = 0 \\;\\Rightarrow\\; F_{CF} = -2250\\,\\text{N}$$\n\nSo $F_{CF} = 2250\\,\\text{N}\\;C$.",
+      "difficulty": "medium",
+      "tags": [
+        "method-of-joints",
+        "review"
+      ]
+    },
+    {
+      "key": "prob-6-164-zero-force",
+      "type": "mcq",
+      "prompt": "In the truss shown, which members can be identified as **zero-force members** by inspection, without any calculation?",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-164.png",
+      "options": [
+        {
+          "label": "A",
+          "text": "$AB$ and $BD$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$AC$ and $CE$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$CD$ only",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$DF$ and $EF$",
+          "correct": false
+        }
+      ],
+      "solution": "Joint $B$ connects only two members, $BA$ (horizontal) and $BD$ (vertical), and carries **no external load**. Two non-collinear members at an unloaded joint must both be zero-force members. So $F_{AB} = F_{BD} = 0$, which agrees with the standard answer.\n\nThe other choices are loaded members: $F_{AC} = 675\\,\\text{N}\\;T$, $F_{CE} = 2025\\,\\text{N}\\;T$, $F_{CD} = 900\\,\\text{N}\\;T$, $F_{DF} = 675\\,\\text{N}\\;C$, $F_{EF} = 1800\\,\\text{N}\\;T$.",
+      "difficulty": "easy",
+      "tags": [
+        "zero-force-members",
+        "special-loading"
+      ]
+    },
+    {
+      "key": "prob-6-44-member-fh",
+      "type": "numeric",
+      "prompt": "Determine the force in member $FH$ of the truss shown (four panels at $2.4\\,\\text{m} = 9.6\\,\\text{m}$, depth $1.8\\,\\text{m}$; $12\\,\\text{kN}$ loads at $E$ and $G$; pin at $B$, roller at $J$). Give the magnitude in $\\text{kN}$ and state T or C.",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-43.png",
+      "answer": 20,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "**Reactions.** $+\\circlearrowleft\\sum M_B = 0$: $J(9.6) - 12(4.8) - 12(7.2) = 0 \\Rightarrow J = 15.0\\,\\text{kN}\\uparrow$.\n\n**Section** through $EG$, $FG$, $FH$; use the right-hand portion. $EG$ and $FG$ both pass through $G$, so take moments about $G$. $J$ lies $2.4\\,\\text{m}$ to the right of $G$, and $FH$ lies $1.8\\,\\text{m}$ below $G$. With $\\mathbf{F}_{FH}$ drawn as a tension (pointing left, toward $F$):\n\n$$+\\circlearrowleft\\sum M_G = 0:\\quad (15.0)(2.4) - F_{FH}(1.8) = 0 \\;\\Rightarrow\\; F_{FH} = +20.0\\,\\text{kN}$$\n\nSo $F_{FH} = 20.0\\,\\text{kN}\\;T$. (Also $\\sum F_y = 0$: $15 - 12 - 0.6F_{FG} = 0 \\Rightarrow F_{FG} = 5.00\\,\\text{kN}\\;T$.)",
+      "difficulty": "easy",
+      "tags": [
+        "method-of-sections"
+      ]
+    },
+    {
+      "key": "prob-6-49-member-ce",
+      "type": "numeric",
+      "prompt": "Determine the force in member $CE$ of the truss shown ($36\\,\\text{kN}$ to the left at $A$; $20\\,\\text{kN}$ down at $D$ and $G$; roller at $B$, pin at $K$; panels $4.5\\,\\text{m}$, depth $2.4\\,\\text{m}$). Give the magnitude in $\\text{kN}$ and state T or C.",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-49.png",
+      "answer": 56.1,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "**Reaction at B.** $+\\circlearrowleft\\sum M_K = 0$: $-B(13.5) + 36(2.4) + 20(9) + 20(4.5) = 0 \\Rightarrow B = 26.4\\,\\text{kN}\\uparrow$.\n\n**Section** through $AD$, $CD$, $CE$ (just left of $D$); use the portion $ABC$. The diagonals $CD$ and $CE$ have length $\\sqrt{2.25^2 + 1.2^2} = 2.55\\,\\text{m}$, with components $(0.8824,\\,\\pm 0.4706)$.\n\n$+\\circlearrowleft\\sum M_C = 0$: $-1.2F_{AD} + 1.2(36) - 2.25(26.4) = 0 \\Rightarrow F_{AD} = -13.5\\,\\text{kN}$ ($13.50\\,\\text{kN}\\;C$).\n\n$$\\xrightarrow{+}\\sum F_x = 0:\\; F_{AD} - 36 + 0.8824(F_{CD} + F_{CE}) = 0 \\Rightarrow F_{CD} + F_{CE} = 56.1$$\n\n$$+\\!\\uparrow\\sum F_y = 0:\\; 26.4 + 0.4706(F_{CD} - F_{CE}) = 0 \\Rightarrow F_{CD} - F_{CE} = -56.1$$\n\nHence $F_{CD} = 0$ and $F_{CE} = +56.1\\,\\text{kN}$, so $F_{CE} = 56.1\\,\\text{kN}\\;T$.",
+      "difficulty": "hard",
+      "tags": [
+        "method-of-sections"
+      ]
+    },
+    {
+      "key": "prob-6-63-member-dg",
+      "type": "numeric",
+      "prompt": "Determine the force in member $DG$ of the truss shown, using section $aa$ ($5\\,\\text{kN}$ horizontal loads at $A$, $D$, $G$; panels $3\\,\\text{m}$ high, truss $4\\,\\text{m}$ wide). Give the magnitude in $\\text{kN}$ and state T or C.",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-63.png",
+      "answer": 3.75,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "Section $aa$ cuts **four** members: $DG$, $DE$, $EF$, $FI$. Use the upper portion $ABCDF$. Members $DE$ and $EF$ lie on the horizontal line through $F$, and $FI$ passes through $F$. So a moment equation about $F$ contains only $F_{DG}$.\n\nTake $F$ as origin: $A$ is at $(-4,\\,3)$ and $D$ at $(-4,\\,0)$. $\\mathbf{F}_{DG}$ (tension) pulls $D$ downward.\n\n$$+\\circlearrowleft\\sum M_F = 0:\\quad -(5)(3) - (5)(0) + F_{DG}(4) = 0 \\;\\Rightarrow\\; F_{DG} = +3.75\\,\\text{kN}$$\n\nSo $F_{DG} = 3.75\\,\\text{kN}\\;T$. (About $D$, the same portion gives $F_{FI} = 3.75\\,\\text{kN}\\;C$.)",
+      "difficulty": "medium",
+      "tags": [
+        "method-of-sections",
+        "section-through-four-members"
+      ]
+    },
+    {
+      "key": "prob-6-64-member-gj",
+      "type": "numeric",
+      "prompt": "For the truss of Probs. 6.63 and 6.64 (shown), determine the force in member $GJ$, using section $bb$. Give the magnitude in $\\text{kN}$ and state T or C.",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-63.png",
+      "answer": 11.25,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "Section $bb$ cuts $GJ$, $GH$, $HI$, $IK$. $GH$ and $HI$ lie on the horizontal line through $I$, and $IK$ passes through $I$, so take moments about $I$ for the upper portion.\n\nWith $I$ as origin, the $5\\text{-kN}$ loads act at $A(-4,\\,6)$, $D(-4,\\,3)$, $G(-4,\\,0)$, and $\\mathbf{F}_{GJ}$ (tension) pulls $G$ downward at $x = -4$:\n\n$$+\\circlearrowleft\\sum M_I = 0:\\quad -(5)(6) - (5)(3) - (5)(0) + F_{GJ}(4) = 0 \\;\\Rightarrow\\; F_{GJ} = +11.25\\,\\text{kN}$$\n\nSo $F_{GJ} = 11.25\\,\\text{kN}\\;T$ (and, about $G$, $F_{IK} = 11.25\\,\\text{kN}\\;C$).",
+      "difficulty": "medium",
+      "tags": [
+        "method-of-sections",
+        "section-through-four-members"
+      ]
+    },
+    {
+      "key": "prob-6-70-classify",
+      "type": "mcq",
+      "prompt": "Classify each of the structures (a), (b), (c) shown as completely, partially, or improperly constrained; if completely constrained, further classify as determinate or indeterminate. (All members can act in tension and compression.)",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-70.png",
+      "options": [
+        {
+          "label": "A",
+          "text": "(a) completely constrained, determinate; (b) partially constrained; (c) improperly constrained",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "(a) completely constrained, indeterminate; (b) partially constrained; (c) completely constrained, determinate",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "(a) partially constrained; (b) completely constrained, determinate; (c) improperly constrained",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "(a) completely constrained, determinate; (b) improperly constrained; (c) partially constrained",
+          "correct": false
+        }
+      ],
+      "solution": "Each truss has $n = 10$ joints, so $2n = 20$.\n\n- **(a)** $m = 16$ (the second panel has no diagonal), with a pin plus two rollers, so $r = 4$. Then $m + r = 20 = 2n$, and the reactions and member forces can all be found (the middle roller supplies the shear of the open panel). **Completely constrained, determinate.**\n- **(b)** $m = 16$, with a pin and one roller, so $r = 3$. Then $m + r = 19 < 2n$: **partially constrained**.\n- **(c)** $m = 17$, with a pin and a horizontal link, so $r = 3$. The counts match, $m + r = 20$, but the link's line of action passes through the pin: the reactions are concurrent, so the truss is **improperly constrained** ($m + r = 2n$ is necessary, not sufficient).",
+      "difficulty": "medium",
+      "tags": [
+        "determinacy",
+        "constraint"
+      ]
+    },
+    {
+      "key": "prob-6-83a-reaction-ay",
+      "type": "numeric",
+      "prompt": "In the frame shown ($AB$ horizontal $80\\,\\text{mm}$, then $BC$ to $C$, $170\\,\\text{mm}$ further right and $125\\,\\text{mm}$ lower; $D$ below $B$ at the level of $C$; $E$ $75\\,\\text{mm}$ below $C$ on the wall), a $750\\text{-N}$ force directed vertically downward is applied **at $B$**. Determine the vertical component $A_y$ of the reaction at $A$ (in $\\text{N}$; it acts upward).",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-83.png",
+      "answer": 660,
+      "tolerancePct": 1,
+      "unit": "N",
+      "solution": "With the load at $B$, member $EDC$ is a **two-force member**, so the force at $C$ acts along $EC$. Take $A$ as origin: $B(80,\\,0)$, $C(250,\\,-125)$, $E(0,\\,-200)$. Then $EC$ has direction $(250,\\,75)$.\n\nLet the force that $EDC$ exerts on $ABC$ at $C$ be $k(250,\\,75)/261.0$.\n\n$$+\\circlearrowleft\\sum M_A = 0:\\quad -750(80) + 250\\Big(\\tfrac{75k}{261}\\Big) + 125\\Big(\\tfrac{250k}{261}\\Big) = 0 \\;\\Rightarrow\\; k = 313\\,\\text{N}$$\n\nSo the force at $C$ has components $(300,\\,90)\\,\\text{N}$, and $E_x = 300\\,\\text{N}\\rightarrow$, $E_y = 90.0\\,\\text{N}\\uparrow$.\n\n**Member ABC:** $\\sum F_x = 0 \\Rightarrow A_x = 300\\,\\text{N}\\leftarrow$. $\\;\\sum F_y = 0$: $A_y - 750 + 90 = 0 \\Rightarrow A_y = 660\\,\\text{N}\\uparrow$.",
+      "difficulty": "medium",
+      "tags": [
+        "frames",
+        "two-force-member"
+      ]
+    },
+    {
+      "key": "prob-6-83b-load-at-d",
+      "type": "mcq",
+      "prompt": "For the frame shown, the $750\\text{-N}$ downward force is now applied **at $D$** instead of $B$. Which set of reaction components is correct?",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-83.png",
+      "options": [
+        {
+          "label": "A",
+          "text": "$A_x = 300\\,\\text{N}\\leftarrow,\\ A_y = 150.0\\,\\text{N}\\uparrow;\\ E_x = 300\\,\\text{N}\\rightarrow,\\ E_y = 600\\,\\text{N}\\uparrow$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$A_x = 300\\,\\text{N}\\leftarrow,\\ A_y = 660\\,\\text{N}\\uparrow;\\ E_x = 300\\,\\text{N}\\rightarrow,\\ E_y = 90.0\\,\\text{N}\\uparrow$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$A_x = 300\\,\\text{N}\\rightarrow,\\ A_y = 150.0\\,\\text{N}\\downarrow;\\ E_x = 300\\,\\text{N}\\leftarrow,\\ E_y = 900\\,\\text{N}\\uparrow$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$A_x = 0,\\ A_y = 375\\,\\text{N}\\uparrow;\\ E_x = 0,\\ E_y = 375\\,\\text{N}\\uparrow$",
+          "correct": false
+        }
+      ],
+      "solution": "Now $ABC$ is the **two-force member**, so the force at $C$ acts along $AC$, direction $(250,\\,-125)$. Take $E$ as origin for member $EDC$: $D(80,\\,75)$, $C(250,\\,75)$. Let the force on $EDC$ at $C$ be $k(250,\\,-125)/279.5$.\n\n$$+\\circlearrowleft\\sum M_E = 0:\\quad -750(80) + 250\\Big(-\\tfrac{125k}{279.5}\\Big) - 75\\Big(\\tfrac{250k}{279.5}\\Big) = 0 \\;\\Rightarrow\\; k = -335.4\\,\\text{N}$$\n\nSo $EDC$ is pulled at $C$ by $(-300,\\,+150)\\,\\text{N}$: $ABC$ is in tension. Then $A_x = 300\\,\\text{N}\\leftarrow$ and $A_y = 150.0\\,\\text{N}\\uparrow$. On $EDC$: $E_x = 300\\,\\text{N}\\rightarrow$ and $E_y = 750 - 150 = 600\\,\\text{N}\\uparrow$.\n\nChoice B is the answer for the load at $B$. C has the senses reversed. D wrongly ignores the horizontal components.",
+      "difficulty": "medium",
+      "tags": [
+        "frames",
+        "two-force-member"
+      ]
+    },
+    {
+      "key": "prob-6-93-reaction-ax",
+      "type": "numeric",
+      "prompt": "Knowing that the pulley has a radius of $0.5\\,\\text{m}$, determine the horizontal component $A_x$ of the reaction at $A$ for the frame shown ($700\\text{-N}$ load hung from the cable). Give the magnitude in $\\text{N}$ (it acts to the left).",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-93.png",
+      "answer": 150,
+      "tolerancePct": 1,
+      "unit": "N",
+      "solution": "Coordinates with $A$ at the origin: $B(0,\\,2)$, $C(1,\\,3)$, $E(7,\\,0)$. The pulley centre $D(4,\\,1.5)$ lies on $CE$. The cable runs horizontally from $B$ to the top of the pulley ($y = 2$) and leaves vertically at $x = 4.5\\,\\text{m}$, carrying $700\\,\\text{N}$.\n\n**Entire frame** (cable segment $BD$ internal): $+\\circlearrowleft\\sum M_A = 0$: $E_y(7) - 700(4.5) = 0 \\Rightarrow E_y = 450\\,\\text{N}\\uparrow$, so $A_y = 700 - 450 = 250\\,\\text{N}\\uparrow$.\n\n**Member ABC** (forces at $A$, the cable pull of $700\\,\\text{N}$ to the right at $B$, and the pin $C$):\n\n$$+\\circlearrowleft\\sum M_C = 0:\\quad -A_y(1) + A_x(3) + 700(1) = 0 \\;\\Rightarrow\\; -250 + 3A_x + 700 = 0 \\;\\Rightarrow\\; A_x = -150\\,\\text{N}$$\n\nSo $A_x = 150.0\\,\\text{N}\\leftarrow$ (and $E_x = 150.0\\,\\text{N}\\rightarrow$).",
+      "difficulty": "medium",
+      "tags": [
+        "frames",
+        "pulley"
+      ]
+    },
+    {
+      "key": "prob-6-99-member-abe-ex",
+      "type": "numeric",
+      "prompt": "For the frame and loading shown ($12\\,\\text{kN}$ down at $D$), determine the horizontal component $E_x$ of the force acting on member $ABE$ at $E$. Give the magnitude in $\\text{kN}$ (it acts to the left).",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-99.png",
+      "answer": 23,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "Coordinates: $E(0,0)$, $F(1.8,0)$, $A(0.9,\\,1.8)$. Bar $BCD$ is at $y = 0.6$, with $B(0.3,\\,0.6)$ on $AE$, $C(1.5,\\,0.6)$ on $AF$ and $D(2.1,\\,0.6)$. The pin at $C$ rides in a slot along $AF$, so the force at $C$ is **perpendicular to $AF$**, along $(0.894,\\,0.447)$.\n\n**Bar BCD:** $+\\circlearrowleft\\sum M_B = 0$: $1.2(0.447c) - 12(1.8) = 0 \\Rightarrow c = 40.25\\,\\text{kN}$, so $\\mathbf{C} = (36,\\,18)\\,\\text{kN}$. Then $\\sum F = 0$ gives a force on $BCD$ at $B$ of $(-36,\\,-6)$. The force **on $ABE$** at $B$ is therefore $36.0\\,\\text{kN}\\rightarrow$, $6.00\\,\\text{kN}\\uparrow$.\n\n**Entire frame:** $+\\circlearrowleft\\sum M_E = 0$: $F_y(1.8) - 12(2.1) = 0 \\Rightarrow F_y = 14\\,\\text{kN}$, so $E_y = -2.00\\,\\text{kN}$ ($\\downarrow$).\n\n**Member ABE:** $+\\circlearrowleft\\sum M_A = 0$: $(-0.6)(6) - (-1.2)(36) + (-0.9)(-2) - (-1.8)E_x = 0 \\Rightarrow 41.4 + 1.8E_x = 0 \\Rightarrow E_x = -23.0\\,\\text{kN}$.\n\nSo $E_x = 23.0\\,\\text{kN}\\leftarrow$ (then $A_x = 13.00\\,\\text{kN}\\leftarrow$, $A_y = 4.00\\,\\text{kN}\\downarrow$).",
+      "difficulty": "hard",
+      "tags": [
+        "frames",
+        "multiforce-member"
+      ]
+    },
+    {
+      "key": "prob-6-109-arch-ax",
+      "type": "numeric",
+      "prompt": "The axis of the three-hinge arch $ABC$ is a parabola with vertex at $B$. Knowing that $P = 112\\,\\text{kN}$ and $Q = 140\\,\\text{kN}$, determine the horizontal component $A_x$ of the reaction at $A$ (in $\\text{kN}$; it acts to the right).",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-109.png",
+      "answer": 200,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "Coordinates: $A(0,0)$, $B(8,\\,3.2)$, $C(14,\\,1.4)\\,\\text{m}$. $P$ acts at $x = 5\\,\\text{m}$ on $AB$ and $Q$ at $x = 11\\,\\text{m}$ on $BC$. The arch is not rigid without its supports, so we need free bodies of the parts.\n\n**Entire arch:** $\\sum F_x = 0 \\Rightarrow C_x = -A_x$. $\\;+\\circlearrowleft\\sum M_A = 0$: $14C_y - 1.4C_x - 112(5) - 140(11) = 0 \\Rightarrow 14C_y + 1.4A_x = 2100$.\n\n**Segment BC:** $+\\circlearrowleft\\sum M_B = 0$: $6C_y + 1.8C_x - 140(3) = 0 \\Rightarrow 6C_y - 1.8A_x = 420 \\Rightarrow C_y = 70 + 0.3A_x$.\n\nSubstituting: $14(70 + 0.3A_x) + 1.4A_x = 2100 \\Rightarrow 5.6A_x = 1120 \\Rightarrow A_x = 200\\,\\text{kN}\\rightarrow$.\n\nThen $C_y = 130\\,\\text{kN}$ and $A_y = 252 - 130 = 122.0\\,\\text{kN}\\uparrow$. On $AB$ at $B$: $B_x = 200\\,\\text{kN}\\leftarrow$, $B_y = 10.00\\,\\text{kN}\\downarrow$.",
+      "difficulty": "hard",
+      "tags": [
+        "frames",
+        "three-hinge-arch"
+      ]
+    },
+    {
+      "key": "prob-6-153-cylinder-force",
+      "type": "numeric",
+      "prompt": "The telescoping arm $ABC$ provides an elevated platform; the workers and platform have a mass of $200\\,\\text{kg}$ with combined centre of gravity directly above $C$ ($AC = 5\\,\\text{m}$, $AB = 2.4\\,\\text{m}$; $D$ is $0.9\\,\\text{m}$ below and $0.5\\,\\text{m}$ behind $A$). For $\\theta = 20^\\circ$, determine the magnitude of the force exerted at $B$ by the single hydraulic cylinder $BD$ (in $\\text{kN}$).",
+      "image": "/diagrams/get-207/trusses-frames-and-machines-p6-153.png",
+      "answer": 9.29,
+      "tolerancePct": 1,
+      "unit": "kN",
+      "solution": "$W = (200)(9.81) = 1962\\,\\text{N}$. Take $A$ as origin, with the arm inclined at $20^\\circ$:\n\n- $C = (-5\\cos 20^\\circ,\\ 5\\sin 20^\\circ) = (-4.698,\\,1.710)$\n- $B = (-2.4\\cos 20^\\circ,\\ 2.4\\sin 20^\\circ) = (-2.255,\\,0.821)$\n- $D = (-0.5,\\,-0.9)$\n\n$\\overrightarrow{DB} = (-1.755,\\,1.721)$, of length $2.458\\,\\text{m}$, so the unit vector is $(-0.7141,\\,0.7001)$ (inclined at $44.4^\\circ$). $BD$ is a two-force member pushing on the arm along $DB$.\n\n**Free body ABC**, $\\sum M_A = 0$:\n\n$$(-4.698)(-1962) + F_{BD}\\big[(-2.255)(0.7001) - (0.821)(-0.7141)\\big] = 0 \\;\\Rightarrow\\; 9218 - 0.9927F_{BD} = 0$$\n\n$$F_{BD} = 9286\\,\\text{N} = 9.29\\,\\text{kN}\\ \\text{at}\\ 44.4^\\circ$$\n\n(Then $\\sum F = 0$ gives $\\mathbf{A} = 8.04\\,\\text{kN}$ at $34.4^\\circ$.)",
+      "difficulty": "hard",
+      "tags": [
+        "machines",
+        "hydraulic-cylinder"
+      ]
+    }
+  ]
+}

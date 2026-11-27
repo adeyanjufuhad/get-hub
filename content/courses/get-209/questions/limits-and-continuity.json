@@ -10,7 +10,6 @@
       "unit": "",
       "solution": "Check the denominator at $(2, 3)$: $x^2 - y = 2^2 - 3 = 1 \\neq 0$. Since the rational function is continuous at $(2, 3)$, direct substitution gives:\n\n$$\\lim_{\\substack{x \\to 2 \\\\ y \\to 3}} \\frac{x^3 + y^2}{x^2 - y} = \\frac{2^3 + 3^2}{2^2 - 3} = \\frac{8 + 9}{4 - 3} = 17.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q2",
       "tags": [
         "limits",
         "direct-substitution"
@@ -25,7 +24,6 @@
       "unit": "",
       "solution": "At $(1, 2)$, the denominator is $2(1)(2) = 4 \\neq 0$. Taking the limit directly (or iterating $x \\to 1$ and $y \\to 2$ in either order):\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{2x^2 + y^2}{2xy} = \\frac{2(1)^2 + 2^2}{2(1)(2)} = \\frac{2 + 4}{4} = \\frac{6}{4} = \\frac{3}{2} = 1.5.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q1",
       "tags": [
         "limits",
         "direct-substitution"
@@ -40,7 +38,6 @@
       "unit": "",
       "solution": "Check the denominator at $(1, 1)$: $xy - 2y = 1(1) - 2(1) = -1 \\neq 0$. Substituting $x = 1$ and $y = 1$ directly yields:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{xy - 2x}{xy - 2y} = \\frac{1(1) - 2(1)}{1(1) - 2(1)} = \\frac{-1}{-1} = 1.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q6",
       "tags": [
         "limits",
         "direct-substitution"
@@ -55,7 +52,6 @@
       "unit": "",
       "solution": "At $(1, 1)$, the denominator is $2(1)(1 - 2) = -2 \\neq 0$. Evaluating directly gives:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{3x(y - 2)}{2y(x - 2)} = \\frac{3(1)(1 - 2)}{2(1)(1 - 2)} = \\frac{-3}{-2} = \\frac{3}{2} = 1.5.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q10",
       "tags": [
         "limits",
         "direct-substitution"
@@ -68,9 +64,8 @@
       "answer": 0.6,
       "tolerancePct": 1,
       "unit": "",
-      "solution": "At $(1, 2)$, the denominator is $1^2 + 2^2 + 5 = 10 \\neq 0$. Applying Dass's sequential evaluation:\n\n$$\\lim_{x \\to 1}\\left[\\lim_{y \\to 2} \\frac{3x^2 y}{x^2 + y^2 + 5}\\right] = \\lim_{x \\to 1} \\frac{6x^2}{x^2 + 9} = \\frac{6(1)^2}{1 + 9} = \\frac{6}{10} = \\frac{3}{5} = 0.6.$$",
+      "solution": "At $(1, 2)$, the denominator is $1^2 + 2^2 + 5 = 10 \\neq 0$. Evaluating sequentially:\n\n$$\\lim_{x \\to 1}\\left[\\lim_{y \\to 2} \\frac{3x^2 y}{x^2 + y^2 + 5}\\right] = \\lim_{x \\to 1} \\frac{6x^2}{x^2 + 9} = \\frac{6(1)^2}{1 + 9} = \\frac{6}{10} = \\frac{3}{5} = 0.6.$$",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Example 3",
       "tags": [
         "limits",
         "direct-substitution"
@@ -85,7 +80,6 @@
       "unit": "",
       "solution": "Divide numerator and denominator by $x^3$:\n\n$$\\frac{2xy - 3}{x^3 + 4y^3} = \\frac{\\dfrac{2y}{x^2} - \\dfrac{3}{x^3}}{1 + 4\\left(\\dfrac{y}{x}\\right)^3}.$$\n\nAs $x \\to \\infty$ and $y \\to 3$, every term with $x$ in the denominator vanishes, so both iterated limits and the simultaneous limit equal $\\dfrac{0 - 0}{1 + 0} = 0$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q3",
       "tags": [
         "limits",
         "limit-at-infinity"
@@ -100,7 +94,6 @@
       "unit": "",
       "solution": "Along $y = mx$, $\\dfrac{x^2(m^3 x^3)}{x^2(1 + m^2)} = \\dfrac{m^3}{1 + m^2}x^3 \\to 0$. Confirming uniformly in polar coordinates $x = r\\cos\\theta$, $y = r\\sin\\theta$ ($r > 0$):\n\n$$\\left|\\frac{x^2 y^3}{x^2 + y^2}\\right| = \\left|\\frac{r^5 \\cos^2\\theta \\sin^3\\theta}{r^2}\\right| = r^3 |\\cos^2\\theta \\sin^3\\theta| \\le r^3 \\to 0 \\quad \\text{as } r \\to 0.$$\n\nHence the limit exists and equals $0$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q8",
       "tags": [
         "limits",
         "polar-coordinates"
@@ -113,9 +106,8 @@
       "answer": 1,
       "tolerancePct": 1,
       "unit": "",
-      "solution": "By §1.5, continuity at $(1, 2)$ requires $k = f(1, 2) = \\lim_{(x, y) \\to (1, 2)} f(x, y)$. Since $x + y^2 = 1 + 2^2 = 5 \\neq 0$ at $(1, 2)$, direct substitution gives:\n\n$$\\lim_{(x, y) \\to (1, 2)} \\frac{x^2 + 2y}{x + y^2} = \\frac{1^2 + 2(2)}{1 + 2^2} = \\frac{5}{5} = 1.$$\n\nThus $k = 1$ makes $f$ continuous at $(1, 2)$.",
+      "solution": "Continuity at $(1, 2)$ requires $k = f(1, 2) = \\lim_{(x, y) \\to (1, 2)} f(x, y)$. Since $x + y^2 = 1 + 2^2 = 5 \\neq 0$ at $(1, 2)$, direct substitution gives:\n\n$$\\lim_{(x, y) \\to (1, 2)} \\frac{x^2 + 2y}{x + y^2} = \\frac{1^2 + 2(2)}{1 + 2^2} = \\frac{5}{5} = 1.$$\n\nThus $k = 1$ makes $f$ continuous at $(1, 2)$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q6",
       "tags": [
         "continuity",
         "working-rule"
@@ -130,7 +122,6 @@
       "unit": "",
       "solution": "Evaluate the limit as $(x, y) \\to (1, 2)$:\n\n$$\\lim_{(x, y) \\to (1, 2)} (2x^2 + y) = 2(1)^2 + 2 = 4.$$\n\nSince $f(1, 2) = 0 \\neq 4$, the function has a removable discontinuity at $(1, 2)$; redefining $f(1, 2) = 4$ makes $f$ continuous there.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q7",
       "tags": [
         "continuity",
         "removable-discontinuity"
@@ -164,7 +155,6 @@
       ],
       "solution": "Substituting $y = mx^2$ into $f(x, y)$:\n\n$$\\lim_{x \\to 0} \\frac{x^2(mx^2)}{x^4 + (mx^2)^2} = \\lim_{x \\to 0} \\frac{m x^4}{(1 + m^2)x^4} = \\frac{m}{1 + m^2}.$$\n\nBecause this result depends on $m$ (e.g., $m = 1$ gives $\\tfrac{1}{2} \\neq 0$), the limit depends on the path of approach and therefore does not exist.",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 1, Example 1",
       "tags": [
         "limits",
         "path-dependence"
@@ -198,7 +188,6 @@
       ],
       "solution": "Along the line $y = x$, $f(x, x) = \\dfrac{x - x}{2x^2} = 0$, so the limit along $y = x$ is $0$. Along the line $y = 0$, $f(x, 0) = \\dfrac{x}{x^2} = \\dfrac{1}{x}$, which diverges to $\\pm\\infty$ as $x \\to 0^{\\pm}$. Since different paths give different behaviours, the limit does not exist.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.1, Q5",
       "tags": [
         "limits",
         "path-dependence"
@@ -232,7 +221,6 @@
       ],
       "solution": "Step 1: $f(0, 0) = 0$ is well defined. Step 2: Set $x = r\\cos\\theta$, $y = r\\sin\\theta$ ($r > 0$). Then:\n\n$$f(x, y) = \\frac{(r^2\\cos\\theta\\sin\\theta)\\,r^2(\\cos^2\\theta - \\sin^2\\theta)}{r^2} = r^2 \\cos\\theta\\sin\\theta\\cos 2\\theta = \\frac{1}{4}r^2\\sin 4\\theta.$$\n\nHence $|f(x, y) - 0| \\le \\frac{1}{4}r^2 \\to 0$ as $r \\to 0$, so $\\lim_{(x, y) \\to (0, 0)} f(x, y) = 0$. Step 3: The limit equals $f(0, 0) = 0$, so $f$ is continuous at the origin.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q1",
       "tags": [
         "continuity",
         "polar-coordinates"
@@ -266,7 +254,6 @@
       ],
       "solution": "Substituting $y = mx$ gives:\n\n$$\\lim_{x \\to 0} \\frac{x^2 - m^2 x^2}{x^2 + m^2 x^2} = \\frac{1 - m^2}{1 + m^2}.$$\n\nSince this value depends on the slope $m$ (for example, $m = 0$ gives $1$ while $m = 1$ gives $0$), the limit at $(0, 0)$ does not exist, and therefore $f(x, y)$ is not continuous at the origin.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q2",
       "tags": [
         "continuity",
         "path-dependence"
@@ -300,7 +287,6 @@
       ],
       "solution": "Along $y = mx$:\n\n$$\\lim_{x \\to 0} \\frac{x(mx)}{x^2 + m^2 x^2} = \\lim_{x \\to 0} \\frac{m x^2}{(1 + m^2)x^2} = \\frac{m}{1 + m^2}.$$\n\nBecause the limiting value varies with $m$ (e.g., $m = 0$ gives $0$ whereas $m = 1$ gives $\\tfrac{1}{2}$), the simultaneous limit fails to exist and $f(x, y)$ is not continuous at the origin.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.2, Q4",
       "tags": [
         "continuity",
         "path-dependence"
@@ -309,7 +295,7 @@
     {
       "key": "sec-1-6-first-kind-graph",
       "type": "mcq",
-      "prompt": "Identify the type of discontinuity at $x = x_1$ illustrated in the figure and its exact defining condition according to H. K. Dass (§1.6).",
+      "prompt": "Identify the type of discontinuity at $x = x_1$ illustrated in the figure and its exact defining condition by the standard classification.",
       "image": "/diagrams/get-209/limits-and-continuity-first-kind-quiz.png",
       "options": [
         {
@@ -333,9 +319,8 @@
           "correct": false
         }
       ],
-      "solution": "The graph approaches two distinct finite values from the left and the right of $x_1$, so both $f(x_1 - 0)$ and $f(x_1 + 0)$ exist finitely but are unequal: $f(x_1 - 0) \\neq f(x_1 + 0)$. By H. K. Dass §1.6, this is a discontinuity of the first kind.",
+      "solution": "The graph approaches two distinct finite values from the left and the right of $x_1$, so both $f(x_1 - 0)$ and $f(x_1 + 0)$ exist finitely but are unequal: $f(x_1 - 0) \\neq f(x_1 + 0)$. Therefore, this is a discontinuity of the first kind.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, §1.6 (Gujarat Univ. I sem. Jan. 2009)",
       "tags": [
         "discontinuity",
         "first-kind"
@@ -368,9 +353,8 @@
           "correct": true
         }
       ],
-      "solution": "In the figure, the left-hand and right-hand branches meet at the same open hole—so $f(x_1 - 0) = f(x_1 + 0)$ exists finitely—while the solid dot $f(x_1)$ lies elsewhere. By §1.6, $f(x_1 - 0) = f(x_1 + 0) \\neq f(x_1)$ defines a discontinuity of the fifth kind (removable discontinuity).",
+      "solution": "In the figure, the left-hand and right-hand branches meet at the same open hole—so $f(x_1 - 0) = f(x_1 + 0)$ exists finitely—while the solid dot $f(x_1)$ lies elsewhere. $f(x_1 - 0) = f(x_1 + 0) \\neq f(x_1)$ defines a discontinuity of the fifth kind (removable discontinuity).",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, §1.6 (Gujarat Univ. I sem. Jan. 2009)",
       "tags": [
         "discontinuity",
         "removable-discontinuity"

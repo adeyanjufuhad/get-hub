@@ -10,7 +10,6 @@
       "unit": "",
       "solution": "Compute the first-order partial derivatives: $\\dfrac{\\partial f}{\\partial x} = 3x^2 y - y^3$ and $\\dfrac{\\partial f}{\\partial y} = x^3 - 3x y^2$. At $(x, y) = (1, 2)$, $\\dfrac{\\partial f}{\\partial x} = 3(1)^2(2) - 2^3 = 6 - 8 = -2$ and $\\dfrac{\\partial f}{\\partial y} = 1^3 - 3(1)(2)^2 = 1 - 12 = -11$. Therefore, $\\dfrac{1}{-2} + \\dfrac{1}{-11} = -\\dfrac{13}{22} \\approx -0.5909$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.3, Q4",
       "tags": [
         "partial-derivatives",
         "first-order"
@@ -25,7 +24,6 @@
       "unit": "",
       "solution": "Differentiate with respect to $r$: $\\dfrac{\\partial \\theta}{\\partial r} = -\\dfrac{r}{2} t^{n-1} e^{-r^2/(4t)}$, so $r^2\\dfrac{\\partial \\theta}{\\partial r} = -\\dfrac{1}{2} r^3 t^{n-1} e^{-r^2/(4t)}$. Differentiating again w.r.t. $r$ and dividing by $r^2$ gives $\\left(-\\dfrac{3}{2} t^{n-1} + \\dfrac{r^2}{4} t^{n-2}\\right)e^{-r^2/(4t)}$. Meanwhile, $\\dfrac{\\partial \\theta}{\\partial t} = \\left(n t^{n-1} + \\dfrac{r^2}{4} t^{n-2}\\right)e^{-r^2/(4t)}$. Equating the two expressions gives $n = -\\dfrac{3}{2} = -1.5$.",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.3, Q5",
       "tags": [
         "higher-order-partials",
         "pde"
@@ -40,7 +38,6 @@
       "unit": "",
       "solution": "Differentiating twice with respect to $x$ gives $\\dfrac{\\partial^2 v}{\\partial x^2} = m(x^2+y^2+z^2)^{m/2-2}[(m-2)x^2 + x^2+y^2+z^2]$. Adding the analogous expressions for $y$ and $z$ yields $\\nabla^2 v = m(m+1)(x^2+y^2+z^2)^{m/2-1} = 0$. Since $m \\neq 0$, we obtain $m = -1$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Example 14",
       "tags": [
         "higher-order-partials",
         "laplace-equation"
@@ -55,7 +52,6 @@
       "unit": "",
       "solution": "Write $u = (x^2+y^2+z^2)^{-1} = r^{-2}$, which corresponds to $m = -2$ in $\\nabla^2(r^m) = m(m+1)r^{m-2}$. Thus $\\nabla^2 u = (-2)(-1)(x^2+y^2+z^2)^{-2} = \\dfrac{2}{(x^2+y^2+z^2)^2}$. At $(1, 1, 0)$, $x^2+y^2+z^2 = 2$, giving $\\dfrac{2}{2^2} = \\dfrac{1}{2} = 0.5$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.3, Q10",
       "tags": [
         "higher-order-partials",
         "laplace-equation"
@@ -70,7 +66,6 @@
       "unit": "",
       "solution": "Differentiating partially, $\\dfrac{\\partial u}{\\partial x} = \\dfrac{\\sec^2 x}{\\tan x + \\tan y}$ and $\\dfrac{\\partial u}{\\partial y} = \\dfrac{\\sec^2 y}{\\tan x + \\tan y}$. Using $\\sin 2x\\,\\sec^2 x = 2\\sin x\\cos x\\cdot\\dfrac{1}{\\cos^2 x} = 2\\tan x$, we get $\\sin 2x\\dfrac{\\partial u}{\\partial x} + \\sin 2y\\dfrac{\\partial u}{\\partial y} = \\dfrac{2\\tan x + 2\\tan y}{\\tan x + \\tan y} = 2$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.3, Q20",
       "tags": [
         "partial-derivatives",
         "trigonometric"
@@ -85,7 +80,6 @@
       "unit": "",
       "solution": "Factor out leading powers of $x$: $f(x, y) = \\dfrac{x^{1/2}[1 + \\sqrt{y/x}]}{x^2[1 + (y/x)^2]} = x^{1/2 - 2}\\varphi(y/x) = x^{-3/2}\\varphi(y/x)$. Hence the degree is $n = -\\dfrac{3}{2} = -1.5$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, §1.10 Illustration (ii)",
       "tags": [
         "homogeneous-functions"
       ]
@@ -99,7 +93,6 @@
       "unit": "",
       "solution": "Let $z = e^u = \\dfrac{x^3 + y^3}{x^2 + y^2}$. The numerator has degree $3$ and the denominator has degree $2$, so $z = f(u) = e^u$ is homogeneous of degree $n = 3 - 2 = 1$. By Euler's Deduction I, $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = n\\dfrac{f(u)}{f'(u)} = 1\\cdot\\dfrac{e^u}{e^u} = 1$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.4, Q3",
       "tags": [
         "euler-theorem",
         "deduction-1"
@@ -114,7 +107,6 @@
       "unit": "",
       "solution": "Eliminating $v$ via $\\sec^2 v - \\tan^2 v = 1$ gives $e^{2u} = y^2 - x^2$ (homogeneous of degree $2$), so by Deduction I, $x u_x + y u_y = 2\\cdot\\dfrac{e^{2u}}{2e^{2u}} = 1$. Eliminating $u$ gives $\\sin v = \\dfrac{x}{y}$ (homogeneous of degree $0$), so by Deduction I, $x v_x + y v_y = 0$. Therefore the product is $1 \\times 0 = 0$.",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.4, Q8 (A.M.I.E., Summer 2001)",
       "tags": [
         "euler-theorem",
         "deduction-1"
@@ -148,7 +140,6 @@
       ],
       "solution": "Holding $\\theta$ constant and applying the product rule: $\\dfrac{\\partial u}{\\partial r} = e^{r\\cos\\theta}[-\\sin(r\\sin\\theta)\\sin\\theta] + \\cos\\theta\\,e^{r\\cos\\theta}\\cos(r\\sin\\theta) = e^{r\\cos\\theta}[\\cos(r\\sin\\theta)\\cos\\theta - \\sin(r\\sin\\theta)\\sin\\theta] = e^{r\\cos\\theta}\\cos(r\\sin\\theta + \\theta)$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Example 8",
       "tags": [
         "partial-derivatives",
         "first-order"
@@ -182,7 +173,6 @@
       ],
       "solution": "$u_z = xy\\,e^{xyz}$; $u_{yz} = e^{xyz}(x + x^2 yz)$; $u_{xyz} = e^{xyz}(1 + 2xyz) + e^{xyz}(yz)(x + x^2 yz) = e^{xyz}(1 + 3xyz + x^2 y^2 z^2)$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Example 13 (A.M.I.E., Winter 2000)",
       "tags": [
         "higher-order-partials",
         "mixed-partials"
@@ -216,7 +206,6 @@
       ],
       "solution": "First, $u_x + u_y + u_z = \\dfrac{3(x^2+y^2+z^2-xy-yz-zx)}{(x+y+z)(x^2+y^2+z^2-xy-yz-zx)} = \\dfrac{3}{x+y+z}$. Applying $(\\partial_x + \\partial_y + \\partial_z)$ once more gives $-\\dfrac{3}{(x+y+z)^2} - \\dfrac{3}{(x+y+z)^2} - \\dfrac{3}{(x+y+z)^2} = -\\dfrac{9}{(x+y+z)^2}$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Example 18 (U.P., I Sem., Winter 2003)",
       "tags": [
         "higher-order-partials",
         "operators"
@@ -250,7 +239,6 @@
       ],
       "solution": "Holding $\\theta$ constant in $r = x\\sec\\theta$ gives $\\left(\\dfrac{\\partial r}{\\partial x}\\right)_\\theta = \\sec\\theta$. Holding $y$ constant in $r^2 = x^2 + y^2$ gives $2r\\left(\\dfrac{\\partial r}{\\partial x}\\right)_y = 2x \\implies \\left(\\dfrac{\\partial r}{\\partial x}\\right)_y = \\dfrac{x}{r} = \\cos\\theta$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, §1.9",
       "tags": [
         "held-variable",
         "polar-coordinates"
@@ -284,7 +272,6 @@
       ],
       "solution": "Since $u_x = m r^{m-2} x$, $u_{xx} = m(m-2)r^{m-4}x^2 + m r^{m-2}$. Summing over $x, y, z$ gives $m(m-2)r^{m-4}(x^2+y^2+z^2) + 3m r^{m-2} = [m(m-2) + 3m]r^{m-2} = m(m+1)r^{m-2}$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.3, Q17",
       "tags": [
         "higher-order-partials",
         "laplace-equation"
@@ -318,7 +305,6 @@
       ],
       "solution": "Factor out $x^6$: $f(x, y) = x^6 \\left(\\dfrac{y}{x}\\right)^2 \\sin^{-1}\\left(\\dfrac{y}{x}\\right) = x^6 \\varphi\\left(\\dfrac{y}{x}\\right)$. Because $f$ itself is homogeneous of degree $n = 6$, Euler's theorem gives $x\\dfrac{\\partial f}{\\partial x} + y\\dfrac{\\partial f}{\\partial y} = 6 f(x, y)$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.4, Q5 (A.M.I.E.T.E., Winter 2001)",
       "tags": [
         "euler-theorem",
         "homogeneous-functions"
@@ -352,7 +338,6 @@
       ],
       "solution": "Let $z = \\sec u = \\dfrac{x^3-y^3}{x+y}$, homogeneous of degree $n = 3 - 1 = 2$. By Deduction I, $g(u) = 2\\dfrac{\\sec u}{\\sec u\\tan u} = 2\\cot u$, so $g'(u) = -2\\operatorname{cosec}^2 u$. By Deduction II, $g(u)[g'(u) - 1] = 2\\cot u(-2\\operatorname{cosec}^2 u - 1) = -2\\cot u(2\\operatorname{cosec}^2 u + 1)$.",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.4, Q7 (A.M.I.E.T.E., Winter 2001)",
       "tags": [
         "euler-theorem",
         "deduction-2"
@@ -386,7 +371,6 @@
       ],
       "solution": "Set $z = \\tan u = \\dfrac{\\sqrt{x^3+y^3}}{\\sqrt{x}+\\sqrt{y}}$, which has degree $n = \\dfrac{3}{2} - \\dfrac{1}{2} = 1$. By Deduction I, $g(u) = 1\\cdot\\dfrac{\\tan u}{\\sec^2 u} = \\sin u\\cos u = \\dfrac{1}{2}\\sin 2u$, so $g'(u) = \\cos 2u$. By Deduction II, $g(u)[g'(u) - 1] = \\dfrac{1}{2}\\sin 2u(\\cos 2u - 1) = \\sin u\\cos u(-2\\sin^2 u) = -2\\sin^3 u\\cos u$.",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 1, Exercise 1.4, Q12",
       "tags": [
         "euler-theorem",
         "deduction-2"

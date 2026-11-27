@@ -124,7 +124,6 @@ func TestValidateBankErrors(t *testing.T) {
 		{"no correct", bank{TopicSlug: "topic", Questions: []question{bad(func(q *question) { q.Options[1].Correct = false })}}, "exactly one correct option, got 0"},
 		{"duplicate label", bank{TopicSlug: "topic", Questions: []question{bad(func(q *question) { q.Options[3].Label = "C" })}}, `duplicate option label "C"`},
 		{"bad label", bank{TopicSlug: "topic", Questions: []question{bad(func(q *question) { q.Options[3].Label = "E" })}}, `label "E"`},
-		{"missing source", bank{TopicSlug: "topic", Questions: []question{bad(func(q *question) { q.Source = "" })}}, "source is required"},
 		{"missing solution", bank{TopicSlug: "topic", Questions: []question{bad(func(q *question) { q.Solution = " " })}}, "solution is required"},
 	}
 	for _, tc := range cases {

@@ -37,15 +37,15 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
       {/* Concentric figure plate: Outer 20px (12+8) / sm: 24px (12+12) */}
       <figure className="my-6 overflow-hidden rounded-[20px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)] p-2 sm:my-7 sm:rounded-[24px] sm:p-3">
         <div className="mb-2 flex items-center justify-between gap-2 border-b border-[var(--border-hairline)] px-1 pb-2">
-          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
-            ▸ Textbook Figure Plate
+          <span className="text-xs font-medium text-[var(--accent)]">
+            Diagram
           </span>
           <button
             type="button"
             onClick={() => setZoomed(true)}
-            className="pressable inline-flex min-h-[34px] items-center gap-1 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 py-1 font-mono text-[10px] font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)] cursor-pointer"
+            className="pressable inline-flex min-h-[34px] items-center gap-1.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 py-1 text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)] cursor-pointer"
           >
-            <Maximize2 className="h-3 w-3" aria-hidden="true" />
+            <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
             Enlarge
           </button>
         </div>
@@ -53,13 +53,13 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
         <button
           type="button"
           onClick={() => setZoomed(true)}
-          aria-label={caption ? `Enlarge figure: ${caption}` : "Enlarge textbook figure"}
+          aria-label={caption ? `Enlarge diagram: ${caption}` : "Enlarge diagram"}
           className="block w-full rounded-[12px] bg-white p-2 cursor-zoom-in"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={src}
-            alt={caption || "Engineering textbook figure"}
+            alt={caption || "Engineering diagram"}
             width={640}
             height={400}
             loading="lazy"
@@ -69,8 +69,8 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
         </button>
 
         {caption && (
-          <figcaption className="mt-2.5 border-t border-dashed border-[var(--border-hairline)] px-1 pt-2 text-center font-mono text-[11px] leading-relaxed text-[var(--text-muted)]">
-            {caption}
+          <figcaption className="mt-2.5 border-t border-dashed border-[var(--border-hairline)] px-1 pt-2 text-center text-xs leading-relaxed text-[var(--text-muted)]">
+            <MathText text={caption} />
           </figcaption>
         )}
       </figure>
@@ -79,7 +79,7 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={caption || "Enlarged textbook figure"}
+          aria-label={caption || "Enlarged diagram"}
           onClick={() => setZoomed(false)}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-3 backdrop-blur-xs sm:p-4"
         >
@@ -89,13 +89,13 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
             className="modal-enter max-h-[90dvh] w-full max-w-3xl overflow-auto overscroll-contain rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3 shadow-2xl sm:rounded-[28px] sm:p-4"
           >
             <div className="mb-3 flex items-center justify-between gap-3">
-              <span className="px-1 font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
-                Textbook Figure Inspection
+              <span className="px-1 text-xs font-medium text-[var(--accent)]">
+                Diagram view
               </span>
               <button
                 type="button"
                 onClick={() => setZoomed(false)}
-                aria-label="Close enlarged figure"
+                aria-label="Close enlarged diagram"
                 className="pressable inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] text-[var(--text-primary)] hover:bg-[var(--bg-subtle)] cursor-pointer"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
@@ -105,7 +105,7 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={src}
-                alt={caption || "Engineering textbook figure"}
+                alt={caption || "Engineering diagram"}
                 width={960}
                 height={600}
                 decoding="async"
@@ -114,7 +114,7 @@ export function DiagramFigure({ src, caption }: { src: string; caption?: string 
             </div>
             {caption && (
               <p className="mt-3 text-center text-xs leading-relaxed text-[var(--text-secondary)]">
-                {caption}
+                <MathText text={caption} />
               </p>
             )}
           </div>
@@ -128,7 +128,6 @@ export function StepRevealExample({
   title,
   problem,
   steps,
-  source,
   figure,
   answer,
 }: {
@@ -147,17 +146,14 @@ export function StepRevealExample({
     <div className="my-7 overflow-hidden rounded-[24px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)] sm:rounded-[28px]">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/75 px-3 py-3 sm:px-4">
         <div className="min-w-0">
-          <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
-            Worked Textbook Example
+          <span className="block text-xs font-medium text-[var(--accent)]">
+            Worked example
           </span>
-          <p className="!mt-0.5 !mb-0 text-sm font-extrabold leading-snug text-[var(--text-primary)] sm:text-base">
-            {title}
+          <p className="!mt-0.5 !mb-0 text-sm font-semibold leading-snug text-[var(--text-primary)] sm:text-base">
+            <MathText text={title} />
           </p>
-          {source && (
-            <p className="!mb-0 !mt-0.5 font-mono text-[10px] text-[var(--text-muted)]">{source}</p>
-          )}
         </div>
-        <span className="tabular shrink-0 rounded-full bg-[var(--accent-soft)] px-2.5 py-1 font-mono text-xs font-semibold text-[var(--accent)]">
+        <span className="tabular shrink-0 font-mono text-xs font-medium text-[var(--text-muted)]">
           {shown} / {steps.length} steps
         </span>
       </div>
@@ -167,7 +163,7 @@ export function StepRevealExample({
           <MathText text={problem} />
         </div>
 
-        {figure && <InlineFigure src={figure} alt={`Figure for ${title}`} />}
+        {figure && <InlineFigure src={figure} alt={`Diagram for ${title}`} />}
 
         {shown > 0 && (
           <ol className="!pl-0 !list-none !mb-0 mt-3.5 space-y-2.5">
@@ -176,7 +172,7 @@ export function StepRevealExample({
                 key={idx}
                 className="flex gap-2.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)]/70 p-3 text-sm leading-relaxed text-[var(--text-secondary)] sm:gap-3 sm:p-3.5"
               >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)] font-mono text-xs font-bold text-white">
+                <span className="tabular flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)] font-mono text-xs font-semibold text-white">
                   {idx + 1}
                 </span>
                 <div className="math-scroll-x min-w-0 flex-1">
@@ -191,8 +187,8 @@ export function StepRevealExample({
           <div className="math-scroll-x mt-3 flex items-start gap-2 rounded-[12px] border border-[var(--success)]/30 bg-[var(--success)]/10 px-3 py-2.5 text-sm text-[var(--text-primary)]">
             <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--success)]" aria-hidden="true" />
             <span className="min-w-0">
-              <span className="mr-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--success)]">
-                Answer
+              <span className="mr-1.5 text-xs font-semibold text-[var(--success)]">
+                Answer:
               </span>
               <MathText text={answer} />
             </span>
@@ -210,7 +206,7 @@ export function StepRevealExample({
                 onClick={() => setShown((s) => Math.min(steps.length, s + 1))}
               >
                 <Eye className="h-4 w-4" aria-hidden="true" />
-                {shown === 0 ? "Solve Step 1" : `Next step (${shown + 1} of ${steps.length})`}
+                {shown === 0 ? "Show step 1" : `Next step (${shown + 1} of ${steps.length})`}
               </Button>
               <Button
                 type="button"
@@ -231,7 +227,7 @@ export function StepRevealExample({
               onClick={() => setShown(0)}
             >
               <RotateCcw className="h-4 w-4" aria-hidden="true" />
-              Fold steps &amp; retry yourself
+              Hide steps and retry
             </Button>
           )}
         </div>
@@ -252,8 +248,8 @@ function InlineFigure({ src, alt }: { src: string; alt: string }) {
 const RULE_LABELS = {
   definition: "Definition",
   theorem: "Theorem",
-  "working-rule": "Working Rule",
-  formula: "Formula Sheet",
+  "working-rule": "Working rule",
+  formula: "Formula",
   note: "Note",
 } as const;
 
@@ -268,9 +264,14 @@ export function RuleBox({
 }) {
   return (
     <div className="my-6 rounded-2xl border border-[var(--border-strong)] bg-[var(--bg-canvas)]/85 p-4 sm:p-5">
-      <p className="!mb-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
+      <p className="!mb-1.5 text-xs font-semibold text-[var(--accent)]">
         {RULE_LABELS[kind] ?? "Note"}
-        {title ? ` · ${title}` : ""}
+        {title ? (
+          <>
+            {" · "}
+            <MathText text={title} />
+          </>
+        ) : null}
       </p>
       <div className="math-scroll-x text-sm leading-relaxed text-[var(--text-primary)] [&_p]:!mb-2 [&_ul]:!mb-0">
         {children}
@@ -281,7 +282,6 @@ export function RuleBox({
 
 export function ExerciseSet({
   title,
-  source,
   items,
 }: {
   title: string;
@@ -303,11 +303,12 @@ export function ExerciseSet({
     <section className="my-8 overflow-hidden rounded-[24px] border border-[var(--border-strong)] bg-[var(--paper-plate-bg)]">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-hairline)] bg-[var(--bg-subtle)]/75 p-3">
         <div className="min-w-0 px-1">
-          <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
-            Textbook Exercise · {items.length} questions
+          <span className="block text-xs font-medium text-[var(--accent)]">
+            Practice exercises · {items.length} questions
           </span>
-          <p className="!mb-0 !mt-0.5 text-sm font-extrabold text-[var(--text-primary)] sm:text-base">{title}</p>
-          {source && <p className="!mb-0 !mt-0.5 font-mono text-[10px] text-[var(--text-muted)]">{source}</p>}
+          <p className="!mb-0 !mt-0.5 text-sm font-semibold text-[var(--text-primary)] sm:text-base">
+            <MathText text={title} />
+          </p>
         </div>
         <Button
           type="button"
@@ -322,24 +323,24 @@ export function ExerciseSet({
         {items.map((item, i) => (
           <li key={i} className="px-4 py-3.5 sm:px-5">
             <div className="flex gap-3">
-              <span className="tabular mt-0.5 w-6 shrink-0 font-mono text-xs font-bold text-[var(--text-muted)]">{i + 1}.</span>
+              <span className="tabular mt-0.5 w-6 shrink-0 font-mono text-xs font-medium text-[var(--text-muted)]">{i + 1}.</span>
               <div className="min-w-0 flex-1">
                 <div className="math-scroll-x text-sm leading-relaxed text-[var(--text-primary)]">
                   <MathText text={item.q} />
                 </div>
-                {item.figure && <InlineFigure src={item.figure} alt={`Figure for exercise ${i + 1}`} />}
+                {item.figure && <InlineFigure src={item.figure} alt={`Diagram for exercise ${i + 1}`} />}
                 {open.has(i) ? (
                   <div className="math-scroll-x mt-2 rounded-lg bg-[var(--success)]/10 px-3 py-2 text-sm text-[var(--text-primary)]">
-                    <span className="mr-1.5 font-mono text-[10px] font-bold uppercase text-[var(--success)]">Ans.</span>
+                    <span className="mr-1.5 text-xs font-semibold text-[var(--success)]">Answer:</span>
                     <MathText text={item.a} />
                   </div>
                 ) : null}
                 <button
                   type="button"
                   onClick={() => toggle(i)}
-                  className="mt-1.5 inline-flex min-h-[32px] items-center gap-1 font-mono text-[11px] font-semibold text-[var(--accent)] cursor-pointer"
+                  className="mt-1.5 inline-flex min-h-[32px] items-center gap-1.5 text-xs font-medium text-[var(--accent)] cursor-pointer"
                 >
-                  <Eye className="h-3 w-3" aria-hidden="true" />
+                  <Eye className="h-3.5 w-3.5" aria-hidden="true" />
                   {open.has(i) ? "Hide answer" : "Check answer"}
                 </button>
               </div>
@@ -373,7 +374,7 @@ export function Callout({
     >
       <div
         className={cn(
-          "flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider",
+          "flex items-center gap-2 text-xs font-semibold",
           isTip ? "text-[var(--accent)]" : "text-[var(--warning)]"
         )}
       >
@@ -416,7 +417,7 @@ export function TopicActionBar({
 
   async function toggleCompleted() {
     if (!user) {
-      toast.info("Sign in to save your folio progress.");
+      toast.info("Sign in to save your progress");
       return;
     }
     setBusy(true);
@@ -424,9 +425,9 @@ export function TopicActionBar({
       const next = !completed;
       await api.setTopicCompleted(topicId, next);
       setCompleted(next);
-      toast.success(next ? "Study folio marked completed!" : "Marked as in-progress");
+      toast.success(next ? "Topic marked as completed" : "Marked as in progress");
     } catch {
-      toast.error("Could not update progress.");
+      toast.error("Could not update progress");
     } finally {
       setBusy(false);
     }
@@ -440,11 +441,11 @@ export function TopicActionBar({
           <BookOpenCheck className="h-5 w-5" aria-hidden="true" />
         </span>
         <div className="min-w-0">
-          <p className="text-sm font-extrabold text-[var(--text-primary)]">
-            Finished studying this notebook folio?
+          <p className="text-sm font-semibold text-[var(--text-primary)]">
+            Finished studying this topic?
           </p>
           <p className="mt-0.5 text-xs text-[var(--text-secondary)]">
-            Test yourself immediately on the textbook figure &amp; calculation drills for this chapter.
+            Test yourself with practice questions for this chapter.
           </p>
         </div>
       </div>
@@ -461,7 +462,7 @@ export function TopicActionBar({
             aria-hidden="true"
             className={completed ? "h-4 w-4 text-[var(--success)]" : "h-4 w-4 text-[var(--text-muted)]"}
           />
-          {completed ? "Folio completed" : "Mark folio read"}
+          {completed ? "Completed" : "Mark as read"}
         </Button>
 
         {topicId && (
@@ -469,7 +470,7 @@ export function TopicActionBar({
             href={`/practice/${topicId}`}
             className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-[12px] bg-[var(--accent)] px-5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)] min-[420px]:w-auto"
           >
-            Solve textbook drills
+            Practice this topic
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         )}

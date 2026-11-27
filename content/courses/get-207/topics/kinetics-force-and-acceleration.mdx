@@ -1,0 +1,656 @@
+---
+title: "Kinetics of Particles: Newton's Second Law & Equations of Motion"
+order: 8
+topicId: "22222222-2222-4222-8222-222222270008"
+courseCode: "GET 207"
+courseSlug: "get-207"
+ccmasRef: "Newton's laws of motion; equations of motion; dynamic equilibrium"
+outcomes:
+  - "State Newton's second law, the linear-momentum form of the law, and work consistently in SI and U.S. customary kinetic units (W = mg, m = W/g)"
+  - "Draw a free-body diagram and the equivalent kinetic (ma) diagram and write the equations of motion in rectangular components for single bodies and connected systems"
+  - "Write the equations of motion in tangential and normal components to solve pendulum, banked-curve and vertical-loop problems, and apply d'Alembert's dynamic equilibrium"
+  - "Use radial and transverse components, angular momentum and its conservation under a central force to solve rotating-arm and orbital-speed problems"
+  - "Apply Newton's law of gravitation (GM = gR²) to circular and elliptic orbits: orbital and escape velocities, apogee and perigee, and periodic time"
+status: "published"
+isFree: true
+---
+
+## Overview
+
+Kinematics describes motion without asking what causes it. Kinetics links motion to its cause through **Newton's second law**: the resultant of the forces acting on a particle equals the mass of the particle times its acceleration. Newton's first and third laws were used throughout statics; the second law is what turns statics into dynamics.
+
+The chapter has two parts. The first states the second law and the related **linear-momentum** form, reviews the SI and U.S. customary **systems of units**, and shows how to write **equations of motion** in rectangular or in tangential–normal components — or, equivalently, as **dynamic equilibrium** with an inertia vector $-m\mathbf{a}$. The second introduces the **angular momentum** of a particle, the equations of motion in **radial and transverse components**, **motion under a central force** (where angular momentum is conserved), **Newton's law of gravitation**, and their application to **space mechanics** and **Kepler's laws**. The emphasis of this course is on the first part; the second is treated more briefly.
+
+All nine Sample Problems of the chapter are worked below, together with four end-of-section problems solved in full; further problems are listed with the standard answers.
+
+---
+
+### 12.1 Introduction
+
+Newton's first and third laws of motion were used extensively in statics for bodies at rest. They also hold for bodies in motion. The **second law** relates the resultant force on a particle to its acceleration. In this chapter the second law is used to analyse the motion of particles; the next two chapters derive from it the **work–energy** and **impulse–momentum** methods.
+
+A particle is any body whose motion can be described by that of a single point; when the effect of rotation is not negligible the body must be treated as a rigid body (Chapters 16 and 17).
+
+---
+
+### 12.2 Newton's Second Law of Motion
+
+<RuleBox kind="theorem" title="Newton's second law">
+
+*If the resultant force acting on a particle is not zero, the particle will have an acceleration proportional to the magnitude of the resultant and in the direction of this resultant force.*
+
+The constant ratio of force magnitude to acceleration magnitude is the **mass** $m$ of the particle:
+
+$$
+\mathbf{F} = m\mathbf{a} \tag{12.1}
+$$
+
+When several forces act on the particle, $\mathbf{F}$ is replaced by their resultant:
+
+$$
+\sum \mathbf{F} = m\mathbf{a} \tag{12.2}
+$$
+
+</RuleBox>
+
+Experiments show that applying different forces $\mathbf{F}_1, \mathbf{F}_2, \mathbf{F}_3, \dots$ to the same particle produces accelerations in the directions of the forces, with $F_1/a_1 = F_2/a_2 = F_3/a_3 = \text{constant}$ — this constant is a characteristic of the particle, its mass.
+
+- The acceleration in Eq. (12.2) must be measured with respect to a **newtonian frame of reference** — a frame that is not accelerating, ideally one attached to the "fixed" stars (in practice, axes with origin at the sun, not rotating with respect to the stars). For most engineering problems, axes attached to the earth may be used; the error is negligible except for problems such as the flight of long-range missiles.
+- If the resultant force is zero, $\mathbf{a} = \mathbf{0}$: a particle initially at rest stays at rest, and a particle in motion keeps a constant velocity in a straight line — **Newton's first law** is a special case of the second.
+- The second law fails at speeds approaching that of light (relativity) and at atomic scales (quantum mechanics) — conditions outside engineering mechanics.
+
+---
+
+### 12.3 Linear Momentum of a Particle. Rate of Change of Linear Momentum
+
+Replacing $\mathbf{a}$ by $d\mathbf{v}/dt$ in (12.2), and since $m$ is constant:
+
+<RuleBox kind="formula" title="Linear momentum">
+
+$$
+\sum \mathbf{F} = \frac{d}{dt}(m\mathbf{v}) \tag{12.3}
+$$
+
+$$
+\mathbf{L} = m\mathbf{v} \tag{12.4}
+$$
+
+$$
+\sum \mathbf{F} = \dot{\mathbf{L}} \tag{12.5}
+$$
+
+The vector $m\mathbf{v}$ is the **linear momentum** of the particle; it has the direction of the velocity. *The resultant of the forces acting on the particle equals the rate of change of its linear momentum* — the form in which Newton originally stated the second law. SI unit: $\text{kg}\cdot\text{m/s} = \text{N}\cdot\text{s}$; U.S. unit: $\text{lb}\cdot\text{s}$.
+
+**Principle of conservation of linear momentum:** if the resultant force on a particle is zero, its linear momentum remains constant in both magnitude and direction.
+
+</RuleBox>
+
+Eq. (12.3) as written assumes constant mass; it does not apply to systems that gain or lose mass, such as rockets (Sec. 14.12).
+
+---
+
+### 12.4 Systems of Units
+
+In $F = ma$ the units of force, mass, length and time cannot all be chosen arbitrarily: three may be chosen, and the fourth must be **derived** so that $F = ma$ holds exactly. Such units form a system of **consistent kinetic units**.
+
+<RuleBox kind="definition" title="SI and U.S. customary units">
+
+**SI units.** Base units: length (meter, m), mass (kilogram, kg), time (second, s). The unit of force is derived — the **newton** (N), the force that gives a $1\text{-kg}$ mass an acceleration of $1\,\text{m/s}^2$:
+
+$$
+1\,\text{N} = (1\,\text{kg})(1\,\text{m/s}^2) = 1\,\text{kg}\cdot\text{m/s}^2
+$$
+
+The weight of a body is a force: with $g = 9.81\,\text{m/s}^2$,
+
+$$
+W = mg \tag{12.6}
+$$
+
+so a $1\text{-kg}$ mass weighs $9.81\,\text{N}$. Mass is an absolute quantity — the mass of a body is the same on the earth, on the moon or in orbit.
+
+**U.S. customary units.** Base units: length (foot, ft), force (pound, lb), time (second, s). The unit of mass is derived — the **slug**, the mass that receives an acceleration of $1\,\text{ft/s}^2$ under a $1\text{-lb}$ force: $1\,\text{slug} = 1\,\text{lb}\cdot\text{s}^2/\text{ft}$. With $g = 32.2\,\text{ft/s}^2$,
+
+$$
+m = \frac{W}{g} \tag{12.7}
+$$
+
+Conversions: $1\,\text{ft} = 0.3048\,\text{m}$, $1\,\text{lb} = 4.448\,\text{N}$, $1\,\text{slug} = 14.59\,\text{kg}$.
+
+</RuleBox>
+
+---
+
+### 12.5 Equations of Motion
+
+For a particle of mass $m$ acted upon by several forces, the vector equation (12.2) is usually replaced by scalar component equations.
+
+<RuleBox kind="formula" title="Equations of motion">
+
+**Rectangular components:**
+
+$$
+\sum F_x = ma_x \qquad \sum F_y = ma_y \qquad \sum F_z = ma_z \tag{12.8}
+$$
+
+$$
+\sum F_x = m\ddot x \qquad \sum F_y = m\ddot y \qquad \sum F_z = m\ddot z \tag{12.8'}
+$$
+
+**Tangential and normal components** (plane curvilinear motion):
+
+$$
+\sum F_t = ma_t \qquad \sum F_n = ma_n \tag{12.9}
+$$
+
+$$
+\sum F_t = m\frac{dv}{dt} \qquad \sum F_n = m\frac{v^2}{\rho} \tag{12.9'}
+$$
+
+</RuleBox>
+
+**Motion of a projectile.** If air resistance is neglected, the only force is the weight $\mathbf{W} = -W\mathbf{j}$, so $m\ddot x = 0$, $m\ddot y = -W$, $m\ddot z = 0$, i.e. $\ddot x = 0$, $\ddot y = -g$, $\ddot z = 0$ — the same equations used in projectile kinematics.
+
+<RuleBox kind="working-rule" title="Solution procedure">
+
+1. **Kinematics first** (if needed): relate the accelerations of the bodies — e.g. a cable constraint ($a_B = \tfrac12 a_A$) or a relative-motion equation ($\mathbf{a}_B = \mathbf{a}_A + \mathbf{a}_{B/A}$).
+2. **Draw the free-body diagram** of each body (all applied forces, weights, normal and friction forces, tensions) **and an equivalent diagram** showing the vector $m\mathbf{a}$ or its components.
+3. **Write the equations of motion** for each body separately, choosing rectangular or tangential–normal components. Use the **absolute** acceleration (newtonian frame). If the sense of $\mathbf{a}$ is unknown, assume one and let the sign decide.
+4. With **dry friction**, $F = \mu_k N$ applies only when sliding occurs; $F \le \mu_s N$ when it does not. If the motion is not specified, assume a motion and check it.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Block pushed on a rough plane (U.S. units)" figure="/diagrams/get-207/kinetics-force-and-acceleration-sp-12-1.png"
+  problem="A $200\text{-lb}$ block rests on a horizontal plane. Find the magnitude of the force $\mathbf{P}$ required to give the block an acceleration of $10\,\text{ft/s}^2$ to the right. The coefficient of kinetic friction between the block and the plane is $\mu_k = 0.25$. ($\mathbf{P}$ acts downward to the right at $30^\circ$ below the horizontal.)"
+  steps={[
+    "Mass of the block: $m = \\dfrac{W}{g} = \\dfrac{200\\,\\text{lb}}{32.2\\,\\text{ft/s}^2} = 6.21\\,\\text{lb}\\cdot\\text{s}^2/\\text{ft}$.",
+    "The block slides, so $F = \\mu_k N = 0.25N$, opposing the motion; $a = 10\\,\\text{ft/s}^2$. The forces on the free-body diagram are equivalent to the vector $m\\mathbf{a}$.",
+    "$\\xrightarrow{+}\\sum F_x = ma$: $P\\cos 30^\\circ - 0.25N = (6.21)(10)$, i.e. $P\\cos 30^\\circ - 0.25N = 62.1\\,\\text{lb} \\quad (1)$.",
+    "$+\\uparrow\\sum F_y = 0$: $N - P\\sin 30^\\circ - 200\\,\\text{lb} = 0 \\quad (2)$, so $N = P\\sin 30^\\circ + 200\\,\\text{lb}$.",
+    "Substitute into (1): $P\\cos 30^\\circ - 0.25(P\\sin 30^\\circ + 200) = 62.1 \\Rightarrow P(0.8660 - 0.125) = 112.1 \\Rightarrow P = 151\\,\\text{lb}$."
+  ]}
+  answer="$P = 151\,\text{lb}$"
+/>
+
+<StepRevealExample
+  title="The same block in SI units" figure="/diagrams/get-207/kinetics-force-and-acceleration-sp-12-2.png"
+  problem="An $80\text{-kg}$ block rests on a horizontal plane. Find the magnitude of the force $\mathbf{P}$ required to give the block an acceleration of $2.5\,\text{m/s}^2$ to the right. The coefficient of kinetic friction between the block and the plane is $\mu_k = 0.25$. ($\mathbf{P}$ acts downward to the right at $30^\circ$ below the horizontal.)"
+  steps={[
+    "Weight of the block: $W = mg = (80\\,\\text{kg})(9.81\\,\\text{m/s}^2) = 785\\,\\text{N}$.",
+    "$F = \\mu_k N = 0.25N$ and $a = 2.5\\,\\text{m/s}^2$. The forces are equivalent to $m\\mathbf{a}$.",
+    "$\\xrightarrow{+}\\sum F_x = ma$: $P\\cos 30^\\circ - 0.25N = (80)(2.5)$, i.e. $P\\cos 30^\\circ - 0.25N = 200\\,\\text{N} \\quad (1)$.",
+    "$+\\uparrow\\sum F_y = 0$: $N - P\\sin 30^\\circ - 785\\,\\text{N} = 0 \\quad (2)$, so $N = P\\sin 30^\\circ + 785\\,\\text{N}$.",
+    "Substitute into (1): $P\\cos 30^\\circ - 0.25(P\\sin 30^\\circ + 785) = 200 \\Rightarrow 0.741P = 396.3 \\Rightarrow P = 535\\,\\text{N}$."
+  ]}
+  answer="$P = 535\,\text{N}$"
+/>
+
+<StepRevealExample
+  title="Two blocks connected over a pulley" figure="/diagrams/get-207/kinetics-force-and-acceleration-sp-12-3.png"
+  problem="The two blocks shown start from rest. The horizontal plane and the pulley are frictionless, and the pulley is assumed to be of negligible mass. Determine the acceleration of each block and the tension in each cord. ($m_A = 100\,\text{kg}$ on the horizontal plane; $m_B = 300\,\text{kg}$ hangs from the movable pulley $C$.)"
+  steps={[
+    "Kinematics. If block $A$ moves through $x_A$ to the right, block $B$ moves down through $x_B = \\tfrac12 x_A$. Differentiating twice: $a_B = \\tfrac12 a_A \\quad (1)$.",
+    "Block $A$ (tension $T_1$ in cord $ACD$): $\\xrightarrow{+}\\sum F_x = m_A a_A$: $T_1 = 100a_A \\quad (2)$.",
+    "Block $B$: $W_B = m_B g = (300)(9.81) = 2940\\,\\text{N}$; with $T_2$ the tension in cord $BC$, $+\\downarrow\\sum F_y = m_B a_B$: $2940 - T_2 = 300a_B$. Using (1): $2940 - T_2 = 300(\\tfrac12 a_A)$, so $T_2 = 2940 - 150a_A \\quad (3)$.",
+    "Pulley $C$ ($m_C = 0$): $+\\downarrow\\sum F_y = m_C a_C = 0$: $T_2 - 2T_1 = 0 \\quad (4)$.",
+    "Substitute (2) and (3) into (4): $2940 - 150a_A - 2(100a_A) = 0 \\Rightarrow 2940 - 350a_A = 0 \\Rightarrow a_A = 8.40\\,\\text{m/s}^2$.",
+    "Then $a_B = \\tfrac12(8.40) = 4.20\\,\\text{m/s}^2$, $T_1 = (100)(8.40) = 840\\,\\text{N}$, and from (4) $T_2 = 2T_1 = 1680\\,\\text{N}$. Note that $T_2$ is **not** equal to the weight of block $B$ ($2940\\,\\text{N}$)."
+  ]}
+  answer="$a_A = 8.40\,\text{m/s}^2\rightarrow$, $a_B = 4.20\,\text{m/s}^2\downarrow$, $T_1 = 840\,\text{N}$, $T_2 = 1680\,\text{N}$"
+/>
+
+<StepRevealExample
+  title="Block sliding on a movable wedge" figure="/diagrams/get-207/kinetics-force-and-acceleration-sp-12-4.png"
+  problem="The $12\text{-lb}$ block $B$ starts from rest and slides on the $30\text{-lb}$ wedge $A$, which is supported by a horizontal surface. Neglecting friction, determine (a) the acceleration of the wedge, (b) the acceleration of the block relative to the wedge. (The inclined face of the wedge makes $30^\circ$ with the horizontal.)"
+  steps={[
+    "Kinematics. The wedge is constrained to move horizontally; assume $\\mathbf{a}_A$ to the right. For the block, $\\mathbf{a}_B = \\mathbf{a}_A + \\mathbf{a}_{B/A}$, where $\\mathbf{a}_{B/A}$ is directed along the inclined surface.",
+    "Wedge $A$ ($N_1$ from the block, $N_2$ from the floor): $\\xrightarrow{+}\\sum F_x = m_A a_A$: $N_1\\sin 30^\\circ = m_A a_A$, i.e. $0.5N_1 = (W_A/g)a_A \\quad (1)$.",
+    "Block $B$, with $x$ along the incline (down the slope positive) and $y$ normal to it, resolving $\\mathbf{a}_B$ into $\\mathbf{a}_A$ and $\\mathbf{a}_{B/A}$: $\\sum F_x = m_B a_x$: $-W_B\\sin 30^\\circ = (W_B/g)(a_A\\cos 30^\\circ - a_{B/A})$, so $a_{B/A} = a_A\\cos 30^\\circ + g\\sin 30^\\circ \\quad (2)$.",
+    "$\\sum F_y = m_B a_y$: $N_1 - W_B\\cos 30^\\circ = -(W_B/g)a_A\\sin 30^\\circ \\quad (3)$.",
+    "(a) Substitute $N_1 = 2(W_A/g)a_A$ from (1) into (3): $2(W_A/g)a_A - W_B\\cos 30^\\circ = -(W_B/g)a_A\\sin 30^\\circ$, giving $a_A = \\dfrac{W_B\\cos 30^\\circ}{2W_A + W_B\\sin 30^\\circ}\\,g = \\dfrac{(12)\\cos 30^\\circ}{2(30) + (12)\\sin 30^\\circ}(32.2) = +5.07\\,\\text{ft/s}^2$.",
+    "(b) From (2): $a_{B/A} = (5.07)\\cos 30^\\circ + (32.2)\\sin 30^\\circ = +20.5\\,\\text{ft/s}^2$, directed down the incline."
+  ]}
+  answer="(a) $\mathbf{a}_A = 5.07\,\text{ft/s}^2\rightarrow$; (b) $\mathbf{a}_{B/A} = 20.5\,\text{ft/s}^2$ down the incline ($\swarrow 30^\circ$)"
+/>
+
+<StepRevealExample
+  title="Pendulum bob" figure="/diagrams/get-207/kinetics-force-and-acceleration-sp-12-5.png"
+  problem="The bob of a $2\text{-m}$ pendulum describes an arc of circle in a vertical plane. If the tension in the cord is $2.5$ times the weight of the bob for the position shown ($30^\circ$ from the vertical), find the velocity and the acceleration of the bob in that position."
+  steps={[
+    "The weight of the bob is $W = mg$, so the tension is $T = 2.5mg$. $\\mathbf{a}_n$ is directed toward $O$; assume $\\mathbf{a}_t$ in the sense shown (downward along the path).",
+    "Tangential: $\\sum F_t = ma_t$: $mg\\sin 30^\\circ = ma_t \\Rightarrow a_t = g\\sin 30^\\circ = +4.90\\,\\text{m/s}^2$.",
+    "Normal: $\\sum F_n = ma_n$: $2.5mg - mg\\cos 30^\\circ = ma_n \\Rightarrow a_n = (2.5 - 0.866)g = 1.634g = +16.03\\,\\text{m/s}^2$, toward $O$.",
+    "Since $a_n = v^2/\\rho$: $v^2 = \\rho a_n = (2\\,\\text{m})(16.03\\,\\text{m/s}^2) \\Rightarrow v = \\pm 5.66\\,\\text{m/s}$ — the bob may be swinging either up or down; the equations of motion cannot tell."
+  ]}
+  answer="$a_t = 4.90\,\text{m/s}^2$, $a_n = 16.03\,\text{m/s}^2$ (toward $O$), $v = 5.66\,\text{m/s}$ (up or down)"
+/>
+
+<StepRevealExample
+  title="Rated speed of a banked curve" figure="/diagrams/get-207/kinetics-force-and-acceleration-sp-12-6.png"
+  problem="Determine the rated speed of a highway curve of radius $\rho = 400\,\text{ft}$ banked through an angle $\theta = 18^\circ$. The rated speed of a banked highway curve is the speed at which a car should travel if no lateral friction force is to be exerted on its wheels."
+  steps={[
+    "The car travels in a **horizontal** circle of radius $\\rho$; $\\mathbf{a}_n$ points horizontally toward the center with $a_n = v^2/\\rho$. Its mass is $m = W/g$. With no lateral friction, the road reaction $\\mathbf{R}$ is perpendicular to the roadway.",
+    "$+\\uparrow\\sum F_y = 0$: $R\\cos\\theta - W = 0 \\Rightarrow R = \\dfrac{W}{\\cos\\theta} \\quad (1)$.",
+    "$\\xleftarrow{+}\\sum F_n = ma_n$: $R\\sin\\theta = \\dfrac{W}{g}a_n \\quad (2)$.",
+    "Substituting (1) into (2) and $a_n = v^2/\\rho$: $\\dfrac{W}{\\cos\\theta}\\sin\\theta = \\dfrac{W}{g}\\dfrac{v^2}{\\rho} \\Rightarrow v^2 = g\\rho\\tan\\theta$.",
+    "$v^2 = (32.2\\,\\text{ft/s}^2)(400\\,\\text{ft})\\tan 18^\\circ \\Rightarrow v = 64.7\\,\\text{ft/s} = 44.1\\,\\text{mi/h}$."
+  ]}
+  answer="$v = 64.7\,\text{ft/s} = 44.1\,\text{mi/h}$"
+/>
+
+<StepRevealExample
+  title="Maximum speed: four-, front- and rear-wheel drive" problem="Determine the maximum theoretical speed that may be achieved over a distance of $60\,\text{m}$ by a car starting from rest, knowing that the coefficient of static friction is $0.80$ between the tires and the pavement and that 60 percent of the weight of the car is distributed over its front wheels and 40 percent over its rear wheels. Assume (a) four-wheel drive, (b) front-wheel drive, (c) rear-wheel drive."
+  steps={[
+    "The driving force is the friction force on the driven wheels; its maximum is $\\mu_s$ times the normal force on those wheels. The total normal force is $N = W = mg$ (level road).",
+    "(a) Four-wheel drive: $F_{\\max} = 0.80mg \\Rightarrow a = 0.80(9.81) = 7.848\\,\\text{m/s}^2$. Uniformly accelerated from rest: $v^2 = 2ax = 2(7.848)(60) = 941.8 \\Rightarrow v = 30.69\\,\\text{m/s} = 110.5\\,\\text{km/h}$.",
+    "(b) Front-wheel drive: $F_{\\max} = 0.80(0.60mg) \\Rightarrow a = 0.48(9.81) = 4.709\\,\\text{m/s}^2$; $v^2 = 2(4.709)(60) = 565.0 \\Rightarrow v = 23.77\\,\\text{m/s} = 85.6\\,\\text{km/h}$.",
+    "(c) Rear-wheel drive: $F_{\\max} = 0.80(0.40mg) \\Rightarrow a = 0.32(9.81) = 3.139\\,\\text{m/s}^2$; $v^2 = 2(3.139)(60) = 376.7 \\Rightarrow v = 19.41\\,\\text{m/s} = 69.9\\,\\text{km/h}$."
+  ]}
+  answer="(a) $110.5\,\text{km/h}$; (b) $85.6\,\text{km/h}$; (c) $69.9\,\text{km/h}$"
+/>
+
+<StepRevealExample
+  title="Child on a swing" figure="/diagrams/get-207/kinetics-force-and-acceleration-prob-12-46.png"
+  problem="A child having a mass of $22\,\text{kg}$ sits on a swing and is held in the position shown (rope at $35^\circ$ to the vertical) by a second child. Neglecting the mass of the swing, determine the tension in rope $AB$ (a) while the second child holds the swing with his arms outstretched horizontally, (b) immediately after the swing is released."
+  steps={[
+    "Weight: $W = (22)(9.81) = 215.8\\,\\text{N}$. The seat hangs from two ropes like $AB$ (one on each side), which share the load equally, so each carries $T$ and the pair exerts $2T$ along the rope direction.",
+    "(a) Held still, the child is in equilibrium under $W$, the horizontal push $\\mathbf{P}$ and $2T$ at $35^\\circ$ to the vertical: $+\\uparrow\\sum F_y = 0$: $2T\\cos 35^\\circ - 215.8 = 0 \\Rightarrow T = \\dfrac{215.8}{2(0.8192)} = 131.7\\,\\text{N}$.",
+    "(b) Immediately after release $v = 0$, so $a_n = v^2/\\rho = 0$ and the acceleration is purely tangential. Normal direction (along the rope): $\\sum F_n = ma_n = 0$: $2T - W\\cos 35^\\circ = 0$.",
+    "$T = \\dfrac{215.8\\cos 35^\\circ}{2} = \\dfrac{215.8(0.8192)}{2} = 88.4\\,\\text{N}$. (The tangential equation gives $a_t = g\\sin 35^\\circ = 5.63\\,\\text{m/s}^2$.) The tension drops at the instant of release because the push $\\mathbf{P}$ is removed and no normal acceleration exists yet."
+  ]}
+  answer="(a) $131.7\,\text{N}$; (b) $88.4\,\text{N}$"
+/>
+
+<StepRevealExample
+  title="Braking roller-coaster car on curved and straight track" figure="/diagrams/get-207/kinetics-force-and-acceleration-prob-12-47.png"
+  problem="The roller-coaster track shown is contained in a vertical plane. The portion of track between $A$ and $B$ is straight and horizontal, while the portions to the left of $A$ and to the right of $B$ have radii of curvature as indicated ($\rho = 30\,\text{m}$ and $\rho = 45\,\text{m}$). A car is traveling at a speed of $72\,\text{km/h}$ when the brakes are suddenly applied, causing the wheels of the car to slide on the track ($\mu_k = 0.20$). Determine the initial deceleration of the car if the brakes are applied as the car (a) has almost reached $A$, (b) is traveling between $A$ and $B$, (c) has just passed $B$."
+  steps={[
+    "$v = 72\\,\\text{km/h} = 20\\,\\text{m/s}$. At each point the track is horizontal, so the friction force $\\mu_k N$ is the only tangential force: $\\sum F_t = ma_t \\Rightarrow a_t = -\\mu_k N/m$. The normal force follows from $\\sum F_n = ma_n$ with $a_n = v^2/\\rho$ toward the center of curvature.",
+    "(a) Just left of $A$ the track curves upward (center of curvature above the car, $\\rho = 30\\,\\text{m}$): $N - mg = m\\dfrac{v^2}{\\rho} \\Rightarrow \\dfrac{N}{m} = 9.81 + \\dfrac{(20)^2}{30} = 9.81 + 13.33 = 23.14\\,\\text{m/s}^2$. Deceleration $= 0.20(23.14) = 4.63\\,\\text{m/s}^2$.",
+    "(b) Between $A$ and $B$ the track is straight ($a_n = 0$): $N = mg$, deceleration $= \\mu_k g = 0.20(9.81) = 1.962\\,\\text{m/s}^2$.",
+    "(c) Just past $B$ the track curves downward (center below, $\\rho = 45\\,\\text{m}$): $mg - N = m\\dfrac{v^2}{\\rho} \\Rightarrow \\dfrac{N}{m} = 9.81 - \\dfrac{(20)^2}{45} = 9.81 - 8.889 = 0.921\\,\\text{m/s}^2$. Deceleration $= 0.20(0.921) = 0.1842\\,\\text{m/s}^2$."
+  ]}
+  answer="(a) $4.63\,\text{m/s}^2$; (b) $1.962\,\text{m/s}^2$; (c) $0.1842\,\text{m/s}^2$"
+/>
+
+<ExerciseSet
+  title="Practice Set" items={[
+    { q: "A $400\\text{-kg}$ satellite has been placed in a circular orbit $1500\\,\\text{km}$ above the surface of the earth. The acceleration of gravity at this elevation is $6.43\\,\\text{m/s}^2$. Determine the linear momentum of the satellite, knowing that its orbital speed is $25.6 \\times 10^3\\,\\text{km/h}$.", a: "$2.84 \\times 10^6\\,\\text{kg}\\cdot\\text{m/s}$" },
+    { q: "A spring scale $A$ and a lever scale $B$ having equal lever arms are fastened to the roof of an elevator, and identical packages are attached to the scales. Knowing that when the elevator moves downward with an acceleration of $1\\,\\text{m/s}^2$ the spring scale indicates a load of $60\\,\\text{N}$, determine (a) the weight of the packages, (b) the load indicated by the spring scale and the mass needed to balance the lever scale when the elevator moves upward with an acceleration of $1\\,\\text{m/s}^2$.", a: "(a) $66.8\\,\\text{N}$; (b) load indicated $= 73.6\\,\\text{N}$, $m = 6.81\\,\\text{kg}$" },
+    { q: "If an automobile's braking distance from $90\\,\\text{km/h}$ is $45\\,\\text{m}$ on level pavement, determine the automobile's braking distance from $90\\,\\text{km/h}$ when it is (a) going up a $5^\\circ$ incline, (b) going down a 3-percent incline. Assume the braking force is independent of grade.", a: "(a) $40.1\\,\\text{m}$; (b) $47.0\\,\\text{m}$" },
+    { q: "A mother and her child are skiing together, and the mother is holding the end of a rope tied to the child's waist. They are moving at a speed of $7.2\\,\\text{km/h}$ on a gently sloping portion of the ski slope when the mother observes that they are approaching a steep descent. She pulls on the rope with an average force of $7\\,\\text{N}$. Knowing the coefficient of friction between the child and the ground is $0.1$ and the angle of the rope does not change, determine (a) the time required for the child's speed to be cut in half, (b) the distance traveled in this time.", a: "(a) $2.22\\,\\text{s}$; (b) $3.32\\,\\text{m}$", figure: "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-10.png" },
+    { q: "The coefficients of friction between the load and the flatbed trailer shown are $\\mu_s = 0.40$ and $\\mu_k = 0.30$. Knowing that the speed of the rig is $72\\,\\text{km/h}$, determine the shortest distance in which the rig can be brought to a stop if the load is not to shift.", a: "$51.0\\,\\text{m}$", figure: "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-11.png" },
+    { q: "A light train made up of two cars is traveling at $90\\,\\text{km/h}$ when the brakes are applied to both cars. Knowing that car $A$ has a mass of $25\\,\\text{Mg}$ and car $B$ a mass of $20\\,\\text{Mg}$, and that the braking force is $30\\,\\text{kN}$ on each car, determine (a) the distance traveled by the train before it comes to a stop, (b) the force in the coupling between the cars while the train is slowing down.", a: "(a) $234\\,\\text{m}$; (b) $3.33\\,\\text{kN}$ (tension)", figure: "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-12.png" },
+    { q: "An airplane has a mass of $25\\,\\text{Mg}$ and its engines develop a total thrust of $40\\,\\text{kN}$ during take-off. If the drag $D$ exerted on the plane has a magnitude $D = 2.25v^2$, where $v$ is expressed in meters per second and $D$ in newtons, and if the plane becomes airborne at a speed of $240\\,\\text{km/h}$, determine the length of runway required for the plane to take off.", a: "$1.598\\,\\text{km}$" },
+    { q: "Maximum theoretical speed over $60\\,\\text{m}$ from rest, $\\mu_s = 0.80$, 60% of weight on front wheels: (a) four-wheel drive, (b) front-wheel drive, (c) rear-wheel drive.", a: "(a) $110.5\\,\\text{km/h}$; (b) $85.6\\,\\text{km/h}$; (c) $69.9\\,\\text{km/h}$" }
+  ]}
+/>
+
+---
+
+### 12.6 Dynamic Equilibrium
+
+Transposing the right-hand side of (12.2):
+
+<RuleBox kind="theorem" title="d'Alembert's principle — dynamic equilibrium">
+
+$$
+\sum \mathbf{F} - m\mathbf{a} = \mathbf{0} \tag{12.10}
+$$
+
+If we add to the applied forces the vector $-m\mathbf{a}$ — of magnitude $ma$ and direction **opposite** to the acceleration — the particle may be considered in **equilibrium** under the given forces and this **inertia vector**. The particle is then in **dynamic equilibrium**, and the methods of statics apply:
+
+$$
+\sum F_x = 0 \qquad \sum F_y = 0 \qquad \text{including inertia vector} \tag{12.11}
+$$
+
+In tangential and normal components, the inertia vector is resolved into $-m\,\dfrac{dv}{dt}$ (opposite to the tangential acceleration) and $-m\,\dfrac{v^2}{\rho}$ directed **away from** the center of curvature. The latter is often called the **centrifugal force**.
+
+</RuleBox>
+
+The inertia vector is not a force: it measures the resistance a particle offers to a change of motion. Using it is a matter of preference — the dynamic-equilibrium and the $\sum\mathbf{F} = m\mathbf{a}$ approaches give identical equations. the syllabus prefers the kinetic diagram ($\mathbf{F}$'s equivalent to $m\mathbf{a}$) because it keeps the physics clear. For example, in Sample Problem 12.5 the inertia components $ma_t$ and $ma_n$ would be drawn opposite to $\mathbf{a}_t$ and $\mathbf{a}_n$, and $\sum F_t = 0$, $\sum F_n = 0$ would reproduce the same results.
+
+---
+
+### 12.7 Angular Momentum of a Particle. Rate of Change of Angular Momentum
+
+<RuleBox kind="definition" title="Angular momentum about O">
+
+The **moment about $O$ of the linear momentum** $m\mathbf{v}$ of a particle at position $\mathbf{r}$ is its **angular momentum** about $O$:
+
+$$
+\mathbf{H}_O = \mathbf{r} \times m\mathbf{v} \tag{12.12}
+$$
+
+$$
+H_O = rmv\sin\phi \tag{12.13}
+$$
+
+where $\phi$ is the angle between $\mathbf{r}$ and $m\mathbf{v}$. $\mathbf{H}_O$ is perpendicular to the plane of $\mathbf{r}$ and $m\mathbf{v}$. Units: $\text{kg}\cdot\text{m}^2/\text{s}$ (SI) or $\text{ft}\cdot\text{lb}\cdot\text{s}$.
+
+In rectangular components (12.14):
+
+$$
+H_x = m(yv_z - zv_y) \qquad H_y = m(zv_x - xv_z) \qquad H_z = m(xv_y - yv_x) \tag{12.15}
+$$
+
+For motion in the $xy$ plane, $H_O = H_z = m(xv_y - yv_x)$ (12.16). In radial and transverse components:
+
+$$
+H_O = rmv\sin\phi = rmv_\theta \tag{12.17}
+$$
+
+$$
+H_O = mr^2\dot\theta \tag{12.18}
+$$
+
+</RuleBox>
+
+Differentiating (12.12), and noting that $\dot{\mathbf{r}} \times m\mathbf{v} = \mathbf{v} \times m\mathbf{v} = \mathbf{0}$ and $m\mathbf{a} = \sum\mathbf{F}$:
+
+<RuleBox kind="theorem" title="Rate of change of angular momentum">
+
+$$
+\sum \mathbf{M}_O = \dot{\mathbf{H}}_O \tag{12.19}
+$$
+
+*The sum of the moments about $O$ of the forces acting on a particle equals the rate of change of the angular momentum of the particle about $O$.*
+
+</RuleBox>
+
+---
+
+### 12.8 Equations of Motion in Terms of Radial and Transverse Components
+
+Substituting the components of the acceleration from (11.46) into (12.2):
+
+<RuleBox kind="formula" title="Radial and transverse equations of motion">
+
+$$
+\sum F_r = ma_r \qquad \sum F_\theta = ma_\theta \tag{12.20}
+$$
+
+$$
+\sum F_r = m(\ddot r - r\dot\theta^2) \tag{12.21}
+$$
+
+$$
+\sum F_\theta = m(r\ddot\theta + 2\dot r\dot\theta) \tag{12.22}
+$$
+
+Eq. (12.22) can also be derived from (12.19): $r\sum F_\theta = \dfrac{d}{dt}(mr^2\dot\theta) = m(r^2\ddot\theta + 2r\dot r\dot\theta)$, which, divided by $r$, is (12.22).
+
+</RuleBox>
+
+<StepRevealExample
+  title="Block released on a rotating frictionless arm" figure="/diagrams/get-207/kinetics-force-and-acceleration-sp-12-7.png"
+  problem="A block $B$ of mass $m$ can slide freely on a frictionless arm $OA$ which rotates in a horizontal plane at a constant rate $\dot\theta_0$. Knowing that $B$ is released at a distance $r_0$ from $O$, express as a function of $r$, (a) the component $v_r$ of the velocity of $B$ along $OA$, (b) the magnitude of the horizontal force $\mathbf{F}$ exerted on $B$ by the arm $OA$."
+  steps={[
+    "All other forces are perpendicular to the plane of the figure, so the only horizontal force on $B$ is $\\mathbf{F}$, perpendicular to $OA$ (the arm is frictionless).",
+    "Equations of motion: $\\sum F_r = ma_r$: $0 = m(\\ddot r - r\\dot\\theta^2) \\quad (1)$; $\\;\\sum F_\\theta = ma_\\theta$: $F = m(r\\ddot\\theta + 2\\dot r\\dot\\theta) \\quad (2)$.",
+    "(a) Since $v_r = \\dot r$: $\\ddot r = \\dot v_r = \\dfrac{dv_r}{dt} = \\dfrac{dv_r}{dr}\\dfrac{dr}{dt} = v_r\\dfrac{dv_r}{dr}$. Substituting in (1) with $\\dot\\theta = \\dot\\theta_0$ and separating variables: $v_r\\,dv_r = \\dot\\theta_0^2\\,r\\,dr$.",
+    "Multiplying by 2 and integrating from $0$ to $v_r$ and from $r_0$ to $r$: $v_r^2 = \\dot\\theta_0^2(r^2 - r_0^2)$, so $v_r = \\dot\\theta_0(r^2 - r_0^2)^{1/2}$.",
+    "(b) Set $\\dot\\theta = \\dot\\theta_0$, $\\ddot\\theta = 0$, $\\dot r = v_r$ in (2): $F = 2m\\dot\\theta_0(r^2 - r_0^2)^{1/2}\\dot\\theta_0$, i.e. $F = 2m\\dot\\theta_0^2(r^2 - r_0^2)^{1/2}$."
+  ]}
+  answer="(a) $v_r = \dot\theta_0(r^2 - r_0^2)^{1/2}$; (b) $F = 2m\dot\theta_0^2(r^2 - r_0^2)^{1/2}$"
+/>
+
+---
+
+### 12.9 Motion under a Central Force. Conservation of Angular Momentum
+
+When the only force acting on a particle $P$ is directed toward or away from a fixed point $O$, the particle is moving under a **central force**, and $O$ is the **center of force**. The line of action of $\mathbf{F}$ passes through $O$, so $\sum\mathbf{M}_O = \mathbf{0}$ at every instant, and by (12.19) $\dot{\mathbf{H}}_O = \mathbf{0}$:
+
+<RuleBox kind="theorem" title="Conservation of angular momentum under a central force">
+
+$$
+\mathbf{H}_O = \text{constant} \tag{12.23}
+$$
+
+$$
+\mathbf{r} \times m\mathbf{v} = \mathbf{H}_O = \text{constant} \tag{12.24}
+$$
+
+The particle therefore moves in a fixed plane perpendicular to $\mathbf{H}_O$, and
+
+$$
+rmv\sin\phi = r_0mv_0\sin\phi_0 \tag{12.25}
+$$
+
+$$
+mr^2\dot\theta = H_O = \text{constant} \tag{12.26}
+$$
+
+$$
+r^2\dot\theta = h \tag{12.27}
+$$
+
+$h$ is the angular momentum per unit mass. The **areal velocity** $\dfrac{dA}{dt} = \tfrac12 r^2\dot\theta = \tfrac12 h$ is constant: the radius vector $OP$ sweeps equal areas in equal times.
+
+</RuleBox>
+
+---
+
+### 12.10 Newton's Law of Gravitation
+
+<RuleBox kind="theorem" title="Newton's law of universal gravitation">
+
+Two particles of masses $M$ and $m$ at a distance $r$ attract each other with equal and opposite forces $\mathbf{F}$ and $-\mathbf{F}$ along the line joining them, of magnitude
+
+$$
+F = G\,\frac{Mm}{r^2} \tag{12.28}
+$$
+
+with the **constant of gravitation** $G = (66.73 \pm 0.03) \times 10^{-12}\,\text{m}^3/\text{kg}\cdot\text{s}^2$ (approximately $34.4 \times 10^{-9}\,\text{ft}^4/\text{lb}\cdot\text{s}^4$).
+
+At the surface of the earth (radius $R$), the weight of a body is the gravitational attraction:
+
+$$
+W = mg = \frac{GM}{R^2}\,m \quad\text{or}\quad g = \frac{GM}{R^2} \tag{12.29}
+$$
+
+$$
+GM = gR^2 \tag{12.30}
+$$
+
+with $R = 6.37 \times 10^6\,\text{m} = 3960\,\text{mi}$ and $g = 9.81\,\text{m/s}^2$.
+
+</RuleBox>
+
+The force exerted by the earth on a satellite is directed toward the earth's center — a central force — so the central-force equations apply to satellites, planets and spacecraft.
+
+<StepRevealExample
+  title="Satellite speed at maximum altitude" figure="/diagrams/get-207/kinetics-force-and-acceleration-sp-12-8.png"
+  problem="A satellite is launched in a direction parallel to the surface of the earth with a velocity of $18{,}820\,\text{mi/h}$ from an altitude of $240\,\text{mi}$. Determine the velocity of the satellite as it reaches its maximum altitude of $2340\,\text{mi}$. It is recalled that the radius of the earth is $3960\,\text{mi}$."
+  steps={[
+    "The satellite moves under a central force directed toward the earth's center $O$, so its angular momentum $H_O$ is constant. From Eq. (12.13): $rmv\\sin\\phi = H_O = \\text{constant}$.",
+    "This shows that $v$ is minimum at $B$, the point of maximum altitude, where both $r$ and $\\sin\\phi$ are maximum ($\\phi = 90^\\circ$ at both $A$ and $B$).",
+    "Conservation of angular momentum between $A$ and $B$: $r_A m v_A = r_B m v_B$.",
+    "$v_B = v_A\\dfrac{r_A}{r_B} = (18{,}820\\,\\text{mi/h})\\dfrac{3960 + 240}{3960 + 2340} = (18{,}820)\\dfrac{4200}{6300} = 12{,}550\\,\\text{mi/h}$."
+  ]}
+  answer="$v_B = 12{,}550\,\text{mi/h}$"
+/>
+
+<StepRevealExample
+  title="Geosynchronous orbit" problem="Communication satellites are placed in a geosynchronous orbit, i.e., in a circular orbit such that they complete one full revolution about the earth in one sidereal day ($23.934\,\text{h}$), and thus appear stationary with respect to the ground. Determine (a) the altitude of these satellites above the surface of the earth, (b) the velocity with which they describe their orbit (SI units)."
+  steps={[
+    "For a circular orbit of radius $r$, the gravitational force supplies the normal acceleration: $\\dfrac{GMm}{r^2} = m\\dfrac{v^2}{r} \\Rightarrow v = \\sqrt{\\dfrac{GM}{r}}$, and the periodic time is $\\tau = \\dfrac{2\\pi r}{v} = \\dfrac{2\\pi r^{3/2}}{\\sqrt{GM}}$.",
+    "$GM = gR^2 = (9.81)(6.37 \\times 10^6)^2 = 398.1 \\times 10^{12}\\,\\text{m}^3/\\text{s}^2$; $\\tau = 23.934\\,\\text{h} = 86\\,162\\,\\text{s}$.",
+    "$r^3 = \\dfrac{GM\\,\\tau^2}{4\\pi^2} = \\dfrac{(398.1 \\times 10^{12})(86\\,162)^2}{4\\pi^2} = 74.86 \\times 10^{21}\\,\\text{m}^3 \\Rightarrow r = 42.15 \\times 10^6\\,\\text{m}$.",
+    "(a) Altitude $= r - R = 42\\,150 - 6370 = 35\\,800\\,\\text{km}$.",
+    "(b) $v = \\sqrt{GM/r} = \\sqrt{\\dfrac{398.1 \\times 10^{12}}{42.15 \\times 10^6}} = 3.07 \\times 10^3\\,\\text{m/s} = 3.07\\,\\text{km/s}$."
+  ]}
+  answer="(a) $35\,800\,\text{km}$; (b) $3.07\,\text{km/s}$"
+/>
+
+<ExerciseSet
+  title="Practice Set" items={[
+    { q: "The horizontal rod $OA$ rotates about a vertical shaft according to the relation $\\dot\\theta = 10t$, where $\\dot\\theta$ and $t$ are expressed in rad/s and seconds, respectively. A $250\\text{-g}$ collar $B$ is held by a cord with a breaking strength of $18\\,\\text{N}$. Neglecting friction, determine, immediately after the cord breaks, (a) the relative acceleration of the collar with respect to the rod, (b) the magnitude of the horizontal force exerted on the collar by the rod.", a: "(a) $72.0\\,\\text{m/s}^2$ radially outward; (b) $1.250\\,\\text{N}$", figure: "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-69.png" },
+    { q: "Show that the radius $r$ of the moon's orbit can be determined from the radius $R$ of the earth, the acceleration of gravity $g$ at the surface of the earth, and the time $\\tau$ required for the moon to complete one full revolution about the earth. Compute $r$ knowing that $\\tau = 27.3$ days.", a: "$r = 383 \\times 10^3\\,\\text{km}$ ($238 \\times 10^3\\,\\text{mi}$)" },
+    { q: "Geosynchronous orbit (one revolution per sidereal day, $23.934\\,\\text{h}$): determine (a) the altitude above the earth's surface, (b) the orbital velocity.", a: "(a) $35\\,800\\,\\text{km}$ ($22\\,200\\,\\text{mi}$); (b) $3.07\\,\\text{km/s}$ ($10.09 \\times 10^3\\,\\text{ft/s}$)" },
+    { q: "A $500\\text{-kg}$ spacecraft first is placed into a circular orbit about the earth at an altitude of $4500\\,\\text{km}$ and then is transferred to a circular orbit about the moon. Knowing that the mass of the moon is $0.01230$ times the mass of the earth and that the radius of the moon is $1737\\,\\text{km}$, determine (a) the gravitational force exerted on the spacecraft as it was orbiting the earth, (b) the required radius of the orbit of the spacecraft about the moon if the periodic times of the two orbits are to be equal, (c) the acceleration of gravity at the surface of the moon.", a: "(a) $1684\\,\\text{N}$; (b) $2510\\,\\text{km}$; (c) $1.620\\,\\text{m/s}^2$" }
+  ]}
+/>
+
+---
+
+### 12.11 Trajectory of a Particle under a Central Force
+
+For a particle moving under a central force $\mathbf{F}$ directed toward $O$, Eqs. (12.21) and (12.22) become
+
+$$
+m(\ddot r - r\dot\theta^2) = -F \tag{12.31}
+$$
+
+$$
+m(r\ddot\theta + 2\dot r\dot\theta) = 0 \tag{12.32}
+$$
+
+Eq. (12.32) is equivalent to $r^2\dot\theta = h$, i.e. $r^2\,\dfrac{d\theta}{dt} = h$ (12.33). Eliminating $t$ with $\dot\theta = h/r^2$ (12.34) and introducing $u = 1/r$, one obtains $\dot r = -h\,\dfrac{du}{d\theta}$ (12.35) and $\ddot r = -h^2u^2\,\dfrac{d^2u}{d\theta^2}$ (12.36), so that (12.31) becomes **Binet's equation**:
+
+<RuleBox kind="formula" title="Differential equation of the trajectory">
+
+$$
+\frac{d^2u}{d\theta^2} + u = \frac{F}{mh^2u^2} \tag{12.37}
+$$
+
+with $u = 1/r$. Given $F$ as a function of $r$, this determines the path; together with (12.33) it determines the motion. A **positive** $F$ is directed toward $O$ (attraction).
+
+</RuleBox>
+
+---
+
+### 12.12 Application to Space Mechanics
+
+After its last booster rocket burns out, a satellite moves under the earth's gravitational attraction alone. With $F = GMm/r^2 = GMmu^2$ in (12.37):
+
+<RuleBox kind="formula" title="Orbits under gravitational attraction">
+
+$$
+\frac{d^2u}{d\theta^2} + u = \frac{GM}{h^2} \tag{12.38}
+$$
+
+$$
+\frac{1}{r} = \frac{GM}{h^2} + C\cos\theta \tag{12.39}
+$$
+
+(the polar axis is chosen through the point of closest approach). The path is a **conic section** with **eccentricity**
+
+$$
+\varepsilon = \frac{C}{GM/h^2} = \frac{Ch^2}{GM} \tag{12.40}
+$$
+
+$$
+\frac{1}{r} = \frac{GM}{h^2}(1 + \varepsilon\cos\theta) \tag{12.39'}
+$$
+
+- $\varepsilon > 1$: **hyperbola**; $\varepsilon = 1$: **parabola**; $\varepsilon < 1$: **ellipse** ($\varepsilon = 0$: **circle**).
+
+For launch parallel to the earth's surface at $A$ (distance $r_0$, speed $v_0$):
+
+$$
+h = r_0v_0 \tag{12.41}
+$$
+
+$$
+C = \frac{1}{r_0} - \frac{GM}{h^2} \tag{12.42}
+$$
+
+$$
+v_{\text{esc}} = \sqrt{\frac{2GM}{r_0}} \quad\text{or}\quad v_{\text{esc}} = \sqrt{\frac{2gR^2}{r_0}} \tag{12.43}
+$$
+
+$$
+v_{\text{circ}} = \sqrt{\frac{GM}{r_0}} \quad\text{or}\quad v_{\text{circ}} = \sqrt{\frac{gR^2}{r_0}} \tag{12.44}
+$$
+
+The trajectory is hyperbolic if $v_0 > v_{\text{esc}}$, parabolic if $v_0 = v_{\text{esc}}$, elliptic if $v_0 < v_{\text{esc}}$. For $v_{\text{circ}} < v_0 < v_{\text{esc}}$, $A$ is the **perigee** and the opposite point $A'$ the **apogee**; for $v_0 < v_{\text{circ}}$, $A$ is the apogee.
+
+**Periodic time** (area of ellipse $\pi ab$ divided by areal velocity $h/2$), with $r_0$, $r_1$ the perigee and apogee distances:
+
+$$
+\tau = \frac{2\pi ab}{h} \tag{12.45}
+$$
+
+$$
+a = \tfrac12(r_0 + r_1) \tag{12.46}
+$$
+
+$$
+b = \sqrt{r_0r_1} \tag{12.47}
+$$
+
+</RuleBox>
+
+<StepRevealExample
+  title="Maximum altitude and periodic time of a satellite" figure="/diagrams/get-207/kinetics-force-and-acceleration-sp-12-9.png"
+  problem="A satellite is launched in a direction parallel to the surface of the earth with a velocity of $36\,900\,\text{km/h}$ from an altitude of $500\,\text{km}$. Determine (a) the maximum altitude reached by the satellite, (b) the periodic time of the satellite."
+  steps={[
+    "After launch the satellite is subject only to the earth's attraction, so its motion is governed by Eq. (12.39): $\\dfrac{1}{r} = \\dfrac{GM}{h^2} + C\\cos\\theta \\quad (1)$. The radial velocity is zero at launch point $A$, so $h = r_0v_0$.",
+    "$r_0 = 6370 + 500 = 6870\\,\\text{km} = 6.87 \\times 10^6\\,\\text{m}$; $v_0 = \\dfrac{36.9 \\times 10^6\\,\\text{m}}{3.6 \\times 10^3\\,\\text{s}} = 10.25 \\times 10^3\\,\\text{m/s}$; $h = r_0v_0 = 70.4 \\times 10^9\\,\\text{m}^2/\\text{s}$, $h^2 = 4.96 \\times 10^{21}\\,\\text{m}^4/\\text{s}^2$.",
+    "$GM = gR^2 = (9.81)(6.37 \\times 10^6)^2 = 398 \\times 10^{12}\\,\\text{m}^3/\\text{s}^2$; $\\dfrac{GM}{h^2} = \\dfrac{398 \\times 10^{12}}{4.96 \\times 10^{21}} = 80.3 \\times 10^{-9}\\,\\text{m}^{-1}$, so $\\dfrac{1}{r} = 80.3 \\times 10^{-9} + C\\cos\\theta \\quad (2)$.",
+    "At $A$, $\\theta = 0$ and $r = r_0$: $\\dfrac{1}{6.87 \\times 10^6} = 80.3 \\times 10^{-9} + C \\Rightarrow C = 65.3 \\times 10^{-9}\\,\\text{m}^{-1}$.",
+    "(a) At the apogee $A'$, $\\theta = 180^\\circ$: $\\dfrac{1}{r_1} = 80.3 \\times 10^{-9} - 65.3 \\times 10^{-9} \\Rightarrow r_1 = 66.7 \\times 10^6\\,\\text{m} = 66\\,700\\,\\text{km}$. Maximum altitude $= 66\\,700 - 6370 = 60\\,300\\,\\text{km}$.",
+    "(b) $a = \\tfrac12(r_0 + r_1) = \\tfrac12(6.87 + 66.7)(10^6) = 36.8 \\times 10^6\\,\\text{m}$; $b = \\sqrt{r_0r_1} = \\sqrt{(6.87)(66.7)} \\times 10^6 = 21.4 \\times 10^6\\,\\text{m}$.",
+    "$\\tau = \\dfrac{2\\pi ab}{h} = \\dfrac{2\\pi(36.8 \\times 10^6)(21.4 \\times 10^6)}{70.4 \\times 10^9} = 70.3 \\times 10^3\\,\\text{s} = 1171\\,\\text{min} = 19\\,\\text{h}\\;31\\,\\text{min}$."
+  ]}
+  answer="(a) $60\,300\,\text{km}$; (b) $\tau = 70.3 \times 10^3\,\text{s} = 19\,\text{h}\;31\,\text{min}$"
+/>
+
+---
+
+### 12.13 Kepler's Laws of Planetary Motion
+
+The equations derived for an earth satellite also describe the motion of the moon about the earth (approximately, since the moon's mass is not negligible) and of the planets about the sun (with $M$ the mass of the sun, neglecting the forces between planets). Before Newton, Johann Kepler (1571–1630) had deduced from astronomical observations:
+
+<RuleBox kind="theorem" title="Kepler's three laws">
+
+1. Each planet describes an **ellipse**, with the sun located at one of its foci.
+2. The radius vector drawn from the sun to a planet sweeps **equal areas in equal times**.
+3. The **squares of the periodic times** of the planets are proportional to the **cubes of the semimajor axes** of their orbits.
+
+The first law is a particular case of Eq. (12.39); the second expresses the constant areal velocity; the third follows from Eqs. (12.45)–(12.47).
+
+</RuleBox>
+
+---
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Frequent mistakes in Newton's-second-law problems">
+
+1. **Mixing up mass and weight.** In SI, the data are masses — compute $W = mg$. In U.S. units, the data are weights — compute $m = W/g$ in slugs. Never put a weight where $m$ belongs in $\sum F = ma$.
+2. **Assuming the cord tension equals the hanging weight.** A block that accelerates is not in equilibrium: in Sample Problem 12.3, $T_2 = 1680\,\text{N}$, not $2940\,\text{N}$. Write $\sum F = ma$ for each body separately and add the kinematic constraint ($a_B = \tfrac12 a_A$).
+3. **Using a relative acceleration in $\sum\mathbf{F} = m\mathbf{a}$.** The acceleration must be absolute. For a block on a moving wedge, use $\mathbf{a}_B = \mathbf{a}_A + \mathbf{a}_{B/A}$.
+4. **Forgetting that $a_n$ changes the normal force.** On a curved track or at the bottom of a loop, $N \neq mg$; the friction force $\mu_k N$ therefore depends on $v^2/\rho$. Immediately after release from rest ($v = 0$), $a_n = 0$.
+5. **Wrong direction for $a_n$ and the centrifugal term.** $a_n = v^2/\rho$ always points toward the center of curvature; on a banked curve that is **horizontal**, not along the incline. The inertia term $mv^2/\rho$ in dynamic equilibrium points **away** from the center.
+6. **Radial–transverse slips.** $\sum F_r = m(\ddot r - r\dot\theta^2)$, $\sum F_\theta = m(r\ddot\theta + 2\dot r\dot\theta)$; a frictionless arm exerts only a transverse force, so $\sum F_r = 0$, not $\ddot r = 0$.
+7. **Orbits: altitude vs radius.** Always use $r = R + \text{altitude}$ from the earth's **center** in $F = GMm/r^2$, $h = r_0v_0$ and $v_{\text{circ}}$; subtract $R$ only at the end. Use $GM = gR^2$ rather than $G$ and $M$ separately.
+
+</Callout>
+
+---
+
+## Summary of Formulas
+
+<RuleBox kind="formula" title="key equations">
+
+| Context | Equations | Notes |
+|---|---|---|
+| Newton's second law | $\sum\mathbf{F} = m\mathbf{a}$ | Newtonian frame (12.2) |
+| Linear momentum | $\mathbf{L} = m\mathbf{v}$, $\;\sum\mathbf{F} = \dot{\mathbf{L}}$ | (12.4)–(12.5) |
+| Units | $W = mg$ (SI), $\;m = W/g$ (slug $= \text{lb}\cdot\text{s}^2/\text{ft}$) | $1\,\text{N} = 1\,\text{kg}\cdot\text{m/s}^2$ |
+| Rectangular | $\sum F_x = m\ddot x$, $\;\sum F_y = m\ddot y$, $\;\sum F_z = m\ddot z$ | (12.8') |
+| Tangential–normal | $\sum F_t = m\dfrac{dv}{dt}$, $\;\sum F_n = m\dfrac{v^2}{\rho}$ | (12.9') |
+| Dynamic equilibrium | $\sum\mathbf{F} - m\mathbf{a} = \mathbf{0}$ | Inertia vector $-m\mathbf{a}$ (12.10) |
+| Banked curve (rated speed) | $v^2 = g\rho\tan\theta$ | Sample Prob. 12.6 |
+| Angular momentum | $\mathbf{H}_O = \mathbf{r}\times m\mathbf{v}$, $\;H_O = mr^2\dot\theta$, $\;\sum\mathbf{M}_O = \dot{\mathbf{H}}_O$ | (12.12), (12.18), (12.19) |
+| Radial–transverse | $\sum F_r = m(\ddot r - r\dot\theta^2)$, $\;\sum F_\theta = m(r\ddot\theta + 2\dot r\dot\theta)$ | (12.21)–(12.22) |
+| Central force | $r^2\dot\theta = h$, $\;rmv\sin\phi = r_0mv_0\sin\phi_0$ | (12.25), (12.27) |
+| Gravitation | $F = \dfrac{GMm}{r^2}$, $\;GM = gR^2$ | (12.28), (12.30) |
+| Trajectory | $\dfrac{1}{r} = \dfrac{GM}{h^2} + C\cos\theta$, $\;\varepsilon = \dfrac{Ch^2}{GM}$ | (12.39)–(12.40) |
+| Orbital speeds | $v_{\text{circ}} = \sqrt{GM/r_0}$, $\;v_{\text{esc}} = \sqrt{2GM/r_0}$ | (12.43)–(12.44) |
+| Periodic time | $\tau = \dfrac{2\pi ab}{h}$, $\;a = \tfrac12(r_0 + r_1)$, $\;b = \sqrt{r_0r_1}$ | (12.45)–(12.47) |
+
+</RuleBox>

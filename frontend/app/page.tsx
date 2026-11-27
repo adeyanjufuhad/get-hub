@@ -39,38 +39,38 @@ const OAU_DEPT_LOOP = [
 const FEATURES = [
   {
     icon: BookOpenCheck,
-    title: "Lined Coursebook Folios",
-    body: "Read chapters on warm 32px ruled engineering paper with pinned CCMAS learning outcomes and step-by-step worked derivations.",
-    tag: "9 folios",
+    title: "Lined Study Notes",
+    body: "Read each topic on warm ruled engineering paper with clear learning goals and step-by-step worked derivations.",
+    tag: "19 topics",
   },
   {
     icon: Layers,
-    title: "Prescribed Textbook Plates",
-    body: "Inspect high-resolution schematics cropped directly from Çengel, Hibbeler 14e, and Stewart 7e alongside 2 KB vector free-body diagrams.",
-    tag: "3 textbooks",
+    title: "Clear Engineering Diagrams",
+    body: "Inspect labeled schematics, free-body diagrams, and manometer layouts right alongside the equations they illustrate.",
+    tag: "Visual guides",
   },
   {
     icon: ShieldCheck,
-    title: "Go Server Answer Grading",
-    body: "Check KaTeX MCQs and numeric engineering calculations with ±1% tolerance. Answer keys stay on the backend until you submit.",
-    tag: "72 drills",
+    title: "Instant Answer Grading",
+    body: "Check multiple-choice and numeric calculation answers with ±1% engineering tolerance and unlock full worked solutions after submitting.",
+    tag: "290+ drills",
   },
   {
     icon: Timer,
     title: "Timed CBT Mock Simulator",
-    body: "Generate 5, 10, or 15-question papers with a sticky countdown clock, question flagging, mobile navigator sheet, and topic accuracy breakdown.",
+    body: "Generate 5, 10, or 15-question papers with a countdown clock, question flagging, quick navigator, and topic accuracy breakdown.",
     tag: "Exam prep",
   },
   {
     icon: Target,
     title: "Weak-Topic Priority Queue",
-    body: "Chapters below 70% accuracy automatically surface on your dashboard so you drill weak mechanics or calculus modules before test week.",
+    body: "Topics below 70% accuracy automatically surface on your dashboard so you focus on weak mechanics or calculus areas before test week.",
     tag: "< 70% alert",
   },
   {
     icon: Users,
     title: "Part 2 Handout & PQ Archive",
-    body: "Download 123 OAU Second Year lecture notes, lab manuals, and past questions across 14 courses with exact MB file sizes upfront.",
+    body: "Download 123 OAU Second Year lecture notes, lab manuals, and past questions across 14 courses with file sizes shown upfront.",
     tag: "14 courses",
   },
 ];
@@ -92,7 +92,7 @@ export default function LandingPage() {
               <span translate="no">GET 205, 207 &amp; 209</span>
               <span className="mx-auto mt-1 block h-[64px] w-full max-w-[300px] text-[var(--accent)] min-[380px]:h-[78px] min-[380px]:max-w-[380px] sm:h-[96px] sm:max-w-[460px] md:h-[112px] md:max-w-[520px]">
                 <ParticleText
-                  text="from the book."
+                  text="step by step."
                   particleSize={2}
                   density={3}
                   color="currentColor"
@@ -118,7 +118,7 @@ export default function LandingPage() {
             </h1>
 
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-secondary)] text-pretty min-[380px]:text-base sm:mt-5 sm:text-lg">
-              9 lined coursebook folios, 26 cropped schematics from Çengel, Hibbeler 14e &amp; Stewart 7e, and 72 server-graded exam drills built for campus mobile data.
+              19 lined study notes, clear engineering diagrams, and 290+ graded practice questions built for campus mobile data.
             </p>
 
             {/* Two disciplined CTAs (Primary Ink + Secondary Surface) */}
@@ -160,21 +160,22 @@ export default function LandingPage() {
           <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
             <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
               <Counter
-                value={9}
+                value={19}
                 className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
               />
               <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Lined Study Folios
+                Lined Study Notes
               </p>
             </div>
 
             <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
               <Counter
-                value={72}
+                value={290}
+                suffix="+"
                 className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
               />
               <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Server-Graded Drills
+                Graded Practice Drills
               </p>
             </div>
 
@@ -194,7 +195,7 @@ export default function LandingPage() {
                 className="text-2xl font-extrabold tracking-tight text-[var(--accent)]"
               />
               <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Matched Course Textbooks
+                Core 200L GET Courses
               </p>
             </div>
           </div>
@@ -204,13 +205,13 @@ export default function LandingPage() {
         <section id="courses" className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="max-w-2xl">
             <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
-              NUC CCMAS 2023 Syllabus Alignment
+              OAU 200L Course Outline
             </p>
             <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] text-balance sm:text-3xl">
-              Every chapter paired with the exact textbook your lecturers set.
+              Every topic structured for how your lecturers teach and test.
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty sm:text-base">
-              Switch between Fluid Mechanics, Applied Mechanics, and Engineering Mathematics I to inspect the syllabus modules, textbook chapters, and first study folio.
+              Switch between Fluid Mechanics, Applied Mechanics, and Engineering Mathematics I to preview the topics, sample diagrams, and study notes.
             </p>
           </div>
 
@@ -292,7 +293,7 @@ export default function LandingPage() {
                 Student Questions
               </p>
               <h2 className="mt-2 text-2xl font-extrabold tracking-[-0.025em] text-[var(--text-primary)] text-balance">
-                Straight answers on data usage, textbooks, and courses.
+                Straight answers on data usage, practice, and courses.
               </h2>
             </div>
 
@@ -307,13 +308,13 @@ export default function LandingPage() {
           <div className="rounded-[24px] bg-[#141413] px-5 py-10 text-center text-[#FAF9F5] sm:px-10 sm:py-12">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 font-mono text-xs font-semibold text-orange-300">
               <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
-              Open Phase 1 Access · Zero Subscription Fee
+              Free Student Access · Zero Subscription Fee
             </span>
             <h2 className="mx-auto mt-3.5 max-w-xl text-2xl font-extrabold tracking-[-0.025em] text-balance sm:text-3xl">
-              Open your 200L coursebooks before the next test.
+              Open your 200L study notes before the next test.
             </h2>
             <p className="mx-auto mt-2.5 max-w-lg text-sm leading-relaxed text-neutral-300 text-pretty">
-              Select your OAU engineering department, read all 9 lined study folios, practice 72 textbook-verified questions, and access 123 Part 2 handouts in one place.
+              Select your OAU engineering department, read all 19 lined study notes, practice 290+ graded questions, and access 123 Part 2 handouts in one place.
             </p>
             <div className="mt-6 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:items-center sm:gap-3">
               <Magnet strength={0.2} className="w-full sm:w-auto">
@@ -336,7 +337,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      {/* ==================== 8. EDITORIAL DARK CLOSING FOOTER (VoltAgent claude-DESIGN.md + tasteskill) ==================== */}
+      {/* ==================== 8. EDITORIAL DARK CLOSING FOOTER ==================== */}
       <footer className="border-t border-white/10 bg-[#141413] px-4 py-12 text-[#A3A098] sm:px-6">
         <div className="mx-auto max-w-5xl">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12">
@@ -348,13 +349,13 @@ export default function LandingPage() {
                 </span>
               </div>
               <p className="mt-2.5 max-w-xs text-xs leading-relaxed">
-                {APP_INSTITUTION} — lined study folios, textbook figure drills, and timed CBT exams for Second Year engineering students.
+                {APP_INSTITUTION} — lined study notes, diagram practice drills, and timed CBT exams for Second Year engineering students.
               </p>
             </div>
 
             <div className="lg:col-span-3">
               <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#FAF9F5]">
-                Study Folios
+                Study Notes
               </h3>
               <ul className="mt-3 space-y-2 text-xs">
                 <li>
@@ -367,7 +368,7 @@ export default function LandingPage() {
                 </li>
                 <li>
                   <Link
-                    href="/courses/get-207/forces-moments-and-equilibrium"
+                    href="/courses/get-207/force-vectors"
                     className="hover:text-[#FAF9F5]"
                   >
                     <span translate="no">GET 207</span> · Applied Mechanics
@@ -426,7 +427,7 @@ export default function LandingPage() {
               © {new Date().getFullYear()} <span translate="no">{APP_NAME}</span> · Built for OAU 200L Engineering.
             </p>
             <p className="font-mono text-[11px]">
-              Aligned with NUC CCMAS 2023 · Çengel · Hibbeler 14e · Stewart 7e
+              OAU Faculty of Technology · GET 205 · GET 207 · GET 209
             </p>
           </div>
         </div>

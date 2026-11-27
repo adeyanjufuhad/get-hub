@@ -55,11 +55,11 @@ export default function PracticeTopicPage() {
     api
       .listTopicQuestions(topicId)
       .then((res) => {
-        // Put strict textbook / figure-backed questions right at the front so students see real textbook problems immediately!
+        // Put diagram-backed questions first so students see visual problems upfront.
         const sorted = [...res.questions].sort((a, b) => {
-          const aStrict = Number(Boolean(a.prompt_image_url || a.tags?.includes("textbook-strict")));
-          const bStrict = Number(Boolean(b.prompt_image_url || b.tags?.includes("textbook-strict")));
-          return bStrict - aStrict;
+          const aHasImg = Number(Boolean(a.prompt_image_url));
+          const bHasImg = Number(Boolean(b.prompt_image_url));
+          return bHasImg - aHasImg;
         });
         setCourse(res.course);
         setTopic(res.topic);
@@ -70,7 +70,7 @@ export default function PracticeTopicPage() {
         if (err instanceof ApiError && err.status === 401) {
           router.replace("/login");
         } else {
-          toast.error(err instanceof ApiError ? err.message : "Could not load practice questions.");
+          toast.error(err instanceof ApiError ? err.message : "Could not load practice questions");
         }
       })
       .finally(() => setLoading(false));
@@ -159,18 +159,18 @@ export default function PracticeTopicPage() {
   }
 
   if (authLoading || loading) {
-    return <div className="mx-auto max-w-2xl h-80 animate-pulse rounded-[24px] bg-[var(--bg-surface)]" />;
+    return <div className="mx-auto max-w-2xl h-80 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]" />;
   }
 
   if (questions.length === 0) {
     return (
       <div className="mx-auto max-w-2xl rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6">
-        <h1 className="text-lg font-bold">No practice questions yet</h1>
+        <h1 className="text-lg font-semibold">No practice questions yet</h1>
         <p className="mt-1 text-sm text-[var(--text-secondary)]">
           Questions for this topic haven&apos;t been added yet.
         </p>
-        <Link href="/tests" className="mt-4 inline-block text-sm font-semibold text-[var(--accent)]">
-          Back to Test Center
+        <Link href="/tests" className="mt-4 inline-block text-sm font-medium text-[var(--accent)]">
+          Back to test center
         </Link>
       </div>
     );
@@ -185,32 +185,32 @@ export default function PracticeTopicPage() {
         <div className="mx-auto flex justify-center">
           <ProgressArc percentage={pct} size={96} strokeWidth={8} />
         </div>
-        <h1 className="mt-5 text-2xl font-extrabold tracking-tight">Topic Drill Complete!</h1>
+        <h1 className="mt-5 text-2xl font-semibold tracking-tight">Topic practice complete</h1>
         <p className="tabular mt-2 text-sm text-[var(--text-secondary)]">
-          You solved <strong className="text-[var(--text-primary)]">{correctCount}</strong> of{" "}
-          <strong className="text-[var(--text-primary)]">{questions.length}</strong> correctly on{" "}
-          <strong>{topic?.title}</strong>.
+          You solved <strong className="font-semibold text-[var(--text-primary)]">{correctCount}</strong> of{" "}
+          <strong className="font-semibold text-[var(--text-primary)]">{questions.length}</strong> correctly on{" "}
+          <strong className="font-semibold text-[var(--text-primary)]">{topic?.title}</strong>.
         </p>
 
         <div className="mt-6 flex flex-col justify-center gap-2 sm:flex-row sm:flex-wrap">
           <Button type="button" variant="ink" onClick={handleRestart}>
             <RotateCcw className="h-4 w-4" aria-hidden="true" />
-            Drill again
+            Practice again
           </Button>
           {course && (
             <Link
               href={`/courses/${course.slug}/mock-exam`}
-              className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[12px] bg-[var(--accent)] px-5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)]"
+              className="pressable inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[12px] bg-[var(--accent)] px-5 text-sm font-medium text-white hover:bg-[var(--accent-hover)]"
             >
-              Take timed {course.code} test
+              Take timed {course.code} exam
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           )}
           <Link
             href="/tests"
-            className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] px-5 text-sm font-semibold text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
+            className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] px-5 text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
           >
-            Test Center
+            Test center
           </Link>
         </div>
       </div>
@@ -220,38 +220,35 @@ export default function PracticeTopicPage() {
   if (!current) return null;
 
   const hasOptionImages = Boolean(current.options?.some((o) => o.image_url));
-  const isStrictTextbook = Boolean(
-    current.prompt_image_url || current.tags?.includes("textbook-strict")
-  );
 
   return (
     <div className="mx-auto max-w-3xl space-y-4">
-      {/* Top Bar: Back to Folio Notes + Test Center + Score Counter */}
+      {/* Top Bar: Back to Notes + Test Center + Score Counter */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-2">
           <Link
             href="/tests"
-            className="-ml-1 inline-flex min-h-[40px] shrink-0 items-center gap-1.5 px-1 text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            className="-ml-1 inline-flex min-h-[40px] shrink-0 items-center gap-1.5 px-1 text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text-primary)]"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            Test Center
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            Test center
           </Link>
           {course && topic && (
             <>
               <span className="text-[var(--border-strong)]">/</span>
               <Link
                 href={`/courses/${course.slug}/${topic.slug}`}
-                className="inline-flex min-h-[40px] min-w-0 items-center gap-1 text-xs font-semibold text-[var(--accent)] hover:underline"
+                className="inline-flex min-h-[40px] min-w-0 items-center gap-1.5 text-xs font-medium text-[var(--accent)] hover:underline"
               >
-                <BookOpen className="h-3.5 w-3.5 shrink-0" />
-                <span className="truncate">Read {course.code} Folio</span>
+                <BookOpen className="h-4 w-4 shrink-0" aria-hidden="true" />
+                <span className="truncate">Read {course.code} notes</span>
               </Link>
             </>
           )}
         </div>
 
-        <span className="tabular shrink-0 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1 font-mono text-xs font-semibold text-[var(--text-primary)]">
-          Score: {correctCount}/{answeredEntries.length} · Q {index + 1}/{questions.length}
+        <span className="tabular shrink-0 rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1 font-mono text-xs font-medium text-[var(--text-primary)]">
+          Score {correctCount}/{answeredEntries.length} · Q {index + 1}/{questions.length}
         </span>
       </div>
 
@@ -266,7 +263,7 @@ export default function PracticeTopicPage() {
               type="button"
               onClick={() => jumpTo(i)}
               className={cn(
-                "tabular pressable flex h-10 min-w-[40px] shrink-0 items-center justify-center rounded-[12px] border px-2 font-mono text-xs font-bold cursor-pointer",
+                "tabular pressable flex h-10 min-w-[40px] shrink-0 items-center justify-center rounded-[12px] border px-2 font-mono text-xs font-semibold cursor-pointer",
                 isCurrent
                   ? "border-2 border-[var(--ink-cta)] bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                   : st?.is_correct
@@ -289,38 +286,36 @@ export default function PracticeTopicPage() {
       >
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-            {isStrictTextbook && (
-              <Badge variant="accent" className="font-mono">
-                Prescribed Textbook Problem
-              </Badge>
+            {current.prompt_image_url && (
+              <Badge variant="accent">Diagram problem</Badge>
             )}
             <Badge variant="neutral" className="capitalize">
               {current.difficulty}
             </Badge>
-            <Badge variant="neutral" className="font-mono uppercase">
-              {current.question_type}
+            <Badge variant="neutral" className="font-mono">
+              {current.question_type === "mcq" ? "Multiple choice" : "Numeric"}
             </Badge>
           </div>
           {topic && (
-            <span className="max-w-full truncate font-mono text-[11px] text-[var(--text-muted)]">
+            <span className="max-w-full truncate text-xs text-[var(--text-muted)]">
               {topic.title}
             </span>
           )}
         </div>
 
-        <div className="math-scroll-x mt-4 text-base font-medium leading-relaxed text-[var(--text-primary)] sm:text-[17px]">
+        <div className="math-scroll-x mt-4 text-base font-normal leading-relaxed text-[var(--text-primary)] sm:text-[17px]">
           <MathText text={current.prompt_md} />
         </div>
 
         {current.prompt_image_url && (
           <figure className="mt-5 overflow-hidden rounded-[12px] border border-[var(--border-strong)] bg-white p-3">
-            <span className="mb-2 block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
-              ▸ Textbook Schematic
+            <span className="mb-2 block text-xs font-medium text-[var(--accent)]">
+              Diagram
             </span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={current.prompt_image_url}
-              alt="Textbook problem schematic"
+              alt="Problem diagram"
               width={560}
               height={340}
               decoding="async"
@@ -462,13 +457,13 @@ export default function PracticeTopicPage() {
             ) : (
               <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-[var(--danger)] sm:mt-0" aria-hidden="true" />
             )}
-            <h2 className="text-sm font-extrabold leading-snug text-[var(--text-primary)] sm:text-base">
-              {feedback.is_correct ? "Correct — exact match!" : "Review the worked textbook solution below"}
+            <h2 className="text-sm font-semibold leading-snug text-[var(--text-primary)] sm:text-base">
+              {feedback.is_correct ? "Correct answer" : "Review the worked solution below"}
             </h2>
           </div>
 
           {feedback.numeric_answer != null && (
-            <p className="tabular mt-2 text-xs font-semibold text-[var(--text-secondary)]">
+            <p className="tabular mt-2 text-xs font-medium text-[var(--text-secondary)]">
               Verified answer:{" "}
               <span className="font-mono text-[var(--text-primary)]">
                 {feedback.numeric_answer} {feedback.numeric_unit}
@@ -478,7 +473,7 @@ export default function PracticeTopicPage() {
           )}
 
           <div className="math-scroll-x mt-4 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 text-sm leading-relaxed text-[var(--text-secondary)] sm:p-4">
-            <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
+            <p className="mb-2 text-xs font-semibold text-[var(--accent)]">
               Step-by-step worked solution
             </p>
             <MathText text={feedback.solution_md} />

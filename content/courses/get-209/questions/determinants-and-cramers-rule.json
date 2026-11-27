@@ -10,7 +10,6 @@
       "unit": "",
       "solution": "Using the second-order formula $a_1b_2 - a_2b_1$: $(-3)(4) - (7)(2) = -12 - 14 = -26$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 4, Exercise 4.1, Q2",
       "tags": [
         "second-order-determinant"
       ]
@@ -24,7 +23,6 @@
       "unit": "",
       "solution": "Delete Row 2 and Column 1 to get $M_{21} = \\begin{vmatrix} 3 & -2 \\\\ 5 & 2 \\end{vmatrix} = (3)(2) - (-2)(5) = 6 + 10 = 16$. Then $A_{21} = (-1)^{2+1} M_{21} = -16$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 4, Example 2",
       "tags": [
         "minors-and-cofactors"
       ]
@@ -38,7 +36,6 @@
       "unit": "",
       "solution": "Expand along Row 1: $5\\begin{vmatrix} -6 & -4 \\\\ 3 & 9 \\end{vmatrix} - 0 + 7\\begin{vmatrix} 8 & -6 \\\\ 2 & 3 \\end{vmatrix} = 5(-54 + 12) + 7(24 + 12) = 5(-42) + 7(36) = -210 + 252 = 42$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 4, Exercise 4.2, Q6",
       "tags": [
         "cofactor-expansion"
       ]
@@ -52,7 +49,6 @@
       "unit": "",
       "solution": "Use $R_1 \\to R_1 + 7R_3$ and $R_4 \\to R_4 + 3R_3$ to clear Column 4 except at $(3,4)$: Column 4 becomes $(0, 0, -1, 0)^T$. Expanding along Column 4 with sign $(-1)^{3+4} = -1$ gives $-(-1)\\begin{vmatrix} 45 & 30 & 19 \\\\ -1 & -4 & -3 \\\\ 20 & 11 & 6 \\end{vmatrix} = 96$.",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 4, Exercise 4.2, Q13",
       "tags": [
         "higher-order-determinant"
       ]
@@ -67,7 +63,6 @@
       "unit": "",
       "solution": "Downward-right products: $(3)(1)(7) + (2)(-1)(-2) + (-4)(5)(6) = 21 + 4 - 120 = -95$. Downward-left products subtracted: $-(-4)(1)(-2) - (3)(-1)(6) - (2)(5)(7) = -8 + 18 - 70 = -60$. Total: $-95 - 60 = -155$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 4, Exercise 4.3, Q1",
       "tags": [
         "sarrus-rule"
       ]
@@ -100,7 +95,6 @@
       ],
       "solution": "Factor $5^2$ from $R_1$ and $5^3$ from $R_2$: both Row 1 and Row 2 become $(1,\\; 5,\\; 5^2)$. By Property (iii), two identical rows imply the determinant equals $0$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 4, Objective Questions, Q1",
       "tags": [
         "properties-of-determinants"
       ]
@@ -133,7 +127,6 @@
       ],
       "solution": "Multiplying $\\Delta$ row-by-row by its cofactor determinant produces a diagonal determinant with entries $\\Delta, \\Delta, \\Delta$, whose value is $\\Delta^3$. Hence $\\Delta \\cdot \\Delta_{\\text{cof}} = \\Delta^3 \\implies \\Delta_{\\text{cof}} = \\Delta^2 = 5^2 = 25$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 4, Objective Questions, Q2 (cf. Example 64)",
       "tags": [
         "multiplication-of-determinants",
         "cofactors"
@@ -167,7 +160,6 @@
       ],
       "solution": "Apply $C_1 \\to C_1 + C_2 + C_3$. Every entry in Column 1 becomes $1 + \\omega^n + \\omega^{2n}$, which equals $0$ whenever $n$ is not a multiple of $3$ (and if $n$ is a multiple of $3$, all entries are $1$ so rows are identical and $\\Delta = 0$ as well). Thus $\\Delta = 0$ for every integer $n$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 4, Objective Questions, Q4 (cf. Example 20)",
       "tags": [
         "properties-of-determinants"
       ]
@@ -181,7 +173,6 @@
       "unit": "",
       "solution": "With pivot $a_1 = 1$ ($n = 4$), $D = \\dfrac{1}{1^2}\\begin{vmatrix} 4-6 & 2-3 & 5-9 \\\\ 1-12 & 7-6 & 1-18 \\\\ 3-8 & 9-4 & 2-12 \\end{vmatrix} = \\begin{vmatrix} -2 & -1 & -4 \\\\ -11 & 1 & -17 \\\\ -5 & 5 & -10 \\end{vmatrix}$. Condensing again with pivot $-2$: $D = \\dfrac{1}{-2}\\begin{vmatrix} -2-11 & 34-44 \\\\ -10-5 & 20-20 \\end{vmatrix} = -\\dfrac{1}{2}\\begin{vmatrix} -13 & -10 \\\\ -15 & 0 \\end{vmatrix} = -\\dfrac{1}{2}(0 - 150) = 75$.",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 4, Exercise 4.6, Q4",
       "tags": [
         "pivotal-condensation"
       ]
@@ -212,9 +203,8 @@
           "correct": false
         }
       ],
-      "solution": "By §4.11, factoring $-1$ from each of $n$ columns and transposing gives $\\Delta = (-1)^n \\Delta$. For odd $n$, $\\Delta = -\\Delta \\implies \\Delta = 0$. For even $n$, $\\Delta$ is always a perfect square (Property 2).",
+      "solution": "Factoring $-1$ from each of $n$ columns and transposing gives $\\Delta = (-1)^n \\Delta$. For odd $n$, $\\Delta = -\\Delta \\implies \\Delta = 0$. For even $n$, $\\Delta$ is always a perfect square (Property 2).",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 4, §4.11 Properties 1 & 2",
       "tags": [
         "special-determinants",
         "skew-symmetric"
@@ -229,7 +219,6 @@
       "unit": "sq. units",
       "solution": "Form $\\Delta = \\dfrac{1}{2}\\left|\\begin{vmatrix} -2 & 4 & 1 \\\\ 2 & -6 & 1 \\\\ 5 & 4 & 1 \\end{vmatrix}\\right|$. Apply $R_1 \\to R_1 - R_3$: Row 1 becomes $(-7, 0, 0)$. Expanding along Row 1 gives $\\dfrac{1}{2}|-7(-6 - 4)| = \\dfrac{1}{2}|70| = 35\\text{ sq. units}$.",
       "difficulty": "easy",
-      "source": "H. K. Dass, Ch. 4, Exercise 4.7, Q2",
       "tags": [
         "triangle-area"
       ]
@@ -243,7 +232,6 @@
       "unit": "",
       "solution": "Collinearity requires $\\begin{vmatrix} 1 & -5 & 1 \\\\ -4 & 5 & 1 \\\\ \\alpha & 7 & 1 \\end{vmatrix} = 0$. Apply $R_1 \\to R_1 - R_2$ and $R_2 \\to R_2 - R_3$: $\\begin{vmatrix} 5 & -10 & 0 \\\\ -4 - \\alpha & -2 & 0 \\\\ \\alpha & 7 & 1 \\end{vmatrix} = 0 \\implies 5(-2) - (-10)(-4 - \\alpha) = 0 \\implies -10 - 40 - 10\\alpha = 0 \\implies \\alpha = -5$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 4, Exercise 4.7, Q6",
       "tags": [
         "collinearity"
       ]
@@ -257,7 +245,6 @@
       "unit": "",
       "solution": "$D = \\begin{vmatrix} 1 & 2 & 5 \\\\ 3 & 1 & 4 \\\\ 6 & 1 & 7 \\end{vmatrix} = 1(7 - 4) - 2(21 - 24) + 5(3 - 6) = 3 + 6 - 15 = -6$. $D_3 = \\begin{vmatrix} 1 & 2 & 23 \\\\ 3 & 1 & 26 \\\\ 6 & 1 & 47 \\end{vmatrix} = 1(47 - 26) - 2(141 - 156) + 23(3 - 6) = 21 + 30 - 69 = -18$. Hence $z = \\dfrac{D_3}{D} = \\dfrac{-18}{-6} = 3$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 4, Exercise 4.8, Q9",
       "tags": [
         "cramers-rule"
       ]
@@ -291,7 +278,6 @@
       ],
       "solution": "For nontrivial (infinitely many) solutions of a homogeneous system, $D = \\begin{vmatrix} 1 & \\alpha & 0 \\\\ 0 & 1 & \\alpha \\\\ \\alpha & 0 & 1 \\end{vmatrix} = 0$. Expanding along Column 1 gives $1(1 - 0) + \\alpha(\\alpha^2 - 0) = 1 + \\alpha^3 = 0$, whose unique real root is $\\alpha = -1$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 4, Objective Questions, Q11",
       "tags": [
         "homogeneous-consistency"
       ]
@@ -324,7 +310,6 @@
       ],
       "solution": "Set $D = \\begin{vmatrix} 1 & -k & -1 \\\\ k & -1 & -1 \\\\ 1 & 1 & -1 \\end{vmatrix} = 0$. Apply $R_1 \\to R_1 - R_3$ and $R_2 \\to R_2 - R_3$: $\\begin{vmatrix} 0 & -k - 1 & 0 \\\\ k - 1 & -2 & 0 \\\\ 1 & 1 & -1 \\end{vmatrix} = 0$. Expanding along Column 3 gives $(-1)\\big(0 + (k+1)(k-1)\\big) = 0 \\implies k^2 - 1 = 0 \\implies k = -1, 1$.",
       "difficulty": "medium",
-      "source": "H. K. Dass, Ch. 4, Objective Questions, Q12",
       "tags": [
         "homogeneous-consistency"
       ]
@@ -338,7 +323,6 @@
       "unit": "",
       "solution": "Compute $D = \\begin{vmatrix} 2 & -1 & -2 \\\\ 1 & -2 & 1 \\\\ 1 & 1 & \\lambda \\end{vmatrix} = 2(-2\\lambda - 1) + 1(\\lambda - 1) - 2(1 + 2) = -3\\lambda - 9$. Setting $D = 0$ gives $\\lambda = -3$. Checking $D_1$ at $\\lambda = -3$: $D_1 = \\begin{vmatrix} 2 & -1 & -2 \\\\ -4 & -2 & 1 \\\\ 4 & 1 & -3 \\end{vmatrix} = 2(6 - 1) + 1(12 - 4) - 2(-4 + 8) = 10 + 8 - 8 = 10 \\neq 0$, confirming inconsistency.",
       "difficulty": "hard",
-      "source": "H. K. Dass, Ch. 4, Objective Questions, Q13",
       "tags": [
         "non-homogeneous-consistency"
       ]

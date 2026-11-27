@@ -11,8 +11,11 @@
       "unit": "N",
       "solution": "For the resultant $\\mathbf{R}$ to be purely vertical, the horizontal components of the two forces must cancel, or equivalently in the closed triangle with vertical $\\mathbf{R}$ we apply the law of sines:\n$$\\frac{P}{\\sin 25^\\circ} = \\frac{120\\,\\text{N}}{\\sin 30^\\circ}$$\nSolving for $P$:\n$$P = (120\\,\\text{N})\\frac{\\sin 25^\\circ}{\\sin 30^\\circ} = 101.43\\,\\text{N} \\approx 101.4\\,\\text{N}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.5(a)",
-      "tags": ["triangle-rule", "law-of-sines", "resultant"]
+      "tags": [
+        "triangle-rule",
+        "law-of-sines",
+        "resultant"
+      ]
     },
     {
       "key": "prob-2-6-trolley-force-p",
@@ -24,8 +27,11 @@
       "unit": "N",
       "solution": "Construct the force triangle with the $1600\\text{-N}$ force (at $15^\\circ$ below the $-x$ axis, i.e., $75^\\circ$ left of the downward vertical), $\\mathbf{P}$ (at $\\alpha = 25^\\circ$ right of the downward vertical), and vertical resultant $\\mathbf{R}$. By the law of sines:\n$$\\frac{P}{\\sin 75^\\circ} = \\frac{1600\\,\\text{N}}{\\sin 25^\\circ}$$\nNote that $\\sin 75^\\circ = \\cos 15^\\circ$, giving:\n$$P = (1600\\,\\text{N})\\frac{\\cos 15^\\circ}{\\sin 25^\\circ} = 3657\\,\\text{N} \\approx 3660\\,\\text{N}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.6(a)",
-      "tags": ["triangle-rule", "law-of-sines", "resultant"]
+      "tags": [
+        "triangle-rule",
+        "law-of-sines",
+        "resultant"
+      ]
     },
     {
       "key": "prob-2-8-pole-tension-t2",
@@ -37,8 +43,10 @@
       "unit": "lb",
       "solution": "For the resultant $\\mathbf{R}$ to be vertical, the horizontal components must cancel (or from the force triangle with interior angles $75^\\circ$ and $65^\\circ$ adjacent to vertical $\\mathbf{R}$):\n$$\\frac{T_2}{\\sin 75^\\circ} = \\frac{800\\,\\text{lb}}{\\sin 65^\\circ} \\implies T_2 = 800\\,\\frac{\\cos 15^\\circ}{\\cos 25^\\circ} = 852.6\\,\\text{lb} \\approx 853\\,\\text{lb}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.8(a)",
-      "tags": ["law-of-sines", "resultant"]
+      "tags": [
+        "law-of-sines",
+        "resultant"
+      ]
     },
     {
       "key": "prob-2-10-hook-angle-alpha",
@@ -50,8 +58,10 @@
       "unit": "deg",
       "solution": "In the force triangle with horizontal resultant $\\mathbf{R}$, the angle opposite $\\mathbf{P}$ is $25^\\circ$ and the angle opposite the $50\\text{-N}$ force is $\\alpha$. By the law of sines (or $\\sum F_y = 0$):\n$$\\frac{35\\,\\text{N}}{\\sin 25^\\circ} = \\frac{50\\,\\text{N}}{\\sin\\alpha} \\implies \\sin\\alpha = \\frac{50\\sin 25^\\circ}{35} = 0.60374 \\implies \\alpha = 37.14^\\circ \\approx 37.1^\\circ.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.10(a)",
-      "tags": ["law-of-sines", "resultant"]
+      "tags": [
+        "law-of-sines",
+        "resultant"
+      ]
     },
     {
       "key": "prob-2-11-tank-force-p",
@@ -63,8 +73,10 @@
       "unit": "lb",
       "solution": "The $425\\text{-lb}$ force makes $60^\\circ$ with the upward vertical and $\\mathbf{P}$ makes $90^\\circ - 20^\\circ = 70^\\circ$ with the upward vertical. By the law of sines on the closed triangle with vertical resultant $\\mathbf{R}$:\n$$\\frac{P}{\\sin 60^\\circ} = \\frac{425\\,\\text{lb}}{\\sin 70^\\circ} \\implies P = 425\\,\\frac{\\cos 30^\\circ}{\\cos 20^\\circ} = 391.7\\,\\text{lb} \\approx 392\\,\\text{lb}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.11(a)",
-      "tags": ["law-of-sines", "resultant"]
+      "tags": [
+        "law-of-sines",
+        "resultant"
+      ]
     },
     {
       "key": "prob-2-25-cylinder-force-p",
@@ -76,8 +88,10 @@
       "unit": "N",
       "solution": "Member $ABC$ forms $60^\\circ$ with the vertical wall (i.e., $30^\\circ$ above the horizontal), while cylinder $BD$ forms $50^\\circ$ with the horizontal. Therefore, the acute angle between $\\mathbf{P}$ (along $BD$) and member $ABC$ is $\\theta = 50^\\circ - 30^\\circ = 20^\\circ$. Since the component perpendicular to $ABC$ is $P\\sin 20^\\circ = 750\\,\\text{N}$:\n$$P = \\frac{750\\,\\text{N}}{\\sin 20^\\circ} = 2192.9\\,\\text{N} \\approx 2190\\,\\text{N}.$$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.25(a)",
-      "tags": ["rectangular-components", "inclined-axes"]
+      "tags": [
+        "rectangular-components",
+        "inclined-axes"
+      ]
     },
     {
       "key": "prob-2-26-cable-ac-magnitude",
@@ -89,8 +103,9 @@
       "unit": "lb",
       "solution": "Cable $AC$ forms an angle of $55^\\circ$ with the vertical wall at $C$, so the vertical component of $\\mathbf{P}$ is $P_y = P\\cos 55^\\circ$. Setting $P_y = 350\\,\\text{lb}$:\n$$P = \\frac{350\\,\\text{lb}}{\\cos 55^\\circ} = 610.2\\,\\text{lb} \\approx 610\\,\\text{lb}.$$",
       "difficulty": "easy",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.26(a)",
-      "tags": ["rectangular-components"]
+      "tags": [
+        "rectangular-components"
+      ]
     },
     {
       "key": "prob-2-31-resultant-three-forces",
@@ -98,15 +113,33 @@
       "prompt": "Determine the magnitude and direction of the resultant of the three forces shown ($800\\,\\text{N}$, $424\\,\\text{N}$, and $408\\,\\text{N}$) using rectangular components.",
       "image": "/diagrams/get-207/force-vectors-p2-23.png",
       "options": [
-        { "label": "A", "text": "$654\\,\\text{N}$ at $21.5^\\circ$ above the $+x$ axis", "correct": false },
-        { "label": "B", "text": "$654\\,\\text{N}$ at $21.5^\\circ$ below the $+x$ axis", "correct": true },
-        { "label": "C", "text": "$720\\,\\text{N}$ at $68.5^\\circ$ below the $+x$ axis", "correct": false },
-        { "label": "D", "text": "$608\\,\\text{N}$ at $21.5^\\circ$ below the $-x$ axis", "correct": false }
+        {
+          "label": "A",
+          "text": "$654\\,\\text{N}$ at $21.5^\\circ$ above the $+x$ axis",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$654\\,\\text{N}$ at $21.5^\\circ$ below the $+x$ axis",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$720\\,\\text{N}$ at $68.5^\\circ$ below the $+x$ axis",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$608\\,\\text{N}$ at $21.5^\\circ$ below the $-x$ axis",
+          "correct": false
+        }
       ],
       "solution": "Compute the lengths of the three dimension triangles:\n- $800\\,\\text{N}$: $d_1 = \\sqrt{800^2 + 600^2} = 1000\\,\\text{mm} \\implies F_{1x} = +640\\,\\text{N},\\; F_{1y} = +480\\,\\text{N}$.\n- $424\\,\\text{N}$: $d_2 = \\sqrt{560^2 + 900^2} = 1060\\,\\text{mm} \\implies F_{2x} = -424\\left(\\frac{560}{1060}\\right) = -224\\,\\text{N},\\; F_{2y} = -424\\left(\\frac{900}{1060}\\right) = -360\\,\\text{N}$.\n- $408\\,\\text{N}$: $d_3 = \\sqrt{480^2 + 900^2} = 1020\\,\\text{mm} \\implies F_{3x} = +408\\left(\\frac{480}{1020}\\right) = +192\\,\\text{N},\\; F_{3y} = -408\\left(\\frac{900}{1020}\\right) = -360\\,\\text{N}$.\n\nSum components: $R_x = 640 - 224 + 192 = +608\\,\\text{N}$, $R_y = 480 - 360 - 360 = -240\\,\\text{N}$. Thus $R = \\sqrt{608^2 + (-240)^2} = 653.6\\,\\text{N} \\approx 654\\,\\text{N}$ and $\\tan\\alpha = 240/608 \\implies \\alpha = 21.5^\\circ$ below the $+x$ axis.",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.31",
-      "tags": ["summing-components", "resultant"]
+      "tags": [
+        "summing-components",
+        "resultant"
+      ]
     },
     {
       "key": "prob-2-35-collar-resultant",
@@ -114,15 +147,33 @@
       "prompt": "Knowing that $\\alpha = 35^\\circ$, determine the resultant of the three forces acting on the collar shown.",
       "image": "/diagrams/get-207/force-vectors-p2-35.png",
       "options": [
-        { "label": "A", "text": "$309\\,\\text{N}$ at $86.6^\\circ$ below the $-x$ axis", "correct": true },
-        { "label": "B", "text": "$309\\,\\text{N}$ at $86.6^\\circ$ below the $+x$ axis", "correct": false },
-        { "label": "C", "text": "$309\\,\\text{N}$ at $3.4^\\circ$ below the $-x$ axis", "correct": false },
-        { "label": "D", "text": "$450\\,\\text{N}$ straight downward", "correct": false }
+        {
+          "label": "A",
+          "text": "$309\\,\\text{N}$ at $86.6^\\circ$ below the $-x$ axis",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$309\\,\\text{N}$ at $86.6^\\circ$ below the $+x$ axis",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$309\\,\\text{N}$ at $3.4^\\circ$ below the $-x$ axis",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$450\\,\\text{N}$ straight downward",
+          "correct": false
+        }
       ],
       "solution": "Resolve each force into horizontal and vertical components ($\\alpha = 35^\\circ$, and the $150\\text{-N}$ force is at $35^\\circ + 30^\\circ = 65^\\circ$ below $+x$):\n$$R_x = -200\\cos 35^\\circ + 150\\cos 65^\\circ + 100\\cos 35^\\circ = -18.52\\,\\text{N}$$\n$$R_y = -200\\sin 35^\\circ - 150\\sin 65^\\circ - 100\\sin 35^\\circ = -308.02\\,\\text{N}$$\nHence $R = \\sqrt{(-18.52)^2 + (-308.02)^2} = 308.6\\,\\text{N} \\approx 309\\,\\text{N}$, and $\\theta = \\tan^{-1}(308.02 / 18.52) = 86.6^\\circ$ below the $-x$ axis.",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.35",
-      "tags": ["summing-components", "resultant"]
+      "tags": [
+        "summing-components",
+        "resultant"
+      ]
     },
     {
       "key": "prob-2-43-cable-ac-tension",
@@ -134,8 +185,10 @@
       "unit": "kN",
       "solution": "Weight of the load is $W = (1600\\,\\text{kg})(9.81\\,\\text{m/s}^2) = 15.696\\,\\text{kN}$. Cable lengths are $AC = \\sqrt{1100^2 + 960^2} = 1460\\,\\text{mm}$ and $BC = \\sqrt{400^2 + 960^2} = 1040\\,\\text{mm}$. Equilibrium of joint $C$:\n$$\\sum F_x = -T_{AC}\\left(\\frac{1100}{1460}\\right) + T_{BC}\\left(\\frac{400}{1040}\\right) = 0 \\implies T_{BC} = 1.9589\\,T_{AC}$$\n$$\\sum F_y = T_{AC}\\left(\\frac{960}{1460}\\right) + T_{BC}\\left(\\frac{960}{1040}\\right) - 15.696 = 0$$\nSubstituting $T_{BC}$ gives $(0.6575 + 1.8082)T_{AC} = 15.696 \\implies T_{AC} = 6.366\\,\\text{kN} \\approx 6.37\\,\\text{kN}$.",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.43(a)",
-      "tags": ["2d-equilibrium", "free-body-diagram"]
+      "tags": [
+        "2d-equilibrium",
+        "free-body-diagram"
+      ]
     },
     {
       "key": "prob-2-48-cable-bc-tension",
@@ -147,8 +200,10 @@
       "unit": "N",
       "solution": "Resolve the equilibrium equations for joint $C$: $\\sum F_x = -T_{AC}\\cos 45^\\circ + T_{BC}\\cos 25^\\circ - 500\\cos 60^\\circ = 0$ and $\\sum F_y = T_{AC}\\sin 45^\\circ + T_{BC}\\sin 25^\\circ - 500\\sin 60^\\circ = 0$. Adding the two equations eliminates $T_{AC}$:\n$$T_{BC}(\\cos 25^\\circ + \\sin 25^\\circ) = 500(\\cos 60^\\circ + \\sin 60^\\circ) \\implies 1.3289\\,T_{BC} = 683.01 \\implies T_{BC} = 513.96\\,\\text{N} \\approx 514\\,\\text{N}.$$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.48(b)",
-      "tags": ["2d-equilibrium", "law-of-sines"]
+      "tags": [
+        "2d-equilibrium",
+        "law-of-sines"
+      ]
     },
     {
       "key": "prob-2-53-boatswain-support-tension",
@@ -160,8 +215,10 @@
       "unit": "N",
       "solution": "Because the pulley rolls freely on cable $ACB$, the tension $T$ is identical in segments $CA$ and $CB$. Equilibrium of the pulley at $C$ (with $T_{CD}$ along the $30^\\circ$ direction of $CA$):\n$$\\sum F_x = -(T + T_{CD})\\cos 30^\\circ + T\\cos 10^\\circ = 0 \\implies T_{CD} = T\\left(\\frac{\\cos 10^\\circ}{\\cos 30^\\circ} - 1\\right) = 0.13715\\,T$$\n$$\\sum F_y = (T + T_{CD})\\sin 30^\\circ + T\\sin 10^\\circ - 900 = 0$$\nSubstituting $T_{CD}$:\n$$T(1.13715\\sin 30^\\circ + \\sin 10^\\circ) = 900 \\implies 0.74222\\,T = 900 \\implies T = 1212.6\\,\\text{N} \\approx 1213\\,\\text{N}.$$",
       "difficulty": "hard",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.53(a)",
-      "tags": ["2d-equilibrium", "pulley"]
+      "tags": [
+        "2d-equilibrium",
+        "pulley"
+      ]
     },
     {
       "key": "prob-2-55-aircraft-rods-fa-fb",
@@ -169,15 +226,33 @@
       "prompt": "Two forces $\\mathbf{P}$ and $\\mathbf{Q}$ are applied as shown to an aircraft connection. Knowing that the connection is in equilibrium and that $P = 500\\,\\text{lb}$ and $Q = 650\\,\\text{lb}$, determine the magnitudes of the forces exerted on rods $A$ and $B$.",
       "image": "/diagrams/get-207/force-vectors-p2-55.png",
       "options": [
-        { "label": "A", "text": "$F_A = 1303\\,\\text{lb},\\; F_B = 420\\,\\text{lb}$", "correct": true },
-        { "label": "B", "text": "$F_A = 1303\\,\\text{lb},\\; F_B = 1255\\,\\text{lb}$", "correct": false },
-        { "label": "C", "text": "$F_A = 652\\,\\text{lb},\\; F_B = 420\\,\\text{lb}$", "correct": false },
-        { "label": "D", "text": "$F_A = 998\\,\\text{lb},\\; F_B = 838\\,\\text{lb}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$F_A = 1303\\,\\text{lb},\\; F_B = 420\\,\\text{lb}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$F_A = 1303\\,\\text{lb},\\; F_B = 1255\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$F_A = 652\\,\\text{lb},\\; F_B = 420\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$F_A = 998\\,\\text{lb},\\; F_B = 838\\,\\text{lb}$",
+          "correct": false
+        }
       ],
       "solution": "Write the equilibrium equations for the pin:\n$$\\sum F_y = F_A\\sin 50^\\circ - 500\\,\\text{lb} - (650\\,\\text{lb})\\cos 40^\\circ = 0 \\implies F_A = \\frac{500 + 497.93}{\\sin 50^\\circ} = 1302.7\\,\\text{lb} \\approx 1303\\,\\text{lb}.$$\n$$\\sum F_x = -F_A\\cos 50^\\circ - F_B + (650\\,\\text{lb})\\sin 40^\\circ = 0 \\implies F_B = 417.81 - 1302.7\\cos 50^\\circ = -419.6\\,\\text{lb}.$$\nThe negative sign means $\\mathbf{F}_B$ acts to the right (compression), with magnitude $F_B = 420\\,\\text{lb}$.",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.55",
-      "tags": ["2d-equilibrium", "free-body-diagram"]
+      "tags": [
+        "2d-equilibrium",
+        "free-body-diagram"
+      ]
     },
     {
       "key": "prob-2-71-space-force-components",
@@ -185,15 +260,33 @@
       "prompt": "Determine the Cartesian vector representation $(F_x\\mathbf{i} + F_y\\mathbf{j} + F_z\\mathbf{k})$ of the $900\\text{-N}$ force shown in space.",
       "image": "/diagrams/get-207/force-vectors-p2-71.png",
       "options": [
-        { "label": "A", "text": "$(-130.1\\,\\text{N})\\mathbf{i} + (816\\,\\text{N})\\mathbf{j} + (357\\,\\text{N})\\mathbf{k}$", "correct": true },
-        { "label": "B", "text": "$(+357\\,\\text{N})\\mathbf{i} + (816\\,\\text{N})\\mathbf{j} + (-130.1\\,\\text{N})\\mathbf{k}$", "correct": false },
-        { "label": "C", "text": "$(-130.1\\,\\text{N})\\mathbf{i} + (380\\,\\text{N})\\mathbf{j} + (357\\,\\text{N})\\mathbf{k}$", "correct": false },
-        { "label": "D", "text": "$(+130.1\\,\\text{N})\\mathbf{i} + (816\\,\\text{N})\\mathbf{j} - (357\\,\\text{N})\\mathbf{k}$", "correct": false }
+        {
+          "label": "A",
+          "text": "$(-130.1\\,\\text{N})\\mathbf{i} + (816\\,\\text{N})\\mathbf{j} + (357\\,\\text{N})\\mathbf{k}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$(+357\\,\\text{N})\\mathbf{i} + (816\\,\\text{N})\\mathbf{j} + (-130.1\\,\\text{N})\\mathbf{k}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$(-130.1\\,\\text{N})\\mathbf{i} + (380\\,\\text{N})\\mathbf{j} + (357\\,\\text{N})\\mathbf{k}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$(+130.1\\,\\text{N})\\mathbf{i} + (816\\,\\text{N})\\mathbf{j} - (357\\,\\text{N})\\mathbf{k}$",
+          "correct": false
+        }
       ],
       "solution": "The $900\\text{-N}$ force forms $65^\\circ$ with the horizontal $xz$ plane (so $\\theta_y = 90^\\circ - 65^\\circ = 25^\\circ$):\n$$F_y = +(900\\,\\text{N})\\sin 65^\\circ = +815.7\\,\\text{N} \\approx +816\\,\\text{N}, \\qquad F_h = (900\\,\\text{N})\\cos 65^\\circ = 380.36\\,\\text{N}.$$\nIn the $xz$ plane, $F_h$ is directed $20^\\circ$ from the $+z$ axis toward the $-x$ axis:\n$$F_x = -F_h\\sin 20^\\circ = -130.1\\,\\text{N}, \\qquad F_z = +F_h\\cos 20^\\circ = +357.4\\,\\text{N} \\approx +357\\,\\text{N}.$$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.71(a)",
-      "tags": ["3d-forces", "rectangular-components"]
+      "tags": [
+        "3d-forces",
+        "rectangular-components"
+      ]
     },
     {
       "key": "prob-2-101-balloon-vertical-force",
@@ -205,8 +298,10 @@
       "unit": "N",
       "solution": "From $A(0, 5.60, 0)\\,\\text{m}$ to the anchors: $\\overrightarrow{AB} = -4.20\\mathbf{i} - 5.60\\mathbf{j}\\,\\text{m}$ ($d_{AB} = 7.00\\,\\text{m}$), $\\overrightarrow{AC} = 2.40\\mathbf{i} - 5.60\\mathbf{j} + 4.20\\mathbf{k}\\,\\text{m}$ ($d_{AC} = 7.40\\,\\text{m}$), and $\\overrightarrow{AD} = -5.60\\mathbf{j} - 3.30\\mathbf{k}\\,\\text{m}$ ($d_{AD} = 6.50\\,\\text{m}$).\nWith $T_{AD} = 481\\,\\text{N}$, $\\dfrac{T_{AD}}{d_{AD}} = \\dfrac{481}{6.50} = 74\\,\\text{N/m}$, so $\\mathbf{T}_{AD} = (-414.4\\,\\text{N})\\mathbf{j} - (244.2\\,\\text{N})\\mathbf{k}$.\nFrom $\\sum F_z = 0$: $-244.2 + T_{AC}\\left(\\frac{4.20}{7.40}\\right) = 0 \\implies \\frac{T_{AC}}{7.40} = 58.143\\,\\text{N/m}$.\nFrom $\\sum F_x = 0$: $58.143(2.40) - T_{AB}\\left(\\frac{4.20}{7.00}\\right) = 0 \\implies \\frac{T_{AB}}{7.00} = 33.224\\,\\text{N/m}$.\nFrom $\\sum F_y = 0$: $P = 414.4 + 58.143(5.60) + 33.224(5.60) = 926.1\\,\\text{N} \\approx 926\\,\\text{N}$.",
       "difficulty": "hard",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.101",
-      "tags": ["3d-equilibrium", "unit-vector"]
+      "tags": [
+        "3d-equilibrium",
+        "unit-vector"
+      ]
     },
     {
       "key": "prob-2-125-collar-wire-tension",
@@ -218,8 +313,10 @@
       "unit": "N",
       "solution": "Collar $A$ lies at $(0, 155, 0)\\,\\text{mm}$ and collar $B$ lies at $(200, 0, z)\\,\\text{mm}$, so the wire vector from $A$ to $B$ is $\\overrightarrow{AB} = 200\\mathbf{i} - 155\\mathbf{j} + z\\mathbf{k}\\,\\text{mm}$ with length $d = 525\\,\\text{mm}$. For collar $A$ sliding on the frictionless vertical $y$ rod, the normal reaction of the rod has zero $y$ component. Thus $\\sum F_y = 0$ on collar $A$ gives:\n$$341 - T\\left(\\frac{155}{525}\\right) = 0 \\implies T = 341\\left(\\frac{525}{155}\\right) = 1155\\,\\text{N}.$$",
       "difficulty": "medium",
-      "source": "Beer & Johnston 10e, Ch. 2, Problem 2.125(a)",
-      "tags": ["3d-equilibrium", "frictionless-collar"]
+      "tags": [
+        "3d-equilibrium",
+        "frictionless-collar"
+      ]
     }
   ]
 }

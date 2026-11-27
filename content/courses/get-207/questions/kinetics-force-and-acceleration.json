@@ -1,0 +1,269 @@
+{
+  "topicSlug": "kinetics-force-and-acceleration",
+  "questions": [
+    {
+      "key": "prob-12-3-satellite-momentum",
+      "type": "numeric",
+      "prompt": "A $400\\text{-kg}$ satellite has been placed in a circular orbit $1500\\,\\text{km}$ above the surface of the earth. The acceleration of gravity at this elevation is $6.43\\,\\text{m/s}^2$. Determine the magnitude of the linear momentum of the satellite, knowing that its orbital speed is $25.6 \\times 10^3\\,\\text{km/h}$ (in $\\text{kg}\\cdot\\text{m/s}$).",
+      "answer": 2840000,
+      "tolerancePct": 1,
+      "unit": "kg·m/s",
+      "solution": "Linear momentum $L = mv$ uses the **mass**, which does not depend on the local value of $g$ (the $6.43\\,\\text{m/s}^2$ is a distractor).\n\n$v = \\dfrac{25.6 \\times 10^6\\,\\text{m}}{3600\\,\\text{s}} = 7111\\,\\text{m/s}$.\n\n$L = (400\\,\\text{kg})(7111\\,\\text{m/s}) = 2.84 \\times 10^6\\,\\text{kg}\\cdot\\text{m/s}$.",
+      "difficulty": "easy",
+      "tags": [
+        "linear-momentum",
+        "units"
+      ]
+    },
+    {
+      "key": "prob-12-4-package-weight",
+      "type": "numeric",
+      "prompt": "A spring scale is fastened to the roof of an elevator and a package hangs from it. When the elevator moves **downward** with an acceleration of $1\\,\\text{m/s}^2$, the spring scale indicates a load of $60\\,\\text{N}$. Determine the weight of the package (in $\\text{N}$).",
+      "answer": 66.8,
+      "tolerancePct": 1,
+      "unit": "N",
+      "solution": "The scale reading is the force $F$ it exerts on the package. Positive downward: $\\sum F = ma$: $mg - F = m(1) \\Rightarrow 60 = m(9.81 - 1) \\Rightarrow m = 6.81\\,\\text{kg}$.\n\n$W = mg = 6.81(9.81) = 66.8\\,\\text{N}$.",
+      "difficulty": "easy",
+      "tags": [
+        "newtons-second-law",
+        "units"
+      ]
+    },
+    {
+      "key": "prob-12-4-elevator-upward-readings",
+      "type": "mcq",
+      "prompt": "A spring scale $A$ and a lever scale $B$ having equal lever arms are fastened to the roof of an elevator, with identical packages attached. When the elevator moves downward with $a = 1\\,\\text{m/s}^2$ the spring scale reads $60\\,\\text{N}$. When the elevator moves **upward** with $a = 1\\,\\text{m/s}^2$, what are the load indicated by the spring scale and the mass needed to balance the lever scale?",
+      "options": [
+        {
+          "label": "A",
+          "text": "$60.0\\,\\text{N}$ and $6.12\\,\\text{kg}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$73.6\\,\\text{N}$ and $7.50\\,\\text{kg}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$66.8\\,\\text{N}$ and $6.81\\,\\text{kg}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$73.6\\,\\text{N}$ and $6.81\\,\\text{kg}$",
+          "correct": true
+        }
+      ],
+      "solution": "From the downward case, $m = 60/(9.81 - 1) = 6.81\\,\\text{kg}$.\n\nUpward acceleration, positive up: $F - mg = ma \\Rightarrow F = m(g + a) = 6.81(10.81) = 73.6\\,\\text{N}$.\n\nThe lever scale compares two masses subject to the **same** acceleration, so the balancing mass equals the package mass, $6.81\\,\\text{kg}$, whatever the elevator's acceleration.",
+      "difficulty": "medium",
+      "tags": [
+        "newtons-second-law",
+        "mass-vs-weight"
+      ]
+    },
+    {
+      "key": "prob-12-9-braking-uphill",
+      "type": "numeric",
+      "prompt": "An automobile's braking distance from $90\\,\\text{km/h}$ is $45\\,\\text{m}$ on level pavement. Assuming the braking force is independent of grade, determine the braking distance from $90\\,\\text{km/h}$ when it is going **up** a $5^\\circ$ incline (in $\\text{m}$).",
+      "answer": 40.1,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "$v_0 = 90\\,\\text{km/h} = 25\\,\\text{m/s}$. Level: $0 = v_0^2 - 2a_0(45) \\Rightarrow a_0 = \\dfrac{625}{90} = 6.944\\,\\text{m/s}^2$, so the braking force is $F_b = m(6.944)$.\n\nUp the incline, both $F_b$ and the weight component oppose the motion: $\\sum F = ma$: $-F_b - mg\\sin 5^\\circ = ma \\Rightarrow a = -(6.944 + 9.81\\sin 5^\\circ) = -7.799\\,\\text{m/s}^2$.\n\n$d = \\dfrac{v_0^2}{2|a|} = \\dfrac{625}{2(7.799)} = 40.1\\,\\text{m}$.",
+      "difficulty": "medium",
+      "tags": [
+        "rectangular-components",
+        "incline"
+      ]
+    },
+    {
+      "key": "prob-12-9-braking-downhill",
+      "type": "numeric",
+      "prompt": "An automobile's braking distance from $90\\,\\text{km/h}$ is $45\\,\\text{m}$ on level pavement. Assuming the braking force is independent of grade, determine the braking distance from $90\\,\\text{km/h}$ when it is going **down** a 3-percent incline (in $\\text{m}$).",
+      "answer": 47,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "As in part (a), $F_b = m(6.944\\,\\text{m/s}^2)$. A 3-percent grade has $\\tan\\theta = 0.03$, $\\theta = 1.718^\\circ$, $\\sin\\theta = 0.0300$.\n\nGoing down, the weight component aids the motion: $a = -(6.944 - 9.81 \\times 0.0300) = -6.650\\,\\text{m/s}^2$.\n\n$d = \\dfrac{625}{2(6.650)} = 47.0\\,\\text{m}$.",
+      "difficulty": "medium",
+      "tags": [
+        "rectangular-components",
+        "incline"
+      ]
+    },
+    {
+      "key": "prob-12-10-skier-time",
+      "type": "numeric",
+      "prompt": "A mother holds a rope tied to her $20\\text{-kg}$ child's waist. They are moving at $7.2\\,\\text{km/h}$ on a slope inclined at $5^\\circ$ when she pulls on the rope with an average force of $7\\,\\text{N}$ (rope at $20^\\circ$ to the horizontal, as shown). Knowing the coefficient of friction between the child and the ground is $0.1$ and the angle of the rope does not change, determine the time required for the child's speed to be cut in half (in $\\text{s}$).",
+      "image": "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-10.png",
+      "answer": 2.22,
+      "tolerancePct": 1,
+      "unit": "s",
+      "solution": "$v_0 = 7.2\\,\\text{km/h} = 2\\,\\text{m/s}$. Axes: $x$ down the $5^\\circ$ slope, $y$ normal to it. The rope pulls up the slope at $20^\\circ - 5^\\circ = 15^\\circ$ to the slope surface.\n\n$\\sum F_y = 0$: $N = mg\\cos 5^\\circ - 7\\sin 15^\\circ = 195.45 - 1.81 = 193.64\\,\\text{N}$; friction $F = 0.1N = 19.36\\,\\text{N}$ up the slope.\n\n$\\sum F_x = ma$: $mg\\sin 5^\\circ - 7\\cos 15^\\circ - 19.36 = 20a \\Rightarrow 17.10 - 6.76 - 19.36 = 20a \\Rightarrow a = -0.451\\,\\text{m/s}^2$.\n\nSpeed halves ($2 \\to 1\\,\\text{m/s}$): $t = \\dfrac{1 - 2}{-0.451} = 2.22\\,\\text{s}$.",
+      "difficulty": "hard",
+      "tags": [
+        "rectangular-components",
+        "friction"
+      ]
+    },
+    {
+      "key": "prob-12-10-skier-distance",
+      "type": "numeric",
+      "prompt": "For the mother-and-child skiing situation shown ($20\\text{-kg}$ child, initial speed $7.2\\,\\text{km/h}$, $5^\\circ$ slope, $7\\text{-N}$ rope pull at $20^\\circ$ to the horizontal, coefficient of friction $0.1$), determine the distance traveled by the child while its speed is cut in half (in $\\text{m}$).",
+      "image": "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-10.png",
+      "answer": 3.32,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "From the equations of motion (see part a), the constant acceleration is $a = -0.451\\,\\text{m/s}^2$.\n\n$v^2 = v_0^2 + 2a\\,\\Delta x$: $1^2 = 2^2 + 2(-0.451)\\Delta x \\Rightarrow \\Delta x = \\dfrac{3}{0.902} = 3.32\\,\\text{m}$.",
+      "difficulty": "hard",
+      "tags": [
+        "rectangular-components",
+        "friction"
+      ]
+    },
+    {
+      "key": "prob-12-11-flatbed-stopping",
+      "type": "numeric",
+      "prompt": "The coefficients of friction between the load and the flatbed trailer shown are $\\mu_s = 0.40$ and $\\mu_k = 0.30$. Knowing that the speed of the rig is $72\\,\\text{km/h}$, determine the shortest distance in which the rig can be brought to a stop if the load is not to shift (in $\\text{m}$).",
+      "image": "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-11.png",
+      "answer": 51,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "If the load does not shift, it has the rig's deceleration, provided by static friction: $F = ma \\le \\mu_s N = \\mu_s mg$, so $a_{\\max} = \\mu_s g = 0.40(9.81) = 3.924\\,\\text{m/s}^2$.\n\n$v_0 = 72\\,\\text{km/h} = 20\\,\\text{m/s}$: $d_{\\min} = \\dfrac{v_0^2}{2a_{\\max}} = \\dfrac{400}{7.848} = 51.0\\,\\text{m}$.",
+      "difficulty": "easy",
+      "tags": [
+        "friction",
+        "rectangular-components"
+      ]
+    },
+    {
+      "key": "prob-12-12-train-stopping",
+      "type": "numeric",
+      "prompt": "A light train made up of two cars is traveling at $90\\,\\text{km/h}$ when the brakes are applied to both cars. Car $A$ has a mass of $25\\,\\text{Mg}$ and car $B$ a mass of $20\\,\\text{Mg}$, and the braking force is $30\\,\\text{kN}$ on each car. Determine the distance traveled by the train before it comes to a stop (in $\\text{m}$).",
+      "image": "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-12.png",
+      "answer": 234,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "Whole train: $\\sum F = ma$: $-60\\,000 = 45\\,000a \\Rightarrow a = -1.333\\,\\text{m/s}^2$.\n\n$v_0 = 25\\,\\text{m/s}$: $d = \\dfrac{v_0^2}{2|a|} = \\dfrac{625}{2.667} = 234\\,\\text{m}$.",
+      "difficulty": "easy",
+      "tags": [
+        "connected-bodies"
+      ]
+    },
+    {
+      "key": "prob-12-12-coupling-force",
+      "type": "mcq",
+      "prompt": "For the two-car train shown ($m_A = 25\\,\\text{Mg}$ leading, $m_B = 20\\,\\text{Mg}$, braking force $30\\,\\text{kN}$ on each car, initial speed $90\\,\\text{km/h}$), what is the force in the coupling between the cars while the train is slowing down?",
+      "image": "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-12.png",
+      "options": [
+        {
+          "label": "A",
+          "text": "$3.33\\,\\text{kN}$ (compression)",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$3.33\\,\\text{kN}$ (tension)",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$30.0\\,\\text{kN}$ (tension)",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "Zero, since both cars are braked",
+          "correct": false
+        }
+      ],
+      "solution": "Train deceleration: $a = 60\\,000/45\\,000 = 1.333\\,\\text{m/s}^2$.\n\nCar $A$ alone needs a retarding force $m_Aa = 25\\,000(1.333) = 33.33\\,\\text{kN}$ but its brakes supply only $30\\,\\text{kN}$; the remaining $3.33\\,\\text{kN}$ must be supplied by the coupling pulling $A$ backward — the coupling is in **tension**.\n\nCheck with car $B$: it needs $20\\,000(1.333) = 26.67\\,\\text{kN}$ but its brakes give $30\\,\\text{kN}$, so the coupling pulls it forward with $3.33\\,\\text{kN}$.",
+      "difficulty": "medium",
+      "tags": [
+        "connected-bodies",
+        "free-body-diagram"
+      ]
+    },
+    {
+      "key": "prob-12-24-runway-length",
+      "type": "numeric",
+      "prompt": "An airplane has a mass of $25\\,\\text{Mg}$ and its engines develop a total thrust of $40\\,\\text{kN}$ during take-off. The drag on the plane is $D = 2.25v^2$ ($D$ in newtons, $v$ in m/s). If the plane becomes airborne at a speed of $240\\,\\text{km/h}$, determine the length of runway required (in $\\text{m}$).",
+      "answer": 1598,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "$\\sum F = ma$ with $a = v\\,dv/dx$: $40\\,000 - 2.25v^2 = 25\\,000\\,v\\dfrac{dv}{dx}$.\n\nSeparate: $dx = \\dfrac{25\\,000\\,v\\,dv}{40\\,000 - 2.25v^2} \\Rightarrow x = \\dfrac{25\\,000}{2(2.25)}\\ln\\dfrac{40\\,000}{40\\,000 - 2.25v^2}$.\n\n$v = 240/3.6 = 66.67\\,\\text{m/s}$, $2.25v^2 = 10\\,000\\,\\text{N}$: $x = 5556\\ln\\dfrac{40\\,000}{30\\,000} = 5556(0.2877) = 1598\\,\\text{m} = 1.598\\,\\text{km}$.",
+      "difficulty": "hard",
+      "tags": [
+        "rectangular-components",
+        "force-function-of-v"
+      ]
+    },
+    {
+      "key": "prob-12-69-collar-relative-acceleration",
+      "type": "numeric",
+      "prompt": "The horizontal rod $OA$ rotates about a vertical shaft according to $\\dot\\theta = 10t$ (rad/s, s). A $250\\text{-g}$ collar $B$ is held by a cord with a breaking strength of $18\\,\\text{N}$. Neglecting friction, determine the magnitude of the relative acceleration of the collar with respect to the rod immediately after the cord breaks (in $\\text{m/s}^2$).",
+      "image": "/diagrams/get-207/kinetics-force-and-acceleration-prob-12-69.png",
+      "answer": 72,
+      "tolerancePct": 1,
+      "unit": "m/s^2",
+      "solution": "Before the break the collar is at fixed $r$ ($\\dot r = \\ddot r = 0$) and the cord supplies the radial force: $-T = m(\\ddot r - r\\dot\\theta^2) = -mr\\dot\\theta^2$. The cord breaks when $T = 18\\,\\text{N}$, i.e. when $r\\dot\\theta^2 = 18/0.25 = 72\\,\\text{m/s}^2$.\n\nImmediately after the break there is no radial force (the frictionless rod exerts only a transverse force): $0 = m(\\ddot r - r\\dot\\theta^2) \\Rightarrow \\ddot r = r\\dot\\theta^2 = 72.0\\,\\text{m/s}^2$.\n\nThe acceleration relative to the rod is $\\ddot r = 72.0\\,\\text{m/s}^2$, radially outward.",
+      "difficulty": "hard",
+      "tags": [
+        "radial-transverse"
+      ]
+    },
+    {
+      "key": "prob-12-79-moon-orbit-radius",
+      "type": "numeric",
+      "prompt": "The moon completes one revolution about the earth in $\\tau = 27.3$ days. Using $g = 9.81\\,\\text{m/s}^2$ and $R = 6370\\,\\text{km}$ for the earth, and treating the orbit as circular, compute the radius $r$ of the moon's orbit (in $\\text{km}$).",
+      "answer": 383000,
+      "tolerancePct": 1,
+      "unit": "km",
+      "solution": "Circular orbit: $\\dfrac{GMm}{r^2} = m\\dfrac{v^2}{r}$ with $v = 2\\pi r/\\tau$, so $r^3 = \\dfrac{GM\\tau^2}{4\\pi^2} = \\dfrac{gR^2\\tau^2}{4\\pi^2}$.\n\n$gR^2 = 9.81(6.37 \\times 10^6)^2 = 398.1 \\times 10^{12}\\,\\text{m}^3/\\text{s}^2$; $\\tau = 27.3(86\\,400) = 2.359 \\times 10^6\\,\\text{s}$.\n\n$r^3 = \\dfrac{(398.1 \\times 10^{12})(2.359 \\times 10^6)^2}{39.48} = 56.1 \\times 10^{24}\\,\\text{m}^3 \\Rightarrow r = 383 \\times 10^6\\,\\text{m} = 383 \\times 10^3\\,\\text{km}$.",
+      "difficulty": "medium",
+      "tags": [
+        "gravitation",
+        "circular-orbit"
+      ]
+    },
+    {
+      "key": "prob-12-85-earth-orbit-force",
+      "type": "numeric",
+      "prompt": "A $500\\text{-kg}$ spacecraft is placed into a circular orbit about the earth at an altitude of $4500\\,\\text{km}$. Determine the gravitational force exerted on the spacecraft in that orbit (in $\\text{N}$). Use $R = 6370\\,\\text{km}$, $g = 9.81\\,\\text{m/s}^2$.",
+      "answer": 1684,
+      "tolerancePct": 1,
+      "unit": "N",
+      "solution": "$F = \\dfrac{GMm}{r^2}$ with $GM = gR^2$: $F = mg\\Big(\\dfrac{R}{r}\\Big)^2$.\n\n$r = 6370 + 4500 = 10\\,870\\,\\text{km}$: $F = 500(9.81)\\Big(\\dfrac{6370}{10\\,870}\\Big)^2 = 4905(0.3434) = 1684\\,\\text{N}$.",
+      "difficulty": "easy",
+      "tags": [
+        "gravitation"
+      ]
+    },
+    {
+      "key": "prob-12-85-moon-orbit-radius",
+      "type": "numeric",
+      "prompt": "A spacecraft in a circular earth orbit at an altitude of $4500\\,\\text{km}$ ($R_{\\text{earth}} = 6370\\,\\text{km}$) is transferred to a circular orbit about the moon. The mass of the moon is $0.01230$ times the mass of the earth. Determine the radius of the orbit about the moon if the periodic times of the two orbits are to be equal (in $\\text{km}$).",
+      "answer": 2510,
+      "tolerancePct": 1,
+      "unit": "km",
+      "solution": "For a circular orbit $\\tau = \\dfrac{2\\pi r^{3/2}}{\\sqrt{GM}}$. Equal periods: $\\dfrac{r_m^3}{M_m} = \\dfrac{r_e^3}{M_e}$.\n\n$r_e = 10\\,870\\,\\text{km}$: $r_m = r_e\\Big(\\dfrac{M_m}{M_e}\\Big)^{1/3} = 10\\,870(0.01230)^{1/3} = 10\\,870(0.2308) = 2510\\,\\text{km}$.",
+      "difficulty": "medium",
+      "tags": [
+        "gravitation",
+        "periodic-time"
+      ]
+    },
+    {
+      "key": "prob-12-85-moon-surface-gravity",
+      "type": "numeric",
+      "prompt": "The mass of the moon is $0.01230$ times the mass of the earth and the radius of the moon is $1737\\,\\text{km}$. Using $g = 9.81\\,\\text{m/s}^2$ and $R = 6370\\,\\text{km}$ for the earth, determine the acceleration of gravity at the surface of the moon (in $\\text{m/s}^2$).",
+      "answer": 1.62,
+      "tolerancePct": 1,
+      "unit": "m/s^2",
+      "solution": "From Eq. (12.29), $g = GM/R^2$, so $\\dfrac{g_m}{g_e} = \\dfrac{M_m}{M_e}\\Big(\\dfrac{R_e}{R_m}\\Big)^2$.\n\n$g_m = 9.81(0.01230)\\Big(\\dfrac{6370}{1737}\\Big)^2 = 0.1207(13.45) = 1.620\\,\\text{m/s}^2$.",
+      "difficulty": "easy",
+      "tags": [
+        "gravitation"
+      ]
+    }
+  ]
+}

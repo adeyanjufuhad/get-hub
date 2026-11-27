@@ -20,18 +20,18 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${APP_NAME}: OAU 200L Engineering Folios, Drills & Mock Exams`,
+    default: `${APP_NAME}: OAU 200L Engineering Notes, Practice & Mock Exams`,
     template: `%s | ${APP_NAME}`,
   },
   description: APP_TAGLINE,
   openGraph: {
-    title: `${APP_NAME}: OAU 200L Engineering Folios, Drills & Mock Exams`,
+    title: `${APP_NAME}: OAU 200L Engineering Notes, Practice & Mock Exams`,
     description: APP_TAGLINE,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${APP_NAME}: OAU 200L Engineering Folios, Drills & Mock Exams`,
+    title: `${APP_NAME}: OAU 200L Engineering Notes, Practice & Mock Exams`,
     description: APP_TAGLINE,
   },
 };

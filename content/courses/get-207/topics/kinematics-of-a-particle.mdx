@@ -1,0 +1,743 @@
+---
+title: "Kinematics of Particles: Rectilinear & Curvilinear Motion"
+order: 7
+topicId: "22222222-2222-4222-8222-222222270007"
+courseCode: "GET 207"
+courseSlug: "get-207"
+ccmasRef: "Kinematics of particles; projectiles; normal–tangential and radial–transverse components"
+outcomes:
+  - "Obtain velocity and acceleration from a given position function, and integrate a = f(t), a = f(x) or a = f(v) to recover the motion of a particle in rectilinear motion"
+  - "Apply the equations of uniform and uniformly accelerated rectilinear motion, including relative motion and dependent motion of particles connected by cables"
+  - "Use the a–t, v–t and x–t curves (areas, slopes and the moment-area method) to solve rectilinear-motion problems graphically"
+  - "Solve projectile problems by treating the horizontal and vertical motions separately, and solve relative-motion problems with frames in translation"
+  - "Resolve velocity and acceleration into tangential–normal and radial–transverse components and use them for circular paths, radius of curvature and rotating-arm problems"
+status: "published"
+isFree: true
+---
+
+## Overview
+
+Earlier topics dealt with **statics** — bodies at rest. This topic opens **dynamics**, the part of mechanics that deals with bodies in motion. Dynamics is split into two parts: **kinematics**, the study of the *geometry of motion* (how position, velocity, acceleration and time are related, without reference to the cause of the motion), and **kinetics**, the study of the relation between the forces acting on a body, its mass and its motion.
+
+This chapter treats the kinematics of **particles**. A body may be treated as a particle whenever its size and rotation are irrelevant to the question asked — an aircraft over a 500-km route, a projectile, a car on a highway. The chapter has two halves:
+
+- **Rectilinear motion**: the particle moves along a straight line. Position, velocity and acceleration are scalars with a sign. We learn to integrate the defining equations for the three common types of acceleration law, to use the uniform and uniformly accelerated formulas, to handle several particles (relative and dependent motion), and to read motion from graphs.
+- **Curvilinear motion**: the particle moves along a curve. Position, velocity and acceleration become vectors, and we express them in **rectangular** components (projectiles), relative to a **translating frame**, in **tangential and normal** components, and in **radial and transverse** components.
+
+All twelve Sample Problems of the chapter are worked in full below, followed by selected end-of-section problems with the standard answers.
+
+---
+
+## Rectilinear Motion of Particles
+
+### 11.1 Introduction to Dynamics
+
+Dynamics was developed much later than statics; Galileo (1564–1642) carried out the first significant experiments on uniformly accelerated bodies, and Newton (1642–1727) formulated the fundamental laws of motion. Kinematics is used to relate displacement, velocity, acceleration and time; kinetics is used to predict the motion caused by given forces or to find the forces needed to produce a given motion.
+
+In this topic, bodies are treated as **particles** — their size is ignored and the motion of the whole body is represented by the motion of a single point (usually the mass centre). Rigid-body kinematics, where rotation matters, is covered in rigid-body kinematics.
+
+---
+
+### 11.2 Position, Velocity, and Acceleration
+
+A particle moving along a straight line is in **rectilinear motion**. At any instant $t$ it occupies a position on the line. To define that position $P$ we choose a fixed origin $O$ on the line and a positive direction. The distance $x$ from $O$ to $P$, with the appropriate sign, is the **position coordinate** of the particle. A positive $x$ means $P$ is on the positive side of $O$; a negative $x$ means it is on the negative side. When $x$ is known for every value of $t$, the motion of the particle is known; this "timetable" may be given as an equation such as $x = 6t^2 - t^3$ or as an $x$–$t$ graph.
+
+If the particle moves from $P$ (coordinate $x$) at time $t$ to $P'$ (coordinate $x + \Delta x$) at time $t + \Delta t$, the **average velocity** over the interval is $\Delta x/\Delta t$, and the **instantaneous velocity** $v$ is its limit as $\Delta t \to 0$.
+
+<RuleBox kind="definition" title="Velocity and acceleration in rectilinear motion">
+
+$$
+v = \frac{dx}{dt} \tag{11.1}
+$$
+
+$$
+a = \frac{dv}{dt} \tag{11.2}
+$$
+
+$$
+a = \frac{d^2x}{dt^2} \tag{11.3}
+$$
+
+Eliminating $dt$ between (11.1) and (11.2) gives the alternative form
+
+$$
+a = v\,\frac{dv}{dx} \tag{11.4}
+$$
+
+- $v$ is an algebraic number: $v > 0$ means $x$ is increasing (particle moving in the positive direction); $v < 0$ means it moves in the negative direction. The magnitude of $v$ is the **speed**.
+- $a > 0$ means the velocity *increases* algebraically — the particle is speeding up if moving in the positive direction, or slowing down if moving in the negative direction. **Deceleration** is reserved for a decrease in speed, which happens whenever $a$ and $v$ have opposite signs.
+- Units: $v$ in $\text{m/s}$ or $\text{ft/s}$ (also $\text{km/h}$, $\text{mi/h}$); $a$ in $\text{m/s}^2$ or $\text{ft/s}^2$.
+
+</RuleBox>
+
+the standard introductory illustration, $x = 6t^2 - t^3$, gives $v = 12t - 3t^2$ and $a = 12 - 6t$. The particle starts from $x = 0$ with $v = 0$ and $a = 12\,\text{m/s}^2$; it moves in the positive direction until $t = 4\,\text{s}$ (where $v = 0$ and $x = 32\,\text{m}$, the maximum), then reverses and moves in the negative direction with ever-increasing speed. Its velocity is maximum at $t = 2\,\text{s}$, when $a = 0$. The three motion curves — $x$–$t$, $v$–$t$ and $a$–$t$ — are related: the velocity at any instant is the **slope** of the $x$–$t$ curve, and the acceleration is the slope of the $v$–$t$ curve.
+
+---
+
+### 11.3 Determination of the Motion of a Particle
+
+In practice the motion is rarely given as $x(t)$. Usually the *acceleration* is specified — by the conditions of the problem or by the forces acting — together with initial conditions $x_0$, $v_0$ at $t = 0$. The motion is then found by **two successive integrations**. Three common classes of acceleration law arise.
+
+<RuleBox kind="working-rule" title="The three classes of motion">
+
+**1. $a = f(t)$ — acceleration a given function of time.** From (11.2), $dv = f(t)\,dt$:
+
+$$
+\int_{v_0}^{v} dv = \int_0^t f(t)\,dt \;\Rightarrow\; v - v_0 = \int_0^t f(t)\,dt
+$$
+
+then from (11.1), $dx = v\,dt$:
+
+$$
+x - x_0 = \int_0^t v\,dt
+$$
+
+**2. $a = f(x)$ — acceleration a given function of position.** Use (11.4) and separate variables, $v\,dv = f(x)\,dx$:
+
+$$
+\tfrac12 v^2 - \tfrac12 v_0^2 = \int_{x_0}^{x} f(x)\,dx
+$$
+
+which gives $v$ in terms of $x$; then $dt = dx/v$ gives $t$ in terms of $x$.
+
+**3. $a = f(v)$ — acceleration a given function of velocity.** Either use (11.2), $dt = \dfrac{dv}{f(v)}$, giving $t - 0 = \displaystyle\int_{v_0}^{v} \frac{dv}{f(v)}$; or use (11.4), $dx = \dfrac{v\,dv}{f(v)}$, giving $x - x_0 = \displaystyle\int_{v_0}^{v}\frac{v\,dv}{f(v)}$. Either relation, combined with (11.1), yields the motion.
+
+</RuleBox>
+
+Definite integrals are used so that the initial conditions enter automatically and no separate constant of integration needs to be found.
+
+<StepRevealExample
+  title="Position given as a cubic in time" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-1.png"
+  problem="The position of a particle which moves along a straight line is defined by the relation $x = t^3 - 6t^2 - 15t + 40$, where $x$ is expressed in feet and $t$ in seconds. Determine (a) the time at which the velocity will be zero, (b) the position and distance traveled by the particle at that time, (c) the acceleration of the particle at that time, (d) the distance traveled by the particle from $t = 4\,\text{s}$ to $t = 6\,\text{s}$."
+  steps={[
+    "Equations of motion: $x = t^3 - 6t^2 - 15t + 40 \\;(1)$, $\\;v = \\dfrac{dx}{dt} = 3t^2 - 12t - 15 \\;(2)$, $\\;a = \\dfrac{dv}{dt} = 6t - 12 \\;(3)$.",
+    "(a) Set $v = 0$ in (2): $3t^2 - 12t - 15 = 0 \\Rightarrow t = -1\\,\\text{s}$ and $t = +5\\,\\text{s}$. Only $t = 5\\,\\text{s}$ is after the motion begins. For $t \\lt 5\\,\\text{s}$, $v \\lt 0$ (motion in the negative direction); for $t \\gt 5\\,\\text{s}$, $v \\gt 0$.",
+    "(b) Carry $t = 5\\,\\text{s}$ into (1): $x_5 = (5)^3 - 6(5)^2 - 15(5) + 40 = -60\\,\\text{ft}$. The initial position is $x_0 = +40\\,\\text{ft}$, and $v \\neq 0$ between $t = 0$ and $t = 5\\,\\text{s}$, so distance traveled $= x_5 - x_0 = -60 - 40 = -100\\,\\text{ft}$, i.e. $100\\,\\text{ft}$ in the negative direction.",
+    "(c) Substitute $t = 5\\,\\text{s}$ into (3): $a_5 = 6(5) - 12 = +18\\,\\text{ft/s}^2$.",
+    "(d) The particle moves in the negative direction from $t = 4$ to $5\\,\\text{s}$ and in the positive direction from $5$ to $6\\,\\text{s}$, so the two intervals are computed separately. $x_4 = (4)^3 - 6(4)^2 - 15(4) + 40 = -52\\,\\text{ft}$; from 4 to 5 s: $x_5 - x_4 = -60 - (-52) = -8\\,\\text{ft}$ (8 ft in the negative direction).",
+    "$x_6 = (6)^3 - 6(6)^2 - 15(6) + 40 = -50\\,\\text{ft}$; from 5 to 6 s: $x_6 - x_5 = -50 - (-60) = +10\\,\\text{ft}$ (10 ft in the positive direction). Total distance from $t = 4\\,\\text{s}$ to $t = 6\\,\\text{s}$: $8 + 10 = 18\\,\\text{ft}$."
+  ]}
+  answer="(a) $t = 5\,\text{s}$; (b) $x_5 = -60\,\text{ft}$, distance $= 100\,\text{ft}$ in the negative direction; (c) $a_5 = +18\,\text{ft/s}^2$; (d) $18\,\text{ft}$"
+/>
+
+<StepRevealExample
+  title="Ball tossed upward from a window" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-2.png"
+  problem="A ball is tossed with a velocity of $10\,\text{m/s}$ directed vertically upward from a window located $20\,\text{m}$ above the ground. Knowing that the acceleration of the ball is constant and equal to $9.81\,\text{m/s}^2$ downward, determine (a) the velocity $v$ and elevation $y$ of the ball above the ground at any time $t$, (b) the highest elevation reached by the ball and the corresponding value of $t$, (c) the time when the ball will hit the ground and the corresponding velocity. Draw the $v$–$t$ and $y$–$t$ curves."
+  steps={[
+    "Choose the $y$ axis with origin $O$ on the ground, positive upward. Then $a = -9.81\\,\\text{m/s}^2$, $v_0 = +10\\,\\text{m/s}$, $y_0 = +20\\,\\text{m}$.",
+    "(a) $\\dfrac{dv}{dt} = a = -9.81$: $\\displaystyle\\int_{10}^{v} dv = -\\int_0^t 9.81\\,dt \\Rightarrow v - 10 = -9.81t$, so $v = 10 - 9.81t \\quad (1)$.",
+    "$\\dfrac{dy}{dt} = v = 10 - 9.81t$: $\\displaystyle\\int_{20}^{y} dy = \\int_0^t (10 - 9.81t)\\,dt \\Rightarrow y - 20 = 10t - 4.905t^2$, so $y = 20 + 10t - 4.905t^2 \\quad (2)$.",
+    "(b) At the highest elevation $v = 0$: $10 - 9.81t = 0 \\Rightarrow t = 1.019\\,\\text{s}$. Then $y = 20 + 10(1.019) - 4.905(1.019)^2 = 25.1\\,\\text{m}$.",
+    "(c) At the ground $y = 0$: $20 + 10t - 4.905t^2 = 0 \\Rightarrow t = -1.243\\,\\text{s}$ and $t = +3.28\\,\\text{s}$. Only $t = 3.28\\,\\text{s}$ is after the motion begins. Then $v = 10 - 9.81(3.28) = -22.2\\,\\text{m/s}$, i.e. $22.2\\,\\text{m/s}\\downarrow$.",
+    "Curves: the $v$–$t$ curve is a straight line of slope $a = -9.81\\,\\text{m/s}^2$ from $+10$ to $-22.2\\,\\text{m/s}$; the $y$–$t$ curve is a parabola starting at $20\\,\\text{m}$ with slope $v_0 = 10\\,\\text{m/s}$, peaking at $25.1\\,\\text{m}$ when $t = 1.019\\,\\text{s}$, and reaching the ground with slope $-22.2\\,\\text{m/s}$ at $t = 3.28\\,\\text{s}$."
+  ]}
+  answer="(a) $v = 10 - 9.81t$, $y = 20 + 10t - 4.905t^2$; (b) $y_{\max} = 25.1\,\text{m}$ at $t = 1.019\,\text{s}$; (c) $t = 3.28\,\text{s}$, $v = 22.2\,\text{m/s}\downarrow$"
+/>
+
+<StepRevealExample
+  title="Recoil brake, a = −kv" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-3.png"
+  problem="The brake mechanism used to reduce recoil in certain types of guns consists essentially of a piston attached to the barrel and moving in a fixed cylinder filled with oil. As the barrel recoils with an initial velocity $v_0$, the piston moves and oil is forced through orifices in the piston, causing the piston and the barrel to decelerate at a rate proportional to their velocity; that is, $a = -kv$. Express (a) $v$ in terms of $t$, (b) $x$ in terms of $t$, (c) $v$ in terms of $x$. Draw the corresponding motion curves."
+  steps={[
+    "(a) This is a class-3 motion, $a = f(v)$. Substitute $-kv$ for $a$ in $a = dv/dt$: $-kv = \\dfrac{dv}{dt} \\Rightarrow \\dfrac{dv}{v} = -k\\,dt$, so $\\displaystyle\\int_{v_0}^{v}\\frac{dv}{v} = -k\\int_0^t dt \\Rightarrow \\ln\\frac{v}{v_0} = -kt$, giving $v = v_0 e^{-kt}$.",
+    "(b) Substitute into $v = dx/dt$: $v_0 e^{-kt} = \\dfrac{dx}{dt}$, so $\\displaystyle\\int_0^x dx = v_0\\int_0^t e^{-kt}\\,dt \\Rightarrow x = -\\frac{v_0}{k}\\big[e^{-kt}\\big]_0^t = -\\frac{v_0}{k}(e^{-kt} - 1)$, i.e. $x = \\dfrac{v_0}{k}(1 - e^{-kt})$.",
+    "(c) Substitute $-kv$ for $a$ in $a = v\\,dv/dx$: $-kv = v\\dfrac{dv}{dx} \\Rightarrow dv = -k\\,dx$, so $\\displaystyle\\int_{v_0}^{v} dv = -k\\int_0^x dx \\Rightarrow v - v_0 = -kx$, i.e. $v = v_0 - kx$.",
+    "Check: from (a), $e^{-kt} = v/v_0$; substituting into (b), $x = \\dfrac{v_0}{k}\\Big(1 - \\dfrac{v}{v_0}\\Big) \\Rightarrow v = v_0 - kx$ (checks).",
+    "Motion curves: $v$–$t$ decays exponentially from $v_0$ toward zero; $x$–$t$ rises toward the asymptote $x = v_0/k$; $v$–$x$ is a straight line from $v_0$ at $x = 0$ to zero at $x = v_0/k$ — the barrel never travels farther than $v_0/k$."
+  ]}
+  answer="(a) $v = v_0 e^{-kt}$; (b) $x = \dfrac{v_0}{k}(1 - e^{-kt})$; (c) $v = v_0 - kx$"
+/>
+
+<ExerciseSet
+  title="Practice Set" items={[
+    { q: "The motion of a particle is defined by the relation $x = 6t^4 - 2t^3 - 12t^2 + 3t + 3$, where $x$ and $t$ are expressed in meters and seconds, respectively. Determine the time, the position, and the velocity when $a = 0$.", a: "$t = 0.667\\,\\text{s}$, $x = 0.259\\,\\text{m}$, $v = -8.56\\,\\text{m/s}$" },
+    { q: "The motion of a particle is defined by the relation $x = 2t^3 - 15t^2 + 24t + 4$, where $x$ is expressed in meters and $t$ in seconds. Determine (a) when the velocity is zero, (b) the position and the total distance traveled when the acceleration is zero.", a: "(a) $1.000\\,\\text{s}$ and $4.00\\,\\text{s}$; (b) $1.500\\,\\text{m}$, $24.5\\,\\text{m}$" },
+    { q: "The acceleration of a particle is defined by the relation $a = -0.8v$, where $a$ is expressed in $\\text{m/s}^2$ and $v$ in $\\text{m/s}$. Knowing that at $t = 0$ the velocity is $1\\,\\text{m/s}$, determine (a) the distance the particle will travel before coming to rest, (b) the time required for the particle's velocity to be reduced by 50 percent of its initial value.", a: "(a) $1.250\\,\\text{m}$; (b) $0.866\\,\\text{s}$" },
+    { q: "The acceleration of a particle is defined by the relation $a = -k\\sqrt{v}$, where $k$ is a constant. Knowing that $x = 0$ and $v = 81\\,\\text{m/s}$ at $t = 0$ and that $v = 36\\,\\text{m/s}$ when $x = 18\\,\\text{m}$, determine (a) the velocity of the particle when $x = 20\\,\\text{m}$, (b) the time required for the particle to come to rest.", a: "(a) $29.3\\,\\text{m/s}$; (b) $0.947\\,\\text{s}$" },
+    { q: "A particle is projected to the right from the position $x = 0$ with an initial velocity of $9\\,\\text{m/s}$. If the acceleration of the particle is defined by the relation $a = -0.6v^{3/2}$, where $a$ and $v$ are expressed in $\\text{m/s}^2$ and $\\text{m/s}$, respectively, determine (a) the distance the particle will have traveled when its velocity is $4\\,\\text{m/s}$, (b) the time when $v = 1\\,\\text{m/s}$, (c) the time required for the particle to travel $6\\,\\text{m}$.", a: "(a) $3.33\\,\\text{m}$; (b) $2.22\\,\\text{s}$; (c) $1.667\\,\\text{s}$" },
+    { q: "Experimental data indicate that in a region downstream of a given louvered supply vent the velocity of the emitted air is defined by $v = 0.18v_0/x$, where $v$ and $x$ are expressed in $\\text{m/s}$ and meters, respectively, and $v_0$ is the initial discharge velocity of the air. For $v_0 = 3.6\\,\\text{m/s}$, determine (a) the acceleration of the air at $x = 2\\,\\text{m}$, (b) the time required for the air to flow from $x = 1$ to $x = 3\\,\\text{m}$.", a: "(a) $-0.0525\\,\\text{m/s}^2$; (b) $6.17\\,\\text{s}$" }
+  ]}
+/>
+
+---
+
+### 11.4 Uniform Rectilinear Motion
+
+In **uniform rectilinear motion** the acceleration is zero for every $t$; the velocity is therefore constant, $dx/dt = v = \text{constant}$. Integrating from $(0, x_0)$ to $(t, x)$:
+
+<RuleBox kind="formula" title="Uniform rectilinear motion (a = 0, v = constant)">
+
+$$
+x = x_0 + vt \tag{11.5}
+$$
+
+This equation may be used **only** when the velocity is known to be constant.
+
+</RuleBox>
+
+---
+
+### 11.5 Uniformly Accelerated Rectilinear Motion
+
+In **uniformly accelerated rectilinear motion** the acceleration $a$ is constant. Integrating $dv/dt = a$ from $(0, v_0)$ gives (11.6); substituting into $dx/dt = v$ and integrating again gives (11.7); and integrating $v\,dv/dx = a$ from $(x_0, v_0)$ gives (11.8).
+
+<RuleBox kind="formula" title="Uniformly accelerated rectilinear motion (a = constant)">
+
+$$
+v = v_0 + at \tag{11.6}
+$$
+
+$$
+x = x_0 + v_0 t + \tfrac12 a t^2 \tag{11.7}
+$$
+
+$$
+v^2 = v_0^2 + 2a(x - x_0) \tag{11.8}
+$$
+
+Before using them, define the origin $O$ and the positive direction; the signs of $a$, $v_0$ and $x_0$ follow from that choice. Equation (11.6) relates $v$ and $t$ (use it when $x$ is neither given nor wanted); (11.7) relates $x$ and $t$; (11.8) relates $v$ and $x$. An important application is **free fall**: neglecting air resistance, a body near the earth's surface has the constant acceleration $g = 9.81\,\text{m/s}^2 = 32.2\,\text{ft/s}^2$ directed downward.
+
+</RuleBox>
+
+---
+
+### 11.6 Motion of Several Particles
+
+When several particles move independently along the **same line**, a separate equation of motion is written for each. Whenever possible, **time should be recorded from the same initial instant for all particles and displacements measured from the same origin and in the same direction**.
+
+<RuleBox kind="definition" title="Relative motion of two particles on the same line">
+
+With $x_A$ and $x_B$ measured from the same origin, the **relative position coordinate** of $B$ with respect to $A$ is
+
+$$
+x_{B/A} = x_B - x_A \quad\text{or}\quad x_B = x_A + x_{B/A} \tag{11.9}
+$$
+
+Differentiating once and twice:
+
+$$
+v_{B/A} = v_B - v_A \quad\text{or}\quad v_B = v_A + v_{B/A} \tag{11.10}
+$$
+
+$$
+a_{B/A} = a_B - a_A \quad\text{or}\quad a_B = a_A + a_{B/A} \tag{11.11}
+$$
+
+A positive $x_{B/A}$ means $B$ is on the positive side of $A$; a positive $v_{B/A}$ means $B$, as seen from $A$, moves in the positive direction. Note the memory aid: the product of subscripts $A$ and $B/A$ on the right equals the subscript $B$ on the left.
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Dependent motions (cables and pulleys)">
+
+When the position of one particle depends on the positions of others — typically blocks connected by an inextensible cable over pulleys — write the **constant-length condition** in terms of position coordinates measured from fixed points. For the single block-and-pulley system of the standard the diagram,
+
+$$
+x_A + 2x_B = \text{constant} \qquad (\text{one degree of freedom})
+$$
+
+and for the three blocks of the diagram,
+
+$$
+2x_A + 2x_B + x_C = \text{constant} \qquad (\text{two degrees of freedom})
+$$
+
+Because such a relation is **linear**, the same relation holds between the velocities and between the accelerations:
+
+$$
+2v_A + 2v_B + v_C = 0, \qquad 2a_A + 2a_B + a_C = 0
+$$
+
+The number of coordinates that can be chosen arbitrarily is the number of **degrees of freedom** of the system.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Ball thrown up an elevator shaft" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-4.png"
+  problem="A ball is thrown vertically upward from the $12\text{-m}$ level in an elevator shaft with an initial velocity of $18\,\text{m/s}$. At the same instant an open-platform elevator passes the $5\text{-m}$ level, moving upward with a constant velocity of $2\,\text{m/s}$. Determine (a) when and where the ball will hit the elevator, (b) the relative velocity of the ball with respect to the elevator when the ball hits the elevator."
+  steps={[
+    "Motion of ball (uniformly accelerated). Origin $O$ at ground level, positive upward: $y_0 = +12\\,\\text{m}$, $v_0 = +18\\,\\text{m/s}$, $a = -9.81\\,\\text{m/s}^2$. Then $v_B = v_0 + at = 18 - 9.81t \\;(1)$ and $y_B = y_0 + v_0 t + \\tfrac12 at^2 = 12 + 18t - 4.905t^2 \\;(2)$.",
+    "Motion of elevator (uniform). Same origin and positive sense, $y_0 = +5\\,\\text{m}$: $v_E = +2\\,\\text{m/s} \\;(3)$ and $y_E = y_0 + v_E t = 5 + 2t \\;(4)$.",
+    "Ball hits elevator. The same $t$ and the same origin were used for both, so contact occurs when $y_E = y_B \\;(5)$: $5 + 2t = 12 + 18t - 4.905t^2 \\Rightarrow t = -0.39\\,\\text{s}$ and $t = 3.65\\,\\text{s}$. Only $t = 3.65\\,\\text{s}$ is after the motion begins.",
+    "Substituting into (4): $y_E = 5 + 2(3.65) = 12.30\\,\\text{m}$. Elevation from ground $= 12.30\\,\\text{m}$.",
+    "(b) Relative velocity: $v_{B/E} = v_B - v_E = (18 - 9.81t) - 2 = 16 - 9.81t$. At $t = 3.65\\,\\text{s}$: $v_{B/E} = 16 - 9.81(3.65) = -19.81\\,\\text{m/s}$. The negative sign means that, as seen from the elevator, the ball moves downward."
+  ]}
+  answer="(a) $t = 3.65\,\text{s}$, at $12.30\,\text{m}$ above the ground; (b) $v_{B/E} = -19.81\,\text{m/s}$ ($19.81\,\text{m/s}\downarrow$)"
+/>
+
+<StepRevealExample
+  title="Collar, pulleys and block (dependent motion)" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-5.png"
+  problem="Collar $A$ and block $B$ are connected by a cable passing over three pulleys $C$, $D$, and $E$ as shown. Pulleys $C$ and $E$ are fixed, while $D$ is attached to a collar which is pulled downward with a constant velocity of $3\,\text{in./s}$. At $t = 0$, collar $A$ starts moving downward from position $K$ with a constant acceleration and no initial velocity. Knowing that the velocity of collar $A$ is $12\,\text{in./s}$ as it passes through point $L$, determine the change in elevation, the velocity, and the acceleration of block $B$ when collar $A$ passes through $L$."
+  steps={[
+    "Motion of collar $A$. Origin $O$ at the upper horizontal surface, positive downward. At $t = 0$, $A$ is at $K$ with $(v_A)_0 = 0$; at $L$, $v_A = 12\\,\\text{in./s}$ and $x_A - (x_A)_0 = 8\\,\\text{in.}$ Using (11.8): $v_A^2 = (v_A)_0^2 + 2a_A[x_A - (x_A)_0] \\Rightarrow (12)^2 = 0 + 2a_A(8) \\Rightarrow a_A = 9\\,\\text{in./s}^2$.",
+    "Time to reach $L$: $v_A = (v_A)_0 + a_A t \\Rightarrow 12 = 0 + 9t \\Rightarrow t = 1.333\\,\\text{s}$.",
+    "Motion of pulley $D$ (positive downward): $a_D = 0$, $v_D = 3\\,\\text{in./s}$, $x_D = (x_D)_0 + 3t$. At $t = 1.333\\,\\text{s}$: $x_D - (x_D)_0 = 3(1.333) = 4\\,\\text{in.}$",
+    "Motion of block $B$. The total length of cable $ACDEB$ differs from $(x_A + 2x_D + x_B)$ only by a constant, so this quantity is constant: $x_A + 2x_D + x_B = (x_A)_0 + 2(x_D)_0 + (x_B)_0 \\;(1)$, i.e. $[x_A - (x_A)_0] + 2[x_D - (x_D)_0] + [x_B - (x_B)_0] = 0 \\;(2)$.",
+    "Substituting $8\\,\\text{in.}$ and $4\\,\\text{in.}$: $8 + 2(4) + [x_B - (x_B)_0] = 0 \\Rightarrow x_B - (x_B)_0 = -16\\,\\text{in.}$ Change in elevation of $B$ $= 16\\,\\text{in.}\\uparrow$.",
+    "Differentiating (1) twice: $v_A + 2v_D + v_B = 0 \\Rightarrow 12 + 2(3) + v_B = 0 \\Rightarrow v_B = -18\\,\\text{in./s}$ ($18\\,\\text{in./s}\\uparrow$); $a_A + 2a_D + a_B = 0 \\Rightarrow 9 + 2(0) + a_B = 0 \\Rightarrow a_B = -9\\,\\text{in./s}^2$ ($9\\,\\text{in./s}^2\\uparrow$)."
+  ]}
+  answer="Change in elevation $16\,\text{in.}\uparrow$; $v_B = 18\,\text{in./s}\uparrow$; $a_B = 9\,\text{in./s}^2\uparrow$"
+/>
+
+<ExerciseSet
+  title="Practice Set" items={[
+    { q: "A stone is thrown vertically upward from a point on a bridge located $40\\,\\text{m}$ above the water. Knowing that it strikes the water $4\\,\\text{s}$ after release, determine (a) the speed with which the stone was thrown upward, (b) the speed with which the stone strikes the water.", a: "(a) $9.62\\,\\text{m/s}\\uparrow$; (b) $29.6\\,\\text{m/s}\\downarrow$" },
+    { q: "A motorist is traveling at $54\\,\\text{km/h}$ when she observes that a traffic light $240\\,\\text{m}$ ahead of her turns red. The traffic light is timed to stay red for $24\\,\\text{s}$. If the motorist wishes to pass the light without stopping just as it turns green again, determine (a) the required uniform deceleration of the car, (b) the speed of the car as it passes the light.", a: "(a) $-0.417\\,\\text{m/s}^2$; (b) $18.00\\,\\text{km/h}$" },
+    { q: "In a boat race, boat $A$ is leading boat $B$ by $50\\,\\text{m}$ and both boats are traveling at a constant speed of $180\\,\\text{km/h}$. At $t = 0$, the boats accelerate at constant rates. Knowing that when $B$ passes $A$, $t = 8\\,\\text{s}$ and $v_A = 225\\,\\text{km/h}$, determine (a) the acceleration of $A$, (b) the acceleration of $B$.", a: "(a) $1.563\\,\\text{m/s}^2$; (b) $3.13\\,\\text{m/s}^2$" },
+    { q: "An elevator is moving upward at a constant speed of $4\\,\\text{m/s}$. A man standing $10\\,\\text{m}$ above the top of the elevator throws a ball upward with a speed of $3\\,\\text{m/s}$. Determine (a) when the ball will hit the elevator, (b) where the ball will hit the elevator with respect to the location of the man.", a: "(a) $1.330\\,\\text{s}$; (b) $4.68\\,\\text{m}$ below the man" }
+  ]}
+/>
+
+---
+
+### 11.7 Graphical Solution of Rectilinear-Motion Problems
+
+The defining equations $v = dx/dt$ and $a = dv/dt$ have a direct geometric meaning: the **velocity equals the slope of the $x$–$t$ curve** and the **acceleration equals the slope of the $v$–$t$ curve**. Integrating the same formulas from $t_1$ to $t_2$:
+
+<RuleBox kind="theorem" title="Area properties of the motion curves">
+
+$$
+x_2 - x_1 = \int_{t_1}^{t_2} v\,dt \qquad\text{and}\qquad v_2 - v_1 = \int_{t_1}^{t_2} a\,dt \tag{11.12}
+$$
+
+- The **area under the $v$–$t$ curve** between $t_1$ and $t_2$ equals the change in $x$ over that interval.
+- The **area under the $a$–$t$ curve** between $t_1$ and $t_2$ equals the change in $v$ over that interval.
+- Areas below the $t$ axis are negative.
+
+</RuleBox>
+
+These properties let us construct the $v$–$t$ curve from a known $a$–$t$ curve (and the $x$–$t$ curve from the $v$–$t$ curve), step by step. They are especially useful when the acceleration is piecewise constant, so that the curves are made of straight segments and parabolic arcs. When the $a$–$t$ curve is a horizontal segment, the $v$–$t$ curve is a straight segment and the $x$–$t$ curve is a parabolic arc; when $a = 0$, $v$ is constant and the $x$–$t$ curve is a straight line.
+
+<StepRevealExample
+  title="Subway car between stations" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-6.png"
+  problem="A subway car leaves station $A$; it gains speed at the rate of $4\,\text{ft/s}^2$ for $6\,\text{s}$ and then at the rate of $6\,\text{ft/s}^2$ until it has reached the speed of $48\,\text{ft/s}$. The car maintains the same speed until it approaches station $B$; brakes are then applied, giving the car a constant deceleration and bringing it to a stop in $6\,\text{s}$. The total running time from $A$ to $B$ is $40\,\text{s}$. Draw the $a$–$t$, $v$–$t$, and $x$–$t$ curves, and determine the distance between stations $A$ and $B$."
+  steps={[
+    "Acceleration–time curve. The acceleration is either constant or zero, so the $a$–$t$ curve consists of horizontal segments; $t_2$ and $a_4$ are found from 'change in $v$ = area under $a$–$t$ curve'.",
+    "$0 \\lt t \\lt 6$: $v_6 - 0 = (6\\,\\text{s})(4\\,\\text{ft/s}^2) = 24\\,\\text{ft/s}$. $\\;6 \\lt t \\lt t_2$: velocity rises from 24 to 48 ft/s, so $48 - 24 = (t_2 - 6)(6) \\Rightarrow t_2 = 10\\,\\text{s}$.",
+    "$t_2 \\lt t \\lt 34$: velocity constant, acceleration zero. $\\;34 \\lt t \\lt 40$: $0 - 48 = (6\\,\\text{s})a_4 \\Rightarrow a_4 = -8\\,\\text{ft/s}^2$ (area below the $t$ axis — a decrease in velocity).",
+    "Velocity–time curve: straight segments joining $(0, 0)$, $(6, 24)$, $(10, 48)$, $(34, 48)$, $(40, 0)$. Change in $x$ = area under $v$–$t$ curve: $0 \\lt t \\lt 6$: $x_6 - 0 = \\tfrac12(6)(24) = 72\\,\\text{ft}$; $\\;6 \\lt t \\lt 10$: $x_{10} - x_6 = \\tfrac12(4)(24 + 48) = 144\\,\\text{ft}$.",
+    "$10 \\lt t \\lt 34$: $x_{34} - x_{10} = (24)(48) = 1152\\,\\text{ft}$; $\\;34 \\lt t \\lt 40$: $x_{40} - x_{34} = \\tfrac12(6)(48) = 144\\,\\text{ft}$. Adding: $d = x_{40} - 0 = 72 + 144 + 1152 + 144 = 1512\\,\\text{ft}$.",
+    "Position–time curve: three parabolic arcs and one straight segment joining the points found above; at every instant the slope of the $x$–$t$ curve equals the value of $v$."
+  ]}
+  answer="$t_2 = 10\,\text{s}$, $a_4 = -8\,\text{ft/s}^2$, $d = 1512\,\text{ft}$"
+/>
+
+---
+
+### 11.8 Other Graphical Methods
+
+The **moment-area method** gives the position directly from the $a$–$t$ curve. Writing the area under the $v$–$t$ curve from $0$ to $t_1$ as a rectangle $v_0 t_1$ plus horizontal strips of area $(t_1 - t)\,dv$, and substituting $dv = a\,dt$:
+
+$$
+x_1 - x_0 = v_0 t_1 + \int_0^{t_1} (t_1 - t)\,a\,dt
+$$
+
+The integral is the **first moment of the area under the $a$–$t$ curve about the line $t = t_1$**. If $\bar t$ is the abscissa of the centroid $C$ of that area:
+
+<RuleBox kind="formula" title="Moment-area method">
+
+$$
+x_1 = x_0 + v_0 t_1 + (\text{area under } a\text{–}t \text{ curve})(t_1 - \bar t) \tag{11.13}
+$$
+
+For a composite area, multiply each component area by the distance from its centroid to the line $t = t_1$; areas above the $t$ axis are positive and areas below are negative.
+
+</RuleBox>
+
+A second method uses the **$v$–$x$ curve**: if $AC$ is the normal to the $v$–$x$ curve at a point $A$, the subnormal $BC$ (measured along the $x$ axis) equals the acceleration, $BC = a$, provided the same scale is used for $v$ and $x$ — because $a = v\,dv/dx$ and the slope of $AC$ is $-dx/dv$.
+
+<ExerciseSet
+  title="Practice Set" items={[
+    { q: "In a water-tank test involving the launching of a small model boat, the model's initial horizontal velocity is $6\\,\\text{m/s}$ and its horizontal acceleration varies linearly from $-12\\,\\text{m/s}^2$ at $t = 0$ to $-2\\,\\text{m/s}^2$ at $t = t_1$ and then remains equal to $-2\\,\\text{m/s}^2$ until $t = 1.4\\,\\text{s}$. Knowing that $v = 1.8\\,\\text{m/s}$ when $t = t_1$, determine (a) the value of $t_1$, (b) the velocity and the position of the model at $t = 1.4\\,\\text{s}$.", a: "(a) $0.600\\,\\text{s}$; (b) $0.200\\,\\text{m/s}$, $2.84\\,\\text{m}$" }
+  ]}
+/>
+
+---
+
+## Curvilinear Motion of Particles
+
+### 11.9 Position Vector, Velocity, and Acceleration
+
+When a particle moves along a curve other than a straight line it is in **curvilinear motion**. Its position $P$ at time $t$ is defined by the **position vector** $\mathbf{r}$ joining a fixed origin $O$ to $P$. If the particle moves to $P'$, defined by $\mathbf{r}'$, at time $t + \Delta t$, the vector $\Delta\mathbf{r}$ joining $P$ and $P'$ represents the change in position — direction as well as magnitude.
+
+<RuleBox kind="definition" title="Velocity and acceleration in curvilinear motion">
+
+$$
+\mathbf{v} = \lim_{\Delta t \to 0}\frac{\Delta \mathbf{r}}{\Delta t} \tag{11.14}
+$$
+
+$$
+\mathbf{v} = \frac{d\mathbf{r}}{dt} \tag{11.15}
+$$
+
+The velocity $\mathbf{v}$ is a vector **tangent to the path**. Its magnitude, the **speed**, is the rate of change of the arc length $s$:
+
+$$
+v = \frac{ds}{dt} \tag{11.16}
+$$
+
+$$
+\mathbf{a} = \lim_{\Delta t \to 0}\frac{\Delta \mathbf{v}}{\Delta t} \tag{11.17}
+$$
+
+$$
+\mathbf{a} = \frac{d\mathbf{v}}{dt} \tag{11.18}
+$$
+
+The acceleration is **not**, in general, tangent to the path. Plotting the velocity vectors from a common origin $O'$, their tips describe the **hodograph** of the motion; the acceleration is tangent to the hodograph.
+
+</RuleBox>
+
+---
+
+### 11.10 Derivatives of Vector Functions
+
+A vector $\mathbf{P}(u)$ that depends on a scalar variable $u$ has the derivative
+
+$$
+\frac{d\mathbf{P}}{du} = \lim_{\Delta u \to 0}\frac{\mathbf{P}(u + \Delta u) - \mathbf{P}(u)}{\Delta u} \tag{11.19}
+$$
+
+<RuleBox kind="theorem" title="Rules for differentiating vector functions">
+
+$$
+\frac{d(\mathbf{P} + \mathbf{Q})}{du} = \frac{d\mathbf{P}}{du} + \frac{d\mathbf{Q}}{du} \tag{11.20}
+$$
+
+$$
+\frac{d(f\mathbf{P})}{du} = \frac{df}{du}\,\mathbf{P} + f\,\frac{d\mathbf{P}}{du} \tag{11.21}
+$$
+
+$$
+\frac{d(\mathbf{P}\cdot\mathbf{Q})}{du} = \frac{d\mathbf{P}}{du}\cdot\mathbf{Q} + \mathbf{P}\cdot\frac{d\mathbf{Q}}{du} \tag{11.22}
+$$
+
+$$
+\frac{d(\mathbf{P}\times\mathbf{Q})}{du} = \frac{d\mathbf{P}}{du}\times\mathbf{Q} + \mathbf{P}\times\frac{d\mathbf{Q}}{du} \tag{11.23}
+$$
+
+(In the vector product the order of the factors must be kept.) With $\mathbf{P} = P_x\mathbf{i} + P_y\mathbf{j} + P_z\mathbf{k}$ (11.24) in a fixed frame, the unit vectors are constant and
+
+$$
+\frac{d\mathbf{P}}{du} = \frac{dP_x}{du}\mathbf{i} + \frac{dP_y}{du}\mathbf{j} + \frac{dP_z}{du}\mathbf{k} \tag{11.25}
+$$
+
+$$
+\dot{\mathbf{P}} = \dot P_x\mathbf{i} + \dot P_y\mathbf{j} + \dot P_z\mathbf{k} \tag{11.25'}
+$$
+
+</RuleBox>
+
+The rate of change of a vector as observed from a **fixed** frame and from a **rotating** frame are, in general, different; Eq. (11.25') applies to a frame whose axes do not rotate.
+
+---
+
+### 11.11 Rectangular Components of Velocity and Acceleration
+
+With $\mathbf{r} = x\mathbf{i} + y\mathbf{j} + z\mathbf{k}$ (11.26) and fixed unit vectors:
+
+<RuleBox kind="formula" title="Rectangular components">
+
+$$
+\mathbf{v} = \dot x\,\mathbf{i} + \dot y\,\mathbf{j} + \dot z\,\mathbf{k} \tag{11.27}
+$$
+
+$$
+\mathbf{a} = \ddot x\,\mathbf{i} + \ddot y\,\mathbf{j} + \ddot z\,\mathbf{k} \tag{11.28}
+$$
+
+$$
+v_x = \dot x \quad v_y = \dot y \quad v_z = \dot z \tag{11.29}
+$$
+
+$$
+a_x = \ddot x \quad a_y = \ddot y \quad a_z = \ddot z \tag{11.30}
+$$
+
+</RuleBox>
+
+The great advantage of rectangular components is that **the motion in each coordinate direction can be studied separately** whenever $a_x$ depends only on $t$, $x$ and/or $v_x$, and similarly for $a_y$ and $a_z$.
+
+**Motion of a projectile.** Neglecting air resistance, the only force on a projectile is its weight, so $a_x = \ddot x = 0$, $a_y = \ddot y = -g$, $a_z = \ddot z = 0$. With the origin at the launch point and initial velocity components $(v_x)_0$, $(v_y)_0$, $(v_z)_0 = 0$:
+
+<RuleBox kind="formula" title="Projectile motion (y vertical, positive upward)">
+
+$$
+v_x = (v_x)_0 \qquad v_y = (v_y)_0 - gt \qquad v_z = 0
+$$
+
+$$
+x = (v_x)_0\,t \qquad y = (v_y)_0\,t - \tfrac12 g t^2 \qquad z = 0
+$$
+
+The horizontal motion is **uniform** and the vertical motion is **uniformly accelerated**; the motion takes place in a vertical plane and the trajectory is a **parabola**. The two motions can be treated as two independent rectilinear motions linked only by the common time $t$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Projectile fired from a cliff" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-7.png"
+  problem="A projectile is fired from the edge of a $150\text{-m}$ cliff with an initial velocity of $180\,\text{m/s}$ at an angle of $30^\circ$ with the horizontal. Neglecting air resistance, find (a) the horizontal distance from the gun to the point where the projectile strikes the ground, (b) the greatest elevation above the ground reached by the projectile."
+  steps={[
+    "Vertical motion (uniformly accelerated). $y$ axis positive upward, origin $O$ at the gun: $(v_y)_0 = (180\\,\\text{m/s})\\sin 30^\\circ = +90\\,\\text{m/s}$, $a = -9.81\\,\\text{m/s}^2$. Then $v_y = 90 - 9.81t \\;(1)$, $\\;y = 90t - 4.90t^2 \\;(2)$, $\\;v_y^2 = 8100 - 19.62y \\;(3)$.",
+    "Horizontal motion (uniform). $x$ positive to the right: $(v_x)_0 = (180\\,\\text{m/s})\\cos 30^\\circ = +155.9\\,\\text{m/s}$, so $x = 155.9t \\;(4)$.",
+    "(a) The projectile strikes the ground when $y = -150\\,\\text{m}$. Eq. (2): $-150 = 90t - 4.90t^2 \\Rightarrow t^2 - 18.37t - 30.6 = 0 \\Rightarrow t = 19.91\\,\\text{s}$.",
+    "Eq. (4): $x = 155.9(19.91) = 3100\\,\\text{m}$.",
+    "(b) At the greatest elevation $v_y = 0$. Eq. (3): $0 = 8100 - 19.62y \\Rightarrow y = 413\\,\\text{m}$ above the gun. Greatest elevation above ground $= 150 + 413 = 563\\,\\text{m}$."
+  ]}
+  answer="(a) $x = 3100\,\text{m}$; (b) $563\,\text{m}$ above the ground"
+/>
+
+<StepRevealExample
+  title="Firing angle to hit a target" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-8.png"
+  problem="A projectile is fired with an initial velocity of $800\,\text{ft/s}$ at a target $B$ located $2000\,\text{ft}$ above the gun $A$ and at a horizontal distance of $12{,}000\,\text{ft}$. Neglecting air resistance, determine the value of the firing angle $\alpha$."
+  steps={[
+    "Horizontal motion, origin at the gun: $(v_x)_0 = 800\\cos\\alpha$, so $x = (800\\cos\\alpha)t$. Setting $x = 12{,}000\\,\\text{ft}$: $t = \\dfrac{12{,}000}{800\\cos\\alpha} = \\dfrac{15}{\\cos\\alpha}$.",
+    "Vertical motion: $(v_y)_0 = 800\\sin\\alpha$, $a = -32.2\\,\\text{ft/s}^2$, so $y = (800\\sin\\alpha)t - 16.1t^2$.",
+    "Projectile hits target: when $x = 12{,}000\\,\\text{ft}$, $y = 2000\\,\\text{ft}$: $2000 = 800\\sin\\alpha\\,\\dfrac{15}{\\cos\\alpha} - 16.1\\Big(\\dfrac{15}{\\cos\\alpha}\\Big)^2$.",
+    "Using $1/\\cos^2\\alpha = \\sec^2\\alpha = 1 + \\tan^2\\alpha$: $2000 = 800(15)\\tan\\alpha - 16.1(15^2)(1 + \\tan^2\\alpha)$, i.e. $3622\\tan^2\\alpha - 12{,}000\\tan\\alpha + 5622 = 0$.",
+    "Solving the quadratic: $\\tan\\alpha = 0.565$ and $\\tan\\alpha = 2.75$, so $\\alpha = 29.5^\\circ$ and $\\alpha = 70.0^\\circ$. The target is hit with either firing angle (a flat and a lofted trajectory)."
+  ]}
+  answer="$\alpha = 29.5^\circ$ or $\alpha = 70.0^\circ$"
+/>
+
+---
+
+### 11.12 Motion Relative to a Frame in Translation
+
+Sometimes it is convenient to describe the motion of a particle $B$ relative to a frame $Ax'y'z'$ attached to another moving particle $A$, whose axes remain **parallel** to those of the fixed frame $Oxyz$ (a frame **in translation**).
+
+<RuleBox kind="theorem" title="Relative motion — frame in translation">
+
+$$
+\mathbf{r}_B = \mathbf{r}_A + \mathbf{r}_{B/A} \tag{11.31}
+$$
+
+$$
+\dot{\mathbf{r}}_B = \dot{\mathbf{r}}_A + \dot{\mathbf{r}}_{B/A} \tag{11.32}
+$$
+
+$$
+\mathbf{v}_B = \mathbf{v}_A + \mathbf{v}_{B/A} \tag{11.33}
+$$
+
+$$
+\mathbf{a}_B = \mathbf{a}_A + \mathbf{a}_{B/A} \tag{11.34}
+$$
+
+$\mathbf{v}_{B/A}$ and $\mathbf{a}_{B/A}$ are the velocity and acceleration of $B$ **relative to** the frame $Ax'y'z'$ (or, briefly, relative to $A$). The motion of $B$ with respect to the fixed frame is the **absolute motion**. These equations hold **only** if the moving frame does not rotate. Since the vector addition can be done graphically, each equation can be solved with a vector triangle.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Two automobiles at an intersection" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-9.png"
+  problem="Automobile $A$ is traveling east at the constant speed of $36\,\text{km/h}$. As automobile $A$ crosses the intersection shown, automobile $B$ starts from rest $35\,\text{m}$ north of the intersection and moves south with a constant acceleration of $1.2\,\text{m/s}^2$. Determine the position, velocity, and acceleration of $B$ relative to $A$ $5\,\text{s}$ after $A$ crosses the intersection."
+  steps={[
+    "Axes: origin at the intersection, $x$ east, $y$ north. Speed of $A$: $v_A = (36\\,\\text{km/h})\\Big(\\dfrac{1000\\,\\text{m}}{1\\,\\text{km}}\\Big)\\Big(\\dfrac{1\\,\\text{h}}{3600\\,\\text{s}}\\Big) = 10\\,\\text{m/s}$.",
+    "Motion of $A$ (uniform): $a_A = 0$, $v_A = +10\\,\\text{m/s}$, $x_A = 0 + 10t$. At $t = 5\\,\\text{s}$: $a_A = 0$, $\\mathbf{v}_A = 10\\,\\text{m/s}\\rightarrow$, $\\mathbf{r}_A = (10)(5) = 50\\,\\text{m}\\rightarrow$.",
+    "Motion of $B$ (uniformly accelerated): $a_B = -1.2\\,\\text{m/s}^2$, $v_B = 0 - 1.2t$, $y_B = 35 + 0 - \\tfrac12(1.2)t^2$. At $t = 5\\,\\text{s}$: $\\mathbf{a}_B = 1.2\\,\\text{m/s}^2\\downarrow$, $v_B = -(1.2)(5) = -6\\,\\text{m/s}$ ($6\\,\\text{m/s}\\downarrow$), $y_B = 35 - \\tfrac12(1.2)(5)^2 = +20\\,\\text{m}$ ($\\mathbf{r}_B = 20\\,\\text{m}\\uparrow$).",
+    "Position of $B$ relative to $A$: draw the triangle for $\\mathbf{r}_B = \\mathbf{r}_A + \\mathbf{r}_{B/A}$; $\\mathbf{r}_{B/A}$ has components $50\\,\\text{m}\\leftarrow$ and $20\\,\\text{m}\\uparrow$: $r_{B/A} = \\sqrt{50^2 + 20^2} = 53.9\\,\\text{m}$, $\\alpha = \\tan^{-1}(20/50) = 21.8^\\circ$, i.e. $\\mathbf{r}_{B/A} = 53.9\\,\\text{m}\\nwarrow 21.8^\\circ$.",
+    "Velocity: $\\mathbf{v}_B = \\mathbf{v}_A + \\mathbf{v}_{B/A}$; $\\mathbf{v}_{B/A}$ has components $10\\,\\text{m/s}\\leftarrow$ and $6\\,\\text{m/s}\\downarrow$: $v_{B/A} = \\sqrt{10^2 + 6^2} = 11.66\\,\\text{m/s}$, $\\beta = \\tan^{-1}(6/10) = 31.0^\\circ$, i.e. $\\mathbf{v}_{B/A} = 11.66\\,\\text{m/s}\\swarrow 31.0^\\circ$.",
+    "Acceleration: $\\mathbf{a}_B = \\mathbf{a}_A + \\mathbf{a}_{B/A}$ with $\\mathbf{a}_A = 0$, so $\\mathbf{a}_{B/A} = \\mathbf{a}_B = 1.2\\,\\text{m/s}^2\\downarrow$."
+  ]}
+  answer="$\mathbf{r}_{B/A} = 53.9\,\text{m}\nwarrow 21.8^\circ$; $\mathbf{v}_{B/A} = 11.66\,\text{m/s}\swarrow 31.0^\circ$; $\mathbf{a}_{B/A} = 1.2\,\text{m/s}^2\downarrow$"
+/>
+
+<ExerciseSet
+  title="Practice Set" items={[
+    { q: "A ball is thrown so that the motion is defined by the equations $x = 5t$ and $y = 2 + 6t - 4.9t^2$, where $x$ and $y$ are expressed in meters and $t$ is expressed in seconds. Determine (a) the velocity at $t = 1\\,\\text{s}$, (b) the horizontal distance the ball travels before hitting the ground.", a: "(a) $6.28\\,\\text{m/s}$ at $37.2^\\circ$ below the horizontal; (b) $7.49\\,\\text{m}$" },
+    { q: "A helicopter is flying with a constant horizontal velocity of $180\\,\\text{km/h}$ and is directly above point $A$ when a loose part begins to fall. The part lands $6.5\\,\\text{s}$ later at point $B$ on an inclined surface. Determine (a) the distance $d$ between points $A$ and $B$, (b) the initial height $h$.", a: "(a) $330\\,\\text{m}$; (b) $149.9\\,\\text{m}$", figure: "/diagrams/get-207/kinematics-of-a-particle-prob-11-98.png" },
+    { q: "During a rainstorm the paths of the raindrops appear to form an angle of $30^\\circ$ with the vertical and to be directed to the left when observed from a side window of a train moving at a speed of $15\\,\\text{km/h}$. A short time later, after the speed of the train has increased to $24\\,\\text{km/h}$, the angle between the vertical and the paths of the drops appears to be $45^\\circ$. If the train were stopped, at what angle and with what velocity would the drops be observed to fall?", a: "$5.96\\,\\text{m/s}$ at $82.8^\\circ$ with the horizontal" }
+  ]}
+/>
+
+---
+
+### 11.13 Tangential and Normal Components
+
+The velocity is tangent to the path, but the acceleration usually is not. It is often convenient to resolve the acceleration along the tangent and the normal to the path. For **plane motion**, attach to the particle the unit vector $\mathbf{e}_t$ tangent to the path (in the direction of motion) and the unit vector $\mathbf{e}_n$ along the normal, **directed toward the center of curvature** of the path. As the particle moves from $P$ to $P'$ the tangent rotates through $\Delta\theta$, and one finds
+
+$$
+\mathbf{e}_n = \frac{d\mathbf{e}_t}{d\theta} \tag{11.35}
+$$
+
+Writing $\mathbf{v} = v\,\mathbf{e}_t$ (11.36) and differentiating, $\mathbf{a} = \dfrac{dv}{dt}\mathbf{e}_t + v\dfrac{d\mathbf{e}_t}{dt}$ (11.37). With $ds = \rho\,d\theta$ and $ds/dt = v$, $\dfrac{d\mathbf{e}_t}{dt} = \dfrac{v}{\rho}\mathbf{e}_n$ (11.38).
+
+<RuleBox kind="formula" title="Tangential and normal components of acceleration">
+
+$$
+\mathbf{a} = \frac{dv}{dt}\,\mathbf{e}_t + \frac{v^2}{\rho}\,\mathbf{e}_n \tag{11.39}
+$$
+
+$$
+a_t = \frac{dv}{dt} \qquad a_n = \frac{v^2}{\rho} \tag{11.40}
+$$
+
+- $a_t$ measures the rate of change of the **speed**; $a_n$ measures the rate of change of the **direction** of the velocity.
+- $a_n$ is always directed toward the center of curvature; $a_t$ points in the direction of motion if the speed increases and opposite to it if the speed decreases.
+- If the speed is constant, $a_t = 0$ and the acceleration is purely normal. At a point of inflection ($\rho = \infty$) or in rectilinear motion, $a_n = 0$.
+- When $a_t$ is constant, the uniformly-accelerated formulas apply along the path with $a$ replaced by $a_t$.
+
+</RuleBox>
+
+The fact that $a_n$ does not vanish while the speed is constant explains why high-speed highway curves and railway tracks are designed with gradually increasing curvature (transition curves) and why a passenger feels a lateral force on a curve. For a particle moving along a **space curve**, the plane containing $\mathbf{e}_t$ and $\mathbf{e}_n$ is the **osculating plane**; the third unit vector $\mathbf{e}_b = \mathbf{e}_t \times \mathbf{e}_n$ defines the **binormal**, and since the acceleration lies in the osculating plane, Eq. (11.39) still holds with no binormal component.
+
+<StepRevealExample
+  title="Braking on a curved highway" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-10.png"
+  problem="A motorist is traveling on a curved section of highway of radius $2500\,\text{ft}$ at the speed of $60\,\text{mi/h}$. The motorist suddenly applies the brakes, causing the automobile to slow down at a constant rate. Knowing that after $8\,\text{s}$ the speed has been reduced to $45\,\text{mi/h}$, determine the acceleration of the automobile immediately after the brakes have been applied."
+  steps={[
+    "Convert speeds: $60\\,\\text{mi/h} = \\Big(60\\dfrac{\\text{mi}}{\\text{h}}\\Big)\\Big(\\dfrac{5280\\,\\text{ft}}{1\\,\\text{mi}}\\Big)\\Big(\\dfrac{1\\,\\text{h}}{3600\\,\\text{s}}\\Big) = 88\\,\\text{ft/s}$; $45\\,\\text{mi/h} = 66\\,\\text{ft/s}$.",
+    "Tangential component: the car slows at a constant rate, so $a_t = \\text{average } a_t = \\dfrac{\\Delta v}{\\Delta t} = \\dfrac{66 - 88}{8} = -2.75\\,\\text{ft/s}^2$ (opposite to the motion).",
+    "Normal component: immediately after the brakes are applied the speed is still $88\\,\\text{ft/s}$, so $a_n = \\dfrac{v^2}{\\rho} = \\dfrac{(88)^2}{2500} = 3.10\\,\\text{ft/s}^2$, toward the center of curvature.",
+    "Magnitude and direction: $\\tan\\alpha = \\dfrac{a_n}{a_t} = \\dfrac{3.10}{2.75} \\Rightarrow \\alpha = 48.4^\\circ$; $a = \\dfrac{a_n}{\\sin\\alpha} = \\dfrac{3.10}{\\sin 48.4^\\circ} = 4.14\\,\\text{ft/s}^2$ ($\\alpha$ measured from the tangent, on the side opposite to the motion and toward the center)."
+  ]}
+  answer="$a = 4.14\,\text{ft/s}^2$, at $\alpha = 48.4^\circ$ to the tangent"
+/>
+
+<StepRevealExample
+  title="Minimum radius of curvature of a trajectory" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-11.png"
+  problem="Determine the minimum radius of curvature of the trajectory described by the projectile considered in Sample Prob. 11.7."
+  steps={[
+    "Since $a_n = v^2/\\rho$, we have $\\rho = v^2/a_n$. The radius is small when $v$ is small or when $a_n$ is large.",
+    "The speed $v$ is minimum at the top of the trajectory, since $v_y = 0$ there; and $a_n$ is maximum at the same point, since there the vertical (the direction of $\\mathbf{g}$) coincides with the normal. Hence the minimum radius of curvature occurs at the top.",
+    "At the top: $v = v_x = 155.9\\,\\text{m/s}$ and $a_n = a = 9.81\\,\\text{m/s}^2$.",
+    "$\\rho = \\dfrac{v^2}{a_n} = \\dfrac{(155.9)^2}{9.81} = 2480\\,\\text{m}$."
+  ]}
+  answer="$\rho_{\min} = 2480\,\text{m}$ (at the top of the trajectory)"
+/>
+
+<StepRevealExample
+  title="Monorail train starting on a curve" problem="A monorail train starts from rest on a curve of radius $400\,\text{m}$ and accelerates at the constant rate $a_t$. If the maximum total acceleration of the train must not exceed $1.5\,\text{m/s}^2$, determine (a) the shortest distance in which the train can reach a speed of $72\,\text{km/h}$, (b) the corresponding constant rate of acceleration $a_t$."
+  steps={[
+    "Final speed $v = 72\\,\\text{km/h} = 20\\,\\text{m/s}$. The total acceleration $a = \\sqrt{a_t^2 + a_n^2}$ is largest at the end, when $a_n = v^2/\\rho$ is largest.",
+    "At $v = 20\\,\\text{m/s}$: $a_n = \\dfrac{(20)^2}{400} = 1.000\\,\\text{m/s}^2$.",
+    "(b) Setting $a = 1.5\\,\\text{m/s}^2$ at that instant: $a_t = \\sqrt{1.5^2 - 1.0^2} = \\sqrt{1.25} = 1.118\\,\\text{m/s}^2$.",
+    "(a) With $a_t$ constant, the uniformly accelerated formula along the path gives $v^2 = 0 + 2a_t s \\Rightarrow s = \\dfrac{(20)^2}{2(1.118)} = 178.9\\,\\text{m}$."
+  ]}
+  answer="(a) $178.9\,\text{m}$; (b) $a_t = 1.118\,\text{m/s}^2$"
+/>
+
+<StepRevealExample
+  title="Radius of curvature of a golf-ball trajectory" problem="A golfer hits a golf ball from point $A$ with an initial velocity of $50\,\text{m/s}$ at an angle of $25^\circ$ with the horizontal. Determine the radius of curvature of the trajectory described by the ball (a) at point $A$, (b) at the highest point of the trajectory."
+  steps={[
+    "The only acceleration is $\\mathbf{g} = 9.81\\,\\text{m/s}^2\\downarrow$. At any point $a_n$ is the component of $\\mathbf{g}$ normal to the velocity, and $\\rho = v^2/a_n$.",
+    "(a) At $A$ the velocity makes $25^\\circ$ with the horizontal, so the normal makes $25^\\circ$ with the vertical: $a_n = g\\cos 25^\\circ = 9.81(0.9063) = 8.891\\,\\text{m/s}^2$. Then $\\rho_A = \\dfrac{(50)^2}{8.891} = 281\\,\\text{m}$.",
+    "(b) At the highest point $v = v_x = 50\\cos 25^\\circ = 45.32\\,\\text{m/s}$ and the normal is vertical, so $a_n = g = 9.81\\,\\text{m/s}^2$: $\\rho = \\dfrac{(45.32)^2}{9.81} = 209\\,\\text{m}$."
+  ]}
+  answer="(a) $281\,\text{m}$; (b) $209\,\text{m}$"
+/>
+
+---
+
+### 11.14 Radial and Transverse Components
+
+In some plane-motion problems the position of $P$ is defined by the polar coordinates $r$ and $\theta$. It is then convenient to resolve velocity and acceleration along the unit vector $\mathbf{e}_r$ (directed along $OP$, away from $O$) and the unit vector $\mathbf{e}_\theta$ (obtained by rotating $\mathbf{e}_r$ through $90^\circ$ counterclockwise). These are the **radial** and **transverse** components. Unlike $\mathbf{i}$ and $\mathbf{j}$, the unit vectors $\mathbf{e}_r$ and $\mathbf{e}_\theta$ change direction as $P$ moves:
+
+$$
+\frac{d\mathbf{e}_r}{d\theta} = \mathbf{e}_\theta \qquad \frac{d\mathbf{e}_\theta}{d\theta} = -\mathbf{e}_r \tag{11.41}
+$$
+
+$$
+\dot{\mathbf{e}}_r = \dot\theta\,\mathbf{e}_\theta \qquad \dot{\mathbf{e}}_\theta = -\dot\theta\,\mathbf{e}_r \tag{11.42}
+$$
+
+Differentiating $\mathbf{r} = r\,\mathbf{e}_r$ twice using these results:
+
+<RuleBox kind="formula" title="Radial and transverse components">
+
+$$
+\mathbf{v} = \dot r\,\mathbf{e}_r + r\dot\theta\,\mathbf{e}_\theta \tag{11.43}
+$$
+
+$$
+\mathbf{a} = (\ddot r - r\dot\theta^2)\,\mathbf{e}_r + (r\ddot\theta + 2\dot r\dot\theta)\,\mathbf{e}_\theta \tag{11.44}
+$$
+
+$$
+v_r = \dot r \qquad v_\theta = r\dot\theta \tag{11.45}
+$$
+
+$$
+a_r = \ddot r - r\dot\theta^2 \qquad a_\theta = r\ddot\theta + 2\dot r\dot\theta \tag{11.46}
+$$
+
+**Circular motion** about $O$ ($r$ constant, $\dot r = \ddot r = 0$):
+
+$$
+\mathbf{v} = r\dot\theta\,\mathbf{e}_\theta \qquad \mathbf{a} = -r\dot\theta^2\,\mathbf{e}_r + r\ddot\theta\,\mathbf{e}_\theta \tag{11.47}
+$$
+
+$a_r$ is **not** equal to $\ddot r$, and $a_\theta$ is **not** equal to $r\ddot\theta$. Positive $\dot\theta$ means counterclockwise rotation.
+
+</RuleBox>
+
+**Extension to three dimensions — cylindrical coordinates.** With $\mathbf{r} = R\,\mathbf{e}_R + z\,\mathbf{k}$ (11.48):
+
+$$
+\mathbf{v} = \dot R\,\mathbf{e}_R + R\dot\theta\,\mathbf{e}_\theta + \dot z\,\mathbf{k} \tag{11.49}
+$$
+
+$$
+\mathbf{a} = (\ddot R - R\dot\theta^2)\,\mathbf{e}_R + (R\ddot\theta + 2\dot R\dot\theta)\,\mathbf{e}_\theta + \ddot z\,\mathbf{k} \tag{11.50}
+$$
+
+<StepRevealExample
+  title="Collar sliding on a rotating arm" figure="/diagrams/get-207/kinematics-of-a-particle-sp-11-12.png"
+  problem="The rotation of the $0.9\text{-m}$ arm $OA$ about $O$ is defined by the relation $\theta = 0.15t^2$, where $\theta$ is expressed in radians and $t$ in seconds. Collar $B$ slides along the arm in such a way that its distance from $O$ is $r = 0.9 - 0.12t^2$, where $r$ is expressed in meters and $t$ in seconds. After the arm $OA$ has rotated through $30^\circ$, determine (a) the total velocity of the collar, (b) the total acceleration of the collar, (c) the relative acceleration of the collar with respect to the arm."
+  steps={[
+    "Time when $\\theta = 30^\\circ$: $\\theta = 30^\\circ = 0.524\\,\\text{rad}$, so $0.524 = 0.15t^2 \\Rightarrow t = 1.869\\,\\text{s}$.",
+    "At $t = 1.869\\,\\text{s}$: $r = 0.9 - 0.12t^2 = 0.481\\,\\text{m}$, $\\dot r = -0.24t = -0.449\\,\\text{m/s}$, $\\ddot r = -0.240\\,\\text{m/s}^2$; $\\theta = 0.524\\,\\text{rad}$, $\\dot\\theta = 0.30t = 0.561\\,\\text{rad/s}$, $\\ddot\\theta = 0.300\\,\\text{rad/s}^2$.",
+    "(a) Eqs. (11.45): $v_r = \\dot r = -0.449\\,\\text{m/s}$, $v_\\theta = r\\dot\\theta = 0.481(0.561) = 0.270\\,\\text{m/s}$. Right triangle: $v = \\sqrt{0.449^2 + 0.270^2} = 0.524\\,\\text{m/s}$, $\\beta = \\tan^{-1}(0.270/0.449) = 31.0^\\circ$.",
+    "(b) Eqs. (11.46): $a_r = \\ddot r - r\\dot\\theta^2 = -0.240 - 0.481(0.561)^2 = -0.391\\,\\text{m/s}^2$; $a_\\theta = r\\ddot\\theta + 2\\dot r\\dot\\theta = 0.481(0.300) + 2(-0.449)(0.561) = -0.359\\,\\text{m/s}^2$.",
+    "$a = \\sqrt{0.391^2 + 0.359^2} = 0.531\\,\\text{m/s}^2$, $\\gamma = \\tan^{-1}(0.359/0.391) = 42.6^\\circ$.",
+    "(c) The motion of the collar relative to the arm is rectilinear along the arm and defined by the coordinate $r$: $a_{B/OA} = \\ddot r = -0.240\\,\\text{m/s}^2$, i.e. $0.240\\,\\text{m/s}^2$ toward $O$."
+  ]}
+  answer="(a) $v = 0.524\,\text{m/s}$, $\beta = 31.0^\circ$; (b) $a = 0.531\,\text{m/s}^2$, $\gamma = 42.6^\circ$; (c) $a_{B/OA} = 0.240\,\text{m/s}^2$ toward $O$"
+/>
+
+<ExerciseSet
+  title="Practice Set" items={[
+    { q: "Determine the smallest radius that should be used for a highway if the normal component of the acceleration of a car traveling at $72\\,\\text{km/h}$ is not to exceed $0.8\\,\\text{m/s}^2$.", a: "$500\\,\\text{m}$" },
+    { q: "Determine the maximum speed that the cars of the roller-coaster can reach along the circular portion $AB$ of the track if $\\rho = 25\\,\\text{m}$ and the normal component of their acceleration cannot exceed $3g$.", a: "$97.6\\,\\text{km/h}$" },
+    { q: "A bull-roarer is a piece of wood that produces a roaring sound when attached to the end of a string and whirled around in a circle. Determine the magnitude of the normal acceleration of a bull-roarer when it is spun in a circle of radius $0.9\\,\\text{m}$ at a speed of $20\\,\\text{m/s}$.", a: "$444\\,\\text{m/s}^2$" },
+    { q: "A monorail train starts from rest on a curve of radius $400\\,\\text{m}$ and accelerates at the constant rate $a_t$. If the maximum total acceleration of the train must not exceed $1.5\\,\\text{m/s}^2$, determine (a) the shortest distance in which the train can reach a speed of $72\\,\\text{km/h}$, (b) the corresponding constant rate of acceleration $a_t$.", a: "(a) $178.9\\,\\text{m}$; (b) $1.118\\,\\text{m/s}^2$" },
+    { q: "A golfer hits a golf ball from point $A$ with an initial velocity of $50\\,\\text{m/s}$ at an angle of $25^\\circ$ with the horizontal. Determine the radius of curvature of the trajectory described by the ball (a) at point $A$, (b) at the highest point of the trajectory.", a: "(a) $281\\,\\text{m}$; (b) $209\\,\\text{m}$" }
+  ]}
+/>
+
+---
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Frequent mistakes in particle kinematics">
+
+1. **Distance traveled is not displacement.** Whenever $v$ changes sign inside the interval (Sample Problem 11.1(d)), find the instant where $v = 0$, compute each leg separately and **add the magnitudes**. Using $x_6 - x_4$ alone would give $2\,\text{ft}$ instead of $18\,\text{ft}$.
+2. **Using the constant-acceleration formulas when $a$ is not constant.** Equations (11.6)–(11.8) hold only for constant $a$. If $a = f(t)$, $f(x)$ or $f(v)$, integrate — and choose $a = v\,dv/dx$ when position, not time, is involved.
+3. **Inconsistent signs and origins.** Fix one origin and one positive direction for **all** particles and measure time from the same instant. The sign of $g$ follows from your axis: $a = -9.81\,\text{m/s}^2$ when $y$ is positive upward.
+4. **Rejecting the wrong root.** Quadratics in $t$ give a negative root that precedes the start of the motion — discard it, but keep both roots when both are physical (two firing angles in Sample Problem 11.8).
+5. **Dependent motion: forgetting the factor 2.** Each cable segment that lengthens with a coordinate contributes that coordinate once; a pulley supported by two segments contributes $2x_D$. The same linear relation then applies to velocities and accelerations.
+6. **Treating $a_n$ as zero on a curve at constant speed.** At constant speed $a_t = 0$, but $a_n = v^2/\rho \neq 0$. Conversely, $a_t$ alone does not give the total acceleration.
+7. **Radial–transverse confusion.** $a_r = \ddot r - r\dot\theta^2$ and $a_\theta = r\ddot\theta + 2\dot r\dot\theta$; the acceleration **relative to the arm** is only $\ddot r$ (Sample Problem 11.12(c)). Always convert $\theta$ to radians before differentiating.
+
+</Callout>
+
+---
+
+## Summary of Formulas
+
+<RuleBox kind="formula" title="key equations">
+
+| Context | Equations | Notes |
+|---|---|---|
+| Rectilinear definitions | $v = \dfrac{dx}{dt}$, $\;a = \dfrac{dv}{dt} = \dfrac{d^2x}{dt^2}$, $\;a = v\dfrac{dv}{dx}$ | Eqs. (11.1)–(11.4) |
+| Uniform motion | $x = x_0 + vt$ | $a = 0$ (11.5) |
+| Uniformly accelerated motion | $v = v_0 + at$, $\;x = x_0 + v_0t + \tfrac12at^2$, $\;v^2 = v_0^2 + 2a(x - x_0)$ | $a$ constant (11.6)–(11.8) |
+| Relative motion (same line) | $x_{B/A} = x_B - x_A$, $\;v_{B/A} = v_B - v_A$, $\;a_{B/A} = a_B - a_A$ | (11.9)–(11.11) |
+| Dependent motion | e.g. $2x_A + 2x_B + x_C = \text{const} \Rightarrow 2v_A + 2v_B + v_C = 0$ | Constant cable length |
+| Graphical | $x_2 - x_1 = \int v\,dt$ (area $v$–$t$), $\;v_2 - v_1 = \int a\,dt$ (area $a$–$t$) | (11.12) |
+| Moment-area | $x_1 = x_0 + v_0t_1 + (\text{area } a\text{–}t)(t_1 - \bar t)$ | (11.13) |
+| Curvilinear | $\mathbf{v} = d\mathbf{r}/dt$ (tangent), $\;v = ds/dt$, $\;\mathbf{a} = d\mathbf{v}/dt$ | (11.15)–(11.18) |
+| Rectangular / projectile | $v_x = \dot x$, $a_x = \ddot x$; $\;x = (v_x)_0t$, $\;y = (v_y)_0t - \tfrac12gt^2$ | (11.29)–(11.30) |
+| Frame in translation | $\mathbf{r}_B = \mathbf{r}_A + \mathbf{r}_{B/A}$, $\;\mathbf{v}_B = \mathbf{v}_A + \mathbf{v}_{B/A}$, $\;\mathbf{a}_B = \mathbf{a}_A + \mathbf{a}_{B/A}$ | (11.31)–(11.34) |
+| Tangential–normal | $a_t = \dfrac{dv}{dt}$, $\;a_n = \dfrac{v^2}{\rho}$ (toward center of curvature) | (11.39)–(11.40) |
+| Radial–transverse | $v_r = \dot r$, $v_\theta = r\dot\theta$; $\;a_r = \ddot r - r\dot\theta^2$, $a_\theta = r\ddot\theta + 2\dot r\dot\theta$ | (11.45)–(11.46) |
+| Cylindrical | $\mathbf{a} = (\ddot R - R\dot\theta^2)\mathbf{e}_R + (R\ddot\theta + 2\dot R\dot\theta)\mathbf{e}_\theta + \ddot z\mathbf{k}$ | (11.50) |
+
+</RuleBox>

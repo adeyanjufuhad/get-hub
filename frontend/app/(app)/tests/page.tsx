@@ -22,15 +22,14 @@ import { cn } from "@/lib/cn";
 import {
   COURSE_TOPICS_FALLBACK,
   COURSES,
-  TEXTBOOK_DRILLS,
-  TEXTBOOKS,
+  PRACTICE_HIGHLIGHTS,
 } from "@/lib/config";
 import type { DashboardPayload } from "@/lib/types";
 
 const EXAM_PRESETS = [
-  { id: "quick", label: "Quick Quiz", questions: 5, minutes: 8, tag: "Warm-up" },
-  { id: "midterm", label: "Mid-Sem CBT", questions: 10, minutes: 15, tag: "Test Prep" },
-  { id: "full", label: "Full Mock", questions: 15, minutes: 25, tag: "Exam Standard" },
+  { id: "quick", label: "Quick quiz", questions: 5, minutes: 8 },
+  { id: "midterm", label: "Mid-sem CBT", questions: 10, minutes: 15 },
+  { id: "full", label: "Full mock", questions: 15, minutes: 25 },
 ] as const;
 
 export default function TestsHubPage() {
@@ -69,7 +68,7 @@ export default function TestsHubPage() {
       });
       router.push(`/mock-exams/${res.exam.id}`);
     } catch (err) {
-      toast.error(err instanceof ApiError ? err.message : "Could not start mock exam.");
+      toast.error(err instanceof ApiError ? err.message : "Could not start mock exam");
       setLaunchingSlug(null);
     }
   }
@@ -81,8 +80,8 @@ export default function TestsHubPage() {
 
   const visibleFigureDrills =
     selectedCourse === "all"
-      ? TEXTBOOK_DRILLS
-      : TEXTBOOK_DRILLS.filter((d) => d.courseSlug === selectedCourse);
+      ? PRACTICE_HIGHLIGHTS
+      : PRACTICE_HIGHLIGHTS.filter((d) => d.courseSlug === selectedCourse);
 
   const statsMap = new Map(
     (data?.topic_stats ?? []).map((s) => [s.topic_id, s])
@@ -94,13 +93,13 @@ export default function TestsHubPage() {
       <section className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <Badge variant="accent" className="font-mono">
-            72 Verified Questions · Çengel · Hibbeler 14e · Stewart 7e
+            290+ graded questions · GET 205 · GET 207 · GET 209
           </Badge>
-          <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
-            Tests, Textbook Drills &amp; Mock Exams
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+            Tests, topic drills, and mock exams
           </h1>
           <p className="mt-1 max-w-2xl text-sm text-[var(--text-secondary)] text-pretty">
-            Organized into two clear study modes: <strong>untimed step-by-step topic drills</strong> (instant solution reveal) and <strong>timed CBT mock exams</strong> (graded on the Go server).
+            Two study modes: <strong className="font-medium text-[var(--text-primary)]">untimed topic drills</strong> with instant step-by-step solutions, and <strong className="font-medium text-[var(--text-primary)]">timed mock exams</strong> graded automatically on submission.
           </p>
         </div>
 
@@ -111,7 +110,7 @@ export default function TestsHubPage() {
               type="button"
               onClick={() => setSelectedCourse("all")}
               className={cn(
-                "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-[12px] px-3.5 text-xs font-semibold cursor-pointer",
+                "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-[12px] px-3.5 text-xs font-medium cursor-pointer",
                 selectedCourse === "all"
                   ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                   : "text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
@@ -125,7 +124,7 @@ export default function TestsHubPage() {
                 type="button"
                 onClick={() => setSelectedCourse(c.slug)}
                 className={cn(
-                  "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-[12px] px-3.5 font-mono text-xs font-semibold cursor-pointer",
+                  "pressable min-h-[40px] shrink-0 whitespace-nowrap rounded-[12px] px-3.5 font-mono text-xs font-medium cursor-pointer",
                   selectedCourse === c.slug
                     ? "bg-[var(--ink-cta)] text-[var(--ink-cta-text)]"
                     : "text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
@@ -142,14 +141,14 @@ export default function TestsHubPage() {
       <section className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
-              Mode 01 · Timed Exam Simulation
+            <p className="text-xs font-medium text-[var(--accent)]">
+              Mode 1 · Timed exam simulation
             </p>
-            <h2 className="mt-0.5 text-lg font-extrabold tracking-tight text-[var(--text-primary)]">
-              Launch a Timed CBT Mock Exam
+            <h2 className="mt-0.5 text-lg font-semibold tracking-tight text-[var(--text-primary)]">
+              Launch a timed mock exam
             </h2>
           </div>
-          <span className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--text-muted)]">
+          <span className="inline-flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
             <ShieldCheck className="h-4 w-4 text-[var(--success)]" aria-hidden="true" />
             Solutions unlock after submission
           </span>
@@ -161,7 +160,7 @@ export default function TestsHubPage() {
             const activePreset =
               EXAM_PRESETS.find((p) => p.id === activePresetId) ?? EXAM_PRESETS[1];
             const isLaunching = launchingSlug === course.slug;
-            const book = TEXTBOOKS.find((b) => b.courseSlug === course.slug);
+            const topicCount = COURSE_TOPICS_FALLBACK[course.slug]?.length ?? 3;
 
             return (
               /* Concentric CBT card: Outer 24px = Inner 12px + Padding 12px (p-3) */
@@ -174,18 +173,13 @@ export default function TestsHubPage() {
                     <Badge variant="accent" className="font-mono">
                       {course.code}
                     </Badge>
-                    <span className="tabular font-mono text-[11px] font-semibold text-[var(--text-muted)]">
-                      24 bank Qs
+                    <span className="tabular font-mono text-xs text-[var(--text-muted)]">
+                      {topicCount} topics
                     </span>
                   </div>
-                  <h3 className="mt-2 text-base font-extrabold leading-snug text-[var(--text-primary)]">
+                  <h3 className="mt-2 text-base font-semibold leading-snug text-[var(--text-primary)]">
                     {course.title}
                   </h3>
-                  {book && (
-                    <p className="mt-0.5 truncate text-[11px] text-[var(--text-muted)]">
-                      Source: {book.authors.split(",")[0]} · {book.edition}
-                    </p>
-                  )}
 
                   {/* 3 Preset Selector Buttons (rounded-[12px]) */}
                   <div className="mt-3.5 grid grid-cols-3 gap-1.5">
@@ -208,10 +202,10 @@ export default function TestsHubPage() {
                               : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-[var(--border-strong)]"
                           )}
                         >
-                          <span className="text-[11px] font-bold leading-tight">
+                          <span className="text-xs font-medium leading-tight">
                             {preset.label}
                           </span>
-                          <span className="tabular mt-0.5 font-mono text-[10px] opacity-80">
+                          <span className="tabular mt-0.5 font-mono text-[11px] opacity-80">
                             {preset.questions}Q · {preset.minutes}m
                           </span>
                         </button>
@@ -225,16 +219,16 @@ export default function TestsHubPage() {
                     type="button"
                     disabled={Boolean(launchingSlug)}
                     onClick={() => handleQuickStartExam(course.slug)}
-                    className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90 cursor-pointer disabled:opacity-60"
+                    className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-medium text-[var(--ink-cta-text)] hover:opacity-90 cursor-pointer disabled:opacity-60"
                   >
-                    <Timer className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <Timer className="h-4 w-4 shrink-0" aria-hidden="true" />
                     {isLaunching
                       ? "Starting…"
                       : `Start ${activePreset.questions}Q (${activePreset.minutes}m)`}
                   </button>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                   >
                     Custom
                   </Link>
@@ -245,19 +239,19 @@ export default function TestsHubPage() {
         </div>
       </section>
 
-      {/* ==================== 2. ORGANIZED TOPIC-BY-TOPIC DRILL MATRIX ==================== */}
+      {/* ==================== 2. TOPIC-BY-TOPIC DRILL MATRIX ==================== */}
       <section className="space-y-4">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
-              Mode 02 · Chapter-by-Chapter Practice
+            <p className="text-xs font-medium text-[var(--accent)]">
+              Mode 2 · Topic-by-topic practice
             </p>
-            <h2 className="mt-0.5 text-lg font-extrabold tracking-tight text-[var(--text-primary)]">
-              Topic Drills Aligned with Your Lined Folios
+            <h2 className="mt-0.5 text-lg font-semibold tracking-tight text-[var(--text-primary)]">
+              Practice drills by topic
             </h2>
           </div>
-          <span className="font-mono text-xs text-[var(--text-muted)]">
-            Instant server check + full worked steps after every question
+          <span className="text-xs text-[var(--text-muted)]">
+            Instant grading with worked steps after every question
           </span>
         </div>
 
@@ -274,13 +268,13 @@ export default function TestsHubPage() {
                     <Badge variant="accent" className="font-mono">
                       {course.code}
                     </Badge>
-                    <h3 className="text-base font-extrabold text-[var(--text-primary)]">
+                    <h3 className="text-base font-semibold text-[var(--text-primary)]">
                       {course.title}
                     </h3>
                   </div>
                   <Link
                     href={`/courses/${course.slug}`}
-                    className="font-mono text-xs font-semibold text-[var(--accent)] hover:underline"
+                    className="text-xs font-medium text-[var(--accent)] hover:underline"
                   >
                     Course overview →
                   </Link>
@@ -300,8 +294,8 @@ export default function TestsHubPage() {
                       >
                         <div>
                           <div className="flex items-center justify-between gap-2">
-                            <span className="font-mono text-xs font-bold text-[var(--accent)]">
-                              Folio 0{topic.display_order}
+                            <span className="tabular font-mono text-xs font-medium text-[var(--accent)]">
+                              Topic {String(topic.display_order).padStart(2, "0")}
                             </span>
                             {attempted ? (
                               <Badge
@@ -310,41 +304,43 @@ export default function TestsHubPage() {
                               >
                                 {acc >= 70 ? (
                                   <>
-                                    <CheckCircle2 className="h-3 w-3" aria-hidden="true" /> {acc}%
+                                    <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" /> {acc}%
                                   </>
                                 ) : (
                                   `${acc}% · Review`
                                 )}
                               </Badge>
-                            ) : (
+                            ) : topic.question_count > 0 ? (
                               <Badge variant="neutral" className="tabular font-mono">
                                 {topic.question_count} Qs
                               </Badge>
-                            )}
+                            ) : null}
                           </div>
 
-                          <h4 className="mt-2 text-sm font-extrabold leading-snug text-[var(--text-primary)]">
+                          <h4 className="mt-2 text-sm font-semibold leading-snug text-[var(--text-primary)]">
                             {topic.title}
                           </h4>
-                          <p className="mt-1 font-mono text-[11px] text-[var(--text-muted)]">
-                            {topic.textbook_ref}
-                          </p>
+                          {topic.ccmas_ref && (
+                            <p className="mt-1 line-clamp-2 text-xs text-[var(--text-muted)]">
+                              {topic.ccmas_ref}
+                            </p>
+                          )}
                         </div>
 
                         <div className="mt-4 flex items-center gap-2 border-t border-[var(--border-hairline)] pt-3">
                           <Link
                             href={`/practice/${topic.id}`}
-                            className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
+                            className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-3.5 text-xs font-medium text-[var(--ink-cta-text)] hover:opacity-90"
                           >
-                            <PenTool className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                            Drill ({topic.question_count})
+                            <PenTool className="h-4 w-4 shrink-0" aria-hidden="true" />
+                            Practice
                           </Link>
                           <Link
                             href={`/courses/${course.slug}/${topic.slug}`}
-                            className="pressable inline-flex min-h-[44px] items-center justify-center gap-1 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
-                            title="Read lined folio notes"
+                            className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+                            title="Read topic notes"
                           >
-                            <BookOpen className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                            <BookOpen className="h-4 w-4 shrink-0" aria-hidden="true" />
                             Notes
                           </Link>
                         </div>
@@ -358,19 +354,19 @@ export default function TestsHubPage() {
         </div>
       </section>
 
-      {/* ==================== 3. STRICT TEXTBOOK FIGURE PROBLEMS + RECENT SCRIPTS ==================== */}
+      {/* ==================== 3. DIAGRAM PRACTICE PROBLEMS + RECENT SCRIPTS ==================== */}
       <div className="grid gap-5 lg:grid-cols-12">
         <section className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5 lg:col-span-8">
           <div className="flex items-center justify-between gap-2">
             <div>
-              <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
-                Diagram-Backed Problems
+              <p className="text-xs font-medium text-[var(--accent)]">
+                Visual practice
               </p>
-              <h2 className="mt-0.5 text-base font-extrabold text-[var(--text-primary)]">
-                Strict Textbook Figure Questions
+              <h2 className="mt-0.5 text-base font-semibold text-[var(--text-primary)]">
+                Diagram-backed problems
               </h2>
             </div>
-            <Layers className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" />
+            <Layers className="h-4 w-4 text-[var(--text-muted)]" aria-hidden="true" />
           </div>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -399,16 +395,16 @@ export default function TestsHubPage() {
                     <Badge variant="accent" className="font-mono">
                       <span translate="no">{drill.courseCode}</span>
                     </Badge>
-                    <span className="truncate font-mono text-[10px] font-semibold text-[var(--text-muted)]">
-                      {drill.textbookRef}
+                    <span className="truncate text-xs text-[var(--text-muted)]">
+                      {drill.topicLabel}
                     </span>
                   </div>
-                  <h3 className="mt-2 text-xs font-extrabold leading-snug text-[var(--text-primary)] sm:text-sm">
+                  <h3 className="mt-2 text-xs font-semibold leading-snug text-[var(--text-primary)] sm:text-sm">
                     {drill.title}
                   </h3>
                 </div>
-                <span className="mt-3 inline-flex items-center gap-1 font-mono text-xs font-bold text-[var(--accent)]">
-                  Solve in runner <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[var(--accent)]">
+                  Solve problem <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
               </Link>
             ))}
@@ -418,25 +414,25 @@ export default function TestsHubPage() {
         {/* Recent Graded Exam Scripts */}
         <aside className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5 lg:col-span-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-extrabold text-[var(--text-primary)]">
-              Recent Exam Scripts
+            <h2 className="text-base font-semibold text-[var(--text-primary)]">
+              Recent exam scripts
             </h2>
             <ClipboardCheck className="h-4 w-4 text-[var(--text-muted)]" aria-hidden="true" />
           </div>
 
           {!user ? (
             <div className="mt-4 rounded-[24px] bg-[var(--bg-canvas)] p-3 text-xs text-[var(--text-secondary)]">
-              <p className="px-1">Sign in to save your graded CBT exam scripts and track weak topics automatically.</p>
+              <p className="px-1">Sign in to save your graded exam scripts and track weak topics automatically.</p>
               <Link
                 href="/login"
-                className="pressable mt-3 inline-flex min-h-[40px] w-full items-center justify-center rounded-[12px] bg-[var(--ink-cta)] px-4 font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
+                className="pressable mt-3 inline-flex min-h-[40px] w-full items-center justify-center rounded-[12px] bg-[var(--ink-cta)] px-4 font-medium text-[var(--ink-cta-text)] hover:opacity-90"
               >
                 Log in →
               </Link>
             </div>
           ) : !data || data.recent_exams.length === 0 ? (
             <p className="mt-3 text-xs leading-relaxed text-[var(--text-secondary)]">
-              No timed mock exams submitted yet. Pick a preset in the Exam Studio above to generate your first CBT paper!
+              No timed mock exams submitted yet. Pick a preset above to start your first paper.
             </p>
           ) : (
             <ul className="mt-4 space-y-2">
@@ -452,11 +448,11 @@ export default function TestsHubPage() {
                       className="pressable hover-lift flex items-center justify-between gap-2 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
                     >
                       <div className="min-w-0">
-                        <span className="font-mono text-[11px] font-bold text-[var(--accent)]">
+                        <span className="font-mono text-xs font-medium text-[var(--accent)]">
                           {ex.course_code}
                         </span>
-                        <p className="mt-0.5 flex items-center gap-1 text-xs font-semibold text-[var(--text-primary)]">
-                          <Clock className="h-3 w-3 text-[var(--text-muted)]" aria-hidden="true" />
+                        <p className="tabular mt-0.5 flex items-center gap-1 text-xs font-medium text-[var(--text-primary)]">
+                          <Clock className="h-3.5 w-3.5 text-[var(--text-muted)]" aria-hidden="true" />
                           {ex.total_questions} Qs · {Math.round(ex.duration_seconds / 60)}m
                         </p>
                       </div>

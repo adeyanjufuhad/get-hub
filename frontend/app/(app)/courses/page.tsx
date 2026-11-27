@@ -9,7 +9,6 @@ import {
   COURSE_BANNER_IMAGES,
   COURSE_TOPICS_FALLBACK,
   COURSES,
-  TEXTBOOKS,
 } from "@/lib/config";
 import type { Course } from "@/lib/types";
 
@@ -44,22 +43,22 @@ export default function CoursesIndexPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <Badge variant="accent" className="font-mono">
-            OAU 200L First Semester · 9 Lined Study Folios
+            OAU 200L First Semester · 19 study topics
           </Badge>
-          <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
-            Course Notes &amp; Study Folios
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+            Course notes and study topics
           </h1>
           <p className="mt-1 max-w-2xl text-sm text-[var(--text-secondary)] text-pretty">
-            Every course is paired with the exact textbook matching its CCMAS syllabus, lined notebook study pages, real cropped textbook figures, and 72 step-by-step practice questions.
+            Each course includes structured study notes, clear engineering diagrams, worked examples, and graded practice questions.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           <Link
             href="/tests"
-            className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90 sm:w-auto"
+            className="pressable inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-medium text-[var(--ink-cta-text)] hover:opacity-90 sm:w-auto"
           >
-            <ClipboardCheck className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-            Open Test Center
+            <ClipboardCheck className="h-4 w-4 shrink-0" aria-hidden="true" />
+            Open test center
           </Link>
         </div>
       </div>
@@ -67,7 +66,7 @@ export default function CoursesIndexPage() {
       {!loaded ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-80 animate-pulse rounded-[24px] bg-[var(--bg-surface)]" />
+            <div key={i} className="h-80 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]" />
           ))}
         </div>
       ) : (
@@ -78,7 +77,6 @@ export default function CoursesIndexPage() {
             const pct = total > 0 ? Math.round((done / total) * 100) : 0;
             const banner =
               COURSE_BANNER_IMAGES[course.slug] ?? "/images/courses/get-205.webp";
-            const matchedBook = TEXTBOOKS.find((b) => b.courseSlug === course.slug);
             const fallbackTopics = COURSE_TOPICS_FALLBACK[course.slug] ?? [];
 
             return (
@@ -106,68 +104,52 @@ export default function CoursesIndexPage() {
                     <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between gap-2">
                       <span
                         translate="no"
-                        className="rounded-full bg-[#EA580C] px-2.5 py-0.5 font-mono text-[11px] font-bold text-white shadow-sm"
+                        className="rounded-full bg-[#EA580C] px-2.5 py-0.5 font-mono text-xs font-semibold text-white shadow-sm"
                       >
                         {course.code}
                       </span>
-                      <span className="tabular rounded-full bg-black/65 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-white backdrop-blur-xs">
-                        {done}/{total} folios · {pct}%
+                      <span className="tabular rounded-full bg-black/65 px-2.5 py-0.5 font-mono text-xs font-medium text-white backdrop-blur-xs">
+                        {done}/{total} topics · {pct}%
                       </span>
                     </div>
                   </div>
 
                   <div className="p-4">
-                    <h2 className="text-lg font-extrabold leading-snug text-[var(--text-primary)]">
+                    <h2 className="text-lg font-semibold leading-snug text-[var(--text-primary)]">
                       {course.title}
                     </h2>
                     <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-[var(--text-secondary)]">
                       {course.description}
                     </p>
 
-                    {matchedBook && (
-                      <div className="mt-3.5 flex items-center gap-2.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={matchedBook.coverImage}
-                          alt={matchedBook.title}
-                          width={64}
-                          height={88}
-                          loading="lazy"
-                          decoding="async"
-                          className="h-11 w-8 shrink-0 rounded-[4px] object-cover"
-                        />
-                        <div className="min-w-0">
-                          <span className="block font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--accent)]">
-                            Matched Textbook
-                          </span>
-                          <p className="truncate text-xs font-bold text-[var(--text-primary)]">
-                            {matchedBook.title}
-                          </p>
-                          <p className="truncate text-[11px] text-[var(--text-muted)]">
-                            {matchedBook.authors}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Mini Folio Index */}
+                    {/* Mini Topic Index */}
                     <ul className="mt-3.5 space-y-1">
-                      {fallbackTopics.map((ft) => (
+                      {fallbackTopics.slice(0, 6).map((ft) => (
                         <li key={ft.id}>
                           <Link
                             href={`/courses/${course.slug}/${ft.slug}`}
                             className="pressable flex items-center justify-between gap-2 rounded-[10px] px-2.5 py-1.5 text-xs hover:bg-[var(--bg-subtle)]"
                           >
                             <span className="truncate font-medium text-[var(--text-secondary)]">
-                              <span className="mr-1.5 font-mono text-[11px] font-bold text-[var(--accent)]">
-                                0{ft.display_order}
+                              <span className="tabular mr-1.5 font-mono text-xs font-medium text-[var(--accent)]">
+                                {String(ft.display_order).padStart(2, "0")}
                               </span>
                               {ft.title}
                             </span>
-                            <ArrowRight className="h-3 w-3 shrink-0 text-[var(--text-muted)]" aria-hidden="true" />
+                            <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[var(--text-muted)]" aria-hidden="true" />
                           </Link>
                         </li>
                       ))}
+                      {fallbackTopics.length > 6 && (
+                        <li>
+                          <Link
+                            href={`/courses/${course.slug}`}
+                            className="block rounded-[10px] px-2.5 py-1 text-xs font-medium text-[var(--accent)] hover:bg-[var(--bg-subtle)]"
+                          >
+                            +{fallbackTopics.length - 6} more topics
+                          </Link>
+                        </li>
+                      )}
                     </ul>
 
                     <div
@@ -189,17 +171,17 @@ export default function CoursesIndexPage() {
                 <div className="grid grid-cols-1 gap-2 border-t border-[var(--border-hairline)] p-3 min-[340px]:grid-cols-2">
                   <Link
                     href={`/courses/${course.slug}`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-3.5 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-3.5 text-xs font-medium text-[var(--ink-cta-text)] hover:opacity-90"
                   >
-                    <BookOpen className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                    Open folios
+                    <BookOpen className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    Open notes
                   </Link>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] border border-[var(--border-hairline)] px-3.5 text-xs font-semibold text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+                    className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] border border-[var(--border-hairline)] px-3.5 text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
                   >
-                    <Timer className="h-3.5 w-3.5 shrink-0 text-[var(--accent)]" aria-hidden="true" />
-                    Timed test
+                    <Timer className="h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden="true" />
+                    Timed exam
                   </Link>
                 </div>
               </article>

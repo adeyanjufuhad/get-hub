@@ -5,7 +5,6 @@ topicId: "22222222-2222-4222-8222-222222220209"
 courseCode: "GET 209"
 courseSlug: "get-209"
 ccmasRef: "Limits; continuity"
-textbookRef: "H. K. Dass · Ch. 1, §1.1–1.6"
 outcomes:
   - "Define a function of two variables $z = f(x, y)$ and interpret it geometrically as a surface over a domain in the $xy$-plane."
   - "State both the path-independence and $\\varepsilon$–$\\delta$ definitions of $\\lim_{(x, y) \\to (a, b)} f(x, y) = l$."
@@ -18,17 +17,19 @@ isFree: true
 
 ## Overview
 
-Engineering quantities almost never depend on a single variable alone: the area of a rectangle depends on both length and breadth, the pressure of an ideal gas depends on temperature and volume, and the deflection of a rectangular plate depends on two spatial coordinates $(x, y)$. Chapter 1 of H. K. Dass opens partial differentiation by establishing the foundation for functions of two variables: what $z = f(x, y)$ represents geometrically (§1.1), how a two-variable limit behaves across infinitely many approach paths (§1.2–1.3), when a function is continuous at a point or over a domain (§1.4–1.5), and how discontinuities are classified into five distinct kinds (§1.6). Every definition, working rule, solved example, and exercise set below follows Dass §1.1–1.6 in exact order.
+Engineering quantities almost never depend on a single variable alone: the area of a rectangle depends on both length and breadth, the pressure of an ideal gas depends on temperature and volume, and the deflection of a rectangular plate depends on two spatial coordinates $(x, y)$. This topic introduces functions of two variables, simultaneous limits, path tests, and continuity with step-by-step worked examples and practice exercises.
 
 ### 1.1 Introduction
 
 Consider the area of a rectangle: it is determined jointly by its length and its breadth, so area is a function of two variables. More generally, whenever a quantity $z$ takes one definite value for every ordered pair $(x, y)$ in a region, we say that $z$ is a **function of the two variables $x$ and $y$**, and write
 
-$$z = f(x, y).$$
+$$
+z = f(x, y).
+$$
 
 Here $x$ and $y$ are the **independent variables** and $z$ is the **dependent variable**. The same idea extends immediately to functions of three or more independent variables, such as $u = f(x, y, z)$.
 
-<RuleBox kind="definition" title="§1.1 Function of two variables and its geometrical meaning">
+<RuleBox kind="definition" title="Function of two variables and its geometrical meaning">
 
 A variable $z$ is called a **function of two variables** $x$ and $y$, written $z = f(x, y)$, if $z$ has one definite value for every pair of values $(x, y)$ in a domain (area) $A$ of the $xy$-plane.
 
@@ -42,15 +43,19 @@ A variable $z$ is called a **function of two variables** $x$ and $y$, written $z
 
 For a single-variable function $f(x)$, the point $x$ can approach $a$ along the real line from only two directions (the left or the right). In the $xy$-plane, however, a moving point $(x, y)$ can approach $(a, b)$ along **infinitely many paths**—coordinate lines, straight lines of any slope, parabolas, spirals, or arbitrary curves. A two-variable limit exists only when every single path produces the exact same limiting value $l$.
 
-<RuleBox kind="definition" title="§1.2 Limit of a function of two variables">
+<RuleBox kind="definition" title="Limit of a function of two variables">
 
 **Path-independence form:** The function $f(x, y)$ is said to tend to the limit $l$ as $x \to a$ and $y \to b$ if and only if the limit $l$ is independent of the path followed by the point $(x, y)$ as $x \to a$ and $y \to b$. Symbolically,
 
-$$\lim_{\substack{x \to a \\ y \to b}} f(x, y) = l.$$
+$$
+\lim_{\substack{x \to a \\ y \to b}} f(x, y) = l.
+$$
 
 **$\varepsilon$–$\delta$ form:** The function $f(x, y)$ defined in a region $R$ is said to tend to the limit $l$ as $x \to a$ and $y \to b$ if and only if, corresponding to any positive number $\varepsilon > 0$, there exists another positive number $\delta > 0$ such that
 
-$$|f(x, y) - l| < \varepsilon \qquad \text{whenever} \qquad 0 < (x - a)^2 + (y - b)^2 < \delta^2$$
+$$
+|f(x, y) - l| < \varepsilon \qquad \text{whenever} \qquad 0 < (x - a)^2 + (y - b)^2 < \delta^2
+$$
 
 for every point $(x, y)$ in $R$.
 
@@ -60,9 +65,9 @@ Notice the strict inequality $0 < (x - a)^2 + (y - b)^2 < \delta^2$: the conditi
 
 ### 1.3 Working Rule to Find the Limit
 
-To test and evaluate a simultaneous limit $\lim_{\substack{x \to a \\ y \to b}} f(x, y)$ systematically, H. K. Dass gives the following working procedure, starting with the two iterated limits and (at the origin) progressing through linear and curved approach families.
+To test and evaluate a simultaneous limit $\lim_{\substack{x \to a \\ y \to b}} f(x, y)$ systematically, standard engineering mathematics gives the following working procedure, starting with the two iterated limits and (at the origin) progressing through linear and curved approach families.
 
-<RuleBox kind="working-rule" title="§1.3 Working rule to find the limit">
+<RuleBox kind="working-rule" title="Working rule to find the limit">
 
 **General procedure for $(x, y) \to (a, b)$:**
 
@@ -70,7 +75,7 @@ To test and evaluate a simultaneous limit $\lim_{\substack{x \to a \\ y \to b}} 
 2. **Step 2:** Find the value of $f(x, y)$ along $y \to b$ first and then $x \to a$. If the values in Step 1 and Step 2 are different, the limit does not exist.
 3. **Step 3:** When $a = 0$ and $b = 0$, evaluate the limit along straight lines $y = mx$ and higher-degree curves $y = mx^n$. If the resulting expression depends on $m$, the limit does not exist.
 
-**Four-stage check at the origin $(0, 0)$ (Dass Note):**
+**Four-stage check at the origin $(0, 0)$:**
 
 - **(i)** Put $x = 0$ and then let $y \to 0$ in $f(x, y)$ to obtain $f_1$.
 - **(ii)** Put $y = 0$ and then let $x \to 0$ in $f(x, y)$ to obtain $f_2$. If $f_1 \neq f_2$, the limit does not exist.
@@ -88,9 +93,8 @@ When all tested paths agree on a candidate value $l$, confirming that the limit 
 </Callout>
 
 <StepRevealExample
-  title="Example 1 (§1.3)"
-  source="H. K. Dass, Ch. 1, Example 1, p. 2"
-  problem="Evaluate $\\displaystyle \\lim_{\\substack{x \\to 0 \\\\ y \\to 0}} \\frac{x^2 y}{x^4 + y^2}$."
+  title="Example 1"
+  problem="Evaluate $\displaystyle \lim_{\substack{x \to 0 \\ y \to 0}} \frac{x^2 y}{x^4 + y^2}$."
   steps={[
     "(i) Let $x \\to 0$ first, then $y \\to 0$: $\\displaystyle f_1 = \\lim_{y \\to 0}\\left[\\lim_{x \\to 0} \\frac{x^2 y}{x^4 + y^2}\\right] = \\lim_{y \\to 0} \\frac{0}{0 + y^2} = 0$.",
     "(ii) Let $y \\to 0$ first, then $x \\to 0$: $\\displaystyle f_2 = \\lim_{x \\to 0}\\left[\\lim_{y \\to 0} \\frac{x^2 y}{x^4 + y^2}\\right] = \\lim_{x \\to 0} \\frac{0}{x^4 + 0} = 0$. Here $f_1 = f_2 = 0$, so we continue.",
@@ -102,9 +106,8 @@ When all tested paths agree on a candidate value $l$, confirming that the limit 
 />
 
 <StepRevealExample
-  title="Example 2 (§1.3)"
-  source="H. K. Dass, Ch. 1, Example 2, p. 2"
-  problem="Evaluate $\\displaystyle \\lim_{\\substack{x \\to 0 \\\\ y \\to 0}} (x^3 + y^3)$."
+  title="Example 2"
+  problem="Evaluate $\displaystyle \lim_{\substack{x \to 0 \\ y \to 0}} (x^3 + y^3)$."
   steps={[
     "(i) Put $x \\to 0$ then $y \\to 0$: $\\displaystyle f_1 = \\lim_{y \\to 0} (0 + y^3) = 0$.",
     "(ii) Put $y \\to 0$ then $x \\to 0$: $\\displaystyle f_2 = \\lim_{x \\to 0} (x^3 + 0) = 0$. Here $f_1 = f_2 = 0$.",
@@ -116,21 +119,19 @@ When all tested paths agree on a candidate value $l$, confirming that the limit 
 />
 
 <StepRevealExample
-  title="Example 3 (§1.3)"
-  source="H. K. Dass, Ch. 1, Example 3, pp. 2–3"
-  problem="Evaluate $\\displaystyle \\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{3x^2 y}{x^2 + y^2 + 5}$."
+  title="Example 3"
+  problem="Evaluate $\displaystyle \lim_{\substack{x \to 1 \\ y \to 2}} \frac{3x^2 y}{x^2 + y^2 + 5}$."
   steps={[
     "First check the denominator at $(1, 2)$: $1^2 + 2^2 + 5 = 10 \\neq 0$, so there is no $0/0$ indeterminacy.",
-    "Evaluating sequentially as in Dass: $\\displaystyle \\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{3x^2 y}{x^2 + y^2 + 5} = \\lim_{x \\to 1}\\left[\\lim_{y \\to 2} \\frac{3x^2 y}{x^2 + y^2 + 5}\\right] = \\lim_{x \\to 1} \\frac{3x^2 (2)}{x^2 + (2)^2 + 5}$.",
+    "Evaluating sequentially: $\\displaystyle \\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{3x^2 y}{x^2 + y^2 + 5} = \\lim_{x \\to 1}\\left[\\lim_{y \\to 2} \\frac{3x^2 y}{x^2 + y^2 + 5}\\right] = \\lim_{x \\to 1} \\frac{3x^2 (2)}{x^2 + (2)^2 + 5}$.",
     "Simplify and apply the remaining limit: $\\displaystyle \\lim_{x \\to 1} \\frac{6x^2}{x^2 + 9} = \\frac{6(1)^2}{1^2 + 9} = \\frac{6}{10} = \\frac{3}{5}$."
   ]}
-  answer="$\\dfrac{3}{5}$"
+  answer="$\dfrac{3}{5}$"
 />
 
 <StepRevealExample
-  title="Example 4 (§1.3)"
-  source="H. K. Dass, Ch. 1, Example 4, p. 3"
-  problem="Evaluate $\\displaystyle \\lim_{\\substack{x \\to \\infty \\\\ y \\to 3}} \\frac{2x - 3}{x^3 + 4y^3}$."
+  title="Example 4"
+  problem="Evaluate $\displaystyle \lim_{\substack{x \to \infty \\ y \to 3}} \frac{2x - 3}{x^3 + 4y^3}$."
   steps={[
     "(i) Take $x \\to \\infty$ first, then $y \\to 3$. Divide numerator and denominator by the highest power $x^3$: $\\displaystyle f_1 = \\lim_{y \\to 3}\\left[\\lim_{x \\to \\infty} \\frac{\\frac{2}{x^2} - \\frac{3}{x^3}}{1 + 4\\left(\\frac{y}{x}\\right)^3}\\right] = \\lim_{y \\to 3}\\left(\\frac{0 - 0}{1 + 4(0)}\\right) = 0$.",
     "(ii) Take $y \\to 3$ first, then $x \\to \\infty$: $\\displaystyle f_2 = \\lim_{x \\to \\infty}\\left[\\lim_{y \\to 3} \\frac{2x - 3}{x^3 + 4y^3}\\right] = \\lim_{x \\to \\infty} \\frac{2x - 3}{x^3 + 108}$.",
@@ -141,9 +142,8 @@ When all tested paths agree on a candidate value $l$, confirming that the limit 
 />
 
 <StepRevealExample
-  title="Worked Exercise — Exercise 1.1, Q4 (§1.3)"
-  source="H. K. Dass, Ch. 1, Exercise 1.1, Q4, p. 3"
-  problem="Evaluate $\\displaystyle \\lim_{\\substack{x \\to 0 \\\\ y \\to 0}} \\frac{xy}{y - x^2}$ ($x \\neq 0, y \\neq 0$)."
+  title="Worked Exercise 4"
+  problem="Evaluate $\displaystyle \lim_{\substack{x \to 0 \\ y \to 0}} \frac{xy}{y - x^2}$ ($x \neq 0, y \neq 0$)."
   steps={[
     "Test straight lines $y = mx$ ($m \\neq 0$): $\\displaystyle \\lim_{x \\to 0} \\frac{x(mx)}{mx - x^2} = \\lim_{x \\to 0} \\frac{mx}{m - x} = \\frac{0}{m} = 0$.",
     "Notice that the denominator $y - x^2$ vanishes identically along the parabola $y = x^2$! Choose a family of curves approaching the origin close to $y = x^2$, namely $y = x^2 + kx^3$ with $k \\neq 0$.",
@@ -155,9 +155,8 @@ When all tested paths agree on a candidate value $l$, confirming that the limit 
 />
 
 <StepRevealExample
-  title="Worked Exercise — Exercise 1.1, Q7 (§1.3)"
-  source="H. K. Dass, Ch. 1, Exercise 1.1, Q7, p. 3"
-  problem="Evaluate $\\displaystyle \\lim_{\\substack{x \\to 0 \\\\ y \\to 0}} \\frac{x^3 + 2y^3}{x^2 + 4y^2}$ ($x \\neq 0, y \\neq 0$)."
+  title="Worked Exercise 7"
+  problem="Evaluate $\displaystyle \lim_{\substack{x \to 0 \\ y \to 0}} \frac{x^3 + 2y^3}{x^2 + 4y^2}$ ($x \neq 0, y \neq 0$)."
   steps={[
     "First test along $y = mx$: $\\displaystyle \\lim_{x \\to 0} \\frac{x^3 + 2m^3 x^3}{x^2 + 4m^2 x^2} = \\lim_{x \\to 0} \\frac{x(1 + 2m^3)}{1 + 4m^2} = 0$ (independent of $m$).",
     "Because the numerator has homogeneous degree $3$ and the positive-definite denominator has degree $2$, convert to polar coordinates $x = r\\cos\\theta$, $y = r\\sin\\theta$ ($r > 0$).",
@@ -169,12 +168,11 @@ When all tested paths agree on a candidate value $l$, confirming that the limit 
 />
 
 <ExerciseSet
-  title="Exercise 1.1"
-  source="H. K. Dass, Ch. 1, p. 3"
+  title="Practice Set"
   items={[
     {
       q: "Evaluate $\\displaystyle \\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{2x^2 + y^2}{2xy}$.",
-      a: "$\\dfrac{3}{2}$ (Note: H. K. Dass prints $\\frac{3}{4}$ due to a typesetting error; direct substitution gives $\\frac{2(1)^2 + 2^2}{2(1)(2)} = \\frac{6}{4} = \\frac{3}{2}$.)"
+      a: "$\\dfrac{3}{2}$ (Note: standard engineering mathematics prints $\\frac{3}{4}$ due to a typesetting error; direct substitution gives $\\frac{2(1)^2 + 2^2}{2(1)(2)} = \\frac{6}{4} = \\frac{3}{2}$.)"
     },
     {
       q: "Evaluate $\\displaystyle \\lim_{\\substack{x \\to 2 \\\\ y \\to 3}} \\frac{x^3 + y^2}{x^2 - y}$.",
@@ -206,11 +204,11 @@ When all tested paths agree on a candidate value $l$, confirming that the limit 
     },
     {
       q: "Evaluate $\\displaystyle \\lim_{\\substack{x \\to 0 \\\\ y \\to 0}} \\frac{xy + 2}{x^2 + y^2}$; $x \\neq 0, y \\neq 0$.",
-      a: "Limit does not exist (diverges to $+\\infty$, since numerator $\\to 2$ while denominator $\\to 0^+$. Note: H. K. Dass prints $0$, matching the likely intended numerator $xy^2$.)"
+      a: "Limit does not exist (diverges to $+\\infty$, since numerator $\\to 2$ while denominator $\\to 0^+$. Note: standard engineering mathematics prints $0$, matching the likely intended numerator $xy^2$.)"
     },
     {
       q: "Evaluate $\\displaystyle \\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{3x(y - 2)}{2y(x - 2)}$.",
-      a: "$\\dfrac{3}{2}$ (Note: H. K. Dass prints $\\frac{1}{2}$ due to a typesetting error; direct substitution gives $\\frac{3(1)(-1)}{2(1)(-1)} = \\frac{3}{2}$.)"
+      a: "$\\dfrac{3}{2}$ (Note: standard engineering mathematics prints $\\frac{1}{2}$ due to a typesetting error; direct substitution gives $\\frac{3(1)(-1)}{2(1)(-1)} = \\frac{3}{2}$.)"
     }
   ]}
 />
@@ -219,11 +217,13 @@ When all tested paths agree on a candidate value $l$, confirming that the limit 
 
 Just as in single-variable calculus, continuity of a surface $z = f(x, y)$ at a point $(a, b)$ means that the surface has no hole, jump, or break above $(a, b)$: the limiting height as $(x, y)$ approaches $(a, b)$ from every direction equals the actual function height $f(a, b)$.
 
-<RuleBox kind="definition" title="§1.4 Continuity of a function of two variables">
+<RuleBox kind="definition" title="Continuity of a function of two variables">
 
 A function $f(x, y)$ is said to be **continuous at a point $(a, b)$** if
 
-$$\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).$$
+$$
+\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).
+$$
 
 A function is said to be **continuous in a domain** if it is continuous at every point of that domain.
 
@@ -233,20 +233,21 @@ A function is said to be **continuous in a domain** if it is continuous at every
 
 To test whether a given function $f(x, y)$ is continuous at $(a, b)$, verify all three conditions in sequence. If any one condition fails, $f(x, y)$ is discontinuous at $(a, b)$.
 
-<RuleBox kind="working-rule" title="§1.5 Working rule for continuity at a point (a, b)">
+<RuleBox kind="working-rule" title="Working rule for continuity at a point (a, b)">
 
 - **Step 1:** $f(a, b)$ must be well defined (finite).
 - **Step 2:** The simultaneous limit $\displaystyle \lim_{(x, y) \to (a, b)} f(x, y)$ must exist (and be independent of the approach path).
 - **Step 3:** The limit must equal the value of the function at the point:
 
-$$\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).$$
+$$
+\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).
+$$
 
 </RuleBox>
 
 <StepRevealExample
-  title="Example 5 (§1.5)"
-  source="H. K. Dass, Ch. 1, Example 5, p. 4"
-  problem="Test the function $\\displaystyle f(x, y) = \\begin{cases} \\dfrac{x^3 - y^3}{x^2 + y^2}, & \\text{when } x \\neq 0,\\; y \\neq 0 \\\\[6pt] 0, & \\text{when } x = 0,\\; y = 0 \\end{cases}$ for continuity at the origin."
+  title="Example 5"
+  problem="Test the function $\displaystyle f(x, y) = \begin{cases} \dfrac{x^3 - y^3}{x^2 + y^2}, & \text{when } x \neq 0,\; y \neq 0 \\[6pt] 0, & \text{when } x = 0,\; y = 0 \end{cases}$ for continuity at the origin."
   steps={[
     "Step 1: At $(0, 0)$, the function is defined as $f(0, 0) = 0$, so it is well defined at the origin.",
     "Step 2: Evaluate the limit along $y = mx$: $\\displaystyle \\lim_{(x, y) \\to (0, 0)} \\frac{x^3 - y^3}{x^2 + y^2} = \\lim_{x \\to 0}\\left[\\lim_{y \\to mx} \\frac{x^3 - y^3}{x^2 + y^2}\\right] = \\lim_{x \\to 0} \\frac{x^3 - m^3 x^3}{x^2 + m^2 x^2} = \\lim_{x \\to 0} \\frac{x(1 - m^3)}{1 + m^2} = 0$.",
@@ -258,9 +259,8 @@ $$\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).$$
 />
 
 <StepRevealExample
-  title="Example 6 (§1.5)"
-  source="H. K. Dass, Ch. 1, Example 6, p. 4"
-  problem="Discuss the continuity of $\\displaystyle f(x, y) = \\begin{cases} \\dfrac{x}{\\sqrt{x^2 + y^2}}, & x \\neq 0,\\; y \\neq 0 \\\\[6pt] 2, & x = 0,\\; y = 0 \\end{cases}$ at the origin."
+  title="Example 6"
+  problem="Discuss the continuity of $\displaystyle f(x, y) = \begin{cases} \dfrac{x}{\sqrt{x^2 + y^2}}, & x \neq 0,\; y \neq 0 \\[6pt] 2, & x = 0,\; y = 0 \end{cases}$ at the origin."
   steps={[
     "Step 1: At $(0, 0)$, $f(0, 0) = 2$, so the function is well defined at the origin.",
     "Step 2: Approach the origin along the line $y = mx$: $\\displaystyle \\lim_{(x, y) \\to (0, 0)} \\frac{x}{\\sqrt{x^2 + y^2}} = \\lim_{x \\to 0} \\frac{x}{\\sqrt{x^2 + m^2 x^2}} = \\lim_{x \\to 0} \\frac{x}{|x|\\sqrt{1 + m^2}}$.",
@@ -272,9 +272,8 @@ $$\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).$$
 />
 
 <StepRevealExample
-  title="Worked Exercise — Exercise 1.2, Q3 (§1.5)"
-  source="H. K. Dass, Ch. 1, Exercise 1.2, Q3, p. 5"
-  problem="Test for continuity at the origin: $\\displaystyle f(x, y) = \\begin{cases} \\dfrac{x^3 y^3}{x^3 + y^3}, & \\text{when } x \\neq 0,\\; y \\neq 0 \\\\[6pt] 0, & \\text{when } x = 0,\\; y = 0. \\end{cases}$"
+  title="Worked Exercise 3"
+  problem="Test for continuity at the origin: $\displaystyle f(x, y) = \begin{cases} \dfrac{x^3 y^3}{x^3 + y^3}, & \text{when } x \neq 0,\; y \neq 0 \\[6pt] 0, & \text{when } x = 0,\; y = 0. \end{cases}$"
   steps={[
     "Step 1: $f(0, 0) = 0$ is well defined.",
     "Test straight lines $y = mx$ ($m \\neq -1$): $\\displaystyle \\lim_{x \\to 0} \\frac{x^3 (m^3 x^3)}{x^3 + m^3 x^3} = \\lim_{x \\to 0} \\frac{m^3 x^3}{1 + m^3} = 0$. Every non-critical straight line gives $0$, which is deceptive!",
@@ -287,22 +286,20 @@ $$\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).$$
 />
 
 <StepRevealExample
-  title="Worked Exercise — Exercise 1.2, Q7 (§1.5)"
-  source="H. K. Dass, Ch. 1, Exercise 1.2, Q7, p. 6"
-  problem="Show that the function $\\displaystyle f(x, y) = \\begin{cases} 2x^2 + y, & (x, y) \\neq (1, 2) \\\\[4pt] 0, & (x, y) = (1, 2) \\end{cases}$ is discontinuous at $(1, 2)$."
+  title="Worked Exercise 7"
+  problem="Show that the function $\displaystyle f(x, y) = \begin{cases} 2x^2 + y, & (x, y) \neq (1, 2) \\[4pt] 0, & (x, y) = (1, 2) \end{cases}$ is discontinuous at $(1, 2)$."
   steps={[
     "Step 1: $f(1, 2) = 0$ is well defined.",
     "Step 2: Since $2x^2 + y$ is a polynomial, $\\displaystyle \\lim_{(x, y) \\to (1, 2)} f(x, y) = \\lim_{(x, y) \\to (1, 2)} (2x^2 + y) = 2(1)^2 + 2 = 4$. Thus the limit exists and equals $4$.",
     "Step 3: Compare the limit with the function value: $\\displaystyle \\lim_{(x, y) \\to (1, 2)} f(x, y) = 4 \\neq 0 = f(1, 2)$.",
     "Since Step 3 fails, $f(x, y)$ is discontinuous at $(1, 2)$ (specifically, it has a removable discontinuity there)."
   ]}
-  answer="Discontinuous at $(1, 2)$ because $\\lim_{(x, y)\\to(1, 2)} f(x, y) = 4 \\neq f(1, 2) = 0$."
+  answer="Discontinuous at $(1, 2)$ because $\lim_{(x, y)\to(1, 2)} f(x, y) = 4 \neq f(1, 2) = 0$."
 />
 
 <StepRevealExample
-  title="Worked Exercise — Exercise 1.2, Q8 (§1.5)"
-  source="H. K. Dass, Ch. 1, Exercise 1.2, Q8 (A.M.I.E.T.E., Dec. 2007), p. 6"
-  problem="Show that the function $\\displaystyle f(x, y) = \\begin{cases} (x + y)\\sin\\!\\left(\\dfrac{1}{x + y}\\right), & x + y \\neq 0 \\\\[6pt] 0, & x + y = 0 \\end{cases}$ is continuous at $(0, 0)$ but its partial derivatives of first order do not exist at $(0, 0)$."
+  title="Worked Exercise 8"
+  problem="Show that the function $\displaystyle f(x, y) = \begin{cases} (x + y)\sin\!\left(\dfrac{1}{x + y}\right), & x + y \neq 0 \\[6pt] 0, & x + y = 0 \end{cases}$ is continuous at $(0, 0)$ but its partial derivatives of first order do not exist at $(0, 0)$."
   steps={[
     "Part 1 (Continuity at $(0, 0)$): First, $f(0, 0) = 0$ is well defined.",
     "For every $(x, y)$ with $x + y \\neq 0$, we have $\\left|\\sin\\!\\left(\\frac{1}{x + y}\\right)\\right| \\le 1$, so $|f(x, y) - 0| = |x + y|\\left|\\sin\\!\\left(\\frac{1}{x + y}\\right)\\right| \\le |x + y| \\le |x| + |y|$.",
@@ -319,21 +316,27 @@ $$\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).$$
 
 When a function $f(x)$ fails to be continuous at a point $x = x_1$, the nature of the failure is classified by examining its **left-hand limit**
 
-$$f(x_1 - 0) = \lim_{h \to 0^+} f(x_1 - h)$$
+$$
+f(x_1 - 0) = \lim_{h \to 0^+} f(x_1 - h)
+$$
 
 and its **right-hand limit**
 
-$$f(x_1 + 0) = \lim_{h \to 0^+} f(x_1 + h),$$
+$$
+f(x_1 + 0) = \lim_{h \to 0^+} f(x_1 + h),
+$$
 
-together with the function value $f(x_1)$. H. K. Dass (§1.6; *Gujarat Univ. I sem. Jan. 2009*) classifies discontinuities into **five kinds**.
+together with the function value $f(x_1)$. standard engineering mathematics classifies discontinuities into **five kinds**.
 
 #### 1. Discontinuity of the First Kind (Jump Discontinuity)
 
-<RuleBox kind="definition" title="§1.6 (1) Discontinuity of the First Kind">
+<RuleBox kind="definition" title="(1) Discontinuity of the First Kind">
 
 A function $f(x)$ is said to have a **discontinuity of the first kind** at $x = x_1$ if both the right-hand limit $f(x_1 + 0)$ and the left-hand limit $f(x_1 - 0)$ exist (and are finite), **but are not equal**:
 
-$$f(x_1 - 0) \neq f(x_1 + 0).$$
+$$
+f(x_1 - 0) \neq f(x_1 + 0).
+$$
 
 </RuleBox>
 
@@ -341,12 +344,12 @@ For example, $f(x) = \dfrac{|x|}{x}$ at $x_1 = 0$ has $f(0 - 0) = -1$ and $f(0 +
 
 <DiagramFigure
   src="/diagrams/get-209/limits-and-continuity-first-kind.png"
-  caption="H. K. Dass §1.6 — Discontinuity of the First Kind at x₁: both f(x₁ − 0) and f(x₁ + 0) exist finitely, but f(x₁ − 0) ≠ f(x₁ + 0)."
+  caption="Discontinuity of the First Kind at x₁: both f(x₁ − 0) and f(x₁ + 0) exist finitely, but f(x₁ − 0) ≠ f(x₁ + 0)."
 />
 
 #### 2. Discontinuity of the Second Kind
 
-<RuleBox kind="definition" title="§1.6 (2) Discontinuity of the Second Kind">
+<RuleBox kind="definition" title="(2) Discontinuity of the Second Kind">
 
 A function $f(x)$ is said to have a **discontinuity of the second kind** at $x = x_1$ if **neither** the right-hand limit $f(x_1 + 0)$ **nor** the left-hand limit $f(x_1 - 0)$ exists.
 
@@ -356,12 +359,12 @@ A standard example is $f(x) = \sin\!\left(\dfrac{1}{x - x_1}\right)$, which osci
 
 <DiagramFigure
   src="/diagrams/get-209/limits-and-continuity-second-kind.png"
-  caption="H. K. Dass §1.6 — Discontinuity of the Second Kind at x₁: neither f(x₁ − 0) nor f(x₁ + 0) exists."
+  caption="Discontinuity of the Second Kind at x₁: neither f(x₁ − 0) nor f(x₁ + 0) exists."
 />
 
 #### 3. Discontinuity of the Third Kind (Mixed Discontinuity)
 
-<RuleBox kind="definition" title="§1.6 (3) Discontinuity of the Third Kind (Mixed Discontinuity)">
+<RuleBox kind="definition" title="(3) Discontinuity of the Third Kind (Mixed Discontinuity)">
 
 A function $f(x)$ is said to have a **mixed discontinuity** (discontinuity of the third kind) at $x = x_1$ if **only one** of the two one-sided limits $f(x_1 + 0)$ and $f(x_1 - 0)$ exists and the other does not.
 
@@ -372,12 +375,12 @@ A function $f(x)$ is said to have a **mixed discontinuity** (discontinuity of th
 
 <DiagramFigure
   src="/diagrams/get-209/limits-and-continuity-third-kind.png"
-  caption="H. K. Dass §1.6 — Discontinuity of the Third Kind (Mixed): (i) one one-sided limit exists while the other does not; (ii) the reverse case."
+  caption="Discontinuity of the Third Kind (Mixed): (i) one one-sided limit exists while the other does not; (ii) the reverse case."
 />
 
 #### 4. Discontinuity of the Fourth Kind (Infinite Discontinuity)
 
-<RuleBox kind="definition" title="§1.6 (4) Discontinuity of the Fourth Kind (Infinite Discontinuity)">
+<RuleBox kind="definition" title="(4) Discontinuity of the Fourth Kind (Infinite Discontinuity)">
 
 A function $f(x)$ is said to have an **infinite discontinuity** (discontinuity of the fourth kind) at $x = x_1$ if **either one or both** of the right-hand limit $f(x_1 + 0)$ and the left-hand limit $f(x_1 - 0)$ is infinite.
 
@@ -389,16 +392,18 @@ For instance, $f(x) = \dfrac{1}{(x - x_1)^2}$ has $f(x_1 - 0) = f(x_1 + 0) = +\i
 
 <DiagramFigure
   src="/diagrams/get-209/limits-and-continuity-fourth-kind.png"
-  caption="H. K. Dass §1.6 — Discontinuity of the Fourth Kind (Infinite): one or both one-sided limits are infinite at x₁."
+  caption="Discontinuity of the Fourth Kind (Infinite): one or both one-sided limits are infinite at x₁."
 />
 
 #### 5. Discontinuity of the Fifth Kind (Removable Discontinuity)
 
-<RuleBox kind="definition" title="§1.6 (5) Discontinuity of the Fifth Kind (Removable Discontinuity)">
+<RuleBox kind="definition" title="(5) Discontinuity of the Fifth Kind (Removable Discontinuity)">
 
 A function $f(x)$ is said to have a **removable discontinuity** (discontinuity of the fifth kind) at $x = x_1$ if the right-hand limit $f(x_1 + 0)$ equals the left-hand limit $f(x_1 - 0)$ (both finite), **but this common value is not equal to $f(x_1)$** (or $f(x_1)$ is undefined):
 
-$$f(x_1 - 0) = f(x_1 + 0) \neq f(x_1).$$
+$$
+f(x_1 - 0) = f(x_1 + 0) \neq f(x_1).
+$$
 
 </RuleBox>
 
@@ -406,12 +411,12 @@ It is called *removable* because simply redefining $f(x_1)$ to equal the common 
 
 <DiagramFigure
   src="/diagrams/get-209/limits-and-continuity-fifth-kind.png"
-  caption="H. K. Dass §1.6 — Discontinuity of the Fifth Kind (Removable): f(x₁ − 0) = f(x₁ + 0) exists finitely, but differs from f(x₁)."
+  caption="Discontinuity of the Fifth Kind (Removable): f(x₁ − 0) = f(x₁ + 0) exists finitely, but differs from f(x₁)."
 />
 
 #### Quick Comparison of the Five Kinds of Discontinuity
 
-| Kind | Name in H. K. Dass | Condition on $f(x_1 - 0)$, $f(x_1 + 0)$, and $f(x_1)$ |
+| Kind | Name in standard engineering mathematics | Condition on $f(x_1 - 0)$, $f(x_1 + 0)$, and $f(x_1)$ |
 |---|---|---|
 | **1st Kind** | First kind (jump) | Both $f(x_1 - 0)$ and $f(x_1 + 0)$ exist finitely, and $f(x_1 - 0) \neq f(x_1 + 0)$ |
 | **2nd Kind** | Second kind | Neither $f(x_1 - 0)$ nor $f(x_1 + 0)$ exists |
@@ -420,8 +425,7 @@ It is called *removable* because simply redefining $f(x_1)$ to equal the common 
 | **5th Kind** | Removable discontinuity | $f(x_1 - 0) = f(x_1 + 0)$ (finite), but $f(x_1 - 0) = f(x_1 + 0) \neq f(x_1)$ |
 
 <ExerciseSet
-  title="Exercise 1.2"
-  source="H. K. Dass, Ch. 1, pp. 5–6"
+  title="Practice Set"
   items={[
     {
       q: "Test for continuity at the origin: $\\displaystyle f(x, y) = \\begin{cases} \\dfrac{xy(x^2 - y^2)}{x^2 + y^2}, & \\text{when } x \\neq 0,\\; y \\neq 0 \\\\[4pt] 0, & \\text{when } x = 0,\\; y = 0. \\end{cases}$",
@@ -452,7 +456,7 @@ It is called *removable* because simply redefining $f(x_1)$ to equal the common 
       a: "$\\lim_{(x, y) \\to (1, 2)} f(x, y) = 4 \\neq f(1, 2) = 0$; hence discontinuous at $(1, 2)$."
     },
     {
-      q: "(A.M.I.E.T.E., Dec. 2007) Show that the function $\\displaystyle f(x, y) = \\begin{cases} (x + y)\\sin\\!\\left(\\dfrac{1}{x + y}\\right), & x + y \\neq 0 \\\\[4pt] 0, & x + y = 0 \\end{cases}$ is continuous at $(0, 0)$ but its partial derivatives of first order do not exist at $(0, 0)$.",
+      q: " Show that the function $\\displaystyle f(x, y) = \\begin{cases} (x + y)\\sin\\!\\left(\\dfrac{1}{x + y}\\right), & x + y \\neq 0 \\\\[4pt] 0, & x + y = 0 \\end{cases}$ is continuous at $(0, 0)$ but its partial derivatives of first order do not exist at $(0, 0)$.",
       a: "$|f(x, y)| \\le |x + y| \\to 0 = f(0, 0)$ (continuous), while $f_x(0, 0) = \\lim_{h \\to 0}\\sin(1/h)$ and $f_y(0, 0) = \\lim_{k \\to 0}\\sin(1/k)$ do not exist."
     }
   ]}
@@ -460,36 +464,40 @@ It is called *removable* because simply redefining $f(x_1)$ to equal the common 
 
 ## Common Exam Pitfalls
 
-<Callout variant="warning" title="Frequent mistakes in §1.1–1.6 exam problems">
+<Callout variant="warning" title="Frequent mistakes Here, exam problems">
 
-- **Stopping after straight lines $y = mx$:** As Example 1 ($f = \dfrac{x^2 y}{x^4 + y^2}$) and Exercise 1.2 Q3 ($f = \dfrac{x^3 y^3}{x^3 + y^3}$) show, a function can approach $0$ along every coordinate axis and every straight line $y = mx$, yet still have **no limit** along a parabola $y = mx^2$ or a curve hugging a zero of the denominator! Always match the powers of $x$ and $y$ in the denominator when picking test curves.
+- **Stopping after straight lines $y = mx$:** As Example 1 ($f = \dfrac{x^2 y}{x^4 + y^2}$) and the worked example above ($f = \dfrac{x^3 y^3}{x^3 + y^3}$) show, a function can approach $0$ along every coordinate axis and every straight line $y = mx$, yet still have **no limit** along a parabola $y = mx^2$ or a curve hugging a zero of the denominator! Always match the powers of $x$ and $y$ in the denominator when picking test curves.
 - **Confusing iterated limits with simultaneous limits:** Equality of $\lim_{x \to a}\lim_{y \to b} f(x, y)$ and $\lim_{y \to b}\lim_{x \to a} f(x, y)$ is *necessary* (when both exist) for the simultaneous limit to exist, but **not sufficient**.
 - **Forgetting $|x|$ when taking square roots:** In Example 6, $\sqrt{x^2} = |x|$, not $x$. Writing $\frac{x}{|x|} = \pm 1$ immediately exposes the directional dependence even along $y = 0$.
-- **Assuming continuity implies partial derivatives exist:** Exercise 1.2 Q8 proves the opposite—a function of two variables can be continuous at $(0, 0)$ even while $f_x(0, 0)$ and $f_y(0, 0)$ both fail to exist.
+- **Assuming continuity implies partial derivatives exist:** the worked example above proves the opposite—a function of two variables can be continuous at $(0, 0)$ even while $f_x(0, 0)$ and $f_y(0, 0)$ both fail to exist.
 - **Mixing up the five discontinuity kinds:** Remember that the **first kind** requires *both* one-sided limits to exist finitely (but differ), the **second kind** means *neither* exists, the **third (mixed) kind** means *exactly one* exists, the **fourth kind** involves an *infinite* limit or unbounded oscillation, and the **fifth (removable) kind** means both limits exist and are *equal*, differing only from $f(x_1)$.
 
 </Callout>
 
 ## Summary of Formulas
 
-<RuleBox kind="formula" title="Chapter 1 (§1.1–1.6) Formula & Condition Summary">
+<RuleBox kind="formula" title="Formula & Condition Summary">
 
-- **Function of two variables (§1.1):** $z = f(x, y)$, representing a surface over a domain $A$ in the $xy$-plane.
-- **$\varepsilon$–$\delta$ limit definition (§1.2):**
+- **Function of two variables:** $z = f(x, y)$, representing a surface over a domain $A$ in the $xy$-plane.
+- **$\varepsilon$–$\delta$ limit definition:**
 
-$$\lim_{\substack{x \to a \\ y \to b}} f(x, y) = l \iff \forall\,\varepsilon > 0,\;\exists\,\delta > 0 \text{ such that } 0 < (x - a)^2 + (y - b)^2 < \delta^2 \implies |f(x, y) - l| < \varepsilon.$$
+$$
+\lim_{\substack{x \to a \\ y \to b}} f(x, y) = l \iff \forall\,\varepsilon > 0,\;\exists\,\delta > 0 \text{ such that } 0 < (x - a)^2 + (y - b)^2 < \delta^2 \implies |f(x, y) - l| < \varepsilon.
+$$
 
-- **Origin path-test sequence (§1.3):**
+- **Origin path-test sequence:**
   1. $f_1$: set $x = 0$, let $y \to 0$;
   2. $f_2$: set $y = 0$, let $x \to 0$;
   3. $f_3$: set $y = mx$, let $x \to 0$;
   4. $f_4$: set $y = mx^2$ (or $y = mx^n$ / custom curve matching denominator zeroes), let $x \to 0$.
   If any two differ or depend on $m$, the limit does not exist.
-- **Continuity at $(a, b)$ (§1.4–1.5):** $f(a, b)$ is defined, $\displaystyle \lim_{(x, y) \to (a, b)} f(x, y)$ exists, and
+- **Continuity at $(a, b)$:** $f(a, b)$ is defined, $\displaystyle \lim_{(x, y) \to (a, b)} f(x, y)$ exists, and
 
-$$\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).$$
+$$
+\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).
+$$
 
-- **Five kinds of discontinuity at $x = x_1$ (§1.6):**
+- **Five kinds of discontinuity at $x = x_1$:**
   1. **First kind:** $f(x_1 - 0)$ and $f(x_1 + 0)$ exist finitely, $f(x_1 - 0) \neq f(x_1 + 0)$.
   2. **Second kind:** neither $f(x_1 - 0)$ nor $f(x_1 + 0)$ exists.
   3. **Third kind (mixed):** exactly one of $f(x_1 - 0)$, $f(x_1 + 0)$ exists.

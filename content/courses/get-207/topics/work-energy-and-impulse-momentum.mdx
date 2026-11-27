@@ -1,0 +1,1066 @@
+---
+title: "Kinetics of Particles: Energy and Momentum Methods"
+order: 9
+topicId: "22222222-2222-4222-8222-222222270009"
+courseCode: "GET 207"
+courseSlug: "get-207"
+ccmasRef: "Work, energy and power; impulse and momentum; impact"
+outcomes:
+  - "Compute the work of constant forces, weights, spring forces and gravitational forces, and apply the principle of work and energy $T_1 + U_{1\\to 2} = T_2$ to single particles and connected systems"
+  - "Determine power and mechanical efficiency of machines from forces, velocities and work rates"
+  - "Write potential energies $V_g$ and $V_e$, recognize conservative forces, and solve problems with conservation of energy $T_1 + V_1 = T_2 + V_2$, supplementing with $\\sum F_n = ma_n$ for normal forces"
+  - "Apply the principle of impulse and momentum, including impulsive motion and conservation of momentum of a system of particles"
+  - "Solve direct and oblique central impact problems using conservation of momentum and the coefficient of restitution $e$"
+  - "Split multi-phase problems into energy phases and impact phases and choose the right method for each"
+status: "published"
+isFree: true
+---
+
+## Overview
+
+Previously, every kinetics problem went through $\mathbf{F} = m\mathbf{a}$: find the acceleration, then integrate with kinematics to get velocities and positions. This topic integrates Newton's second law *once and for all* to obtain two new methods that skip the acceleration entirely:
+
+- the **method of work and energy**, which relates **force, mass, velocity and displacement**, and
+- the **method of impulse and momentum**, which relates **force, mass, velocity and time**, and is the only practical tool for **impact**.
+
+Section 13.15 then shows how to choose among $\sum \mathbf{F} = m\mathbf{a}$, work–energy and impulse–momentum, and how to chain them (energy → impact → energy) in a single problem. Section 13.9 (motion under a conservative central force, space mechanics) is outside the scope of these notes and is only summarized.
+
+---
+
+### 13.1 Introduction
+
+The advantage of the two new methods is that **the acceleration never has to be determined**. Work and energy is a *scalar* method and is ideal when forces are known as functions of position; impulse and momentum is a *vector* method and is ideal when forces are known as functions of time or act for very short times (impulsive forces).
+
+The chapter is organized as follows: work of a force, kinetic energy and the principle of work and energy, power and efficiency, potential energy and conservative forces, conservation of energy, the principle of impulse and momentum, impulsive motion, impact, and problems combining energy and momentum.
+
+---
+
+### 13.2 Work of a Force
+
+Let a particle move from $A$ to a neighboring point $A'$; the small vector $d\mathbf{r}$ joining them is the **displacement**. The work of a force $\mathbf{F}$ during this displacement is the scalar product of the force and the displacement.
+
+<RuleBox kind="definition" title="Work of a force">
+
+$$
+dU = \mathbf{F} \cdot d\mathbf{r} \tag{13.1}
+$$
+
+With $F$ and $ds$ the magnitudes of the force and displacement and $\alpha$ the angle between $\mathbf{F}$ and $d\mathbf{r}$:
+
+$$
+dU = F\,ds\cos\alpha \tag{13.1$'$}
+$$
+
+$$
+dU = F_x\,dx + F_y\,dy + F_z\,dz \tag{13.1$''$}
+$$
+
+- Work is a **scalar** — it has magnitude and sign but no direction. $dU > 0$ if $\alpha$ is acute, $dU < 0$ if $\alpha$ is obtuse, $dU = 0$ if $\mathbf{F} \perp d\mathbf{r}$.
+- Units: $\text{N}\cdot\text{m}$ = **joule (J)** in SI; $\text{ft}\cdot\text{lb}$ or $\text{in}\cdot\text{lb}$ in U.S. units. $1\,\text{ft}\cdot\text{lb} = (0.3048\,\text{m})(4.448\,\text{N}) = 1.356\,\text{J}$.
+- The *moment* of a force is also expressed in $\text{N}\cdot\text{m}$, but must **not** be written in joules — a moment is not a form of energy.
+
+</RuleBox>
+
+For a **finite** displacement from $A_1$ to $A_2$, integrate along the path:
+
+<RuleBox kind="formula" title="Work during a finite displacement">
+
+$$
+U_{1\to 2} = \int_{A_1}^{A_2} \mathbf{F}\cdot d\mathbf{r} \tag{13.2}
+$$
+
+$$
+U_{1\to 2} = \int_{s_1}^{s_2} (F\cos\alpha)\,ds = \int_{s_1}^{s_2} F_t\,ds \tag{13.2$'$}
+$$
+
+$$
+U_{1\to 2} = \int_{A_1}^{A_2} (F_x\,dx + F_y\,dy + F_z\,dz) \tag{13.2$''$}
+$$
+
+The work $U_{1\to2}$ equals the **area under the curve** of $F_t = F\cos\alpha$ plotted against the path coordinate $s$).
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-2.png"
+  caption="(a) force F acting on a particle moving along a curved path; (b) the work U₁→₂ is the area under the Fₜ–s curve."
+/>
+
+The following special cases cover almost every problem in the chapter.
+
+<RuleBox kind="formula" title="Work of common forces">
+
+**Constant force in rectilinear motion**), $\alpha$ = angle between the force and the direction of motion, $\Delta x$ = displacement from $A_1$ to $A_2$:
+
+$$
+U_{1\to 2} = (F\cos\alpha)\,\Delta x \tag{13.3}
+$$
+
+**Force of gravity** (y axis upward, $F_x = 0$, $F_y = -W$, $F_z = 0$):
+
+$$
+U_{1\to 2} = -\int_{y_1}^{y_2} W\,dy = W y_1 - W y_2 \tag{13.4}
+$$
+
+$$
+U_{1\to 2} = -W(y_2 - y_1) = -W\,\Delta y \tag{13.4$'$}
+$$
+
+The work of the weight is the product of $W$ and the vertical displacement of the center of gravity; it is **positive when the body moves down** ($\Delta y < 0$) and is independent of the path.
+
+**Force exerted by a spring** (deflection $x$ measured from the undeformed position, spring constant $k$ in N/m, kN/m, lb/ft or lb/in.):
+
+$$
+F = kx \tag{13.5}
+$$
+
+$$
+U_{1\to 2} = -\int_{x_1}^{x_2} kx\,dx = \tfrac12 k x_1^2 - \tfrac12 k x_2^2 \tag{13.6}
+$$
+
+$$
+U_{1\to 2} = -\tfrac12 (F_1 + F_2)\,\Delta x \tag{13.6$'$}
+$$
+
+The spring's work is positive when $x_2 < x_1$, i.e., when the spring is **returning** to its undeformed position. Eq. (13.6$'$) is the area of the trapezoid under the $F$–$x$ line and is usually less error-prone with units.
+
+**Gravitational force** (particle $m$ moving from $r_1$ to $r_2$ relative to a fixed mass $M$):
+
+$$
+U_{1\to 2} = \frac{GMm}{r_2} - \frac{GMm}{r_1} \tag{13.7}
+$$
+
+For the earth, $GMm = WR^2$ with $R = 6.37\times 10^6\,\text{m}$ (3960 mi) and $W$ the weight at the earth's surface.
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-3.png"
+  caption="Constant force F making angle α with a rectilinear displacement Δx."
+/>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-4.png"
+  caption="Work of the weight W depends only on the vertical positions y₁ and y₂ of the center of gravity."
+/>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-5.png"
+  caption="(a) Body attached to a spring; (b) the work of the spring force is the negative of the trapezoidal area under F = kx between x₁ and x₂."
+/>
+
+<RuleBox kind="note" title="Forces which do no work">
+
+Forces applied to **fixed points** ($ds = 0$) or acting **perpendicular to the displacement** ($\cos\alpha = 0$) do no work. Examples: the reaction at a frictionless pin when the supported body rotates about the pin; the reaction at a frictionless surface when the body moves along it; the reaction at a roller moving along its track; and the weight of a body whose center of gravity moves horizontally.
+
+The relation $F = kx$ is strictly a static relation; using it in kinetics is accurate as long as the mass of the spring is small compared with the other masses in motion.
+
+</RuleBox>
+
+---
+
+### 13.3 Kinetic Energy of a Particle. Principle of Work and Energy
+
+Write Newton's second law in tangential components, $F_t = ma_t = m\,dv/dt$, and use $v = ds/dt$:
+
+$$
+F_t = m\frac{dv}{ds}\frac{ds}{dt} = mv\frac{dv}{ds} \qquad\Longrightarrow\qquad F_t\,ds = mv\,dv
+$$
+
+Integrating from $A_1$ ($s_1$, $v_1$) to $A_2$ ($s_2$, $v_2$):
+
+$$
+\int_{s_1}^{s_2} F_t\,ds = m\int_{v_1}^{v_2} v\,dv = \tfrac12 m v_2^2 - \tfrac12 m v_1^2 \tag{13.8}
+$$
+
+<RuleBox kind="theorem" title="Kinetic energy and the principle of work and energy">
+
+The **kinetic energy** of a particle of mass $m$ and speed $v$ is the scalar
+
+$$
+T = \tfrac12 m v^2 \tag{13.9}
+$$
+
+The **principle of work and energy**: when a particle moves from $A_1$ to $A_2$ under a force $\mathbf{F}$, the work of $\mathbf{F}$ equals the change in kinetic energy,
+
+$$
+U_{1\to 2} = T_2 - T_1 \tag{13.10}
+$$
+
+or, rearranged,
+
+$$
+T_1 + U_{1\to 2} = T_2 \tag{13.11}
+$$
+
+- $U_{1\to2}$ is the **algebraic sum** of the work of **all** forces acting on the particle.
+- Like $\mathbf{F} = m\mathbf{a}$, the principle holds only in a **newtonian frame**; $v$ must be measured in such a frame.
+- $T$ is always **positive**, whatever the direction of motion. $T$ equals the work needed to bring the particle from rest to speed $v$, and also its capacity to do work as it is brought to rest.
+- Units: $\text{kg}(\text{m/s})^2 = \text{N}\cdot\text{m} = \text{J}$; $(\text{lb}\cdot\text{s}^2/\text{ft})(\text{ft/s})^2 = \text{ft}\cdot\text{lb}$.
+
+</RuleBox>
+
+---
+
+### 13.4 Applications of the Principle of Work and Energy
+
+**Pendulum example).** A bob of weight $W$ on a cord of length $l$ is released from rest at the horizontal position $A_1$. On the free-body diagram the cord force $\mathbf{P}$ is normal to the path and does no work; only $W$ works, through a vertical drop $l$: $U_{1\to2} = Wl$. Then
+
+$$
+T_1 + U_{1\to2} = T_2:\qquad 0 + Wl = \tfrac12\frac{W}{g}v_2^2 \quad\Longrightarrow\quad v_2 = \sqrt{2gl}
+$$
+
+— the speed of a body falling freely through $l$.
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-8.png"
+  caption="(a) Pendulum released from A₁; (b) free-body diagram of the bob: only W does work."
+/>
+
+The example shows the three **advantages** of the method: (1) no need to find the acceleration at an intermediate position and integrate; (2) all quantities are scalars and add directly; (3) forces which do no work drop out.
+
+The same features are **limitations**: work–energy cannot give an acceleration directly, and a force normal to the path (which does no work) must be found with Newton's second law. For the cord tension at $A_2$), $\sum F_n = ma_n$ gives
+
+$$
+P - W = ma_n = \frac{W}{g}\frac{v_2^2}{l} \quad\Longrightarrow\quad P = W + \frac{W}{g}\frac{2gl}{l} = 3W
+$$
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-9.png"
+  caption="Free-body diagram and kinetic diagram of the bob at A₂ (used with ΣFₙ = maₙ)."
+/>
+
+<RuleBox kind="working-rule" title="Systems of particles and friction">
+
+1. **Several particles:** Eq. (13.11) may be written for each particle separately, or as a **single equation** $T_1 + U_{1\to2} = T_2$ in which $T$ is the arithmetic sum of all kinetic energies (all positive) and $U_{1\to2}$ is the work of all forces, including action–reaction pairs between the particles.
+2. **Inextensible cords and links:** the work of the forces a cord or link exerts on the two bodies it connects **cancels**, because their points of application move through equal distances.
+3. **Friction:** friction forces always oppose the displacement of the body on which they act, so their work is **always negative**. This work is energy dissipated into heat.
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Procedure — method of work and energy">
+
+1. **Compute the work of each force** with Eqs. (13.2), (13.3), (13.4$'$), (13.6) or (13.7). Zero for forces perpendicular to the displacement; negative for friction.
+2. **Compute the kinetic energies** $T_1$ and $T_2$ from Eq. (13.9).
+3. **Substitute into $T_1 + U_{1\to2} = T_2$** and solve for the single unknown.
+4. If a **normal force** is required where the speed is now known, use $a_n = v^2/\rho$ and $\sum F_n = ma_n$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Braking distance on a 5° incline"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-1.png"
+  problem="An automobile weighing $4000\,\text{lb}$ is driven down a $5^\circ$ incline at a speed of $60\,\text{mi/h}$ when the brakes are applied, causing a constant total braking force (applied by the road on the tires) of $1500\,\text{lb}$. Determine the distance traveled by the automobile as it comes to a stop."
+  steps={[
+    "**Kinetic energy, position 1.** Convert the speed: $v_1 = \\left(60\\,\\dfrac{\\text{mi}}{\\text{h}}\\right)\\left(\\dfrac{5280\\,\\text{ft}}{1\\,\\text{mi}}\\right)\\left(\\dfrac{1\\,\\text{h}}{3600\\,\\text{s}}\\right) = 88\\,\\text{ft/s}$, so $T_1 = \\tfrac12 m v_1^2 = \\tfrac12(4000/32.2)(88)^2 = 481{,}000\\,\\text{ft}\\cdot\\text{lb}$.",
+    "**Kinetic energy, position 2.** The car stops: $v_2 = 0$, $T_2 = 0$.",
+    "**Work.** Let $x$ be the distance traveled down the incline. The braking force opposes the motion, and the component $4000\\sin 5^\\circ$ of the weight acts in the direction of motion; the normal force $N$ does no work: $U_{1\\to2} = -1500x + (4000\\sin 5^\\circ)x = -1151x$.",
+    "**Principle of work and energy.** $T_1 + U_{1\\to2} = T_2$: $\\;481{,}000 - 1151x = 0$, so $x = 418\\,\\text{ft}$."
+  ]}
+  answer="$x = 418\,\text{ft}$"
+/>
+
+<StepRevealExample
+  title="Two blocks joined by a cable"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-2.png"
+  problem="Two blocks are joined by an inextensible cable as shown. If the system is released from rest, determine the velocity of block $A$ ($200\,\text{kg}$, on the horizontal plane) after it has moved $2\,\text{m}$. Block $B$ has a mass of $300\,\text{kg}$. Assume that the coefficient of kinetic friction between block $A$ and the plane is $\mu_k = 0.25$ and that the pulley is weightless and frictionless."
+  steps={[
+    "**Block A.** $m_A = 200\\,\\text{kg}$, $W_A = (200)(9.81) = 1962\\,\\text{N}$. Friction $F_A = \\mu_k N_A = \\mu_k W_A = 0.25(1962) = 490\\,\\text{N}$. With $F_C$ the cable force: $T_1 + U_{1\\to2} = T_2$: $\\;0 + F_C(2\\,\\text{m}) - F_A(2\\,\\text{m}) = \\tfrac12 m_A v^2$, i.e. $F_C(2) - (490)(2) = \\tfrac12(200)v^2 \\quad (1)$.",
+    "**Block B.** $m_B = 300\\,\\text{kg}$, $W_B = (300)(9.81) = 2940\\,\\text{N}$. Block $B$ moves down $2\\,\\text{m}$: $0 + W_B(2) - F_C(2) = \\tfrac12 m_B v^2$, i.e. $(2940)(2) - F_C(2) = \\tfrac12(300)v^2 \\quad (2)$.",
+    "**Add (1) and (2).** The work of the cable forces on $A$ and $B$ cancels (the cable is inextensible): $(2940)(2) - (490)(2) = \\tfrac12(200 + 300)v^2$.",
+    "Solve: $4900\\,\\text{J} = \\tfrac12(500\\,\\text{kg})v^2 \\Rightarrow v = 4.43\\,\\text{m/s}$."
+  ]}
+  answer="$v = 4.43\,\text{m/s}$"
+/>
+
+<StepRevealExample
+  title="Spring stopping a sliding package"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-3.png"
+  problem="A spring is used to stop a $60\text{-kg}$ package which is sliding on a horizontal surface. The spring has a constant $k = 20\,\text{kN/m}$ and is held by cables so that it is initially compressed $120\,\text{mm}$. Knowing that the package has a velocity of $2.5\,\text{m/s}$ in the position shown ($600\,\text{mm}$ from the spring) and that the maximum additional deflection of the spring is $40\,\text{mm}$, determine (a) the coefficient of kinetic friction between the package and the surface, (b) the velocity of the package as it passes again through the position shown."
+  steps={[
+    "**(a) Position 1 → 2. Kinetic energy.** $T_1 = \\tfrac12(60)(2.5)^2 = 187.5\\,\\text{J}$; at maximum deflection $v_2 = 0$, $T_2 = 0$.",
+    "**Work of friction.** $F = \\mu_k N = \\mu_k mg = \\mu_k(60)(9.81) = (588.6\\,\\text{N})\\mu_k$. Over $0.600 + 0.040 = 0.640\\,\\text{m}$: $(U_{1\\to2})_f = -(588.6)\\mu_k(0.640) = -(377\\,\\text{J})\\mu_k$.",
+    "**Work of the spring.** $P_{\\min} = kx_0 = (20\\,000)(0.120) = 2400\\,\\text{N}$, $P_{\\max} = P_{\\min} + k\\,\\Delta x = 2400 + (20\\,000)(0.040) = 3200\\,\\text{N}$. By Eq. (13.6$'$): $(U_{1\\to2})_e = -\\tfrac12(2400 + 3200)(0.040) = -112.0\\,\\text{J}$.",
+    "**Work and energy.** $U_{1\\to2} = -(377)\\mu_k - 112.0$. $\\;T_1 + U_{1\\to2} = T_2$: $187.5 - 377\\mu_k - 112.0 = 0 \\Rightarrow \\mu_k = 0.20$.",
+    "**(b) Position 2 → 3.** $T_2 = 0$, $T_3 = \\tfrac12(60)v_3^2$. The distances are the same, so the friction work is again $-(377)\\mu_k = -75.5\\,\\text{J}$, but the spring now does **positive** work $+112.0\\,\\text{J}$: $U_{2\\to3} = -75.5 + 112.0 = +36.5\\,\\text{J}$.",
+    "$T_2 + U_{2\\to3} = T_3$: $\\;0 + 36.5 = \\tfrac12(60)v_3^2 \\Rightarrow v_3 = 1.103\\,\\text{m/s}$, directed to the left (away from the spring)."
+  ]}
+  answer="(a) $\mu_k = 0.20$; (b) $v_3 = 1.103\,\text{m/s} \leftarrow$"
+/>
+
+<StepRevealExample
+  title="Car on a frictionless track"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-4.png"
+  problem="A $2000\text{-lb}$ car starts from rest at point 1 and moves without friction down the track shown. (a) Determine the force exerted by the track on the car at point 2, where the radius of curvature of the track is $20\,\text{ft}$. (b) Determine the minimum safe value of the radius of curvature at point 3. (Point 2 is $40\,\text{ft}$ below point 1; point 3 is $15\,\text{ft}$ above point 2.)"
+  steps={[
+    "**(a) Speed at 2.** $T_1 = 0$, $T_2 = \\tfrac12 \\dfrac{W}{g}v_2^2$. Only the weight does work; the drop from 1 to 2 is $40\\,\\text{ft}$: $U_{1\\to2} = +W(40\\,\\text{ft})$.",
+    "$T_1 + U_{1\\to2} = T_2$: $\\;0 + W(40) = \\tfrac12\\dfrac{W}{g}v_2^2 \\Rightarrow v_2^2 = 80g = 80(32.2)$, $v_2 = 50.8\\,\\text{ft/s}$.",
+    "**Newton's second law at 2.** $a_n = v_2^2/\\rho$ is directed upward (toward the center of curvature): $+\\uparrow \\sum F_n = ma_n$: $\\;-W + N = \\dfrac{W}{g}\\dfrac{v_2^2}{\\rho} = \\dfrac{W}{g}\\dfrac{80g}{20} = 4W \\Rightarrow N = 5W = 10{,}000\\,\\text{lb}\\uparrow$.",
+    "**(b) Speed at 3.** Net drop from 1 to 3 is $40 - 15 = 25\\,\\text{ft}$: $0 + W(25) = \\tfrac12\\dfrac{W}{g}v_3^2 \\Rightarrow v_3^2 = 50g = 50(32.2)$, $v_3 = 40.1\\,\\text{ft/s}$.",
+    "**Newton's second law at 3.** The minimum safe $\\rho$ corresponds to $N = 0$, with $a_n$ directed downward: $+\\downarrow \\sum F_n = ma_n$: $\\;W = \\dfrac{W}{g}\\dfrac{v_3^2}{\\rho} = \\dfrac{W}{g}\\dfrac{50g}{\\rho} \\Rightarrow \\rho = 50\\,\\text{ft}$."
+  ]}
+  answer="(a) $N = 10{,}000\,\text{lb}\uparrow$; (b) $\rho_{\min} = 50\,\text{ft}$"
+/>
+
+<StepRevealExample
+  title="Package projected up a 15° incline"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-p13-9.png"
+  problem="A package is projected up a $15^\circ$ incline at $A$ with an initial velocity of $8\,\text{m/s}$. Knowing that the coefficient of kinetic friction between the package and the incline is $0.12$, determine (a) the maximum distance $d$ that the package will move up the incline, (b) the velocity of the package as it returns to its original position."
+  steps={[
+    "**FBD.** Weight $mg$, normal force $N = mg\\cos 15^\\circ$ (does no work), friction $0.12N = 0.12\\,mg\\cos 15^\\circ$ opposing the motion.",
+    "**(a) Up the incline.** $T_1 = \\tfrac12 m(8)^2 = 32m$, $T_2 = 0$. Both the weight component and friction oppose the motion: $U_{1\\to2} = -(mg\\sin 15^\\circ + 0.12\\,mg\\cos 15^\\circ)d = -m(9.81)(0.2588 + 0.1159)d = -3.676\\,m\\,d$.",
+    "$T_1 + U_{1\\to2} = T_2$: $\\;32m - 3.676\\,m\\,d = 0 \\Rightarrow d = 8.70\\,\\text{m}$.",
+    "**(b) Back down.** $T_2 = 0$, $T_3 = \\tfrac12 m v_3^2$. Now gravity helps and friction (reversed) opposes: $U_{2\\to3} = m(9.81)(\\sin 15^\\circ - 0.12\\cos 15^\\circ)(8.70) = m(9.81)(0.1429)(8.70) = 12.20\\,m$.",
+    "$0 + 12.20\\,m = \\tfrac12 m v_3^2 \\Rightarrow v_3 = 4.94\\,\\text{m/s}$, directed down the incline."
+  ]}
+  answer="(a) $d = 8.70\,\text{m}$; (b) $v = 4.94\,\text{m/s}$ down the $15^\circ$ incline"
+/>
+
+<ExerciseSet
+  title="Work and Kinetic Energy"
+  items={[
+    { q: "A $400\\text{-kg}$ satellite was placed in a circular orbit $1500\\,\\text{km}$ above the surface of the earth. At this elevation the acceleration of gravity is $6.43\\,\\text{m/s}^2$. Determine the kinetic energy of the satellite, knowing that its orbital speed is $25.6\\times 10^3\\,\\text{km/h}$.", a: "$T = 10.11\\,\\text{GJ}$" },
+    { q: "A $1\\text{-lb}$ stone is dropped down the bottomless pit at Carlsbad Caverns and strikes the ground with a speed of $95\\,\\text{ft/s}$. Neglecting air resistance, (a) determine the kinetic energy of the stone as it strikes the ground and the height $h$ from which it was dropped. (b) Solve part a assuming the same stone is dropped down a hole on the moon ($g_{\\text{moon}} = 5.31\\,\\text{ft/s}^2$).", a: "(a) $140.1\\,\\text{ft}\\cdot\\text{lb}$, $h = 140.1\\,\\text{ft}$; (b) $140.1\\,\\text{ft}\\cdot\\text{lb}$, $h = 850\\,\\text{ft}$" },
+    { q: "Packages are thrown down an incline at $A$ with a velocity of $1\\,\\text{m/s}$. The packages slide along the surface $ABC$ (incline at $30^\\circ$, then $7\\,\\text{m}$ horizontal) to a conveyor belt which moves with a velocity of $2\\,\\text{m/s}$. Knowing that $\\mu_k = 0.25$ between the packages and the surface $ABC$, determine the distance $d$ if the packages are to arrive at $C$ with a velocity of $2\\,\\text{m/s}$.", a: "$d = 6.71\\,\\text{m}$", figure: "/diagrams/get-207/work-energy-and-impulse-momentum-p13-11.png" },
+    { q: "A $1200\\text{-kg}$ trailer is hitched to a $1400\\text{-kg}$ car. The car and trailer are traveling at $72\\,\\text{km/h}$ when the driver applies the brakes on both. Knowing that the braking forces on the car and trailer are $5000\\,\\text{N}$ and $4000\\,\\text{N}$, respectively, determine (a) the distance traveled before they stop, (b) the horizontal component of the force exerted by the trailer hitch on the car.", a: "(a) $57.8\\,\\text{m}$; (b) $154\\,\\text{N}$ (pushing the car forward)" },
+    { q: "Express the acceleration of gravity $g_h$ at an altitude $h$ in terms of $g_0$, $h$ and the earth's radius $R$. Determine the percent error if the weight an object has on the surface of the earth is used as its weight at an altitude of (a) $1\\,\\text{km}$, (b) $1000\\,\\text{km}$.", a: "$g_h = g_0 R^2/(R+h)^2$; (a) $0.0314\\%$; (b) $25.3\\%$" }
+  ]}
+/>
+
+---
+
+### 13.5 Power and Efficiency
+
+**Power** is the time rate at which work is done. In choosing a motor, power matters far more than the total work: a small motor and a power plant can do the same work, but at vastly different rates.
+
+<RuleBox kind="definition" title="Power">
+
+Average power over $\Delta t$ is $\Delta U/\Delta t$; letting $\Delta t \to 0$,
+
+$$
+\text{Power} = \frac{dU}{dt} \tag{13.12}
+$$
+
+Substituting $dU = \mathbf{F}\cdot d\mathbf{r}$ and $d\mathbf{r}/dt = \mathbf{v}$ (velocity of the point of application of $\mathbf{F}$):
+
+$$
+\text{Power} = \mathbf{F}\cdot\mathbf{v} \tag{13.13}
+$$
+
+Units: $1\,\text{W} = 1\,\text{J/s} = 1\,\text{N}\cdot\text{m/s}$. U.S.: $\text{ft}\cdot\text{lb/s}$ or horsepower, $1\,\text{hp} = 550\,\text{ft}\cdot\text{lb/s}$. Since $1\,\text{ft}\cdot\text{lb/s} = 1.356\,\text{W}$, $\;1\,\text{hp} = 550(1.356\,\text{W}) = 746\,\text{W} = 0.746\,\text{kW}$.
+
+</RuleBox>
+
+<RuleBox kind="definition" title="Mechanical efficiency">
+
+$$
+\eta = \frac{\text{output work}}{\text{input work}} \tag{13.14}
+$$
+
+If work is done at a constant rate, the same ratio applies to rates:
+
+$$
+\eta = \frac{\text{power output}}{\text{power input}} \tag{13.15}
+$$
+
+Because of friction losses, $\eta < 1$ always. For machines converting electric or thermal energy into mechanical energy, Eq. (13.15) gives the **overall efficiency**, which accounts for all losses. Power output and power input must be expressed in the **same units**.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Power delivered to a dumbwaiter"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-5.png"
+  problem="The dumbwaiter $D$ and its load have a combined weight of $600\,\text{lb}$, while the counterweight $C$ weighs $800\,\text{lb}$. Determine the power delivered by the electric motor $M$ when the dumbwaiter (a) is moving up at a constant speed of $8\,\text{ft/s}$, (b) has an instantaneous velocity of $8\,\text{ft/s}$ and an acceleration of $2.5\,\text{ft/s}^2$, both directed upward."
+  steps={[
+    "The motor cable force $\\mathbf{F}$ has the same direction as $\\mathbf{v}_D$, so the power is $Fv_D$ with $v_D = 8\\,\\text{ft/s}$. We must find $F$ in each case. Counterweight $C$ hangs from a movable pulley supported by two cable segments of tension $T$.",
+    "**(a) Uniform motion**, $a_C = a_D = 0$. Free body $C$: $+\\uparrow\\sum F_y = 0$: $\\;2T - 800 = 0 \\Rightarrow T = 400\\,\\text{lb}$. Free body $D$: $F + T - 600 = 0 \\Rightarrow F = 600 - 400 = 200\\,\\text{lb}$.",
+    "$Fv_D = (200)(8) = 1600\\,\\text{ft}\\cdot\\text{lb/s}$; $\\;\\text{Power} = 1600/550 = 2.91\\,\\text{hp}$.",
+    "**(b) Accelerated motion.** $a_D = 2.5\\,\\text{ft/s}^2\\uparrow$ and, from the pulley arrangement, $a_C = -\\tfrac12 a_D = 1.25\\,\\text{ft/s}^2\\downarrow$.",
+    "Free body $C$: $+\\downarrow\\sum F_y = m_C a_C$: $\\;800 - 2T = \\dfrac{800}{32.2}(1.25) \\Rightarrow T = 384.5\\,\\text{lb}$.",
+    "Free body $D$: $+\\uparrow\\sum F_y = m_D a_D$: $\\;F + T - 600 = \\dfrac{600}{32.2}(2.5) = 46.6 \\Rightarrow F + 384.5 - 600 = 46.6$, $F = 262.1\\,\\text{lb}$.",
+    "$Fv_D = (262.1)(8) = 2097\\,\\text{ft}\\cdot\\text{lb/s}$; $\\;\\text{Power} = 2097/550 = 3.81\\,\\text{hp}$."
+  ]}
+  answer="(a) $2.91\,\text{hp}$; (b) $3.81\,\text{hp}$"
+/>
+
+<StepRevealExample
+  title="Average power of a hydraulic car-lift"
+  problem="It takes $15\,\text{s}$ to raise a $1200\text{-kg}$ car and the supporting $300\text{-kg}$ hydraulic car-lift platform to a height of $2.8\,\text{m}$. Determine (a) the average output power delivered by the hydraulic pump to lift the system, (b) the average electric power required, knowing that the overall conversion efficiency from electric to mechanical power for the system is 82 percent."
+  steps={[
+    "**Work done.** The lift starts and ends at rest, so the pump's work equals the increase in potential energy (the negative of the work of gravity): $W = (1200 + 300)(9.81) = 14\\,715\\,\\text{N}$, $\\;\\Delta U = W\\,\\Delta y = (14\\,715)(2.8) = 41\\,202\\,\\text{J}$.",
+    "**(a) Average power output** $= \\Delta U/\\Delta t = 41\\,202/15 = 2747\\,\\text{W} = 2.75\\,\\text{kW}$.",
+    "**(b) Electric input.** From Eq. (13.15), $\\text{power input} = \\text{power output}/\\eta = 2.747/0.82 = 3.35\\,\\text{kW}$."
+  ]}
+  answer="(a) $2.75\,\text{kW}$; (b) $3.35\,\text{kW}$"
+/>
+
+<ExerciseSet
+  title="Power and Efficiency"
+  items={[
+    { q: "The frictional resistance of a ship varies directly as the $1.75$ power of its speed $v$. A single tugboat at full power can tow the ship at a constant speed of $4.5\\,\\text{km/h}$ by exerting a constant force of $300\\,\\text{kN}$. Determine (a) the power developed by the tugboat, (b) the maximum speed at which two tugboats, capable of delivering the same power, can tow the ship.", a: "(a) $375\\,\\text{kW}$; (b) $5.79\\,\\text{km/h}$" }
+  ]}
+/>
+
+---
+
+### 13.6 Potential Energy
+
+The work of the weight, Eq. (13.4), depends only on the initial and final values of the function $Wy$ — not on the path. This function is called the **potential energy with respect to gravity**.
+
+<RuleBox kind="definition" title="Gravitational potential energy (constant W)">
+
+$$
+U_{1\to 2} = (V_g)_1 - (V_g)_2 \qquad\text{with}\qquad V_g = Wy \tag{13.16}
+$$
+
+- If $V_g$ **increases** (body rises), the work of $W$ is **negative**; if the work of $W$ is positive, $V_g$ decreases.
+- Only **changes** in $V_g$ matter, so the **datum** from which $y$ is measured is arbitrary.
+- Valid only while $W$ is constant, i.e., for displacements small compared with the earth's radius.
+
+</RuleBox>
+
+<RuleBox kind="definition" title="Potential energy for a variable gravitational force and for a spring">
+
+From Eq. (13.7), when the variation of gravity with distance $r$ from the earth's center cannot be neglected (space vehicles):
+
+$$
+V_g = -\frac{GMm}{r} \tag{13.17}
+$$
+
+$$
+V_g = -\frac{WR^2}{r} \tag{13.17$'$}
+$$
+
+with $R$ the earth's radius and $W$ the weight at the surface; $r$ is measured from the center of the earth ($r \ge R$). $V_g$ is always negative and approaches zero as $r \to \infty$.
+
+For a spring, from Eq. (13.6):
+
+$$
+U_{1\to 2} = (V_e)_1 - (V_e)_2 \qquad\text{with}\qquad V_e = \tfrac12 k x^2 \tag{13.18}
+$$
+
+The deflection $x$ **must be measured from the undeformed position** of the spring. Eq. (13.18) remains valid even when the spring rotates about its fixed end): only the initial and final deflections matter.
+
+</RuleBox>
+
+The concept extends to any force whose work is **independent of the path** of its point of application; such forces are called **conservative forces**.
+
+---
+
+### 13.7 Conservative Forces
+
+<RuleBox kind="theorem" title="Properties of a conservative force">
+
+A force $\mathbf{F}$ is **conservative** if its work $U_{1\to2}$ is independent of the path from $A_1$ to $A_2$. Then a **potential function** $V(x,y,z)$ exists with
+
+$$
+U_{1\to 2} = V(x_1, y_1, z_1) - V(x_2, y_2, z_2) \tag{13.19}
+$$
+
+$$
+U_{1\to 2} = V_1 - V_2 \tag{13.19$'$}
+$$
+
+Over any **closed path** the work is zero:
+
+$$
+\oint \mathbf{F}\cdot d\mathbf{r} = 0 \tag{13.20}
+$$
+
+The elementary work is an **exact differential**:
+
+$$
+dU = -dV(x, y, z) \tag{13.21}
+$$
+
+so that
+
+$$
+F_x = -\frac{\partial V}{\partial x} \qquad F_y = -\frac{\partial V}{\partial y} \qquad F_z = -\frac{\partial V}{\partial z} \tag{13.22}
+$$
+
+$$
+\mathbf{F} = -\operatorname{grad} V \tag{13.23}
+$$
+
+A necessary condition is that $\mathbf{F}$ depends **only on the position** of its point of application. Conversely, if $\mathbf{F}$ satisfies any one of Eqs. (13.19)–(13.23), it is conservative.
+
+</RuleBox>
+
+---
+
+### 13.8 Conservation of Energy
+
+When a particle moves under conservative forces only, substitute $U_{1\to2} = V_1 - V_2$ (Eq. 13.19$'$) into $U_{1\to2} = T_2 - T_1$:
+
+<RuleBox kind="theorem" title="Principle of conservation of energy">
+
+$$
+T_1 + V_1 = T_2 + V_2 \tag{13.24}
+$$
+
+When a particle moves under the action of conservative forces, the sum $E = T + V$, its **total mechanical energy**, remains constant.
+
+- **Pendulum):** with the datum at $A_2$, $T_1 + V_1 = 0 + Wl$ and $T_2 + V_2 = \tfrac12 \dfrac{W}{g}(2gl) + 0 = Wl$. The energy is all potential at $A_1$, all kinetic at $A_2$, all potential again at $A_3$.
+- If the only forces are the **weight and a normal reaction**, the speed is the same at all points at the same level, whatever the shape of the path.
+- **Friction forces are nonconservative**: their work depends on the path and is always negative, so the total mechanical energy of a system with friction **decreases** (it is converted into heat). Considering all forms of energy, the total energy is always conserved.
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Procedure — conservation of energy">
+
+1. **Check that all forces are conservative.** If friction or another nonconservative force does work, use $T_1 + U_{1\to2} = T_2$ instead.
+2. **Kinetic energy** $T = \tfrac12 mv^2$ at each end of the path.
+3. **Potential energy** of every force at each end: $V_g = Wy$ (choose a datum), $V_g = -GMm/r$ for space problems, $V_e = \tfrac12 kx^2$ with $x$ from the **undeformed** length.
+4. **Substitute into $T_1 + V_1 = T_2 + V_2$.** For a normal force (e.g., contact with a loop), add $\sum F_n = ma_n$.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Collar on a vertical rod with a spring"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-6.png"
+  problem="A $20\text{-lb}$ collar slides without friction along a vertical rod as shown. The spring attached to the collar has an undeformed length of $4\,\text{in.}$ and a constant of $3\,\text{lb/in.}$ If the collar is released from rest in position 1 (spring horizontal, $8\,\text{in.}$ long), determine its velocity after it has moved $6\,\text{in.}$ to position 2."
+  steps={[
+    "**Position 1.** Elongation $x_1 = 8 - 4 = 4\\,\\text{in.}$; $V_e = \\tfrac12 k x_1^2 = \\tfrac12(3)(4)^2 = 24\\,\\text{in}\\cdot\\text{lb}$. Datum at position 1, so $V_g = 0$. $V_1 = 24\\,\\text{in}\\cdot\\text{lb} = 2\\,\\text{ft}\\cdot\\text{lb}$. Released from rest: $T_1 = 0$.",
+    "**Position 2.** Spring length $\\sqrt{8^2 + 6^2} = 10\\,\\text{in.}$, so $x_2 = 10 - 4 = 6\\,\\text{in.}$; $V_e = \\tfrac12(3)(6)^2 = 54\\,\\text{in}\\cdot\\text{lb}$. $V_g = Wy = (20)(-6) = -120\\,\\text{in}\\cdot\\text{lb}$. $V_2 = 54 - 120 = -66\\,\\text{in}\\cdot\\text{lb} = -5.5\\,\\text{ft}\\cdot\\text{lb}$.",
+    "**Kinetic energy.** $T_2 = \\tfrac12 m v_2^2 = \\tfrac12\\dfrac{20}{32.2}v_2^2 = 0.311v_2^2$.",
+    "**Conservation of energy.** $T_1 + V_1 = T_2 + V_2$: $\\;0 + 2 = 0.311v_2^2 - 5.5 \\Rightarrow v_2 = \\pm 4.91\\,\\text{ft/s}$; the collar is moving down."
+  ]}
+  answer="$v_2 = 4.91\,\text{ft/s}\downarrow$"
+/>
+
+<StepRevealExample
+  title="Pellet around a loop"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-7.png"
+  problem="The $0.5\text{-lb}$ pellet is pushed against the spring ($k = 3\,\text{lb/in.}$) at $A$ and released from rest. Neglecting friction, determine the smallest deflection of the spring for which the pellet will travel around the loop $ABCDE$ (radius $2\,\text{ft}$) and remain at all times in contact with the loop."
+  steps={[
+    "**Required speed at D.** At the highest point $D$, $V_g$ is maximum, so $T$ and $v$ are minimum. Contact requires $N \\ge 0$; set $N = 0$: $+\\downarrow\\sum F_n = ma_n$: $\\;W = ma_n \\Rightarrow mg = ma_n \\Rightarrow a_n = g$. With $a_n = v_D^2/r$: $v_D^2 = rg = (2)(32.2) = 64.4\\,\\text{ft}^2/\\text{s}^2$.",
+    "**Position 1 (at A).** Spring deflection $x$, $k = 3\\,\\text{lb/in.} = 36\\,\\text{lb/ft}$: $V_e = \\tfrac12(36)x^2 = 18x^2$. Datum at $A$: $V_g = 0$, so $V_1 = 18x^2$. Released from rest: $T_1 = 0$.",
+    "**Position 2 (at D).** Spring undeformed: $V_e = 0$. The pellet is $4\\,\\text{ft}$ above the datum: $V_g = (0.5)(4) = 2\\,\\text{ft}\\cdot\\text{lb}$, so $V_2 = 2\\,\\text{ft}\\cdot\\text{lb}$. $T_2 = \\tfrac12 m v_D^2 = \\tfrac12\\dfrac{0.5}{32.2}(64.4) = 0.5\\,\\text{ft}\\cdot\\text{lb}$.",
+    "**Conservation of energy.** $T_1 + V_1 = T_2 + V_2$: $\\;0 + 18x^2 = 0.5 + 2 \\Rightarrow x = 0.3727\\,\\text{ft} = 4.47\\,\\text{in.}$"
+  ]}
+  answer="$x = 4.47\,\text{in.}$"
+/>
+
+<ExerciseSet
+  title="Conservation of Energy"
+  items={[
+    { q: "The sphere at $A$ (level with $O$) is given a downward velocity $v_0$ and swings in a vertical circle of radius $l$ and center $O$. Determine the smallest $v_0$ for which the sphere will reach point $B$ (directly above $O$) (a) if $AO$ is a rope, (b) if $AO$ is a slender rod of negligible mass.", a: "(a) $\\sqrt{3gl}$; (b) $\\sqrt{2gl}$", figure: "/diagrams/get-207/work-energy-and-impulse-momentum-p13-39.png" },
+    { q: "An elastic cable is to be designed for bungee jumping from a tower $130\\,\\text{ft}$ high. The cable is to be $85\\,\\text{ft}$ long unstretched and to stretch to a total length of $100\\,\\text{ft}$ when a $600\\text{-lb}$ weight is attached to it and dropped from the tower. Determine (a) the required spring constant $k$, (b) how close to the ground a $186\\text{-lb}$ man will come if he uses this cable.", a: "(a) $533\\,\\text{lb/ft}$; (b) $37.0\\,\\text{ft}$" },
+    { q: "A spring is used to stop a $50\\text{-kg}$ package moving down a $20^\\circ$ incline. The spring has $k = 30\\,\\text{kN/m}$ and is held by cables so that it is initially compressed $50\\,\\text{mm}$. Knowing that the velocity of the package is $2\\,\\text{m/s}$ when it is $8\\,\\text{m}$ from the spring and neglecting friction, determine the maximum additional deformation of the spring.", a: "$0.269\\,\\text{m}$" },
+    { q: "Re-solve the incline problem above assuming the kinetic coefficient of friction between the package and the incline is $0.2$.", a: "$0.1744\\,\\text{m}$" }
+  ]}
+/>
+
+---
+
+### 13.9 Motion Under a Conservative Central Force. Application to Space Mechanics
+
+*(Outside the scope of these notes.)* When a particle moves under a force that is both **central** and **conservative** (e.g., a space vehicle under the earth's gravity), both its angular momentum about the center of force and its total energy are conserved. standard mechanics combine $r_0 m v_0 \sin\phi_0 = r m v \sin\phi$ (13.25) with $\tfrac12 mv_0^2 - GMm/r_0 = \tfrac12 mv^2 - GMm/r$ (13.26) to find speeds and the maximum and minimum distances of orbits (Sample Probs. 13.8 and 13.9).
+
+---
+
+### 13.10 Principle of Impulse and Momentum
+
+Newton's second law in terms of the linear momentum $m\mathbf{v}$ is
+
+$$
+\mathbf{F} = \frac{d}{dt}(m\mathbf{v}) \tag{13.27}
+$$
+
+Multiplying by $dt$ and integrating from $t_1$ to $t_2$: $\int_{t_1}^{t_2}\mathbf{F}\,dt = m\mathbf{v}_2 - m\mathbf{v}_1$.
+
+<RuleBox kind="theorem" title="Principle of impulse and momentum">
+
+$$
+m\mathbf{v}_1 + \int_{t_1}^{t_2} \mathbf{F}\,dt = m\mathbf{v}_2 \tag{13.28}
+$$
+
+The integral is the **linear impulse** of $\mathbf{F}$:
+
+$$
+\mathbf{Imp}_{1\to2} = \int_{t_1}^{t_2}\mathbf{F}\,dt = \mathbf{i}\int_{t_1}^{t_2} F_x\,dt + \mathbf{j}\int_{t_1}^{t_2} F_y\,dt + \mathbf{k}\int_{t_1}^{t_2} F_z\,dt \tag{13.29}
+$$
+
+Each component of the impulse equals the **area under the $F$–$t$ curve**). For a constant force, $\mathbf{Imp} = \mathbf{F}(t_2 - t_1)$. Units: $\text{N}\cdot\text{s} = \text{kg}\cdot\text{m/s}$ (SI) and $\text{lb}\cdot\text{s}$ (U.S.) — the same units as momentum.
+
+$$
+m\mathbf{v}_1 + \mathbf{Imp}_{1\to2} = m\mathbf{v}_2 \tag{13.30}
+$$
+
+Momentum and impulse are **vectors** (unlike work and kinetic energy), so in practice Eq. (13.30) is replaced by its components:
+
+$$
+(mv_x)_1 + \int_{t_1}^{t_2}F_x\,dt = (mv_x)_2 \qquad (mv_y)_1 + \int_{t_1}^{t_2}F_y\,dt = (mv_y)_2 \qquad (mv_z)_1 + \int_{t_1}^{t_2}F_z\,dt = (mv_z)_2 \tag{13.31}
+$$
+
+With several forces:
+
+$$
+m\mathbf{v}_1 + \sum \mathbf{Imp}_{1\to2} = m\mathbf{v}_2 \tag{13.32}
+$$
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-16.png"
+  caption="The components of the impulse are the areas under the Fₓ, F_y, F_z versus t curves."
+/>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-17.png"
+  caption="Impulse-momentum diagram: initial momentum plus impulse equals final momentum (vector addition)."
+/>
+
+<RuleBox kind="theorem" title="Systems of particles — conservation of momentum">
+
+For two or more particles, add the momenta and impulses of all particles:
+
+$$
+\sum m\mathbf{v}_1 + \sum \mathbf{Imp}_{1\to2} = \sum m\mathbf{v}_2 \tag{13.33}
+$$
+
+The impulses of the action–reaction forces between the particles **always cancel** (equal, opposite, same time interval), so only **external** impulses appear. If the sum of the external forces is zero:
+
+$$
+\sum m\mathbf{v}_1 = \sum m\mathbf{v}_2 \tag{13.34}
+$$
+
+— the **total momentum is conserved**. Example: two boats initially at rest pulled together (water resistance neglected): $0 = m_A\mathbf{v}'_A + m_B\mathbf{v}'_B$, so they move toward each other with speeds inversely proportional to their masses.
+
+Note the contrast: the sum of the **impulses** of internal forces is always zero, but the sum of their **work** is zero only in special cases (e.g., inextensible cords or links).
+
+</RuleBox>
+
+---
+
+### 13.11 Impulsive Motion
+
+A force acting during a very short interval but large enough to produce a definite change in momentum is an **impulsive force**; the resulting motion is **impulsive motion** (e.g., a bat striking a ball, the diagram).
+
+<RuleBox kind="theorem" title="Impulsive motion">
+
+$$
+m\mathbf{v}_1 + \sum \mathbf{F}\,\Delta t = m\mathbf{v}_2 \tag{13.35}
+$$
+
+- **Nonimpulsive forces may be neglected**: the weight, the force of a spring, or any force known to be small compared with the impulsive forces ($W\Delta t \approx 0$).
+- **Unknown reactions** may or may not be impulsive — include their impulses unless proved negligible (e.g., the reactions of a batter's hands are not negligible if the ball is hit incorrectly).
+
+For several particles:
+
+$$
+\sum m\mathbf{v}_1 + \sum \mathbf{F}\,\Delta t = \sum m\mathbf{v}_2 \tag{13.36}
+$$
+
+where only **impulsive external** forces appear. If all external forces are nonimpulsive, Eq. (13.36) reduces to Eq. (13.34): the total momentum is conserved — e.g., when two freely moving particles collide. **Total energy is generally not conserved** in such collisions.
+
+</RuleBox>
+
+<RuleBox kind="working-rule" title="Procedure — impulse and momentum">
+
+1. Draw an **impulse–momentum diagram**: initial momentum $m\mathbf{v}_1$ + impulses of all forces = final momentum $m\mathbf{v}_2$.
+2. Compute each impulse: constant force over finite time, $\mathbf{F}(t_2 - t_1)$; variable force, $\int \mathbf{F}(t)\,dt$; impulsive force, $\mathbf{F}\,\Delta t$ (zero for nonimpulsive forces).
+3. Write the **component equations** (two in plane problems) and solve for the two unknowns — a time, a velocity and an impulse, or an average impulsive force.
+4. For several particles, draw a diagram for each particle; a diagram including **all** particles eliminates internal impulses.
+
+</RuleBox>
+
+<StepRevealExample
+  title="Stopping time on a 5° incline"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-10.png"
+  problem="An automobile weighing $4000\,\text{lb}$ is driven down a $5^\circ$ incline at a speed of $60\,\text{mi/h}$ when the brakes are applied, causing a constant total braking force (applied by the road on the tires) of $1500\,\text{lb}$. Determine the time required for the automobile to come to a stop."
+  steps={[
+    "Each force is constant in magnitude and direction, so each impulse is the force times the unknown time $t$: $Wt$, $Ft$ (braking) and $Nt$ (normal, perpendicular to the incline).",
+    "Impulse–momentum, components **parallel to the incline** (positive down the incline), where $Nt$ has no component: $m\\mathbf{v}_1 + \\sum\\mathbf{Imp}_{1\\to2} = m\\mathbf{v}_2$ gives $mv_1 + (W\\sin 5^\\circ)t - Ft = 0$.",
+    "With $v_1 = 88\\,\\text{ft/s}$: $(4000/32.2)(88) + (4000\\sin 5^\\circ)t - 1500t = 0$, i.e. $10\\,932 - 1151t = 0$.",
+    "$t = 9.49\\,\\text{s}$."
+  ]}
+  answer="$t = 9.49\,\text{s}$"
+/>
+
+<StepRevealExample
+  title="Average impulsive force of a bat"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-11.png"
+  problem="A $4\text{-oz}$ baseball is pitched with a velocity of $80\,\text{ft/s}$ toward a batter. After the ball is hit by the bat $B$, it has a velocity of $120\,\text{ft/s}$ in the direction shown ($40^\circ$ above the horizontal, away from the pitcher). If the bat and ball are in contact $0.015\,\text{s}$, determine the average impulsive force exerted on the ball during the impact."
+  steps={[
+    "The weight of the ball is nonimpulsive and is neglected. Mass: $m = \\dfrac{4/16}{32.2}\\,\\text{lb}\\cdot\\text{s}^2/\\text{ft}$. Take $x$ positive toward the direction of the hit and $y$ upward.",
+    "**x components:** $-mv_1 + F_x\\Delta t = mv_2\\cos 40^\\circ$: $\\;-\\dfrac{4/16}{32.2}(80) + F_x(0.015) = \\dfrac{4/16}{32.2}(120)\\cos 40^\\circ \\Rightarrow F_x = +89.0\\,\\text{lb}$.",
+    "**y components:** $0 + F_y\\Delta t = mv_2\\sin 40^\\circ$: $\\;F_y(0.015) = \\dfrac{4/16}{32.2}(120)\\sin 40^\\circ \\Rightarrow F_y = +39.9\\,\\text{lb}$.",
+    "**Resultant:** $F = \\sqrt{89.0^2 + 39.9^2} = 97.5\\,\\text{lb}$, at $\\tan^{-1}(39.9/89.0) = 24.2^\\circ$ above the horizontal."
+  ]}
+  answer="$\mathbf{F} = 97.5\,\text{lb}$ at $24.2^\circ$ above the horizontal"
+/>
+
+<StepRevealExample
+  title="Package dropped into a cart"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-12.png"
+  problem="A $10\text{-kg}$ package drops from a chute into a $25\text{-kg}$ cart with a velocity of $3\,\text{m/s}$ directed $30^\circ$ below the horizontal. Knowing that the cart is initially at rest and can roll freely, determine (a) the final velocity of the cart, (b) the impulse exerted by the cart on the package, (c) the fraction of the initial energy lost in the impact."
+  steps={[
+    "**(a) Package and cart together.** The floor reaction impulse $R\\,\\Delta t$ is vertical, so momentum is conserved in $x$: $m_P v_1\\cos 30^\\circ + 0 = (m_P + m_C)v_2$: $\\;(10)(3)\\cos 30^\\circ = (10 + 25)v_2 \\Rightarrow v_2 = 0.742\\,\\text{m/s}\\rightarrow$.",
+    "**(b) Package alone, x components:** $(10)(3)\\cos 30^\\circ + F_x\\Delta t = (10)(0.742) \\Rightarrow F_x\\Delta t = -18.56\\,\\text{N}\\cdot\\text{s}$.",
+    "**y components:** $-m_P v_1\\sin 30^\\circ + F_y\\Delta t = 0$: $\\;-(10)(3)\\sin 30^\\circ + F_y\\Delta t = 0 \\Rightarrow F_y\\Delta t = +15\\,\\text{N}\\cdot\\text{s}$.",
+    "Impulse on the package: $F\\Delta t = \\sqrt{18.56^2 + 15^2} = 23.9\\,\\text{N}\\cdot\\text{s}$, directed up and to the left at $\\tan^{-1}(15/18.56) = 38.9^\\circ$ with the horizontal.",
+    "**(c) Energy.** $T_1 = \\tfrac12 m_P v_1^2 = \\tfrac12(10)(3)^2 = 45\\,\\text{J}$; $T_2 = \\tfrac12(m_P + m_C)v_2^2 = \\tfrac12(35)(0.742)^2 = 9.63\\,\\text{J}$. Fraction lost $= \\dfrac{T_1 - T_2}{T_1} = \\dfrac{45 - 9.63}{45} = 0.786$."
+  ]}
+  answer="(a) $0.742\,\text{m/s}\rightarrow$; (b) $23.9\,\text{N}\cdot\text{s}$ at $38.9^\circ$ (up-left); (c) $0.786$"
+/>
+
+<ExerciseSet
+  title="Impulse and Momentum, Impulsive Motion"
+  items={[
+    { q: "A $35\\,000\\text{-Mg}$ ocean liner has an initial velocity of $4\\,\\text{km/h}$. Neglecting the frictional resistance of the water, determine the time required to bring the liner to rest by using a single tugboat which exerts a constant force of $150\\,\\text{kN}$.", a: "$4\\,\\text{min}\\;19\\,\\text{s}$" },
+    { q: "A $2500\\text{-lb}$ automobile is moving at $60\\,\\text{mi/h}$ when the brakes are fully applied, causing all four wheels to skid. Determine the time required to stop the automobile (a) on dry pavement ($\\mu_k = 0.75$), (b) on an icy road ($\\mu_k = 0.10$).", a: "(a) $3.64\\,\\text{s}$; (b) $27.3\\,\\text{s}$" },
+    { q: "A sailboat weighing $980\\,\\text{lb}$ with its occupants is running down wind at $8\\,\\text{mi/h}$ when its spinnaker is raised. Determine the net force provided by the spinnaker over the $10\\text{-s}$ interval that it takes for the boat to reach a speed of $12\\,\\text{mi/h}$.", a: "$17.86\\,\\text{lb}$" },
+    { q: "A $5\\text{-oz}$ ball reaches a player's glove at $90\\,\\text{mi/h}$; the player pulls his hand back during the impact at an average speed of $30\\,\\text{ft/s}$ over a distance of $6\\,\\text{in.}$, bringing the ball to a stop. Determine the average impulsive force exerted on the player's hand.", a: "$76.9\\,\\text{lb}$" },
+    { q: "A $1.62\\text{-oz}$ golf ball leaves the club with a velocity of $100\\,\\text{mi/h}$. For $0 \\le t \\le t_0$ the force on the ball is $F = F_m\\sin(\\pi t/t_0)$ with $t_0 = 0.5\\,\\text{ms}$. Determine $F_m$.", a: "$F_m = 1.449\\,\\text{kips}$" },
+    { q: "In the hop of a triple jump an athlete approaches with a horizontal velocity of $10\\,\\text{m/s}$, remains in contact with the ground for $0.18\\,\\text{s}$, and takes off at $50^\\circ$ with a velocity of $12\\,\\text{m/s}$. Determine the vertical component of the average impulsive force exerted by the ground on his foot, in terms of his weight $W$.", a: "$6.21W$" },
+    { q: "The velocity of an $80\\text{-kg}$ athlete just before landing in a sand pit is $9\\,\\text{m/s}$ at $35^\\circ$ with the horizontal, and he comes to a complete stop $0.22\\,\\text{s}$ after landing. Determine the horizontal component of the average impulsive force exerted on his feet.", a: "$2.68\\,\\text{kN}$" }
+  ]}
+/>
+
+---
+
+### 13.12 Impact
+
+<RuleBox kind="definition" title="Classification of impacts">
+
+- **Impact:** a collision between two bodies occurring in a very small interval of time, during which they exert relatively large forces on each other.
+- **Line of impact:** the common normal to the surfaces in contact during the impact.
+- **Central impact:** the mass centers of both bodies lie on the line of impact; otherwise the impact is **eccentric** (rigid bodies, Sec. 17.12).
+- **Direct impact:** the velocities of both particles are directed along the line of impact).
+- **Oblique impact:** either or both particles move along a line other than the line of impact).
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-20.png"
+  caption="(a) Direct central impact; (b) oblique central impact."
+/>
+
+---
+
+### 13.13 Direct Central Impact
+
+Particles $A$ and $B$ move along the same line with $v_A > v_B$. During the **period of deformation** they deform until they share a common velocity $u$; then, during the **period of restitution**, they either regain their shape or stay permanently deformed). No external impulsive force acts on the pair, so total momentum is conserved:
+
+<RuleBox kind="theorem" title="Conservation of momentum and the coefficient of restitution">
+
+$$
+m_A v_A + m_B v_B = m_A v'_A + m_B v'_B \tag{13.37}
+$$
+
+(scalars; positive to the right). Applying impulse–momentum to $A$ alone with $P$ = force during deformation and $R$ = force during restitution:
+
+$$
+m_A v_A - \int P\,dt = m_A u \tag{13.38}
+$$
+
+$$
+m_A u - \int R\,dt = m_A v'_A \tag{13.39}
+$$
+
+The **coefficient of restitution** is the ratio of the restitution impulse to the deformation impulse:
+
+$$
+e = \frac{\int R\,dt}{\int P\,dt} \tag{13.40}
+$$
+
+$0 \le e \le 1$; it depends on the materials and also on impact velocity, shape and size. Eliminating the impulses:
+
+$$
+e = \frac{u - v'_A}{v_A - u} \tag{13.41}
+$$
+
+$$
+e = \frac{v'_B - u}{u - v_B} \tag{13.42}
+$$
+
+Adding numerators and denominators gives the working relation:
+
+$$
+v'_B - v'_A = e(v_A - v_B) \tag{13.43}
+$$
+
+The **relative velocity after impact** equals $e$ times the relative velocity before impact. Solve (13.37) and (13.43) simultaneously. A negative value means the velocity is directed to the left.
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-21.png"
+  caption="Direct central impact: (a) before impact; (b) at maximum deformation (common velocity u); (c) after impact."
+/>
+
+<RuleBox kind="note" title="Two particular cases">
+
+1. **$e = 0$, perfectly plastic impact:** $v'_B = v'_A = v'$; there is no restitution and the particles stay together:
+
+$$
+m_A v_A + m_B v_B = (m_A + m_B)v' \tag{13.44}
+$$
+
+2. **$e = 1$, perfectly elastic impact:**
+
+$$
+v'_B - v'_A = v_A - v_B \tag{13.45}
+$$
+
+The particles separate with the same relative speed with which they approached. Writing (13.37) and (13.45) as $m_A(v_A - v'_A) = m_B(v'_B - v_B)$ (13.37$'$) and $v_A + v'_A = v_B + v'_B$ (13.45$'$) and multiplying gives
+
+$$
+\tfrac12 m_A v_A^2 + \tfrac12 m_B v_B^2 = \tfrac12 m_A (v'_A)^2 + \tfrac12 m_B (v'_B)^2 \tag{13.46}
+$$
+
+— **kinetic energy is conserved only when $e = 1$**. For $e \ne 1$ some kinetic energy is lost (to heat and elastic waves).
+
+</RuleBox>
+
+<StepRevealExample
+  title="Coefficient of restitution between railroad cars"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-13.png"
+  problem="A $20\text{-Mg}$ railroad car moving at a speed of $0.5\,\text{m/s}$ to the right collides with a $35\text{-Mg}$ car which is at rest. If after the collision the $35\text{-Mg}$ car is observed to move to the right at a speed of $0.3\,\text{m/s}$, determine the coefficient of restitution between the two cars."
+  steps={[
+    "**Total momentum is conserved** (positive to the right): $m_A v_A + m_B v_B = m_A v'_A + m_B v'_B$.",
+    "$(20\\,\\text{Mg})(+0.5) + (35\\,\\text{Mg})(0) = (20\\,\\text{Mg})v'_A + (35\\,\\text{Mg})(+0.3) \\Rightarrow v'_A = -0.025\\,\\text{m/s}$, i.e. $0.025\\,\\text{m/s}\\leftarrow$.",
+    "**Coefficient of restitution** from Eq. (13.43): $e = \\dfrac{v'_B - v'_A}{v_A - v_B} = \\dfrac{+0.3 - (-0.025)}{+0.5 - 0} = \\dfrac{0.325}{0.5} = 0.65$."
+  ]}
+  answer="$e = 0.65$"
+/>
+
+<ExerciseSet
+  title="Direct Central Impact"
+  items={[
+    { q: "A $25\\text{-ton}$ railroad car moving at $2.5\\,\\text{mi/h}$ is to be coupled to a $50\\text{-ton}$ car which is at rest with locked wheels ($\\mu_k = 0.30$). Determine (a) the velocity of both cars after the coupling is completed, (b) the time it takes for both cars to come to rest.", a: "(a) $0.833\\,\\text{mi/h}\\rightarrow$; (b) $0.190\\,\\text{s}$" },
+    { q: "When dropped onto a rigid surface from a height of $100\\,\\text{in.}$, the first bounce of an official tennis ball must satisfy $53\\,\\text{in.} \\le h \\le 58\\,\\text{in.}$ Determine the range of the coefficients of restitution of tennis balls satisfying this requirement.", a: "$0.728 \\le e \\le 0.762$" },
+    { q: "Two disks sliding on a frictionless horizontal plane with opposite velocities of the same magnitude $v_0$ hit each other squarely. Disk $A$ weighs $6\\,\\text{lb}$ and is observed to have zero velocity after impact. Determine (a) the weight of disk $B$, knowing that $e = 0.5$, (b) the range of possible weights of disk $B$ if $e$ is unknown.", a: "(a) $3.00\\,\\text{lb}$; (b) $2.00\\,\\text{lb} \\le W_B \\le 6.00\\,\\text{lb}$" }
+  ]}
+/>
+
+---
+
+### 13.14 Oblique Central Impact
+
+When the velocities are not along the line of impact), $\mathbf{v}'_A$ and $\mathbf{v}'_B$ are unknown in both magnitude and direction: **four** equations are needed. Take the **$n$ axis along the line of impact** (common normal) and the **$t$ axis along the common tangent**. For perfectly smooth, frictionless particles the only impulses are the internal forces along $n$).
+
+<RuleBox kind="theorem" title="Oblique central impact of two free particles">
+
+1. The $t$ component of the momentum of **each particle separately** is conserved, so its $t$ velocity component is unchanged:
+
+$$
+(v_A)_t = (v'_A)_t \qquad (v_B)_t = (v'_B)_t \tag{13.47}
+$$
+
+2. The $n$ component of the **total** momentum is conserved:
+
+$$
+m_A(v_A)_n + m_B(v_B)_n = m_A(v'_A)_n + m_B(v'_B)_n \tag{13.48}
+$$
+
+3. The $n$ component of the relative velocity after impact equals $e$ times its value before impact:
+
+$$
+(v'_B)_n - (v'_A)_n = e\left[(v_A)_n - (v_B)_n\right] \tag{13.49}
+$$
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-24.png"
+  caption="Oblique central impact: the impulses FΔt and −FΔt act only along the line of impact n."
+/>
+
+<RuleBox kind="theorem" title="One particle constrained">
+
+If block $A$ is constrained to move on a horizontal frictionless surface and ball $B$ is free, the surface exerts an external impulse $\mathbf{F}_{\text{ext}}\Delta t$ on $A$ (vertical). There are three unknowns ($v'_A$, which is horizontal, and the magnitude and direction of $\mathbf{v}'_B$) and three equations:
+
+1. The $t$ component of the momentum of ball $B$ is conserved:
+
+$$
+(v_B)_t = (v'_B)_t \tag{13.50}
+$$
+
+2. The **horizontal ($x$) component of the total momentum** of $A$ and $B$ is conserved:
+
+$$
+m_A v_A + m_B(v_B)_x = m_A v'_A + m_B(v'_B)_x \tag{13.51}
+$$
+
+3. The relative-velocity relation (13.49) along $n$ **still holds**. standard mechanics prove this by applying impulse–momentum to $A$ during deformation and restitution, $m_A v_A - (\int P\,dt)\cos\theta = m_A u$ (13.52) and $m_A u - (\int R\,dt)\cos\theta = m_A v'_A$ (13.53), which with (13.40) give
+
+$$
+e = \frac{u_n - (v'_A)_n}{(v_A)_n - u_n} \tag{13.54}
+$$
+
+identical in form to (13.41). The result extends to the case where both particles are constrained.
+
+</RuleBox>
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-25.png"
+  caption="Oblique impact between block A (constrained to move horizontally) and free ball B."
+/>
+
+<StepRevealExample
+  title="Ball rebounding from a frictionless wall"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-14.png"
+  problem="A ball is thrown against a frictionless, vertical wall. Immediately before the ball strikes the wall, its velocity has a magnitude $v$ and forms an angle of $30^\circ$ with the horizontal. Knowing that $e = 0.90$, determine the magnitude and direction of the velocity of the ball as it rebounds from the wall."
+  steps={[
+    "Resolve the initial velocity perpendicular ($n$) and parallel ($t$) to the wall: $v_n = v\\cos 30^\\circ = 0.866v$, $\\;v_t = v\\sin 30^\\circ = 0.500v$.",
+    "**Parallel to the wall.** The wall is frictionless, so its impulse is perpendicular to the wall and the $t$ momentum of the ball is conserved: $v'_t = v_t = 0.500v\\uparrow$.",
+    "**Perpendicular to the wall.** The wall (and earth) has essentially infinite mass, so conservation of total momentum gives no useful information. Use Eq. (13.49) with the wall's velocity zero before and after: $0 - v'_n = e(v_n - 0) \\Rightarrow v'_n = -0.90(0.866v) = -0.779v$, i.e. $0.779v$ away from the wall.",
+    "**Resultant.** $v' = \\sqrt{(0.779v)^2 + (0.500v)^2} = 0.926v$; angle with the horizontal $\\tan^{-1}(0.500/0.779) = 32.7^\\circ$ (upward, away from the wall)."
+  ]}
+  answer="$v' = 0.926v$ at $32.7^\circ$ above the horizontal, away from the wall"
+/>
+
+<StepRevealExample
+  title="Oblique impact of two identical balls"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-15.png"
+  problem="The magnitude and direction of the velocities of two identical frictionless balls before they strike each other are as shown: $v_A = 30\,\text{ft/s}$ at $30^\circ$ above the line of centers (moving right), $v_B = 40\,\text{ft/s}$ at $60^\circ$ with the line of centers (moving left and up). Assuming $e = 0.90$, determine the magnitude and direction of the velocity of each ball after the impact."
+  steps={[
+    "The line of impact $n$ joins the centers; $t$ is the common tangent. Components: $(v_A)_n = 30\\cos 30^\\circ = +26.0\\,\\text{ft/s}$, $(v_A)_t = 30\\sin 30^\\circ = +15.0\\,\\text{ft/s}$, $(v_B)_n = -40\\cos 60^\\circ = -20.0\\,\\text{ft/s}$, $(v_B)_t = 40\\sin 60^\\circ = +34.6\\,\\text{ft/s}$.",
+    "**Along the tangent.** The impulsive forces act along $n$, so each ball keeps its $t$ component: $(v'_A)_t = 15.0\\,\\text{ft/s}\\uparrow$, $\\;(v'_B)_t = 34.6\\,\\text{ft/s}\\uparrow$.",
+    "**Along the line of impact — momentum.** Internal impulses $F\\Delta t$ and $-F\\Delta t$ cancel: $m(26.0) + m(-20.0) = m(v'_A)_n + m(v'_B)_n \\Rightarrow (v'_A)_n + (v'_B)_n = 6.0 \\quad (1)$.",
+    "**Relative velocities**, Eq. (13.49): $(v'_B)_n - (v'_A)_n = (0.90)[26.0 - (-20.0)] = 41.4 \\quad (2)$.",
+    "Solving (1) and (2): $(v'_A)_n = -17.7\\,\\text{ft/s}$ ($17.7\\leftarrow$), $(v'_B)_n = +23.7\\,\\text{ft/s}$ ($23.7\\rightarrow$).",
+    "**Resultants.** $v'_A = \\sqrt{17.7^2 + 15.0^2} = 23.2\\,\\text{ft/s}$ at $\\tan^{-1}(15.0/17.7) = 40.3^\\circ$ above the line, to the left; $v'_B = \\sqrt{23.7^2 + 34.6^2} = 41.9\\,\\text{ft/s}$ at $\\tan^{-1}(34.6/23.7) = 55.6^\\circ$ above the line, to the right."
+  ]}
+  answer="$v'_A = 23.2\,\text{ft/s}$ at $40.3^\circ$ (up-left); $v'_B = 41.9\,\text{ft/s}$ at $55.6^\circ$ (up-right)"
+/>
+
+<StepRevealExample
+  title="Ball striking a ball hanging from a cord"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-16.png"
+  problem="Ball $B$ is hanging from an inextensible cord $BC$. An identical ball $A$ is released from rest when it is just touching the cord and acquires a velocity $v_0$ before striking ball $B$. Assuming perfectly elastic impact ($e = 1$) and no friction, determine the velocity of each ball immediately after impact."
+  steps={[
+    "**Geometry.** $A$ falls tangent to the cord, so its center is a distance $r$ from the cord line while the centers are $2r$ apart: $\\sin\\theta = r/2r = 0.5$, $\\theta = 30^\\circ$. The line of impact $n$ makes $30^\\circ$ with the vertical. $B$ is constrained to a circle about $C$, so $\\mathbf{v}'_B$ is horizontal. Unknowns: $v'_B$ and the magnitude and direction of $\\mathbf{v}'_A$.",
+    "**Ball A alone, t components.** The impulse on $A$ is along $n$: $mv_0\\sin 30^\\circ + 0 = m(v'_A)_t \\Rightarrow (v'_A)_t = 0.5v_0 \\quad (1)$.",
+    "**Balls A and B, x components.** The cord impulse $T\\Delta t$ is vertical, so total $x$ momentum is conserved: $0 = m(v'_A)_t\\cos 30^\\circ - m(v'_A)_n\\sin 30^\\circ - mv'_B$. Substituting (1): $0.5(v'_A)_n + v'_B = 0.433v_0 \\quad (2)$.",
+    "**Relative velocities along n** ($e = 1$): $(v'_B)_n - (v'_A)_n = (v_A)_n - (v_B)_n$: $\\;v'_B\\sin 30^\\circ - (v'_A)_n = v_0\\cos 30^\\circ - 0 \\Rightarrow 0.5v'_B - (v'_A)_n = 0.866v_0 \\quad (3)$.",
+    "Solving (2) and (3): $(v'_A)_n = -0.520v_0$, $\\;v'_B = 0.693v_0$ (to the left).",
+    "**Resultant for A.** $v'_A = \\sqrt{(0.5v_0)^2 + (0.520v_0)^2} = 0.721v_0$; $\\beta = \\tan^{-1}(0.520/0.5) = 46.1^\\circ$ from the $t$ axis, so the angle with the horizontal is $\\alpha = 46.1^\\circ - 30^\\circ = 16.1^\\circ$ (downward, to the right)."
+  ]}
+  answer="$v'_B = 0.693v_0 \leftarrow$; $\;v'_A = 0.721v_0$ at $16.1^\circ$ below the horizontal"
+/>
+
+---
+
+### 13.15 Problems Involving Energy and Momentum
+
+There are now three methods: $\sum\mathbf{F} = m\mathbf{a}$, work and energy, and impulse and momentum. Choose the one best suited to each **part** of a problem.
+
+<RuleBox kind="working-rule" title="Choosing the method">
+
+1. **Work and energy** is usually faster than $\sum\mathbf{F} = m\mathbf{a}$ when forces depend on position — but it cannot give an **acceleration** or a **normal force**; supplement it with $\sum\mathbf{F} = m\mathbf{a}$ for those.
+2. With **no impulsive forces**, $\sum\mathbf{F} = m\mathbf{a}$ is about as fast as impulse–momentum, and work–energy (if it applies) is faster still.
+3. For **impact**, impulse–momentum is the **only practicable** method; work–energy cannot be used because an impact (unless perfectly elastic) loses mechanical energy.
+4. **Multi-phase problems** with conservative forces except for a short impact: split into parts — energy before the impact, momentum plus the relative-velocity relation during the impact, energy after the impact. Use $\sum F_n = ma_n$ if a cord tension or normal force is required.
+
+</RuleBox>
+
+**Two-pendulum example).** Pendulum $A$ released from rest at $A_1$ strikes pendulum $B$ at rest; find the angle $\theta$ through which $B$ swings:
+
+1. $A_1 \to A_2$: conservation of energy gives $(v_A)_2$.
+2. Impact: conservation of total momentum and $(v_B)_3 - (v_A)_3 = e[(v_A)_2 - 0]$ give $(v_A)_3$ and $(v_B)_3$.
+3. $B_3 \to B_4$: conservation of energy gives the rise $y_4$, then $\theta$ by trigonometry.
+
+<DiagramFigure
+  src="/diagrams/get-207/work-energy-and-impulse-momentum-fig-13-28.png"
+  caption="Pendulum A strikes pendulum B: conservation of energy, impact (momentum + relative velocities), conservation of energy."
+/>
+
+<StepRevealExample
+  title="Block dropped onto a spring-scale pan"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-sp-13-17.png"
+  problem="A $30\text{-kg}$ block is dropped from a height of $2\,\text{m}$ onto the $10\text{-kg}$ pan of a spring scale. Assuming the impact to be perfectly plastic, determine the maximum deflection of the pan. The constant of the spring is $k = 20\,\text{kN/m}$."
+  steps={[
+    "**Phase 1 — conservation of energy for the block.** $W_A = (30)(9.81) = 294\\,\\text{N}$. Datum at the pan: $T_1 = 0$, $V_1 = W_A y = (294)(2) = 588\\,\\text{J}$; $T_2 = \\tfrac12(30)(v_A)_2^2$, $V_2 = 0$. $\\;0 + 588 = \\tfrac12(30)(v_A)_2^2 \\Rightarrow (v_A)_2 = 6.26\\,\\text{m/s}\\downarrow$.",
+    "**Phase 2 — impact, conservation of momentum.** Perfectly plastic ($e = 0$), so block and pan move together: $m_A(v_A)_2 + m_B(v_B)_2 = (m_A + m_B)v_3$: $\\;(30)(6.26) + 0 = (40)v_3 \\Rightarrow v_3 = 4.70\\,\\text{m/s}\\downarrow$.",
+    "**Phase 3 — conservation of energy.** Initially the spring supports the pan: $x_3 = W_B/k = (10)(9.81)/(20\\times10^3) = 4.91\\times10^{-3}\\,\\text{m}$. $T_3 = \\tfrac12(40)(4.70)^2 = 442\\,\\text{J}$; $V_3 = V_g + V_e = 0 + \\tfrac12(20\\times10^3)(4.91\\times10^{-3})^2 = 0.241\\,\\text{J}$.",
+    "At maximum deflection $x_4$: $T_4 = 0$; with $h = x_4 - x_3$ the drop of the pan, $V_4 = (W_A + W_B)(-h) + \\tfrac12 k x_4^2 = -392h + \\tfrac12(20\\times10^3)x_4^2$.",
+    "$T_3 + V_3 = T_4 + V_4$: $\\;442 + 0.241 = 0 - 392(x_4 - 4.91\\times10^{-3}) + \\tfrac12(20\\times10^3)x_4^2 \\Rightarrow x_4 = 0.230\\,\\text{m}$.",
+    "Maximum deflection of the pan: $h = x_4 - x_3 = 0.230 - 0.00491 = 0.225\\,\\text{m} = 225\\,\\text{mm}$."
+  ]}
+  answer="$h = 225\,\text{mm}$"
+/>
+
+<StepRevealExample
+  title="Drop-hammer pile driver"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-p13-147.png"
+  problem="The $650\text{-kg}$ hammer of a drop-hammer pile driver falls from a height of $1.2\,\text{m}$ onto the top of a $140\text{-kg}$ pile, driving it $110\,\text{mm}$ into the ground. Assuming perfectly plastic impact ($e = 0$), determine the average resistance of the ground to penetration."
+  steps={[
+    "**Phase 1 — free fall of the hammer (energy).** $0 + m_H g(1.2) = \\tfrac12 m_H v_1^2 \\Rightarrow v_1 = \\sqrt{2(9.81)(1.2)} = 4.852\\,\\text{m/s}$.",
+    "**Phase 2 — impact (momentum, $e = 0$).** The ground resistance is not impulsive compared with the impact forces; total momentum is conserved and hammer and pile move together: $(650)(4.852) = (650 + 140)v_2 \\Rightarrow v_2 = 3.992\\,\\text{m/s}$.",
+    "**Phase 3 — penetration (work and energy).** $T_2 = \\tfrac12(790)(3.992)^2 = 6295\\,\\text{J}$, $T_3 = 0$. Over $0.110\\,\\text{m}$ the combined weight $W = (790)(9.81) = 7750\\,\\text{N}$ does positive work and the average resistance $R$ does negative work: $U_{2\\to3} = (7750 - R)(0.110)$.",
+    "$T_2 + U_{2\\to3} = T_3$: $\\;6295 + (7750 - R)(0.110) = 0 \\Rightarrow R = 7750 + 6295/0.110 = 64\\,980\\,\\text{N}$."
+  ]}
+  answer="$R = 65.0\,\text{kN}$"
+/>
+
+<StepRevealExample
+  title="Sphere dropped onto a spring-supported plate"
+  figure="/diagrams/get-207/work-energy-and-impulse-momentum-p13-179.png"
+  problem="A $0.5\text{-kg}$ sphere $A$ is dropped from a height of $0.6\,\text{m}$ onto a $1.0\text{-kg}$ plate $B$, which is supported by a nested set of springs and is initially at rest. Knowing that the coefficient of restitution between the sphere and the plate is $e = 0.8$, determine (a) the height $h$ reached by the sphere after rebound, (b) the constant $k$ of the single spring equivalent to the given set if the maximum deflection of the plate is observed to be equal to $3h$."
+  steps={[
+    "**Fall (energy).** $v_A = \\sqrt{2(9.81)(0.6)} = 3.431\\,\\text{m/s}\\downarrow$.",
+    "**Impact** (positive downward). Momentum: $(0.5)(3.431) = 0.5v'_A + 1.0v'_B$. Restitution: $v'_B - v'_A = 0.8(3.431 - 0) = 2.745$. Substituting $v'_B = v'_A + 2.745$: $1.7155 = 1.5v'_A + 2.745 \\Rightarrow v'_A = -0.686\\,\\text{m/s}$ (upward), $v'_B = 2.059\\,\\text{m/s}\\downarrow$.",
+    "**(a) Rebound (energy).** $h = (v'_A)^2/2g = (0.686)^2/[2(9.81)] = 0.0240\\,\\text{m}$.",
+    "**(b) Plate after impact (energy).** Initial spring deflection $x_0 = W_B/k = 9.81/k$; additional deflection $3h = 0.0720\\,\\text{m}$. $T_1 + V_1 = T_2 + V_2$ with the datum at the initial plate position: $\\tfrac12(1.0)(2.059)^2 + \\tfrac12 kx_0^2 = -(9.81)(0.0720) + \\tfrac12 k(x_0 + 0.0720)^2$.",
+    "Rearranging: $2.119 + 0.706 = \\tfrac12 k(x_0 + 0.072)^2 - \\tfrac12 kx_0^2 = kx_0(0.072) + \\tfrac12k(0.072)^2$. Since $kx_0 = W_B = 9.81\\,\\text{N}$, the right side is $9.81(0.072) + 0.002592k = 0.706 + 0.002592k$. The $0.706$ terms cancel, leaving $0.002592k = 2.119$.",
+    "$k = 2.119/0.002592 = 817\\,\\text{N/m}$."
+  ]}
+  answer="(a) $h = 0.0240\,\text{m}$; (b) $k = 817\,\text{N/m}$"
+/>
+
+<ExerciseSet
+  title="Energy and Momentum Combined"
+  items={[
+    { q: "A $0.5\\text{-kg}$ sphere $A$ is dropped from a height of $0.6\\,\\text{m}$ onto a $1.0\\text{-kg}$ plate $B$ supported by a set of springs equivalent to a single spring of constant $k = 900\\,\\text{N/m}$. Determine (a) the value of the coefficient of restitution for which the rebound height $h$ of the sphere is maximum, (b) the corresponding value of $h$, (c) the corresponding maximum deflection of the plate.", a: "(a) $1.000$; (b) $0.0667\\,\\text{m}$; (c) $0.0762\\,\\text{m}$", figure: "/diagrams/get-207/work-energy-and-impulse-momentum-p13-179.png" }
+  ]}
+/>
+
+---
+
+## Common Exam Pitfalls
+
+<Callout variant="warning" title="Frequent Mistakes in Energy and Momentum Problems">
+
+1. **Spring deflection from the wrong reference.** $V_e = \tfrac12kx^2$ and $U = \tfrac12kx_1^2 - \tfrac12kx_2^2$ require $x$ measured from the **undeformed** length. In Sample Prob. 13.6 the spring is already stretched $4\,\text{in.}$ in position 1; in Sample Prob. 13.17 the pan already compresses the spring by $x_3 = W_B/k$.
+2. **Sign of friction work.** Friction always does **negative** work — on the way back the friction work is still negative even though the gravity or spring work changes sign.
+3. **Using conservation of energy across an impact.** Mechanical energy is lost in any impact with $e < 1$. Use momentum + restitution for the impact, energy only before and after.
+4. **Forgetting that work–energy cannot give normal forces.** For tension in a cord or contact force on a loop, add $\sum F_n = mv^2/\rho$ (Sample Probs. 13.4 and 13.7).
+5. **Writing $e$ with the wrong velocity order.** $e = \dfrac{v'_B - v'_A}{v_A - v_B}$ with all velocities as **signed** components along the same axis (or along $n$ in oblique impact); a left-moving particle has a negative velocity.
+6. **Applying restitution to tangential components.** In oblique impact $e$ relates only the **normal ($n$)** components; the tangential components of each smooth particle are unchanged.
+7. **Neglecting an unknown reaction's impulse.** Weights and springs are nonimpulsive, but unknown reactions (cord, floor, hand) must be included unless proved negligible — e.g., the cord impulse $T\Delta t$ in Sample Prob. 13.16 kills conservation of momentum in the vertical direction.
+8. **Unit slips.** $60\,\text{mi/h} = 88\,\text{ft/s}$; $1\,\text{hp} = 550\,\text{ft}\cdot\text{lb/s} = 746\,\text{W}$; in U.S. units, $m = W/g$ with $g = 32.2\,\text{ft/s}^2$; mix $k$ in lb/in. with $x$ in in.
+
+</Callout>
+
+---
+
+## Summary of Formulas
+
+<RuleBox kind="formula" title="Key Equations">
+
+| Quantity / principle | Formula | Eq. |
+|---|---|---|
+| Work of a force | $U_{1\to2} = \int \mathbf{F}\cdot d\mathbf{r} = \int F_t\,ds$ | (13.2), (13.2$'$) |
+| Constant force, straight line | $U_{1\to2} = (F\cos\alpha)\,\Delta x$ | (13.3) |
+| Work of weight | $U_{1\to2} = -W\,\Delta y$ | (13.4$'$) |
+| Work of spring | $U_{1\to2} = \tfrac12kx_1^2 - \tfrac12kx_2^2 = -\tfrac12(F_1+F_2)\Delta x$ | (13.6), (13.6$'$) |
+| Work of gravitational force | $U_{1\to2} = GMm/r_2 - GMm/r_1$ | (13.7) |
+| Kinetic energy | $T = \tfrac12mv^2$ | (13.9) |
+| Work and energy | $T_1 + U_{1\to2} = T_2$ | (13.11) |
+| Power | $\text{Power} = dU/dt = \mathbf{F}\cdot\mathbf{v}$; $1\,\text{hp} = 550\,\text{ft}\cdot\text{lb/s} = 746\,\text{W}$ | (13.12), (13.13) |
+| Efficiency | $\eta = \dfrac{\text{output work}}{\text{input work}} = \dfrac{\text{power output}}{\text{power input}}$ | (13.14), (13.15) |
+| Potential energies | $V_g = Wy$; $\;V_g = -GMm/r = -WR^2/r$; $\;V_e = \tfrac12kx^2$ | (13.16)–(13.18) |
+| Conservative force | $U_{1\to2} = V_1 - V_2$, $\oint\mathbf{F}\cdot d\mathbf{r} = 0$, $\mathbf{F} = -\operatorname{grad}V$ | (13.19)–(13.23) |
+| Conservation of energy | $T_1 + V_1 = T_2 + V_2$ | (13.24) |
+| Impulse and momentum | $m\mathbf{v}_1 + \sum\mathbf{Imp}_{1\to2} = m\mathbf{v}_2$ | (13.32) |
+| Conservation of momentum | $\sum m\mathbf{v}_1 = \sum m\mathbf{v}_2$ | (13.34) |
+| Impulsive motion | $m\mathbf{v}_1 + \sum\mathbf{F}\,\Delta t = m\mathbf{v}_2$ | (13.35) |
+| Direct central impact | $m_Av_A + m_Bv_B = m_Av'_A + m_Bv'_B$; $\;v'_B - v'_A = e(v_A - v_B)$ | (13.37), (13.43) |
+| Perfectly plastic ($e=0$) | $m_Av_A + m_Bv_B = (m_A + m_B)v'$ | (13.44) |
+| Oblique central impact | $(v_A)_t = (v'_A)_t$, $(v_B)_t = (v'_B)_t$; $n$-momentum conserved; $(v'_B)_n - (v'_A)_n = e[(v_A)_n - (v_B)_n]$ | (13.47)–(13.49) |
+
+</RuleBox>

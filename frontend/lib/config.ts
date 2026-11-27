@@ -1,7 +1,7 @@
 import coursesManifest from "../../content/courses.json";
 import get207Manifest from "../../content/courses/get-207/course.json";
 import get209Manifest from "../../content/courses/get-209/course.json";
-import textbooksManifest from "../../content/textbooks.json";
+import drillsManifest from "../../content/textbooks.json";
 
 // Change the platform name in this single constant (and content/courses.json) to rename the site.
 export const APP_NAME = coursesManifest.appName;
@@ -66,26 +66,12 @@ export const CCMAS_OUTLINE: Record<string, readonly string[]> = {
   ],
 };
 
-export interface TextbookConfig {
-  readonly id: string;
-  readonly courseCode: string;
-  readonly courseSlug: string;
-  readonly title: string;
-  readonly authors: string;
-  readonly edition: string;
-  readonly role: string;
-  readonly coverImage: string;
-  readonly bestFor: string;
-  readonly chapters: readonly string[];
-  readonly readUrl: string;
-}
-
-export interface TextbookDrillConfig {
+export interface PracticeHighlightConfig {
   readonly id: string;
   readonly courseCode: string;
   readonly courseSlug: string;
   readonly topicId: string;
-  readonly textbookRef: string;
+  readonly topicLabel: string;
   readonly difficulty: string;
   readonly title: string;
   readonly preview: string;
@@ -104,9 +90,8 @@ export interface FallbackTopicMeta {
   readonly title: string;
   readonly display_order: number;
   readonly ccmas_ref: string;
-  readonly textbook_ref: string;
   readonly question_count: number;
-  /** Book part a folio belongs to, e.g. "Statics" / "Dynamics" (GET 207). */
+  /** Course section a topic belongs to, e.g. "Statics" / "Dynamics" (GET 207). */
   readonly part?: string;
 }
 
@@ -118,7 +103,6 @@ const STATIC_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]> = {
       title: "Fluid Properties, Hydrostatic Pressure & Manometry",
       display_order: 1,
       ccmas_ref: "Fluid properties; hydrostatics, pressure measurement & forces on submerged surfaces",
-      textbook_ref: "Çengel · Ch. 2 (§2–9), Ch. 10 & Ch. 11 (§11–2)",
       question_count: 10,
     },
     {
@@ -127,7 +111,6 @@ const STATIC_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]> = {
       title: "Buoyancy, Archimedes' Principle & Stability of Floating Bodies",
       display_order: 2,
       ccmas_ref: "Buoyancy, Archimedes' principle & stability of floating and submerged bodies",
-      textbook_ref: "Çengel · Ch. 11 (§11–4 Buoyancy & Stability)",
       question_count: 7,
     },
     {
@@ -136,7 +119,6 @@ const STATIC_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]> = {
       title: "Continuity, Bernoulli's Equation & Flow Measurement",
       display_order: 3,
       ccmas_ref: "Control-volume continuity; Bernoulli's equation, Venturi meters & Pitot tubes",
-      textbook_ref: "Çengel · Ch. 12 (§12–1 to §12–3) & Ch. 14",
       question_count: 7,
     },
   ],
@@ -149,7 +131,6 @@ interface CourseManifestJson {
     readonly title: string;
     readonly order: number;
     readonly ccmasRef: string;
-    readonly bookRef?: string;
     readonly part?: string;
   }>;
 }
@@ -161,19 +142,15 @@ function topicsFromManifest(manifest: CourseManifestJson): readonly FallbackTopi
     title: t.title,
     display_order: t.order,
     ccmas_ref: t.ccmasRef,
-    textbook_ref: t.bookRef ?? "",
     question_count: 0,
     part: t.part,
   }));
 }
 
-// GET 207 and GET 209 folios come straight from content/courses/*/course.json,
-// so the book references shown in the UI never drift from the notes.
 export const COURSE_TOPICS_FALLBACK: Record<string, readonly FallbackTopicMeta[]> = {
   ...STATIC_TOPICS_FALLBACK,
   "get-207": topicsFromManifest(get207Manifest),
   "get-209": topicsFromManifest(get209Manifest),
 };
 
-export const TEXTBOOKS: readonly TextbookConfig[] = textbooksManifest.textbooks;
-export const TEXTBOOK_DRILLS: readonly TextbookDrillConfig[] = textbooksManifest.drills;
+export const PRACTICE_HIGHLIGHTS: readonly PracticeHighlightConfig[] = drillsManifest.drills;

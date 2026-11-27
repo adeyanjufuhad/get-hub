@@ -348,9 +348,6 @@ func validateBank(file, topicSlug string, b bank) (errs []error, warns []string)
 		if strings.TrimSpace(q.Solution) == "" {
 			fail(key, "solution is required")
 		}
-		if strings.TrimSpace(q.Source) == "" {
-			fail(key, "source is required")
-		}
 		if !validDiffs[q.Difficulty] {
 			fail(key, "difficulty %q must be easy, medium or hard", q.Difficulty)
 		}
@@ -689,7 +686,7 @@ func upsertQuestion(ctx context.Context, tx pgx.Tx, courseID, topicID string, pq
 	if tags == nil {
 		tags = []string{}
 	}
-	prompt := "**[" + q.Source + "]** " + q.Prompt
+	prompt := q.Prompt
 
 	tag, err := tx.Exec(ctx, `
 		INSERT INTO questions (id, course_id, topic_id, question_type, prompt_md, prompt_image_url,

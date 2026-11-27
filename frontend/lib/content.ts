@@ -136,7 +136,7 @@ export function listTopicHeadings(content: string): TopicHeading[] {
     seen.add(id);
     out.push({
       level: m[1].length as 2 | 3,
-      text: m[2].replace(/\$([^$]*)\$/g, "$1").replace(/[*_`]/g, ""),
+      text: m[2].replace(/[*_`]/g, ""),
       id,
     });
   }

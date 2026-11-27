@@ -29,13 +29,13 @@ function LoginForm() {
     try {
       const { user } = await api.login({ email, password });
       setUser(user);
-      toast.success(`Welcome back, ${user.full_name.split(" ")[0]}!`);
+      toast.success("Signed in");
       router.push("/dashboard");
     } catch (err) {
       if (err instanceof ApiError) {
         toast.error(err.message);
       } else {
-        toast.error("Could not connect to server.");
+        toast.error("Could not connect to server");
       }
     } finally {
       setSubmitting(false);
@@ -45,8 +45,8 @@ function LoginForm() {
   return (
     /* Concentric card: Outer 28px (12+16) mobile / 32px (12+20) sm -> inner inputs & buttons 12px */
     <div className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5">
-      <h1 className="text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl">
-        Welcome back
+      <h1 className="text-xl font-semibold tracking-tight text-[var(--text-primary)] sm:text-2xl">
+        Log in to <span translate="no">{APP_NAME}</span>
       </h1>
       <p className="mt-1.5 text-sm text-[var(--text-secondary)]">
         Pick up right where you stopped.

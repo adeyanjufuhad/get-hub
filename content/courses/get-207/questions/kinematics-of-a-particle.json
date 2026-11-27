@@ -1,0 +1,262 @@
+{
+  "topicSlug": "kinematics-of-a-particle",
+  "questions": [
+    {
+      "key": "prob-11-5-velocity-when-a-zero",
+      "type": "numeric",
+      "prompt": "The motion of a particle is defined by the relation $x = 6t^4 - 2t^3 - 12t^2 + 3t + 3$, where $x$ and $t$ are expressed in meters and seconds, respectively. Determine the **velocity** of the particle at the instant when $a = 0$ (in $\\text{m/s}$, with sign).",
+      "answer": -8.56,
+      "tolerancePct": 1,
+      "unit": "m/s",
+      "solution": "Differentiate: $v = \\dfrac{dx}{dt} = 24t^3 - 6t^2 - 24t + 3$ and $a = \\dfrac{dv}{dt} = 72t^2 - 12t - 24$.\n\nSet $a = 0$: $72t^2 - 12t - 24 = 0 \\Rightarrow 6t^2 - t - 2 = 0 \\Rightarrow t = \\dfrac{1 + \\sqrt{1 + 48}}{12} = 0.667\\,\\text{s}$ (the negative root is rejected).\n\nPosition: $x = 6(0.667)^4 - 2(0.667)^3 - 12(0.667)^2 + 3(0.667) + 3 = 0.259\\,\\text{m}$.\n\nVelocity: $v = 24(0.667)^3 - 6(0.667)^2 - 24(0.667) + 3 = 7.11 - 2.67 - 16.00 + 3 = -8.56\\,\\text{m/s}$.",
+      "difficulty": "easy",
+      "tags": [
+        "rectilinear-motion",
+        "differentiation"
+      ]
+    },
+    {
+      "key": "prob-11-7-total-distance",
+      "type": "numeric",
+      "prompt": "The motion of a particle is defined by the relation $x = 2t^3 - 15t^2 + 24t + 4$, where $x$ is expressed in meters and $t$ in seconds. Determine the **total distance traveled** by the particle from $t = 0$ to the instant when the acceleration is zero (in $\\text{m}$).",
+      "answer": 24.5,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "$v = 6t^2 - 30t + 24 = 6(t - 1)(t - 4)$, so $v = 0$ at $t = 1\\,\\text{s}$ and $t = 4\\,\\text{s}$. $a = 12t - 30 = 0$ at $t = 2.5\\,\\text{s}$.\n\nPositions: $x_0 = 4\\,\\text{m}$; $x_1 = 2 - 15 + 24 + 4 = 15\\,\\text{m}$; $x_{2.5} = 2(15.625) - 15(6.25) + 24(2.5) + 4 = 1.5\\,\\text{m}$.\n\nThe particle reverses at $t = 1\\,\\text{s}$, so the legs are added separately: $|15 - 4| + |1.5 - 15| = 11 + 13.5 = 24.5\\,\\text{m}$.",
+      "difficulty": "medium",
+      "tags": [
+        "rectilinear-motion",
+        "distance-traveled"
+      ]
+    },
+    {
+      "key": "prob-11-7-times-v-zero",
+      "type": "mcq",
+      "prompt": "The motion of a particle is defined by $x = 2t^3 - 15t^2 + 24t + 4$ ($x$ in meters, $t$ in seconds). At what times is the velocity zero?",
+      "options": [
+        {
+          "label": "A",
+          "text": "$t = 2.50\\,\\text{s}$ only",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$t = 1.000\\,\\text{s}$ and $t = 4.00\\,\\text{s}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$t = 0.500\\,\\text{s}$ and $t = 2.00\\,\\text{s}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$t = 0.214\\,\\text{s}$ and $t = 4.68\\,\\text{s}$",
+          "correct": false
+        }
+      ],
+      "solution": "$v = \\dfrac{dx}{dt} = 6t^2 - 30t + 24 = 6(t^2 - 5t + 4) = 6(t - 1)(t - 4) = 0$, so $t = 1.000\\,\\text{s}$ and $t = 4.00\\,\\text{s}$. ($t = 2.5\\,\\text{s}$ is where $a = 0$, not where $v = 0$.)",
+      "difficulty": "easy",
+      "tags": [
+        "rectilinear-motion"
+      ]
+    },
+    {
+      "key": "prob-11-21-half-velocity-time",
+      "type": "numeric",
+      "prompt": "The acceleration of a particle is defined by the relation $a = -0.8v$, where $a$ is in $\\text{m/s}^2$ and $v$ in $\\text{m/s}$. Knowing that at $t = 0$ the velocity is $1\\,\\text{m/s}$, determine the time required for the velocity to be reduced by 50 percent of its initial value (in $\\text{s}$).",
+      "answer": 0.866,
+      "tolerancePct": 1,
+      "unit": "s",
+      "solution": "Class $a = f(v)$: $\\dfrac{dv}{dt} = -0.8v \\Rightarrow \\displaystyle\\int_1^{v}\\frac{dv}{v} = -0.8\\int_0^t dt \\Rightarrow \\ln v = -0.8t$.\n\nFor $v = 0.5\\,\\text{m/s}$: $t = \\dfrac{\\ln 2}{0.8} = 0.866\\,\\text{s}$.\n\n(For the stopping distance, $v\\,dv/dx = -0.8v$ gives $v = 1 - 0.8x$, so the particle stops after $1.250\\,\\text{m}$.)",
+      "difficulty": "easy",
+      "tags": [
+        "a-function-of-v",
+        "integration"
+      ]
+    },
+    {
+      "key": "prob-11-24-velocity-at-20m",
+      "type": "numeric",
+      "prompt": "The acceleration of a particle is defined by $a = -k\\sqrt{v}$, where $k$ is a constant. Knowing that $x = 0$ and $v = 81\\,\\text{m/s}$ at $t = 0$ and that $v = 36\\,\\text{m/s}$ when $x = 18\\,\\text{m}$, determine the velocity of the particle when $x = 20\\,\\text{m}$ (in $\\text{m/s}$).",
+      "answer": 29.3,
+      "tolerancePct": 1,
+      "unit": "m/s",
+      "solution": "Use $a = v\\,dv/dx$: $v\\dfrac{dv}{dx} = -k v^{1/2} \\Rightarrow v^{1/2}dv = -k\\,dx \\Rightarrow \\tfrac23\\big(v^{3/2} - 81^{3/2}\\big) = -kx$.\n\nWith $v = 36$ at $x = 18$: $\\tfrac23(216 - 729) = -18k \\Rightarrow k = 19\\,\\text{m}^{1/2}\\text{s}^{-3/2}$.\n\nAt $x = 20\\,\\text{m}$: $v^{3/2} = 729 - \\tfrac32(19)(20) = 159 \\Rightarrow v = 159^{2/3} = 29.3\\,\\text{m/s}$.",
+      "difficulty": "medium",
+      "tags": [
+        "a-function-of-v",
+        "integration"
+      ]
+    },
+    {
+      "key": "prob-11-25-distance-at-4ms",
+      "type": "numeric",
+      "prompt": "A particle is projected to the right from $x = 0$ with an initial velocity of $9\\,\\text{m/s}$. Its acceleration is $a = -0.6v^{3/2}$ ($a$ in $\\text{m/s}^2$, $v$ in $\\text{m/s}$). Determine the distance the particle will have traveled when its velocity is $4\\,\\text{m/s}$ (in $\\text{m}$).",
+      "answer": 3.33,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "$v\\dfrac{dv}{dx} = -0.6v^{3/2} \\Rightarrow v^{-1/2}dv = -0.6\\,dx \\Rightarrow 2\\big(\\sqrt{v} - \\sqrt{9}\\big) = -0.6x$.\n\nSo $x = \\dfrac{3 - \\sqrt{v}}{0.3}$. For $v = 4\\,\\text{m/s}$: $x = \\dfrac{3 - 2}{0.3} = 3.33\\,\\text{m}$.",
+      "difficulty": "medium",
+      "tags": [
+        "a-function-of-v",
+        "integration"
+      ]
+    },
+    {
+      "key": "prob-11-33-stone-impact-speed",
+      "type": "numeric",
+      "prompt": "A stone is thrown vertically upward from a point on a bridge located $40\\,\\text{m}$ above the water. Knowing that it strikes the water $4\\,\\text{s}$ after release, determine the speed with which the stone strikes the water (in $\\text{m/s}$).",
+      "answer": 29.6,
+      "tolerancePct": 1,
+      "unit": "m/s",
+      "solution": "Origin at the water, $y$ positive upward: $y_0 = 40\\,\\text{m}$, $a = -9.81\\,\\text{m/s}^2$.\n\n$y = y_0 + v_0t + \\tfrac12at^2$: $0 = 40 + 4v_0 - 4.905(16) \\Rightarrow v_0 = \\dfrac{78.48 - 40}{4} = 9.62\\,\\text{m/s}\\uparrow$.\n\n$v = v_0 + at = 9.62 - 9.81(4) = -29.6\\,\\text{m/s}$, so the stone strikes the water at $29.6\\,\\text{m/s}\\downarrow$.",
+      "difficulty": "easy",
+      "tags": [
+        "uniformly-accelerated",
+        "free-fall"
+      ]
+    },
+    {
+      "key": "prob-11-34-traffic-light-deceleration",
+      "type": "numeric",
+      "prompt": "A motorist is traveling at $54\\,\\text{km/h}$ when she observes that a traffic light $240\\,\\text{m}$ ahead turns red. The light stays red for $24\\,\\text{s}$. If she wishes to pass the light without stopping just as it turns green, determine the **magnitude** of the required uniform deceleration (in $\\text{m/s}^2$).",
+      "answer": 0.417,
+      "tolerancePct": 1,
+      "unit": "m/s^2",
+      "solution": "$v_0 = 54\\,\\text{km/h} = 15\\,\\text{m/s}$. Uniformly accelerated motion with $x - x_0 = 240\\,\\text{m}$ at $t = 24\\,\\text{s}$:\n\n$240 = 15(24) + \\tfrac12a(24)^2 \\Rightarrow a = \\dfrac{240 - 360}{288} = -0.417\\,\\text{m/s}^2$.\n\nDeceleration magnitude $0.417\\,\\text{m/s}^2$. (Speed at the light: $v = 15 - 0.417(24) = 5\\,\\text{m/s} = 18.00\\,\\text{km/h}$.)",
+      "difficulty": "easy",
+      "tags": [
+        "uniformly-accelerated"
+      ]
+    },
+    {
+      "key": "prob-11-40-boat-a-acceleration",
+      "type": "numeric",
+      "prompt": "In a boat race, boat $A$ is leading boat $B$ by $50\\,\\text{m}$ and both boats are traveling at a constant speed of $180\\,\\text{km/h}$. At $t = 0$, the boats accelerate at constant rates. Knowing that when $B$ passes $A$, $t = 8\\,\\text{s}$ and $v_A = 225\\,\\text{km/h}$, determine the acceleration of boat $B$ (in $\\text{m/s}^2$).",
+      "answer": 3.13,
+      "tolerancePct": 1,
+      "unit": "m/s^2",
+      "solution": "$180\\,\\text{km/h} = 50\\,\\text{m/s}$, $225\\,\\text{km/h} = 62.5\\,\\text{m/s}$. Origin at $B$'s initial position.\n\nBoat $A$: $a_A = \\dfrac{62.5 - 50}{8} = 1.5625\\,\\text{m/s}^2$; $x_A = 50 + 50(8) + \\tfrac12(1.5625)(8)^2 = 500\\,\\text{m}$.\n\nBoat $B$ passes $A$, so $x_B = x_A$: $500 = 0 + 50(8) + \\tfrac12a_B(64) \\Rightarrow a_B = \\dfrac{100}{32} = 3.13\\,\\text{m/s}^2$.",
+      "difficulty": "medium",
+      "tags": [
+        "motion-of-several-particles"
+      ]
+    },
+    {
+      "key": "prob-11-44-ball-hits-elevator",
+      "type": "numeric",
+      "prompt": "An elevator is moving upward at a constant speed of $4\\,\\text{m/s}$. A man standing $10\\,\\text{m}$ above the top of the elevator throws a ball upward with a speed of $3\\,\\text{m/s}$. Determine when the ball will hit the elevator (in $\\text{s}$).",
+      "answer": 1.33,
+      "tolerancePct": 1,
+      "unit": "s",
+      "solution": "Origin at the initial top of the elevator, $y$ upward. Ball: $y_B = 10 + 3t - 4.905t^2$. Elevator: $y_E = 4t$.\n\nContact when $y_B = y_E$: $10 + 3t - 4.905t^2 = 4t \\Rightarrow 4.905t^2 + t - 10 = 0 \\Rightarrow t = \\dfrac{-1 + \\sqrt{1 + 196.2}}{9.81} = 1.330\\,\\text{s}$.\n\n(Ball position relative to the man: $3(1.330) - 4.905(1.330)^2 = -4.68\\,\\text{m}$, i.e. $4.68\\,\\text{m}$ below the man.)",
+      "difficulty": "medium",
+      "tags": [
+        "relative-motion",
+        "uniformly-accelerated"
+      ]
+    },
+    {
+      "key": "prob-11-69-model-boat-position",
+      "type": "numeric",
+      "prompt": "A model boat has initial horizontal velocity $6\\,\\text{m/s}$; its acceleration varies linearly from $-12\\,\\text{m/s}^2$ at $t = 0$ to $-2\\,\\text{m/s}^2$ at $t = t_1$, then remains $-2\\,\\text{m/s}^2$ until $t = 1.4\\,\\text{s}$. Knowing that $v = 1.8\\,\\text{m/s}$ when $t = t_1$, determine the position of the model at $t = 1.4\\,\\text{s}$ (in $\\text{m}$, starting from $x = 0$).",
+      "answer": 2.84,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "Change in $v$ = area under $a$–$t$ curve: $1.8 - 6 = -\\tfrac12(12 + 2)t_1 \\Rightarrow t_1 = 0.600\\,\\text{s}$.\n\nFor $0 \\le t \\le 0.6$: $a = -12 + \\tfrac{50}{3}t$, so $v = 6 - 12t + \\tfrac{25}{3}t^2$ and $x = 6t - 6t^2 + \\tfrac{25}{9}t^3$; at $0.6\\,\\text{s}$, $x = 3.6 - 2.16 + 0.60 = 2.04\\,\\text{m}$.\n\nFor $0.6 \\le t \\le 1.4$ ($a = -2$): $\\Delta x = 1.8(0.8) - \\tfrac12(2)(0.8)^2 = 1.44 - 0.64 = 0.80\\,\\text{m}$, and $v = 1.8 - 2(0.8) = 0.200\\,\\text{m/s}$.\n\n$x_{1.4} = 2.04 + 0.80 = 2.84\\,\\text{m}$.",
+      "difficulty": "hard",
+      "tags": [
+        "graphical-methods",
+        "a-function-of-t"
+      ]
+    },
+    {
+      "key": "prob-11-89-ball-range",
+      "type": "numeric",
+      "prompt": "A ball is thrown so that the motion is defined by $x = 5t$ and $y = 2 + 6t - 4.9t^2$ ($x$, $y$ in meters, $t$ in seconds). Determine the horizontal distance the ball travels before hitting the ground (in $\\text{m}$).",
+      "answer": 7.49,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "Ground: $y = 0 \\Rightarrow 4.9t^2 - 6t - 2 = 0 \\Rightarrow t = \\dfrac{6 + \\sqrt{36 + 39.2}}{9.8} = 1.497\\,\\text{s}$.\n\n$x = 5(1.497) = 7.49\\,\\text{m}$.\n\n(At $t = 1\\,\\text{s}$: $v_x = 5$, $v_y = 6 - 9.8 = -3.8\\,\\text{m/s}$, $v = 6.28\\,\\text{m/s}$ at $37.2^\\circ$ below the horizontal.)",
+      "difficulty": "easy",
+      "tags": [
+        "rectangular-components",
+        "projectile"
+      ]
+    },
+    {
+      "key": "prob-11-98-helicopter-part-distance",
+      "type": "numeric",
+      "prompt": "A helicopter is flying with a constant horizontal velocity of $180\\,\\text{km/h}$ and is directly above point $A$ when a loose part begins to fall. The part lands $6.5\\,\\text{s}$ later at point $B$ on the surface inclined at $10^\\circ$ as shown. Determine the distance $d$ between points $A$ and $B$ (in $\\text{m}$).",
+      "image": "/diagrams/get-207/kinematics-of-a-particle-prob-11-98.png",
+      "answer": 330,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "The part keeps the helicopter's horizontal velocity, $(v_x)_0 = 180\\,\\text{km/h} = 50\\,\\text{m/s}$, and $(v_y)_0 = 0$.\n\nHorizontal (uniform): $x = 50(6.5) = 325\\,\\text{m}$.\n\n$B$ lies on the $10^\\circ$ incline through $A$, so $d = \\dfrac{x}{\\cos 10^\\circ} = \\dfrac{325}{0.9848} = 330\\,\\text{m}$.\n\n(Vertical drop $= \\tfrac12(9.81)(6.5)^2 = 207.2\\,\\text{m} = h + 325\\tan 10^\\circ$, giving $h = 149.9\\,\\text{m}$.)",
+      "difficulty": "medium",
+      "tags": [
+        "projectile"
+      ]
+    },
+    {
+      "key": "prob-11-129-raindrop-speed",
+      "type": "numeric",
+      "prompt": "During a rainstorm the paths of the raindrops appear to form an angle of $30^\\circ$ with the vertical and to be directed to the left when observed from a side window of a train moving at $15\\,\\text{km/h}$. When the train's speed has increased to $24\\,\\text{km/h}$, the angle appears to be $45^\\circ$. If the train were stopped, with what speed would the drops be observed to fall (in $\\text{m/s}$)?",
+      "answer": 5.96,
+      "tolerancePct": 1,
+      "unit": "m/s",
+      "solution": "Let the drop velocity be $v_x$ (to the right, direction of the train) and $v_y\\downarrow$. Relative to the train, $\\mathbf{v}_{D/T} = \\mathbf{v}_D - \\mathbf{v}_T$ has horizontal component $v_T - v_x$ to the left and vertical component $v_y$.\n\n$15\\,\\text{km/h} = 4.167\\,\\text{m/s}$: $4.167 - v_x = v_y\\tan 30^\\circ$.\n$24\\,\\text{km/h} = 6.667\\,\\text{m/s}$: $6.667 - v_x = v_y\\tan 45^\\circ$.\n\nSubtracting: $2.5 = v_y(1 - 0.5774) \\Rightarrow v_y = 5.915\\,\\text{m/s}$; then $v_x = 6.667 - 5.915 = 0.752\\,\\text{m/s}$.\n\n$v = \\sqrt{0.752^2 + 5.915^2} = 5.96\\,\\text{m/s}$, at $\\tan^{-1}(5.915/0.752) = 82.8^\\circ$ with the horizontal.",
+      "difficulty": "hard",
+      "tags": [
+        "relative-motion",
+        "frame-in-translation"
+      ]
+    },
+    {
+      "key": "prob-11-133-highway-min-radius",
+      "type": "numeric",
+      "prompt": "Determine the smallest radius that should be used for a highway if the normal component of the acceleration of a car traveling at $72\\,\\text{km/h}$ is not to exceed $0.8\\,\\text{m/s}^2$ (in $\\text{m}$).",
+      "answer": 500,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "$v = 72\\,\\text{km/h} = 20\\,\\text{m/s}$. From $a_n = v^2/\\rho$: $\\rho_{\\min} = \\dfrac{v^2}{(a_n)_{\\max}} = \\dfrac{(20)^2}{0.8} = 500\\,\\text{m}$.",
+      "difficulty": "easy",
+      "tags": [
+        "tangential-normal"
+      ]
+    },
+    {
+      "key": "prob-11-134-roller-coaster-max-speed",
+      "type": "mcq",
+      "prompt": "Determine the maximum speed that the cars of a roller-coaster can reach along a circular portion of track of radius $\\rho = 25\\,\\text{m}$ if the normal component of their acceleration cannot exceed $3g$.",
+      "options": [
+        {
+          "label": "A",
+          "text": "$56.4\\,\\text{km/h}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$27.1\\,\\text{km/h}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$97.6\\,\\text{km/h}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$293\\,\\text{km/h}$",
+          "correct": false
+        }
+      ],
+      "solution": "$a_n = v^2/\\rho \\le 3g \\Rightarrow v_{\\max} = \\sqrt{3g\\rho} = \\sqrt{3(9.81)(25)} = 27.1\\,\\text{m/s} = 27.1(3.6) = 97.6\\,\\text{km/h}$.\n\nOption A uses $g$ instead of $3g$; option B forgets to convert m/s to km/h; option D applies the factor 3 outside the square root.",
+      "difficulty": "easy",
+      "tags": [
+        "tangential-normal"
+      ]
+    }
+  ]
+}

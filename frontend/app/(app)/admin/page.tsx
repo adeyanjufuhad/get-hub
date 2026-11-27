@@ -145,9 +145,9 @@ export default function AdminQuestionsPage() {
     try {
       const res = await api.admin.uploadImage(file);
       onUrl(res.path);
-      toast.success("Image uploaded!");
+      toast.success("Image uploaded");
     } catch (err) {
-      toast.error(err instanceof ApiError ? err.message : "Upload failed.");
+      toast.error(err instanceof ApiError ? err.message : "Upload failed");
     }
   }
 
@@ -216,17 +216,16 @@ export default function AdminQuestionsPage() {
   }
 
   if (authLoading || loading) {
-    return <div className="h-80 animate-pulse rounded-[24px] bg-[var(--bg-surface)]" />;
+    return <div className="h-80 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]" />;
   }
 
   if (!user || user.role !== "admin") {
     return (
       <div className="mx-auto max-w-md rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6 text-center">
         <ShieldAlert className="mx-auto h-8 w-8 text-[var(--danger)]" />
-        <h1 className="mt-3 text-lg font-extrabold">Admin access required</h1>
+        <h1 className="mt-3 text-lg font-semibold">Admin access required</h1>
         <p className="mt-1 text-sm text-[var(--text-secondary)]">
-          Only accounts with the <code className="font-mono">admin</code> role can manage questions. Run{" "}
-          <code className="font-mono">go run ./cmd/seed-admin</code> to promote your account.
+          Only accounts with administrator access can manage questions.
         </p>
       </div>
     );
@@ -236,8 +235,8 @@ export default function AdminQuestionsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <Badge variant="accent">Admin Question Bank</Badge>
-          <h1 className="mt-1.5 text-2xl font-extrabold tracking-tight">Manage Questions &amp; SVGs</h1>
+          <Badge variant="accent">Question bank</Badge>
+          <h1 className="mt-1.5 text-2xl font-semibold tracking-tight">Manage questions and diagrams</h1>
         </div>
         <Button type="button" variant="ink" onClick={openNewForm}>
           <Plus className="h-4 w-4" />
@@ -341,20 +340,20 @@ export default function AdminQuestionsPage() {
             </div>
           </div>
 
-          {/* Prompt + Live KaTeX preview + Image Upload */}
+          {/* Prompt + Live math preview + Image Upload */}
           <div>
-            <label className="block text-xs font-semibold">Question Prompt (supports $KaTeX$)</label>
+            <label className="block text-xs font-medium">Question prompt (supports math like $x^2$)</label>
             <textarea
               required
               rows={3}
               value={promptMd}
               onChange={(e) => setPromptMd(e.target.value)}
-              placeholder="Write question prompt with inline $x^2$ or block $$...$$ math"
+              placeholder="Write the question with inline $x^2$ or block $$...$$ equations"
               className="mt-1 w-full rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
             />
             {promptMd && (
               <div className="mt-2 rounded-xl bg-[var(--bg-subtle)] p-3 text-xs">
-                <span className="mr-2 font-mono font-bold text-[var(--text-muted)]">Preview:</span>
+                <span className="mr-2 font-mono font-semibold text-[var(--text-muted)]">Preview:</span>
                 <MathText text={promptMd} />
               </div>
             )}
@@ -365,12 +364,12 @@ export default function AdminQuestionsPage() {
               type="text"
               value={promptImageUrl}
               onChange={(e) => setPromptImageUrl(e.target.value)}
-              placeholder="Optional prompt SVG/image URL (e.g. /diagrams/get-205/...)"
+              placeholder="Optional diagram URL (e.g. /diagrams/get-205/...)"
               className="min-h-[44px] w-full min-w-0 rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 sm:flex-1"
             />
-            <label className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-xs font-semibold hover:border-[var(--border-strong)] cursor-pointer">
-              <Upload className="h-3.5 w-3.5" aria-hidden="true" />
-              Upload SVG/PNG
+            <label className="pressable inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 text-xs font-medium hover:border-[var(--border-strong)] cursor-pointer">
+              <Upload className="h-4 w-4" aria-hidden="true" />
+              Upload diagram
               <input
                 type="file"
                 accept=".svg,.png,.webp"
@@ -414,7 +413,7 @@ export default function AdminQuestionsPage() {
                         prev.map((o, i) => (i === idx ? { ...o, content_md: e.target.value } : o))
                       )
                     }
-                    placeholder="Option text or $KaTeX$"
+                    placeholder="Option text or math like $x^2$"
                     className="min-h-[42px] rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 sm:col-span-5"
                   />
                   <input
@@ -425,12 +424,12 @@ export default function AdminQuestionsPage() {
                         prev.map((o, i) => (i === idx ? { ...o, image_url: e.target.value } : o))
                       )
                     }
-                    placeholder="Optional SVG URL"
+                    placeholder="Optional diagram URL"
                     className="min-h-[42px] rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 sm:col-span-3"
                   />
-                  <label className="pressable inline-flex min-h-[42px] items-center justify-center rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2 text-xs font-semibold sm:col-span-2 cursor-pointer">
+                  <label className="pressable inline-flex min-h-[42px] items-center justify-center rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2 text-xs font-medium sm:col-span-2 cursor-pointer">
                     <Upload className="mr-1 h-3.5 w-3.5" />
-                    SVG
+                    Image
                     <input
                       type="file"
                       accept=".svg,.png,.webp"
@@ -488,7 +487,7 @@ export default function AdminQuestionsPage() {
 
           {/* Solution */}
           <div>
-            <label className="block text-xs font-semibold">Step-by-step solution (supports $KaTeX$)</label>
+            <label className="block text-xs font-medium">Step-by-step solution (supports math like $x^2$)</label>
             <textarea
               required
               rows={4}
@@ -534,13 +533,13 @@ export default function AdminQuestionsPage() {
             />
           </div>
 
-          <label className="flex items-center gap-2 text-xs font-semibold">
+          <label className="flex items-center gap-2 text-xs font-medium">
             <input
               type="checkbox"
               checked={isFree}
               onChange={(e) => setIsFree(e.target.checked)}
             />
-            Free tier accessible (`is_free = true`)
+            Free for all students
           </label>
 
           <div className="flex justify-end gap-2">

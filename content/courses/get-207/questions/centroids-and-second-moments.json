@@ -1,0 +1,322 @@
+{
+  "topicSlug": "centroids-and-second-moments",
+  "questions": [
+    {
+      "key": "prob-5-1-composite-x-centroid",
+      "type": "numeric",
+      "prompt": "Locate the centroid of the plane area shown: a vertical $1\\text{-in.}$-wide, $8\\text{-in.}$-tall bar along the $y$ axis with a $1\\text{-in.}$-thick horizontal arm reaching $4\\,\\text{in.}$ from the $y$ axis, its lower edge $2\\,\\text{in.}$ above the $x$ axis. Give $\\bar{X}$ (in in.).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-1.png",
+      "answer": 1.045,
+      "tolerancePct": 1,
+      "unit": "in.",
+      "solution": "Divide into the vertical bar (1) and the arm (2).\n\n| Part | $A$, in$^2$ | $\\bar{x}$, in. | $\\bar{y}$, in. | $\\bar{x}A$ | $\\bar{y}A$ |\n|---|---|---|---|---|---|\n| Bar $1\\times8$ | 8 | 0.5 | 4 | 4 | 32 |\n| Arm $3\\times1$ | 3 | 2.5 | 2.5 | 7.5 | 7.5 |\n| $\\Sigma$ | 11 | | | 11.5 | 39.5 |\n\n$\\bar{X} = \\Sigma\\bar{x}A/\\Sigma A = 11.5/11 = 1.045\\,\\text{in.}$ and $\\bar{Y} = 39.5/11 = 3.59\\,\\text{in.}$",
+      "difficulty": "easy",
+      "tags": [
+        "composite-areas",
+        "centroid"
+      ]
+    },
+    {
+      "key": "prob-5-3-composite-y-centroid",
+      "type": "numeric",
+      "prompt": "Locate the centroid of the plane area shown. Give $\\bar{Y}$ (in mm).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-3.png",
+      "answer": 26.6,
+      "tolerancePct": 1,
+      "unit": "mm",
+      "solution": "Split into a rectangle $126\\times54$ (from $x = -54$ to $72$, $y = 0$ to $54$), a top triangle (vertices $(-54,54)$, $(72,54)$, $(72,84)$) and a bottom triangle (vertices $(0,0)$, $(72,0)$, $(72,-48)$).\n\n| Part | $A$, mm$^2$ | $\\bar{x}$ | $\\bar{y}$ | $\\bar{x}A$ | $\\bar{y}A$ |\n|---|---|---|---|---|---|\n| Rectangle | 6804 | 9 | 27 | 61 236 | 183 708 |\n| Top triangle | 1890 | 30 | 64 | 56 700 | 120 960 |\n| Bottom triangle | 1728 | 48 | $-16$ | 82 944 | $-27\\,648$ |\n| $\\Sigma$ | 10 422 | | | 200 880 | 277 020 |\n\n$\\bar{X} = 200\\,880/10\\,422 = 19.27\\,\\text{mm}$, $\\bar{Y} = 277\\,020/10\\,422 = 26.6\\,\\text{mm}$.",
+      "difficulty": "medium",
+      "tags": [
+        "composite-areas",
+        "centroid"
+      ]
+    },
+    {
+      "key": "prob-5-6-plate-with-hole-x",
+      "type": "numeric",
+      "prompt": "Locate the centroid of the plane area shown: a $14\\text{-in.}$-wide, $20\\text{-in.}$-tall rectangle with a circular hole of radius $4\\,\\text{in.}$ centered $6\\,\\text{in.}$ from the $y$ axis and $12\\,\\text{in.}$ above the $x$ axis. Give $\\bar{X}$ (in in.).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-6.png",
+      "answer": 7.22,
+      "tolerancePct": 1,
+      "unit": "in.",
+      "solution": "Rectangle: $A = 280\\,\\text{in}^2$, $(\\bar{x}, \\bar{y}) = (7, 10)$. Hole (negative): $A = -\\pi(4)^2 = -50.27\\,\\text{in}^2$ at $(6, 12)$.\n\n$\\Sigma A = 229.73\\,\\text{in}^2$; $\\Sigma\\bar{x}A = 1960 - 301.6 = 1658.4\\,\\text{in}^3$; $\\Sigma\\bar{y}A = 2800 - 603.2 = 2196.8\\,\\text{in}^3$.\n\n$\\bar{X} = 1658.4/229.73 = 7.22\\,\\text{in.}$, $\\bar{Y} = 2196.8/229.73 = 9.56\\,\\text{in.}$",
+      "difficulty": "easy",
+      "tags": [
+        "composite-areas",
+        "holes"
+      ]
+    },
+    {
+      "key": "prob-5-10-semicircular-ring",
+      "type": "numeric",
+      "prompt": "Locate the centroid of the semicircular ring shown ($r_1 = 8\\,\\text{in.}$, $r_2 = 12\\,\\text{in.}$). Give $\\bar{Y}$ (in in.).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-10.png",
+      "answer": 6.45,
+      "tolerancePct": 1,
+      "unit": "in.",
+      "solution": "By symmetry $\\bar{X} = 0$. Treat the ring as a semicircle of radius $12$ minus a semicircle of radius $8$, each with $\\bar{y} = 4r/3\\pi$.\n\nOuter: $A = \\tfrac{\\pi}{2}(144) = 226.2\\,\\text{in}^2$, $\\bar{y} = 16/\\pi = 5.093$, $\\bar{y}A = 1152$. Inner: $A = -\\tfrac{\\pi}{2}(64) = -100.5$, $\\bar{y} = 32/3\\pi = 3.395$, $\\bar{y}A = -341.3$.\n\n$\\bar{Y} = (1152 - 341.3)/(226.2 - 100.5) = 810.7/125.7 = 6.45\\,\\text{in.}$",
+      "difficulty": "medium",
+      "tags": [
+        "composite-areas",
+        "symmetry"
+      ]
+    },
+    {
+      "key": "prob-5-14-parabola-minus-triangle",
+      "type": "numeric",
+      "prompt": "Locate the centroid of the area between the parabola $x = ky^2$ and the straight line shown ($a = 8\\,\\text{in.}$, $b = 4\\,\\text{in.}$; both curves pass through the origin and the point $(8, 4)$). Give $\\bar{X}$ (in in.).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-14.png",
+      "answer": 3.2,
+      "tolerancePct": 1,
+      "unit": "in.",
+      "solution": "Area = (region under the parabola $y = \\sqrt{2x}$ down to the $x$ axis) $-$ (triangle under the line).\n\nParabolic region (semiparabolic area with its axis along $x$, so the table values $3h/5$ and $3a/8$ apply with the roles of $x$ and $y$ interchanged): $A_1 = \\tfrac{2}{3}(8)(4) = 21.33\\,\\text{in}^2$, $\\bar{x}_1 = \\tfrac{3}{5}(8) = 4.8$, $\\bar{y}_1 = \\tfrac{3}{8}(4) = 1.5\\,\\text{in.}$\n\nTriangle: $A_2 = -\\tfrac{1}{2}(8)(4) = -16\\,\\text{in}^2$, $\\bar{x}_2 = 16/3$, $\\bar{y}_2 = 4/3\\,\\text{in.}$\n\n$\\Sigma A = 5.333\\,\\text{in}^2$; $\\Sigma\\bar{x}A = 102.4 - 85.33 = 17.07$; $\\Sigma\\bar{y}A = 32 - 21.33 = 10.67$.\n\n$\\bar{X} = 17.07/5.333 = 3.20\\,\\text{in.}$, $\\bar{Y} = 10.67/5.333 = 2.00\\,\\text{in.}$",
+      "difficulty": "hard",
+      "tags": [
+        "composite-areas",
+        "parabolic-area"
+      ]
+    },
+    {
+      "key": "prob-5-36-parabola-line-integration",
+      "type": "mcq",
+      "prompt": "Determine by direct integration the centroid of the area between the line $y = mx$ and the parabola $y = kx^2$ shown (they meet at $x = a$, $y = h$).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-36.png",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\bar{x} = a/2$, $\\;\\bar{y} = h/2$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\bar{x} = 2a/3$, $\\;\\bar{y} = h/3$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$\\bar{x} = a/2$, $\\;\\bar{y} = 2h/5$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$\\bar{x} = 3a/4$, $\\;\\bar{y} = 3h/10$",
+          "correct": false
+        }
+      ],
+      "solution": "$m = h/a$, $k = h/a^2$. Vertical strip: $dA = (y_1 - y_2)\\,dx = h\\left(\\tfrac{x}{a} - \\tfrac{x^2}{a^2}\\right)dx$, $\\bar{x}_{el} = x$, $\\bar{y}_{el} = \\tfrac{1}{2}(y_1 + y_2)$.\n\n$A = h\\left(\\tfrac{a}{2} - \\tfrac{a}{3}\\right) = \\tfrac{ah}{6}$. $\\;Q_y = h\\int_0^a\\left(\\tfrac{x^2}{a} - \\tfrac{x^3}{a^2}\\right)dx = h a^2\\left(\\tfrac13 - \\tfrac14\\right) = \\tfrac{a^2h}{12}$, so $\\bar{x} = a/2$.\n\n$Q_x = \\int\\tfrac12(y_1^2 - y_2^2)\\,dx = \\tfrac{h^2}{2}\\int_0^a\\left(\\tfrac{x^2}{a^2} - \\tfrac{x^4}{a^4}\\right)dx = \\tfrac{h^2a}{2}\\left(\\tfrac13 - \\tfrac15\\right) = \\tfrac{ah^2}{15}$, so $\\bar{y} = \\tfrac{ah^2/15}{ah/6} = \\tfrac{2h}{5}$.",
+      "difficulty": "medium",
+      "tags": [
+        "centroid-by-integration"
+      ]
+    },
+    {
+      "key": "prob-5-38-elliptical-spandrel",
+      "type": "mcq",
+      "prompt": "Determine by direct integration the centroid of the shaded area shown, bounded by the quarter ellipse $x^2/a^2 + y^2/b^2 = 1$ and the lines $y = b$ and $x = a$. Which expression gives $\\bar{x}$?",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-38.png",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\dfrac{4a}{3\\pi}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{2a}{3(4 - \\pi)}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{a}{3(4 - \\pi)}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{2a}{3(\\pi - 2)}$",
+          "correct": false
+        }
+      ],
+      "solution": "Area $= ab - \\tfrac{\\pi ab}{4} = ab\\,\\tfrac{4 - \\pi}{4}$. The first moment about the $y$ axis equals that of the rectangle minus that of the quarter ellipse (centroid $4a/3\\pi$): $Q_y = ab\\tfrac{a}{2} - \\tfrac{\\pi ab}{4}\\tfrac{4a}{3\\pi} = \\tfrac{a^2b}{2} - \\tfrac{a^2b}{3} = \\tfrac{a^2b}{6}$ (the same result follows by integrating vertical strips $dA = (b - y)\\,dx$).\n\n$\\bar{x} = \\dfrac{a^2b/6}{ab(4 - \\pi)/4} = \\dfrac{2a}{3(4 - \\pi)}$, and by the same argument $\\bar{y} = \\dfrac{2b}{3(4 - \\pi)}$.",
+      "difficulty": "medium",
+      "tags": [
+        "centroid-by-integration",
+        "ellipse"
+      ]
+    },
+    {
+      "key": "prob-5-62-countersink-volume",
+      "type": "numeric",
+      "prompt": "A $\\tfrac{3}{4}\\text{-in.}$-diameter hole is drilled in a piece of $1\\text{-in.}$-thick steel; the hole is then countersunk ($90^\\circ$ included angle, top diameter $1\\tfrac{1}{4}\\,\\text{in.}$) as shown. Determine the volume of steel removed during the countersinking process (in $\\text{in}^3$).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-62.png",
+      "answer": 0.09,
+      "tolerancePct": 1.5,
+      "unit": "in^3",
+      "solution": "The countersink removes the material generated by revolving a right triangle about the hole's axis. Its legs: radial $\\tfrac12(1.25 - 0.75) = 0.25\\,\\text{in.}$ and (for a $90^\\circ$ countersink, $45^\\circ$ sides) depth $0.25\\,\\text{in.}$; area $A = \\tfrac12(0.25)(0.25) = 0.03125\\,\\text{in}^2$.\n\nIts centroid lies at $\\bar{r} = 0.375 + \\tfrac13(0.25) = 0.4583\\,\\text{in.}$ from the axis. By Theorem II of Pappus-Guldinus:\n\n$$V = 2\\pi\\bar{r}A = 2\\pi(0.4583)(0.03125) = 0.0900\\,\\text{in}^3.$$",
+      "difficulty": "medium",
+      "tags": [
+        "pappus-guldinus",
+        "volume-of-revolution"
+      ]
+    },
+    {
+      "key": "prob-5-66-parabolic-load-resultant-location",
+      "type": "numeric",
+      "prompt": "For the beam and loading shown (load varying parabolically from $2000\\,\\text{N/m}$ at $A$ to $900\\,\\text{N/m}$ at $B$, the parabola having its vertex at $B$; span $6\\,\\text{m}$), determine the distance from $A$ to the line of action of the resultant of the distributed load (in m).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-66.png",
+      "answer": 2.57,
+      "tolerancePct": 1,
+      "unit": "m",
+      "solution": "Split the load into a rectangle of height $900\\,\\text{N/m}$ and a parabolic spandrel of height $1100\\,\\text{N/m}$ at $A$ with vertex at $B$.\n\nRectangle: $R_1 = (900)(6) = 5400\\,\\text{N}$ at $3\\,\\text{m}$. Spandrel): $R_2 = \\tfrac13(6)(1100) = 2200\\,\\text{N}$, centroid $\\tfrac34(6) = 4.5\\,\\text{m}$ from the vertex $B$, i.e. $1.5\\,\\text{m}$ from $A$.\n\n$R = 7600\\,\\text{N} = 7.60\\,\\text{kN}\\downarrow$; $\\;\\bar{x} = \\dfrac{5400(3) + 2200(1.5)}{7600} = \\dfrac{19\\,500}{7600} = 2.57\\,\\text{m}$.\n\nReactions: $B = 7600(2.566)/6 = 3.25\\,\\text{kN}\\uparrow$, $A = 7.60 - 3.25 = 4.35\\,\\text{kN}\\uparrow$.",
+      "difficulty": "medium",
+      "tags": [
+        "distributed-loads",
+        "beams"
+      ]
+    },
+    {
+      "key": "prob-5-68-reaction-b",
+      "type": "numeric",
+      "prompt": "Determine the reaction at support $B$ (in N) for the beam and loading shown: over the middle $1.5\\text{-m}$ segment (starting $0.4\\,\\text{m}$ right of $A$, ending $0.6\\,\\text{m}$ left of $B$) the load varies linearly from $400\\,\\text{N/m}$ upward to $900\\,\\text{N/m}$ downward.",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p5-68.png",
+      "answer": 270,
+      "tolerancePct": 1,
+      "unit": "N",
+      "solution": "Represent the linear load as two triangles over the $1.5\\text{-m}$ segment: an upward triangle with $400\\,\\text{N/m}$ at its left end, $R_1 = \\tfrac12(1.5)(400) = 300\\,\\text{N}\\uparrow$ at $0.4 + 0.5 = 0.9\\,\\text{m}$ from $A$; and a downward triangle with $900\\,\\text{N/m}$ at its right end, $R_2 = \\tfrac12(1.5)(900) = 675\\,\\text{N}\\downarrow$ at $0.4 + 1.0 = 1.4\\,\\text{m}$ from $A$. Span $AB = 2.5\\,\\text{m}$.\n\n$+\\circlearrowleft\\sum M_A = 0$: $B(2.5) - 675(1.4) + 300(0.9) = 0 \\Rightarrow B = 675/2.5 = 270\\,\\text{N}\\uparrow$.\n\n$+\\uparrow\\sum F_y = 0$: $A + 270 + 300 - 675 = 0 \\Rightarrow A = 105.0\\,\\text{N}\\uparrow$.",
+      "difficulty": "medium",
+      "tags": [
+        "distributed-loads",
+        "beams",
+        "reactions"
+      ]
+    },
+    {
+      "key": "prob-9-2-iy-cube-root-curve",
+      "type": "mcq",
+      "prompt": "Determine by direct integration the moment of inertia, with respect to the $y$ axis, of the shaded area under the curve $y = kx^{1/3}$ from $x = 0$ to $x = a$ (height $b$ at $x = a$).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p9-2.png",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\dfrac{a^3b}{3}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{3a^3b}{10}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{ab^3}{6}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{3a^3b}{7}$",
+          "correct": false
+        }
+      ],
+      "solution": "$b = ka^{1/3} \\Rightarrow y = b(x/a)^{1/3}$. Vertical strip: every point is at distance $x$ from the $y$ axis, so $dI_y = x^2 y\\,dx$.\n\n$I_y = \\int_0^a x^2\\,\\dfrac{b}{a^{1/3}}x^{1/3}\\,dx = \\dfrac{b}{a^{1/3}}\\left[\\dfrac{3}{10}x^{10/3}\\right]_0^a = \\dfrac{3a^3b}{10}$.\n\n(Option C, $ab^3/6$, is $I_x$ of the same area — Prob. 9.6.)",
+      "difficulty": "easy",
+      "tags": [
+        "moment-of-inertia-by-integration"
+      ]
+    },
+    {
+      "key": "prob-9-15-ix-between-curves",
+      "type": "mcq",
+      "prompt": "Determine the moment of inertia of the shaded area between $y_1 = k_1x^2$ and $y_2 = k_2x^{1/2}$ (which meet at $x = a$, $y = b$) with respect to the $x$ axis.",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p9-15.png",
+      "options": [
+        {
+          "label": "A",
+          "text": "$\\dfrac{ab^3}{21}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$\\dfrac{3a^3b}{35}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$\\dfrac{3ab^3}{35}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$\\dfrac{ab^3}{9}$",
+          "correct": false
+        }
+      ],
+      "solution": "$y_1 = b(x/a)^2$, $y_2 = b(x/a)^{1/2}$. A vertical strip is a thin rectangle from $y_1$ to $y_2$: $dI_x = \\tfrac13(y_2^3 - y_1^3)\\,dx$.\n\n$I_x = \\dfrac{b^3}{3}\\int_0^a\\left[\\left(\\tfrac{x}{a}\\right)^{3/2} - \\left(\\tfrac{x}{a}\\right)^6\\right]dx = \\dfrac{ab^3}{3}\\left(\\dfrac25 - \\dfrac17\\right) = \\dfrac{3ab^3}{35}$.\n\nWith $A = \\int (y_2 - y_1)\\,dx = ab\\left(\\tfrac23 - \\tfrac13\\right) = \\tfrac{ab}{3}$: $k_x = \\sqrt{9/35}\\,b$.",
+      "difficulty": "medium",
+      "tags": [
+        "moment-of-inertia-by-integration",
+        "radius-of-gyration"
+      ]
+    },
+    {
+      "key": "prob-9-21-polar-radius-of-gyration",
+      "type": "numeric",
+      "prompt": "Determine the polar radius of gyration of the trapezoidal area shown with respect to point $P$ (top width $2a$, bottom width $a$, height $a$, with $P$ at the midpoint of the bottom edge). Give $k_P$ as a multiple of $a$ (enter the coefficient).",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p9-21.png",
+      "answer": 0.773,
+      "tolerancePct": 1,
+      "unit": "",
+      "solution": "Take $x$ along the bottom edge and $y$ up, origin $P$. At height $y$ the width is $a + y$.\n\n$I_x = \\int_0^a y^2(a + y)\\,dy = \\tfrac{a^4}{3} + \\tfrac{a^4}{4} = \\tfrac{7a^4}{12}$.\n\n$I_y$: each horizontal strip (half-width $(a+y)/2$, symmetric about the $y$ axis) contributes $\\tfrac{1}{12}(a+y)^3\\,dy$, so $I_y = \\tfrac{1}{12}\\int_0^a (a+y)^3\\,dy = \\tfrac{1}{48}(16a^4 - a^4) = \\tfrac{15a^4}{48}$.\n\n$J_P = I_x + I_y = \\tfrac{28a^4}{48} + \\tfrac{15a^4}{48} = \\tfrac{43a^4}{48}$. With $A = \\tfrac12(2a + a)a = \\tfrac32a^2$: $k_P^2 = \\tfrac{43a^4/48}{3a^2/2} = \\tfrac{43}{72}a^2 \\Rightarrow k_P = 0.773a$.",
+      "difficulty": "hard",
+      "tags": [
+        "polar-moment-of-inertia",
+        "radius-of-gyration"
+      ]
+    },
+    {
+      "key": "prob-9-31-i-section-ix",
+      "type": "numeric",
+      "prompt": "Determine the moment of inertia of the shaded area with respect to the $x$ axis (top flange $24 \\times 6\\,\\text{mm}$, bottom flange $48 \\times 6\\,\\text{mm}$, web $8\\,\\text{mm}$ thick and $48\\,\\text{mm}$ tall, $x$ axis at mid-height of the web). Give $I_x$ in units of $10^3\\,\\text{mm}^4$.",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p9-31.png",
+      "answer": 390,
+      "tolerancePct": 1,
+      "unit": "10^3 mm^4",
+      "solution": "Use $I = \\bar{I} + Ad^2$ for each rectangle.\n\nWeb: $\\tfrac{1}{12}(8)(48)^3 = 73\\,728\\,\\text{mm}^4$ ($d = 0$).\n\nTop flange: $\\tfrac{1}{12}(24)(6)^3 + (144)(27)^2 = 432 + 104\\,976 = 105\\,408\\,\\text{mm}^4$.\n\nBottom flange: $\\tfrac{1}{12}(48)(6)^3 + (288)(27)^2 = 864 + 209\\,952 = 210\\,816\\,\\text{mm}^4$.\n\n$I_x = 390\\times10^3\\,\\text{mm}^4$. With $A = 384 + 144 + 288 = 816\\,\\text{mm}^2$: $k_x = \\sqrt{390\\,000/816} = 21.9\\,\\text{mm}$.",
+      "difficulty": "medium",
+      "tags": [
+        "parallel-axis-theorem",
+        "composite-areas"
+      ]
+    },
+    {
+      "key": "prob-9-41-triangular-cutout-iy",
+      "type": "numeric",
+      "prompt": "Determine the moment of inertia $\\bar{I}_y$ of the area shown with respect to the centroidal axis perpendicular to side $AB$ (a $108 \\times 60\\,\\text{mm}$ rectangle with a triangular hole: vertical base $36\\,\\text{mm}$ located $22\\,\\text{mm}$ from the left side, apex $72\\,\\text{mm}$ to the right). Give $\\bar{I}_y$ in units of $10^6\\,\\text{mm}^4$.",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p9-41.png",
+      "answer": 5.82,
+      "tolerancePct": 1,
+      "unit": "10^6 mm^4",
+      "solution": "Rectangle: $A = 6480\\,\\text{mm}^2$, $\\bar{x} = 54\\,\\text{mm}$. Triangle (hole): $A = \\tfrac12(36)(72) = 1296\\,\\text{mm}^2$, $\\bar{x} = 22 + \\tfrac{72}{3} = 46\\,\\text{mm}$.\n\nCentroid: $\\bar{X} = \\dfrac{6480(54) - 1296(46)}{6480 - 1296} = \\dfrac{290\\,304}{5184} = 56.0\\,\\text{mm}$.\n\nRectangle: $\\tfrac{1}{12}(60)(108)^3 + 6480(2)^2 = 6\\,298\\,560 + 25\\,920 = 6\\,324\\,480\\,\\text{mm}^4$.\n\nTriangle (altitude $72$ along $x$, base $36$): $\\tfrac{1}{36}(36)(72)^3 + 1296(10)^2 = 373\\,248 + 129\\,600 = 502\\,848\\,\\text{mm}^4$.\n\n$\\bar{I}_y = 6\\,324\\,480 - 502\\,848 = 5.82\\times10^6\\,\\text{mm}^4$. (Likewise $\\bar{I}_x = 1.944\\times10^6 - 0.070\\times10^6 = 1.874\\times10^6\\,\\text{mm}^4$.)",
+      "difficulty": "hard",
+      "tags": [
+        "parallel-axis-theorem",
+        "composite-areas",
+        "holes"
+      ]
+    },
+    {
+      "key": "prob-9-43-rectangular-cutout-ix",
+      "type": "numeric",
+      "prompt": "Determine the moment of inertia $\\bar{I}_x$ of the area shown with respect to the centroidal axis parallel to side $AB$ (a $5.0 \\times 8.0\\,\\text{in.}$ rectangle with a $2.0 \\times 5.0\\,\\text{in.}$ rectangular hole located $0.9\\,\\text{in.}$ from the left side and $1.2\\,\\text{in.}$ below $AB$). Give $\\bar{I}_x$ in $\\text{in}^4$.",
+      "image": "/diagrams/get-207/centroids-and-second-moments-p9-43.png",
+      "answer": 191.3,
+      "tolerancePct": 1,
+      "unit": "in^4",
+      "solution": "Measure $y$ up from the bottom. Outer rectangle: $A = 40\\,\\text{in}^2$, $\\bar{y} = 4.0\\,\\text{in.}$ Hole: $A = -10\\,\\text{in}^2$, $\\bar{y} = 1.8 + 2.5 = 4.3\\,\\text{in.}$\n\n$\\bar{Y} = \\dfrac{40(4.0) - 10(4.3)}{30} = 3.9\\,\\text{in.}$\n\nOuter: $\\tfrac{1}{12}(5)(8)^3 + 40(0.1)^2 = 213.33 + 0.40 = 213.73\\,\\text{in}^4$. Hole: $\\tfrac{1}{12}(2)(5)^3 + 10(0.4)^2 = 20.83 + 1.60 = 22.43\\,\\text{in}^4$.\n\n$\\bar{I}_x = 213.73 - 22.43 = 191.3\\,\\text{in}^4$. (Similarly $\\bar{I}_y = 84.93 - 9.73 = 75.2\\,\\text{in}^4$.)",
+      "difficulty": "medium",
+      "tags": [
+        "parallel-axis-theorem",
+        "composite-areas",
+        "holes"
+      ]
+    }
+  ]
+}

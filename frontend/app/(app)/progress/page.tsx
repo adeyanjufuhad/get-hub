@@ -31,7 +31,7 @@ export default function ProgressPage() {
   }, [authLoading, user, router]);
 
   if (authLoading || loading) {
-    return <div className="h-80 animate-pulse rounded-[24px] bg-[var(--bg-surface)]" />;
+    return <div className="h-80 rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]" />;
   }
   if (!data) return null;
 
@@ -39,8 +39,8 @@ export default function ProgressPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-balance sm:text-3xl">
-            Your Study Progress
+          <h1 className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+            Study progress
           </h1>
           <p className="mt-1 text-sm text-[var(--text-secondary)] text-pretty">
             Accuracy per topic and weak areas ranked from lowest to highest.
@@ -56,21 +56,21 @@ export default function ProgressPage() {
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
         <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4">
           <p className="text-xs text-[var(--text-muted)]">Topics completed</p>
-          <p className="tabular mt-1 text-xl font-extrabold sm:text-2xl">
+          <p className="tabular mt-1 text-xl font-semibold sm:text-2xl">
             {data.summary.completed_topics}/{data.summary.total_topics}
           </p>
         </div>
         <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4">
           <p className="text-xs text-[var(--text-muted)]">Questions attempted</p>
-          <p className="tabular mt-1 text-xl font-extrabold sm:text-2xl">{data.summary.total_attempts}</p>
+          <p className="tabular mt-1 text-xl font-semibold sm:text-2xl">{data.summary.total_attempts}</p>
         </div>
         <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4">
           <p className="text-xs text-[var(--text-muted)]">Overall accuracy</p>
-          <p className="tabular mt-1 text-xl font-extrabold sm:text-2xl">{data.summary.overall_accuracy}%</p>
+          <p className="tabular mt-1 text-xl font-semibold sm:text-2xl">{data.summary.overall_accuracy}%</p>
         </div>
         <div className="rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-3.5 sm:p-4">
           <p className="text-xs text-[var(--text-muted)]">Weak topics</p>
-          <p className="tabular mt-1 text-xl font-extrabold text-[var(--danger)] sm:text-2xl">
+          <p className="tabular mt-1 text-xl font-semibold text-[var(--danger)] sm:text-2xl">
             {data.weak_topics.length}
           </p>
         </div>
@@ -79,13 +79,13 @@ export default function ProgressPage() {
       {/* Weak Topics Priority Card */}
       <section className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5">
         <div className="flex items-center gap-2">
-          <AlertTriangle className="h-5 w-5 text-[var(--danger)]" aria-hidden="true" />
-          <h2 className="text-base font-extrabold">Weak topics (&lt; 70% accuracy)</h2>
+          <AlertTriangle className="h-4 w-4 text-[var(--danger)]" aria-hidden="true" />
+          <h2 className="text-base font-semibold">Weak topics (under 70% accuracy)</h2>
         </div>
 
         {data.weak_topics.length === 0 ? (
           <p className="mt-3 text-sm text-[var(--text-secondary)]">
-            You have no weak topics right now. Keep practicing across GET 205, 207, and 209!
+            You have no weak topics right now. Keep practicing across GET 205, 207, and 209.
           </p>
         ) : (
           <div className="mt-4 space-y-2.5">
@@ -96,23 +96,23 @@ export default function ProgressPage() {
                 className="flex flex-col justify-between gap-3 rounded-[24px] border border-[var(--danger)]/20 bg-[var(--danger-soft)]/50 p-3 sm:flex-row sm:items-center"
               >
                 <div className="px-1">
-                  <span className="font-mono text-xs font-bold text-[var(--danger)]">
+                  <span className="tabular font-mono text-xs font-medium text-[var(--danger)]">
                     {wt.course_code} · {wt.accuracy_pct}% accuracy ({wt.correct_count}/{wt.attempts_count})
                   </span>
-                  <h3 className="text-sm font-bold text-[var(--text-primary)]">{wt.topic_title}</h3>
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)]">{wt.topic_title}</h3>
                 </div>
                 <div className="grid grid-cols-2 gap-2 sm:flex">
                   <Link
                     href={`/courses/${wt.course_slug}/${wt.topic_slug}`}
-                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-semibold hover:bg-[var(--bg-subtle)]"
+                    className="pressable inline-flex min-h-[42px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-medium hover:bg-[var(--bg-subtle)]"
                   >
                     Revise notes
                   </Link>
                   <Link
                     href={`/practice/${wt.topic_id}`}
-                    className="pressable inline-flex min-h-[42px] items-center justify-center gap-1 rounded-[12px] bg-[var(--danger)] px-4 text-xs font-semibold text-white hover:opacity-90"
+                    className="pressable inline-flex min-h-[42px] items-center justify-center gap-1 rounded-[12px] bg-[var(--danger)] px-4 text-xs font-medium text-white hover:opacity-90"
                   >
-                    Drill now
+                    Practice now
                     <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                   </Link>
                 </div>
@@ -124,7 +124,7 @@ export default function ProgressPage() {
 
       {/* Accuracy Per Topic */}
       <section className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5">
-        <h2 className="text-base font-extrabold">Accuracy by topic</h2>
+        <h2 className="text-base font-semibold">Accuracy by topic</h2>
         <div className="mt-4 space-y-2.5">
           {data.topic_stats.map((st) => (
             /* Concentric row: Outer 24px = Inner 12px + Padding 12px (p-3) */
@@ -138,12 +138,12 @@ export default function ProgressPage() {
                     {st.course_code}
                   </Badge>
                   {st.completed && (
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--success)]">
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-[var(--success)]">
                       <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" /> Completed
                     </span>
                   )}
                 </div>
-                <p className="mt-1 text-sm font-bold leading-snug text-[var(--text-primary)]">
+                <p className="mt-1 text-sm font-semibold leading-snug text-[var(--text-primary)]">
                   {st.topic_title}
                 </p>
                 <p className="tabular mt-0.5 text-xs text-[var(--text-muted)]">
@@ -153,13 +153,13 @@ export default function ProgressPage() {
               <div className="flex items-center justify-between gap-3 border-t border-[var(--border-hairline)] pt-3 sm:border-t-0 sm:pt-0">
                 <div className={cn("flex items-center gap-2", st.attempts_count === 0 && "opacity-40")}>
                   <ProgressArc percentage={st.accuracy_pct} size={46} strokeWidth={5} />
-                  <span className="text-xs font-semibold text-[var(--text-muted)] sm:hidden">
+                  <span className="text-xs font-medium text-[var(--text-muted)] sm:hidden">
                     Accuracy
                   </span>
                 </div>
                 <Link
                   href={`/practice/${st.topic_id}`}
-                  className="pressable inline-flex min-h-[44px] items-center rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-semibold text-[var(--ink-cta-text)] hover:opacity-90"
+                  className="pressable inline-flex min-h-[44px] items-center rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-medium text-[var(--ink-cta-text)] hover:opacity-90"
                 >
                   Practice
                 </Link>

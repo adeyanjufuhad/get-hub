@@ -5,7 +5,6 @@ topicId: "22222222-2222-4222-8222-222222250003"
 courseCode: "GET 205"
 courseSlug: "get-205"
 ccmasRef: "Control-volume continuity; Bernoulli's equation, Venturi meters & Pitot tubes"
-textbookRef: "Çengel · Ch. 12 (§12–1 to §12–3) & Ch. 14"
 outcomes:
   - "Apply steady conservation of mass (Q = A₁V₁ = A₂V₂) across nozzles, reducers, and pipe branches"
   - "Apply Bernoulli's mechanical energy equation in pressure, energy-per-mass, and head forms"
@@ -16,7 +15,7 @@ isFree: true
 
 ## 1. Overview
 
-In moving fluids, velocity and pressure trade places whenever flow area or elevation changes. **Çengel Chapter 12** pairs **conservation of mass** with the **Bernoulli equation**—giving us direct analytical formulas for high-speed hose jets, tank drainage (Torricelli's equation), siphons, Pitot-static velocity probes, and Venturi flow meters.
+In moving fluids, velocity and pressure trade places whenever flow area or elevation changes. Fluid dynamics pairs **conservation of mass** with the **Bernoulli equation**—giving us direct analytical formulas for high-speed hose jets, tank drainage (Torricelli's equation), siphons, Pitot-static velocity probes, and Venturi flow meters.
 
 ---
 
@@ -28,8 +27,7 @@ When density $\rho$ is constant, volumetric flow rate $\dot{V} = Q$ ($\text{m}^3
 
 $$Q = A_1 V_1 = A_2 V_2 \implies V_2 = V_1 \left(\frac{D_1}{D_2}\right)^2$$
 
-### Bernoulli's Equation & Mechanical Energy Forms (Çengel §12–2)
-
+### Bernoulli's Equation & Mechanical Energy Forms
 Along a streamline in **steady, incompressible, frictionless (inviscid)** flow with zero shaft work:
 
 $$\frac{P_1}{\rho} + \frac{V_1^2}{2} + g z_1 = \frac{P_2}{\rho} + \frac{V_2^2}{2} + g z_2 \qquad (\text{J/kg})$$
@@ -40,11 +38,10 @@ $$\frac{P_1}{\rho g} + \frac{V_1^2}{2g} + z_1 = \frac{P_2}{\rho g} + \frac{V_2^2
 
 <DiagramFigure
   src="/images/textbook-figures/get-205/cengel-fig-12-12-bernoulli.webp"
-  caption="Çengel Fig. 12–12 — Bernoulli's equation expresses conservation of flow energy (P/ρ), kinetic energy (V²/2), and potential energy (gz) per unit mass along a streamline."
+  caption="Bernoulli's equation expresses conservation of flow energy (P/ρ), kinetic energy (V²/2), and potential energy (gz) per unit mass along a streamline."
 />
 
-### Static, Stagnation & Pitot-Tube Measurement (Çengel §12–2 & §12–3)
-
+### Static, Stagnation & Pitot-Tube Measurement
 Bringing a moving stream isentropically to rest ($V_2 = 0$) converts dynamic pressure $\frac{1}{2}\rho V_1^2$ into **stagnation pressure** $P_{\text{stag}} = P + \frac{1}{2}\rho V^2$:
 
 $$V = \sqrt{\frac{2(P_{\text{stag}} - P)}{\rho}} = \sqrt{2 g h_3}$$
@@ -53,15 +50,15 @@ where $h_3$ is the excess liquid column rise in the Pitot tube above the wall pi
 
 <DiagramFigure
   src="/images/textbook-figures/get-205/cengel-fig-12-27-pitot-tube.webp"
-  caption="Çengel Fig. 12–27 (Schematic for Example 12–6) — Piezometer (static tap 1) and Pitot tube (stagnation tip 2) measuring centerline pipe velocity from excess column rise h₃ = 12 cm."
+  caption="Piezometer (static tap 1) and Pitot tube (stagnation tip 2) measuring centerline pipe velocity from excess column rise h₃ = 12 cm."
 />
 
 ---
 
-## 3. Textbook Worked Examples
+## 3. Worked Examples
 
 <StepRevealExample
-  title="Çengel Example 12–3 — Spraying Water into the Air (Fig. 12–24)"
+  title="Spraying Water into the Air"
   problem="Water ($\rho = 1000\,\text{kg/m}^3$) flows from a hose attached to a water main at $P_{1,\text{gage}} = 400\,\text{kPa}$. A child covers most of the hose outlet with his thumb so a thin vertical jet emerges into atmospheric air. Neglecting air drag and outlet losses, find the maximum height $z_2$ to which the water jet can rise."
   steps={[
     "Choose point 1 inside the hose just upstream of the thumb ($P_{1,\\text{gage}} = 400\\,\\text{kPa}$, $V_1 \\approx 0$, $z_1 = 0$) and point 2 at the very top of the trajectory ($P_{2,\\text{gage}} = 0$, $V_2 = 0$).",
@@ -71,8 +68,8 @@ where $h_3$ is the excess liquid column rise in the Pitot tube above the wall pi
 />
 
 <StepRevealExample
-  title="Çengel Example 12–6 — Velocity Measurement by a Pitot Tube (Fig. 12–27)"
-  problem="A piezometer and a Pitot tube are tapped into a horizontal water pipe as shown in Fig. 12–27. The centerline lies $h_1 = 3\,\text{cm}$ below the upper pipe wall, the piezometer rises $h_2 = 7\,\text{cm}$ above the pipe wall, and the Pitot tube rises an additional $h_3 = 12\,\text{cm}$ above the piezometer meniscus. Determine the centerline water velocity $V_1$."
+  title="Velocity Measurement by a Pitot Tube"
+  problem="A piezometer and a Pitot tube are tapped into a horizontal water pipe as shown in the diagram The centerline lies $h_1 = 3\,\text{cm}$ below the upper pipe wall, the piezometer rises $h_2 = 7\,\text{cm}$ above the pipe wall, and the Pitot tube rises an additional $h_3 = 12\,\text{cm}$ above the piezometer meniscus. Determine the centerline water velocity $V_1$."
   steps={[
     "Express static gauge pressure at point 1 and stagnation pressure at point 2 from hydrostatic columns: $P_1 = \\rho g(h_1 + h_2)$ and $P_2 = \\rho g(h_1 + h_2 + h_3)$.",
     "Apply horizontal Bernoulli ($z_1 = z_2$, $V_2 = 0$ at stagnation point 2): $\\frac{V_1^2}{2g} = \\frac{P_2 - P_1}{\\rho g} = h_3$ (notice $h_1$ and $h_2$ cancel out completely!).",
@@ -91,6 +88,3 @@ where $h_3$ is the excess liquid column rise in the Pitot tube above the wall pi
 
 ---
 
-## 5. Textbook Reference
-
-- **Prescribed Textbook:** Y. A. Çengel, R. H. Turner & J. M. Cimbala, *Fundamentals of Thermal-Fluid Sciences*, Chapter 12 (§12–1 to §12–3, pp. 523–539) & Chapter 14 (§14–8 Flow Rate and Velocity Measurement).

@@ -3,48 +3,105 @@
   "questions": [
     {
       "key": "prob-4-1-truck-rear-reaction",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Two crates, each of mass $350\\,\\text{kg}$, are placed as shown in the bed of a $1400\\text{-kg}$ pickup truck. Determine the vertical reaction at **each** of the two rear wheels $A$ (in $\\text{kN}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-1.png",
-      "answer": 6.07,
-      "tolerancePct": 1,
-      "unit": "kN",
       "solution": "Weights: $W_C = W_D = (350)(9.81) = 3433.5\\,\\text{N}$ and $W_G = (1400)(9.81) = 13\\,734\\,\\text{N}$. Taking moments about the front axle $B$ (distance $3.0\\,\\text{m}$ from $A$, $1.2\\,\\text{m}$ from $G$, $2.05\\,\\text{m}$ from $D$, and $3.75\\,\\text{m}$ from $C$):\n\n$$\\sum M_B = 0: \\quad -2R_A(3.0) + 13\\,734(1.2) + 3433.5(2.05) + 3433.5(3.75) = 0$$\n\n$$6 R_A = 16\\,480.8 + 7038.7 + 12\\,875.6 = 36\\,395.1\\,\\text{N}\\cdot\\text{m} \\implies R_A = 6066\\,\\text{N} = 6.07\\,\\text{kN}\\uparrow.$$",
       "difficulty": "easy",
       "tags": [
         "2d-equilibrium",
         "free-body-diagram",
         "wheel-reactions"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$6.07\\,\\text{kN}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$6.92\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$8.01\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$9.47\\,\\text{kN}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-4-2-truck-front-reaction",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "In a pickup truck ($1400\\text{-kg}$ truck, $350\\text{-kg}$ crate at $C$), assume that crate $D$ is **removed** and that the position of crate $C$ is unchanged. Determine the reaction at **each** of the two front wheels $B$ (in $\\text{kN}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-1.png",
-      "answer": 3.69,
-      "tolerancePct": 1,
-      "unit": "kN",
       "solution": "With crate $D$ removed, $W_C = 3433.5\\,\\text{N}$ and $W_G = 13\\,734\\,\\text{N}$. Summing moments about rear axle $A$ ($G$ is $1.8\\,\\text{m}$ right of $A$, $C$ is $0.75\\,\\text{m}$ left of $A$, and $B$ is $3.0\\,\\text{m}$ right of $A$):\n\n$$\\sum M_A = 0: \\quad 2R_B(3.0) - 13\\,734(1.8) + 3433.5(0.75) = 0$$\n\n$$6 R_B = 24\\,721.2 - 2575.1 = 22\\,146.1 \\implies R_B = 3691\\,\\text{N} = 3.69\\,\\text{kN}\\uparrow.$$",
       "difficulty": "easy",
       "tags": [
         "2d-equilibrium",
         "moments"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$2.88\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$3.69\\,\\text{kN}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$4.35\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$5.24\\,\\text{kN}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-4-8-beam-cable-tension",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "For the beam and loading shown (pin support at $A$ and vertical cable $BC$ attached at $B$), determine the tension in cable $BC$ (in $\\text{lb}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-8.png",
-      "answer": 140,
-      "tolerancePct": 1,
-      "unit": "lb",
       "solution": "Taking moments about pin $A$ eliminates $A_x$ and $A_y$. Distances from $A$: $15\\,\\text{lb}$ at $22\\,\\text{in.}$ left, $20\\,\\text{lb}$ at $16\\,\\text{in.}$ left, $35\\,\\text{lb}$ at $8\\,\\text{in.}$ left, $20\\,\\text{lb}$ at $A$, and $15\\,\\text{lb} + T_{BC}$ downward at $6\\,\\text{in.}$ right:\n\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad 15(22) + 20(16) + 35(8) - (15 + T_{BC})(6) = 0$$\n\n$$330 + 320 + 280 - 90 = 6 T_{BC} \\implies T_{BC} = \\frac{840}{6} = 140.0\\,\\text{lb}.$$",
       "difficulty": "easy",
       "tags": [
         "2d-equilibrium",
         "pin-and-cable"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$73\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$101\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$120\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$140\\,\\text{lb}$",
+          "correct": true
+        }
       ]
     },
     {
@@ -83,107 +140,240 @@
     },
     {
       "key": "prob-4-10-beam-max-d",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "The maximum allowable value of each of the reactions at roller $A$ and pin $B$ is $180\\,\\text{N}$. Neglecting the weight of the beam, determine the **largest** safe distance $d$ (in $\\text{mm}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-10.png",
-      "answer": 400,
-      "tolerancePct": 1,
-      "unit": "mm",
       "solution": "Total downward load is $50 + 100 + 150 = 300\\,\\text{N}$, so $A + B_y = 300\\,\\text{N}$. For both $A \\le 180\\,\\text{N}$ and $B_y \\le 180\\,\\text{N}$, we need $120\\,\\text{N} \\le A \\le 180\\,\\text{N}$. Taking moments about $B$ ($900\\,\\text{mm}$ from the left end):\n\n$$50(900) + 100(450) - A(900 - d) = 0 \\implies A(900 - d) = 90\\,000\\,\\text{N}\\cdot\\text{mm}.$$\n\n\nThe largest $d$ occurs when $A$ reaches its upper limit $180\\,\\text{N}$: $900 - d = 90\\,000 / 180 = 500\\,\\text{mm} \\implies d = 400\\,\\text{mm}$.",
       "difficulty": "medium",
       "tags": [
         "2d-equilibrium",
         "allowable-reaction"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$208\\,\\text{mm}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$288\\,\\text{mm}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$344\\,\\text{mm}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$400\\,\\text{mm}$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "prob-4-15-bracket-cable-tension",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "The bracket $BCD$ is hinged at $C$ and attached to a control cable at $B$ ($a = 0.18\\,\\text{m}$). For the loading shown, determine the tension in cable $AB$ (in $\\text{kN}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-15.png",
-      "answer": 2,
-      "tolerancePct": 1,
-      "unit": "kN",
       "solution": "The cable length is $AB = \\sqrt{0.24^2 + 0.18^2} = 0.30\\,\\text{m}$, so its horizontal component is $T_x = \\frac{0.24}{0.30}T = 0.8 T$ to the left at $0.18\\,\\text{m}$ above $C$. Summing moments about hinge $C$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_C = 0: \\quad (0.8 T)(0.18) - 240(0.4) - 240(0.8) = 0$$\n\n$$0.144 T = 288 \\implies T = 2000\\,\\text{N} = 2.00\\,\\text{kN}.$$",
       "difficulty": "easy",
       "tags": [
         "2d-equilibrium",
         "bracket"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$2\\,\\text{kN}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$3\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$4\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$5\\,\\text{kN}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-4-19-bell-crank-tension",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Two links $AB$ and $DE$ are connected by a bell crank pivoted at $C$. Knowing that the tension in link $AB$ is $720\\,\\text{N}$ and $\\angle ABC = 90^\\circ$, determine the tension in link $DE$ (in $\\text{N}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-19.png",
-      "answer": 600,
-      "tolerancePct": 1,
-      "unit": "N",
       "solution": "Distance $BC = \\sqrt{80^2 + 60^2} = 100\\,\\text{mm}$, and because link $AB$ is perpendicular to $BC$, its perpendicular moment arm about $C$ is $BC = 100\\,\\text{mm}$. Summing moments about $C$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_C = 0: \\quad (720\\,\\text{N})(100\\,\\text{mm}) - T_{DE}(120\\,\\text{mm}) = 0 \\implies T_{DE} = 600\\,\\text{N}.$$",
       "difficulty": "easy",
       "tags": [
         "2d-equilibrium",
         "two-force-member"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$384\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$504\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$600\\,\\text{N}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$744\\,\\text{N}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-4-23-plate-roller-reaction",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A rectangular plate is supported by a pin at $A$ and a roller at $B$ resting on a $60^\\circ$ incline, and carries a $150\\text{-N}$ vertical load at $G$. Determine the magnitude of the reaction at $B$ (in $\\text{N}$) when $h = 200\\,\\text{mm}$.",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-23.png",
-      "answer": 488,
-      "tolerancePct": 1,
-      "unit": "N",
       "solution": "The roller reaction $\\mathbf{B}$ acts normal to the $60^\\circ$ surface (at $30^\\circ$ above the $-x$ axis), so $B_x = -B\\cos 30^\\circ$ and $B_y = +B\\sin 30^\\circ$. Relative to $A$, $B$ is $500\\,\\text{mm}$ to the right and $h = 200\\,\\text{mm}$ below. Summing moments about $A$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad B\\sin 30^\\circ (500) - B\\cos 30^\\circ (200) - 150(250) = 0$$\n\n$$B(250 - 173.21) = 37\\,500 \\implies B = \\frac{37\\,500}{76.795} = 488\\,\\text{N}.$$",
       "difficulty": "medium",
       "tags": [
         "2d-equilibrium",
         "inclined-roller"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$381\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$488\\,\\text{N}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$576\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$693\\,\\text{N}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-4-31-bent-lever-tension",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Neglecting friction at pulley $B$ and hinge $C$, determine the tension in cable $ABD$ (in $\\text{N}$) needed to support the $120\\text{-N}$ vertical load at $E$.",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-31.png",
-      "answer": 80,
-      "tolerancePct": 1,
-      "unit": "N",
       "solution": "Because the cable passes over a frictionless pulley at $B$, its tension $T$ is uniform throughout $AB$ and $BD$, pulling upward at $A$ ($100\\,\\text{mm}$ left of $C$) and to the left at $D$ ($250\\,\\text{mm}$ above $C$). Taking moments about hinge $C$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_C = 0: \\quad T(250) - T(100) - 120(100) = 0$$\n\n$$150 T = 12\\,000 \\implies T = 80.0\\,\\text{N}.$$",
       "difficulty": "medium",
       "tags": [
         "2d-equilibrium",
         "pulley"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$51\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$67\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$80\\,\\text{N}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$99\\,\\text{N}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-4-35-movable-bracket-roller",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A movable bracket is held at rest by a vertical cable attached at $C$ and by frictionless rollers at $A$ and $B$ in a vertical guide. For the $600\\text{-N}$ vertical load shown, determine the magnitude of the horizontal reaction at roller $A$ (in $\\text{kN}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-35.png",
-      "answer": 4,
-      "tolerancePct": 1,
-      "unit": "kN",
       "solution": "Vertical equilibrium gives $T = 600\\,\\text{N}$. Summing moments about roller $B$ ($475 + 75 = 550\\,\\text{mm}$ right of the $600\\text{-N}$ load, $50\\,\\text{mm}$ left of cable $C$, and $90\\,\\text{mm}$ above $A$):\n\n$$+\\!\\!\\circlearrowleft \\sum M_B = 0: \\quad 600(550) + 600(50) - A(90) = 0$$\n\n$$90 A = 360\\,000 \\implies A = 4000\\,\\text{N} = 4.00\\,\\text{kN}\\leftarrow.$$",
       "difficulty": "medium",
       "tags": [
         "2d-equilibrium",
         "rollers"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$3\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$4\\,\\text{kN}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$5\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$6\\,\\text{kN}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-4-50-telephone-pole-moment",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $6\\text{-m}$ telephone pole weighing $1600\\,\\text{N}$ supports two wires forming angles of $10^\\circ$ and $20^\\circ$ with the horizontal, with tensions $T_1 = 600\\,\\text{N}$ and $T_2 = 375\\,\\text{N}$. Determine the magnitude of the couple moment $M_A$ at the fixed end $A$ (in $\\text{N}\\cdot\\text{m}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-50.png",
-      "answer": 1431,
-      "tolerancePct": 1,
-      "unit": "N·m",
       "solution": "Taking moments about the base $A$ (vertical forces—the pole weight and the vertical components of $T_1, T_2$—pass through $A$):\n\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad (600\\cos 10^\\circ)(6) - (375\\cos 20^\\circ)(6) - M_A = 0$$\n\n$$M_A = 3545.3 - 2114.3 = 1431\\,\\text{N}\\cdot\\text{m}.$$",
       "difficulty": "easy",
       "tags": [
         "2d-equilibrium",
         "fixed-support"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$916\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$1202\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$1431\\,\\text{N}\\cdot\\text{m}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$1774\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        }
       ]
     },
     {
@@ -222,63 +412,139 @@
     },
     {
       "key": "prob-4-64-tank-cable-tension",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $500\\text{-lb}$ cylindrical tank, $8\\,\\text{ft}$ in diameter, is to be raised over a $2\\text{-ft}$ obstruction. A cable is wrapped around the tank and pulled horizontally as shown. Knowing that the corner of the obstruction at $A$ is rough, find the required tension $T$ in the cable (in $\\text{lb}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-64.png",
-      "answer": 289,
-      "tolerancePct": 1,
-      "unit": "lb",
       "solution": "The tank radius is $R = 4\\,\\text{ft}$, and corner $A$ lies $4 - 2 = 2\\,\\text{ft}$ below the center $G$, so radius $GA$ makes $\\sin\\theta = 2/4 = 0.5 \\implies \\theta = 30^\\circ$ below the horizontal ($60^\\circ$ from the vertical). At lift-off, only three forces act: $W = 500\\,\\text{lb}$ downward at $G$, horizontal tension $T$ at the top ($6\\,\\text{ft}$ above $A$), and reaction $R_A$ at $A$. Summing moments about $A$:\n\n$$+\\!\\!\\circlearrowleft \\sum M_A = 0: \\quad T(6\\,\\text{ft}) - 500(4\\cos 30^\\circ\\,\\text{ft}) = 0 \\implies T = \\frac{1000\\sqrt{3}}{6} = 289\\,\\text{lb}.$$",
       "difficulty": "medium",
       "tags": [
         "three-force-body",
         "moments"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$289\\,\\text{lb}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$329\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$381\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$451\\,\\text{lb}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-4-81-member-abc-pulley",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Member $ABC$ is supported by a pin and bracket at $B$ ($a = 12\\,\\text{in.}$) and by an inextensible cord attached at $A$ and $C$ passing over a frictionless pulley at $D$. Neglecting the size of the pulley, determine the tension in the cord (in $\\text{lb}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-81.png",
-      "answer": 100,
-      "tolerancePct": 1,
-      "unit": "lb",
       "solution": "Since $AC = 24\\,\\text{in.}$ and $AD = 7\\,\\text{in.}$, length $CD = \\sqrt{7^2 + 24^2} = 25\\,\\text{in.}$, so the vertical component of cord tension at $C$ is $\\frac{7}{25}T$ upward. At $A$, the cord pulls vertically upward with force $T$. Summing moments about pin $B$ ($12\\,\\text{in.}$ from both $A$ and $C$):\n\n$$+\\!\\!\\circlearrowleft \\sum M_B = 0: \\quad 72(12) - T(12) + \\left(\\frac{7}{25}T\\right)(12) = 0 \\implies \\frac{18}{25}T = 72 \\implies T = 100.0\\,\\text{lb}.$$",
       "difficulty": "medium",
       "tags": [
         "three-force-body",
         "pulley"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$52\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$72\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$86\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$100\\,\\text{lb}$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "prob-4-91-lever-pulley-3d",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $200\\text{-mm}$ lever and a $240\\text{-mm}$-diameter pulley are welded to the axle $BE$ that is supported by bearings at $C$ and $D$. If a $720\\text{-N}$ vertical load is applied at $A$ when the lever is horizontal, determine the tension $T$ in the cord (in $\\text{N}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-91.png",
-      "answer": 1200,
-      "tolerancePct": 1,
-      "unit": "N",
       "solution": "The bearings at $C$ and $D$ lie along the $z$ axis and exert no moments about the $z$ axis. Summing moments about the $z$ axis ($r_{\\text{pulley}} = 120\\,\\text{mm}$):\n\n$$\\sum M_z = 0: \\quad (720\\,\\text{N})(200\\,\\text{mm}) - T(120\\,\\text{mm}) = 0 \\implies T = 1200\\,\\text{N}.$$",
       "difficulty": "easy",
       "tags": [
         "3d-equilibrium",
         "bearings"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$624\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$864\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$1032\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$1200\\,\\text{N}$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "prob-4-108-pole-cable-tension",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $12\\text{-m}$ pole supports a horizontal cable $CD$ and is held by a ball-and-socket joint at $A$ and two cables $BE$ and $BF$. Knowing that the tension in cable $CD$ is $14\\,\\text{kN}$ and that $CD$ is parallel to the $x$ axis ($\\phi = 0$), determine the tension in cable $BE$ (in $\\text{kN}$).",
       "image": "/diagrams/get-207/equilibrium-of-a-rigid-body-prob-4-108.png",
-      "answer": 17.5,
-      "tolerancePct": 1,
-      "unit": "kN",
       "solution": "From the geometry, $B(0, 8, 0)\\,\\text{m}$, $E(7.5, 0, 6)\\,\\text{m}$, and $F(7.5, 0, -6)\\,\\text{m}$, giving cable length $BE = BF = \\sqrt{7.5^2 + (-8)^2 + 6^2} = 12.5\\,\\text{m}$. By symmetry ($\\phi = 0$), $T_{BE} = T_{BF}$. Summing moments about the $z$ axis through $A$:\n\n$$\\sum M_z = 0: \\quad (14\\,\\text{kN})(12\\,\\text{m}) - 2\\left(\\frac{7.5}{12.5} T_{BE}\\right)(8\\,\\text{m}) = 0$$\n\n$$168 = 9.6 T_{BE} \\implies T_{BE} = 17.50\\,\\text{kN}.$$",
       "difficulty": "hard",
       "tags": [
         "3d-equilibrium",
         "ball-and-socket",
         "cables"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$11.2\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$14.7\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$17.5\\,\\text{kN}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$21.7\\,\\text{kN}$",
+          "correct": false
+        }
       ]
     }
   ]

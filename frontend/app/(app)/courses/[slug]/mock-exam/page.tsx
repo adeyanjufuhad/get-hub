@@ -77,7 +77,7 @@ export default function MockExamLauncherPage() {
           {course?.title || "Timed mock exam"}
         </h1>
         <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty">
-          Randomized questions pulled across all <span translate="no">{course?.code}</span> topics, including diagram-backed calculation and multiple-choice questions, graded instantly with a per-topic breakdown.
+          Randomized objective multiple-choice questions (A–D) pulled across all <span translate="no">{course?.code}</span> topics, graded instantly with a per-topic breakdown.
         </p>
 
         {/* Tactile Preset Cards (rounded-[12px] concentric with parent) */}

@@ -3,113 +3,265 @@
   "questions": [
     {
       "key": "ex-1-3-q4-reciprocal-partials",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "If $f(x, y) = x^3 y - x y^3$, evaluate $\\left[\\dfrac{1}{\\partial f / \\partial x} + \\dfrac{1}{\\partial f / \\partial y}\\right]_{x=1,\\,y=2}$. Give your answer to 4 decimal places.",
-      "answer": -0.5909,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Compute the first-order partial derivatives: $\\dfrac{\\partial f}{\\partial x} = 3x^2 y - y^3$ and $\\dfrac{\\partial f}{\\partial y} = x^3 - 3x y^2$. At $(x, y) = (1, 2)$, $\\dfrac{\\partial f}{\\partial x} = 3(1)^2(2) - 2^3 = 6 - 8 = -2$ and $\\dfrac{\\partial f}{\\partial y} = 1^3 - 3(1)(2)^2 = 1 - 12 = -11$. Therefore, $\\dfrac{1}{-2} + \\dfrac{1}{-11} = -\\dfrac{13}{22} \\approx -0.5909$.",
       "difficulty": "easy",
       "tags": [
         "partial-derivatives",
         "first-order"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-0.7209$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-0.5909$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$-0.4609$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$0.5909$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-1-3-q5-heat-kernel-exponent",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "If $\\theta = t^n e^{-r^2/(4t)}$, find the value of $n$ that satisfies the spherical diffusion equation $\\dfrac{1}{r^2}\\dfrac{\\partial}{\\partial r}\\left(r^2\\dfrac{\\partial \\theta}{\\partial r}\\right) = \\dfrac{\\partial \\theta}{\\partial t}$.",
-      "answer": -1.5,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Differentiate with respect to $r$: $\\dfrac{\\partial \\theta}{\\partial r} = -\\dfrac{r}{2} t^{n-1} e^{-r^2/(4t)}$, so $r^2\\dfrac{\\partial \\theta}{\\partial r} = -\\dfrac{1}{2} r^3 t^{n-1} e^{-r^2/(4t)}$. Differentiating again w.r.t. $r$ and dividing by $r^2$ gives $\\left(-\\dfrac{3}{2} t^{n-1} + \\dfrac{r^2}{4} t^{n-2}\\right)e^{-r^2/(4t)}$. Meanwhile, $\\dfrac{\\partial \\theta}{\\partial t} = \\left(n t^{n-1} + \\dfrac{r^2}{4} t^{n-2}\\right)e^{-r^2/(4t)}$. Equating the two expressions gives $n = -\\dfrac{3}{2} = -1.5$.",
       "difficulty": "hard",
       "tags": [
         "higher-order-partials",
         "pde"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-1.8$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-1.5$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$-1.2$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$1.5$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-1-8-ex14-laplace-exponent",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "If $v = (x^2 + y^2 + z^2)^{m/2}$, find the non-zero value of $m$ that satisfies the three-dimensional Laplace equation $\\dfrac{\\partial^2 v}{\\partial x^2} + \\dfrac{\\partial^2 v}{\\partial y^2} + \\dfrac{\\partial^2 v}{\\partial z^2} = 0$.",
-      "answer": -1,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Differentiating twice with respect to $x$ gives $\\dfrac{\\partial^2 v}{\\partial x^2} = m(x^2+y^2+z^2)^{m/2-2}[(m-2)x^2 + x^2+y^2+z^2]$. Adding the analogous expressions for $y$ and $z$ yields $\\nabla^2 v = m(m+1)(x^2+y^2+z^2)^{m/2-1} = 0$. Since $m \\neq 0$, we obtain $m = -1$.",
       "difficulty": "medium",
       "tags": [
         "higher-order-partials",
         "laplace-equation"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-3$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-2$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-1$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$1$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-1-3-q10-inverse-r-squared-laplacian",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "If $u(x, y, z) = \\dfrac{1}{x^2 + y^2 + z^2}$, find the numerical value of $\\dfrac{\\partial^2 u}{\\partial x^2} + \\dfrac{\\partial^2 u}{\\partial y^2} + \\dfrac{\\partial^2 u}{\\partial z^2}$ at the point $(1, 1, 0)$.",
-      "answer": 0.5,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Write $u = (x^2+y^2+z^2)^{-1} = r^{-2}$, which corresponds to $m = -2$ in $\\nabla^2(r^m) = m(m+1)r^{m-2}$. Thus $\\nabla^2 u = (-2)(-1)(x^2+y^2+z^2)^{-2} = \\dfrac{2}{(x^2+y^2+z^2)^2}$. At $(1, 1, 0)$, $x^2+y^2+z^2 = 2$, giving $\\dfrac{2}{2^2} = \\dfrac{1}{2} = 0.5$.",
       "difficulty": "medium",
       "tags": [
         "higher-order-partials",
         "laplace-equation"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.3$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$0.4$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$0.5$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$1.0$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-1-3-q20-log-tan-sum",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "If $u = \\log(\\tan x + \\tan y)$, find the constant value of $\\sin 2x\\dfrac{\\partial u}{\\partial x} + \\sin 2y\\dfrac{\\partial u}{\\partial y}$.",
-      "answer": 2,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Differentiating partially, $\\dfrac{\\partial u}{\\partial x} = \\dfrac{\\sec^2 x}{\\tan x + \\tan y}$ and $\\dfrac{\\partial u}{\\partial y} = \\dfrac{\\sec^2 y}{\\tan x + \\tan y}$. Using $\\sin 2x\\,\\sec^2 x = 2\\sin x\\cos x\\cdot\\dfrac{1}{\\cos^2 x} = 2\\tan x$, we get $\\sin 2x\\dfrac{\\partial u}{\\partial x} + \\sin 2y\\dfrac{\\partial u}{\\partial y} = \\dfrac{2\\tan x + 2\\tan y}{\\tan x + \\tan y} = 2$.",
       "difficulty": "easy",
       "tags": [
         "partial-derivatives",
         "trigonometric"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$0$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$1$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$2$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$3$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-1-10-homogeneous-degree-radical",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Determine the degree (order) $n$ of the homogeneous function $f(x, y) = \\dfrac{\\sqrt{x} + \\sqrt{y}}{x^2 + y^2}$.",
-      "answer": -1.5,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Factor out leading powers of $x$: $f(x, y) = \\dfrac{x^{1/2}[1 + \\sqrt{y/x}]}{x^2[1 + (y/x)^2]} = x^{1/2 - 2}\\varphi(y/x) = x^{-3/2}\\varphi(y/x)$. Hence the degree is $n = -\\dfrac{3}{2} = -1.5$.",
       "difficulty": "easy",
       "tags": [
         "homogeneous-functions"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-1.5$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$-1.1$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-0.8$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$1.5$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-1-4-q3-log-euler",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "If $u = \\log\\left(\\dfrac{x^3 + y^3}{x^2 + y^2}\\right)$, find the value of $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y}$.",
-      "answer": 1,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Let $z = e^u = \\dfrac{x^3 + y^3}{x^2 + y^2}$. The numerator has degree $3$ and the denominator has degree $2$, so $z = f(u) = e^u$ is homogeneous of degree $n = 3 - 2 = 1$. By Euler's Deduction I, $x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y} = n\\dfrac{f(u)}{f'(u)} = 1\\cdot\\dfrac{e^u}{e^u} = 1$.",
       "difficulty": "easy",
       "tags": [
         "euler-theorem",
         "deduction-1"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-2$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-1$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$0$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$1$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "ex-1-4-q8-parametric-euler-product",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "If $x = e^u \\tan v$ and $y = e^u \\sec v$, find the value of $\\left(x\\dfrac{\\partial u}{\\partial x} + y\\dfrac{\\partial u}{\\partial y}\\right)\\left(x\\dfrac{\\partial v}{\\partial x} + y\\dfrac{\\partial v}{\\partial y}\\right)$.",
-      "answer": 0,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Eliminating $v$ via $\\sec^2 v - \\tan^2 v = 1$ gives $e^{2u} = y^2 - x^2$ (homogeneous of degree $2$), so by Deduction I, $x u_x + y u_y = 2\\cdot\\dfrac{e^{2u}}{2e^{2u}} = 1$. Eliminating $u$ gives $\\sin v = \\dfrac{x}{y}$ (homogeneous of degree $0$), so by Deduction I, $x v_x + y v_y = 0$. Therefore the product is $1 \\times 0 = 0$.",
       "difficulty": "hard",
       "tags": [
         "euler-theorem",
         "deduction-1"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-1$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$0$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$1$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$2$",
+          "correct": false
+        }
       ]
     },
     {

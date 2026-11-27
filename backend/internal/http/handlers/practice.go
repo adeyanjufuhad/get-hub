@@ -150,18 +150,31 @@ func (h *PracticeHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 
 	case "numeric":
 		if !q.NumericAnswer.Valid {
-			httpapi.WriteError(w, http.StatusInternalServerError, "QUESTION_MISCONFIGURED", "Numeric question is missing expected answer.")
+			httpapi.WriteError(w, http.StatusInternalServerError, "QUESTION_MISCONFIGURED", "Question is missing expected answer.")
 			return
 		}
-		okNum, err := questions.CheckNumeric(q.NumericAnswer.Float64, q.NumericTolerancePct, req.NumericInput)
-		if err != nil {
-			httpapi.WriteError(w, http.StatusBadRequest, "VALIDATION_ERROR", err.Error())
-			return
+		if req.SelectedOptionID != nil {
+			synth := questions.SynthesizeMCQ(q)
+			chosen, cid := questions.MatchSyntheticOption(synth, req.SelectedOptionID)
+			if chosen == nil {
+				httpapi.WriteError(w, http.StatusBadRequest, "VALIDATION_ERROR", "Selected option does not belong to this question.")
+				return
+			}
+			isCorrect = chosen.IsCorrect
+			correctOptionID = &cid
+			// Store the chosen option's numeric value so attempts.selected_option_id FK stays valid.
+			numInputParam = pgtype.Float8{Float64: chosen.Value, Valid: true}
+		} else {
+			okNum, err := questions.CheckNumeric(q.NumericAnswer.Float64, q.NumericTolerancePct, req.NumericInput)
+			if err != nil {
+				httpapi.WriteError(w, http.StatusBadRequest, "VALIDATION_ERROR", err.Error())
+				return
+			}
+			isCorrect = okNum
+			v := q.NumericAnswer.Float64
+			expectedNumeric = &v
+			numInputParam = pgtype.Float8{Float64: *req.NumericInput, Valid: true}
 		}
-		isCorrect = okNum
-		v := q.NumericAnswer.Float64
-		expectedNumeric = &v
-		numInputParam = pgtype.Float8{Float64: *req.NumericInput, Valid: true}
 
 	default:
 		httpapi.WriteError(w, http.StatusInternalServerError, "UNSUPPORTED_TYPE", "Unsupported question type.")

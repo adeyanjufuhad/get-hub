@@ -3,47 +3,104 @@
   "questions": [
     {
       "key": "prob-3-4-crate-moment",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A crate of mass $80\\text{ kg}$ is held in the position shown. Taking $g = 9.81\\text{ m/s}^2$, determine the magnitude of the moment produced by the weight $\\mathbf{W}$ of the crate about edge $E$.",
       "image": "/diagrams/get-207/force-system-resultants-p3-4.png",
-      "answer": 196.2,
-      "tolerancePct": 1,
-      "unit": "N·m",
       "solution": "The weight of the crate is $W = mg = (80\\text{ kg})(9.81\\text{ m/s}^2) = 784.8\\text{ N}$ acting vertically downward through the center of the crate ($0.6\\text{ m}$ from the right face $BD$). Since edge $E$ lies $0.85\\text{ m}$ to the left of the right face $BD$, the horizontal moment arm from $E$ to the line of action of $\\mathbf{W}$ is $d = 0.85\\text{ m} - 0.60\\text{ m} = 0.25\\text{ m}$. Therefore, $M_E = Wd = (784.8\\text{ N})(0.25\\text{ m}) = 196.2\\text{ N}\\cdot\\text{m}$ (clockwise).",
       "difficulty": "easy",
       "tags": [
         "moment-about-point",
         "2d-moment"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$196.2\\,\\text{N}\\cdot\\text{m}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$223.7\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$259.0\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$306.1\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-3-9-crank-moment",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Connecting rod $AB$ exerts a $500\\text{-lb}$ force on crank $BC$ directed down and to the left along the centerline of $AB$. Determine the magnitude of the moment of this force about point $C$ (in $\\text{kip}\\cdot\\text{in.}$).",
       "image": "/diagrams/get-207/force-system-resultants-p3-9.png",
-      "answer": 1.12,
-      "tolerancePct": 1,
-      "unit": "kip·in.",
       "solution": "From the geometry, $\\overrightarrow{BA} = -(1.68\\text{ in.})\\mathbf{i} + (5.76\\text{ in.})\\mathbf{j}$, which has length $AB = \\sqrt{1.68^2 + 5.76^2} = 6.00\\text{ in.}$ Directed down and left along $AB$, the force is $\\mathbf{F} = 500\\left(-\\frac{1.68}{6.00}\\mathbf{i} - \\frac{5.76}{6.00}\\mathbf{j}\\right) = -(140\\text{ lb})\\mathbf{i} - (480\\text{ lb})\\mathbf{j}$. With $\\mathbf{r}_{B/C} = -(1.68\\text{ in.})\\mathbf{i} + (2.24\\text{ in.})\\mathbf{j}$, the moment about $C$ is $M_C = (-1.68)(-480) - (2.24)(-140) = 806.4 + 313.6 = 1120\\text{ lb}\\cdot\\text{in.} = 1.120\\text{ kip}\\cdot\\text{in.}$ counterclockwise.",
       "difficulty": "medium",
       "tags": [
         "moment-about-point",
         "varignons-theorem"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1.12\\,\\text{kip}\\cdot\\text{in.}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$1.28\\,\\text{kip}\\cdot\\text{in.}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$1.48\\,\\text{kip}\\cdot\\text{in.}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$1.75\\,\\text{kip}\\cdot\\text{in.}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-3-12-winch-puller-tension",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A force with a moment of $960\\text{ N}\\cdot\\text{m}$ about base point $D$ is required to straighten fence post $CD$. If distance $d = 2.80\\text{ m}$, determine the required tension in cable $CB$ of winch puller $AB$.",
       "image": "/diagrams/get-207/force-system-resultants-p3-12.png",
-      "answer": 1224,
-      "tolerancePct": 1,
-      "unit": "N",
       "solution": "Taking $D$ as the origin, point $C$ is at $(0.20\\text{ m}, 0.875\\text{ m})$ and anchor $E$ is at $(-2.80\\text{ m}, 0)$. The vector along the cable from $C$ to $E$ is $\\overrightarrow{CE} = -(3.00\\text{ m})\\mathbf{i} - (0.875\\text{ m})\\mathbf{j}$, with length $CE = \\sqrt{3.00^2 + 0.875^2} = 3.125\\text{ m}$. Moving the cable force along its line of action to $E$ eliminates the horizontal component's moment about $D$, leaving $M_D = (2.80\\text{ m})\\,T\\left(\\frac{0.875}{3.125}\\right) = 0.784\\,T$. Setting $0.784\\,T = 960\\text{ N}\\cdot\\text{m}$ gives $T = 1224\\text{ N}$.",
       "difficulty": "medium",
       "tags": [
         "transmissibility",
         "moment-about-point"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$955\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$1224\\,\\text{N}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$1444\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$1738\\,\\text{N}$",
+          "correct": false
+        }
       ]
     },
     {
@@ -82,91 +139,205 @@
     },
     {
       "key": "prob-3-38-volleyball-net-angle",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Consider the volleyball net shown, with $A(0, 8, 0)\\text{ ft}$, $C(0, 0, 6)\\text{ ft}$, and $D(4, 0, 1)\\text{ ft}$. Determine the angle (in degrees) formed by guy wires $AC$ and $AD$.",
       "image": "/diagrams/get-207/force-system-resultants-p3-37.png",
-      "answer": 38.9,
-      "tolerancePct": 1,
-      "unit": "°",
       "solution": "Write the vectors from $A$: $\\overrightarrow{AC} = -(8\\text{ ft})\\mathbf{j} + (6\\text{ ft})\\mathbf{k}$ ($AC = \\sqrt{8^2 + 6^2} = 10\\text{ ft}$) and $\\overrightarrow{AD} = (4\\text{ ft})\\mathbf{i} - (8\\text{ ft})\\mathbf{j} + (1\\text{ ft})\\mathbf{k}$ ($AD = \\sqrt{4^2 + (-8)^2 + 1^2} = \\sqrt{81} = 9\\text{ ft}$). Their dot product is $\\overrightarrow{AC} \\cdot \\overrightarrow{AD} = 0 + 64 + 6 = 70$. Hence $\\cos\\theta = \\frac{70}{(10)(9)} = 0.7778$, giving $\\theta = 38.9^\\circ$.",
       "difficulty": "easy",
       "tags": [
         "dot-product",
         "angle-between-vectors"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$38.9^\\circ$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$44.3^\\circ$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$51.3^\\circ$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$60.7^\\circ$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-3-45-coplanar-triple-product",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Given the three vectors $\\mathbf{P} = 4\\mathbf{i} - 2\\mathbf{j} + 3\\mathbf{k}$, $\\mathbf{Q} = 2\\mathbf{i} + 4\\mathbf{j} - 5\\mathbf{k}$, and $\\mathbf{S} = S_x\\mathbf{i} - \\mathbf{j} + 2\\mathbf{k}$, determine the value of $S_x$ for which the three vectors are coplanar.",
-      "answer": 7,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Three vectors are coplanar if and only if their mixed triple product vanishes: $\\mathbf{S}\\cdot(\\mathbf{P}\\times\\mathbf{Q}) = \\begin{vmatrix} S_x & -1 & 2 \\\\ 4 & -2 & 3 \\\\ 2 & 4 & -5 \\end{vmatrix} = 0$. Expanding along the first row gives $S_x(10 - 12) - (-1)(-20 - 6) + 2(16 + 4) = -2S_x - 26 + 40 = 0 \\implies 2S_x = 14 \\implies S_x = 7$.",
       "difficulty": "easy",
       "tags": [
         "mixed-triple-product",
         "coplanarity"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$3$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$5$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$7$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "prob-3-49-davit-allowable-tension",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A small boat hangs from the davit shown. The moment about the $z$ axis of the resultant force $\\mathbf{R}_A$ exerted on the davit at $A$ must not exceed $279\\text{ lb}\\cdot\\text{ft}$ in absolute value. Determine the largest allowable tension in line $ABAD$ when $x = 6\\text{ ft}$.",
       "image": "/diagrams/get-207/force-system-resultants-p3-49.png",
-      "answer": 61.5,
-      "tolerancePct": 1,
-      "unit": "lb",
       "solution": "Point $A$ has coordinates $(0, 7.75, 3)\\text{ ft}$ and $D$ is at $(6, 0, 0)\\text{ ft}$, so $\\overrightarrow{AD} = 6\\mathbf{i} - 7.75\\mathbf{j} - 3\\mathbf{k}$ with length $AD = \\sqrt{6^2 + (-7.75)^2 + (-3)^2} = 10.25\\text{ ft}$. At $A$, the vertical segment $AB$ exerts $-T\\mathbf{j}$ (zero $x$-component) and segment $AD$ exerts $T(\\overrightarrow{AD}/AD)$, so $(R_A)_x = T(6/10.25)$ and $(R_A)_y = -T - T(7.75/10.25)$. Since $x_A = 0$, the moment about the $z$ axis is $M_z = x_A(R_A)_y - y_A(R_A)_x = -7.75\\,T(6/10.25) = -4.5366\\,T$. Setting $|M_z| = 279\\text{ lb}\\cdot\\text{ft}$ yields $T = 279 / 4.5366 = 61.5\\text{ lb}$.",
       "difficulty": "medium",
       "tags": [
         "moment-about-axis",
         "coordinate-axis"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$48.0\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$61.5\\,\\text{lb}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$72.6\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$87.3\\,\\text{lb}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-3-54-crank-moment-mx",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A single force $\\mathbf{P}$ acts at $C$ in a direction perpendicular to handle $BC$ of the crank shown ($OA = 150\\text{ mm}$ along $+x$, $AB = 200\\text{ mm}$ in a plane parallel to $yz$ at angle $\\theta$ above $+z$, and $BC = 100\\text{ mm}$ parallel to $+x$). Determine the moment $M_x$ of $\\mathbf{P}$ about the $x$ axis when $\\theta = 65^\\circ$, knowing that $M_y = -15\\text{ N}\\cdot\\text{m}$ and $M_z = -36\\text{ N}\\cdot\\text{m}$.",
       "image": "/diagrams/get-207/force-system-resultants-p3-54.png",
-      "answer": 23,
-      "tolerancePct": 1,
-      "unit": "N·m",
       "solution": "Because $\\mathbf{P}$ is perpendicular to handle $BC$ (parallel to $+x$), $P_x = 0$. The coordinates of $C$ at $\\theta = 65^\\circ$ are $x_C = 0.150 + 0.100 = 0.250\\text{ m}$, $y_C = 0.200\\sin 65^\\circ = 0.18126\\text{ m}$, and $z_C = 0.200\\cos 65^\\circ = 0.08452\\text{ m}$. From $M_y = z_C P_x - x_C P_z = -0.250 P_z = -15$, we get $P_z = 60\\text{ N}$; from $M_z = x_C P_y - y_C P_x = 0.250 P_y = -36$, we get $P_y = -144\\text{ N}$. Thus $M_x = y_C P_z - z_C P_y = (0.18126)(60) - (0.08452)(-144) = 23.05 \\approx 23.0\\text{ N}\\cdot\\text{m}$.",
       "difficulty": "hard",
       "tags": [
         "moment-about-axis",
         "3d-moment"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$23\\,\\text{N}\\cdot\\text{m}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$26\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$30\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$36\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-3-59-frame-diagonal-moment",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Frame $ACD$ is hinged at $A(0, 0, 0.75)\\text{ m}$ and $D(1.0, 0, 0)\\text{ m}$ and supported by a cable through ring $B(0.5, 0, 0.75)\\text{ m}$ attached to hooks $G$ and $H(0.875, 0.75, 0)\\text{ m}$. If the cable tension is $450\\text{ N}$, determine the moment $M_{AD}$ (signed, in $\\text{N}\\cdot\\text{m}$) about diagonal $AD$ of the force exerted on the frame by portion $BH$ of the cable.",
       "image": "/diagrams/get-207/force-system-resultants-p3-59.png",
-      "answer": -90,
-      "tolerancePct": 1,
-      "unit": "N·m",
       "solution": "First compute the cable force along $\\overrightarrow{BH} = 0.375\\mathbf{i} + 0.75\\mathbf{j} - 0.75\\mathbf{k}$ ($BH = 1.125\\text{ m}$): $\\mathbf{F} = \\frac{450}{1.125}(0.375\\mathbf{i} + 0.75\\mathbf{j} - 0.75\\mathbf{k}) = 150\\mathbf{i} + 300\\mathbf{j} - 300\\mathbf{k}\\text{ N}$. The unit vector along $\\overrightarrow{AD} = 1.0\\mathbf{i} - 0.75\\mathbf{k}$ ($AD = 1.25\\text{ m}$) is $\\boldsymbol{\\lambda}_{AD} = 0.8\\mathbf{i} - 0.6\\mathbf{k}$, and $\\mathbf{r}_{B/A} = 0.5\\mathbf{i}\\text{ m}$. Evaluating the mixed triple product $\\boldsymbol{\\lambda}_{AD}\\cdot(\\mathbf{r}_{B/A}\\times\\mathbf{F}) = \\begin{vmatrix} 0.8 & 0 & -0.6 \\\\ 0.5 & 0 & 0 \\\\ 150 & 300 & -300 \\end{vmatrix} = -0.6(150) = -90.0\\text{ N}\\cdot\\text{m}$.",
       "difficulty": "hard",
       "tags": [
         "moment-about-axis",
         "mixed-triple-product"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-110\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-90\\,\\text{N}\\cdot\\text{m}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$-70\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$90\\,\\text{N}\\cdot\\text{m}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-3-73-plywood-nail-couple",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A piece of plywood is secured to a workbench by two nails. Knowing that the drill exerts a $12\\text{-N}\\cdot\\text{m}$ couple on the plywood, determine the magnitude of the resulting forces applied to the nails if they are located at $B$ and $C$ ($240\\text{ mm}$ apart).",
       "image": "/diagrams/get-207/force-system-resultants-p3-73.png",
-      "answer": 50,
-      "tolerancePct": 1,
-      "unit": "N",
       "solution": "To balance the $12\\text{-N}\\cdot\\text{m}$ drill couple, the two nails at $B$ and $C$ must develop a couple of equal magnitude $M = Fd = 12\\text{ N}\\cdot\\text{m}$. With $d = BC = 0.240\\text{ m}$, the force on each nail is $F = \\frac{12\\text{ N}\\cdot\\text{m}}{0.240\\text{ m}} = 50.0\\text{ N}$.",
       "difficulty": "easy",
       "tags": [
         "couple",
         "equivalent-couples"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$39\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$50\\,\\text{N}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$59\\,\\text{N}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$71\\,\\text{N}$",
+          "correct": false
+        }
       ]
     },
     {
@@ -205,17 +376,36 @@
     },
     {
       "key": "prob-3-91-channel-shear-center",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "The shearing forces on a steel channel cross section consist of a $900\\text{-N}$ vertical downward force along $BD$ and two $250\\text{-N}$ horizontal forces ($180\\text{ mm}$ apart, top right, bottom left). Replace this system with a single force $\\mathbf{F}$ applied at the shear center $C$, and determine the distance $x$ from $C$ to line $BD$.",
       "image": "/diagrams/get-207/force-system-resultants-p3-91.png",
-      "answer": 50,
-      "tolerancePct": 1,
-      "unit": "mm",
       "solution": "The two $250\\text{-N}$ horizontal forces form a clockwise couple of magnitude $M = (250\\text{ N})(180\\text{ mm}) = 45{,}000\\text{ N}\\cdot\\text{mm} = 45.0\\text{ N}\\cdot\\text{m}$. Moving the $900\\text{-N}$ downward force to the right by distance $x$ to point $C$ produces a clockwise moment $(900\\text{ N})x$ about $BD$. Equating moments: $900x = 45{,}000 \\implies x = 50.0\\text{ mm}$.",
       "difficulty": "medium",
       "tags": [
         "force-couple-system",
         "single-resultant"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$32\\,\\text{mm}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$42\\,\\text{mm}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$50\\,\\text{mm}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$62\\,\\text{mm}$",
+          "correct": false
+        }
       ]
     },
     {
@@ -253,47 +443,104 @@
     },
     {
       "key": "prob-3-106-stage-lights-resultant",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Three stage lights are mounted on a pipe as shown. Lights $A$ and $B$ each weigh $4.1\\text{ lb}$, while light $C$ weighs $3.5\\text{ lb}$. If $d = 25\\text{ in.}$, determine the distance from end $D$ to the line of action of the resultant weight.",
       "image": "/diagrams/get-207/force-system-resultants-p3-106.png",
-      "answer": 39.6,
-      "tolerancePct": 1,
-      "unit": "in.",
       "solution": "The total downward resultant weight is $R = 4.1 + 4.1 + 3.5 = 11.7\\text{ lb}$. The positions from $D$ are $x_A = 10\\text{ in.}$, $x_B = 10 + 34 = 44\\text{ in.}$, and $x_C = 44 + 25 = 69\\text{ in.}$ Equating the moment of $R$ about $D$ to the sum of moments gives $11.7\\,x = (4.1)(10) + (4.1)(44) + (3.5)(69) = 41 + 180.4 + 241.5 = 462.9\\text{ lb}\\cdot\\text{in.}$, so $x = 462.9 / 11.7 = 39.6\\text{ in.}$",
       "difficulty": "easy",
       "tags": [
         "parallel-forces",
         "resultant"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$25.3\\,\\text{in.}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$33.3\\,\\text{in.}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$39.6\\,\\text{in.}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$49.1\\,\\text{in.}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-3-135-screw-wrench-pitch",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "The forces and couples shown ($10\\text{ lb}\\downarrow$ and $6\\text{ lb}\\cdot\\text{in.}$ clockwise looking down $y$ at $A$ with $z = 20\\text{ in.}$; $11\\text{ lb}\\downarrow$ and $6\\text{ lb}\\cdot\\text{in.}$ clockwise looking down $y$ at $B$ with $z = -15\\text{ in.}$) are applied to two screws. Reduce the system to an equivalent wrench and determine the pitch $p$ of the wrench.",
       "image": "/diagrams/get-207/force-system-resultants-p3-135.png",
-      "answer": 0.571,
-      "tolerancePct": 1,
-      "unit": "in.",
       "solution": "Summing forces gives $\\mathbf{R} = -(10 + 11)\\mathbf{j} = -(21.0\\text{ lb})\\mathbf{j}$. Summing moments about $O$ gives $\\mathbf{M}_O^R = (20\\mathbf{k})\\times(-10\\mathbf{j}) + (-15\\mathbf{k})\\times(-11\\mathbf{j}) - 6\\mathbf{j} - 6\\mathbf{j} = (200 - 165)\\mathbf{i} - 12\\mathbf{j} = (35\\mathbf{i} - 12\\mathbf{j})\\text{ lb}\\cdot\\text{in.}$ Using Eq. (3.62), the pitch is $p = \\frac{\\mathbf{R}\\cdot\\mathbf{M}_O^R}{R^2} = \\frac{(-21)(-12)}{(-21)^2} = \\frac{12}{21} = 0.571\\text{ in.}$",
       "difficulty": "medium",
       "tags": [
         "wrench",
         "pitch"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.365\\,\\text{in.}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$0.480\\,\\text{in.}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$0.571\\,\\text{in.}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$0.708\\,\\text{in.}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-3-148-tailgate-hydraulic-lift",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "The tailgate of a car is supported by hydraulic lift $BC$. If the lift exerts a $125\\text{-lb}$ force directed along its centerline from $C$ toward $B$ on the ball-and-socket at $B$, determine the magnitude of the moment of this force about hinge $A$ (in $\\text{lb}\\cdot\\text{ft}$).",
       "image": "/diagrams/get-207/force-system-resultants-p3-148.png",
-      "answer": 116.2,
-      "tolerancePct": 1,
-      "unit": "lb·ft",
       "solution": "Taking hinge $A$ as the origin, $C$ lies at $(3.3, -12.0)\\text{ in.}$ and $B$ lies at $(15.3, -14.33)\\text{ in.}$, so $\\overrightarrow{CB} = 12.0\\mathbf{i} - 2.33\\mathbf{j}\\text{ in.}$ with length $CB = \\sqrt{12.0^2 + (-2.33)^2} = 12.224\\text{ in.}$ Thus $\\mathbf{F} = \\frac{125}{12.224}(12.0\\mathbf{i} - 2.33\\mathbf{j})\\text{ lb}$. Using point $C$ on the line of action of $\\mathbf{F}$ with $\\mathbf{r}_{C/A} = \\frac{3.3\\mathbf{i} - 12.0\\mathbf{j}}{12}\\text{ ft}$, the moment about $A$ is $M_A = \\frac{125}{(12)(12.224)}[(3.3)(-2.33) - (-12.0)(12.0)] = 0.8521(136.31) = 116.2\\text{ lb}\\cdot\\text{ft}$ counterclockwise.",
       "difficulty": "hard",
       "tags": [
         "moment-about-point",
         "review-problem"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$74.4\\,\\text{lb}\\cdot\\text{ft}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$97.6\\,\\text{lb}\\cdot\\text{ft}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$116.2\\,\\text{lb}\\cdot\\text{ft}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$144.1\\,\\text{lb}\\cdot\\text{ft}$",
+          "correct": false
+        }
       ]
     }
   ]

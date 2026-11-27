@@ -281,7 +281,13 @@ func (h *ExamsHandler) Submit(w http.ResponseWriter, r *http.Request) {
 					}
 				}
 			case "numeric":
-				if ansIn.NumericInput != nil && q.NumericAnswer.Valid {
+				if ansIn.SelectedOptionID != nil && q.NumericAnswer.Valid {
+					synth := questions.SynthesizeMCQ(q)
+					if chosen, _ := questions.MatchSyntheticOption(synth, ansIn.SelectedOptionID); chosen != nil {
+						isCorrect = chosen.IsCorrect
+						numIn = pgtype.Float8{Float64: chosen.Value, Valid: true}
+					}
+				} else if ansIn.NumericInput != nil && q.NumericAnswer.Valid {
 					if okNum, err := questions.CheckNumeric(q.NumericAnswer.Float64, q.NumericTolerancePct, ansIn.NumericInput); err == nil {
 						isCorrect = okNum
 						numIn = pgtype.Float8{Float64: *ansIn.NumericInput, Valid: true}
@@ -414,8 +420,14 @@ func (h *ExamsHandler) buildExamReview(
 				}
 			}
 		} else if q.NumericAnswer.Valid {
-			v := q.NumericAnswer.Float64
-			rev.NumericAnswer = &v
+			synth := questions.SynthesizeMCQ(q)
+			_, cid := questions.MatchSyntheticOption(synth, nil)
+			if cid != uuid.Nil {
+				rev.CorrectOptionID = &cid
+			}
+			if ans.NumericInput.Valid {
+				rev.SelectedOptionID = questions.MatchSyntheticByValue(synth, ans.NumericInput.Float64, q.NumericTolerancePct)
+			}
 		}
 		reviews = append(reviews, rev)
 

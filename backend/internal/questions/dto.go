@@ -49,7 +49,22 @@ func ToPublic(q sqlc.Question, opts []sqlc.QuestionOption) PublicQuestion {
 		Status:       q.Status,
 		IsFree:       q.IsFree,
 	}
-	if q.QuestionType == "numeric" {
+	if q.QuestionType == "numeric" && len(opts) == 0 && q.NumericAnswer.Valid {
+		// Present legacy numeric rows as objective 4-option MCQs so all quizzes
+		// stay objective even before DB migrations/re-seeding run.
+		synth := SynthesizeMCQ(q)
+		pq.QuestionType = "mcq"
+		pq.NumericTolerancePct = 0
+		pq.Options = make([]PublicOption, 0, len(synth))
+		for _, o := range synth {
+			pq.Options = append(pq.Options, PublicOption{
+				ID:           o.ID,
+				Label:        o.Label,
+				ContentMD:    o.ContentMD,
+				DisplayOrder: o.DisplayOrder,
+			})
+		}
+	} else if q.QuestionType == "numeric" {
 		pq.NumericTolerancePct = q.NumericTolerancePct
 	}
 	if q.PromptImageUrl.Valid && q.PromptImageUrl.String != "" {

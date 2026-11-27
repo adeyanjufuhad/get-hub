@@ -52,7 +52,7 @@ const FEATURES = [
   {
     icon: ShieldCheck,
     title: "Instant Answer Grading",
-    body: "Check multiple-choice and numeric calculation answers with ±1% engineering tolerance and unlock full worked solutions after submitting.",
+    body: "Practice objective multiple-choice questions (A–D) with instant grading and unlock full worked solutions right after submitting.",
     tag: "290+ drills",
   },
   {
@@ -229,7 +229,7 @@ export default function LandingPage() {
                 Built around how 200L tests are written and graded.
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty sm:text-base">
-                Read the derivation on lined paper, inspect the free-body or manometer diagram, check numeric answers to ±1%, and sit timed mocks before exam week.
+                Read the derivation on lined paper, inspect the free-body or manometer diagram, practice objective A–D questions, and sit timed mocks before exam week.
               </p>
             </div>
 

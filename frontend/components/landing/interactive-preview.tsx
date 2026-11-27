@@ -205,7 +205,7 @@ export function HeroProductPreview() {
                 <MathText text="$$\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$$" />
               </div>
               <p className="mt-2 text-xs leading-relaxed text-[var(--text-muted)] text-pretty">
-                Numeric and multiple-choice answers are graded instantly with ±1% engineering tolerance, and full worked solutions unlock right after you submit.
+                Objective multiple-choice answers (A–D) are graded instantly, and full worked solutions unlock right after you submit.
               </p>
             </div>
             <div className="flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--border-hairline)] bg-white p-2">
@@ -402,13 +402,13 @@ export function StudyLoopStepper() {
     {
       id: "practice",
       label: "Drill topic",
-      title: "Check your calculations with instant grading",
+      title: "Check your answers with instant grading",
       description:
-        "Practice diagram-backed multiple-choice and numeric engineering problems with ±1% tolerance. Full worked solutions unlock right after you check your answer.",
+        "Practice diagram-backed objective multiple-choice questions (A–D). Full worked solutions unlock right after you check your answer.",
       content: (
         <div className="space-y-2.5 rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-mono font-bold text-[var(--accent)]">Numeric · ±1% tolerance</span>
+            <span className="font-mono font-bold text-[var(--accent)]">Objective · Options A–D</span>
             <span className="inline-flex items-center gap-1 font-semibold text-[var(--success)]">
               <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" /> Auto-graded
             </span>
@@ -418,7 +418,7 @@ export function StudyLoopStepper() {
             <MathText text="$\rho = 1000\,\text{kg/m}^3$" />):
           </p>
           <div className="tabular rounded-xl border-2 border-[var(--success)] bg-[var(--success-soft)] px-3 py-2 font-mono text-sm font-bold text-[var(--success)]">
-            39.24 kPa ✓
+            B. 39.24 kPa ✓
           </div>
           <p className="math-scroll-x text-xs text-[var(--text-secondary)]">
             <MathText text="$P = \rho g h = 1000 \times 9.81 \times 4.0 = 39.24\,\text{kPa}$" />

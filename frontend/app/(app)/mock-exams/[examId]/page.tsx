@@ -429,7 +429,7 @@ export default function MockExamRunnerPage() {
         <div className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5">
           <div className="flex items-center justify-between gap-2">
             <Badge variant="neutral" className="capitalize">
-              {current.difficulty} · {current.question_type}
+              {current.difficulty} · Objective
             </Badge>
             <button
               type="button"

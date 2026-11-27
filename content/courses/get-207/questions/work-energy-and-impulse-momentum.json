@@ -36,84 +36,198 @@
     },
     {
       "key": "prob-13-1-satellite-kinetic-energy",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $400\\text{-kg}$ satellite was placed in a circular orbit $1500\\,\\text{km}$ above the surface of the earth, where the acceleration of gravity is $6.43\\,\\text{m/s}^2$. Knowing that its orbital speed is $25.6\\times10^3\\,\\text{km/h}$, determine the kinetic energy of the satellite (in GJ).",
-      "answer": 10.11,
-      "tolerancePct": 1,
-      "unit": "GJ",
       "solution": "The mass is $400\\,\\text{kg}$ regardless of the local $g$. $v = 25.6\\times10^6\\,\\text{m}/3600\\,\\text{s} = 7111\\,\\text{m/s}$.\n\n$$T = \\tfrac12 mv^2 = \\tfrac12(400)(7111)^2 = 10.11\\times10^9\\,\\text{J} = 10.11\\,\\text{GJ}.$$",
       "difficulty": "easy",
       "tags": [
         "kinetic-energy"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$5.26\\,\\text{GJ}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$7.28\\,\\text{GJ}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$8.69\\,\\text{GJ}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$10.11\\,\\text{GJ}$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "prob-13-2-moon-drop-height",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $1\\text{-lb}$ stone is dropped down a hole on the moon ($g_{\\text{moon}} = 5.31\\,\\text{ft/s}^2$) and strikes the bottom with a speed of $95\\,\\text{ft/s}$. Neglecting air resistance, determine the height $h$ from which it was dropped (in ft). (The stone's mass is that of a stone weighing $1\\,\\text{lb}$ on earth.)",
-      "answer": 850,
-      "tolerancePct": 1,
-      "unit": "ft",
       "solution": "$m = 1/32.2\\,\\text{lb}\\cdot\\text{s}^2/\\text{ft}$, so $T_2 = \\tfrac12(1/32.2)(95)^2 = 140.1\\,\\text{ft}\\cdot\\text{lb}$. On the moon the stone's weight is $mg_{\\text{moon}}$, and $T_1 + U_{1\\to2} = T_2$ gives $0 + m g_{\\text{moon}} h = \\tfrac12 m v^2$:\n\n$$h = \\frac{v^2}{2g_{\\text{moon}}} = \\frac{95^2}{2(5.31)} = 850\\,\\text{ft}.$$",
       "difficulty": "easy",
       "tags": [
         "work-energy",
         "gravity"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$663\\,\\text{ft}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$850\\,\\text{ft}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$1003\\,\\text{ft}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$1207\\,\\text{ft}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-13-11-package-incline-distance",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Packages are thrown down a $30^\\circ$ incline at $A$ with a velocity of $1\\,\\text{m/s}$ and slide along the surface $ABC$ (incline $AB$ of length $d$, then horizontal $BC = 7\\,\\text{m}$) to a conveyor belt. Knowing that $\\mu_k = 0.25$ between the packages and the surface, determine the distance $d$ (in m) if the packages are to arrive at $C$ with a velocity of $2\\,\\text{m/s}$.",
       "image": "/diagrams/get-207/work-energy-and-impulse-momentum-p13-11.png",
-      "answer": 6.71,
-      "tolerancePct": 1,
-      "unit": "m",
       "solution": "Per unit mass, $T_A = \\tfrac12(1)^2 = 0.5$, $T_C = \\tfrac12(2)^2 = 2$. On $AB$: gravity does $+g d\\sin 30^\\circ$, friction $-0.25\\,g\\cos 30^\\circ\\,d$. On $BC$: friction $-0.25\\,g(7)$.\n\n$$0.5 + 9.81d(0.5 - 0.25\\cos 30^\\circ) - 0.25(9.81)(7) = 2$$\n\n$$2.781d = 1.5 + 17.17 = 18.67 \\implies d = 6.71\\,\\text{m}.$$",
       "difficulty": "medium",
       "tags": [
         "work-energy",
         "friction"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$4.29\\,\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$5.64\\,\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$6.71\\,\\text{m}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$8.32\\,\\text{m}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-13-15-car-trailer-braking-distance",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $1200\\text{-kg}$ trailer is hitched to a $1400\\text{-kg}$ car. The car and trailer are traveling at $72\\,\\text{km/h}$ when the driver applies the brakes on both. Knowing that the braking forces exerted on the car and the trailer are $5000\\,\\text{N}$ and $4000\\,\\text{N}$, respectively, determine the distance traveled before they come to a stop (in m).",
-      "answer": 57.8,
-      "tolerancePct": 1,
-      "unit": "m",
       "solution": "Treat car + trailer as one system (the hitch forces cancel). $v_1 = 72\\,\\text{km/h} = 20\\,\\text{m/s}$, $T_1 = \\tfrac12(2600)(20)^2 = 520\\,000\\,\\text{J}$, $T_2 = 0$.\n\n$$T_1 + U_{1\\to2} = T_2: \\quad 520\\,000 - (5000 + 4000)x = 0 \\implies x = 57.8\\,\\text{m}.$$\n\n(For the car alone: $280\\,000 - 5000(57.8) + H(57.8) = 0$ gives a hitch force $H = 154\\,\\text{N}$.)",
       "difficulty": "easy",
       "tags": [
         "work-energy",
         "system-of-particles"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$45.1\\,\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$57.8\\,\\text{m}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$68.2\\,\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$82.1\\,\\text{m}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-13-37-weight-error-1000km",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Using $g_h = g_0R^2/(R+h)^2$ with $R = 6370\\,\\text{km}$, determine the percent error if the weight that an object has on the surface of the earth is used as its weight at an altitude of $1000\\,\\text{km}$.",
-      "answer": 25.3,
-      "tolerancePct": 1,
-      "unit": "%",
       "solution": "$$\\frac{g_h}{g_0} = \\left(\\frac{6370}{6370 + 1000}\\right)^2 = (0.8643)^2 = 0.7470.$$\n\nThe true weight is $0.747$ of the surface weight, so using the surface weight overestimates by $1 - 0.747 = 0.253$ of the surface weight: error $= 25.3\\%$.",
       "difficulty": "easy",
       "tags": [
         "gravitational-force"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$13.2\\%$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$18.2\\%$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$21.8\\%$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$25.3\\%$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "prob-13-52-two-tugboats-speed",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "The frictional resistance of a ship varies directly as the $1.75$ power of its speed. A single tugboat at full power tows the ship at $4.5\\,\\text{km/h}$ by exerting a constant force of $300\\,\\text{kN}$. Determine the maximum speed (in km/h) at which two tugboats, each capable of delivering the same power, can tow the ship.",
-      "answer": 5.79,
-      "tolerancePct": 1,
-      "unit": "km/h",
       "solution": "One tug: $P = Fv = (300\\,\\text{kN})(1.25\\,\\text{m/s}) = 375\\,\\text{kW}$. With $F = Kv^{1.75}$, the towing power is $P = Fv = Kv^{2.75}$. Doubling the power:\n\n$$\\left(\\frac{v_2}{v_1}\\right)^{2.75} = 2 \\implies v_2 = 4.5(2)^{1/2.75} = 4.5(1.2867) = 5.79\\,\\text{km/h}.$$",
       "difficulty": "medium",
       "tags": [
         "power"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$5.79\\,\\text{km/h}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$6.60\\,\\text{km/h}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$7.64\\,\\text{km/h}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$9.03\\,\\text{km/h}$",
+          "correct": false
+        }
       ]
     },
     {
@@ -152,73 +266,168 @@
     },
     {
       "key": "prob-13-39-rope-break-angle",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "The sphere at $A$ is given a downward velocity $v_0 = 5\\,\\text{m/s}$ and swings in a vertical plane at the end of a rope of length $l = 2\\,\\text{m}$ attached to a support at $O$ ($OA$ horizontal). Determine the angle $\\theta$ (below the horizontal, in degrees) at which the rope will break, knowing that it can withstand a maximum tension equal to twice the weight of the sphere.",
       "image": "/diagrams/get-207/work-energy-and-impulse-momentum-p13-39.png",
-      "answer": 14,
-      "tolerancePct": 1,
-      "unit": "°",
       "solution": "Energy from $A$ to the position at angle $\\theta$ (drop $l\\sin\\theta$): $v^2 = v_0^2 + 2gl\\sin\\theta = 25 + 39.24\\sin\\theta$.\n\nNormal direction (toward $O$): $T - mg\\sin\\theta = mv^2/l$. With $T = 2mg$:\n\n$$2(9.81) - 9.81\\sin\\theta = \\frac{25 + 39.24\\sin\\theta}{2} \\implies 7.12 = 29.43\\sin\\theta$$\n\n$\\sin\\theta = 0.2419$, $\\theta = 14.0^\\circ$.",
       "difficulty": "hard",
       "tags": [
         "conservation-of-energy",
         "normal-force"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$14^\\circ$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$17^\\circ$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$20^\\circ$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$23^\\circ$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-13-62-bungee-clearance",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "An elastic bungee cable for a $130\\text{-ft}$ tower is $85\\,\\text{ft}$ long unstretched and has spring constant $k = 533.3\\,\\text{lb/ft}$ (chosen so that a $600\\text{-lb}$ weight dropped from the tower stretches it to $100\\,\\text{ft}$). How close to the ground (in ft) will a $186\\text{-lb}$ man come if he uses this cable to jump from the tower?",
-      "answer": 37,
-      "tolerancePct": 1,
-      "unit": "ft",
       "solution": "Check $k$: $600(100) = \\tfrac12 k(15)^2 \\Rightarrow k = 533.3\\,\\text{lb/ft}$. For the man, with stretch $x$ at the lowest point ($T_1 = T_2 = 0$):\n\n$$186(85 + x) = \\tfrac12(533.3)x^2 \\implies 266.7x^2 - 186x - 15\\,810 = 0$$\n\n$x = 8.06\\,\\text{ft}$, so the lowest point is $85 + 8.06 = 93.06\\,\\text{ft}$ below the top: clearance $= 130 - 93.06 = 37.0\\,\\text{ft}$.",
       "difficulty": "medium",
       "tags": [
         "conservation-of-energy",
         "spring"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$24\\,\\text{ft}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$31\\,\\text{ft}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$37\\,\\text{ft}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$46\\,\\text{ft}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-13-69-spring-package-friction",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A spring ($k = 30\\,\\text{kN/m}$, initially compressed $50\\,\\text{mm}$ by cables) is used to stop a $50\\text{-kg}$ package moving down a $20^\\circ$ incline. The package has a velocity of $2\\,\\text{m/s}$ when it is $8\\,\\text{m}$ from the spring, and $\\mu_k = 0.2$ between package and incline. Determine the maximum additional deformation of the spring (in m).",
-      "answer": 0.1744,
-      "tolerancePct": 1,
-      "unit": "m",
       "solution": "Friction is nonconservative, so use $T_1 + U_{1\\to2} = T_2$ with $T_1 = \\tfrac12(50)(2)^2 = 100\\,\\text{J}$, $T_2 = 0$. Net down-slope force from gravity and friction: $50(9.81)(\\sin 20^\\circ - 0.2\\cos 20^\\circ) = 167.8 - 92.2 = 75.6\\,\\text{N}$ over $(8 + x)$. Spring work: $-\\tfrac12(30\\,000)[(0.05 + x)^2 - 0.05^2] = -(1500x + 15\\,000x^2)$.\n\n$$100 + 75.6(8 + x) - 1500x - 15\\,000x^2 = 0 \\implies 15\\,000x^2 + 1424x - 704.5 = 0$$\n\n$x = 0.1744\\,\\text{m}$.",
       "difficulty": "medium",
       "tags": [
         "work-energy",
         "spring",
         "friction"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.1744\\,\\text{m}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$0.1988\\,\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$0.2302\\,\\text{m}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$0.2721\\,\\text{m}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-13-119-ocean-liner-tug-time",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $35\\,000\\text{-Mg}$ ocean liner has an initial velocity of $4\\,\\text{km/h}$. Neglecting the frictional resistance of the water, determine the time (in s) required to bring the liner to rest using a single tugboat which exerts a constant force of $150\\,\\text{kN}$.",
-      "answer": 259,
-      "tolerancePct": 1,
-      "unit": "s",
       "solution": "Impulse and momentum: $mv_1 - Ft = 0$.\n\n$$t = \\frac{(35\\times10^6\\,\\text{kg})(4/3.6\\,\\text{m/s})}{150\\times10^3\\,\\text{N}} = \\frac{38.89\\times10^6}{150\\times10^3} = 259\\,\\text{s} = 4\\,\\text{min}\\;19\\,\\text{s}.$$",
       "difficulty": "easy",
       "tags": [
         "impulse-momentum"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$166\\,\\text{s}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$218\\,\\text{s}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$259\\,\\text{s}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$321\\,\\text{s}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-13-120-icy-road-stopping-time",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $2500\\text{-lb}$ automobile is moving at a speed of $60\\,\\text{mi/h}$ when the brakes are fully applied, causing all four wheels to skid. Determine the time (in s) required to stop the automobile on an icy road ($\\mu_k = 0.10$).",
-      "answer": 27.3,
-      "tolerancePct": 1,
-      "unit": "s",
       "solution": "$v_1 = 88\\,\\text{ft/s}$; friction $F = \\mu_k W$. Impulse and momentum: $\\dfrac{W}{g}v_1 - \\mu_k W t = 0$, so\n\n$$t = \\frac{v_1}{\\mu_k g} = \\frac{88}{0.10(32.2)} = 27.3\\,\\text{s}.$$\n\n(On dry pavement, $\\mu_k = 0.75$ gives $3.64\\,\\text{s}$.)",
       "difficulty": "easy",
       "tags": [
         "impulse-momentum",
         "friction"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$17.5\\,\\text{s}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$22.9\\,\\text{s}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$27.3\\,\\text{s}$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$33.9\\,\\text{s}$",
+          "correct": false
+        }
       ]
     },
     {
@@ -255,29 +464,67 @@
     },
     {
       "key": "prob-13-142-landing-horizontal-force",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "The velocity of an $80\\text{-kg}$ athlete just before landing in a sand pit is $9\\,\\text{m/s}$ at an angle of $35^\\circ$ with the horizontal, and he comes to a complete stop $0.22\\,\\text{s}$ after landing. Determine the horizontal component of the average impulsive force exerted on his feet (in kN).",
-      "answer": 2.68,
-      "tolerancePct": 1,
-      "unit": "kN",
       "solution": "Horizontal impulse and momentum: $m(9\\cos 35^\\circ) - F_x(0.22) = 0$:\n\n$$F_x = \\frac{80(7.372)}{0.22} = 2681\\,\\text{N} = 2.68\\,\\text{kN}.$$",
       "difficulty": "easy",
       "tags": [
         "impulsive-motion"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$2.09\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$2.68\\,\\text{kN}$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$3.16\\,\\text{kN}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$3.81\\,\\text{kN}$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "prob-13-140-golf-ball-peak-force",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "A $1.62\\text{-oz}$ golf ball is hit with a club and leaves it with a velocity of $100\\,\\text{mi/h}$. For $0 \\le t \\le t_0$ the force on the ball is $F = F_m\\sin(\\pi t/t_0)$, with $t_0 = 0.5\\,\\text{ms}$. Determine $F_m$ (in lb).",
-      "answer": 1449,
-      "tolerancePct": 1,
-      "unit": "lb",
       "solution": "Impulse: $\\int_0^{t_0} F_m\\sin(\\pi t/t_0)\\,dt = \\dfrac{2F_m t_0}{\\pi}$. Momentum: $m = (1.62/16)/32.2 = 0.003144\\,\\text{lb}\\cdot\\text{s}^2/\\text{ft}$, $v = 146.67\\,\\text{ft/s}$, $mv = 0.4612\\,\\text{lb}\\cdot\\text{s}$ (weight nonimpulsive).\n\n$$F_m = \\frac{\\pi(0.4612)}{2(0.0005)} = 1449\\,\\text{lb} = 1.449\\,\\text{kips}.$$",
       "difficulty": "medium",
       "tags": [
         "impulse-momentum",
         "variable-force"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1449\\,\\text{lb}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$1652\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$1913\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$2260\\,\\text{lb}$",
+          "correct": false
+        }
       ]
     },
     {
@@ -315,16 +562,35 @@
     },
     {
       "key": "prob-13-158-disk-b-weight",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Two disks sliding on a frictionless horizontal plane with opposite velocities of the same magnitude $v_0$ hit each other squarely. Disk $A$ weighs $6\\,\\text{lb}$ and is observed to have zero velocity after impact. Knowing that the coefficient of restitution between the disks is $0.5$, determine the weight of disk $B$ (in lb).",
-      "answer": 3,
-      "tolerancePct": 1,
-      "unit": "lb",
       "solution": "Positive in the direction of $A$'s motion: $v_A = v_0$, $v_B = -v_0$, $v'_A = 0$.\n\nRestitution: $v'_B - 0 = e[v_0 - (-v_0)] = 2(0.5)v_0 = v_0$.\n\nMomentum: $m_A v_0 - m_B v_0 = m_B(v_0) \\implies m_A = 2m_B$, so $W_B = 6/2 = 3.00\\,\\text{lb}$.",
       "difficulty": "medium",
       "tags": [
         "direct-impact",
         "coefficient-of-restitution"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$3\\,\\text{lb}$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$4\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$5\\,\\text{lb}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$6\\,\\text{lb}$",
+          "correct": false
+        }
       ]
     }
   ]

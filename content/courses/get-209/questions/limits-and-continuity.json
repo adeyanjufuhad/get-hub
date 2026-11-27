@@ -3,128 +3,299 @@
   "questions": [
     {
       "key": "ex-1-1-q2-rational-limit",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Evaluate the limit:\n\n$$\\lim_{\\substack{x \\to 2 \\\\ y \\to 3}} \\frac{x^3 + y^2}{x^2 - y}$$",
-      "answer": 17,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Check the denominator at $(2, 3)$: $x^2 - y = 2^2 - 3 = 1 \\neq 0$. Since the rational function is continuous at $(2, 3)$, direct substitution gives:\n\n$$\\lim_{\\substack{x \\to 2 \\\\ y \\to 3}} \\frac{x^3 + y^2}{x^2 - y} = \\frac{2^3 + 3^2}{2^2 - 3} = \\frac{8 + 9}{4 - 3} = 17.$$",
       "difficulty": "easy",
       "tags": [
         "limits",
         "direct-substitution"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$17$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$19$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$22$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$27$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-1-1-q1-direct-sub",
-      "type": "numeric",
-      "prompt": "Evaluate the limit (give your answer as a decimal):\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{2x^2 + y^2}{2xy}$$",
-      "answer": 1.5,
-      "tolerancePct": 1,
-      "unit": "",
+      "type": "mcq",
+      "prompt": "Evaluate the limit:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{2x^2 + y^2}{2xy}$$",
       "solution": "At $(1, 2)$, the denominator is $2(1)(2) = 4 \\neq 0$. Taking the limit directly (or iterating $x \\to 1$ and $y \\to 2$ in either order):\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{2x^2 + y^2}{2xy} = \\frac{2(1)^2 + 2^2}{2(1)(2)} = \\frac{2 + 4}{4} = \\frac{6}{4} = \\frac{3}{2} = 1.5.$$",
       "difficulty": "easy",
       "tags": [
         "limits",
         "direct-substitution"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.8$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$1.1$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$1.3$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$1.5$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "ex-1-1-q6-direct-sub",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Evaluate the limit:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{xy - 2x}{xy - 2y}$$",
-      "answer": 1,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Check the denominator at $(1, 1)$: $xy - 2y = 1(1) - 2(1) = -1 \\neq 0$. Substituting $x = 1$ and $y = 1$ directly yields:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{xy - 2x}{xy - 2y} = \\frac{1(1) - 2(1)}{1(1) - 2(1)} = \\frac{-1}{-1} = 1.$$",
       "difficulty": "easy",
       "tags": [
         "limits",
         "direct-substitution"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$2$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$3$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$4$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-1-1-q10-direct-sub",
-      "type": "numeric",
-      "prompt": "Evaluate the limit (give your answer as a decimal):\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{3x(y - 2)}{2y(x - 2)}$$",
-      "answer": 1.5,
-      "tolerancePct": 1,
-      "unit": "",
+      "type": "mcq",
+      "prompt": "Evaluate the limit:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{3x(y - 2)}{2y(x - 2)}$$",
       "solution": "At $(1, 1)$, the denominator is $2(1)(1 - 2) = -2 \\neq 0$. Evaluating directly gives:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 1}} \\frac{3x(y - 2)}{2y(x - 2)} = \\frac{3(1)(1 - 2)}{2(1)(1 - 2)} = \\frac{-3}{-2} = \\frac{3}{2} = 1.5.$$",
       "difficulty": "easy",
       "tags": [
         "limits",
         "direct-substitution"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1.0$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$1.3$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$1.5$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$1.9$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "example-3-rational-limit",
-      "type": "numeric",
-      "prompt": "Evaluate the limit (give your answer as a decimal):\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{3x^2 y}{x^2 + y^2 + 5}$$",
-      "answer": 0.6,
-      "tolerancePct": 1,
-      "unit": "",
+      "type": "mcq",
+      "prompt": "Evaluate the limit:\n\n$$\\lim_{\\substack{x \\to 1 \\\\ y \\to 2}} \\frac{3x^2 y}{x^2 + y^2 + 5}$$",
       "solution": "At $(1, 2)$, the denominator is $1^2 + 2^2 + 5 = 10 \\neq 0$. Evaluating sequentially:\n\n$$\\lim_{x \\to 1}\\left[\\lim_{y \\to 2} \\frac{3x^2 y}{x^2 + y^2 + 5}\\right] = \\lim_{x \\to 1} \\frac{6x^2}{x^2 + 9} = \\frac{6(1)^2}{1 + 9} = \\frac{6}{10} = \\frac{3}{5} = 0.6.$$",
       "difficulty": "easy",
       "tags": [
         "limits",
         "direct-substitution"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.6$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$0.7$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$0.8$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$0.9$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-1-1-q3-infinity-limit",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Evaluate the limit:\n\n$$\\lim_{\\substack{x \\to \\infty \\\\ y \\to 3}} \\frac{2xy - 3}{x^3 + 4y^3}$$",
-      "answer": 0,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Divide numerator and denominator by $x^3$:\n\n$$\\frac{2xy - 3}{x^3 + 4y^3} = \\frac{\\dfrac{2y}{x^2} - \\dfrac{3}{x^3}}{1 + 4\\left(\\dfrac{y}{x}\\right)^3}.$$\n\nAs $x \\to \\infty$ and $y \\to 3$, every term with $x$ in the denominator vanishes, so both iterated limits and the simultaneous limit equal $\\dfrac{0 - 0}{1 + 0} = 0$.",
       "difficulty": "medium",
       "tags": [
         "limits",
         "limit-at-infinity"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-3$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-2$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-1$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$0$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "ex-1-1-q8-polar-limit",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Evaluate the limit (for $x \\neq 0, y \\neq 0$):\n\n$$\\lim_{\\substack{x \\to 0 \\\\ y \\to 0}} \\frac{x^2 y^3}{x^2 + y^2}$$",
-      "answer": 0,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Along $y = mx$, $\\dfrac{x^2(m^3 x^3)}{x^2(1 + m^2)} = \\dfrac{m^3}{1 + m^2}x^3 \\to 0$. Confirming uniformly in polar coordinates $x = r\\cos\\theta$, $y = r\\sin\\theta$ ($r > 0$):\n\n$$\\left|\\frac{x^2 y^3}{x^2 + y^2}\\right| = \\left|\\frac{r^5 \\cos^2\\theta \\sin^3\\theta}{r^2}\\right| = r^3 |\\cos^2\\theta \\sin^3\\theta| \\le r^3 \\to 0 \\quad \\text{as } r \\to 0.$$\n\nHence the limit exists and equals $0$.",
       "difficulty": "medium",
       "tags": [
         "limits",
         "polar-coordinates"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-3$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-2$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-1$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$0$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "ex-1-2-q6-limit-at-point",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "For the function\n\n$$f(x, y) = \\begin{cases} \\dfrac{x^2 + 2y}{x + y^2}, & (x, y) \\neq (1, 2) \\\\[6pt] k, & (x, y) = (1, 2) \\end{cases}$$\n\nfind the value of $k$ that makes $f(x, y)$ continuous at $(1, 2)$.",
-      "answer": 1,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Continuity at $(1, 2)$ requires $k = f(1, 2) = \\lim_{(x, y) \\to (1, 2)} f(x, y)$. Since $x + y^2 = 1 + 2^2 = 5 \\neq 0$ at $(1, 2)$, direct substitution gives:\n\n$$\\lim_{(x, y) \\to (1, 2)} \\frac{x^2 + 2y}{x + y^2} = \\frac{1^2 + 2(2)}{1 + 2^2} = \\frac{5}{5} = 1.$$\n\nThus $k = 1$ makes $f$ continuous at $(1, 2)$.",
       "difficulty": "medium",
       "tags": [
         "continuity",
         "working-rule"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-2$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-1$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$0$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$1$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "ex-1-2-q7-removable-value",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "The function\n\n$$f(x, y) = \\begin{cases} 2x^2 + y, & (x, y) \\neq (1, 2) \\\\[4pt] 0, & (x, y) = (1, 2) \\end{cases}$$\n\nis discontinuous at $(1, 2)$. What value should replace $0$ at $(1, 2)$ to remove the discontinuity?",
-      "answer": 4,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Evaluate the limit as $(x, y) \\to (1, 2)$:\n\n$$\\lim_{(x, y) \\to (1, 2)} (2x^2 + y) = 2(1)^2 + 2 = 4.$$\n\nSince $f(1, 2) = 0 \\neq 4$, the function has a removable discontinuity at $(1, 2)$; redefining $f(1, 2) = 4$ makes $f$ continuous there.",
       "difficulty": "easy",
       "tags": [
         "continuity",
         "removable-discontinuity"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$2$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$3$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$4$",
+          "correct": true
+        }
       ]
     },
     {

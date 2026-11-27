@@ -3,68 +3,163 @@
   "questions": [
     {
       "key": "ex-4-1-second-order-neg",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Evaluate the second-order determinant $\\begin{vmatrix} -3 & 7 \\\\ 2 & 4 \\end{vmatrix}$.",
-      "answer": -26,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Using the second-order formula $a_1b_2 - a_2b_1$: $(-3)(4) - (7)(2) = -12 - 14 = -26$.",
       "difficulty": "easy",
       "tags": [
         "second-order-determinant"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-26$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$-19$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-14$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$26$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-4-2-cofactor-a21",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Find the cofactor $A_{21}$ of the element $4$ in $\\begin{vmatrix} 1 & 3 & -2 \\\\ 4 & -5 & 6 \\\\ 3 & 5 & 2 \\end{vmatrix}$.",
-      "answer": -16,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Delete Row 2 and Column 1 to get $M_{21} = \\begin{vmatrix} 3 & -2 \\\\ 5 & 2 \\end{vmatrix} = (3)(2) - (-2)(5) = 6 + 10 = 16$. Then $A_{21} = (-1)^{2+1} M_{21} = -16$.",
       "difficulty": "easy",
       "tags": [
         "minors-and-cofactors"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-16$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$-12$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-9$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$16$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-4-2-third-order-eval",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Evaluate the third-order determinant $\\begin{vmatrix} 5 & 0 & 7 \\\\ 8 & -6 & -4 \\\\ 2 & 3 & 9 \\end{vmatrix}$.",
-      "answer": 42,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Expand along Row 1: $5\\begin{vmatrix} -6 & -4 \\\\ 3 & 9 \\end{vmatrix} - 0 + 7\\begin{vmatrix} 8 & -6 \\\\ 2 & 3 \\end{vmatrix} = 5(-54 + 12) + 7(24 + 12) = 5(-42) + 7(36) = -210 + 252 = 42$.",
       "difficulty": "easy",
       "tags": [
         "cofactor-expansion"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$22$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$30$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$36$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$42$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "ex-4-2-fourth-order-eval",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Evaluate the fourth-order determinant $\\begin{vmatrix} 3 & 2 & 5 & 7 \\\\ -1 & -4 & -3 & 0 \\\\ 6 & 4 & 2 & -1 \\\\ 2 & -1 & 0 & 3 \\end{vmatrix}$.",
-      "answer": 96,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Use $R_1 \\to R_1 + 7R_3$ and $R_4 \\to R_4 + 3R_3$ to clear Column 4 except at $(3,4)$: Column 4 becomes $(0, 0, -1, 0)^T$. Expanding along Column 4 with sign $(-1)^{3+4} = -1$ gives $-(-1)\\begin{vmatrix} 45 & 30 & 19 \\\\ -1 & -4 & -3 \\\\ 20 & 11 & 6 \\end{vmatrix} = 96$.",
       "difficulty": "hard",
       "tags": [
         "higher-order-determinant"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$50$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$69$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$83$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$96$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "ex-4-3-sarrus-rule-eval",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Evaluate $\\begin{vmatrix} 3 & 2 & -4 \\\\ 5 & 1 & -1 \\\\ -2 & 6 & 7 \\end{vmatrix}$ using the Rule of Sarrus.",
       "image": "/diagrams/get-209/determinants-and-cramers-rule-sarrus-rule.png",
-      "answer": -155,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Downward-right products: $(3)(1)(7) + (2)(-1)(-2) + (-4)(5)(6) = 21 + 4 - 120 = -95$. Downward-left products subtracted: $-(-4)(1)(-2) - (3)(-1)(6) - (2)(5)(7) = -8 + 18 - 70 = -60$. Total: $-95 - 60 = -155$.",
       "difficulty": "easy",
       "tags": [
         "sarrus-rule"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-220$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-183$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-155$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$-118$",
+          "correct": false
+        }
       ]
     },
     {
@@ -166,15 +261,34 @@
     },
     {
       "key": "ex-4-6-pivotal-condensation-4x4",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Using pivotal condensation (or row operations), evaluate $\\begin{vmatrix} 1 & 2 & 1 & 3 \\\\ 3 & 4 & 2 & 5 \\\\ 6 & 1 & 7 & 1 \\\\ 4 & 3 & 9 & 2 \\end{vmatrix}$.",
-      "answer": 75,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "With pivot $a_1 = 1$ ($n = 4$), $D = \\dfrac{1}{1^2}\\begin{vmatrix} 4-6 & 2-3 & 5-9 \\\\ 1-12 & 7-6 & 1-18 \\\\ 3-8 & 9-4 & 2-12 \\end{vmatrix} = \\begin{vmatrix} -2 & -1 & -4 \\\\ -11 & 1 & -17 \\\\ -5 & 5 & -10 \\end{vmatrix}$. Condensing again with pivot $-2$: $D = \\dfrac{1}{-2}\\begin{vmatrix} -2-11 & 34-44 \\\\ -10-5 & 20-20 \\end{vmatrix} = -\\dfrac{1}{2}\\begin{vmatrix} -13 & -10 \\\\ -15 & 0 \\end{vmatrix} = -\\dfrac{1}{2}(0 - 150) = 75$.",
       "difficulty": "hard",
       "tags": [
         "pivotal-condensation"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$48$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$63$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$75$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$93$",
+          "correct": false
+        }
       ]
     },
     {
@@ -212,41 +326,98 @@
     },
     {
       "key": "ex-4-7-triangle-area",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Using determinants, find the area (in square units) of the triangle whose vertices are $(-2, 4)$, $(2, -6)$, and $(5, 4)$.",
-      "answer": 35,
-      "tolerancePct": 1,
-      "unit": "sq. units",
       "solution": "Form $\\Delta = \\dfrac{1}{2}\\left|\\begin{vmatrix} -2 & 4 & 1 \\\\ 2 & -6 & 1 \\\\ 5 & 4 & 1 \\end{vmatrix}\\right|$. Apply $R_1 \\to R_1 - R_3$: Row 1 becomes $(-7, 0, 0)$. Expanding along Row 1 gives $\\dfrac{1}{2}|-7(-6 - 4)| = \\dfrac{1}{2}|70| = 35\\text{ sq. units}$.",
       "difficulty": "easy",
       "tags": [
         "triangle-area"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$18\\,\\text{sq. units}$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$25\\,\\text{sq. units}$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$30\\,\\text{sq. units}$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$35\\,\\text{sq. units}$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "ex-4-7-collinear-alpha",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Find the value of $\\alpha$ such that the points $(1, -5)$, $(-4, 5)$, and $(\\alpha, 7)$ are collinear.",
-      "answer": -5,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Collinearity requires $\\begin{vmatrix} 1 & -5 & 1 \\\\ -4 & 5 & 1 \\\\ \\alpha & 7 & 1 \\end{vmatrix} = 0$. Apply $R_1 \\to R_1 - R_2$ and $R_2 \\to R_2 - R_3$: $\\begin{vmatrix} 5 & -10 & 0 \\\\ -4 - \\alpha & -2 & 0 \\\\ \\alpha & 7 & 1 \\end{vmatrix} = 0 \\implies 5(-2) - (-10)(-4 - \\alpha) = 0 \\implies -10 - 40 - 10\\alpha = 0 \\implies \\alpha = -5$.",
       "difficulty": "medium",
       "tags": [
         "collinearity"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-9$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-7$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-5$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$5$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-4-8-cramer-3x3-z",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Solve the linear system by Cramer's rule and report the value of $z$: $x + 2y + 5z = 23$, $3x + y + 4z = 26$, $6x + y + 7z = 47$.",
-      "answer": 3,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "$D = \\begin{vmatrix} 1 & 2 & 5 \\\\ 3 & 1 & 4 \\\\ 6 & 1 & 7 \\end{vmatrix} = 1(7 - 4) - 2(21 - 24) + 5(3 - 6) = 3 + 6 - 15 = -6$. $D_3 = \\begin{vmatrix} 1 & 2 & 23 \\\\ 3 & 1 & 26 \\\\ 6 & 1 & 47 \\end{vmatrix} = 1(47 - 26) - 2(141 - 156) + 23(3 - 6) = 21 + 30 - 69 = -18$. Hence $z = \\dfrac{D_3}{D} = \\dfrac{-18}{-6} = 3$.",
       "difficulty": "medium",
       "tags": [
         "cramers-rule"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$2$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$3$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$4$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$5$",
+          "correct": false
+        }
       ]
     },
     {
@@ -316,15 +487,34 @@
     },
     {
       "key": "obj-4-13-inconsistent-lambda",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Find the value of $\\lambda$ for which the system $2x - y - 2z = 2$, $x - 2y + z = -4$, $x + y + \\lambda z = 4$ has no solution.",
-      "answer": -3,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Compute $D = \\begin{vmatrix} 2 & -1 & -2 \\\\ 1 & -2 & 1 \\\\ 1 & 1 & \\lambda \\end{vmatrix} = 2(-2\\lambda - 1) + 1(\\lambda - 1) - 2(1 + 2) = -3\\lambda - 9$. Setting $D = 0$ gives $\\lambda = -3$. Checking $D_1$ at $\\lambda = -3$: $D_1 = \\begin{vmatrix} 2 & -1 & -2 \\\\ -4 & -2 & 1 \\\\ 4 & 1 & -3 \\end{vmatrix} = 2(6 - 1) + 1(12 - 4) - 2(-4 + 8) = 10 + 8 - 8 = 10 \\neq 0$, confirming inconsistency.",
       "difficulty": "hard",
       "tags": [
         "non-homogeneous-consistency"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-5$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-4$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-3$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$3$",
+          "correct": false
+        }
       ]
     }
   ]

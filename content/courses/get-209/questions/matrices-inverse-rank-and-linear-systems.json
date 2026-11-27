@@ -3,29 +3,67 @@
   "questions": [
     {
       "key": "ex-4-19-matrix-equality-y",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "If $\\begin{bmatrix} x+3 & 2y+x \\\\ z-1 & 4a-6 \\end{bmatrix} = \\begin{bmatrix} 0 & -7 \\\\ 3 & 2a \\end{bmatrix}$, find the value of $y$.",
-      "answer": -2,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Equating corresponding entries gives $x + 3 = 0 \\implies x = -3$ and $2y + x = -7$. Substituting $x = -3$ yields $2y - 3 = -7 \\implies 2y = -4 \\implies y = -2$.",
       "difficulty": "easy",
       "tags": [
         "matrix-equality"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-2$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$-1$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$0$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$2$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-4-10-q3-find-w",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Given $3\\begin{bmatrix} x & y \\\\ z & w \\end{bmatrix} = \\begin{bmatrix} x & 6 \\\\ -1 & 2w \\end{bmatrix} + \\begin{bmatrix} 4 & x+y \\\\ z+w & 3 \\end{bmatrix}$, find the value of $w$.",
-      "answer": 3,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Equating the $(2,2)$ entries on both sides gives $3w = 2w + 3$, so $w = 3$. (Similarly, $3x = x + 4 \\implies x = 2$, $3y = 6 + x + y \\implies y = 4$, and $3z = -1 + z + w \\implies z = 1$.)",
       "difficulty": "easy",
       "tags": [
         "matrix-algebra",
         "scalar-multiplication"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$0$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$1$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$2$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$3$",
+          "correct": true
+        }
       ]
     },
     {
@@ -96,16 +134,35 @@
     },
     {
       "key": "ex-4-11-q1-product-entry",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Let $A = \\begin{bmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\end{bmatrix}$ and $B = \\begin{bmatrix} 2 & 5 & 3 \\\\ 3 & 6 & 4 \\\\ 4 & 7 & 5 \\end{bmatrix}$. Compute the $(2,2)$ entry of the product matrix $AB$.",
       "image": "/diagrams/get-209/matrices-inverse-rank-and-linear-systems-multiplication.png",
-      "answer": 92,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "The $(2,2)$ entry of $AB$ is the dot product of Row 2 of $A$ and Column 2 of $B$: $c_{22} = 4(5) + 5(6) + 6(7) = 20 + 30 + 42 = 92$.",
       "difficulty": "easy",
       "tags": [
         "matrix-multiplication"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$92$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$105$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$121$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$144$",
+          "correct": false
+        }
       ]
     },
     {
@@ -175,30 +232,68 @@
     },
     {
       "key": "ex-4-12-q7-det-a",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Compute $\\det(A)$ for the matrix $A = \\begin{bmatrix} 3 & 2 & 2 \\\\ 1 & 3 & 1 \\\\ 5 & 3 & 4 \\end{bmatrix}$.",
-      "answer": 5,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Expanding along the first row: $|A| = 3(3\\cdot 4 - 1\\cdot 3) - 2(1\\cdot 4 - 1\\cdot 5) + 2(1\\cdot 3 - 3\\cdot 5) = 3(9) - 2(-1) + 2(-12) = 27 + 2 - 24 = 5$.",
       "difficulty": "easy",
       "tags": [
         "determinant",
         "inverse"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$5$",
+          "correct": true
+        },
+        {
+          "label": "B",
+          "text": "$7$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$9$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$11$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-4-12-q8-singular-k",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Find the value of $k$ for which the matrix $A = \\begin{bmatrix} 1 & 3 & 4 \\\\ 3 & k & 6 \\\\ -1 & 5 & 1 \\end{bmatrix}$ fails to have an inverse (is singular).",
-      "answer": -0.6,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "$A$ fails to have an inverse when $|A| = 0$. Expanding along Row 1: $|A| = 1(k - 30) - 3(3 + 6) + 4(15 + k) = k - 30 - 27 + 60 + 4k = 5k + 3$. Setting $5k + 3 = 0$ gives $k = -\\frac{3}{5} = -0.6$.",
       "difficulty": "medium",
       "tags": [
         "inverse",
         "singular-matrix"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$-0.8$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$-0.7$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$-0.6$",
+          "correct": true
+        },
+        {
+          "label": "D",
+          "text": "$0.6$",
+          "correct": false
+        }
       ]
     },
     {
@@ -236,44 +331,101 @@
     },
     {
       "key": "ex-4-13-q3-inverse-entry",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Find the $(1,1)$ entry of $A^{-1}$ for $A = \\begin{bmatrix} 1 & 3 & 3 \\\\ 1 & 4 & 3 \\\\ 1 & 3 & 4 \\end{bmatrix}$.",
-      "answer": 7,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "First $|A| = 1(16-9) - 3(4-3) + 3(3-4) = 7 - 3 - 3 = 1$. The $(1,1)$ cofactor is $C_{11} = \\begin{vmatrix} 4 & 3 \\\\ 3 & 4 \\end{vmatrix} = 7$. Since $A^{-1} = \\frac{1}{|A|}\\operatorname{adj} A$, its $(1,1)$ entry is $7/1 = 7$.",
       "difficulty": "medium",
       "tags": [
         "inverse",
         "gauss-jordan"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$3$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$5$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$7$",
+          "correct": true
+        }
       ]
     },
     {
       "key": "ex-4-15-q6-rank-4x5",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Find the rank of the $4 \\times 5$ matrix $A = \\begin{bmatrix} 1 & 4 & 3 & -2 & 1 \\\\ -2 & -3 & -1 & 4 & 3 \\\\ -1 & 6 & 7 & 2 & 9 \\\\ -3 & 3 & 6 & 6 & 12 \\end{bmatrix}$.",
-      "answer": 2,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Apply $R_2 \\to R_2 + 2R_1$, $R_3 \\to R_3 + R_1$, $R_4 \\to R_4 + 3R_1$ to get $\\begin{bmatrix} 1 & 4 & 3 & -2 & 1 \\\\ 0 & 5 & 5 & 0 & 5 \\\\ 0 & 10 & 10 & 0 & 10 \\\\ 0 & 15 & 15 & 0 & 15 \\end{bmatrix}$. Applying $R_3 \\to R_3 - 2R_2$ and $R_4 \\to R_4 - 3R_2$ zeroes out $R_3$ and $R_4$, leaving $2$ non-zero rows. Hence $\\rho(A) = 2$.",
       "difficulty": "medium",
       "tags": [
         "rank",
         "echelon-form"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$2$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$3$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$4$",
+          "correct": false
+        }
       ]
     },
     {
       "key": "ex-4-15-q20-rank-b",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Find the value of $b$ for which the rank of the matrix $A = \\begin{bmatrix} 1 & 5 & 4 \\\\ 0 & 3 & 2 \\\\ b & 13 & 10 \\end{bmatrix}$ is $2$.",
-      "answer": 2,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "The upper-left $2\\times 2$ minor is $3 \\ne 0$, so $\\rho(A) \\ge 2$. For $\\rho(A) = 2$ we require $|A| = 0$. Expanding along column 1: $1(30 - 26) + b(10 - 12) = 4 - 2b = 0 \\implies b = 2$.",
       "difficulty": "medium",
       "tags": [
         "rank",
         "determinant"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$2$",
+          "correct": true
+        },
+        {
+          "label": "C",
+          "text": "$3$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$4$",
+          "correct": false
+        }
       ]
     },
     {
@@ -312,16 +464,35 @@
     },
     {
       "key": "ex-4-16-q4-unique-lambda",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Find the excluded value of $\\lambda$ (i.e., the value for which the system does NOT have a unique solution) for $x + y + 4z = 1$, $x + 2y - 2z = 1$, $\\lambda x + y + z = 1$.",
-      "answer": 0.7,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "A $3\\times 3$ system has a unique solution iff $|A| \\ne 0$. Compute $|A| = \\begin{vmatrix} 1 & 1 & 4 \\\\ 1 & 2 & -2 \\\\ \\lambda & 1 & 1 \\end{vmatrix} = 1(2+2) - 1(1+2\\lambda) + 4(1-2\\lambda) = 4 - 1 - 2\\lambda + 4 - 8\\lambda = 7 - 10\\lambda$. Setting $|A| = 0$ gives $\\lambda = \\frac{7}{10} = 0.7$.",
       "difficulty": "medium",
       "tags": [
         "consistency",
         "unique-solution"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$0.4$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$0.5$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$0.6$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$0.7$",
+          "correct": true
+        }
       ]
     },
     {
@@ -359,16 +530,35 @@
     },
     {
       "key": "ex-4-16-q6-consistent-lambda",
-      "type": "numeric",
+      "type": "mcq",
       "prompt": "Find the value of $\\lambda$ that makes the linear system $x + y - z + t = 2$, $2y + 4z + 2t = 3$, $x + 2y + z + 2t = \\lambda$ consistent.",
-      "answer": 3.5,
-      "tolerancePct": 1,
-      "unit": "",
       "solution": "Form $C = \\begin{bmatrix} 1 & 1 & -1 & 1 & 2 \\\\ 0 & 2 & 4 & 2 & 3 \\\\ 1 & 2 & 1 & 2 & \\lambda \\end{bmatrix}$. Apply $R_3 \\to R_3 - R_1$: $R_3 = [0, 1, 2, 1, \\lambda - 2]$. Then $R_3 \\to 2R_3 - R_2$: $R_3 = [0, 0, 0, 0, 2\\lambda - 7]$. For consistency ($R(A) = R(C) = 2$), $2\\lambda - 7 = 0 \\implies \\lambda = \\frac{7}{2} = 3.5$.",
       "difficulty": "medium",
       "tags": [
         "consistency",
         "echelon-form"
+      ],
+      "options": [
+        {
+          "label": "A",
+          "text": "$1.8$",
+          "correct": false
+        },
+        {
+          "label": "B",
+          "text": "$2.5$",
+          "correct": false
+        },
+        {
+          "label": "C",
+          "text": "$3.0$",
+          "correct": false
+        },
+        {
+          "label": "D",
+          "text": "$3.5$",
+          "correct": true
+        }
       ]
     },
     {

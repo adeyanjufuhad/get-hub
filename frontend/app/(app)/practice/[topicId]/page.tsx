@@ -292,8 +292,8 @@ export default function PracticeTopicPage() {
             <Badge variant="neutral" className="capitalize">
               {current.difficulty}
             </Badge>
-            <Badge variant="neutral" className="font-mono">
-              {current.question_type === "mcq" ? "Multiple choice" : "Numeric"}
+            <Badge variant="neutral">
+              Objective
             </Badge>
           </div>
           {topic && (

@@ -203,7 +203,8 @@ export function SpotlightCard({
     <div
       ref={rootRef}
       className={cn(
-        "relative isolate overflow-hidden rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-5 sm:p-6 transition-[transform,border-color] duration-200 ease-[var(--ease-out)]",
+        // Radius, surface and padding come from the caller (no tailwind-merge here, so defaults would clash).
+        "relative isolate overflow-hidden border border-[var(--border-hairline)] transition-[transform,border-color] duration-200 ease-[var(--ease-out)]",
         className
       )}
       style={style}

@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   BookOpenCheck,
   CheckCircle2,
   Layers,
@@ -17,10 +16,17 @@ import {
   StudentFaqAccordion,
   StudyLoopStepper,
 } from "@/components/landing/interactive-preview";
+import {
+  CoursePlates,
+  DiagramFan,
+  StarCta,
+} from "@/components/landing/reactbits-showcase";
 import { Counter } from "@/components/reactbits/counter";
+import GradientText from "@/components/reactbits/gradient-text";
 import { LogoLoop } from "@/components/reactbits/logo-loop";
 import { Magnet } from "@/components/reactbits/magnet";
 import ParticleText from "@/components/reactbits/ParticleText";
+import { SpotlightCard } from "@/components/reactbits/spotlight-card";
 import { Badge } from "@/components/ui/badge";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { APP_INSTITUTION, APP_NAME } from "@/lib/config";
@@ -35,6 +41,13 @@ const OAU_DEPT_LOOP = [
   { code: "MSE", name: "Materials" },
   { code: "FST", name: "Food Tech" },
 ] as const;
+
+const FACTS: ReadonlyArray<{ value: number; suffix: string; label: string; accent?: boolean }> = [
+  { value: 19, suffix: "", label: "Lined Study Notes" },
+  { value: 290, suffix: "+", label: "Graded Practice Drills" },
+  { value: 123, suffix: "", label: "Part 2 Library Files" },
+  { value: 3, suffix: "", label: "Core 200L GET Courses", accent: true },
+];
 
 const FEATURES = [
   {
@@ -124,13 +137,7 @@ export default function LandingPage() {
             {/* Two disciplined CTAs (Primary Ink + Secondary Surface) */}
             <div className="mt-7 flex flex-col items-stretch justify-center gap-2.5 sm:mt-8 sm:flex-row sm:items-center sm:gap-3">
               <Magnet strength={0.18} className="w-full sm:w-auto">
-                <Link
-                  href="/signup"
-                  className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[var(--ink-cta)] px-6 text-sm font-semibold text-[var(--ink-cta-text)] hover:opacity-90 sm:min-h-[50px] sm:w-auto sm:px-7 sm:text-base"
-                >
-                  Create student account
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
+                <StarCta href="/signup">Create student account</StarCta>
               </Magnet>
               <Magnet strength={0.14} className="w-full sm:w-auto">
                 <a
@@ -158,46 +165,32 @@ export default function LandingPage() {
         {/* ==================== 2. FACT STRIP (Equal max-w-5xl edges, tabular figures) ==================== */}
         <section className="border-y border-[var(--border-hairline)] bg-[var(--bg-surface)] px-4 py-7 sm:px-6">
           <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
-              <Counter
-                value={19}
-                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
-              />
-              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Lined Study Notes
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
-              <Counter
-                value={290}
-                suffix="+"
-                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
-              />
-              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Graded Practice Drills
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
-              <Counter
-                value={123}
-                className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)]"
-              />
-              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Part 2 Library Files
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-4">
-              <Counter
-                value={3}
-                className="text-2xl font-extrabold tracking-tight text-[var(--accent)]"
-              />
-              <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
-                Core 200L GET Courses
-              </p>
-            </div>
+            {FACTS.map((fact) => (
+              <SpotlightCard
+                key={fact.label}
+                spotlightSize={180}
+                className="rounded-2xl bg-[var(--bg-canvas)] p-4 sm:p-5"
+              >
+                {fact.accent ? (
+                  <GradientText
+                    colors={["#EA580C", "#FB923C", "#F59E0B", "#EA580C"]}
+                    animationSpeed={6}
+                    className="text-2xl font-extrabold tracking-tight sm:text-3xl"
+                  >
+                    <Counter value={fact.value} suffix={fact.suffix} />
+                  </GradientText>
+                ) : (
+                  <Counter
+                    value={fact.value}
+                    suffix={fact.suffix}
+                    className="text-2xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-3xl"
+                  />
+                )}
+                <p className="mt-1 text-xs font-medium text-[var(--text-secondary)]">
+                  {fact.label}
+                </p>
+              </SpotlightCard>
+            ))}
           </div>
         </section>
 
@@ -211,10 +204,22 @@ export default function LandingPage() {
               Every topic structured for how your lecturers teach and test.
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] text-pretty sm:text-base">
-              Switch between Fluid Mechanics, Applied Mechanics, and Engineering Mathematics I to preview the topics, sample diagrams, and study notes.
+              Hover a course plate to tilt it, tap to flip it for the topic outline, then preview sample diagrams and study notes below.
             </p>
           </div>
 
+          <CoursePlates />
+
+          <div className="mt-12 flex items-end justify-between gap-3 border-t border-[var(--border-hairline)] pt-8">
+            <div>
+              <p className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                Topic preview
+              </p>
+              <h3 className="mt-1 text-lg font-bold tracking-tight text-[var(--text-primary)] sm:text-xl">
+                Pick a course and scan its topics and sample diagrams.
+              </h3>
+            </div>
+          </div>
           <CourseCurriculumExplorer />
         </section>
 
@@ -237,9 +242,11 @@ export default function LandingPage() {
               {FEATURES.map((feat) => {
                 const Icon = feat.icon;
                 return (
-                  <article
+                  <SpotlightCard
                     key={feat.title}
-                    className="flex flex-col justify-between rounded-[22px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-5"
+                    role="article"
+                    spotlightSize={280}
+                    className="flex flex-col justify-between rounded-[22px] bg-[var(--bg-surface)] p-5"
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2">
@@ -257,7 +264,7 @@ export default function LandingPage() {
                         {feat.body}
                       </p>
                     </div>
-                  </article>
+                  </SpotlightCard>
                 );
               })}
             </div>
@@ -305,26 +312,30 @@ export default function LandingPage() {
 
         {/* ==================== 7. OBSIDIAN CALLOUT BAND (Equal max-w-5xl edges) ==================== */}
         <section className="mx-auto max-w-5xl px-4 pb-14 sm:px-6 sm:pb-16">
-          <div className="rounded-[24px] bg-[#141413] px-5 py-10 text-center text-[#FAF9F5] sm:px-10 sm:py-12">
+          <div className="overflow-hidden rounded-[24px] bg-[#141413] px-5 pb-10 pt-8 text-center text-[#FAF9F5] sm:px-10 sm:pb-12 sm:pt-10">
+            <DiagramFan />
             <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 font-mono text-xs font-semibold text-orange-300">
               <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
               Free Student Access · Zero Subscription Fee
             </span>
             <h2 className="mx-auto mt-3.5 max-w-xl text-2xl font-extrabold tracking-[-0.025em] text-balance sm:text-3xl">
-              Open your 200L study notes before the next test.
+              Open your 200L study notes{" "}
+              <GradientText
+                colors={["#FB923C", "#FDBA74", "#F59E0B", "#FB923C"]}
+                animationSpeed={7}
+                glow={0.35}
+              >
+                before the next test.
+              </GradientText>
             </h2>
             <p className="mx-auto mt-2.5 max-w-lg text-sm leading-relaxed text-neutral-300 text-pretty">
               Select your OAU engineering department, read all 19 lined study notes, practice 290+ graded questions, and access 123 Part 2 handouts in one place.
             </p>
             <div className="mt-6 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:items-center sm:gap-3">
               <Magnet strength={0.2} className="w-full sm:w-auto">
-                <Link
-                  href="/signup"
-                  className="pressable inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-[#EA580C] px-6 text-sm font-semibold text-white hover:bg-[#C2410C] sm:w-auto"
-                >
+                <StarCta href="/signup" tone="accent">
                   Create student account
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
+                </StarCta>
               </Magnet>
               <Link
                 href="/login"

@@ -13,6 +13,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers";
+import { GlassTabBar } from "@/components/shell/glass-tab-bar";
 import { ThemeToggle } from "@/components/shell/theme-toggle";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { UserAvatar } from "@/components/ui/user-avatar";
@@ -287,35 +288,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </main>
       </div>
 
-      {/* Floating Ink-Black Mobile Bottom Dock (Concentric: Outer 18px = Inner 12px + Padding 6px; zero layout animation) */}
+      {/* Floating liquid-glass tab bar (phones and small tablets) */}
       <nav
         aria-label="Mobile navigation"
-        className="safe-bottom pointer-events-none fixed inset-x-0 bottom-0 z-30 flex justify-center px-2.5 pb-2.5 pt-1 sm:px-4 md:hidden"
+        className="safe-bottom pointer-events-none fixed inset-x-0 bottom-0 z-30 flex justify-center px-4 pb-3 md:hidden"
       >
-        <div className="pointer-events-auto flex w-full max-w-[400px] items-center justify-between gap-1 rounded-[18px] bg-[#141413] p-1.5 shadow-[0_10px_28px_rgba(0,0,0,0.25)] dark:border dark:border-white/15">
-          {visibleItems.map((item) => {
-            const Icon = item.icon;
-            const active = isNavItemActive(item.href, pathname);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                aria-label={item.label}
-                className={cn(
-                  "pressable flex min-h-[44px] items-center justify-center gap-1.5 rounded-[12px] text-xs font-semibold",
-                  active
-                    ? "bg-[#EA580C] px-3 text-white min-[375px]:px-3.5"
-                    : "min-w-[42px] flex-1 px-2 text-neutral-300 hover:text-white"
-                )}
-              >
-                <Icon className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
-                <span className={cn(active ? "hidden min-[355px]:inline" : "sr-only")}>
-                  {item.label}
-                </span>
-              </Link>
-            );
-          })}
+        <div className="pointer-events-auto w-full max-w-[420px]">
+          <GlassTabBar
+            tabs={visibleItems}
+            activeIndex={visibleItems.findIndex((item) => isNavItemActive(item.href, pathname))}
+          />
         </div>
       </nav>
     </div>

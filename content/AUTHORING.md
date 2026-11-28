@@ -136,9 +136,16 @@ Markdown + $math$ inside. kind = definition | theorem | working-rule | formula |
 
 ### Escaping rules (most compile errors come from these)
 
-- Inside **JS string props** (`problem`, `steps`, `q`, `a`, `answer`, `title`) every
-  backslash is doubled: `\\frac`, `\\theta`, `\\,`. Use `"` for strings and escape
-  inner quotes as `\"`. Do not put raw newlines inside a string.
+- **Plain attribute strings** (`problem="…"`, `answer="…"`, `title="…"`,
+  `caption="…"`, `source="…"`) are JSX attributes: backslashes are NOT escape
+  characters there, so write LaTeX with **single** backslashes
+  (`problem="Find $\frac{dy}{dx}$ at $30^\circ$"`, matrix rows `\\`). They cannot
+  contain a `"`; use `''` or rephrase.
+- Inside **JS expressions** (`steps={["…"]}`, `items={[{ q: "…", a: "…" }]}`)
+  every backslash is doubled: `\\frac`, `\\theta`, `\\,`, matrix rows `\\\\`.
+  Escape inner quotes as `\"`. Do not put raw newlines inside a string.
+- The validator renders every formula (prose, props and banks) with KaTeX, so a
+  wrong escape shows up as a `KaTeX error` there.
 - In **markdown prose** write LaTeX normally with single backslashes: `$\frac{a}{b}$`,
   display math with `$$ … $$` on their own lines.
 - In prose never write bare `<` or `{` outside math. Use `$<$`, `$\{$`, or the words.

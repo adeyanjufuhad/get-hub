@@ -37,31 +37,31 @@ colors:
 
 typography:
   display-xl:
-    fontFamily: "Plus Jakarta Sans, system-ui, sans-serif"
+    fontFamily: "Geist, system-ui, sans-serif"
     fontSize: "clamp(2rem, 5vw, 3.75rem)"
     fontWeight: 800
     lineHeight: 1.08
     letterSpacing: "-0.03em"
   display-md:
-    fontFamily: "Plus Jakarta Sans, system-ui, sans-serif"
+    fontFamily: "Geist, system-ui, sans-serif"
     fontSize: "clamp(1.5rem, 3vw, 2rem)"
     fontWeight: 800
     lineHeight: 1.15
     letterSpacing: "-0.025em"
   title-md:
-    fontFamily: "Plus Jakarta Sans, system-ui, sans-serif"
+    fontFamily: "Geist, system-ui, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 700
     lineHeight: 1.35
     letterSpacing: "-0.015em"
   body-md:
-    fontFamily: "Plus Jakarta Sans, system-ui, sans-serif"
+    fontFamily: "Geist, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.65
     letterSpacing: "0"
   folio-prose:
-    fontFamily: "Plus Jakarta Sans, system-ui, sans-serif"
+    fontFamily: "Geist, system-ui, sans-serif"
     fontSize: "0.985rem"
     fontWeight: 400
     lineHeight: "32px"
@@ -175,7 +175,7 @@ The interface alternates across **three disciplined surface modes** (90–95% ne
 
 ## 3. Typography Rules
 
-- **Display & UI Sans:** `Plus Jakarta Sans` (`--font-jakarta`).
+- **Display & UI Sans:** `Geist` (`--font-geist-sans`).
   - Hero `h1`: `clamp(2rem, 5vw, 3.75rem)`, weight `800`, line-height `1.08`, tracking `-0.03em`, `text-wrap: balance`.
   - Section `h2`: `clamp(1.5rem, 3vw, 2rem)`, weight `800`, line-height `1.15`, tracking `-0.025em`, `text-wrap: balance`.
   - Card `h3`: `1.0625rem–1.125rem`, weight `700`, line-height `1.35`, tracking `-0.015em`.

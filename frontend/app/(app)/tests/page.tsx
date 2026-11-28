@@ -8,14 +8,16 @@ import {
   Clock,
   Layers,
   PenTool,
-  ShieldCheck,
-  Timer,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers";
+import { Counter } from "@/components/reactbits/counter";
+import GradientText from "@/components/reactbits/gradient-text";
+import { SpotlightCard } from "@/components/reactbits/spotlight-card";
+import TiltedCard from "@/components/reactbits/tilted-card";
 import { Badge } from "@/components/ui/badge";
 import { ApiError, api } from "@/lib/api";
 import { cn } from "@/lib/cn";
@@ -31,6 +33,10 @@ const EXAM_PRESETS = [
   { id: "midterm", label: "Mid-sem CBT", questions: 10, minutes: 15 },
   { id: "full", label: "Full mock", questions: 15, minutes: 25 },
 ] as const;
+
+const ORANGE_GRADIENT = ["#EA580C", "#FB923C", "#F59E0B", "#EA580C"];
+
+const TOTAL_TOPICS = Object.values(COURSE_TOPICS_FALLBACK).reduce((sum, list) => sum + list.length, 0);
 
 export default function TestsHubPage() {
   const router = useRouter();
@@ -83,6 +89,17 @@ export default function TestsHubPage() {
       ? PRACTICE_HIGHLIGHTS
       : PRACTICE_HIGHLIGHTS.filter((d) => d.courseSlug === selectedCourse);
 
+  const submittedExams = (data?.recent_exams ?? []).filter(
+    (ex) => ex.submitted_at && ex.score != null && ex.total_questions > 0
+  );
+  const avgMockPct =
+    submittedExams.length > 0
+      ? Math.round(
+          submittedExams.reduce((sum, ex) => sum + ((ex.score ?? 0) / ex.total_questions) * 100, 0) /
+            submittedExams.length
+        )
+      : null;
+
   const statsMap = new Map(
     (data?.topic_stats ?? []).map((s) => [s.topic_id, s])
   );
@@ -92,11 +109,11 @@ export default function TestsHubPage() {
       {/* Header + Course Scope Switcher */}
       <section className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <Badge variant="accent" className="font-mono">
-            290+ graded questions · GET 205 · GET 207 · GET 209
-          </Badge>
-          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
-            Tests, topic drills, and mock exams
+          <h1 className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+            Tests, topic drills, and{" "}
+            <GradientText colors={ORANGE_GRADIENT} animationSpeed={7} className="font-bold">
+              mock exams
+            </GradientText>
           </h1>
           <p className="mt-1 max-w-2xl text-sm text-[var(--text-secondary)] text-pretty">
             Two study modes: <strong className="font-medium text-[var(--text-primary)]">untimed topic drills</strong> with instant step-by-step solutions, and <strong className="font-medium text-[var(--text-primary)]">timed mock exams</strong> graded automatically on submission.
@@ -137,116 +154,122 @@ export default function TestsHubPage() {
         </div>
       </section>
 
-      {/* ==================== 1. TIMED CBT MOCK EXAM STUDIO ==================== */}
-      <section className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <p className="text-xs font-medium text-[var(--accent)]">
-              Mode 1 · Timed exam simulation
+      {/* ==================== 0. AT-A-GLANCE STATS (SpotlightCard + Counter) ==================== */}
+      <section aria-label="Practice stats" className="grid grid-cols-3 gap-2.5 sm:gap-3">
+        {[
+          { label: "Topics to drill", value: TOTAL_TOPICS, suffix: "" },
+          { label: "Practice accuracy", value: user && data ? data.summary.overall_accuracy : null, suffix: "%" },
+          { label: "Avg. mock score", value: avgMockPct, suffix: "%" },
+        ].map((stat, i) => (
+          <SpotlightCard
+            key={stat.label}
+            spotlightSize={200}
+            className="rounded-[20px] bg-[var(--bg-surface)] p-3 sm:p-4"
+          >
+            <p className="truncate text-[11px] text-[var(--text-muted)] sm:text-xs">{stat.label}</p>
+            <p className="tabular mt-1 text-xl font-bold tracking-tight text-[var(--text-primary)] sm:text-2xl">
+              {stat.value == null ? (
+                <span className="text-[var(--text-muted)]">—</span>
+              ) : i === 0 ? (
+                <GradientText colors={ORANGE_GRADIENT} animationSpeed={6}>
+                  <Counter value={stat.value} suffix={stat.suffix} />
+                </GradientText>
+              ) : (
+                <Counter value={stat.value} suffix={stat.suffix} />
+              )}
             </p>
-            <h2 className="mt-0.5 text-lg font-semibold tracking-tight text-[var(--text-primary)]">
-              Launch a timed mock exam
-            </h2>
-          </div>
-          <span className="inline-flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-            <ShieldCheck className="h-4 w-4 text-[var(--success)]" aria-hidden="true" />
-            Solutions unlock after submission
-          </span>
-        </div>
+          </SpotlightCard>
+        ))}
+      </section>
 
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
+      {/* ==================== 1. TIMED MOCK EXAMS ==================== */}
+      <section aria-labelledby="mock-exams-heading">
+        <h2
+          id="mock-exams-heading"
+          className="text-lg font-semibold tracking-tight text-[var(--text-primary)]"
+        >
+          Timed mock exams
+        </h2>
+        <p className="mt-0.5 text-sm text-[var(--text-secondary)]">
+          Pick a length and start. Solutions unlock after you submit.
+        </p>
+
+        <ul className="mt-3 divide-y divide-[var(--border-hairline)] rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]">
           {visibleCourses.map((course) => {
             const activePresetId = presetByCourse[course.slug] ?? "midterm";
-            const activePreset =
-              EXAM_PRESETS.find((p) => p.id === activePresetId) ?? EXAM_PRESETS[1];
             const isLaunching = launchingSlug === course.slug;
-            const topicCount = COURSE_TOPICS_FALLBACK[course.slug]?.length ?? 3;
 
             return (
-              /* Concentric CBT card: Outer 24px = Inner 12px + Padding 12px (p-3) */
-              <article
+              <li
                 key={course.slug}
-                className="flex flex-col justify-between rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
+                className="flex flex-col gap-3 p-4 md:flex-row md:items-center md:gap-5"
               >
-                <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <Badge variant="accent" className="font-mono">
-                      {course.code}
-                    </Badge>
-                    <span className="tabular font-mono text-xs text-[var(--text-muted)]">
-                      {topicCount} topics
-                    </span>
-                  </div>
-                  <h3 className="mt-2 text-base font-semibold leading-snug text-[var(--text-primary)]">
+                <div className="min-w-0 md:flex-1">
+                  <p translate="no" className="text-xs font-medium text-[var(--accent)]">
+                    {course.code}
+                  </p>
+                  <p className="truncate text-sm font-semibold text-[var(--text-primary)]">
                     {course.title}
-                  </h3>
-
-                  {/* 3 Preset Selector Buttons (rounded-[12px]) */}
-                  <div className="mt-3.5 grid grid-cols-3 gap-1.5">
-                    {EXAM_PRESETS.map((preset) => {
-                      const selected = activePresetId === preset.id;
-                      return (
-                        <button
-                          key={preset.id}
-                          type="button"
-                          onClick={() =>
-                            setPresetByCourse((prev) => ({
-                              ...prev,
-                              [course.slug]: preset.id,
-                            }))
-                          }
-                          className={cn(
-                            "pressable flex min-h-[48px] flex-col items-center justify-center rounded-[12px] border px-1.5 py-2 text-center cursor-pointer sm:px-2",
-                            selected
-                              ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
-                              : "border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-[var(--border-strong)]"
-                          )}
-                        >
-                          <span className="text-xs font-medium leading-tight">
-                            {preset.label}
-                          </span>
-                          <span className="tabular mt-0.5 font-mono text-[11px] opacity-80">
-                            {preset.questions}Q · {preset.minutes}m
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
+                  </p>
                 </div>
 
-                <div className="mt-4 flex flex-col gap-2 border-t border-[var(--border-hairline)] pt-3 min-[360px]:flex-row min-[360px]:items-center">
+                <div
+                  role="radiogroup"
+                  aria-label={`Exam length for ${course.code}`}
+                  className="grid grid-cols-3 gap-0.5 rounded-[12px] bg-[var(--bg-subtle)] p-0.5 md:inline-grid"
+                >
+                  {EXAM_PRESETS.map((preset) => {
+                    const selected = activePresetId === preset.id;
+                    return (
+                      <button
+                        key={preset.id}
+                        type="button"
+                        role="radio"
+                        aria-checked={selected}
+                        title={preset.label}
+                        onClick={() =>
+                          setPresetByCourse((prev) => ({ ...prev, [course.slug]: preset.id }))
+                        }
+                        className={cn(
+                          "tabular min-h-[36px] cursor-pointer whitespace-nowrap rounded-[10px] px-3 text-xs font-medium transition-colors duration-150",
+                          selected
+                            ? "bg-[var(--bg-surface)] text-[var(--text-primary)] shadow-[0_1px_2px_rgba(0,0,0,0.08)] dark:bg-[var(--border-strong)]"
+                            : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                        )}
+                      >
+                        {preset.questions} Q · {preset.minutes} min
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="flex items-center gap-4">
                   <button
                     type="button"
                     disabled={Boolean(launchingSlug)}
                     onClick={() => handleQuickStartExam(course.slug)}
-                    className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-medium text-[var(--ink-cta-text)] hover:opacity-90 cursor-pointer disabled:opacity-60"
+                    className="pressable inline-flex min-h-[40px] flex-1 cursor-pointer items-center justify-center rounded-[12px] bg-[var(--ink-cta)] px-5 text-sm font-medium text-[var(--ink-cta-text)] hover:opacity-90 disabled:opacity-60 md:flex-none"
                   >
-                    <Timer className="h-4 w-4 shrink-0" aria-hidden="true" />
-                    {isLaunching
-                      ? "Starting…"
-                      : `Start ${activePreset.questions}Q (${activePreset.minutes}m)`}
+                    {isLaunching ? "Starting…" : "Start"}
                   </button>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
-                    className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
+                    className="text-sm text-[var(--text-secondary)] underline-offset-4 hover:text-[var(--text-primary)] hover:underline"
                   >
                     Custom
                   </Link>
                 </div>
-              </article>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </section>
 
       {/* ==================== 2. TOPIC-BY-TOPIC DRILL MATRIX ==================== */}
       <section className="space-y-4">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
-            <p className="text-xs font-medium text-[var(--accent)]">
-              Mode 2 · Topic-by-topic practice
-            </p>
-            <h2 className="mt-0.5 text-lg font-semibold tracking-tight text-[var(--text-primary)]">
+            <h2 className="text-lg font-semibold tracking-tight text-[var(--text-primary)]">
               Practice drills by topic
             </h2>
           </div>
@@ -288,9 +311,10 @@ export default function TestsHubPage() {
 
                     return (
                       /* Concentric topic drill card: Outer 24px = Inner 12px + Padding 12px (p-3) */
-                      <div
+                      <SpotlightCard
                         key={topic.id}
-                        className="flex flex-col justify-between rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
+                        spotlightSize={220}
+                        className="flex flex-col justify-between rounded-[24px] bg-[var(--bg-canvas)] p-3"
                       >
                         <div>
                           <div className="flex items-center justify-between gap-2">
@@ -344,7 +368,7 @@ export default function TestsHubPage() {
                             Notes
                           </Link>
                         </div>
-                      </div>
+                      </SpotlightCard>
                     );
                   })}
                 </div>
@@ -374,22 +398,39 @@ export default function TestsHubPage() {
               <Link
                 key={drill.id}
                 href={`/practice/${drill.topicId}`}
-                className="pressable hover-lift flex flex-col justify-between overflow-hidden rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
+                className="pressable flex flex-col justify-between rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3 transition-colors hover:border-[var(--accent-border)]"
               >
                 <div>
                   {drill.figureImage && (
-                    <div className="mb-3 flex h-32 items-center justify-center overflow-hidden rounded-[8px] border border-[var(--border-hairline)] bg-white p-2">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={drill.figureImage}
-                        alt={drill.title}
-                        width={400}
-                        height={240}
-                        loading="lazy"
-                        decoding="async"
-                        className="max-h-full w-auto max-w-full object-contain"
-                      />
-                    </div>
+                    /* React Bits TiltedCard: the figure tilts toward the pointer with a soft glare */
+                    <TiltedCard
+                      containerHeight="140px"
+                      containerWidth="100%"
+                      imageHeight="140px"
+                      imageWidth="100%"
+                      radius={12}
+                      rotateAmplitude={10}
+                      scaleOnHover={1.04}
+                      glare={0.25}
+                      shadow={0.25}
+                      showTooltip={false}
+                      gyroscope={false}
+                      flipOnClick={false}
+                      className="mb-3"
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center border border-[var(--border-hairline)] bg-white p-2 [border-radius:inherit]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={drill.figureImage}
+                          alt={drill.title}
+                          width={400}
+                          height={240}
+                          loading="lazy"
+                          decoding="async"
+                          className="max-h-full w-auto max-w-full object-contain"
+                        />
+                      </div>
+                    </TiltedCard>
                   )}
                   <div className="flex items-center justify-between gap-1.5">
                     <Badge variant="accent" className="font-mono">

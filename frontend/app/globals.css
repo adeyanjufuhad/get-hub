@@ -71,7 +71,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
 }
 

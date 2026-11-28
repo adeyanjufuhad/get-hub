@@ -30,6 +30,7 @@ type authStore interface {
 	GetUserByEmail(ctx context.Context, email string) (sqlc.User, error)
 	GetUserByGoogleID(ctx context.Context, googleID pgtype.Text) (sqlc.User, error)
 	LinkGoogleID(ctx context.Context, id uuid.UUID, googleID pgtype.Text) (sqlc.User, error)
+	UpdateUserProfile(ctx context.Context, arg sqlc.UpdateUserProfileParams) (sqlc.User, error)
 	CreateSession(ctx context.Context, arg sqlc.CreateSessionParams) (sqlc.Session, error)
 	GetActiveSessionByTokenHash(ctx context.Context, refreshTokenHash string) (sqlc.Session, error)
 	RevokeSession(ctx context.Context, id uuid.UUID) error
@@ -258,6 +259,57 @@ func (h *AuthHandler) Me(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+type updateProfileRequest struct {
+	FullName   string `json:"full_name"`
+	Department string `json:"department"`
+}
+
+// UpdateMe lets the signed-in user change their name and department.
+// Email, role and level (the app is for 200L) are not editable here.
+func (h *AuthHandler) UpdateMe(w http.ResponseWriter, r *http.Request) {
+	id, ok := auth.FromContext(r.Context())
+	if !ok {
+		httpapi.WriteError(w, http.StatusUnauthorized, "UNAUTHORIZED", "Authentication required.")
+		return
+	}
+
+	var req updateProfileRequest
+	if err := httpapi.DecodeJSON(w, r, &req); err != nil {
+		httpapi.WriteError(w, http.StatusBadRequest, "INVALID_JSON", "Invalid request body.")
+		return
+	}
+	req.FullName = strings.TrimSpace(req.FullName)
+	req.Department = strings.TrimSpace(req.Department)
+
+	fields := make(map[string]string)
+	if nameLen := utf8.RuneCountInString(req.FullName); nameLen < 2 || nameLen > 100 {
+		fields["full_name"] = "Enter your full name (2–100 characters)."
+	}
+	if !httpapi.ValidDepartments[req.Department] {
+		fields["department"] = "Select a valid OAU department."
+	}
+	if len(fields) > 0 {
+		httpapi.WriteValidationError(w, "Please fix the highlighted fields.", fields)
+		return
+	}
+
+	user, err := h.queries.UpdateUserProfile(r.Context(), sqlc.UpdateUserProfileParams{
+		ID:         id.UserID,
+		FullName:   req.FullName,
+		Department: req.Department,
+	})
+	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			httpapi.WriteError(w, http.StatusUnauthorized, "UNAUTHORIZED", "User not found.")
+			return
+		}
+		httpapi.WriteError(w, http.StatusInternalServerError, "INTERNAL_ERROR", "Could not save your profile.")
+		return
+	}
+
+	httpapi.WriteJSON(w, http.StatusOK, map[string]any{"user": user})
+}
+
 func (h *AuthHandler) GoogleStart(w http.ResponseWriter, r *http.Request) {
 	if !h.googleEnabled() {
 		httpapi.WriteError(w, http.StatusNotImplemented, "OAUTH_DISABLED", "Google sign-in is not configured on this server.")
@@ -331,7 +383,7 @@ func (h *AuthHandler) GoogleCallback(w http.ResponseWriter, r *http.Request) {
 				Email:       normalizedEmail,
 				GoogleID:    pgtype.Text{String: info.ID, Valid: true},
 				FullName:    name,
-				Department:  "Computer Science and Engineering",
+				Department:  "Computer Engineering",
 				Level:       "200L",
 				Role:        "student",
 				AvatarColor: avatarPalette[len(normalizedEmail)%len(avatarPalette)],

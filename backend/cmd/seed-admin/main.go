@@ -30,7 +30,7 @@ func main() {
 	emailFlag := flag.String("email", "", "Email address to promote or create as admin")
 	nameFlag := flag.String("name", "GET Hub Admin", "Full name (used only if creating a new account)")
 	passFlag := flag.String("password", "", "Password (required only if the account does not exist yet)")
-	deptFlag := flag.String("department", "Computer Science and Engineering", "OAU engineering department")
+	deptFlag := flag.String("department", "Computer Engineering", "OAU engineering department")
 	flag.Parse()
 
 	email := strings.TrimSpace(strings.ToLower(*emailFlag))

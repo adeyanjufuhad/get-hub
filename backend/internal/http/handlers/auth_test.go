@@ -98,6 +98,18 @@ func (m *memoryAuthStore) LinkGoogleID(_ context.Context, id uuid.UUID, googleID
 	return u, nil
 }
 
+func (m *memoryAuthStore) UpdateUserProfile(_ context.Context, arg sqlc.UpdateUserProfileParams) (sqlc.User, error) {
+	u, ok := m.usersByID[arg.ID]
+	if !ok {
+		return sqlc.User{}, pgx.ErrNoRows
+	}
+	u.FullName = arg.FullName
+	u.Department = arg.Department
+	u.UpdatedAt = time.Now().UTC()
+	m.usersByID[arg.ID] = u
+	return u, nil
+}
+
 func (m *memoryAuthStore) CreateSession(_ context.Context, arg sqlc.CreateSessionParams) (sqlc.Session, error) {
 	s := sqlc.Session{
 		ID:               uuid.New(),
@@ -245,7 +257,7 @@ func TestEmailAuthSequenceRegisterLoginMeRefreshLogout(t *testing.T) {
 		"full_name":  "Fuhad Adeyanju",
 		"email":      "Fuhad@oauife.edu.ng",
 		"password":   "StrongPass123!",
-		"department": "Computer Science and Engineering",
+		"department": "Computer Engineering",
 		"level":      "200L",
 	})
 	rec = httptest.NewRecorder()

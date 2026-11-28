@@ -11,7 +11,7 @@ import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { PasswordInput } from "@/components/ui/password-input";
 import { ApiError, api } from "@/lib/api";
-import { APP_NAME, DEFAULT_STUDY_LEVEL, OAU_DEPARTMENTS } from "@/lib/config";
+import { APP_NAME, DEFAULT_DEPARTMENT, DEFAULT_STUDY_LEVEL, OAU_FACULTIES } from "@/lib/config";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function SignupPage() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [department, setDepartment] = useState<string>(OAU_DEPARTMENTS[0]);
+  const [department, setDepartment] = useState<string>(DEFAULT_DEPARTMENT);
   const [submitting, setSubmitting] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
@@ -141,10 +141,14 @@ export default function SignupPage() {
                 onChange={(e) => setDepartment(e.target.value)}
                 className="mt-1.5 min-h-[46px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-[var(--text-primary)]"
               >
-                {OAU_DEPARTMENTS.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
+                {OAU_FACULTIES.map((f) => (
+                  <optgroup key={f.name} label={f.name}>
+                    {f.departments.map((d) => (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    ))}
+                  </optgroup>
                 ))}
               </select>
               {fieldErrors.department && (

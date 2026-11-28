@@ -33,6 +33,7 @@ func NewRouter(cfg config.Config, pool *pgxpool.Pool, logger *slog.Logger) http.
 
 	healthH := handlers.NewHealthHandler(pool)
 	authH := handlers.NewAuthHandler(queries, tokenMgr, googleOAuth, cfg)
+	avatarH := handlers.NewAvatarHandler(queries)
 	coursesH := handlers.NewCoursesHandler(queries, cfg, policy)
 	practiceH := handlers.NewPracticeHandler(queries, cfg, policy)
 	examsH := handlers.NewExamsHandler(queries, cfg, policy)
@@ -93,7 +94,13 @@ func NewRouter(cfg config.Config, pool *pgxpool.Pool, logger *slog.Logger) http.
 			r.With(authLimiter.Middleware).Get("/google/start", authH.GoogleStart)
 			r.With(authLimiter.Middleware).Get("/google/callback", authH.GoogleCallback)
 			r.With(auth.RequireAuth(tokenMgr)).Get("/me", authH.Me)
+			r.With(auth.RequireAuth(tokenMgr)).Patch("/me", authH.UpdateMe)
+			r.With(auth.RequireAuth(tokenMgr)).Put("/me/avatar", avatarH.Upload)
+			r.With(auth.RequireAuth(tokenMgr)).Delete("/me/avatar", avatarH.Delete)
 		})
+
+		// Profile photos: any signed-in user can load one (they appear next to names).
+		r.With(auth.RequireAuth(tokenMgr)).Get("/users/{id}/avatar", avatarH.Serve)
 
 		// Public or optionally-authenticated course catalogue
 		r.With(auth.OptionalAuth(tokenMgr)).Get("/courses", coursesH.List)

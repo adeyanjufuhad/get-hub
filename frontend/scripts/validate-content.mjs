@@ -6,8 +6,11 @@
 // exist, and questions/*.json match the bank schema in content/AUTHORING.md.
 import fs from "node:fs";
 import path from "node:path";
-import { compile } from "@mdx-js/mdx";
+import { compile, evaluate } from "@mdx-js/mdx";
 import matter from "gray-matter";
+import katex from "katex";
+import * as jsxRuntime from "react/jsx-runtime";
+import { renderToStaticMarkup } from "react-dom/server";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 
@@ -34,6 +37,64 @@ function warn(file, msg) {
   console.warn(`! ${path.relative(contentDir, file)}: ${msg}`);
 }
 
+// Same tokenizer as components/ui/math-text.tsx: finds the maths that
+// StepRevealExample / ExerciseSet / question banks render client-side.
+function checkMathText(file, where, text) {
+  if (typeof text !== "string" || !text) return;
+  const normalized = text.replace(/\\n(?![a-zA-Z])/g, "\n");
+  const regex = /(\$\$[\s\S]+?\$\$|\$(?!\$)[^$\n]+?\$)/g;
+  for (const m of normalized.matchAll(regex)) {
+    const display = m[0].startsWith("$$");
+    const tex = display ? m[0].slice(2, -2).trim() : m[0].slice(1, -1).trim();
+    try {
+      katex.renderToString(tex, { displayMode: display, throwOnError: true, strict: "ignore" });
+    } catch (err) {
+      fail(file, `${where}: KaTeX error in "${tex.slice(0, 70)}": ${String(err.message).replace(/^KaTeX parse error: /, "").slice(0, 120)}`);
+    }
+  }
+}
+
+async function checkComponentMath(file, content) {
+  const seen = [];
+  const capture = (name) => (props) => {
+    seen.push({ name, props });
+    return props.children ?? null;
+  };
+  try {
+    const { default: Content } = await evaluate(content, {
+      ...jsxRuntime,
+      remarkPlugins: [remarkMath],
+    });
+    renderToStaticMarkup(
+      jsxRuntime.jsx(Content, {
+        components: {
+          StepRevealExample: capture("StepRevealExample"),
+          ExerciseSet: capture("ExerciseSet"),
+          DiagramFigure: () => null,
+          RuleBox: capture("RuleBox"),
+          Callout: capture("Callout"),
+        },
+      })
+    );
+  } catch (err) {
+    fail(file, `could not evaluate MDX props: ${err.message}`);
+    return;
+  }
+  for (const { name, props } of seen) {
+    if (name === "StepRevealExample") {
+      const label = `${name} "${String(props.title).slice(0, 40)}"`;
+      checkMathText(file, label, props.problem);
+      checkMathText(file, label, props.answer);
+      (props.steps ?? []).forEach((s, i) => checkMathText(file, `${label} step ${i + 1}`, s));
+    } else if (name === "ExerciseSet") {
+      (props.items ?? []).forEach((it, i) => {
+        checkMathText(file, `ExerciseSet "${props.title}" #${i + 1} q`, it.q);
+        checkMathText(file, `ExerciseSet "${props.title}" #${i + 1} a`, it.a);
+      });
+    }
+  }
+}
+
 function checkDiagramRefs(file, text, courseSlug) {
   const refs = text.match(/\/diagrams\/[a-z0-9-]+\/[A-Za-z0-9._-]+\.(svg|png|webp)/g) ?? [];
   for (const ref of new Set(refs)) {
@@ -56,11 +117,18 @@ async function checkMdx(file, courseSlug) {
     if (data[key] === undefined) fail(file, `frontmatter missing "${key}"`);
   }
   try {
-    await compile(content, {
+    const out = await compile(content, {
       remarkPlugins: [remarkMath],
       rehypePlugins: [rehypeKatex],
       development: false,
     });
+    // rehype-katex reports unparseable maths as messages instead of throwing,
+    // and renders them as red error text on the page — treat them as errors.
+    for (const msg of out.messages) {
+      const line = msg.place?.line ?? msg.line;
+      const where = line ? ` (body line ${line})` : "";
+      fail(file, `KaTeX error${where}: ${String(msg.reason ?? msg.message).slice(0, 160)}`);
+    }
   } catch (err) {
     const where = err.place?.line ? ` (line ${err.place.line + Object.keys(data).length + 2}ish)` : "";
     fail(file, `MDX compile error${where}: ${err.reason ?? err.message}`);
@@ -70,6 +138,7 @@ async function checkMdx(file, courseSlug) {
     if (!KNOWN_COMPONENTS.has(t)) fail(file, `unknown component <${t}>`);
   }
   checkDiagramRefs(file, content, courseSlug);
+  await checkComponentMath(file, content);
   const words = content.split(/\s+/).filter(Boolean).length;
   return words;
 }
@@ -109,6 +178,9 @@ function checkBank(file, courseSlug, topicSlugs) {
       }
     } else fail(file, `${at}: type must be mcq|numeric`);
     checkDiagramRefs(file, JSON.stringify(q), courseSlug);
+    checkMathText(file, `${at} prompt`, q.prompt);
+    checkMathText(file, `${at} solution`, q.solution);
+    (q.options ?? []).forEach((o) => checkMathText(file, `${at} option ${o.label}`, o.text));
   }
   return bank.questions.length;
 }

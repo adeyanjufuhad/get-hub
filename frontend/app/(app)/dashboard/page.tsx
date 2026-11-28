@@ -1,10 +1,16 @@
 "use client";
 
+import { Flame } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { DiagramPracticeShowcase } from "@/components/dashboard/prescribed-textbooks";
+import { QuickActions } from "@/components/dashboard/quick-actions";
+import { StarCta } from "@/components/landing/reactbits-showcase";
 import { useAuth } from "@/components/providers";
+import { Counter } from "@/components/reactbits/counter";
+import GradientText from "@/components/reactbits/gradient-text";
+import { SpotlightCard } from "@/components/reactbits/spotlight-card";
 import { Badge } from "@/components/ui/badge";
 import { ApiError, api } from "@/lib/api";
 import { cn } from "@/lib/cn";
@@ -13,6 +19,15 @@ import {
   COURSE_TOPICS_FALLBACK,
 } from "@/lib/config";
 import type { DashboardPayload } from "@/lib/types";
+
+const ORANGE_GRADIENT = ["#EA580C", "#FB923C", "#F59E0B", "#EA580C"];
+
+function greeting(date = new Date()) {
+  const h = date.getHours();
+  if (h < 12) return "Good morning";
+  if (h < 17) return "Good afternoon";
+  return "Good evening";
+}
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -74,6 +89,8 @@ export default function DashboardPage() {
       ? Math.round(folioCoveragePct * 0.45 + accuracyPct * 0.55)
       : folioCoveragePct;
 
+  const firstName = data.user.full_name?.trim().split(/\s+/)[0] || "there";
+
   const completedIds = new Set(
     data.topic_stats.filter((s) => s.completed).map((s) => s.topic_id)
   );
@@ -83,17 +100,18 @@ export default function DashboardPage() {
       {/* ==================== 1. COMMAND HEADER + QUICK JUMP ==================== */}
       <section className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1 font-mono text-xs font-medium text-[var(--text-secondary)]">
-              {data.user.department} · {data.user.level}
-            </span>
-            <span className="tabular inline-flex items-center gap-1.5 rounded-full border border-[var(--accent-border)] bg-[var(--accent-soft)] px-3 py-1 font-mono text-xs font-medium text-[var(--accent)]">
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-              {data.streak_days} {data.streak_days === 1 ? "day" : "days"} streak
-            </span>
-          </div>
+          {/* Department and level already sit in the app's top bar, so only the streak shows here. */}
+          {data.streak_days > 0 && (
+            <p className="tabular inline-flex items-center gap-1 text-xs font-medium text-[var(--accent)]">
+              <Flame className="h-3.5 w-3.5" aria-hidden="true" />
+              {data.streak_days}-day streak
+            </p>
+          )}
           <h1 className="mt-2.5 text-2xl font-semibold tracking-[-0.02em] text-[var(--text-primary)] text-balance sm:text-3xl">
-            Study overview
+            {greeting()},{" "}
+            <GradientText colors={ORANGE_GRADIENT} animationSpeed={7} className="font-bold">
+              {firstName}
+            </GradientText>
           </h1>
           <p className="mt-1 text-sm text-[var(--text-secondary)] text-pretty">
             Continue your study notes, solve practice questions, or take a timed mock exam.
@@ -179,16 +197,17 @@ export default function DashboardPage() {
           </div>
 
           <div className="relative z-10 mt-6 grid grid-cols-1 gap-2 min-[420px]:flex min-[420px]:flex-wrap min-[420px]:items-center">
-            <Link
+            <StarCta
+              tone="accent"
+              size="md"
               href={
                 data.continue_topic
                   ? `/courses/${data.continue_topic.course_slug}/${data.continue_topic.topic_slug}`
                   : "/courses/get-205/fluid-properties-and-hydrostatics"
               }
-              className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] bg-[#EA580C] px-5 text-sm font-medium text-white hover:bg-[#C2410C]"
             >
-              Open study notes →
-            </Link>
+              Open study notes
+            </StarCta>
             <Link
               href={
                 data.continue_topic
@@ -203,15 +222,20 @@ export default function DashboardPage() {
         </div>
 
         {/* Right 5 cols: Concentric Readiness Bento (Outer 28px = 12+16; sm: Outer 32px = 12+20) */}
-        <div className="flex flex-col justify-between rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5 lg:col-span-5">
+        <SpotlightCard
+          spotlightSize={320}
+          className="flex flex-col justify-between rounded-[28px] bg-[var(--bg-surface)] p-4 sm:rounded-[32px] sm:p-5 lg:col-span-5"
+        >
           <div>
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="text-xs font-medium text-[var(--accent)]">
                   Semester readiness
                 </p>
-                <p className="tabular mt-1 text-3xl font-semibold tracking-tight text-[var(--text-primary)]">
-                  {readinessPct}%
+                <p className="tabular mt-1 text-4xl font-bold tracking-tight">
+                  <GradientText colors={ORANGE_GRADIENT} animationSpeed={6}>
+                    <Counter value={readinessPct} suffix="%" durationMs={900} />
+                  </GradientText>
                 </p>
               </div>
               <Link
@@ -247,13 +271,13 @@ export default function DashboardPage() {
               <div className="min-w-0 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
                 <p className="truncate text-xs text-[var(--text-muted)]">Solved</p>
                 <p className="tabular mt-1 font-mono text-sm font-semibold text-[var(--text-primary)] sm:text-base">
-                  {data.summary.total_attempts}
+                  <Counter value={data.summary.total_attempts} />
                 </p>
               </div>
               <div className="min-w-0 rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-2.5 sm:p-3">
                 <p className="truncate text-xs text-[var(--text-muted)]">Accuracy</p>
                 <p className="tabular mt-1 font-mono text-sm font-semibold text-[var(--accent)] sm:text-base">
-                  {accuracyPct}%
+                  <Counter value={accuracyPct} suffix="%" />
                 </p>
               </div>
             </div>
@@ -267,8 +291,11 @@ export default function DashboardPage() {
               Analytics →
             </Link>
           </div>
-        </div>
+        </SpotlightCard>
       </section>
+
+      {/* ==================== 2b. QUICK ACTIONS (React Bits PixelCard) ==================== */}
+      <QuickActions weakCount={data.weak_topics.length} />
 
       {/* ==================== 3. COURSE ROADMAP ==================== */}
       <section>
@@ -300,9 +327,11 @@ export default function DashboardPage() {
 
             return (
               /* Concentric course card: Outer 24px, bottom action bar p-3 (12px) -> inner buttons 12px (12+12=24) */
-              <article
+              <SpotlightCard
                 key={course.id}
-                className="flex flex-col justify-between overflow-hidden rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-surface)]"
+                role="article"
+                spotlightSize={300}
+                className="group/course flex flex-col justify-between rounded-[24px] bg-[var(--bg-surface)]"
               >
                 <div>
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#141413]">
@@ -314,7 +343,7 @@ export default function DashboardPage() {
                       height={360}
                       loading="lazy"
                       decoding="async"
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover transition-transform duration-500 ease-[var(--ease-out)] group-hover/course:scale-[1.04] motion-reduce:transition-none"
                     />
                     <div
                       aria-hidden="true"
@@ -402,7 +431,7 @@ export default function DashboardPage() {
                     Timed exam
                   </Link>
                 </div>
-              </article>
+              </SpotlightCard>
             );
           })}
         </div>

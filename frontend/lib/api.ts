@@ -159,6 +159,23 @@ export const api = {
     return request<{ user: User; google_oauth_enabled: boolean }>("/api/v1/auth/me");
   },
 
+  updateProfile(input: { full_name: string; department: string }) {
+    return request<{ user: User }>("/api/v1/auth/me", {
+      method: "PATCH",
+      body: JSON.stringify(input),
+    });
+  },
+
+  uploadAvatar(photo: Blob) {
+    const form = new FormData();
+    form.append("file", photo, photo.type === "image/webp" ? "avatar.webp" : "avatar.jpg");
+    return request<{ user: User }>("/api/v1/auth/me/avatar", { method: "PUT", body: form });
+  },
+
+  removeAvatar() {
+    return request<{ user: User }>("/api/v1/auth/me/avatar", { method: "DELETE" });
+  },
+
   dashboard() {
     return request<DashboardPayload>("/api/v1/dashboard");
   },

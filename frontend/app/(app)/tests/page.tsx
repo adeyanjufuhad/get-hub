@@ -15,7 +15,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useIsDark } from "@/components/landing/reactbits-showcase";
 import { useAuth } from "@/components/providers";
+import { Counter } from "@/components/reactbits/counter";
+import GradientText from "@/components/reactbits/gradient-text";
+import { SpotlightCard } from "@/components/reactbits/spotlight-card";
+import StarBorder from "@/components/reactbits/star-border";
+import TiltedCard from "@/components/reactbits/tilted-card";
 import { Badge } from "@/components/ui/badge";
 import { ApiError, api } from "@/lib/api";
 import { cn } from "@/lib/cn";
@@ -32,6 +38,10 @@ const EXAM_PRESETS = [
   { id: "full", label: "Full mock", questions: 15, minutes: 25 },
 ] as const;
 
+const ORANGE_GRADIENT = ["#EA580C", "#FB923C", "#F59E0B", "#EA580C"];
+
+const TOTAL_TOPICS = Object.values(COURSE_TOPICS_FALLBACK).reduce((sum, list) => sum + list.length, 0);
+
 export default function TestsHubPage() {
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
@@ -43,6 +53,7 @@ export default function TestsHubPage() {
     "get-209": "midterm",
   });
   const [launchingSlug, setLaunchingSlug] = useState<string | null>(null);
+  const isDark = useIsDark();
 
   useEffect(() => {
     if (authLoading || !user) return;
@@ -83,6 +94,17 @@ export default function TestsHubPage() {
       ? PRACTICE_HIGHLIGHTS
       : PRACTICE_HIGHLIGHTS.filter((d) => d.courseSlug === selectedCourse);
 
+  const submittedExams = (data?.recent_exams ?? []).filter(
+    (ex) => ex.submitted_at && ex.score != null && ex.total_questions > 0
+  );
+  const avgMockPct =
+    submittedExams.length > 0
+      ? Math.round(
+          submittedExams.reduce((sum, ex) => sum + ((ex.score ?? 0) / ex.total_questions) * 100, 0) /
+            submittedExams.length
+        )
+      : null;
+
   const statsMap = new Map(
     (data?.topic_stats ?? []).map((s) => [s.topic_id, s])
   );
@@ -96,7 +118,10 @@ export default function TestsHubPage() {
             290+ graded questions · GET 205 · GET 207 · GET 209
           </Badge>
           <h1 className="mt-2 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
-            Tests, topic drills, and mock exams
+            Tests, topic drills, and{" "}
+            <GradientText colors={ORANGE_GRADIENT} animationSpeed={7} className="font-bold">
+              mock exams
+            </GradientText>
           </h1>
           <p className="mt-1 max-w-2xl text-sm text-[var(--text-secondary)] text-pretty">
             Two study modes: <strong className="font-medium text-[var(--text-primary)]">untimed topic drills</strong> with instant step-by-step solutions, and <strong className="font-medium text-[var(--text-primary)]">timed mock exams</strong> graded automatically on submission.
@@ -137,6 +162,34 @@ export default function TestsHubPage() {
         </div>
       </section>
 
+      {/* ==================== 0. AT-A-GLANCE STATS (SpotlightCard + Counter) ==================== */}
+      <section aria-label="Practice stats" className="grid grid-cols-3 gap-2.5 sm:gap-3">
+        {[
+          { label: "Topics to drill", value: TOTAL_TOPICS, suffix: "" },
+          { label: "Practice accuracy", value: user && data ? data.summary.overall_accuracy : null, suffix: "%" },
+          { label: "Avg. mock score", value: avgMockPct, suffix: "%" },
+        ].map((stat, i) => (
+          <SpotlightCard
+            key={stat.label}
+            spotlightSize={200}
+            className="rounded-[20px] bg-[var(--bg-surface)] p-3 sm:p-4"
+          >
+            <p className="truncate text-[11px] text-[var(--text-muted)] sm:text-xs">{stat.label}</p>
+            <p className="tabular mt-1 text-xl font-bold tracking-tight text-[var(--text-primary)] sm:text-2xl">
+              {stat.value == null ? (
+                <span className="text-[var(--text-muted)]">—</span>
+              ) : i === 0 ? (
+                <GradientText colors={ORANGE_GRADIENT} animationSpeed={6}>
+                  <Counter value={stat.value} suffix={stat.suffix} />
+                </GradientText>
+              ) : (
+                <Counter value={stat.value} suffix={stat.suffix} />
+              )}
+            </p>
+          </SpotlightCard>
+        ))}
+      </section>
+
       {/* ==================== 1. TIMED CBT MOCK EXAM STUDIO ==================== */}
       <section className="rounded-[28px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-4 sm:p-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
@@ -164,9 +217,11 @@ export default function TestsHubPage() {
 
             return (
               /* Concentric CBT card: Outer 24px = Inner 12px + Padding 12px (p-3) */
-              <article
+              <SpotlightCard
                 key={course.slug}
-                className="flex flex-col justify-between rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
+                role="article"
+                spotlightSize={260}
+                className="flex flex-col justify-between rounded-[24px] bg-[var(--bg-canvas)] p-3"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -215,17 +270,28 @@ export default function TestsHubPage() {
                 </div>
 
                 <div className="mt-4 flex flex-col gap-2 border-t border-[var(--border-hairline)] pt-3 min-[360px]:flex-row min-[360px]:items-center">
-                  <button
+                  {/* React Bits StarBorder: the star appears on hover/focus and laps the button */}
+                  <StarBorder
                     type="button"
                     disabled={Boolean(launchingSlug)}
                     onClick={() => handleQuickStartExam(course.slug)}
-                    className="pressable inline-flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded-[12px] bg-[var(--ink-cta)] px-4 text-xs font-medium text-[var(--ink-cta-text)] hover:opacity-90 cursor-pointer disabled:opacity-60"
+                    theme={isDark ? "light" : "dark"}
+                    color="#FB923C"
+                    trailColor="#EA580C"
+                    backgroundColor="var(--ink-cta)"
+                    textColor="var(--ink-cta-text)"
+                    borderColor={isDark ? "rgba(20,20,19,0.14)" : "rgba(255,255,255,0.12)"}
+                    radius={12}
+                    thickness={1.5}
+                    glow={0.7}
+                    hover="reveal"
+                    className="pressable min-h-[44px] flex-1 !gap-1.5 whitespace-nowrap !px-3 !py-0 text-xs font-medium"
                   >
                     <Timer className="h-4 w-4 shrink-0" aria-hidden="true" />
                     {isLaunching
                       ? "Starting…"
                       : `Start ${activePreset.questions}Q (${activePreset.minutes}m)`}
-                  </button>
+                  </StarBorder>
                   <Link
                     href={`/courses/${course.slug}/mock-exam`}
                     className="pressable inline-flex min-h-[44px] items-center justify-center rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3.5 text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] hover:text-[var(--text-primary)]"
@@ -233,7 +299,7 @@ export default function TestsHubPage() {
                     Custom
                   </Link>
                 </div>
-              </article>
+              </SpotlightCard>
             );
           })}
         </div>
@@ -288,9 +354,10 @@ export default function TestsHubPage() {
 
                     return (
                       /* Concentric topic drill card: Outer 24px = Inner 12px + Padding 12px (p-3) */
-                      <div
+                      <SpotlightCard
                         key={topic.id}
-                        className="flex flex-col justify-between rounded-[24px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
+                        spotlightSize={220}
+                        className="flex flex-col justify-between rounded-[24px] bg-[var(--bg-canvas)] p-3"
                       >
                         <div>
                           <div className="flex items-center justify-between gap-2">
@@ -344,7 +411,7 @@ export default function TestsHubPage() {
                             Notes
                           </Link>
                         </div>
-                      </div>
+                      </SpotlightCard>
                     );
                   })}
                 </div>
@@ -374,22 +441,39 @@ export default function TestsHubPage() {
               <Link
                 key={drill.id}
                 href={`/practice/${drill.topicId}`}
-                className="pressable hover-lift flex flex-col justify-between overflow-hidden rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3"
+                className="pressable flex flex-col justify-between rounded-[20px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] p-3 transition-colors hover:border-[var(--accent-border)]"
               >
                 <div>
                   {drill.figureImage && (
-                    <div className="mb-3 flex h-32 items-center justify-center overflow-hidden rounded-[8px] border border-[var(--border-hairline)] bg-white p-2">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={drill.figureImage}
-                        alt={drill.title}
-                        width={400}
-                        height={240}
-                        loading="lazy"
-                        decoding="async"
-                        className="max-h-full w-auto max-w-full object-contain"
-                      />
-                    </div>
+                    /* React Bits TiltedCard: the figure tilts toward the pointer with a soft glare */
+                    <TiltedCard
+                      containerHeight="140px"
+                      containerWidth="100%"
+                      imageHeight="140px"
+                      imageWidth="100%"
+                      radius={12}
+                      rotateAmplitude={10}
+                      scaleOnHover={1.04}
+                      glare={0.25}
+                      shadow={0.25}
+                      showTooltip={false}
+                      gyroscope={false}
+                      flipOnClick={false}
+                      className="mb-3"
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center border border-[var(--border-hairline)] bg-white p-2 [border-radius:inherit]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={drill.figureImage}
+                          alt={drill.title}
+                          width={400}
+                          height={240}
+                          loading="lazy"
+                          decoding="async"
+                          className="max-h-full w-auto max-w-full object-contain"
+                        />
+                      </div>
+                    </TiltedCard>
                   )}
                   <div className="flex items-center justify-between gap-1.5">
                     <Badge variant="accent" className="font-mono">

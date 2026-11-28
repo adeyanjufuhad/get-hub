@@ -33,7 +33,8 @@ interface StarCtaProps {
 
 const STAR_SIZES = {
   lg: { radius: 999, className: "min-h-[48px] w-full px-6 text-sm font-semibold sm:min-h-[50px] sm:w-auto sm:px-7 sm:text-base" },
-  md: { radius: 12, className: "min-h-[44px] px-5 py-0 text-sm font-medium" },
+  // "!" beats StarBorder's own px-6/py-3.5 (no tailwind-merge in this project).
+  md: { radius: 12, className: "min-h-[44px] !px-5 !py-0 text-sm font-medium" },
 } as const;
 
 export function StarCta({ href, children, tone = "ink", size = "lg", className = "" }: StarCtaProps) {

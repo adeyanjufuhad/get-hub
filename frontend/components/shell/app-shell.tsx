@@ -227,7 +227,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               href={user ? "/dashboard" : "/"}
               className="flex min-h-[44px] min-w-0 items-center gap-2 md:hidden"
             >
-              <BrandLogo size="sm" />
               <span translate="no" className="truncate text-sm font-extrabold tracking-tight">
                 {APP_NAME}
               </span>

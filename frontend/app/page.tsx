@@ -27,7 +27,6 @@ import { LogoLoop } from "@/components/reactbits/logo-loop";
 import { Magnet } from "@/components/reactbits/magnet";
 import { SpotlightCard } from "@/components/reactbits/spotlight-card";
 import { Badge } from "@/components/ui/badge";
-import { BrandLogo } from "@/components/ui/brand-logo";
 import { APP_INSTITUTION, APP_NAME } from "@/lib/config";
 
 const OAU_DEPT_LOOP = [
@@ -327,7 +326,6 @@ export default function LandingPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-2.5 text-[#FAF9F5]">
-                <BrandLogo size="sm" />
                 <span translate="no" className="text-base font-extrabold tracking-tight">
                   {APP_NAME}
                 </span>

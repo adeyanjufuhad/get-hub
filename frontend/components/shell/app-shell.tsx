@@ -130,7 +130,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             aria-label={APP_NAME}
             className="pressable flex w-full items-center overflow-hidden rounded-[12px]"
           >
-            <BrandLogo size="lg" className="rounded-[12px]" />
+            <BrandLogo size="lg" className="mx-[3px]" />
             <div
               className={cn(
                 "ml-3 flex min-w-0 flex-col transition-[opacity,transform] duration-150 ease-[var(--ease-out)]",

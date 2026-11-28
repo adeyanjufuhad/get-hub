@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/cn";
 
 export interface BrandLogoProps {
@@ -5,30 +6,28 @@ export interface BrandLogoProps {
   className?: string;
 }
 
+// The mark is about 2:1 (viewBox 845.3 × 418.7), so width follows height.
 const SIZE_MAP = {
-  sm: "h-8 w-8 rounded-lg",
-  md: "h-9 w-9 rounded-xl",
-  lg: "h-11 w-11 rounded-2xl",
+  sm: "h-[15px] w-[30px]",
+  md: "h-4 w-[33px]",
+  lg: "h-5 w-[41px]",
 };
 
+const MASK = 'url("/logo-get.svg") center / contain no-repeat';
+
 /**
- * Renders the custom GET Hub logo mark cleanly in both light and dark modes.
+ * The GET wordmark, traced from the original logo artwork without its tile
+ * background or the smeared ghost above the letters. It's drawn with a CSS mask
+ * over `currentColor`, so it takes the surrounding text colour in light and dark
+ * mode and on dark bands. Decorative: every usage has the app name beside it or
+ * on its link.
  */
 export function BrandLogo({ size = "md", className }: BrandLogoProps) {
   return (
     <span
-      className={cn(
-        "relative inline-flex shrink-0 items-center justify-center overflow-hidden border border-black/[0.08] bg-[#F8F8F6] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-white/15 dark:bg-white",
-        SIZE_MAP[size],
-        className
-      )}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/logo-get.jpg"
-        alt="GET Hub logo"
-        className="h-full w-full object-contain mix-blend-multiply"
-      />
-    </span>
+      aria-hidden="true"
+      className={cn("inline-block shrink-0 bg-current", SIZE_MAP[size], className)}
+      style={{ WebkitMask: MASK, mask: MASK } as CSSProperties}
+    />
   );
 }

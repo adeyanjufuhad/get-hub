@@ -73,7 +73,7 @@ export function ExpandingPillNav() {
           href="/"
           className="pressable flex min-h-[40px] shrink-0 items-center gap-1.5 rounded-full pl-1 pr-2 sm:gap-2 sm:pr-2.5"
         >
-          <BrandLogo size="sm" className="rounded-full" />
+          <BrandLogo size="sm" className="ml-1.5" />
           <span
             translate="no"
             className="text-xs font-extrabold tracking-tight text-[var(--text-primary)] min-[360px]:text-sm"

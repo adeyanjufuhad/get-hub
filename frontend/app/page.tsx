@@ -1,6 +1,5 @@
 import {
   BookOpenCheck,
-  CheckCircle2,
   Layers,
   ShieldCheck,
   Target,
@@ -10,6 +9,7 @@ import {
 import Link from "next/link";
 import { ExpandingPillNav } from "@/components/landing/expanding-pill-nav";
 import { HeroGrainientBackground } from "@/components/landing/hero-grainient";
+import { RotatingParticleHeadline } from "@/components/landing/rotating-particle-headline";
 import {
   CourseCurriculumExplorer,
   HeroProductPreview,
@@ -25,10 +25,8 @@ import { Counter } from "@/components/reactbits/counter";
 import GradientText from "@/components/reactbits/gradient-text";
 import { LogoLoop } from "@/components/reactbits/logo-loop";
 import { Magnet } from "@/components/reactbits/magnet";
-import ParticleText from "@/components/reactbits/ParticleText";
 import { SpotlightCard } from "@/components/reactbits/spotlight-card";
 import { Badge } from "@/components/ui/badge";
-import { BrandLogo } from "@/components/ui/brand-logo";
 import { APP_INSTITUTION, APP_NAME } from "@/lib/config";
 
 const OAU_DEPT_LOOP = [
@@ -104,29 +102,7 @@ export default function LandingPage() {
               <span>Master </span>
               <span translate="no">GET 205, 207 &amp; 209</span>
               <span className="mx-auto mt-1 block h-[64px] w-full max-w-[300px] text-[var(--accent)] min-[380px]:h-[78px] min-[380px]:max-w-[380px] sm:h-[96px] sm:max-w-[460px] md:h-[112px] md:max-w-[520px]">
-                <ParticleText
-                  text="step by step."
-                  particleSize={2}
-                  density={3}
-                  color="currentColor"
-                  highlightColor="#ff5a36"
-                  highlightMode="motion"
-                  shape="circle"
-                  intro="gather"
-                  scatter={150}
-                  gatherDuration={1400}
-                  stagger={380}
-                  clickBurst
-                  burstStrength={1}
-                  pointerRepel={40}
-                  repelRadius={110}
-                  idleDrift={0.65}
-                  trigger="hover"
-                  fontSize="clamp(1.85rem, 7.2vw, 4.1rem)"
-                  fontWeight={800}
-                  fontFamily="inherit"
-                  glow
-                />
+                <RotatingParticleHeadline />
               </span>
             </h1>
 
@@ -314,11 +290,7 @@ export default function LandingPage() {
         <section className="mx-auto max-w-5xl px-4 pb-14 sm:px-6 sm:pb-16">
           <div className="overflow-hidden rounded-[24px] bg-[#141413] px-5 pb-10 pt-8 text-center text-[#FAF9F5] sm:px-10 sm:pb-12 sm:pt-10">
             <DiagramFan />
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3.5 py-1 font-mono text-xs font-semibold text-orange-300">
-              <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
-              Free Student Access · Zero Subscription Fee
-            </span>
-            <h2 className="mx-auto mt-3.5 max-w-xl text-2xl font-extrabold tracking-[-0.025em] text-balance sm:text-3xl">
+            <h2 className="mx-auto mt-2 max-w-xl text-2xl font-extrabold tracking-[-0.025em] text-balance sm:text-3xl">
               Open your 200L study notes{" "}
               <GradientText
                 colors={["#FB923C", "#FDBA74", "#F59E0B", "#FB923C"]}
@@ -354,7 +326,6 @@ export default function LandingPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-2.5 text-[#FAF9F5]">
-                <BrandLogo size="sm" />
                 <span translate="no" className="text-base font-extrabold tracking-tight">
                   {APP_NAME}
                 </span>

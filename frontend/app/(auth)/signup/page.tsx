@@ -7,7 +7,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers";
 import { GoogleAuthButton } from "@/components/auth/google-auth-button";
-import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { PasswordInput } from "@/components/ui/password-input";
 import { ApiError, api } from "@/lib/api";
@@ -58,7 +57,6 @@ export default function SignupPage() {
       </a>
       <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-md outline-none">
         <Link href="/" className="mb-5 inline-flex items-center gap-2.5 sm:mb-6">
-          <BrandLogo size="md" />
           <span translate="no" className="text-base font-semibold tracking-tight">
             {APP_NAME}
           </span>

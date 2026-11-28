@@ -4,7 +4,6 @@ import { ArrowRight, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/shell/theme-toggle";
-import { BrandLogo } from "@/components/ui/brand-logo";
 import { cn } from "@/lib/cn";
 import { APP_NAME } from "@/lib/config";
 
@@ -71,9 +70,8 @@ export function ExpandingPillNav() {
         {/* Brand (always visible inside the compact pill) */}
         <Link
           href="/"
-          className="pressable flex min-h-[40px] shrink-0 items-center gap-1.5 rounded-full pl-1 pr-2 sm:gap-2 sm:pr-2.5"
+          className="pressable flex min-h-[40px] shrink-0 items-center rounded-full px-2.5 sm:px-3"
         >
-          <BrandLogo size="sm" className="rounded-full" />
           <span
             translate="no"
             className="text-xs font-extrabold tracking-tight text-[var(--text-primary)] min-[360px]:text-sm"

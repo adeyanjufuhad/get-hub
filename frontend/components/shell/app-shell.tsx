@@ -15,9 +15,10 @@ import { toast } from "sonner";
 import { useAuth } from "@/components/providers";
 import { ThemeToggle } from "@/components/shell/theme-toggle";
 import { BrandLogo } from "@/components/ui/brand-logo";
+import { UserAvatar } from "@/components/ui/user-avatar";
 import { api } from "@/lib/api";
 import { cn } from "@/lib/cn";
-import { APP_NAME } from "@/lib/config";
+import { APP_NAME, normalizeDepartment } from "@/lib/config";
 
 interface NavItem {
   href: string;
@@ -94,14 +95,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     router.push("/login");
   }
 
-  const initials = user?.full_name
-    ? user.full_name
-        .split(" ")
-        .filter(Boolean)
-        .slice(0, 2)
-        .map((p) => p[0]?.toUpperCase() ?? "")
-        .join("")
-    : "GH";
 
   return (
     <div className="min-h-dvh overflow-x-clip bg-[var(--bg-canvas)] text-[var(--text-primary)]">
@@ -241,7 +234,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
             <div className="hidden text-xs font-medium text-[var(--text-muted)] md:block">
               {user ? (
-                `${user.department} · ${user.level}`
+                `${normalizeDepartment(user.department)} · ${user.level}`
               ) : (
                 <>
                   <span translate="no">{APP_NAME}</span> · OAU 200L Engineering
@@ -260,10 +253,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     translate="no"
                     aria-label={`Your profile (${user.full_name})`}
                     title="Your profile"
-                    className="pressable flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] text-xs font-bold text-white hover:opacity-90"
-                    style={{ backgroundColor: user.avatar_color || "#EA580C" }}
+                    className="pressable shrink-0 rounded-[12px] hover:opacity-90"
                   >
-                    {initials}
+                    <UserAvatar user={user} className="h-9 w-9 rounded-[12px] text-xs" />
                   </Link>
                   <button
                     type="button"

@@ -105,7 +105,6 @@ func (m *memoryAuthStore) UpdateUserProfile(_ context.Context, arg sqlc.UpdateUs
 	}
 	u.FullName = arg.FullName
 	u.Department = arg.Department
-	u.Level = arg.Level
 	u.UpdatedAt = time.Now().UTC()
 	m.usersByID[arg.ID] = u
 	return u, nil
@@ -258,7 +257,7 @@ func TestEmailAuthSequenceRegisterLoginMeRefreshLogout(t *testing.T) {
 		"full_name":  "Fuhad Adeyanju",
 		"email":      "Fuhad@oauife.edu.ng",
 		"password":   "StrongPass123!",
-		"department": "Computer Science and Engineering",
+		"department": "Computer Engineering",
 		"level":      "200L",
 	})
 	rec = httptest.NewRecorder()

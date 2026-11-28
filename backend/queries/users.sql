@@ -29,6 +29,22 @@ RETURNING *;
 
 -- name: UpdateUserProfile :one
 UPDATE users
-SET full_name = $2, department = $3, level = $4
+SET full_name = $2, department = $3
 WHERE id = $1
 RETURNING *;
+
+-- name: SetUserAvatarURL :one
+UPDATE users SET avatar_url = $2 WHERE id = $1
+RETURNING *;
+
+-- name: UpsertUserAvatar :exec
+INSERT INTO user_avatars (user_id, content_type, data, updated_at)
+VALUES ($1, $2, $3, NOW())
+ON CONFLICT (user_id) DO UPDATE
+SET content_type = EXCLUDED.content_type, data = EXCLUDED.data, updated_at = NOW();
+
+-- name: GetUserAvatar :one
+SELECT * FROM user_avatars WHERE user_id = $1 LIMIT 1;
+
+-- name: DeleteUserAvatar :exec
+DELETE FROM user_avatars WHERE user_id = $1;

@@ -1,27 +1,18 @@
 "use client";
 
-import { LogOut } from "lucide-react";
+import { Camera, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/components/providers";
+import { UserAvatar } from "@/components/ui/user-avatar";
 import { ApiError, api } from "@/lib/api";
+import { prepareAvatar } from "@/lib/avatar-image";
 import { cn } from "@/lib/cn";
-import { OAU_FACULTIES, STUDY_LEVELS, facultyOf, type OauFaculty } from "@/lib/config";
+import { OAU_FACULTIES, facultyOf, normalizeDepartment, type OauFaculty } from "@/lib/config";
 
 const INPUT =
   "mt-1.5 min-h-[44px] w-full rounded-[12px] border border-[var(--border-hairline)] bg-[var(--bg-canvas)] px-3 text-[var(--text-primary)] outline-none transition-colors focus-visible:border-[var(--accent)] focus-visible:ring-2 focus-visible:ring-[var(--accent)]/20 aria-[invalid=true]:border-[var(--danger)] disabled:cursor-not-allowed disabled:text-[var(--text-muted)]";
-
-function initialsOf(name: string) {
-  return (
-    name
-      .split(/\s+/)
-      .filter(Boolean)
-      .slice(0, 2)
-      .map((p) => p[0]?.toUpperCase() ?? "")
-      .join("") || "GH"
-  );
-}
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -30,8 +21,9 @@ export default function ProfilePage() {
   const [fullName, setFullName] = useState("");
   const [faculty, setFaculty] = useState<OauFaculty>(OAU_FACULTIES[0].name);
   const [department, setDepartment] = useState("");
-  const [level, setLevel] = useState("");
   const [saving, setSaving] = useState(false);
+  const [photoBusy, setPhotoBusy] = useState<"upload" | "remove" | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -41,9 +33,8 @@ export default function ProfilePage() {
       return;
     }
     setFullName(user.full_name);
-    setFaculty(facultyOf(user.department));
-    setDepartment(user.department);
-    setLevel(user.level);
+    setFaculty(facultyOf(normalizeDepartment(user.department)));
+    setDepartment(normalizeDepartment(user.department));
   }, [loading, user, router]);
 
   if (loading || !user) {
@@ -57,8 +48,7 @@ export default function ProfilePage() {
 
   const departments: readonly string[] =
     OAU_FACULTIES.find((f) => f.name === faculty)?.departments ?? [];
-  const dirty =
-    fullName.trim() !== user.full_name || department !== user.department || level !== user.level;
+  const dirty = fullName.trim() !== user.full_name || department !== user.department;
   const joined = new Date(user.created_at);
 
   function changeFaculty(next: OauFaculty) {
@@ -81,7 +71,6 @@ export default function ProfilePage() {
       const { user: updated } = await api.updateProfile({
         full_name: fullName.trim(),
         department,
-        level,
       });
       setUser(updated);
       toast.success("Profile saved");
@@ -100,10 +89,39 @@ export default function ProfilePage() {
   function reset() {
     if (!user) return;
     setFullName(user.full_name);
-    setFaculty(facultyOf(user.department));
-    setDepartment(user.department);
-    setLevel(user.level);
+    setFaculty(facultyOf(normalizeDepartment(user.department)));
+    setDepartment(normalizeDepartment(user.department));
     setErrors({});
+  }
+
+  async function handlePhotoChosen(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // let the same file be picked again later
+    if (!file) return;
+    setPhotoBusy("upload");
+    try {
+      const photo = await prepareAvatar(file);
+      const { user: updated } = await api.uploadAvatar(photo);
+      setUser(updated);
+      toast.success("Photo updated");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Could not upload your photo");
+    } finally {
+      setPhotoBusy(null);
+    }
+  }
+
+  async function handleRemovePhoto() {
+    setPhotoBusy("remove");
+    try {
+      const { user: updated } = await api.removeAvatar();
+      setUser(updated);
+      toast.success("Photo removed");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Could not remove your photo");
+    } finally {
+      setPhotoBusy(null);
+    }
   }
 
   async function handleSignOut() {
@@ -119,21 +137,64 @@ export default function ProfilePage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-8">
-      {/* Identity */}
+      {/* Identity + photo */}
       <header className="flex items-center gap-4">
-        <span
-          aria-hidden="true"
-          translate="no"
-          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[16px] text-lg font-bold text-white"
-          style={{ backgroundColor: user.avatar_color || "#EA580C" }}
+        <button
+          type="button"
+          onClick={() => fileRef.current?.click()}
+          disabled={photoBusy !== null}
+          aria-label={user.avatar_url ? "Change profile photo" : "Add profile photo"}
+          className="group/photo relative shrink-0 cursor-pointer rounded-[20px] disabled:cursor-wait"
         >
-          {initialsOf(user.full_name)}
-        </span>
+          <UserAvatar user={user} className="h-20 w-20 rounded-[20px] text-2xl" />
+          <span
+            aria-hidden="true"
+            className={cn(
+              "absolute inset-0 flex items-center justify-center rounded-[20px] bg-black/45 text-white opacity-0 transition-opacity duration-150 group-hover/photo:opacity-100 group-focus-visible/photo:opacity-100",
+              photoBusy && "opacity-100"
+            )}
+          >
+            {photoBusy ? (
+              <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+            ) : (
+              <Camera className="h-5 w-5" />
+            )}
+          </span>
+        </button>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/png,image/jpeg,image/webp"
+          className="sr-only"
+          tabIndex={-1}
+          aria-hidden="true"
+          onChange={handlePhotoChosen}
+        />
         <div className="min-w-0">
           <h1 className="truncate text-2xl font-semibold tracking-tight">{user.full_name}</h1>
           <p className="truncate text-sm text-[var(--text-secondary)]">
-            {user.department} · {user.level}
+            {normalizeDepartment(user.department)} · {user.level}
           </p>
+          <div className="mt-1.5 flex items-center gap-3 text-sm">
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              disabled={photoBusy !== null}
+              className="cursor-pointer font-medium text-[var(--accent)] underline-offset-4 hover:underline disabled:cursor-wait disabled:opacity-60"
+            >
+              {photoBusy === "upload" ? "Uploading…" : user.avatar_url ? "Change photo" : "Add photo"}
+            </button>
+            {user.avatar_url && (
+              <button
+                type="button"
+                onClick={handleRemovePhoto}
+                disabled={photoBusy !== null}
+                className="cursor-pointer text-[var(--text-secondary)] underline-offset-4 hover:text-[var(--text-primary)] hover:underline disabled:cursor-wait disabled:opacity-60"
+              >
+                {photoBusy === "remove" ? "Removing…" : "Remove"}
+              </button>
+            )}
+          </div>
         </div>
       </header>
 
@@ -149,7 +210,7 @@ export default function ProfilePage() {
             Your details
           </h2>
           <p className="mt-0.5 text-sm text-[var(--text-secondary)]">
-            Your department and level appear across the app.
+            Your name and department appear across the app.
           </p>
         </div>
 
@@ -187,7 +248,7 @@ export default function ProfilePage() {
             )}
           </Field>
 
-          <Field label="Faculty">
+          <Field label="Faculty" className="sm:col-span-2">
             {(id) => (
               <select
                 id={id}
@@ -198,25 +259,6 @@ export default function ProfilePage() {
                 {OAU_FACULTIES.map((f) => (
                   <option key={f.name} value={f.name}>
                     {f.name}
-                  </option>
-                ))}
-              </select>
-            )}
-          </Field>
-
-          <Field label="Level" error={errors.level}>
-            {(id, describedBy) => (
-              <select
-                id={id}
-                value={level}
-                onChange={(e) => setLevel(e.target.value)}
-                aria-invalid={Boolean(errors.level)}
-                aria-describedby={describedBy}
-                className={INPUT}
-              >
-                {STUDY_LEVELS.map((l) => (
-                  <option key={l} value={l}>
-                    {l}
                   </option>
                 ))}
               </select>

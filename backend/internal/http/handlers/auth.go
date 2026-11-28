@@ -262,11 +262,10 @@ func (h *AuthHandler) Me(w http.ResponseWriter, r *http.Request) {
 type updateProfileRequest struct {
 	FullName   string `json:"full_name"`
 	Department string `json:"department"`
-	Level      string `json:"level"`
 }
 
-// UpdateMe lets the signed-in user change their name, department and level.
-// Email and role are not editable here.
+// UpdateMe lets the signed-in user change their name and department.
+// Email, role and level (the app is for 200L) are not editable here.
 func (h *AuthHandler) UpdateMe(w http.ResponseWriter, r *http.Request) {
 	id, ok := auth.FromContext(r.Context())
 	if !ok {
@@ -281,7 +280,6 @@ func (h *AuthHandler) UpdateMe(w http.ResponseWriter, r *http.Request) {
 	}
 	req.FullName = strings.TrimSpace(req.FullName)
 	req.Department = strings.TrimSpace(req.Department)
-	req.Level = strings.TrimSpace(req.Level)
 
 	fields := make(map[string]string)
 	if nameLen := utf8.RuneCountInString(req.FullName); nameLen < 2 || nameLen > 100 {
@@ -289,9 +287,6 @@ func (h *AuthHandler) UpdateMe(w http.ResponseWriter, r *http.Request) {
 	}
 	if !httpapi.ValidDepartments[req.Department] {
 		fields["department"] = "Select a valid OAU department."
-	}
-	if !httpapi.ValidLevels[req.Level] {
-		fields["level"] = "Select a valid level (e.g. 200L)."
 	}
 	if len(fields) > 0 {
 		httpapi.WriteValidationError(w, "Please fix the highlighted fields.", fields)
@@ -302,7 +297,6 @@ func (h *AuthHandler) UpdateMe(w http.ResponseWriter, r *http.Request) {
 		ID:         id.UserID,
 		FullName:   req.FullName,
 		Department: req.Department,
-		Level:      req.Level,
 	})
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
@@ -389,7 +383,7 @@ func (h *AuthHandler) GoogleCallback(w http.ResponseWriter, r *http.Request) {
 				Email:       normalizedEmail,
 				GoogleID:    pgtype.Text{String: info.ID, Valid: true},
 				FullName:    name,
-				Department:  "Computer Science and Engineering",
+				Department:  "Computer Engineering",
 				Level:       "200L",
 				Role:        "student",
 				AvatarColor: avatarPalette[len(normalizedEmail)%len(avatarPalette)],

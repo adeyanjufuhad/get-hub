@@ -34,7 +34,6 @@ export const OAU_FACULTIES = [
       "Chemical Engineering",
       "Civil Engineering",
       "Computer Engineering",
-      "Computer Science and Engineering",
       "Electronic and Electrical Engineering",
       "Food Science and Technology",
       "Materials Science and Engineering",
@@ -55,7 +54,15 @@ export function facultyOf(department: string): OauFaculty {
   return (match ?? OAU_FACULTIES[0]).name;
 }
 
-export const STUDY_LEVELS = ["100L", "200L", "300L", "400L", "500L"] as const;
+// Older accounts may still carry a department name that no longer exists at OAU.
+const LEGACY_DEPARTMENTS: Record<string, string> = {
+  "Computer Science and Engineering": "Computer Engineering",
+};
+
+/** Maps legacy department names to their current one. */
+export function normalizeDepartment(department: string): string {
+  return LEGACY_DEPARTMENTS[department] ?? department;
+}
 
 export const DEFAULT_STUDY_LEVEL = "200L" as const;
 

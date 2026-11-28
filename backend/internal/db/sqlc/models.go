@@ -22,6 +22,14 @@ type User struct {
 	AvatarColor  string      `json:"avatar_color"`
 	CreatedAt    time.Time   `json:"created_at"`
 	UpdatedAt    time.Time   `json:"updated_at"`
+	AvatarURL    string      `json:"avatar_url"`
+}
+
+type UserAvatar struct {
+	UserID      uuid.UUID `json:"user_id"`
+	ContentType string    `json:"content_type"`
+	Data        []byte    `json:"-"`
+	UpdatedAt   time.Time `json:"updated_at"`
 }
 
 type Session struct {

@@ -45,7 +45,6 @@ var FacultyDepartments = map[string][]string{
 		"Chemical Engineering",
 		"Civil Engineering",
 		"Computer Engineering",
-		"Computer Science and Engineering",
 		"Electronic and Electrical Engineering",
 		"Food Science and Technology",
 		"Materials Science and Engineering",

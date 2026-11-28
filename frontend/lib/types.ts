@@ -12,6 +12,8 @@ export interface User {
   level: string;
   role: UserRole;
   avatar_color: string;
+  /** Versioned photo URL, or "" when the user has no photo (absent on older API builds). */
+  avatar_url?: string;
   created_at: string;
   updated_at: string;
 }

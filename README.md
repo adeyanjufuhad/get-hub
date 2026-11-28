@@ -209,12 +209,17 @@ npm run build
 
 ## Deployment Guide
 
-### Frontend → Vercel
-1. Import the repo in Vercel and set **Root Directory** to `frontend`.
-2. Set `API_INTERNAL_URL` to your deployed Go API origin (e.g. `https://gethub-api.fly.dev`). Leave `NEXT_PUBLIC_API_URL` empty so `/api/v1/*` proxies as first-party cookies on mobile Safari/Chrome.
+### Frontend → Vercel (`get-hub`)
+1. Import the repo in Vercel and set **Root Directory** to `frontend` with Production Branch `main`.
+2. Set `API_INTERNAL_URL` to your deployed Go API origin (e.g. `https://get-hub-api.vercel.app`). Leave `NEXT_PUBLIC_API_URL` empty so `/api/v1/*` proxies as first-party cookies on mobile Safari/Chrome.
 3. Deploy!
 
-### Go API Hosting Comparison (Recommended: **Fly.io**)
+### Backend Go API → Vercel (`get-hub-api`)
+`backend/api/index.go` and `backend/vercel.json` expose the Go API as a Vercel Serverless Function.
+1. Connect the `get-hub-api` Vercel project to this GitHub repository with **Root Directory** set to `backend` and Production Branch `main` so backend pushes auto-deploy alongside the frontend.
+2. Run any pending Neon migrations (`cd backend && go run ./cmd/migrate`) before pushing schema-dependent API changes.
+
+### Alternative Go API Hosts (Container / WebSockets)
 `backend/Dockerfile` builds a tiny static Go binary (`distroless/static`).
 
 | Host | Pros | Trade-offs | Recommendation |

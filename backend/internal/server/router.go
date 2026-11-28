@@ -93,6 +93,7 @@ func NewRouter(cfg config.Config, pool *pgxpool.Pool, logger *slog.Logger) http.
 			r.With(authLimiter.Middleware).Get("/google/start", authH.GoogleStart)
 			r.With(authLimiter.Middleware).Get("/google/callback", authH.GoogleCallback)
 			r.With(auth.RequireAuth(tokenMgr)).Get("/me", authH.Me)
+			r.With(auth.RequireAuth(tokenMgr)).Patch("/me", authH.UpdateMe)
 		})
 
 		// Public or optionally-authenticated course catalogue

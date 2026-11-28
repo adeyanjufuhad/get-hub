@@ -255,14 +255,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </div>
               {user ? (
                 <div className="flex items-center gap-1.5 sm:gap-2">
-                  <span
+                  <Link
+                    href="/profile"
                     translate="no"
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] text-xs font-bold text-white"
+                    aria-label={`Your profile (${user.full_name})`}
+                    title="Your profile"
+                    className="pressable flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] text-xs font-bold text-white hover:opacity-90"
                     style={{ backgroundColor: user.avatar_color || "#EA580C" }}
-                    title={user.full_name}
                   >
                     {initials}
-                  </span>
+                  </Link>
                   <button
                     type="button"
                     onClick={handleLogout}

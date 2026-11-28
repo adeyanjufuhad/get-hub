@@ -23,16 +23,39 @@ export interface CourseConfig {
 
 export const COURSES: readonly CourseConfig[] = coursesManifest.courses;
 
-export const OAU_DEPARTMENTS = [
-  "Computer Engineering",
-  "Electronic and Electrical Engineering",
-  "Mechanical Engineering",
-  "Civil Engineering",
-  "Chemical Engineering",
-  "Agricultural and Environmental Engineering",
-  "Materials Science and Engineering",
-  "Food Science and Technology",
+// OAU departments by faculty. Each department belongs to exactly one faculty, so the
+// faculty is derived from the department rather than stored on the user.
+// Keep in sync with FacultyDepartments in backend/internal/http/validate.go.
+export const OAU_FACULTIES = [
+  {
+    name: "Faculty of Technology",
+    departments: [
+      "Agricultural and Environmental Engineering",
+      "Chemical Engineering",
+      "Civil Engineering",
+      "Computer Engineering",
+      "Computer Science and Engineering",
+      "Electronic and Electrical Engineering",
+      "Food Science and Technology",
+      "Materials Science and Engineering",
+      "Mechanical Engineering",
+    ],
+  },
 ] as const;
+
+export type OauFaculty = (typeof OAU_FACULTIES)[number]["name"];
+
+export const OAU_DEPARTMENTS: readonly string[] = OAU_FACULTIES.flatMap((f) => f.departments);
+
+export const DEFAULT_DEPARTMENT = "Computer Engineering";
+
+/** The faculty a department belongs to (falls back to the first faculty for unknown values). */
+export function facultyOf(department: string): OauFaculty {
+  const match = OAU_FACULTIES.find((f) => (f.departments as readonly string[]).includes(department));
+  return (match ?? OAU_FACULTIES[0]).name;
+}
+
+export const STUDY_LEVELS = ["100L", "200L", "300L", "400L", "500L"] as const;
 
 export const DEFAULT_STUDY_LEVEL = "200L" as const;
 

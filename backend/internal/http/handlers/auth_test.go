@@ -98,6 +98,19 @@ func (m *memoryAuthStore) LinkGoogleID(_ context.Context, id uuid.UUID, googleID
 	return u, nil
 }
 
+func (m *memoryAuthStore) UpdateUserProfile(_ context.Context, arg sqlc.UpdateUserProfileParams) (sqlc.User, error) {
+	u, ok := m.usersByID[arg.ID]
+	if !ok {
+		return sqlc.User{}, pgx.ErrNoRows
+	}
+	u.FullName = arg.FullName
+	u.Department = arg.Department
+	u.Level = arg.Level
+	u.UpdatedAt = time.Now().UTC()
+	m.usersByID[arg.ID] = u
+	return u, nil
+}
+
 func (m *memoryAuthStore) CreateSession(_ context.Context, arg sqlc.CreateSessionParams) (sqlc.Session, error) {
 	s := sqlc.Session{
 		ID:               uuid.New(),

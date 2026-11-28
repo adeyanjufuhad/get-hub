@@ -159,6 +159,13 @@ export const api = {
     return request<{ user: User; google_oauth_enabled: boolean }>("/api/v1/auth/me");
   },
 
+  updateProfile(input: { full_name: string; department: string; level: string }) {
+    return request<{ user: User }>("/api/v1/auth/me", {
+      method: "PATCH",
+      body: JSON.stringify(input),
+    });
+  },
+
   dashboard() {
     return request<DashboardPayload>("/api/v1/dashboard");
   },

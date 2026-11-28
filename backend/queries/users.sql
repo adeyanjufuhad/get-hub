@@ -26,3 +26,9 @@ UPDATE users
 SET role = 'admin'
 WHERE LOWER(email) = LOWER($1)
 RETURNING *;
+
+-- name: UpdateUserProfile :one
+UPDATE users
+SET full_name = $2, department = $3, level = $4
+WHERE id = $1
+RETURNING *;

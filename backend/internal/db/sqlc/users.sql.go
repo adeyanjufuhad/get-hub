@@ -83,3 +83,20 @@ RETURNING id, email, password_hash, google_id, full_name, department, level, rol
 	err := row.Scan(&u.ID, &u.Email, &u.PasswordHash, &u.GoogleID, &u.FullName, &u.Department, &u.Level, &u.Role, &u.AvatarColor, &u.CreatedAt, &u.UpdatedAt)
 	return u, err
 }
+
+type UpdateUserProfileParams struct {
+	ID         uuid.UUID
+	FullName   string
+	Department string
+	Level      string
+}
+
+func (q *Queries) UpdateUserProfile(ctx context.Context, arg UpdateUserProfileParams) (User, error) {
+	const query = `
+UPDATE users SET full_name = $2, department = $3, level = $4 WHERE id = $1
+RETURNING id, email, password_hash, google_id, full_name, department, level, role, avatar_color, created_at, updated_at`
+	row := q.db.QueryRow(ctx, query, arg.ID, arg.FullName, arg.Department, arg.Level)
+	var u User
+	err := row.Scan(&u.ID, &u.Email, &u.PasswordHash, &u.GoogleID, &u.FullName, &u.Department, &u.Level, &u.Role, &u.AvatarColor, &u.CreatedAt, &u.UpdatedAt)
+	return u, err
+}

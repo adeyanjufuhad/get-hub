@@ -36,17 +36,33 @@ func IsValidEmail(raw string) bool {
 	return err == nil && addr.Address == trimmed
 }
 
-// ValidDepartments lists OAU Faculty of Technology engineering departments.
-var ValidDepartments = map[string]bool{
-	"Computer Science and Engineering":           true,
-	"Electronic and Electrical Engineering":      true,
-	"Mechanical Engineering":                     true,
-	"Civil Engineering":                          true,
-	"Chemical Engineering":                       true,
-	"Agricultural and Environmental Engineering": true,
-	"Materials Science and Engineering":          true,
-	"Food Science and Technology":                true,
+// FacultyDepartments lists OAU departments by faculty. Each department belongs to
+// exactly one faculty, so the faculty is derived from the department rather than
+// stored. Keep in sync with OAU_FACULTIES in frontend/lib/config.ts.
+var FacultyDepartments = map[string][]string{
+	"Faculty of Technology": {
+		"Agricultural and Environmental Engineering",
+		"Chemical Engineering",
+		"Civil Engineering",
+		"Computer Engineering",
+		"Computer Science and Engineering",
+		"Electronic and Electrical Engineering",
+		"Food Science and Technology",
+		"Materials Science and Engineering",
+		"Mechanical Engineering",
+	},
 }
+
+// ValidDepartments is every department in FacultyDepartments.
+var ValidDepartments = func() map[string]bool {
+	m := make(map[string]bool)
+	for _, depts := range FacultyDepartments {
+		for _, d := range depts {
+			m[d] = true
+		}
+	}
+	return m
+}()
 
 var ValidLevels = map[string]bool{
 	"100L": true,

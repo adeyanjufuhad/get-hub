@@ -1,5 +1,6 @@
 "use client";
 
+import { Flame } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -99,15 +100,13 @@ export default function DashboardPage() {
       {/* ==================== 1. COMMAND HEADER + QUICK JUMP ==================== */}
       <section className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-3 py-1 font-mono text-xs font-medium text-[var(--text-secondary)]">
-              {data.user.department} · {data.user.level}
-            </span>
-            <span className="tabular inline-flex items-center gap-1.5 rounded-full border border-[var(--accent-border)] bg-[var(--accent-soft)] px-3 py-1 font-mono text-xs font-medium text-[var(--accent)]">
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-              {data.streak_days} {data.streak_days === 1 ? "day" : "days"} streak
-            </span>
-          </div>
+          {/* Department and level already sit in the app's top bar, so only the streak shows here. */}
+          {data.streak_days > 0 && (
+            <p className="tabular inline-flex items-center gap-1 text-xs font-medium text-[var(--accent)]">
+              <Flame className="h-3.5 w-3.5" aria-hidden="true" />
+              {data.streak_days}-day streak
+            </p>
+          )}
           <h1 className="mt-2.5 text-2xl font-semibold tracking-[-0.02em] text-[var(--text-primary)] text-balance sm:text-3xl">
             {greeting()},{" "}
             <GradientText colors={ORANGE_GRADIENT} animationSpeed={7} className="font-bold">
